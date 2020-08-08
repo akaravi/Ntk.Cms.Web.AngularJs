@@ -6,12 +6,12 @@
             <form method="get" class="form-horizontal" name="frmCmsModuleEdit" novalidate ng-submit="cmsModuleOptimizer.editRow(frmCmsModuleEdit)">
                 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModuleOptimizer.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsModuleOptimizer.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModuleOptimizerEdit.LinkSourceId.$invalid && !frmcmsModuleOptimizerEdit.LinkSourceId.$pristine,'has-success' : frmcmsModuleOptimizerEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsModuleOptimizer"></div>
                 </div>
-                 <div class="form-group"  ng-show="cmsModuleOptimizer.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                 <div class="form-group"  ng-show="cmsModuleOptimizer.AccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'TITLE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModuleOptimizer.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                <div class="form-group" ng-show="cmsModuleOptimizer.AccessEdit('ClassName')"
                      ng-class="{'has-error' : frmCmsModuleEdit.ClassName.$invalid && !frmCmsModuleEdit.ClassName.$pristine,'has-success' : frmCmsModuleEdit.ClassName.$valid}">
                     <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsModuleOptimizer.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="cmsModuleOptimizer.AccessEdit('Description')">
                     <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='cmsModuleOptimizer.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>

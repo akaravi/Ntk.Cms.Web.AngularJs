@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmlinkManagementAccountingDetailEdit" novalidate ng-submit="linkManagementAccountingDetail.editRow(frmlinkManagementAccountingDetailEdit)">
                
                  <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="linkManagementAccountingDetail.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmlinkManagementAccountingDetailAdd.RecordStatus.$invalid && !frmlinkManagementAccountingDetailAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementAccountingDetailAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="linkManagementAccountingDetail"></div>

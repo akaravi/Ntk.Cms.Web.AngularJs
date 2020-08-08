@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmadvertisementContractAdd" novalidate ng-submit="advertisementContract.addNewRow(frmadvertisementContractAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="advertisementContract.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmadvertisementContractAdd.LinkSourceId.$invalid && !frmadvertisementContractAdd.LinkSourceId.$pristine,'has-success' : frmadvertisementContractAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="advertisementContract"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="advertisementContract.AccessAdd('Title')"
                      ng-class="{'has-error' : frmadvertisementContractAdd.Title.$invalid && !frmadvertisementContractAdd.Title.$pristine,'has-success' : frmadvertisementContractAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"  ng-class="{'has-error' : frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine,'has-success' : frmadvertisementContractAdd.Description.$valid}">
+                <div class="form-group" ng-show="advertisementContract.AccessAdd('Description')"  ng-class="{'has-error' : frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine,'has-success' : frmadvertisementContractAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" ng-required="true" name="Description" ng-model="advertisementContract.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
@@ -84,7 +84,7 @@
                         <span style="left: 10px !important;" ng-show="frmadvertisementContractAdd.Title.$valid && frmadvertisementContractAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                         <span style="left: 10px !important;" ng-show="(frmadvertisementContractAdd.Title.$invalid && !frmadvertisementContractAdd.Title.$pristine) || frmadvertisementContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                    <div class="form-group" ng-show="advertisementContract.AccessAdd('Description')"
                          ng-class="{'has-error' : frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine,'has-success' : frmadvertisementContractAdd.Description.$valid}">
                         <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                         <div class="col-sm-10">

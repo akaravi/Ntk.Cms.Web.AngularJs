@@ -15,108 +15,108 @@
                                 <div class="col-sm-10" rasha-record-status="emailPrivateSiteConfig"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('LinkPublicConfigId')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('LinkPublicConfigId')">
                                 <label class='col-sm-2 control-label'>{{'SETTINGS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedPublicConfig.Title" readonly="readonly" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('Title')">
                                 <label class='col-sm-2 control-label'>{{'title'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.Title" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('IsPublic')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('IsPublic')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="IsPublic" ng-model="emailPrivateSiteConfig.selectedItem.IsPublic" /><h4>{{'IS_PUBLIC'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('AllowToSuperSeder')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('AllowToSuperSeder')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="AllowToSuperSeder" ng-model="emailPrivateSiteConfig.selectedItem.AllowToSuperSeder" /><h4>{{'AllowToSuperSeder'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('Priority')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('Priority')">
                                 <label class='col-sm-2 control-label'>Priority</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.Priority" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('EmailSenderEmail')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('EmailSenderEmail')">
                                 <label class='col-sm-2 control-label'>{{'Email_Sender_Email'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.EmailSenderEmail" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('EmailSenderEmailAllowChange')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('EmailSenderEmailAllowChange')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="EmailSenderEmailAllowChange" ng-model="emailPrivateSiteConfig.selectedItem.EmailSenderEmailAllowChange" /><h4>{{'EmailSenderEmailAllowChange'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('EmailSenderDisplayName')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('EmailSenderDisplayName')">
                                 <label class='col-sm-2 control-label'>{{'Email_Sender_Display_Name'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.EmailSenderDisplayName" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('EmailSenderDisplayNameAllowChange')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('EmailSenderDisplayNameAllowChange')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="EmailSenderDisplayNameAllowChange" ng-model="emailPrivateSiteConfig.selectedItem.EmailSenderDisplayNameAllowChange" /><h4>{{'EmailSenderDisplayNameAllowChange'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('PricePerEmail')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('PricePerEmail')">
                                 <label class='col-sm-2 control-label'>PricePerEmail</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.PricePerEmail" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('MaxTransactionAmount')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('MaxTransactionAmount')">
                                 <label class="col-sm-2 control-label">{{'MAX_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" min="0" step="0.01" class="form-control" name="MaxTransactionAmount" ng-model="emailPrivateSiteConfig.selectedItem.MaxTransactionAmount" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('MinTransactionAmount')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('MinTransactionAmount')">
                                 <label class="col-sm-2 control-label"> {{'MIN_TRANSACTION_AMOUNT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" step="0.01" name="MinTransactionAmount" ng-model="emailPrivateSiteConfig.selectedItem.MinTransactionAmount" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('FixFeeTransactionAmount')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('FixFeeTransactionAmount')">
                                 <label class="col-sm-2 control-label">{{'FIX_FEE_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" min="0" step="0.01" class="form-control" name="FixFeeTransactionAmount" ng-model="emailPrivateSiteConfig.selectedItem.FixFeeTransactionAmount" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('PercentFeeTransactionAmount')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('PercentFeeTransactionAmount')">
                                 <label class='col-sm-2 control-label'>{{'PERCENT_FEE_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="number" min="0" step="0.01" name="PercentFeeTransactionAmount" ng-model='emailPrivateSiteConfig.selectedItem.PercentFeeTransactionAmount' class='form-control' />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('Memo')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('Memo')">
                                 <label class='col-sm-2 control-label'>{{'MEMO'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <textarea name="Memo" ng-model='emailPrivateSiteConfig.selectedItem.Memo' class="form-control" style="resize:vertical;height:60px;"></textarea>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('LinkApiPathCompanyId')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('LinkApiPathCompanyId')">
                                 <label class="col-sm-2 control-label">ApiPathCompany</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkApiPathCompanyId" rasha-autocomplete="emailPrivateSiteConfig.LinkApiPathCompanyIdSelector" ng-model="emailPrivateSiteConfig.selectedItem.LinkApiPathCompanyId" />
@@ -127,7 +127,7 @@
                     <tab heading="{{'SETTINGS'|lowercase|translate}}">
                         <div class="panel-body">
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessEditField.indexOf('PrivateConfigJsonValues')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessEdit('PrivateConfigJsonValues')">
                                 <label class='col-sm-2 control-label'>{{'SETTINGS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <div ng-model="emailPrivateSiteConfig.submitValue" fb-form="default" fb-default="emailPrivateSiteConfig.defaultValue"></div>
@@ -138,28 +138,28 @@
                     <tab heading="ApiAbility">
                         <div class="panel-body">
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ServerAbilityConnectionPerMinute')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('ServerAbilityConnectionPerMinute')">
                                 <label class='col-sm-2 control-label'>ServerAbilityConnectionPerMinute</label>
                                 <div class='col-sm-10'>
                                     <textarea name="ServerAbilityConnectionPerMinute" ng-model='emailPrivateSiteConfig.selectedItem.ServerAbilityConnectionPerMinute' class="form-control" style="resize:vertical;height:60px;"></textarea>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ServerAbilityMinPack')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('ServerAbilityMinPack')">
                                 <label class='col-sm-2 control-label'>ServerAbilityMinPack</label>
                                 <div class='col-sm-10'>
                                     <textarea name="ServerAbilityMinPack" ng-model='emailPrivateSiteConfig.selectedItem.ServerAbilityMinPack' class="form-control" style="resize:vertical;height:60px;"></textarea>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ServerAbilityMaxPack')>-1">
+                            <div class="form-group" ng-show="emailPrivateSiteConfig.AccessAdd('ServerAbilityMaxPack')">
                                 <label class='col-sm-2 control-label'>ServerAbilityMaxPack</label>
                                 <div class='col-sm-10'>
                                     <textarea name="ServerAbilityMaxPack" ng-model='emailPrivateSiteConfig.selectedItem.ServerAbilityMaxPack' class="form-control" style="resize:vertical;height:60px;"></textarea>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiPathCompanyCounterIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiPathCompanyCounterIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiPathCompanyCounterIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiPathCompanyCounterIsOn" /><h4>{{'ApiSendVoiceIsOn'|lowercase|translate}}</h4>
                                 </label>
@@ -170,27 +170,27 @@
                         <div class="panel-body">
 
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendMessageIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendMessageIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiSendMessageIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendMessageIsOn" /><h4>{{'ApiSendMessageIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendMessageUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendMessageUrl')">
                                 <label class='col-sm-2 control-label'>ApiSendMessageUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendMessageUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendMessageUrlParameter')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendMessageUrlParameter')">
                                 <label class='col-sm-2 control-label'>ApiSendMessageUrlParameter</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendMessageUrlParameter" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendMessageMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendMessageMethod')">
                                 <label class='col-sm-2 control-label'>ApiSendMessageMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendMessageMethod" />
@@ -201,27 +201,27 @@
                     <tab heading="متغیرهای دریافت وضعیت">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiDeliveryIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiDeliveryIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiDeliveryIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiDeliveryIsOn" /><h4>{{'ApiDeliveryIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiDeliveryUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiDeliveryUrl')">
                                 <label class='col-sm-2 control-label'>ApiDeliveryUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiDeliveryUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiDeliveryUrlParameter')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiDeliveryUrlParameter')">
                                 <label class='col-sm-2 control-label'>ApiDeliveryUrlParameter</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiDeliveryUrlParameter" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiDeliveryMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiDeliveryMethod')">
                                 <label class='col-sm-2 control-label'>ApiDeliveryMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiDeliveryMethod" />
@@ -232,20 +232,20 @@
                     <tab heading="وضعیت برگشت اعتبار">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiCreditBackIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiCreditBackIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiCreditBackIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiCreditBackIsOn" /><h4>{{'ApiCreditBackIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiCreditBackCheckOnSend')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiCreditBackCheckOnSend')">
                                 <label class='col-sm-2 control-label'>ApiCreditBackCheckOnSend</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiCreditBackCheckOnSend" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiCreditBackCheckOnDelivery')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiCreditBackCheckOnDelivery')">
                                 <label class='col-sm-2 control-label'>ApiCreditBackCheckOnDelivery</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiCreditBackCheckOnDelivery" />
@@ -256,27 +256,27 @@
                     <tab heading="متغیرهای دریافت">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiReciveIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiReciveIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiReciveIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiReciveIsOn" /><h4>{{'ApiReciveIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiReciveUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiReciveUrl')">
                                 <label class='col-sm-2 control-label'>ApiReciveUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiReciveUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiReciveUrlParameter')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiReciveUrlParameter')">
                                 <label class='col-sm-2 control-label'>ApiReciveUrlParameter</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiReciveUrlParameter" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiReciveMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiReciveMethod')">
                                 <label class='col-sm-2 control-label'>ApiReciveMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiReciveMethod" />
@@ -287,27 +287,27 @@
                     <tab heading="بررسی اعتبار">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiInfoCreditCheckIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiInfoCreditCheckIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiInfoCreditCheckIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiInfoCreditCheckIsOn" /><h4>{{'ApiInfoCreditCheckIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiInfoCreditCheckUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiInfoCreditCheckUrl')">
                                 <label class='col-sm-2 control-label'>ApiInfoCreditCheckUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiInfoCreditCheckUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiInfoCreditCheckParameter')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiInfoCreditCheckParameter')">
                                 <label class='col-sm-2 control-label'>ApiInfoCreditCheckParameter</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiInfoCreditCheckParameter" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiInfoCreditCheckMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiInfoCreditCheckMethod')">
                                 <label class='col-sm-2 control-label'>ApiInfoCreditCheckMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiInfoCreditCheckMethod" />
@@ -318,20 +318,20 @@
                     <tab heading="متغیرهای بانک شماره">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiPhoneBookIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiPhoneBookIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiPhoneBookIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiPhoneBookIsOn" /><h4>{{'ApiPhoneBookIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiPhoneBookUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiPhoneBookUrl')">
                                 <label class='col-sm-2 control-label'>ApiPhoneBookUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiPhoneBookUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiPhoneBookMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiPhoneBookMethod')">
                                 <label class='col-sm-2 control-label'>ApiPhoneBookMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiPhoneBookMethod" />
@@ -342,27 +342,27 @@
                     <tab heading="متغیرهای ارسال پیام صوتی">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendVoiceIsOn')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendVoiceIsOn')">
                                 <label class="checkbox-inline">
                                     <input icheck type="checkbox" value="ApiSendVoiceIsOn" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendVoiceIsOn" /><h4>{{'ApiSendVoiceIsOn'|lowercase|translate}}</h4>
                                 </label>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendVoiceUrl')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendVoiceUrl')">
                                 <label class='col-sm-2 control-label'>ApiSendVoiceUrl</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendVoiceUrl" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendVoiceUrlParameter')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendVoiceUrlParameter')">
                                 <label class='col-sm-2 control-label'>ApiSendVoiceUrlParameter</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendVoiceUrlParameter" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ApiSendVoiceMethod')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ApiSendVoiceMethod')">
                                 <label class='col-sm-2 control-label'>ApiSendVoiceMethod</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ApiSendVoiceMethod" />
@@ -373,35 +373,35 @@
                     <tab heading="متغییر های خطا">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ErrorTextToStandBy')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ErrorTextToStandBy')">
                                 <label class='col-sm-2 control-label'>ErrorTextToStandBy</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ErrorTextToStandBy" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ErrorTextToDisable')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ErrorTextToDisable')">
                                 <label class='col-sm-2 control-label'>ErrorTextToDisable</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ErrorTextToDisable" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ErrorTextToStandByLastGet')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ErrorTextToStandByLastGet')">
                                 <label class='col-sm-2 control-label'>ErrorTextToStandByLastGet</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ErrorTextToStandByLastGet" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ErrorTextToStandByExit')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ErrorTextToStandByExit')">
                                 <label class='col-sm-2 control-label'>ErrorTextToStandByExit</label>
                                 <div class='col-sm-10'>
                                     <input type="number" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ErrorTextToStandByExit" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddField.indexOf('ErrorTextToDisableLastGet')>-1">
+                            <div class='form-group' ng-show="emailPrivateSiteConfig.AccessAdd('ErrorTextToDisableLastGet')">
                                 <label class='col-sm-2 control-label'>ErrorTextToDisableLastGet</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="emailPrivateSiteConfig.selectedItem.ErrorTextToDisableLastGet" />

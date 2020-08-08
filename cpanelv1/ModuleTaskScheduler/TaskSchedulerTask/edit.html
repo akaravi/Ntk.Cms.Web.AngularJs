@@ -10,13 +10,13 @@
                             <div class='hr-line-dashed'></div>
                             <div class="back1">
                                 <br />
-                                <div class="form-group" ng-show="task.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                <div class="form-group" ng-show="task.AccessEdit('RecordStatus')"
                                      ng-class="{'has-error' : frmtaskEdit.RecordStatus.$invalid && !frmtaskEdit.RecordStatus.$pristine,'has-success' : frmtaskEdit.RecordStatus.$valid}">
                                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                     <div class="col-sm-10" rasha-record-status="task"></div>
                                 </div>
                                 <div class='hr-line-dashed'></div>
-                                <div class="form-group" ng-show="task.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                <div class="form-group" ng-show="task.AccessEdit('Title')"
                                      ng-class="{'has-error' : frmtaskEdit.Title.$invalid && !frmtaskEdit.Title.$pristine,'has-success' : frmtaskEdit.Title.$valid}">
                                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <div class='hr-line-dashed'></div>
-                                <div class="form-group" ng-show="task.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1"
+                                <div class="form-group" ng-show="task.AccessEdit('Description')"
                                      ng-class="{'has-error' : frmtaskEdit.Description.$invalid && !frmtaskEdit.Description.$pristine,'has-success' : frmtaskEdit.Description.$valid}">
                                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="task.gridOptions.resultAccess.AccessEditField.indexOf('ActionType')>-1">
+                            <div class="form-group" ng-show="task.AccessEdit('ActionType')">
                                 <label class="col-sm-2 control-label">{{ 'ActionType'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="ActionType" ng-model="task.selectedItem.ActionType" ng-options="x.Value as x.Description for x in task.ActionType" required></select>

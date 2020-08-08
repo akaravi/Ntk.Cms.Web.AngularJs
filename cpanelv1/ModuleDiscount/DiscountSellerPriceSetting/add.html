@@ -12,21 +12,21 @@
                 </div>
              
                     <div class='hr-line-dashed'></div>
-                    <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSellerId')>-1">
+                    <div class="form-group" ng-show="discountSellerPriceSetting.AccessAdd('LinkDiscountSellerId')">
                         <label class="col-sm-2 control-label">{{'Representative_Id'|lowercase|translate}}</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountSellerIdSelector" ng-model="discountSellerPriceSetting.selectedItem.LinkDiscountSellerId" />
                         </div>
                     </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountGroupId')>-1">
+                <div class="form-group" ng-show="discountSellerPriceSetting.AccessAdd('LinkDiscountGroupId')">
                     <label class="col-sm-2 control-label">{{'Link_Group_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountGroupIdSelector" ng-model="discountSellerPriceSetting.selectedItem.LinkDiscountGroupId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('BasePrice')>-1"
+                <div class="form-group" ng-show="discountSellerPriceSetting.AccessAdd('BasePrice')"
                      ng-class="{'has-error' : frmdiscountSellerPriceSettingAdd.BasePrice.$invalid && !frmdiscountSellerPriceSettingAdd.BasePrice.$pristine,'has-success' : frmdiscountSellerPriceSettingAdd.BasePrice.$valid}">
                     <label class="col-sm-2 control-label">{{'Fixed_Price'|lowercase|translate}}</label>
                     <div class="col-sm-10">

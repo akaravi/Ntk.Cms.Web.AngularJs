@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmvehiclePropertyEdit.LinkSourceId.$invalid && !frmvehiclePropertyEdit.LinkSourceId.$pristine,'has-success' : frmvehiclePropertyEdit.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="vehicleProperty"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('Brand')>-1"
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('Brand')"
                                  ng-class="{'has-error' : frmvehiclePropertyEdit.Brand.$invalid && !frmvehiclePropertyEdit.Brand.$pristine,'has-success' : frmvehiclePropertyEdit.Brand.$valid}">
                                 <label class="col-sm-2 control-label">{{'BRAND'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('Model')>-1"
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('Model')"
                                  ng-class="{'has-error' : frmvehiclePropertyEdit.Model.$invalid && !frmvehiclePropertyEdit.Model.$pristine,'has-success' : frmvehiclePropertyEdit.Model.$valid}">
                                 <label class="col-sm-2 control-label"> {{'MODEL'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -53,7 +53,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('LinkPropertyTypeId')>-1 ">
+                            <div ng-show="vehicleProperty.AccessEdit('LinkPropertyTypeId')>-1 ">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> {{'VEHICLE_TYPE'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('Description')">
                                 <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control"  name="Description" title="توضیحات اضافه در مورد خودرو" ng-model="vehicleProperty.selectedItem.Description" style="resize:vertical;height:65px;"></textarea>
@@ -183,21 +183,21 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                            <div class="form-group" ng-show="vehicleProperty.AccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="vehicleProperty.LinkLocationIdSelector" ng-model="vehicleProperty.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="vehicleProperty.GeolocationConfig" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditField.indexOf('Address')>-1 ">
+                            <div class="form-group" ng-show="vehicleProperty.AccessEdit('Address')>-1 ">
                                 <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Address" ng-model="vehicleProperty.selectedItem.Address" />

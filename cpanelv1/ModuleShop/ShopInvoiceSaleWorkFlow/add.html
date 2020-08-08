@@ -11,7 +11,7 @@
                     <div class="col-sm-10" rasha-record-status="shopInvoiceSaleWorkFlow"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.AccessAdd('Title')"
                      ng-class="{'has-error' : frmshopInvoiceSaleWorkFlowAdd.Title.$invalid && !frmshopInvoiceSaleWorkFlowAdd.Title.$pristine,'has-success' : frmshopInvoiceSaleWorkFlowAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -27,27 +27,27 @@
                     </div>
                 </div><!---->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddField.indexOf('LinkExternalModuleUniversalMenuId')>-1">
+                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.AccessAdd('LinkExternalModuleUniversalMenuId')">
                     <label class="col-sm-2 control-label">{{'Universal_Menu'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalModuleUniversalMenuId" rasha-autocomplete="shopInvoiceSaleWorkFlow.LinkExternalModuleUniversalMenuIdSelector" ng-model="shopInvoiceSaleWorkFlow.selectedItem.LinkExternalModuleUniversalMenuId" />
                     </div>
                 </div><!---->
-                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddField.indexOf('IsDefault')>-1">
+                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.AccessAdd('IsDefault')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="shopInvoiceSaleWorkFlow.selectedItem.IsDefault" />{{'Is_Default'|lowercase|translate}}
                         </label>
                     </div>
                 </div><!---->
-                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddField.indexOf('IsInPreInvoiceActivation')>-1">
+                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.AccessAdd('IsInPreInvoiceActivation')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="shopInvoiceSaleWorkFlow.selectedItem.IsInPreInvoiceActivation" />{{'Is_In_Pre_Invoice_Activation'|lowercase|translate}}
                         </label>
                     </div>
                 </div><!---->
-                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddField.indexOf('IsInInvoiceClosedActivation')>-1">
+                <div class="form-group" ng-show="shopInvoiceSaleWorkFlow.AccessAdd('IsInInvoiceClosedActivation')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="shopInvoiceSaleWorkFlow.selectedItem.IsInInvoiceClosedActivation" />{{'Is_In_Invoice_Closed_Activation'|lowercase|translate}}

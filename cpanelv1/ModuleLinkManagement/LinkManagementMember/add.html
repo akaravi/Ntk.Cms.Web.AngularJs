@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmlinkManagementMemberAdd" novalidate ng-submit="linkManagementMember.addNewRow(frmlinkManagementMemberAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="linkManagementMember.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="linkManagementMember.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmlinkManagementMemberAdd.RecordStatus.$invalid && !frmlinkManagementMemberAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementMemberAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="linkManagementMember"></div>

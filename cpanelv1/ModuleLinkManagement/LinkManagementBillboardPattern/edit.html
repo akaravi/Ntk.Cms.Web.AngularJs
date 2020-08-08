@@ -9,7 +9,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="linkManagementBillboardPattern.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="linkManagementBillboardPattern.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmlinkManagementBillboardPatternAdd.RecordStatus.$invalid && !frmlinkManagementBillboardPatternAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementBillboardPatternAdd.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="linkManagementBillboardPattern"></div>

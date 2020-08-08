@@ -5,7 +5,7 @@
             <h3 class="m-t-none m-b"> {{ applicationIntro.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmapplicationIntroEdit" novalidate ng-submit="applicationIntro.editRow(frmapplicationIntroEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="applicationIntro.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmapplicationIntroEdit.RecordStatus.$invalid && !frmapplicationIntroEdit.RecordStatus.$pristine,'has-success' : frmapplicationIntroEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="applicationIntro"></div>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="applicationIntro.AccessEdit('Title')"
                      ng-class="{'has-error' : frmapplicationIntroEdit.Title.$invalid && !frmapplicationIntroEdit.Title.$pristine,'has-success' : frmapplicationIntroEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'TITLE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -62,7 +62,7 @@
                 </div>
 
                 <!-- <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1"
+                <div class="form-group" ng-show="applicationIntro.AccessEdit('LinkSourceId')"
                      ng-class="{'has-error' : frmapplicationIntroEdit.PackageName.$invalid && !frmapplicationIntroEdit.PackageName.$pristine,'has-success' : frmapplicationIntroEdit.PackageName.$valid}">
                     <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">

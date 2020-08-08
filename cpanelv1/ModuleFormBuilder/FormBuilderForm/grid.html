@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="form.openAddModal()" ng-show="form.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="form.openEditModal()" ng-show="form.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="form.deleteRow()" ng-show="form.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="form.showAdvancedSearchPanel(form.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="form.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="form.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
             <!--<button class="btn btn-info" type="button" ng-click="form.openInputvalueBuilder()">{{'FORM_BUILDER'|lowercase|translate}}</button>-->
         </div>

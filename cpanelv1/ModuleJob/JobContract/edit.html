@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmjobContractEdit" novalidate ng-submit="jobContract.editRow(frmjobContractEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobContract.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="jobContract.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmjobContractEdit.LinkSourceId.$invalid && !frmjobContractEdit.LinkSourceId.$pristine,'has-success' : frmjobContractEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="jobContract"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobContract.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="jobContract.AccessEdit('Title')"
                      ng-class="{'has-error' : frmjobContractEdit.Title.$invalid && !frmjobContractEdit.Title.$pristine,'has-success' : frmjobContractEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobContract.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                <div class="form-group" ng-show="jobContract.AccessEdit('Description')">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control"

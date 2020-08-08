@@ -16,21 +16,21 @@
                                 <div class="col-sm-10" rasha-record-status="biographyContentParameter"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkContentParameterTypeId')>-1">
+                            <div class="form-group" ng-show="biographyContentParameter.AccessEdit('LinkContentParameterTypeId')">
                                 <label class="col-sm-2 control-label">{{'ParameterType'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkContentParameterTypeId" rasha-autocomplete="biographyContentParameter.LinkContentParameterTypeIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkContentParameterTypeId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalCoreCmsSiteCategoryId')>-1">
+                            <div class="form-group" ng-show="biographyContentParameter.AccessEdit('LinkExternalCoreCmsSiteCategoryId')">
                                 <label class="col-sm-2 control-label">{{'Site_Categories'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalCoreCmsSiteCategoryId" rasha-autocomplete="biographyContentParameter.LinkExternalCoreCmsSiteCategoryIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkExternalCoreCmsSiteCategoryId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleCategoryId')>-1">
+                            <div class="form-group" ng-show="biographyContentParameter.AccessEdit('LinkModuleCategoryId')">
                                 <label class="col-sm-2 control-label">{{'Module_Categorization'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkModuleCategoryId" rasha-autocomplete="biographyContentParameter.LinkModuleCategoryIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkModuleCategoryId" />

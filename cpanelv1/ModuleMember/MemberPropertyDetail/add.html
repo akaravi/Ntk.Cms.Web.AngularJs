@@ -20,13 +20,13 @@
             <h3 class="m-t-none m-b"> {{ memberPropertyDetail.modalTitle}}</h3>
             <form method="get" class="form-horizontal" name="frmmemberPropertyDetailAdd" novalidate>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmmemberPropertyDetailAdd.RecordStatus.$invalid && !frmmemberPropertyDetailAdd.RecordStatus.$pristine,'has-success' : frmmemberPropertyDetailAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="memberPropertyDetail"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('Title')"
                      ng-class="{'has-error' : frmmemberPropertyDetailAdd.Title.$invalid && !frmmemberPropertyDetailAdd.Title.$pristine,'has-success' : frmmemberPropertyDetailAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('IconFont')>-1">
+                <div class="form-group formControl" ng-show="memberPropertyDetail.AccessAdd('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" name="IconFont" ng-focus="memberPropertyDetail.toggleIcons('true')" ng-blur="memberPropertyDetail.toggleIcons()" />
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('InputDataType')>-1"
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('InputDataType')"
                      ng-class="{'has-error' : frmmemberPropertyDetailAdd.InputDataType.$invalid && !frmmemberPropertyDetailAdd.InputDataType.$pristine,'has-success' : frmmemberPropertyDetailAdd.InputDataType.$valid}">
                     <label class="col-sm-2 control-label"> {{'INPUT_TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -100,14 +100,14 @@
                     </div>
                 </div>
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('LinkHistoryId')>-1">
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('LinkHistoryId')">
                     <label class="col-sm-2 control-label">history</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkHistoryId" rasha-autocomplete="memberPropertyDetail.LinkHistoryIdSelector" ng-model="memberPropertyDetail.selectedItem.LinkHistoryId" />
                     </div>
                 </div>-->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('InvisibleForEndUser')>-1">
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('InvisibleForEndUser')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('InvisibleForSubmiter')>-1">
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('InvisibleForSubmiter')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessAddField.indexOf('Required')>-1">
+                <div class="form-group" ng-show="memberPropertyDetail.AccessAdd('Required')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>

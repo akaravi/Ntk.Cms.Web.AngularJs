@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmapplicationIntroAdd" novalidate ng-submit="applicationIntro.addNewRow(frmapplicationIntroAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="applicationIntro.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmapplicationIntroAdd.RecordStatus.$invalid && !frmapplicationIntroAdd.RecordStatus.$pristine,'has-success' : frmapplicationIntroAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="applicationIntro"></div>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="applicationIntro.AccessAdd('Title')"
                      ng-class="{'has-error' : frmapplicationIntroAdd.Title.$invalid && !frmapplicationIntroAdd.Title.$pristine,'has-success' : frmapplicationIntroAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'TITLE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -66,7 +66,7 @@
 
                 
                 <!-- <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessAddField.indexOf('LinkSourceId')>-1">
+                <div class="form-group" ng-show="applicationIntro.AccessAdd('LinkSourceId')">
                     <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <select class='form-control' name="LinkSourceId" ng-model="applicationIntro.selectedItem.LinkSourceId" ng-options="x.Id as x.Title for x in applicationIntro.sourceListItems" ></select>

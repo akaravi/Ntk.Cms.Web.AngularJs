@@ -41,8 +41,9 @@
                     <button class="btn btn-info" ng-click="chartContent.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
                 </div>
                 <hr />
+            
                 <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
-                    <div ng-if="chartContent.gridOptions.resultAccess.AccessSearchField" id="builder" query-builder="chartContent"></div>
+                    <div id="builder" query-builder="chartContent"></div>
                     <div class="btn-group" style="float: left;">
                         <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="chartContent.getRules()"> {{'look'|lowercase|translate}} </button>
                         <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="chartContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>

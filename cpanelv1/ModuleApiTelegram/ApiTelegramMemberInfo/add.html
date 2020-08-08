@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmmemberInfoAdd" novalidate ng-submit="memberInfo.addNewRow(frmmemberInfoAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmmemberInfoAdd.LinkSourceId.$invalid && !frmmemberInfoAdd.LinkSourceId.$pristine,'has-success' : frmmemberInfoAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="memberInfo"></div>
                 </div>
                 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessAdd('Title')"
                      ng-class="{'has-error' : frmmemberInfoAdd.Title.$invalid && !frmmemberInfoAdd.Title.$pristine,'has-success' : frmmemberInfoAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'TITLE_OF_BOT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('Username')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessAdd('Username')"
                      ng-class="{'has-error' : frmmemberInfoAdd.Username.$invalid && !frmmemberInfoAdd.Username.$pristine,'has-success' : frmmemberInfoAdd.Username.$valid}">
                     <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('BotToken')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessAdd('BotToken')"
                      ng-class="{'has-error' : frmmemberInfoAdd.BotToken.$invalid && !frmmemberInfoAdd.BotToken.$pristine,'has-success' : frmmemberInfoAdd.BotToken.$valid}">
                     <label class="col-sm-2 control-label"> {{'TOKEN'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('LinkUniversalMenuId')>-1">
+                <div class="form-group" ng-show="memberInfo.AccessAdd('LinkUniversalMenuId')">
                     <label class="col-sm-2 control-label"> {{'SELECT_MENUE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <select class="form-control" name="LinkUniversalMenuId" ng-model="memberInfo.selectedItem.LinkUniversalMenuId">
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1">
+                <div class="form-group" ng-show="memberInfo.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')">
                     <div class="col-md-11">
                         <input type="checkbox" style="width: 15px; height: 15px;" ng-model="memberInfo.selectUniversalMenuOnUndetectableKey" />
                         <label> {{'CREATE_DEFAULT_MENUE_ELSE_ERROR'|lowercase|translate}} </label>
@@ -88,7 +88,7 @@
 
                 <div ng-show="memberInfo.selectUniversalMenuOnUndetectableKey">
                     <div class='hr-line-dashed'></div>
-                    <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
+                    <div class="form-group" ng-show="memberInfo.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
                         <label class="col-sm-3 control-label"> {{'SELECT_DEFAULT'|lowercase|translate}} </label>
                         <div class="col-sm-8">
                             <select class="form-control" name="LinkUniversalMenuIdOnUndetectableKey" ng-model="memberInfo.selectedItem.LinkUniversalMenuIdOnUndetectableKey">

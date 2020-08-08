@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="taskSchedulerProcess.Add" ng-click="taskSchedulerProcess.autoAdd()" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="taskSchedulerProcess.Edit" ng-click="taskSchedulerProcess.openEditModal()" type="button" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="taskSchedulerProcess.Delete" ng-click="taskSchedulerProcess.deleteRow()" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="taskSchedulerProcess.showAdvancedSearchPanel(taskSchedulerProcess.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" type="button" ng-click="taskSchedulerProcess.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-default" type="button" ng-click="taskSchedulerProcess.changeState('taskschedulerprocesscategory')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
         </div>
     </div>

@@ -10,12 +10,12 @@
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="discountSerialCard"></div>
                 </div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('DiscountSerialCardIdentifier')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('DiscountSerialCardIdentifier')>-1"
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('DiscountSerialCardIdentifier')>-1||discountSerialCard.AccessWatch('DiscountSerialCardIdentifier')"
                      ng-class="{'has-error' : frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$invalid && !frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$pristine,'has-success' : frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$valid}">
                     <label class="col-sm-2 control-label">{{'CARD_NUMBER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
-                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('DiscountSerialCardIdentifier')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('DiscountSerialCardIdentifier')>-1"
+                               ng-readonly="discountSerialCard.AccessEdit('DiscountSerialCardIdentifier')<0 && discountSerialCard.AccessWatch('DiscountSerialCardIdentifier')"
                                ng-required="true"
                                name="DiscountSerialCardIdentifier"
                                ng-model="discountSerialCard.selectedItem.DiscountSerialCardIdentifier" />
@@ -28,12 +28,12 @@
                 </div>
                 <div class='hr-line-dashed'></div>
                 <div class="form-group"
-                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1"
+                     ng-show="discountSerialCard.AccessEdit('SerialRfId')>-1||discountSerialCard.AccessWatch('SerialRfId')"
                      >
                     <label class="col-sm-2 control-label">{{'RfId_Serial'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
-                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1"
+                               ng-readonly="discountSerialCard.AccessEdit('SerialRfId')<0 && discountSerialCard.AccessWatch('SerialRfId')"
                                name="SerialRfId"
                                ng-model="discountSerialCard.selectedItem.SerialRfId" />
                     </div>
@@ -41,23 +41,23 @@
 
                 <div class='hr-line-dashed'></div>
                 <div class="form-group"
-                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1"
+                     ng-show="discountSerialCard.AccessEdit('SerialNumber')>-1||discountSerialCard.AccessWatch('SerialNumber')"
                      >
                     <label class="col-sm-2 control-label">{{'Serial_Number'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control"
-                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1"
+                               ng-readonly="discountSerialCard.AccessEdit('SerialNumber')<0 && discountSerialCard.AccessWatch('SerialNumber')"
                                name="SerialNumber"
                                ng-model="discountSerialCard.selectedItem.SerialNumber" />
                     </div>
                 </div>
                 <div class="form-group"
-                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('MonthExpireLength')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('MonthExpireLength')>-1"
+                     ng-show="discountSerialCard.AccessEdit('MonthExpireLength')>-1||discountSerialCard.AccessWatch('MonthExpireLength')"
                      ng-class="{'has-error' : frmdiscountSerialCardEdit.MonthExpireLength.$invalid && !frmdiscountSerialCardEdit.MonthExpireLength.$pristine,'has-success' : frmdiscountSerialCardEdit.MonthExpireLength.$valid}">
                     <label class="col-sm-2 control-label">{{'Number_Of_Months_Expiration'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
-                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('MonthExpireLength')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('MonthExpireLength')>-1"
+                               ng-readonly="discountSerialCard.AccessEdit('MonthExpireLength')<0 && discountSerialCard.AccessWatch('MonthExpireLength')"
                                ng-required="true"
                                name="MonthExpireLength"
                                ng-model="discountSerialCard.selectedItem.MonthExpireLength" />
@@ -71,13 +71,13 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountGroupId')">
                     <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSerialCard.LinkDiscountGroupIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountGroupId" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountGroupId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountGroupId')<0 && discountSerialCard.AccessWatch('LinkDiscountGroupId')">
                     <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" readonly name="virtual_DiscountGroup.Title" ng-model="discountSerialCard.selectedItem.virtual_DiscountGroup.Title" />
@@ -86,13 +86,13 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSerialCardFlowGroupId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountSerialCardFlowGroupId')">
                     <label class="col-sm-2 control-label">{{'Work_Process'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSerialCard.LinkDiscountSerialCardFlowGroupIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountSerialCardFlowGroupId" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSerialCardFlowGroupId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountSerialCardFlowGroupId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountSerialCardFlowGroupId')<0 && discountSerialCard.AccessWatch('LinkDiscountSerialCardFlowGroupId')">
                     <label class="col-sm-2 control-label">{{'Work_Process'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" readonly name="virtual_DiscountSerialCardFlowGroup.Title"  ng-model="discountSerialCard.selectedItem.virtual_DiscountSerialCardFlowGroup.Title" />
@@ -101,13 +101,13 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSellerId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountSellerId')">
                     <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountSerialCard.LinkDiscountSellerIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountSellerId" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSellerId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountSellerId')>-1">
+                <div class="form-group" ng-show="discountSerialCard.AccessEdit('LinkDiscountSellerId')<0 && discountSerialCard.AccessWatch('LinkDiscountSellerId')">
                     <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" readonly name="virtual_DiscountSeller.BranchTitle" ng-model="discountSerialCard.selectedItem.virtual_DiscountSeller.BranchTitle" />

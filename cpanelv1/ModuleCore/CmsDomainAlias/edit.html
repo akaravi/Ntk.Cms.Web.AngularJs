@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmCmsSiteEdit" novalidate ng-submit="domainAlias.editRow(frmCmsSiteEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="domainAlias.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmdomainAliasEdit.RecordStatus.$invalid && !frmdomainAliasEdit.RecordStatus.$pristine,'has-success' : frmdomainAliasEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="domainAlias"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('Domain')>-1"
+                <div class="form-group" ng-show="domainAlias.AccessEdit('Domain')"
                      ng-class="{'has-error' : frmCmsSiteEdit.Domain.$invalid && !frmCmsSiteEdit.Domain.$pristine,'has-success' : frmCmsSiteEdit.Domain.$valid}">
                     <label class="col-sm-2 control-label">{{'DOMAIN'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -26,14 +26,14 @@
                 </div>
                 <!-- SubDomain -->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('SubDomain')>-1">
+                <div class="form-group" ng-show="domainAlias.AccessEdit('SubDomain')">
                     <label class="col-sm-2 control-label">{{'SUBDOMAIN'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" style="direction: ltr" name="SubDomain" ng-model="domainAlias.selectedItem.SubDomain" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('LinkCmsSiteId')>-1">
+                <div class='form-group' ng-show="domainAlias.AccessEdit('LinkCmsSiteId')">
                     <label class='col-sm-2 control-label'>{{'SITE_ID'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' ng-model='domainAlias.selectedItem.LinkCmsSiteId' class="form-control" />
@@ -41,7 +41,7 @@
                 </div>
                 <!-- Redirect -->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessAddField.indexOf('Redirect')>-1">
+                <div class="form-group" ng-show="domainAlias.AccessAdd('Redirect')">
                     <label class="col-sm-2 control-label">Redirect به:</label>
                     <div class="col-sm-10">
                         <input class="form-control" style="direction: ltr" name="Redirect" ng-model="domainAlias.selectedItem.Redirect" />

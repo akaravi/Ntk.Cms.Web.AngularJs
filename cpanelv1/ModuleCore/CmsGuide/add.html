@@ -8,7 +8,7 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
-                            <div class="form-group" ng-show="cmsGuide.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="cmsGuide.AccessAdd('Title')"
                                  ng-class="{'has-error' : frmCmsCpMainMenuAdd.Title.$invalid && !frmCmsCpMainMenuAdd.Title.$pristine,'has-success' : frmCmsCpMainMenuAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsGuide.gridOptions.resultAccess.AccessAddField.indexOf('LinkParentId')>-1">
+                            <div class="form-group" ng-show="cmsGuide.AccessAdd('LinkParentId')">
                                 <label class="col-sm-2 control-label">{{ 'SELECT_THE_PARENT_PAGE'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkParentId" rasha-autocomplete="cmsGuide.LinkParentIdSelector" ng-model="cmsGuide.selectedItem.LinkParentId" />

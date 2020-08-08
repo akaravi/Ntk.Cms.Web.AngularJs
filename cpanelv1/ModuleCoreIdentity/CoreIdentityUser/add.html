@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="coreIdentityUser.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmcoreIdentityUserAdd.RecordStatus.$invalid && !frmcoreIdentityUserAdd.RecordStatus.$pristine,'has-success' : frmcoreIdentityUserAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="coreIdentityUser"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-class="{'has-error' : frmcoreIdentityUserAdd.Username.$invalid && !frmcoreIdentityUserAdd.Username.$pristine,'has-success' : frmcoreIdentityUserAdd.Username.$valid}"
-                                 ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Username')>-1">
+                                 ng-show="coreIdentityUser.AccessAdd('Username')">
                                 <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
@@ -32,7 +32,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-class="{'has-error' : frmcoreIdentityUserAdd.Pwd.$invalid && !frmcoreIdentityUserAdd.Pwd.$pristine,'has-success' : frmcoreIdentityUserAdd.Pwd.$valid}"
-                                 ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Pwd')>-1">
+                                 ng-show="coreIdentityUser.AccessAdd('Pwd')">
                                 <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Name')>-1"
+                            <div class="form-group" ng-show="coreIdentityUser.AccessAdd('Name')"
                                  ng-class="{'has-error' : frmcoreIdentityUserAdd.Name.$invalid && !frmcoreIdentityUserAdd.Name.$pristine,'has-success' : frmcoreIdentityUserAdd.Name.$valid}">
                                 <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('LastName')>-1"
+                            <div class="form-group" ng-show="coreIdentityUser.AccessAdd('LastName')"
                                  ng-class="{'has-error' : frmcoreIdentityUserAdd.LastName.$invalid && !frmcoreIdentityUserAdd.LastName.$pristine,'has-success' : frmcoreIdentityUserAdd.LastName.$valid}">
                                 <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                            <div class="form-group" ng-show="coreIdentityUser.AccessAdd('Gender')">
                                 <label class="col-sm-2 control-label">Gender</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="Gender" ng-model="coreIdentityUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in coreIdentityUser.Gender" required></select>
@@ -101,56 +101,56 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('NationalCode')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('NationalCode')">
                                 <label class='col-sm-2 control-label'>{{'NATIONAL_CODE'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="phoneNo" type='text' name="NationalCode" ng-model='coreIdentityUser.selectedItem.NationalCode' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('FullName')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('FullName')">
                                 <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' name="FullName" ng-model='coreIdentityUser.selectedItem.FullName' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                            <div class="form-group" ng-show="coreIdentityUser.AccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label"> شهر</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="coreIdentityUser.LinkLocationIdSelector" ng-model="frmcoreIdentityUserAdd.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Address')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('Address')">
                                 <label class='col-sm-2 control-label'>{{'ADDRESS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' name="Address" ng-model='coreIdentityUser.selectedItem.Address' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Tell')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('Tell')">
                                 <label class='col-sm-2 control-label'>{{'TELL'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="phoneNo" type='text' name="Tell" ng-model='coreIdentityUser.selectedItem.Tell' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Mobile')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('Mobile')">
                                 <label class='col-sm-2 control-label'>{{'Mobile'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='coreIdentityUser.selectedItem.Mobile' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Email')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('Email')">
                                 <label class='col-sm-2 control-label'>{{'Email'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='coreIdentityUser.selectedItem.Email' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('FirewallAllowIP')>-1">
+                            <div class='form-group' ng-show="coreIdentityUser.AccessAdd('FirewallAllowIP')">
                                 <label class='col-sm-2 control-label'>{{'FIREWALLALLOWIP'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="ip" type='text' name="Tell" ng-model='coreIdentityUser.selectedItem.FirewallAllowIP' class='form-control'>

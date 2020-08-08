@@ -9,19 +9,19 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="cmsUser.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmcmsUserEdit.RecordStatus.$invalid && !frmcmsUserEdit.RecordStatus.$pristine,'has-success' : frmcmsUserEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="cmsUser"></div>
                             </div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessWatchField.indexOf('Username')>-1"
+                            <div class="form-group" ng-show="cmsUser.AccessWatch('Username')"
                                  ng-class="{'has-error' : frmCmsUserEdit.Username.$invalid && !frmCmsUserEdit.Username.$pristine,'has-success' : frmCmsUserEdit.Username.$valid}">
                                 <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
                                            ng-required="true"
                                            name="Username"
-                                           ng-readonly="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Username')<0"
+                                           ng-readonly="cmsUser.AccessEdit('Username')<0"
                                            ng-model="cmsUser.selectedItem.Username" />
                                     <div class="m-t-xs" ng-show="frmCmsUserEdit.Username.$invalid">
                                         <small class="text-danger" ng-show="frmCmsUserEdit.Username.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessWatchField.indexOf('Pwd')>-1">
+                            <div class="form-group" ng-show="cmsUser.AccessWatch('Pwd')">
                                 <label class="col-sm-2 control-label">{{'PASSWORD'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Name')>-1"
+                            <div class="form-group" ng-show="cmsUser.AccessEdit('Name')"
                                  ng-class="{'has-error' : frmCmsUserEdit.Name.$invalid && !frmCmsUserEdit.Name.$pristine,'has-success' : frmCmsUserEdit.Name.$valid}">
                                 <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('LastName')>-1"
+                            <div class="form-group" ng-show="cmsUser.AccessEdit('LastName')"
                                  ng-class="{'has-error' : frmCmsUserEdit.LastName.$invalid && !frmCmsUserEdit.LastName.$pristine,'has-success' : frmCmsUserEdit.LastName.$valid}">
                                 <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                            <div class="form-group" ng-show="cmsUser.AccessAdd('Gender')">
                                 <label class="col-sm-2 control-label">Gender</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="Gender" ng-model="cmsUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in cmsUser.Gender" required></select>
@@ -96,63 +96,63 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('NationalCode')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessAdd('NationalCode')">
                                 <label class='col-sm-2 control-label'>{{'NATIONAL_CODE'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="phoneNo" type='text' name="NationalCode" ng-model='cmsUser.selectedItem.NationalCode' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('CompanyName')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('CompanyName')">
                                 <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.CompanyName' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('LinkLocationId')>-1">
+                            <div class="form-group" ng-show="cmsUser.AccessEdit('LinkLocationId')">
                                 <label class="col-sm-2 control-label"> شهر</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="cmsUser.LinkLocationIdSelector" ng-model="frmcmsUserAdd.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Address')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('Address')">
                                 <label class='col-sm-2 control-label'>{{'ADDRESS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Address' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Tell')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('Tell')">
                                 <label class='col-sm-2 control-label'>{{'TELL'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Tell' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Mobile')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('Mobile')">
                                 <label class='col-sm-2 control-label'>{{'Mobile'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Mobile' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('Email')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('Email')">
                                 <label class='col-sm-2 control-label'>{{'Email'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Email' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('ExpireLockAccount')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('ExpireLockAccount')">
                                 <label class='col-sm-2 control-label'>{{'EXPIRE_LOCK_ACCOUNT'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.ExpireLockAccount' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessEditField.indexOf('FirewallAllowIP')>-1">
+                            <div class='form-group' ng-show="cmsUser.AccessEdit('FirewallAllowIP')">
                                 <label class='col-sm-2 control-label'>{{'FIREWALLALLOWIP'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.FirewallAllowIP' class='form-control'>

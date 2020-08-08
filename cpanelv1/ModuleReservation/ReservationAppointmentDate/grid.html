@@ -7,7 +7,7 @@
             <button class="btn btn-warning" rasha-userrole="appDate.Edit" ng-click="appDate.openEditModal()" type="button" ng-show="appDate.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="appDate.Delete" ng-click="appDate.deleteRow()" type="button" ng-show="appDate.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="appDate.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <!--<button class="btn btn-warning" type="button" ng-click="appDate.openGridConfigModal(appDate.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-warning" type="button" ng-click="appDate.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <!--<button class="btn btn-default" type="button" ng-click="appDate.reportData()"> {{'report'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="appDate.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="appDate.getCount()">{{'number'|lowercase|translate}}&nbsp;{{appDate.ListItemsTotalRowCount}}</button>
@@ -18,7 +18,7 @@
             <button class="btn btn-warning" rasha-userrole="appDate.Edit" ng-click="appDate.openEditModaldetail()" type="button" ng-show="appDate.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="appDate.Delete" ng-click="appDate.deleteRowDetail()" type="button" ng-show="appDate.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="appDate.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <!--<button class="btn btn-warning" type="button" ng-click="appDate.openGridConfigModal(appDate.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-warning" type="button" ng-click="appDate.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <!--<button class="btn btn-default" type="button" ng-click="appDate.reportData()"> {{'report'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="appDate.toggleExportFormDetail()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="appDate.getCountDetail()">{{'number'|lowercase|translate}}&nbsp;{{appDate.ListItemsTotalRowCountDetail}}</button>

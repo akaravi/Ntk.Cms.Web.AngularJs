@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="value.Add" ng-click="value.openAddModal()" ng-show="value.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="value.Edit" ng-click="value.openEditModal()" ng-show="value.gridOptions.resultAccess.AccessEditRow"  type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="value.Delete" ng-click="value.deleteRow()" ng-show="value.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="value.showAdvancedSearchPanel(value.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="value.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="value.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
         </div>
     </div>

@@ -6,7 +6,7 @@
             <button class="btn btn-primary" rasha-userrole="cmsSiteLayoutController.Add" ng-click="cmsModulePageDependencygrd.autoAdd()" ng-show="cmsModulePageDependencygrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="cmsSiteLayoutController.Edit" ng-click="cmsModulePageDependencygrd.openEditModal()" ng-show="cmsModulePageDependencygrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="cmsSiteLayoutController.Delete" ng-click="cmsModulePageDependencygrd.deleteRow()" ng-show="cmsModulePageDependencygrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
-            <button class="btn btn-success" type="button" ng-click="cmsModulePageDependencygrd.showAdvancedSearchPanel(cmsModulePageDependencygrd.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" type="button" ng-click="cmsModulePageDependencygrd.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-success" ng-click="cmsModulePageDependencygrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsModulePageDependencygrd.ListItemsTotalRowCount}}</button>
         </div>
     </div>

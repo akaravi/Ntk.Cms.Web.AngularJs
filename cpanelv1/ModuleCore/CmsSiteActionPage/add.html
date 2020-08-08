@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmCmsSiteActionPageAdd" novalidate ng-submit="cmsSiteActionPagegrd.addNewRow(frmCmsSiteActionPageAdd)">
                
                  <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteActionPagegrd.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsSiteActionPagegrd.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsSiteActionPagegrdAdd.RecordStatus.$invalid && !frmcmsSiteActionPagegrdAdd.RecordStatus.$pristine,'has-success' : frmcmsSiteActionPagegrdAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsSiteActionPagegrd"></div>
                 </div>
 
-                <div class="form-group" ng-show="cmsSiteActionPagegrd.gridOptions.resultAccess.AccessAddField.indexOf('LinkSiteId')>-1"
+                <div class="form-group" ng-show="cmsSiteActionPagegrd.AccessAdd('LinkSiteId')"
                      ng-class="{'has-error' : frmCmsSiteActionPageAdd.LinkSiteId.$invalid && !frmCmsSiteActionPageAdd.LinkSiteId.$pristine,'has-success' : frmCmsSiteActionPageAdd.LinkSiteId.$valid}">
                     <label class="col-sm-2 control-label">{{'SELECT_SITE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteActionPagegrd.gridOptions.resultAccess.AccessAddField.indexOf('LinkPageId')>-1"
+                <div class="form-group" ng-show="cmsSiteActionPagegrd.AccessAdd('LinkPageId')"
                      ng-class="{'has-error' : frmCmsSiteActionPageAdd.LinkPageId.$invalid && !frmCmsSiteActionPageAdd.LinkPageId.$pristine,'has-success' : frmCmsSiteActionPageAdd.LinkPageId.$valid}">
                     <label class="col-sm-2 control-label">{{'SELECT_PAGE'|lowercase|translate}}</label>
                     <div class="col-sm-10">

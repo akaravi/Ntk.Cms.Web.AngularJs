@@ -7,7 +7,7 @@
 
              
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="articleContentTag.gridOptions.resultAccess.AccessEditField.indexOf('LinkContentId')>-1"
+                <div class="form-group" ng-show="articleContentTag.AccessEdit('LinkContentId')"
                      ng-class="{'has-error' : frmarticleContentTagEdit.LinkContentId.$invalid && !frmarticleContentTagEdit.LinkContentId.$pristine,'has-success' : frmarticleContentTagEdit.LinkContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="articleContentTag.gridOptions.resultAccess.AccessEditField.indexOf('LinkTagId')>-1"
+                <div class="form-group" ng-show="articleContentTag.AccessEdit('LinkTagId')"
                      ng-class="{'has-error' : frmarticleContentTagEdit.LinkTagId.$invalid && !frmarticleContentTagEdit.LinkTagId.$pristine,'has-success' : frmarticleContentTagEdit.LinkTagId.$valid}">
                     <label class="col-sm-2 control-label">  {{'SELECT_TAG'|lowercase|translate}}  </label>
                     <div class="col-sm-10">

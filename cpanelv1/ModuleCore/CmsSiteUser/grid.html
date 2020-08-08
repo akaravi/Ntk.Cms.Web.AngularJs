@@ -2,13 +2,13 @@
     <!--<div class="container">-->
     <div class="row">
         <div class="col-xs-6">
-            <button class="btn btn-success" ng-click="cmsSiteUser.showAdvancedSearchPanel(cmsSiteUser.gridOptionsSite.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" ng-click="cmsSiteUser.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6">
             <button class="btn btn-primary" rasha-userrole="cmsSiteUser.Add" ng-click="cmsSiteUser.openAddModal()" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="cmsSiteUser.Edit" ng-click="cmsSiteUser.openEditModal()" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="cmsSiteUser.Delete" ng-click="cmsSiteUser.deleteRow()" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
-            <button class="btn btn-success" ng-click="cmsSiteUser.showAdvancedSearchPanel(cmsSiteUser.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" ng-click="cmsSiteUser.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" ng-click="cmsSiteUser.gridOptions.showGridSettings()">{{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" ng-click="cmsSiteUser.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="cmsSiteUser.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsSiteUser.ListItemsTotalRowCount}}</button>

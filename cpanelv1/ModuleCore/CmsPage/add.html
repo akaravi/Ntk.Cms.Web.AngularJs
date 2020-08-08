@@ -9,12 +9,12 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmcmsPageDesignEdit.RecordStatus.$invalid && !frmcmsPageDesignEdit.RecordStatus.$pristine,'has-success' : frmcmsPageDesignEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="cmsPageDesign"></div>
                             </div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('Title')"
                                  ng-class="{'has-error' : frmCmsPageAdd.Title.$invalid && !frmCmsPageAdd.Title.$pristine,'has-success' : frmCmsPageAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('PageAbilityType')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessAdd('PageAbilityType')">
                                 <label class='col-sm-2 control-label'>{{'page_type'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="cmsPageDesign.selectedItem.PageAbilityType" ng-change="cmsPageDesign.onPageTypeChange(cmsPageDesign.selectedItem.PageAbilityType)">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('LinkCmsPageId')>-1 ">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessAdd('LinkCmsPageId')>-1 ">
                                 <label class='col-sm-2 control-label'>{{'select_master_page'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="cmsPageDesign.selectedItem.LinkCmsPageId" ng-disabled="cmsPageDesign.classActioName.toLowerCase().indexOf('withembeddedchild') >= 0">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('Keyword')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessAdd('Keyword')">
                                 <label class='col-sm-2 control-label'>{{'keywords' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <tags-input ng-model="cmsPageDesign.kwords" placeholder="{{'key_word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                            <div class='form-group' ng-show="cmsPageDesign.AccessAdd('Description')"
                                  ng-class="{'has-error' : frmCmsPageAdd.Description.$invalid && !frmCmsPageAdd.Description.$pristine,'has-success' : frmCmsPageAdd.Description.$valid}">
                                 <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('PageDependencyIsDefualtPage')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('PageDependencyIsDefualtPage')">
                                 <label class='col-sm-2 control-label'>{{'setting'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <label class="checkbox-inline">
@@ -87,14 +87,14 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('LinkPageDependencyGuId')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkPageDependencyGuId')">
                                 <label class='col-sm-2 control-label'>{{'need'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkDependencyTitle" readonly="readonly" ng-model="cmsPageDesign.dependencyTitle" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('LinkPageDependencyGuId')>-1"
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkPageDependencyGuId')"
                                  ng-class="{'has-error' : frmCmsSiteAdd.PageDependencyIsDefualtPage.$invalid && !frmCmsSiteAdd.PageDependencyIsDefualtPage.$pristine,'has-success' : frmCmsSiteAdd.PageDependencyIsDefualtPage.$valid}">
                                 <label class="col-sm-2 control-label">{{'default_template'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -119,7 +119,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('SpecialIdendity')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('SpecialIdendity')">
                                 <label class="col-sm-2 control-label">{{'unique_identifier'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="text" ng-model="cmsPageDesign.selectedItem.SpecialIdendity" class="form-control">
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('SpecialUrlParameter')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('SpecialUrlParameter')">
                                 <label class="col-sm-2 control-label">{{'htmlbuilder_template_group_id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="SpecialUrlParameter" ng-model="cmsPageDesign.selectedItem.SpecialUrlParameter">
@@ -155,7 +155,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('LinkFavFileId')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkFavFileId')">
                                 <label class="col-sm-2 control-label"> {{'fav_icon'|lowercase|translate}} </label>
                                 <a class="btn btn-primary uoload-file-m" href="" ng-click="cmsPageDesign.openUploadModal()" aria-label="Upload">
                                     {{'upload'|lowercase|translate}}

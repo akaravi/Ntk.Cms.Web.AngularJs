@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                            <div class="form-group" ng-show="memberUser.AccessAdd('Gender')">
                                 <label class="col-sm-2 control-label">Gender</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="Gender" ng-model="memberUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in memberUser.Gender" required></select>
@@ -93,7 +93,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group back1" ng-show="memberUser.gridOptions.resultAccess.AccessEditField.indexOf('MemberUserGroup')>-1">
+                            <div class="form-group back1" ng-show="memberUser.AccessEdit('MemberUserGroup')">
                                 <label class="col-sm-3 control-label" style="margin-bottom:10px;">انتخاب گروه</label>
                                 <div class="col-sm-7 checkBoxList" style="overflow-y: auto">
                                     <div ng-repeat="permission in memberUser.menueGroups">

@@ -8,7 +8,7 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
-                            <div class="form-group" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="cmsCpMainMenugrd.AccessEdit('Title')"
                                  ng-class="{'has-error' : frmCmsCpMainMenuEdit.Title.$invalid && !frmCmsCpMainMenuEdit.Title.$pristine,'has-success' : frmCmsCpMainMenuEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{ 'title' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -23,7 +23,7 @@
                                     <span style="left: 10px !important;" ng-show="(frmCmsCpMainMenuEdit.Title.$invalid && !frmCmsCpMainMenuEdit.Title.$pristine) || frmCmsCpMainMenuEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('TitleResourceLanguage')>-1"
+                            <div class="form-group" ng-show="cmsCpMainMenugrd.AccessEdit('TitleResourceLanguage')"
                                  ng-class="{'has-error' : frmCmsCpMainMenuEdit.TitleResourceLanguage.$invalid && !frmCmsCpMainMenuEdit.Title.$pristine,'has-success' : frmCmsCpMainMenuEdit.TitleResourceLanguage.$valid}">
                                 <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1"                                 
+                            <div class='form-group' ng-show="cmsCpMainMenugrd.AccessEdit('Description')"                                 
                                  ng-class="{'has-error' : frmCmsCpMainMenuEdit.Description.$invalid && !frmCmsCpMainMenuEdit.Description.$pristine,'has-success' : frmCmsCpMainMenuEdit.Description.$valid}">
                                 <label class='col-sm-2 control-label'>{{ 'DESCRIPTION' |lowercase|translate}}</label>
                                 <div class='col-sm-10'>
@@ -58,14 +58,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessAddField.indexOf('Icon')>-1">
+                            <div class='form-group' ng-show="cmsCpMainMenugrd.AccessAdd('Icon')">
                                 <label class='col-sm-2 control-label'>{{'icon'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control" ng-model="cmsCpMainMenugrd.selectedItem.Icon">
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessAddField.indexOf('Color')>-1">
+                            <div class='form-group' ng-show="cmsCpMainMenugrd.AccessAdd('Color')">
                                 <label class='col-sm-2 control-label'>{{'Color'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                           
@@ -73,21 +73,21 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('AddressLink')>-1">
+                            <div class='form-group' ng-show="cmsCpMainMenugrd.AccessEdit('AddressLink')">
                                 <label class='col-sm-2 control-label'>{{'LINK_ADDRESS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type="text" class="form-control ltr-support" style="direction:ltr" ng-model="cmsCpMainMenugrd.selectedItem.AddressLink">
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('LinkParentId')>-1">
+                            <div class="form-group" ng-show="cmsCpMainMenugrd.AccessEdit('LinkParentId')">
                                 <label class="col-sm-2 control-label">{{ 'SELECT_THE_PARENT_PAGE' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkParentId" rasha-autocomplete="cmsCpMainMenugrd.LinkParentIdSelector" ng-model="cmsCpMainMenugrd.selectedItem.LinkParentId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessAddField.indexOf('MenuPlaceType')>-1">
+                            <div class="form-group" ng-show="cmsCpMainMenugrd.AccessAdd('MenuPlaceType')">
                                 <label class="col-sm-2 control-label">{{ 'Menu_Location'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="MenuPlaceType" ng-model="cmsCpMainMenugrd.selectedItem.MenuPlaceType" ng-options="x.Value as x.Description for x in cmsCpMainMenugrd.MenuPlaceType" required></select>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('CmsCpMainMenuCmsUserGroup')>-1">
+                            <div class="form-group" ng-show="cmsCpMainMenugrd.AccessEdit('CmsCpMainMenuCmsUserGroup')">
                                 <label class="col-sm-2 control-label" style="text-align: right;">
                                     {{ 'SELECT_CATEGORY' |lowercase|translate}}
                                 </label>
@@ -147,7 +147,7 @@
                                         </div>
                                     </div>
 </div>
-                            <div class="form-group" ng-show="(cmsCpMainMenugrd.selectedItem.isDependencyModule || (cmsCpMainMenugrd.selectedItem.LinkModuleId > 0)) && cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleId')>-1">
+                            <div class="form-group" ng-show="(cmsCpMainMenugrd.selectedItem.isDependencyModule || (cmsCpMainMenugrd.selectedItem.LinkModuleId > 0)) && cmsCpMainMenugrd.AccessEdit('LinkModuleId')">
                                 <label class="col-sm-2 control-label">{{ 'CHOOSE_MODULE' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="cmsCpMainMenugrd.selectedItem.LinkModuleId">

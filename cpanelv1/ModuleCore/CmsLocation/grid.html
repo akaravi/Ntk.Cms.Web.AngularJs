@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="cmsLocationController.Add" ng-click="cmsLocation.openAddModal()" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="cmsLocationController.Edit" ng-click="cmsLocation.openEditModal()"ng-show="cmsLocation.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="cmsLocationController.Delete" ng-click="cmsLocation.deleteRow()"ng-show="cmsLocation.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
-            <button class="btn btn-success" ng-click="cmsLocation.showAdvancedSearchPanel(cmsLocation.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" ng-click="cmsLocation.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="cmsLocation.gridOptions.showGridSettings()">{{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" ng-click="cmsLocation.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="cmsLocation.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsLocation.ListItemsTotalRowCount}}</button>

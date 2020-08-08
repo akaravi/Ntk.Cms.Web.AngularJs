@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmCmsModuleEdit" novalidate ng-submit="cmsModulegrd.editRow(frmCmsModuleEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModulegrdEdit.LinkSourceId.$invalid && !frmcmsModulegrdEdit.LinkSourceId.$pristine,'has-success' : frmcmsModulegrdEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsModulegrd"></div>
                 </div>
 
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -27,7 +27,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine) || frmCmsModuleEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('TitleResourceLanguage')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleEdit.TitleResourceLanguage.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('ClassName')"
                      ng-class="{'has-error' : frmCmsModuleEdit.ClassName.$invalid && !frmCmsModuleEdit.ClassName.$pristine,'has-success' : frmCmsModuleEdit.ClassName.$valid}">
                     <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -59,14 +59,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1">
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('ExpireDate')">
                     <label class="col-sm-4 control-label">ExpireDate</label>
                     <div class="col-sm-8">
                         <div rasha-date-picker="cmsModulegrd.ExpireDate" ng-model="cmsModulegrd.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsModulegrd.ExpireDate" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="cmsModulegrd.AccessEdit('Description')">
                     <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='cmsModulegrd.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>

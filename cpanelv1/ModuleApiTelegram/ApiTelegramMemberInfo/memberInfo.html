@@ -10,7 +10,7 @@
     <form method="get" class="form-horizontal" role="form" name="frmmemberInfoAdd" novalidate>
         <h3>{{'User_Information_In_Telegram'|lowercase|translate}}</h3>
         <div class='hr-line-dashed'></div>
-        <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+        <div class="form-group" ng-show="memberInfo.AccessAdd('RecordStatus')"
              ng-class="{'has-error' : frmmemberInfoAdd.LinkSourceId.$invalid && !frmmemberInfoAdd.LinkSourceId.$pristine,'has-success' : frmmemberInfoAdd.LinkSourceId.$valid}">
             <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
             <div class="col-sm-10" rasha-record-status="memberInfo"></div>

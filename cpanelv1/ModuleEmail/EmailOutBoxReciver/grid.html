@@ -6,7 +6,7 @@
             <!--<button class="btn btn-primary" rasha-userrole="emailOutBoxReciver.Add" ng-click="emailOutBoxReciver.autoAdd()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>-->
             <!--<button class="btn btn-warning" rasha-userrole="emailOutBoxReciver.Edit" ng-click="emailOutBoxReciver.openEditModal()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
             <!--<button class="btn btn-danger" rasha-userrole="emailOutBoxReciver.Delete" ng-click="emailOutBoxReciver.deleteRow()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>-->
-            <button class="btn btn-success" type="button" ng-click="emailOutBoxReciver.showAdvancedSearchPanel(emailOutBoxReciver.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailOutBoxReciver.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="emailOutBoxReciver.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="emailOutBoxReciver.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailOutBoxReciver.ListItemsTotalRowCount}}</button>
             <button class="btn btn-warning" type="button" ng-show="emailOutBoxReciverId!=null" ng-click="emailOutBoxReciver.changeState('emailoutboxcontent')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>

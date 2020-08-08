@@ -9,13 +9,13 @@
                         <div class="panel-body">
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.gridContentDateDetail.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="appDate.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmappDateAddDetail.RecordStatus.$invalid && !frmappDateAddDetail.RecordStatus.$pristine,'has-success' : frmappDateAddDetail.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appDate"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.gridContentDateDetail.resultAccess.AccessEditField.indexOf('SessionStatus')>-1">
+                            <div class="form-group" ng-show="appDate.AccessEdit('SessionStatus')">
                                 <label class="col-sm-2 control-label">{{'Service_Status'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="SessionStatus" ng-model="appDate.selectedItemDetail.SessionStatus" ng-options="x.Value as x.Description for x in appDate.SessionStatus" required></select>
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.gridContentDateDetail.resultAccess.AccessEditField.indexOf('LinkAppointmentDateId')>-1">
+                            <div class="form-group" ng-show="appDate.AccessEdit('LinkAppointmentDateId')">
                                 <label class="col-sm-2 control-label">{{'Announcement_Of_The_Day'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkAppointmentDateId" ng-model="appDate.selectedItemDetail.LinkAppointmentDateId" />

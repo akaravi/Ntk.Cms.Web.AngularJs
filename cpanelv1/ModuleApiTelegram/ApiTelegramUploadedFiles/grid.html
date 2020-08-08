@@ -6,7 +6,7 @@
             <button class="btn btn-warning" rasha-userrole="uploadedFiles.Edit" ng-click="uploadedFiles.openEditModal()" type="button" ng-show="uploadedFiles.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="uploadedFiles.Delete" ng-click="uploadedFiles.deleteRow()" type="button" ng-show="uploadedFiles.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="uploadedFiles.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="uploadedFiles.openGridConfigModal(uploadedFiles.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="uploadedFiles.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-danger" type="button" ng-click="uploadedFiles.qrCode()">{{'QR_Code'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="uploadedFiles.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="uploadedFiles.getCount()">{{'number'|lowercase|translate}}&nbsp;{{uploadedFiles.ListItemsTotalRowCount}}</button>

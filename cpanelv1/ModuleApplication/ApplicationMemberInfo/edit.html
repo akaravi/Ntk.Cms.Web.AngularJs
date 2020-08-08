@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b"> {{ memberInfo.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmmemberInfoEdit" novalidate ng-submit="memberInfo.editRow(frmmemberInfoEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmmemberInfoEdit.RecordStatus.$invalid && !frmmemberInfoEdit.RecordStatus.$pristine,'has-success' : frmmemberInfoEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="memberInfo"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('Title')"
                      ng-class="{'has-error' : frmmemberInfoEdit.Title.$invalid && !frmmemberInfoEdit.Title.$pristine,'has-success' : frmmemberInfoEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'APP_TITLE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('LinkSourceId')"
                      ng-class="{'has-error' : frmmemberInfoEdit.PackageName.$invalid && !frmmemberInfoEdit.PackageName.$pristine,'has-success' : frmmemberInfoEdit.PackageName.$valid}">
                     <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">

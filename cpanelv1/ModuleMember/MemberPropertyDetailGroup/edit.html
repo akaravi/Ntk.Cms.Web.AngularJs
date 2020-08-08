@@ -19,7 +19,7 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberPropertyDetail.closeModal()"></i>
             <h3 class="m-t-none m-b"> {{ memberPropertyDetail.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmmemberPropertyDetailEdit" novalidate ng-submit="memberPropertyDetail.editCategory(frmmemberPropertyDetailEdit)">
-                <div class="form-group" ng-show="memberPropertyDetail.groupResultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="memberPropertyDetail.AccessEdit('Title')"
                      ng-class="{'has-error' : frmmemberPropertyDetailEdit.Title.$invalid && !frmmemberPropertyDetailEdit.Title.$pristine,'has-success' : frmmemberPropertyDetailEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'group_name'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="memberPropertyDetail.gridOptions.resultAccess.AccessEditField.indexOf('IconFont')>-1">
+                <div class="form-group formControl" ng-show="memberPropertyDetail.AccessEdit('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" ng-model="memberPropertyDetail.selectedItem.IconFont" name="IconFont" ng-focus="memberPropertyDetail.toggleIcons('true')" ng-blur="memberPropertyDetail.toggleIcons()" />

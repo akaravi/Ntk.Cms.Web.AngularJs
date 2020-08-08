@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Edit_Menu'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmcmsSiteMenuEdit" novalidate ng-submit="cmsSiteMenu.editContent(frmcmsSiteMenuEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsSiteMenu.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsSiteMenuEdit.RecordStatus.$invalid && !frmcmsSiteMenuEdit.RecordStatus.$pristine,'has-success' : frmcmsSiteMenuEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsSiteMenu"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="cmsSiteMenu.AccessEdit('Title')"
                      ng-class="{'has-error' : frmcmsSiteMenuEdit.Title.$invalid && !frmcmsSiteMenuEdit.Title.$pristine,'has-success' : frmcmsSiteMenuEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'TITLE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('JsonValues')>-1"
+                <div class="form-group" ng-show="cmsSiteMenu.AccessEdit('JsonValues')"
                      ng-class="{'has-error' : frmcmsSiteMenuEdit.JsonValues.$invalid && !frmcmsSiteMenuEdit.JsonValues.$pristine,'has-success' : frmcmsSiteMenuEdit.JsonValues.$valid}">
                     <label class="col-sm-2 control-label">{{'ORDER'|lowercase|translate}}</label>
                     <div class="col-sm-10">

@@ -6,7 +6,7 @@
             <button class="btn btn-warning" rasha-userrole="taskSchedulerProcessCategory.Edit" ng-click="taskSchedulerProcessCategory.openEditModal()" type="button" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="taskSchedulerProcessCategory.Delete" ng-click="taskSchedulerProcessCategory.deleteRow()" type="button" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="taskSchedulerProcessCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="taskSchedulerProcessCategory.openGridConfigModal(taskSchedulerProcessCategory.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="taskSchedulerProcessCategory.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
         </div>
     </div>
     <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">

@@ -33,11 +33,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2  control-label">{{'From_Date'|lowercase|translate}}</label>
                                 <div class="col-sm-6  col-md-4">
-                                    <adm-dtp ng-model='FromDate' ng-model-db="linkManagementBillboard.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ToDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="linkManagementBillboard.gridOptions.resultAccess.AccessAddField.indexOf('FromDate')>-1"></adm-dtp>
+                                    <adm-dtp ng-model='FromDate' ng-model-db="linkManagementBillboard.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ToDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="linkManagementBillboard.AccessAdd('FromDate')"></adm-dtp>
                                 </div>
                                 <label class="col-sm-2  control-label">{{'To_Date'|lowercase|translate}} </label>
                                 <div class="col-sm-6 col-md-4">
-                                    <adm-dtp ng-model='ToDate' ng-model-db="linkManagementBillboard.selectedItem.ToDate" full-data='ToDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="linkManagementBillboard.gridOptions.resultAccess.AccessAddField.indexOf('ToDate')>-1"></adm-dtp>
+                                    <adm-dtp ng-model='ToDate' ng-model-db="linkManagementBillboard.selectedItem.ToDate" full-data='ToDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="linkManagementBillboard.AccessAdd('ToDate')"></adm-dtp>
                                 </div>
                             </div>
 

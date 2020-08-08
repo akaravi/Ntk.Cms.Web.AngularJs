@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="shopProcess.Add" ng-click="shopProcess.autoAdd()" ng-show="shopProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="shopProcess.Edit" ng-click="shopProcess.openEditModal()" type="button" ng-show="shopProcess.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="shopProcess.Delete" ng-click="shopProcess.deleteRow()" ng-show="shopProcess.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="shopProcess.showAdvancedSearchPanel(shopProcess.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" type="button" ng-click="shopProcess.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-default" type="button" ng-click="shopProcess.changeState('shopprocesscategory')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
         </div>
     </div>

@@ -5,7 +5,7 @@
             <h3 class="m-t-none m-b">{{'Edit_Question'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmticketingFaqEdit" novalidate ng-submit="ticketingFaq.editRow(frmticketingFaqEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('Question')>-1"
+                <div class="form-group" ng-show="ticketingFaq.AccessEdit('Question')"
                      ng-class="{'has-error' : frmticketingFaqEdit.Question.$invalid && !frmticketingFaqEdit.Question.$pristine,'has-success' : frmticketingFaqEdit.Question.$valid}">
                     <label class="col-sm-2 control-label"> {{'QUESTION'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('Answer')>-1"
+                <div class="form-group" ng-show="ticketingFaq.AccessEdit('Answer')"
                      ng-class="{'has-error' : frmticketingFaqEdit.Answer.$invalid && !frmticketingFaqEdit.Answer.$pristine,'has-success' : frmticketingFaqEdit.Answer.$valid}">
                     <label class="col-sm-2 control-label">{{'RESPONSE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -30,7 +30,7 @@
                         <span style="left: 10px !important;" ng-show="(frmticketingFaqEdit.Answer.$invalid && !frmticketingFaqEdit.Answer.$pristine) || frmticketingFaqEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div><div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('LinkTicketingDepartemenId')>-1">
+                <div class="form-group" ng-show="ticketingFaq.AccessEdit('LinkTicketingDepartemenId')">
                     <label class="col-sm-2 control-label">{{'QUESTION_TYPE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select class="form-control" ng-required="true" ng-model="ticketingFaq.selectedItem.LinkTicketingDepartemenId">

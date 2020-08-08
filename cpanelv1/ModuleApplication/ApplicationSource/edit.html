@@ -11,14 +11,14 @@
 
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                ng-show="appSource.AccessEdit('RecordStatus')"
                                 ng-class="{'has-error' : frmappSourceEdit.RecordStatus.$invalid && !frmappSourceEdit.RecordStatus.$pristine,'has-success' : frmappSourceEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appSource"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                ng-show="appSource.AccessEdit('Title')"
                                 ng-class="{'has-error' : frmappSourceEdit.Title.$invalid && !frmappSourceEdit.Title.$pristine,'has-success' : frmappSourceEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -41,7 +41,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                                ng-show="appSource.AccessEdit('ClassName')"
                                 ng-class="{'has-error' : frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine,'has-success' : frmappSourceEdit.ClassName.$valid}">
                                 <label class="col-sm-2 control-label"> {{'CLASS_NAME_EN'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -65,7 +65,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('SourceNameGit')>-1"
+                                ng-show="appSource.AccessEdit('SourceNameGit')"
                                 ng-class="{'has-error' : frmappSourceEdit.SourceNameGit.$invalid && !frmappSourceEdit.SourceNameGit.$pristine,'has-success' : frmappSourceEdit.SourceNameGit.$valid}">
                                 <label class="col-sm-2 control-label"> {{'SourceNameGit'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -89,7 +89,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('PackageName')>-1"
+                                ng-show="appSource.AccessEdit('PackageName')"
                                 ng-class="{'has-error' : frmappSourceEdit.PackageName.$invalid && !frmappSourceEdit.PackageName.$pristine,'has-success' : frmappSourceEdit.PackageName.$valid}">
                                 <label class="col-sm-2 control-label"> {{'PackageName'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -113,7 +113,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('IsPublish')>-1">
+                                ng-show="appSource.AccessEdit('IsPublish')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -125,7 +125,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('ForceUpdate')>-1">
+                                ng-show="appSource.AccessEdit('ForceUpdate')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -137,7 +137,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('UpdateSourceByGit')>-1">
+                                ng-show="appSource.AccessEdit('UpdateSourceByGit')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -151,7 +151,7 @@
 
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('FireBaseServerKey')>-1">
+                                ng-show="appSource.AccessEdit('FireBaseServerKey')">
                                 <label class="col-sm-2 control-label">FireBase Server Key </label>
                                 <div class="col-sm-10">
                                     <input class="form-control ltr-support" name="FireBaseServerKey"
@@ -161,7 +161,7 @@
 
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appSource.gridOptions.resultAccess.AccessEditField.indexOf('DefaultAppId')>-1"
+                                ng-show="appSource.AccessEdit('DefaultAppId')"
                                 ng-class="{'has-error' : frmappSourceEdit.DefaultAppId.$invalid && !frmappSourceEdit.DefaultAppId.$pristine,'has-success' : frmappSourceEdit.DefaultAppId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'DEFAULT_APP_ID'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="objectUser.gridOptions.resultAccessGroup.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="objectUser.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmobjectUserEdit.RecordStatus.$invalid && !frmobjectUserEdit.RecordStatus.$pristine,'has-success' : frmobjectUserEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="objectUser"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="objectUser.gridOptions.resultAccessGroup.AccessAddField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="objectUser.AccessAdd('Title')"
                                  ng-class="{'has-error' : frmobjectUserEdit.Title.$invalid && !frmobjectUserEdit.Title.$pristine,'has-success' : frmobjectUserEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

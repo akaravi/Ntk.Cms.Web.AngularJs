@@ -13,14 +13,14 @@
 
                 <div class='hr-line-dashed'></div>
 
-                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSellerId')>-1">
+                <div class="form-group" ng-show="discountOfferTransaction.AccessAdd('LinkDiscountSellerId')">
                     <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountOfferTransaction.LinkDiscountSellerIdSelector" ng-model="discountOfferTransaction.selectedItem.LinkDiscountSellerId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSerialCardId')>-1">
+                <div class="form-group" ng-show="discountOfferTransaction.AccessAdd('LinkDiscountSerialCardId')">
                     <label class="col-sm-2 control-label">{{'Card_Sales_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountSerialCardId" rasha-autocomplete="discountOfferTransaction.LinkDiscountSerialCardIdSelector" ng-model="discountOfferTransaction.selectedItem.LinkDiscountSerialCardId" />
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('DiscountOfferTransactionType')>-1">
+                <div class="form-group" ng-show="discountOfferTransaction.AccessAdd('DiscountOfferTransactionType')">
                     <label class="col-sm-2 control-label">{{'Transaction_Type'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select class='form-control' name="DiscountOfferTransactionType" ng-model="discountOfferTransaction.selectedItem.DiscountOfferTransactionType" ng-options="x.Value as x.Description for x in discountOfferTransaction.DiscountOfferTransactionType" required></select>

@@ -4,13 +4,13 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsMdlPrcCustm.closeModal()"></i>
             <h3 class="m-t-none m-b"> {{ cmsMdlPrcCustm.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModuleAdd" novalidate ng-submit="cmsMdlPrcCustm.addNewRow(frmCmsModuleAdd)">
-                <div class="form-group" ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsMdlPrcCustm.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModulePrcEdit.RecordStatus.$invalid && !frmcmsModulePrcEdit.RecordStatus.$pristine,'has-success' : frmcmsModulePrcEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsMdlPrcCustm"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="cmsMdlPrcCustm.AccessAdd('Title')"
                      ng-class="{'has-error' : frmCmsModuleAdd.Title.$invalid && !frmCmsModuleAdd.Title.$pristine,'has-success' : frmCmsModuleAdd.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -26,14 +26,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddField.indexOf('TitleEn')>-1">
+                <div class='form-group' ng-show="cmsMdlPrcCustm.AccessAdd('TitleEn')">
                     <label class='col-sm-2 control-label'>{{'TITLE_EN' |lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmsMdlPrcCustm.selectedItem.TitleEn' class='form-control'>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="cmsMdlPrcCustm.AccessAdd('Description')">
                     <label class='col-sm-2 control-label'>{{'DESCRIPTION' |lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='cmsMdlPrcCustm.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddField.indexOf('LinkModuleProcessId')>-1">
+                <div class='form-group' ng-show="cmsMdlPrcCustm.AccessAdd('LinkModuleProcessId')">
                     <label class='col-sm-2 control-label'>{{'CHOOSE_ACTIVITY_MODULE' |lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select id="moduleProcess_comboBox"  class="form-control"  ng-disabled="cmsMdlPrcCustm.isLoading" ng-model="cmsMdlPrcCustm.selectedItem.LinkModuleProcessId" >

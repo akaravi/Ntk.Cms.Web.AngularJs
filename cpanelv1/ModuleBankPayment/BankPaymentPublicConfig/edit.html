@@ -19,7 +19,7 @@
                     <div class="col-sm-10" rasha-record-status="publicConfig"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="publicConfig.AccessEdit('Title')"
                      ng-class="{'has-error' : frmpublicConfigEdit.Title.$invalid && !frmpublicConfigEdit.Title.$pristine,'has-success' : frmpublicConfigEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('CurrencyUnit')>-1"
+                <div class="form-group" ng-show="publicConfig.AccessEdit('CurrencyUnit')"
                      ng-class="{'has-error' : frmpublicConfigEdit.CurrencyUnit.$invalid && !frmpublicConfigEdit.CurrencyUnit.$pristine,'has-success' : frmpublicConfigEdit.CurrencyUnit.$valid}">
                     <label class="col-sm-2 control-label"> {{'CURRENCYUNIT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -66,7 +66,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                <div class="form-group" ng-show="publicConfig.AccessEdit('ClassName')"
                      ng-class="{'has-error' : frmpublicConfigEdit.ClassName.$invalid && !frmpublicConfigEdit.ClassName.$pristine,'has-success' : frmpublicConfigEdit.ClassName.$valid}">
                     <label class="col-sm-2 control-label"> {{'CLASS_NAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -83,14 +83,14 @@
                 </div>
 
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('WebServiceUrl')>-1">
+                <div class="form-group" ng-show="publicConfig.AccessEdit('WebServiceUrl')">
                     <label class="col-sm-2 control-label"> {{'WEB_SERVICE_URL'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="WebServiceUrl" ng-model="publicConfig.selectedItem.WebServiceUrl" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('WebServiceConfirmPaymentUrl')>-1">
+                <div class="form-group" ng-show="publicConfig.AccessEdit('WebServiceConfirmPaymentUrl')">
                     <label class="col-sm-2 control-label"> {{'WebServiceConfirmPaymentUrl'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="WebServiceConfirmPaymentUrl" ng-model="publicConfig.selectedItem.WebServiceConfirmPaymentUrl" />
@@ -98,14 +98,14 @@
                 </div>-->
 
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('Memo')>-1">
+                <div class='form-group' ng-show="publicConfig.AccessEdit('Memo')">
                     <label class='col-sm-2 control-label'> {{'MEMO'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' name="Memo" ng-model='publicConfig.selectedItem.Memo' class='form-control' style="resize:vertical"></textarea>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="publicConfig.gridOptions.resultAccess.AccessEditField.indexOf('PublicConfigJsonValues')>-1">
+                <div class='form-group' ng-show="publicConfig.AccessEdit('PublicConfigJsonValues')">
                     <label class='col-sm-2 control-label'> {{'SETTINGS'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <div ng-model="publicConfig.submitValue" fb-form="default" fb-default="publicConfig.defaultValue"></div>
@@ -116,7 +116,7 @@
                     <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
                     <img src="{{publicConfig.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{publicConfig.selectedItem.Title}}" />
                 </div>
-                <div class="form-group" ng-show="publicConfig.gridOptions.resultAccess.AccessAddField.indexOf('LinkModuleFileLogoId')>-1">
+                <div class="form-group" ng-show="publicConfig.AccessAdd('LinkModuleFileLogoId')">
                     <label class="col-sm-2 control-label"> {{'SELECT_FILE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <div treecontrol class="tree-boot" style="color:black"

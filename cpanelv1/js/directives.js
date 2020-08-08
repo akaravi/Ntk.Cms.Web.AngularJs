@@ -1034,7 +1034,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         "<table id='firstuniqueId' class='table table-striped table-bordered floatThead-table'  >" +
                         '<thead>' +
                         '<tr>' +
-                        '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'{{x.name}}\')>-1"  style="width:{{x.width}}" >' +
+                        '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.AccessWatch(\'{{x.name}}\')"  style="width:{{x.width}}" >' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle(x)" >' +
                         '{{x.displayName}}' +
                         '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1053,7 +1053,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         '<table id="uniqueId" class="table table-striped table-bordered floatThead-table" style="position:fixed;top:0px;width:0px !important;display:none" >' +
                         '<thead>' +
                         '<tr style="width:100%">' +
-                        '<th ng-repeat="x in systemColumnOptions.columns"  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'{{x.name}}\')>-1" style="width:{{x.width}}" >' +
+                        '<th ng-repeat="x in systemColumnOptions.columns"  ng-show="systemColumnOptions.AccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle(x)">' +
                         '{{x.displayName}}' +
                         '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1079,7 +1079,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         "<table id='firstuniqueId' class='table table-striped table-bordered floatThead-table'  >" +
                         '<thead>' +
                         '<tr>' +
-                        '<th style="width:50px;" ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'RecordStatus\')>-1">' +
+                        '<th style="width:50px;" ng-show="systemColumnOptions.AccessWatch(\'RecordStatus\')">' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle()" >' +
                         'وضعیت' +
                         '</div>' +
@@ -1095,7 +1095,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         '</thead>' +
                         '<tbody>' +
                         "<tr ng-repeat='x in systemColumnOptions.data| filter:systemColumnOptions.filterSearch' ng-click='systemColumnOptions.selectRow(x.rowOption,$this,$index);' ng-class='{true:infoclass}[(x.rowOption.isSelected)]' style='cursor:pointer'>" +
-                        '<td ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'RecordStatus\')>-1" ><i class="{{x.RecordStatus|isRecordStatus}}" /></td>' +
+                        '<td ng-show="systemColumnOptions.AccessWatch(\'RecordStatus\')" ><i class="{{x.RecordStatus|isRecordStatus}}" /></td>' +
                         '<rowTemplates />' +
                         '</tr>' +
                         '</tbody>' +
@@ -1112,7 +1112,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                     "<table class='table table-striped table-bordered table-responsive floatThead-table' style='display: table;table-layout: fixed;' >" +
                     '<thead>' +
                     '<tr>' +
-                    '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'{{x.name}}\')>-1" style="width:{{x.width}}" >' +
+                    '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.AccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
                     '<div style="cursor:pointer;"  ng-click="changeSortStyle(x)">' +
                     '{{x.displayName}}' +
                     '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1200,21 +1200,21 @@ function rashaGrid($compile, $rootScope, ajax) {
                             }
                         } else {
                             if (item.isCheckBox) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'' + item.name + '\')>-1"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
+                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.AccessWatch(\'' + item.name + '\')"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
                             } else if (item.isDateTime) {
                                 var dateFormat = item.dateTimeFormat;
                                 if (!dateFormat)
                                     dateFormat = 'HH:mm jYY/jMM/jDD';
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'' + item.name + '\')>-1">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.AccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
                             } else if (item.isDate) {
                                 var dateFormat = item.dateTimeFormat;
                                 if (!dateFormat)
                                     dateFormat = 'jYY/jMM/jDD';
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'' + item.name + '\')>-1">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.AccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
                             } else if (item.excerpt) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'' + item.name + '\')>-1">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
+                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.AccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
                             } else if (item.isRecordStatus) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.resultAccess.AccessWatchField.indexOf(\'' + item.name + '\')>-1"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
+                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.AccessWatch(\'' + item.name + '\')"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
                             } else if (item.isThumbnail) {
                                 template = '<td style="{{x.style}}"><div  ng-show="{{' + item.visible + '}}">' +
                                     '<span custom-popover popover-id="{{x.' + item.name + '}}" popover-title="{{x.' + item.name + '}}" popover-placement="top" popover-iconsrc="/CmsFiles/img/default-grid-img.png" data-width="' + item.widthImg + '" data-height="' + item.heightImg + '"></span>' + '</div></td>';
@@ -1566,14 +1566,51 @@ function queryBuilder($compile) {
                         config.setFields();
                 });
             }
+            config.AccessWatch = function (fieldName) 
+            {
+                var retOut=false;
+                $.each(config.gridOptions.resultAccess.FieldsInfo, function (index, column) {
+                    if (column.FieldName==fieldName)
+                        retOut= column.AccessWatchField;
+                });
+                return retOut;
+            }
+            config.AccessSearch = function (fieldName) 
+            {
+                var retOut=false;
+                $.each(config.gridOptions.resultAccess.FieldsInfo, function (index, column) {
+                    if (column.FieldName==fieldName)
+                        retOut= column.AccessSearchField;
+                });
+                return retOut;
+            }
+            config.AccessEdit = function (fieldName) 
+            {
+                var retOut=false;
+                $.each(config.gridOptions.resultAccess.FieldsInfo, function (index, column) {
+                    if (column.FieldName==fieldName)
+                        retOut= column.AccessEditField;
+                });
+                return retOut;
+            }
+            config.AccessAdd = function (fieldName) 
+            {
+                var retOut=false;
+                $.each(config.gridOptions.resultAccess.FieldsInfo, function (index, column) {
+                    if (column.FieldName==fieldName)
+                        retOut= column.AccessAddField;
+                });
+                return retOut;
+            }
             config.setFields = function () {
 
                 //Dynamically generate filters for QueryBuilder, based on columns of the grid
                 var fields = [];
-                if (config.gridOptions.resultAccess.FieldsInfo && config.gridOptions.resultAccess.AccessSearchField)
+                if (config.gridOptions.resultAccess.FieldsInfo )
                     $.each(config.gridOptions.resultAccess.FieldsInfo, function (index, column) {
-                        if (config.gridOptions.resultAccess.AccessSearchField.indexOf(column.FieldName) < 0)
-                            return;
+                        if (column.AccessSearchField)
+                            {
+                                ///AccessSearchField
                         if (column.FieldType === 'System.Int32' || column.FieldType === 'System.Int64') {
                             fields.push({
                                 id: column.FieldName,
@@ -1632,6 +1669,8 @@ function queryBuilder($compile) {
                             });
                         } else { //console.log("Error: Type is not defined for columns! Please add 'type' property for each columns in gridOptions.");
                         }
+                        ///AccessSearchField
+                    }
                     });
                 // Options for QueryBuilder 
                 var options = {
@@ -6296,15 +6335,6 @@ angular.module('inspinia')
         };
     }])
     .filter('allowedWatchField', function () {
-        //AccessAddField: Array[16]
-        //AccessEditField:   Array[16]
-        //AccessSearchField:   Array[16]
-        //AccessWatchField: Array[16]
-
-        //AccessAddRow: true
-        //AccessEditRow: true
-        //AccessDeleteRow:  true
-        //AccessWatchRow: true
         return function (inputDate, inputFieldName) {
             if (config
                 .resultAccess ==

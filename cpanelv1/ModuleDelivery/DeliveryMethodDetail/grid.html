@@ -7,7 +7,7 @@
             <button class="btn btn-warning" rasha-userrole="deliveryMethodDetail.Edit" ng-click="deliveryMethodDetail.openEditModal()" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="deliveryMethodDetail.Delete" ng-click="deliveryMethodDetail.deleteRow()" type="button" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="deliveryMethodDetail.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i> </button>
-            <!--<button class="btn btn-warning" type="button" ng-click="deliveryMethodDetail.openGridConfigModal(deliveryMethodDetail.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-warning" type="button" ng-click="deliveryMethodDetail.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="deliveryMethodDetail.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="deliveryMethodDetail.getCount()">{{'number'|lowercase|translate}}&nbsp;{{deliveryMethodDetail.ListItemsTotalRowCount}}</button>
             

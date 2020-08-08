@@ -7,7 +7,7 @@
             <button class="btn btn-warning" rasha-userrole="vehicleContract.Edit" ng-click="vehicleContract.openEditModal()" type="button" ng-show="vehicleContract.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="vehicleContract.Delete" ng-click="vehicleContract.deleteRow()" type="button" ng-show="vehicleContract.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="vehicleContract.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="vehicleContract.openGridConfigModal(vehicleContract.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="vehicleContract.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <!--<button class="btn btn-default" type="button" ng-click="vehicleContract.reportData()"> {{'report'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="vehicleContract.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="vehicleContract.getCount()">{{'number'|lowercase|translate}}&nbsp;{{vehicleContract.ListItemsTotalRowCount}}</button>

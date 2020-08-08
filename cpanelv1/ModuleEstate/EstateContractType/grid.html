@@ -7,7 +7,7 @@
             <button class="btn btn-warning" rasha-userrole="estateContractType.Edit" ng-click="estateContractType.openEditModal()" type="button" ng-show="estateContractType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="estateContractType.Delete" ng-click="estateContractType.deleteRow()" type="button" ng-show="estateContractType.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="estateContractType.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="estateContractType.openGridConfigModal(estateContractType.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="estateContractType.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="estateContractType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="estateContractType.getCount()">{{'number'|lowercase|translate}}&nbsp;{{estateContractType.ListItemsTotalRowCount}}</button>
         </div>

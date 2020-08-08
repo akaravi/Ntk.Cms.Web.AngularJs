@@ -8,7 +8,7 @@
                 
                 <div class='hr-line-dashed'></div>
              
-                <div class="form-group" ng-show="ServiceContentTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkContentId')>-1"
+                <div class="form-group" ng-show="ServiceContentTag.AccessAdd('LinkContentId')"
                      ng-class="{'has-error' : frmServiceContentTagAdd.LinkContentId.$invalid && !frmServiceContentTagAdd.LinkContentId.$pristine,'has-success' : frmServiceContentTagAdd.LinkContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ServiceContentTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkTagId')>-1"
+                <div class="form-group" ng-show="ServiceContentTag.AccessAdd('LinkTagId')"
                      ng-class="{'has-error' : frmServiceContentTagAdd.LinkTagId.$invalid && !frmServiceContentTagAdd.LinkTagId.$pristine,'has-success' : frmServiceContentTagAdd.LinkTagId.$valid}">
                     <label class="col-sm-2 control-label">  {{'SELECT_TAG'|lowercase|translate}}  </label>
                     <div class="col-sm-10">

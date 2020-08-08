@@ -9,13 +9,13 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="appLayout.AccessEdit('RecordStatus')"
                                 ng-class="{'has-error' : frmappLayoutEdit.RecordStatus.$invalid && !frmappLayoutEdit.RecordStatus.$pristine,'has-success' : frmappLayoutEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appLayout"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="appLayout.AccessEdit('Title')"
                                 ng-class="{'has-error' : frmappLayoutEdit.Title.$invalid && !frmappLayoutEdit.Title.$pristine,'has-success' : frmappLayoutEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -34,14 +34,14 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1">
+                            <div class="form-group" ng-show="appLayout.AccessEdit('ClassName')">
                                 <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="ClassName" ng-model="appLayout.selectedItem.ClassName" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1">
+                            <div class="form-group" ng-show="appLayout.AccessEdit('LinkSourceId')">
                                 <label class="col-sm-2 control-label"> {{'SELECT_TEMPLATE'|lowercase|translate}}
                                 </label>
                                 <div class="col-sm-10">
@@ -57,7 +57,7 @@
                                 <img src="{{appLayout.selectedItem.previewImageSrc}}" width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3"
                                     alt="{{appLayout.selectedItem.Title}}" />
                             </div>
-                            <div id="treecontrol" class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleFilePreviewImageId')>-1">
+                            <div id="treecontrol" class="form-group" ng-show="appLayout.AccessEdit('LinkModuleFilePreviewImageId')">
                                 <label class="col-sm-2 control-label">{{'SELECT_IMAGE'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div treecontrol class="tree-boot" style="color:black" tree-model="appLayout.dataForTheTree"

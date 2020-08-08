@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmnewssharingcategoryAdd" novalidate ng-submit="newssharingcategory.addNewRow(frmnewssharingcategoryAdd)">     
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="newssharingcategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkSharedSettingCategoryId')>-1"><!---->
+                <div class="form-group" ng-show="newssharingcategory.AccessAdd('LinkSharedSettingCategoryId')"><!---->
                     <label class="col-sm-2 control-label">SharedSetting</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkSharedSettingCategoryId" rasha-autocomplete="newssharingcategory.LinkSharedSettingCategoryIdSelector" ng-model="frmnewssharingcategoryAdd.selectedItem.LinkSharedSettingCategoryId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="newssharingcategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryTargetId')>-1"><!---->
+                <div class="form-group" ng-show="newssharingcategory.AccessAdd('LinkCategoryTargetId')"><!---->
                     <label class="col-sm-2 control-label">CategoryTargetId</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCategoryTargetId" rasha-autocomplete="newssharingcategory.LinkCategoryTargetIdSelector" ng-model="frmnewssharingcategoryAdd.selectedItem.LinkCategoryTargetId" />

@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="ServiceComment.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmServiceCommentAdd.RecordStatus.$invalid && !frmServiceCommentAdd.RecordStatus.$pristine,'has-success' : frmServiceCommentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="ServiceComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessAddField.indexOf('Writer')>-1"
+                            <div class="form-group" ng-show="ServiceComment.AccessAdd('Writer')"
                                  ng-class="{'has-error' : frmServiceCommentAdd.Writer.$invalid && !frmServiceCommentAdd.Writer.$pristine,'has-success' : frmServiceCommentAdd.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessAddField.indexOf('Comment')>-1"
+                            <div class="form-group" ng-show="ServiceComment.AccessAdd('Comment')"
                                  ng-class="{'has-error' : frmServiceCommentAdd.Comment.$invalid && !frmServiceCommentAdd.Comment.$pristine,'has-success' : frmServiceCommentAdd.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessAddField.indexOf('LinkServiceContentId')>-1"
+                            <div class="form-group" ng-show="ServiceComment.AccessAdd('LinkServiceContentId')"
                                  ng-class="{'has-error' : frmServiceCommentAdd.LinkServiceContentId.$invalid && !frmServiceCommentAdd.LinkServiceContentId.$pristine,'has-success' : frmServiceCommentAdd.LinkServiceContentId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

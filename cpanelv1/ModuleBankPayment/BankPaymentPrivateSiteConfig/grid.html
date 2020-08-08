@@ -5,7 +5,7 @@
             <button class="btn btn-primary" rasha-userrole="privateSiteConfig.Add" ng-click="privateSiteConfig.openAddModal()" ng-show="privateSiteConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="privateSiteConfig.Edit" ng-click="privateSiteConfig.openEditModal()"ng-show="privateSiteConfig.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="privateSiteConfig.Delete" ng-click="privateSiteConfig.deleteRow()" ng-show="privateSiteConfig.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="privateSiteConfig.showAdvancedSearchPanel(privateSiteConfig.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="privateSiteConfig.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="privateSiteConfig.reportData()"> {{'report'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="privateSiteConfig.getCount()">{{'number'|lowercase|translate}}&nbsp;{{privateSiteConfig.ListItemsTotalRowCount}}</button>
             <button class="btn btn-warning" type="button" ng-click="privateSiteConfig.changeState('bankpaymentpublicconfig')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>

@@ -5,12 +5,12 @@
             <h3 class="m-t-none m-b">{{'Edit_Goods_Of_Type_Hybrid'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmshopCombineEdit" novalidate ng-submit="shopCombine.editContent(frmshopCombineEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="shopCombine.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmshopCombineEdit.RecordStatus.$invalid && !frmshopCombineEdit.RecordStatus.$pristine,'has-success' : frmshopCombineEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopCombine"></div>
                 </div>
-                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="shopCombine.AccessEdit('Title')"
                      ng-class="{'has-error' : frmshopCombineEdit.Title.$invalid && !frmshopCombineEdit.Title.$pristine,'has-success' : frmshopCombineEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -26,21 +26,21 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="shopCombine.AccessEdit('Description')">
                     <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='shopCombine.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('Price')>-1">
+                <div class='form-group' ng-show="shopCombine.AccessEdit('Price')">
                     <label class='col-sm-2 control-label'>{{'PRICE'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' name="Price" ng-model='shopCombine.selectedItem.Price' class='form-control' />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('AddToInvoicePrint')>-1">
+                <div class="form-group" ng-show="shopCombine.AccessEdit('AddToInvoicePrint')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="AddToInvoicePrint" ng-model="shopCombine.selectedItem.AddToInvoicePrint" /><h4>{{'ADD_TO_INVOICE'|lowercase|translate}}</h4>
@@ -48,14 +48,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('CheckInventory')>-1">
+                <div class="form-group" ng-show="shopCombine.AccessEdit('CheckInventory')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="CheckInventory" ng-model="shopCombine.selectedItem.CheckInventory" /><h4>{{'CHECK_INVENTORY'|lowercase|translate}}</h4>
                         </label>
                     </div>
                 </div>
-                <div class='hr-line-dashed' ng-show="shopCombine.gridOptions.resultAccess.AccessEditField.indexOf('CurrentInventory')>-1"></div>
+                <div class='hr-line-dashed' ng-show="shopCombine.AccessEdit('CurrentInventory')"></div>
                 <div class='form-group'>
                     <label class='col-sm-2 control-label'>{{'STOCK'|lowercase|translate}}</label>
                     <div class='col-sm-10'>

@@ -12,21 +12,21 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSellerId')>-1">
+                <div class="form-group" ng-show="discountSellerPriceSetting.AccessEdit('LinkDiscountSellerId')">
                     <label class="col-sm-2 control-label">{{'Representative_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountSellerIdSelector" ng-model="frmdiscountSellerPriceSettingEdit.selectedItem.LinkDiscountSellerId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')>-1">
+                <div class="form-group" ng-show="discountSellerPriceSetting.AccessEdit('LinkDiscountGroupId')">
                     <label class="col-sm-2 control-label">{{'Link_Group_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountGroupIdSelector" ng-model="frmdiscountSellerPriceSettingEdit.selectedItem.LinkDiscountGroupId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessEditField.indexOf('BasePrice')>-1"
+                <div class="form-group" ng-show="discountSellerPriceSetting.AccessEdit('BasePrice')"
                      ng-class="{'has-error' : frmdiscountSellerPriceSettingEdit.BasePrice.$invalid && !frmdiscountSellerPriceSettingEdit.BasePrice.$pristine,'has-success' : frmdiscountSellerPriceSettingEdit.BasePrice.$valid}">
                     <label class="col-sm-2 control-label">{{'Fixed_Price'|lowercase|translate}}</label>
                     <div class="col-sm-10">

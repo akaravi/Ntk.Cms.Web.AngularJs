@@ -5,12 +5,12 @@
             <h3 class="m-t-none m-b">{{'Add_Module'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModuleAdd" novalidate ng-submit="cmsModulegrd.addNewRow(frmCmsModuleAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModulegrdAdd.RecordStatus.$invalid && !frmcmsModulegrdAdd.RecordStatus.$pristine,'has-success' : frmcmsModulegrdAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsModulegrd"></div>
                 </div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessAdd('Title')"
                      ng-class="{'has-error' : frmCmsModuleAdd.Title.$invalid && !frmCmsModuleAdd.Title.$pristine,'has-success' : frmCmsModuleAdd.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -25,7 +25,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleAdd.Title.$invalid && !frmCmsModuleAdd.Title.$pristine) || frmCmsModuleAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddField.indexOf('TitleResourceLanguage')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessAdd('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleAdd.TitleResourceLanguage.$invalid && !frmCmsModuleAdd.Title.$pristine,'has-success' : frmCmsModuleAdd.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('ClassName')"
                      ng-class="{'has-error' : frmCmsModuleAdd.ClassName.$invalid && !frmCmsModuleAdd.ClassName.$pristine,'has-success' : frmCmsModuleAdd.ClassName.$valid}">
                     <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1">
+                <div class="form-group" ng-show="cmsModulegrd.AccessEdit('ExpireDate')">
                     <label class="col-sm-4 control-label">ExpireDate</label>
                     <div class="col-sm-8">
                         <div rasha-date-picker="cmsModulegrd.ExpireDate" ng-model="cmsModulegrd.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsModulegrd.ExpireDate" />

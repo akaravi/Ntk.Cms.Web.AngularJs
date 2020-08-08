@@ -8,7 +8,7 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="appDate.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmappDateEdit.LinkSourceId.$invalid && !frmappDateEdit.LinkSourceId.$pristine,'has-success' : frmappDateEdit.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appDate"></div>
@@ -31,7 +31,7 @@
                                     <input class="form-control" name="LinkContentId" rasha-autocomplete="appDate.LinkContentIdSelector" ng-model="appDate.selectedItem.LinkContentId" />
                                 </div>
                             </div>
-                            <!--ng-show="appDate.gridOptions.resultAccess.AccessEditField.indexOf('ServiceTimeMinute')>-1"-->
+                            <!--ng-show="appDate.AccessEdit('ServiceTimeMinute')"-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
                                  ng-class="{'has-error' : frmappDateEdit.ServiceTimeMinute.$invalid && !frmappDateEdit.ServiceTimeMinute.$pristine,'has-success' : frmappDateEdit.ServiceTimeMinute.$valid}">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.gridOptions.resultAccess.AccessEditField.indexOf('LinkReservationServiceId')>-1">
+                            <div class="form-group" ng-show="appDate.AccessEdit('LinkReservationServiceId')">
                                 <label class="col-sm-2 control-label">{{'Service'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkReservationServiceId" rasha-autocomplete="appDate.LinkReservationServiceIdSelector" ng-model="frmappDateEdit.selectedItem.LinkReservationServiceId" />

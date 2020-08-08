@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Add_Goods_Of_Type_The_Process'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmshopProcessAdd" novalidate ng-submit="shopProcess.addNewContent(frmshopProcessAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="shopProcess.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmshopProcessAdd.RecordStatus.$invalid && !frmshopProcessAdd.RecordStatus.$pristine,'has-success' : frmshopProcessAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopProcess"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="shopProcess.AccessAdd('Title')"
                      ng-class="{'has-error' : frmshopProcessAdd.Title.$invalid && !frmshopProcessAdd.Title.$pristine,'has-success' : frmshopProcessAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -27,21 +27,21 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="shopProcess.AccessAdd('Description')">
                     <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='shopProcess.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('Price')>-1">
+                <div class='form-group' ng-show="shopProcess.AccessAdd('Price')">
                     <label class='col-sm-2 control-label'>{{'PRICE'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' name="Price" ng-model='shopProcess.selectedItem.Price' class='form-control' />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('AddToInvoicePrint')>-1">
+                <div class="form-group" ng-show="shopProcess.AccessAdd('AddToInvoicePrint')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="AddToInvoicePrint" ng-model="shopProcess.selectedItem.AddToInvoicePrint" /><h4>{{'ADD_TO_INVOICE'|lowercase|translate}}</h4>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('CheckInventory')>-1">
+                <div class="form-group" ng-show="shopProcess.AccessAdd('CheckInventory')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="CheckInventory" ng-model="shopProcess.selectedItem.CheckInventory" /><h4>{{'CHECK_INVENTORY'|lowercase|translate}}</h4>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopProcess.gridOptions.resultAccess.AccessAddField.indexOf('CurrentInventory')>-1">
+                <div class='form-group' ng-show="shopProcess.AccessAdd('CurrentInventory')">
                     <label class='col-sm-2 control-label'>{{'STOCK'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' step="0.01" ng-model='shopProcess.selectedItem.CurrentInventory' class="form-control" />

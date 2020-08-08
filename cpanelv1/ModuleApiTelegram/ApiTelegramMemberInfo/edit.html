@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmmemberInfoEdit" novalidate ng-submit="memberInfo.editRow(frmmemberInfoEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmmemberInfoEdit.LinkSourceId.$invalid && !frmmemberInfoEdit.LinkSourceId.$pristine,'has-success' : frmmemberInfoEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="memberInfo"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('Title')"
                      ng-class="{'has-error' : frmmemberInfoEdit.Title.$invalid && !frmmemberInfoEdit.Title.$pristine,'has-success' : frmmemberInfoEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'TITLE_OF_BOT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('Username')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('Username')"
                      ng-class="{'has-error' : frmmemberInfoEdit.Username.$invalid && !frmmemberInfoEdit.Username.$pristine,'has-success' : frmmemberInfoEdit.Username.$valid}">
                     <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('BotToken')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('BotToken')"
                      ng-class="{'has-error' : frmmemberInfoEdit.BotToken.$invalid && !frmmemberInfoEdit.BotToken.$pristine,'has-success' : frmmemberInfoEdit.BotToken.$valid}">
                     <label class="col-sm-2 control-label"> {{'TOKEN'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('UrlWebhook')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('UrlWebhook')"
                      ng-class="{'has-error' : frmmemberInfoEdit.UrlWebhook.$invalid && !frmmemberInfoEdit.UrlWebhook.$pristine,'has-success' : frmmemberInfoEdit.UrlWebhook.$valid}">
                     <label class="col-sm-2 control-label"> {{'WEB_HOOKER'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('SecurityKey')>-1"
+                <div class="form-group" ng-show="memberInfo.AccessEdit('SecurityKey')"
                      ng-class="{'has-error' : frmmemberInfoEdit.SecurityKey.$invalid && !frmmemberInfoEdit.SecurityKey.$pristine,'has-success' : frmmemberInfoEdit.SecurityKey.$valid}">
                     <label class="col-sm-2 control-label"> {{'SECURITY_CODE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuId')>-1">
+                <div class="form-group" ng-show="memberInfo.AccessEdit('LinkUniversalMenuId')">
                     <label class="col-sm-2 control-label"> {{'SELECT_MENUE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <select class="form-control" name="LinkUniversalMenuId" ng-model="memberInfo.selectedItem.LinkUniversalMenuId">
@@ -112,7 +112,7 @@
                 </div>
                 <div class='hr-line-dashed'></div>
 
-                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1">
+                <div class="form-group" ng-show="memberInfo.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')">
                     <div class="col-md-11">
                         <input type="checkbox" style="width: 15px; height: 15px;" ng-model="memberInfo.selectUniversalMenuOnUndetectableKey"/>
                         <label> {{'CREATE_DEFAULT_MENUE_ELSE_ERROR'|lowercase|translate}} </label>
@@ -121,7 +121,7 @@
                 
                 <div ng-show="memberInfo.selectUniversalMenuOnUndetectableKey">
                     <div class='hr-line-dashed'></div>
-                    <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
+                    <div class="form-group" ng-show="memberInfo.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
                         <label class="col-sm-3 control-label"> {{'SELECT_DEFAULT'|lowercase|translate}} </label>
                         <div class="col-sm-8">
                             <select class="form-control" name="LinkUniversalMenuIdOnUndetectableKey" ng-model="memberInfo.selectedItem.LinkUniversalMenuIdOnUndetectableKey">

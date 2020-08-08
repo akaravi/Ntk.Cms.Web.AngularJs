@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="biographyComment.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.RecordStatus.$invalid && !frmbiographyCommentAdd.RecordStatus.$pristine,'has-success' : frmbiographyCommentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="biographyComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.gridOptions.resultAccess.AccessAddField.indexOf('Writer')>-1"
+                            <div class="form-group" ng-show="biographyComment.AccessAdd('Writer')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.Writer.$invalid && !frmbiographyCommentAdd.Writer.$pristine,'has-success' : frmbiographyCommentAdd.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.gridOptions.resultAccess.AccessAddField.indexOf('Comment')>-1"
+                            <div class="form-group" ng-show="biographyComment.AccessAdd('Comment')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.Comment.$invalid && !frmbiographyCommentAdd.Comment.$pristine,'has-success' : frmbiographyCommentAdd.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -61,7 +61,7 @@
 
                 
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="biographyComment.gridOptions.resultAccess.AccessAddField.indexOf('LinkbiographyContentId')>-1"
+                <div class="form-group" ng-show="biographyComment.AccessAdd('LinkbiographyContentId')"
                      ng-class="{'has-error' : frmbiographyCommentAdd.LinkbiographyContentId.$invalid && !frmbiographyCommentAdd.LinkbiographyContentId.$pristine,'has-success' : frmbiographyCommentAdd.LinkbiographyContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">

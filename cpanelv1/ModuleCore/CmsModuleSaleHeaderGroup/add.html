@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmCmsModuleHeaderGAdd" novalidate ng-submit="CmsModuleHeaderG.addNewRow(frmCmsModuleHeaderGAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGAdd.RecordStatus.$invalid && !frmCmsModuleHeaderGAdd.RecordStatus.$pristine,'has-success' : frmCmsModuleHeaderGAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="CmsModuleHeaderG"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('Title')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGAdd.Title.$invalid && !frmCmsModuleHeaderGAdd.Title.$pristine,'has-success' : frmCmsModuleHeaderGAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -28,7 +28,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleHeaderGAdd.Title.$invalid && !frmCmsModuleHeaderGAdd.Title.$pristine) || frmCmsModuleHeaderGAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('TitleResourceLanguage')>-1"
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGAdd.TitleResourceLanguage.$invalid && !frmCmsModuleHeaderGAdd.Title.$pristine,'has-success' : frmCmsModuleHeaderGAdd.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('Description')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGAdd.Description.$invalid && !frmCmsModuleHeaderGAdd.Description.$pristine,'has-success' : frmCmsModuleHeaderGAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -59,14 +59,14 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleHeaderGAdd.Description.$invalid && !frmCmsModuleHeaderGAdd.Description.$pristine) || frmCmsModuleHeaderGAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('LinkUserGroupId')>-1">
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('LinkUserGroupId')">
                     <label class="col-sm-2 control-label">{{'Link_User_Group_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkUserGroupId" rasha-autocomplete="CmsModuleHeaderG.LinkUserGroupIdSelector" ng-model="CmsModuleHeaderG.selectedItem.LinkUserGroupId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddField.indexOf('LinkCmsSiteCategoryId')>-1">
+                <div class="form-group" ng-show="CmsModuleHeaderG.AccessAdd('LinkCmsSiteCategoryId')">
                     <label class="col-sm-2 control-label"> {{'Link_Cms_Site_Category_Id'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCmsSiteCategoryId" rasha-autocomplete="CmsModuleHeaderG.LinkCmsSiteCategoryIdSelector" ng-model="CmsModuleHeaderG.selectedItem.LinkCmsSiteCategoryId" />

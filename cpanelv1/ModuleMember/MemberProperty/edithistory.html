@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberProperty.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="memberProperty.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmmemberPropertyEdit.LinkSourceId.$invalid && !frmmemberPropertyEdit.LinkSourceId.$pristine,'has-success' : frmmemberPropertyEdit.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="memberProperty"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberProperty.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="memberProperty.AccessEdit('Title')"
                                  ng-class="{'has-error' : frmmemberPropertyEdit.Title.$invalid && !frmmemberPropertyEdit.Title.$pristine,'has-success' : frmmemberPropertyEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> علت مراجعه </label>
                                 <div class="col-sm-10">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>-->
                             <div class='hr-line-dashed'></div>
-                            <div ng-show="memberProperty.gridOptions.resultAccess.AccessEditField.indexOf('LinkPropertyTypeId')>-1 ">
+                            <div ng-show="memberProperty.AccessEdit('LinkPropertyTypeId')>-1 ">
                                 <!--<div class="form-group">
                                     <label class="col-sm-2 control-label"> {{'Member_Type'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -158,21 +158,21 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberProperty.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                            <div class="form-group" ng-show="memberProperty.AccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="memberProperty.LinkLocationIdSelector" ng-model="memberProperty.selectedItemhistory.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberProperty.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                            <div class="form-group" ng-show="memberProperty.AccessEdit('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="memberProperty.GeolocationConfig" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="memberProperty.gridOptions.resultAccess.AccessEditField.indexOf('Address')>-1 ">
+                            <div class="form-group" ng-show="memberProperty.AccessEdit('Address')>-1 ">
                                 <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Address" ng-model="memberProperty.selectedItemhistory.Address" />

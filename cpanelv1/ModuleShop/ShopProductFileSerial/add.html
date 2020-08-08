@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmshopProductFileSerialAdd" novalidate ng-submit="shopProductFileSerial.addNewRow(frmshopProductFileSerialAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProductFileSerial.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="shopProductFileSerial.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmshopProductFileSerialAdd.RecordStatus.$invalid && !frmshopProductFileSerialAdd.RecordStatus.$pristine,'has-success' : frmshopProductFileSerialAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopProductFileSerial"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProductFileSerial.gridOptions.resultAccess.AccessAddField.indexOf('DescriptionBeforeSale')>-1"
+                <div class="form-group" ng-show="shopProductFileSerial.AccessAdd('DescriptionBeforeSale')"
                      ng-class="{'has-error' : frmshopProductFileSerialAdd.DescriptionBeforeSale.$invalid && !frmshopProductFileSerialAdd.DescriptionBeforeSale.$pristine,'has-success' : frmshopProductFileSerialAdd.DescriptionBeforeSale.$valid}">
                     <label class="col-sm-2 control-label">{{'Description_Before_Sale'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProductFileSerial.gridOptions.resultAccess.AccessAddField.indexOf('DescriptionAfterSale')>-1"
+                <div class="form-group" ng-show="shopProductFileSerial.AccessAdd('DescriptionAfterSale')"
                      ng-class="{'has-error' : frmshopProductFileSerialAdd.DescriptionAfterSale.$invalid && !frmshopProductFileSerialAdd.DescriptionAfterSale.$pristine,'has-success' : frmshopProductFileSerialAdd.DescriptionAfterSale.$valid}">
                     <label class="col-sm-2 control-label">{{'Description_After_Sale'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProductFileSerial.gridOptions.resultAccess.AccessAddField.indexOf('LinkContentId')>-1"
+                <div class="form-group" ng-show="shopProductFileSerial.AccessAdd('LinkContentId')"
                      ng-class="{'has-error' : frmshopProductFileSerialAdd.LinkContentId.$invalid && !frmshopProductFileSerialAdd.LinkContentId.$pristine,'has-success' : frmshopProductFileSerialAdd.LinkContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">

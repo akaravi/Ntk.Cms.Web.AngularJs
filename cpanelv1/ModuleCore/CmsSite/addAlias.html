@@ -6,20 +6,20 @@
             <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate ng-submit="">
                 <!-- Redirect -->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('Redirect')>-1">
+                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Redirect')">
                     <label class="col-sm-2 control-label">Redirect به:</label>
                     <div class="col-sm-10">
                         <input class="form-control" style="direction: ltr" name="Redirect" ng-model="cmsSitegrd.selectedItem.Redirect" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('SubDomain')>-1">
+                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('SubDomain')">
                     <label class="col-sm-2 control-label">{{'SUBDOMAIN'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="SubDomain" style="direction: ltr" ng-model="cmsSitegrd.selectedItem.SubDomain" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('Domain')>-1"
+                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Domain')"
                      ng-class="{'has-error' : frmCmsSiteAdd.Domain.$invalid && !frmCmsSiteAdd.Domain.$pristine,'has-success' : frmCmsSiteAdd.Domain.$valid}">
                     <label class="col-sm-2 control-label">{{'DOMAIN'|lowercase|translate}}</label>
                     <div class="col-sm-10">

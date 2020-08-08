@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmplatformCtrlEdit" novalidate ng-submit="platformCtrl.editRow(frmplatformCtrlEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmplatformCtrlEdit.RecordStatus.$invalid && !frmplatformCtrlEdit.RecordStatus.$pristine,'has-success' : frmplatformCtrlEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="platformCtrl"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Type')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessEdit('Type')"
                      ng-class="{'has-error' : frmplatformCtrlEdit.Type.$invalid && !frmplatformCtrlEdit.Type.$pristine,'has-success' : frmplatformCtrlEdit.Type.$valid}">
                     <label class="col-sm-2 control-label"> {{'TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -24,7 +24,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessEdit('Title')"
                      ng-class="{'has-error' : frmplatformCtrlEdit.Title.$invalid && !frmplatformCtrlEdit.Name.$pristine,'has-success' : frmplatformCtrlEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">

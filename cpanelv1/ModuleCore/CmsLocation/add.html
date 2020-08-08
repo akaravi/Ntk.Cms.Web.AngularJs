@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Add_Location' |lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmcmsLocationAdd" novalidate ng-submit="cmsLocation.addNewRow(frmcmsLocationAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsLocationAdd.RecordStatus.$invalid && !frmcmsLocationAdd.RecordStatus.$pristine,'has-success' : frmcmsLocationAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsLocation"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1">
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('Title')">
                     <label class="col-sm-2 control-label">{{ 'title' |lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
@@ -26,14 +26,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('LinkParentId')>-1">
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('LinkParentId')">
                     <label class="col-sm-2 control-label">{{'LINK_PARENT_ID'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkParentId" ng-model="cmsLocation.selectedItem.LinkParentId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('GeoLocationLatitude')>-1">
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('GeoLocationLatitude')">
                     <label class='col-sm-2 control-label'>{{'LATITUDE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
@@ -42,14 +42,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('GeoLocationLongitude')>-1">
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('GeoLocationLongitude')">
                     <label class="col-sm-2 control-label">{{'LATITUDE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="GeoLocationLongitude" ng-model="cmsLocation.selectedItem.GeoLocationLongitude" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('LocationType')>-1">
+                <div class="form-group" ng-show="cmsLocation.AccessAdd('LocationType')">
                     <label class="col-sm-2 control-label">{{'TYPE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select ng-options="x.Value as x.Description for x in cmsLocation.locationTypeListItems" class="form-control" ng-required="true" name="LocationType" ng-model="cmsLocation.selectedItem.LocationType"></select>

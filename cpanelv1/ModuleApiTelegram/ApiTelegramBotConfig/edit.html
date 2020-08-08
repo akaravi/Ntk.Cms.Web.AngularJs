@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Edit_Specifications'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmbotConfigCtrlEdit" novalidate ng-submit="botConfigCtrl.editRow(frmbotConfigCtrlEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.LinkSourceId.$invalid && !frmbotConfigCtrlEdit.LinkSourceId.$pristine,'has-success' : frmbotConfigCtrlEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="botConfigCtrl"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('Title')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.Title.$invalid && !frmbotConfigCtrlEdit.Title.$pristine,'has-success' : frmbotConfigCtrlEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'TITLE_OF_BOT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Username')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('Username')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.Username.$invalid && !frmbotConfigCtrlEdit.Username.$pristine,'has-success' : frmbotConfigCtrlEdit.Username.$valid}">
                     <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('BotToken')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('BotToken')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.BotToken.$invalid && !frmbotConfigCtrlEdit.BotToken.$pristine,'has-success' : frmbotConfigCtrlEdit.BotToken.$valid}">
                     <label class="col-sm-2 control-label"> {{'TOKEN'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('UrlWebhook')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('UrlWebhook')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.UrlWebhook.$invalid && !frmbotConfigCtrlEdit.UrlWebhook.$pristine,'has-success' : frmbotConfigCtrlEdit.UrlWebhook.$valid}">
                     <label class="col-sm-2 control-label">{{'WEB_HOOKER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('SecurityKey')>-1"
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('SecurityKey')"
                      ng-class="{'has-error' : frmbotConfigCtrlEdit.SecurityKey.$invalid && !frmbotConfigCtrlEdit.SecurityKey.$pristine,'has-success' : frmbotConfigCtrlEdit.SecurityKey.$valid}">
                     <label class="col-sm-2 control-label"> {{'SECURITY_CODE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuId')>-1">
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('LinkUniversalMenuId')">
                     <label class="col-sm-2 control-label"> {{'SELECT_MENUE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <select class="form-control" name="LinkUniversalMenuId" ng-model="botConfigCtrl.selectedItem.LinkUniversalMenuId">
@@ -87,7 +87,7 @@
                 </div>
                 <div class='hr-line-dashed'></div>
 
-                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1">
+                <div class="form-group" ng-show="botConfigCtrl.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')">
                     <div class="col-md-11">
                         <input type="checkbox" style="width: 15px; height: 15px;" ng-model="botConfigCtrl.selectUniversalMenuOnUndetectableKey" />
                         <label> {{'CREATE_DEFAULT_MENUE_ELSE_ERROR'|lowercase|translate}} </label>
@@ -95,7 +95,7 @@
                 </div>
                 <div ng-show="botConfigCtrl.selectUniversalMenuOnUndetectableKey">
                     <div class='hr-line-dashed'></div>
-                    <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
+                    <div class="form-group" ng-show="botConfigCtrl.AccessEdit('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
                         <label class="col-sm-3 control-label"> {{'SELECT_DEFAULT'|lowercase|translate}} </label>
                         <div class="col-sm-8">
                             <select class="form-control" name="LinkUniversalMenuIdOnUndetectableKey" ng-model="botConfigCtrl.selectedItem.LinkUniversalMenuIdOnUndetectableKey" ng-disabled="botConfigCtrl.addRequested">

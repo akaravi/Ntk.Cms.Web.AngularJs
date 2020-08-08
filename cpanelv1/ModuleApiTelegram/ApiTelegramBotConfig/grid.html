@@ -6,7 +6,7 @@
             <button class="btn btn-warning" rasha-userrole="botConfigCtrl.Edit" ng-click="botConfigCtrl.openEditModal()" type="button" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="botConfigCtrl.Delete" ng-click="botConfigCtrl.deleteRow()" type="button" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="botConfigCtrl.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="botConfigCtrl.openGridConfigModal(botConfigCtrl.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="botConfigCtrl.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-danger" type="button" ng-click="botConfigCtrl.qrCode()">{{'QR_Code'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="botConfigCtrl.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="botConfigCtrl.getCount()">{{'number'|lowercase|translate}}&nbsp;{{botConfigCtrl.ListItemsTotalRowCount}}</button>

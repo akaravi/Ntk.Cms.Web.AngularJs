@@ -9,12 +9,12 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="cmsPageDesign.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmcmsPageDesignEdit.RecordStatus.$invalid && !frmcmsPageDesignEdit.RecordStatus.$pristine,'has-success' : frmcmsPageDesignEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="cmsPageDesign"></div>
                             </div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="cmsPageDesign.AccessEdit('Title')"
                                  ng-class="{'has-error' : frmCmsPageEdit.Title.$invalid && !frmCmsPageEdit.Title.$pristine,'has-success' : frmCmsPageEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('PageAbilityType')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('PageAbilityType')">
                                 <label class='col-sm-2 control-label'>{{'page_type'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="cmsPageDesign.selectedItem.PageAbilityType" ng-change="cmsPageDesign.onPageTypeChange(cmsPageDesign.selectedItem.PageAbilityType)">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('LinkCmsPageId')>-1" >
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('LinkCmsPageId')" >
                                 <label class="col-sm-2 control-label">{{'select_master_page'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="cmsPageDesign.selectedItem.LinkCmsPageId" ng-disabled="cmsPageDesign.selectedItem.LinkPageDependencyGuId == 20096">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('Keyword')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('Keyword')">
                                 <label class='col-sm-2 control-label'>{{'keywords'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <tags-input ng-model="cmsPageDesign.kwords" placeholder="{{'key_word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1"
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('Description')"
                                  ng-class="{'has-error' : frmCmsPageEdit.Description.$invalid && !frmCmsPageEdit.Description.$pristine,'has-success' : frmCmsPageEdit.Description.$valid}">
                                 <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('PageDependencyIsDefualtPage')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessEdit('PageDependencyIsDefualtPage')">
                                 <label class='col-sm-2 control-label'>{{'setting'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <label class="checkbox-inline">
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('LinkPageDependencyGuId')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessEdit('LinkPageDependencyGuId')">
                                 <label class='col-sm-2 control-label'>{{'need'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkPageDependencyTitle" readonly="readonly" value="{{cmsPageDesign.dependencyTitle}}" />
@@ -120,7 +120,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('SpecialIdendity')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('SpecialIdendity')">
                                 <label class='col-sm-2 control-label'>{{'unique_identifier'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsPageDesign.selectedItem.SpecialIdendity' class='form-control'>
@@ -128,7 +128,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('SpecialUrlParameter')>-1">
+                            <div class='form-group' ng-show="cmsPageDesign.AccessEdit('SpecialUrlParameter')">
                                 <label class='col-sm-2 control-label'>{{'htmlbuilder_template_group_id'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <select class='form-control' name="SpecialUrlParameter" ng-model="cmsPageDesign.selectedItem.SpecialUrlParameter">
@@ -156,7 +156,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessAddField.indexOf('LinkFavFileId')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkFavFileId')">
                                 <label class="col-sm-2 control-label"> {{'fav_icon'|lowercase|translate}} </label>
                                 <a class="btn btn-primary uoload-file-m" href="" ng-click="cmsPageDesign.openUploadModal()" aria-label="Upload">
                                     {{'upload'|lowercase|translate}}

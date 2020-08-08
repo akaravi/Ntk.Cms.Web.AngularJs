@@ -8,14 +8,14 @@
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <!-- Title -->
-                        <div class="form-group" ng-show="ticketingTask.gridOptions.resultAccess.AccessWatchField.indexOf('Title')>-1">
+                        <div class="form-group" ng-show="ticketingTask.AccessWatch('Title')">
                             <label class="col-sm-2 control-label">موضوع</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="Title" ng-model="ticketingTask.selectedItem.Title" ng-readonly="true" />
                             </div>
                         </div>
                         <!-- HtmlBody -->
-                        <div class="form-group" ng-show="ticketingTask.gridOptions.resultAccess.AccessWatchField.indexOf('HtmlBody')>-1">
+                        <div class="form-group" ng-show="ticketingTask.AccessWatch('HtmlBody')">
                             <label class="col-sm-2 control-label">پیام</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" name="HtmlBody" ng-model="ticketingTask.selectedItem.HtmlBody" style="resize:vertical;height:50px" ng-readonly="true"></textarea>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <!-- TicketType -->
-                        <div class="form-group" ng-show="ticketingTask.gridOptions.resultAccess.AccessWatchField.indexOf('LinkTicketingDepartemenId')>-1">
+                        <div class="form-group" ng-show="ticketingTask.AccessWatch('LinkTicketingDepartemenId')">
                             <label class="col-sm-2 control-label">بخش تیکت</label>
                             <div class="col-sm-10">
                                 <input class="form-control" ng-required="true" name="TicketType" ng-model="ticketingTask.selectedItem.virtual_TicketType.Title" ng-readonly="true" />

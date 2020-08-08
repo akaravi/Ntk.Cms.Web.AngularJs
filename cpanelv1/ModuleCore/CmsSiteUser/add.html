@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Add_User_On_Site'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate ng-submit="cmsSiteUser.addNewRow(frmCmsSiteAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsSiteUserAdd.RecordStatus.$invalid && !frmcmsSiteUserAdd.RecordStatus.$pristine,'has-success' : frmcmsSiteUserAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsSiteUser"></div>
                 </div>
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkSiteId')>-1"
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('LinkSiteId')"
                      ng-class="{'has-error' : frmCmsSiteAdd.site.$invalid && !frmCmsSiteAdd.site.$pristine,'has-success' : frmCmsSiteAdd.site.$valid}">
                     <label class="col-sm-2 control-label">{{'SITE_TITLE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -37,7 +37,7 @@
                     </div>
                 </div>-->
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkUserId')>-1"
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('LinkUserId')"
                      ng-class="{'has-error' : frmCmsSiteAdd.user.$invalid && !frmCmsSiteAdd.user.$pristine,'has-success' : frmCmsSiteAdd.user.$valid}">
                     <label class="col-sm-2 control-label">{{'SELET_USER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -63,21 +63,21 @@
                     </div>
                 </div>-->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkUserId')>-1">
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('LinkUserId')">
                     <label class="col-sm-2 control-label">{{'USER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkUserId" rasha-autocomplete="cmsSiteUser.LinkUserIdSelector" ng-model="cmsSiteUser.selectedItem.LinkUserId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkSiteId')>-1">
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('LinkSiteId')">
                     <label class="col-sm-2 control-label">{{'SITE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkSiteId" rasha-autocomplete="cmsSiteUser.LinkSiteIdSelector" ng-model="cmsSiteUser.selectedItem.LinkSiteId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkUserGroupId')>-1"
+                <div class="form-group" ng-show="cmsSiteUser.AccessAdd('LinkUserGroupId')"
                      ng-class="{'has-error' : frmCmsSiteAdd.UserGroup.$invalid && !frmCmsSiteAdd.UserGroup.$pristine,'has-success' : frmCmsSiteAdd.UserGroup.$valid}">
                     <label class="col-sm-2 control-label">{{'USER_GROUP'|lowercase|translate}}</label>
                     <div class="col-sm-10">

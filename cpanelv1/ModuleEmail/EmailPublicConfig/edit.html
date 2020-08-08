@@ -11,7 +11,7 @@
                     <div class="col-sm-10" rasha-record-status="publicConfig"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('Title')"
                      ng-class="{'has-error' : frmpublicConfigEdit.Title.$invalid && !frmpublicConfigEdit.Title.$pristine,'has-success' : frmpublicConfigEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('ClassName')"
                      ng-class="{'has-error' : frmpublicConfigEdit.ClassName.$invalid && !frmpublicConfigEdit.ClassName.$pristine,'has-success' : frmpublicConfigEdit.ClassName.$valid}">
                     <label class="col-sm-2 control-label"> {{'CLASS_NAME'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -43,28 +43,28 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('WebServiceUrl')>-1">
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('WebServiceUrl')">
                     <label class="col-sm-2 control-label">{{'WEB_SERVICE_URL'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="WebServiceUrl" ng-model="emailPublicConfig.selectedItem.WebServiceUrl" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('Memo')>-1">
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('Memo')">
                     <label class="col-sm-2 control-label">{{"MEMO"|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <textarea type="text" name="Memo" ng-model="emailPublicConfig.selectedItem.Memo" class="form-control" style="resize:vertical"></textarea>
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('CurrencyUnit')>-1">
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('CurrencyUnit')">
                     <label class="col-sm-2 control-label">{{"CURRENCYUNIT"|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <textarea type="text" name="CurrencyUnit" ng-model="emailPublicConfig.selectedItem.CurrencyUnit" class="form-control" style="resize:vertical"></textarea>
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleFileLogoId')>-1">
+                <div class="form-group" ng-show="emailPublicConfig.AccessEdit('LinkModuleFileLogoId')">
                     <label class="col-sm-2 control-label"> {{'SELECT_FILE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <div treecontrol class="tree-boot" style="color:black"
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditField.indexOf('PublicConfigJsonValues')>-1">
+                <div class='form-group' ng-show="emailPublicConfig.AccessEdit('PublicConfigJsonValues')">
                     <label class='col-sm-2 control-label'> {{'SETTINGS'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <div ng-model="emailPublicConfig.submitValue" fb-form="default" fb-default="emailPublicConfig.defaultValue"></div>

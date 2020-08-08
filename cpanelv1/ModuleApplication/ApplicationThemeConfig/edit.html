@@ -11,14 +11,14 @@
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                ng-show="themeConfig.AccessEdit('RecordStatus')"
                                 ng-class="{'has-error' : frmthemeConfigEdit.RecordStatus.$invalid && !frmthemeConfigEdit.RecordStatus.$pristine,'has-success' : frmthemeConfigEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="themeConfig"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                ng-show="themeConfig.AccessEdit('Title')"
                                 ng-class="{'has-error' : frmthemeConfigEdit.Title.$invalid && !frmthemeConfigEdit.Title.$pristine,'has-success' : frmthemeConfigEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -28,7 +28,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('TypeId')>-1"
+                                ng-show="themeConfig.AccessEdit('TypeId')"
                                 ng-class="{'has-error' : frmthemeConfigEdit.TypeId.$invalid && !frmthemeConfigEdit.TypeId.$pristine,'has-success' : frmthemeConfigEdit.TypeId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'TypeId'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -38,7 +38,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1"
+                                ng-show="themeConfig.AccessEdit('LinkSourceId')"
                                 ng-class="{'has-error' : frmthemeConfigEdit.LinkSourceId.$invalid && !frmthemeConfigEdit.LinkSourceId.$pristine,'has-success' : frmthemeConfigEdit.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -120,7 +120,7 @@
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('ThemeConfigBuilderJsonValues')>-1">
+                                ng-show="themeConfig.AccessEdit('ThemeConfigBuilderJsonValues')">
                                 <div class="col-sm-12"
                                     ng-include='themeConfig.selectedItem.ThemeConfigBuilderJsonValuesHtml'
                                     include-replace="ThemeFinderConfig|themeConfig.selectedItem.ThemeConfigBuilderJsonValuesModel">
@@ -136,7 +136,7 @@
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('ThemeConfigRuntimeJsonValues')>-1">
+                                ng-show="themeConfig.AccessEdit('ThemeConfigRuntimeJsonValues')">
                                 <div class="col-sm-12"
                                     ng-include='themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesHtml'
                                     include-replace="ThemeFinderConfig|themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel">

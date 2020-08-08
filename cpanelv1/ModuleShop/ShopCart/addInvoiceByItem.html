@@ -8,7 +8,7 @@
             <div id="main">
                 <form method="get" class="form-horizontal" name="frmshopCartAdd" novalidate ng-submit="shopCart.addNewContent(frmshopCartAdd)">
                     <div class='hr-line-dashed'></div>
-                    <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1 && shopCart.gridOptions.resultAccess.AccessAddField.indexOf('LinkCmsUserId')>-1"
+                    <div class="form-group" ng-show="shopCart.AccessAdd('RecordStatus')>-1 && shopCart.AccessAdd('LinkCmsUserId')"
                          ng-class="{'has-error' : frmshopCartAdd.RecordStatus.$invalid && !frmshopCartAdd.RecordStatus.$pristine,'has-success' : frmshopCartAdd.RecordStatus.$valid}">
                         <label class="col-sm-1 control-label"> {{'condition'|lowercase|translate}} </label>
                         <div class="col-sm-10" rasha-record-status="shopCart"></div>
@@ -86,13 +86,13 @@
                     </div>
 
                     <div class='hr-line-dashed'></div>
-                    <!--ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('FactorId')>-1"-->
+                    <!--ng-show="shopCart.AccessAdd('FactorId')"-->
                     <div class="form-group">
                         <label class="col-sm-1  control-label">{{'DATE'|lowercase|translate}}&nbsp;</label>
                         <div class="col-sm-5  col-md-4">
                             <div rasha-date-picker="shopCart.RegisterDate" ng-model="shopCart.selectedItem.RegisterDate"></div><input type="hidden" ng-model="shopCart.selectedItem.RegisterDate" />
                         </div>
-                        <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('PaymentStatus')>-1">
+                        <div class="form-group" ng-show="shopCart.AccessAdd('PaymentStatus')">
                             <label class="col-sm-2 control-label">{{'Payment_Stutus'|lowercase|translate}}</label>
                             <div class="col-sm-4">
                                 <select class='form-control' ng-disabled="true" name="PaymentStatus" ng-model="shopCart.selectedItem.PaymentStatus" ng-options="x.Value as x.Description for x in shopCart.PaymentStatus" required></select>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class='hr-line-dashed' ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('RegisterDate')>-1"></div>
+                    <div class='hr-line-dashed' ng-show="shopCart.AccessAdd('RegisterDate')"></div>
                     <div class="form-group">
                         <label class="col-sm-1  control-label">{{"Delivery_Date"|lowercase|translate}}&nbsp;</label>
                         <div class="col-sm-4">
@@ -125,7 +125,7 @@
                         <button class="btn btn-primary" ng-click="shopCart.openAddModalSaleDetail()" ng-show="shopCart.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
                         <button class="btn btn-warning" ng-click="shopCart.openEditModelSaleDetail()" ng-show="false"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                         <button class="btn btn-danger" ng-click="shopCart.deleteContentSaleDetail()" ng-show="shopCart.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
-                        <!--<button class="btn btn-success" ng-click="shopCart.showAdvancedSearchPanel(shopCart.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>-->
+                        <!--<button class="btn btn-success" ng-click="shopCart.showAdvancedSearchPanel()"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>-->
                         <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="shopCart.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
                         <button class="btn btn-success" ng-click="shopCart.getCount()">{{'number'|lowercase|translate}}&nbsp;{{shopCart.ListItemsTotalRowCount}}</button>
                     </div>

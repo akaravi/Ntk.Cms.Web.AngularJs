@@ -85,7 +85,7 @@
                     <tab heading="{{'Place_Location' |lowercase|translate}}">
                         <div class="panel-body">
 
-                            <div class="form-group" ng-show="objectUser.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                            <div class="form-group" ng-show="objectUser.AccessAdd('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="objectUser.GeolocationConfig" />

@@ -7,7 +7,7 @@
             <button class="btn btn-primary" rasha-userrole="shopContentTag.Add" ng-click="shopContentTag.openAddModal()" ng-show="shopContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
             <button class="btn btn-warning" rasha-userrole="shopContentTag.Edit" ng-click="shopContentTag.openEditModal()" ng-show="shopContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="shopContentTag.Delete" ng-click="shopContentTag.deleteRow()" ng-show="shopContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
-            <button class="btn btn-success" type="button" ng-click="shopContentTag.showAdvancedSearchPanel(shopContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="shopContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="shopContentTag.reportData()"> {{'report'|lowercase|translate}} </button>
         </div>
     </div>

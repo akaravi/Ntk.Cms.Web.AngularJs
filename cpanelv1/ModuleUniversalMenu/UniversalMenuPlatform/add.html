@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmplatformCtrlAdd" novalidate ng-submit="platformCtrl.addNewRow(frmplatformCtrlAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmplatformCtrlAdd.RecordStatus.$invalid && !frmplatformCtrlAdd.RecordStatus.$pristine,'has-success' : frmplatformCtrlAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="platformCtrl"></div>
@@ -14,7 +14,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessAddField.indexOf('Type')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessAdd('Type')"
                      ng-class="{'has-error' : frmplatformCtrlAdd.Type.$invalid && !frmplatformCtrlAdd.Type.$pristine,'has-success' : frmplatformCtrlAdd.Type.$valid}">
                     <label class="col-sm-2 control-label"> {{'TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -26,7 +26,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="platformCtrl.AccessAdd('Title')"
                      ng-class="{'has-error' : frmplatformCtrlAdd.Title.$invalid && !frmplatformCtrlAdd.Title.$pristine,'has-success' : frmplatformCtrlAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">

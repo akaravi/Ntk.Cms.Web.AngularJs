@@ -7,7 +7,7 @@
             <button class="btn btn-warning" rasha-userrole="memberPropertyType.Edit" ng-click="memberPropertyType.openEditModal()" type="button" ng-show="memberPropertyType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="memberPropertyType.Delete" ng-click="memberPropertyType.deleteRow()" type="button" ng-show="memberPropertyType.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="memberPropertyType.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
-            <button class="btn btn-warning" type="button" ng-click="memberPropertyType.openGridConfigModal(memberPropertyType.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="memberPropertyType.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="memberPropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="memberPropertyType.getCount()">{{'QUANTITY'|lowercase|translate}}&nbsp;{{memberPropertyType.ListItemsTotalRowCount}}</button>
         </div>

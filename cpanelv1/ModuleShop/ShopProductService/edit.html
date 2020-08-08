@@ -5,12 +5,12 @@
             <h3 class="m-t-none m-b">{{'Edit_Goods_Of_Type_Service'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmshopServiceEdit" novalidate ng-submit="shopService.editContent(frmshopServiceEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="shopService.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmshopServiceEdit.RecordStatus.$invalid && !frmshopServiceEdit.RecordStatus.$pristine,'has-success' : frmshopServiceEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopService"></div>
                 </div>
-                <div class="form-group" ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="shopService.AccessEdit('Title')"
                      ng-class="{'has-error' : frmshopServiceEdit.Title.$invalid && !frmshopServiceEdit.Title.$pristine,'has-success' : frmshopServiceEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -26,28 +26,28 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                <div class='form-group' ng-show="shopService.AccessEdit('Description')">
                     <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='shopService.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalServiceId')>-1">
+                <div class="form-group" ng-show="shopService.AccessEdit('LinkExternalServiceId')">
                     <label class="col-sm-2 control-label"> اجناس</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalServiceId" rasha-autocomplete="shopService.LinkExternalServiceIdSelector" ng-model="frmshopServiceAdd.selectedItem.LinkExternalServiceId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('Price')>-1">
+                <div class='form-group' ng-show="shopService.AccessEdit('Price')">
                     <label class='col-sm-2 control-label'>{{'PRICE'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' name="Price" ng-model='shopService.selectedItem.Price' class='form-control' />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('AddToInvoicePrint')>-1">
+                <div class="form-group" ng-show="shopService.AccessEdit('AddToInvoicePrint')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="AddToInvoicePrint" ng-model="shopService.selectedItem.AddToInvoicePrint" /><h4>{{'ADD_TO_INVOICE'|lowercase|translate}}</h4>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('CheckInventory')>-1">
+                <div class="form-group" ng-show="shopService.AccessEdit('CheckInventory')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="CheckInventory" ng-model="shopService.selectedItem.CheckInventory" /><h4>{{'CHECK_INVENTORY'|lowercase|translate}}</h4>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group'  ng-show="shopService.gridOptions.resultAccess.AccessEditField.indexOf('CurrentInventory')>-1">
+                <div class='form-group'  ng-show="shopService.AccessEdit('CurrentInventory')">
                     <label class='col-sm-2 control-label'>{{'STOCK'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='number' step="0.01" ng-model='shopService.selectedItem.CurrentInventory' class="form-control" />

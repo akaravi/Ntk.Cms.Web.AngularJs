@@ -9,20 +9,20 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mscGalleryTag.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="mscGalleryTag.AccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmmscGalleryTagAdd.RecordStatus.$invalid && !frmmscGalleryTagAdd.RecordStatus.$pristine,'has-success' : frmmscGalleryTagAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="mscGalleryTag"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mscGalleryTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryTagId')>-1">
+                            <div class="form-group" ng-show="mscGalleryTag.AccessAdd('LinkCategoryTagId')">
                                 <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkCategoryTagId" rasha-autocomplete="mscGalleryTag.LinkCategoryTagIdSelector" ng-model="mscGalleryTag.selectedItem.LinkCategoryTagId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mscGalleryTag.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                            <div class="form-group" ng-show="mscGalleryTag.AccessAdd('Title')"
                                  ng-class="{'has-error' : frmmscGalleryTagAdd.Title.$invalid && !frmmscGalleryTagAdd.Title.$pristine,'has-success' : frmmscGalleryTagAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

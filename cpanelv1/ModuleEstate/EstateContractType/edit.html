@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Edit_Contract_Type'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmestateContractTypeEdit" novalidate ng-submit="estateContractType.editRow(frmestateContractTypeEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="estateContractType.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                <div class="form-group" ng-show="estateContractType.AccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmestateContractTypeEdit.RecordStatus.$invalid && !frmestateContractTypeEdit.RecordStatus.$pristine,'has-success' : frmestateContractTypeEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="estateContractType"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="estateContractType.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                <div class="form-group" ng-show="estateContractType.AccessEdit('Title')"
                      ng-class="{'has-error' : frmestateContractTypeEdit.Title.$invalid && !frmestateContractTypeEdit.Title.$pristine,'has-success' : frmestateContractTypeEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                     <div class="col-sm-10">

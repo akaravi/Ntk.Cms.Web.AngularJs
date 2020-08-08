@@ -8,27 +8,27 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                            <div class="form-group" ng-show="value.AccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmvalueEdit.RecordStatus.$invalid && !frmvalueEdit.RecordStatus.$pristine,'has-success' : frmvalueEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="value"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1">
+                            <div class="form-group" ng-show="value.AccessEdit('Title')">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Title" ng-model="value.selectedItem.Title" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalUserId')>-1">
+                            <div class="form-group" ng-show="value.AccessEdit('LinkExternalUserId')">
                                 <label class="col-sm-2 control-label">{{'USER'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalUserId" rasha-autocomplete="value.LinkExternalUserIdSelector" ng-model="value.selectedItem.LinkExternalUserId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalModuleMemberId')>-1">
+                            <div class="form-group" ng-show="value.AccessEdit('LinkExternalModuleMemberId')">
                                 <label class="col-sm-2 control-label">{{'Member'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalModuleMemberId" rasha-autocomplete="value.LinkExternalModuleMemberIdSelector" ng-model="value.selectedItem.LinkExternalModuleMemberId" />
@@ -39,7 +39,7 @@
                     <tab heading="{{'FORM'|lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('LinkFormId')>-1">
+                            <div class="form-group" ng-show="value.AccessEdit('LinkFormId')">
                                 <label class="col-sm-2 control-label"> {{'FORM'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-options="x.Id as x.Title for x in value.formListItems" ng-model="value.selectedItem.LinkFormId" ng-change="value.onLinkFormIdChange(value.selectedItem.LinkFormId)"></select>
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.gridOptions.resultAccess.AccessEditField.indexOf('JsonValues')>-1">
+                            <div class="form-group" ng-show="value.AccessEdit('JsonValues')">
                                 <!--<label class="col-sm-2 control-label"> {{'FORM'|lowercase|translate}} </label>-->
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div ng-model="value.submitValue" fb-form="default" fb-default="value.defaultValue"></div>
