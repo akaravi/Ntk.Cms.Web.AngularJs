@@ -2301,7 +2301,7 @@ function ajax($http, $state) {
         }
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
         var OnChangeToken=localStorage.getItem("OnChangeToken", "True");
-        while (userglobaltoken && OnChangeToken && OnChangeToken=="True")
+        while (url.indexOf("RenewToken")<0 &&  userglobaltoken && OnChangeToken && OnChangeToken=="True")
         {
             OnChangeToken=localStorage.getItem("OnChangeToken", "True");
         }
