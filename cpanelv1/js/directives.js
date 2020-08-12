@@ -6,7 +6,7 @@ function fullScroll($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element) {
-            $timeout(function () {Check
+            $timeout(function () {
                 element.slimscroll({
                     height: '100%',
                     railOpacity: 0.9
