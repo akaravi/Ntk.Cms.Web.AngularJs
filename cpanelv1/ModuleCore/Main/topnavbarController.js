@@ -46,7 +46,6 @@
                 if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
                     //#help# فقط توکن داریم و از سرور درخواست دریاف اطلاعات می کنیم
                     topNavBar.busyIndicator.isActive = true;
-                    localStorage.setItem("OnChangeToken", "True");
                     ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {}, "POST").success(function (response) {
                         rashaErManage.checkAction(response);
                         $rootScope.tokenInfo = response;
@@ -61,11 +60,9 @@
                         topNavBar.setDiskSpaceInfo();
                         //SET
                         topNavBar.busyIndicator.isActive = false;
-                        localStorage.setItem("OnChangeToken", "");
                     }).error(function (data, errCode, c, d) {
                         topNavBar.busyIndicator.isActive = false;
                         rashaErManage.checkAction(data, errCode, c, d);
-                        localStorage.setItem("OnChangeToken", "");
                     });
                 }
 
@@ -96,7 +93,6 @@
                     };
                     rashaErManage.showMessage("درخواست برای سرور ارسال شد.");
                     topNavBar.busyIndicator.isActive = true;
-                    localStorage.setItem("OnChangeToken", "True");
                     ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {
                             Userid: NewUserid,
                             SiteId: NewSiteid,
@@ -118,12 +114,10 @@
                         rashaErManage.showMessage("دسترسی جدید اعمال شد");
                         $state.reload();
                         topNavBar.busyIndicator.isActive = false;
-                        localStorage.setItem("OnChangeToken", "");
                     }).error(function (data, errCode, c, d) {
                         topNavBar.busyIndicator.isActive = false;
                         rashaErManage.showMessage("برروز خطا در اعمال دسترسی");
                         rashaErManage.checkAction(data, errCode);
-                        localStorage.setItem("OnChangeToken", "");
                     });
 
                 } else {
@@ -161,7 +155,6 @@
                 if (!Silent)
                     rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید..");
                 topNavBar.busyIndicator.isActive = true;
-                localStorage.setItem("OnChangeToken", "True");
                 ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {
                         SiteId: SelectedCurrentSiteId,
                         UserAccessAdminAllowToAllData: oderShowAllDataStatus,
@@ -195,12 +188,10 @@
                           rashaErManage.checkAction(data, errCode);
                     }
                     topNavBar.busyIndicator.isActive = false;
-                    localStorage.setItem("OnChangeToken", "");
                 }).error(function (data, errCode, c, d) {
                     topNavBar.busyIndicator.isActive = false;
                     rashaErManage.showMessage("دسترسی نمایش کلیه اطلاعات تغییر نکرد");
                     rashaErManage.checkAction(data, errCode);
-                    localStorage.setItem("OnChangeToken", "");
                 });
             }
 
