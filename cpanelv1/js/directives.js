@@ -623,23 +623,6 @@ function currencyInput($filter, $browser) {
     }
 }
 
-// function rashaGlobaltoken(ajax) {
-//     return {
-//         restrict: 'A',
-//         link: function (scope, element) {
-//             ajax.call(cmsServerConfig.configApiServerPath + 'user/getglobaltoken', '', 'POST').success(function (response) {
-//                 localStorage.setItem('userGlobaltoken', response);
-//                 //console.log('ready');
-//             }).error(function (a, b, c, d) {
-//                 console.log(a);
-//                 console.log(b);
-//                 console.log(c);
-//                 console.log(d);
-//             });
-//         }
-//     }
-// }
-
 function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
     return {
         restrict: 'AE',
@@ -2217,7 +2200,6 @@ function rashaErManage($state, notify, SweetAlert) {
      
             //#help# خطا های مستقیم از شبکه
             if (errCode == 401) {
-                // localStorage.removeItem('userGlobaltoken');
                 if ((Date.now() - lastErroLogin) > 1000)
                     notify({
                         message: 'لطفاَ ابتدا وارد سایت شوید',
@@ -2318,6 +2300,11 @@ function ajax($http, $state) {
             else isasync = false;
         }
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
+        var OnChangeToken=localStorage.getItem("OnChangeToken", "True");
+        while (userglobaltoken && OnChangeToken && OnChangeToken=="True")
+        {
+            OnChangeToken=localStorage.getItem("OnChangeToken", "True");
+        }
         if (method.toUpperCase() == 'GET') {
             url = url + '/' + data;
             data = '';
@@ -2524,30 +2511,7 @@ function dropzone() {
                 uploadMultiple: true
             };
 
-            //var currentConfig = {};
-            //var atr = '';
-            //atr = $(element).attr('current-folder');
-            //if (!atr) {
-            //    throw "Tree Configuration Not Found";
-            //}
-            //if (atr.indexOf(".") > 0) {
-            //    var split = atr.split(".");
-            //    if (split.length == 2) {
-            //        var temp = scope[split[0]];
-            //        currentConfig = temp[split[1]];
-            //    } else {
-            //        var temp = scope[split[0]];
-            //        var temp2 = temp[split[1]];
-            //        currentConfig = temp2[split[2]];
-            //    }
-            //}
-            //else
-            //    currentConfig = scope[atr];
-
-            //if (!currentConfig) {
-            //    throw "Configuration Not Found";
-            //}
-
+           
             var eventHandlers = {
                 'addedfile': function (file) {
                     scope.file = file;
