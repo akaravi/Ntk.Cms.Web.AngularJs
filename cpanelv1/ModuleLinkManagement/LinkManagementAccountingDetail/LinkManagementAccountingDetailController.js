@@ -37,7 +37,7 @@
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.busyIndicator.isActive = false;
             linkManagementAccountingDetail.ListItems = response.ListItems;
-            linkManagementAccountingDetail.gridOptions.fillData(linkManagementAccountingDetail.ListItems , response.resultAccess);
+            linkManagementAccountingDetail.gridOptions.fillData(linkManagementAccountingDetail.ListItems , response.Access);
             linkManagementAccountingDetail.gridOptions.currentPageNumber = response.CurrentPageNumber;
             linkManagementAccountingDetail.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementAccountingDetail.gridOptions.rowPerPage = response.RowPerPage;
@@ -59,7 +59,7 @@
     linkManagementAccountingDetail.addRequested = false;
     linkManagementAccountingDetail.openAddModal = function () {
         linkManagementAccountingDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.busyIndicator.isActive = false;
             linkManagementAccountingDetail.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/GetOne', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.selectedItem = response.Item;
             $modal.open({
@@ -169,7 +169,7 @@
             if (isConfirmed) {
                 linkManagementAccountingDetail.busyIndicator.isActive = true;
                 console.log(linkManagementAccountingDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/GetOne', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccountingDetail.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/delete', linkManagementAccountingDetail.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

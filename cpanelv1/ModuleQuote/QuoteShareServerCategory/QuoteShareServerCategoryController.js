@@ -99,7 +99,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"quoteShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteShareServerCategory.ListItems = response.ListItems;
-            quoteShareServerCategory.gridOptions.fillData(quoteShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            quoteShareServerCategory.gridOptions.fillData(quoteShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             quoteShareServerCategory.contentBusyIndicator.isActive = false;
             quoteShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             quoteShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -117,7 +117,7 @@
         if (buttonIsPressed) { return };
         quoteShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             quoteShareServerCategory.selectedItem = response.Item;
@@ -163,7 +163,7 @@
 
         quoteShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/GetOne', quoteShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/', quoteShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             quoteShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -275,7 +275,7 @@
                 quoteShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     quoteShareServerCategory.selectedItemForDelete = response.Item;
@@ -334,7 +334,7 @@
             rashaErManage.checkAction(response);
             quoteShareServerCategory.contentBusyIndicator.isActive = false;
             quoteShareServerCategory.ListItems = response.ListItems;
-            quoteShareServerCategory.gridOptions.fillData(quoteShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            quoteShareServerCategory.gridOptions.fillData(quoteShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             quoteShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             quoteShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
             quoteShareServerCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -357,7 +357,7 @@
         quoteShareServerCategory.addRequested = false;
         quoteShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'quoteShareServerCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteShareServerCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -383,7 +383,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'quoteShareServerCategory/GetOne', quoteShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteShareServerCategory/', quoteShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             quoteShareServerCategory.selectedItem = response1.Item;
@@ -475,7 +475,7 @@
                 quoteShareServerCategory.showbusy = true;
                 quoteShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"quoteShareServerCategory/GetOne", quoteShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"quoteShareServerCategory/", quoteShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     quoteShareServerCategory.showbusy = false;
                     quoteShareServerCategory.showIsBusy = false;
@@ -735,7 +735,7 @@
         }
         quoteShareServerCategory.selectedItem.LinkMainImageId = node.Id;
         quoteShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             quoteShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -66,7 +66,7 @@
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.busyIndicator.isActive = false;
             linkManagementTargetBillboardLog.ListItems = response.ListItems;
-            linkManagementTargetBillboardLog.gridOptions.fillData(linkManagementTargetBillboardLog.ListItems, response.resultAccess);
+            linkManagementTargetBillboardLog.gridOptions.fillData(linkManagementTargetBillboardLog.ListItems, response.Access);
             linkManagementTargetBillboardLog.gridOptions.currentPageNumber = response.CurrentPageNumber;
             linkManagementTargetBillboardLog.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementTargetBillboardLog.gridOptions.rowPerPage = response.RowPerPage;
@@ -97,7 +97,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/GetOne', ContentLogId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/', ContentLogId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.selectedItem = response.Item;
             linkManagementTargetBillboardLog.VisitDate.defaultDate = linkManagementTargetBillboardLog.selectedItem.VisitDate;

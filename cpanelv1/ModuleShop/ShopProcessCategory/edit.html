@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmshopProcessCategoryEdit" novalidate ng-submit="shopProcessCategory.editRow(frmshopProcessCategoryEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcessCategory.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="shopProcessCategory.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmshopProcessCategoryEdit.RecordStatus.$invalid && !frmshopProcessCategoryEdit.RecordStatus.$pristine,'has-success' : frmshopProcessCategoryEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopProcessCategory"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcessCategory.AccessEdit('Title')"
+                <div class="form-group" ng-show="shopProcessCategory.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmshopProcessCategoryEdit.Title.$invalid && !frmshopProcessCategoryEdit.Title.$pristine,'has-success' : frmshopProcessCategoryEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcessCategory.AccessEdit('ClassName')"
+                <div class="form-group" ng-show="shopProcessCategory.CheckAccessEdit('ClassName')"
                      ng-class="{'has-error' : frmshopProcessCategoryEdit.ClassName.$invalid && !frmshopProcessCategoryEdit.ClassName.$pristine,'has-success' : frmshopProcessCategoryEdit.ClassName.$valid}">
                     <label class="col-sm-2 control-label"> {{'CLASS_NAME_EN'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcessCategory.AccessEdit('IsPublish')">
+                <div class="form-group" ng-show="shopProcessCategory.CheckAccessEdit('IsPublish')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>

@@ -21,7 +21,7 @@
             rashaErManage.checkAction(response);
             uploadedFiles.busyIndicator.isActive = false;
             uploadedFiles.ListItems = response.ListItems;
-            uploadedFiles.gridOptions.fillData(uploadedFiles.ListItems, response.resultAccess);
+            uploadedFiles.gridOptions.fillData(uploadedFiles.ListItems, response.Access);
             uploadedFiles.gridOptions.currentPageNumber = response.CurrentPageNumber;
             uploadedFiles.gridOptions.totalRowCount = response.TotalRowCount;
             uploadedFiles.gridOptions.rowPerPage = response.RowPerPage;
@@ -38,7 +38,7 @@
     uploadedFiles.addRequested = false;
     uploadedFiles.openAddModal = function () {
         uploadedFiles.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             uploadedFiles.busyIndicator.isActive = false;
             uploadedFiles.selectedItem = response.Item;
@@ -85,7 +85,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/GetOne', uploadedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/', uploadedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             uploadedFiles.selectedItem = response.Item;
             $modal.open({
@@ -148,7 +148,7 @@
             if (isConfirmed) {
                 uploadedFiles.busyIndicator.isActive = true;
                 console.log(uploadedFiles.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/GetOne', uploadedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/', uploadedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     uploadedFiles.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/delete', uploadedFiles.selectedItemForDelete, 'POST').success(function (res) {
@@ -258,7 +258,7 @@
     uploadedFiles.openSendMessageToSender = function (item) {
         uploadedFiles.modalTitle = "ارسال پیام";
         uploadedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramUploadedFiles/', item.Id, 'GET').success(function (response) {
             uploadedFiles.selectedItem = response.Item;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApiTelegram/ApiTelegramUploadedFiles/sendMessageModal.html',

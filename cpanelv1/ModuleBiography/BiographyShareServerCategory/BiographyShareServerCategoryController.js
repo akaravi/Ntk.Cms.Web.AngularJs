@@ -114,7 +114,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareServerCategory.ListItems = response.ListItems;
-            biographyShareServerCategory.gridOptions.fillData(biographyShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            biographyShareServerCategory.gridOptions.fillData(biographyShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             biographyShareServerCategory.contentBusyIndicator.isActive = false;
             biographyShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographyShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -134,7 +134,7 @@
         if (buttonIsPressed) { return };
         biographyShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             biographyShareServerCategory.selectedItem = response.Item;
@@ -180,7 +180,7 @@
 
         biographyShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetOne', biographyShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', biographyShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             biographyShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -292,7 +292,7 @@
                 biographyShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     biographyShareServerCategory.selectedItemForDelete = response.Item;
@@ -352,7 +352,7 @@
             rashaErManage.checkAction(response);
             biographyShareServerCategory.contentBusyIndicator.isActive = false;
             biographyShareServerCategory.ListItems = response.ListItems;
-            biographyShareServerCategory.gridOptions.fillData(biographyShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            biographyShareServerCategory.gridOptions.fillData(biographyShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             biographyShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographyShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
             biographyShareServerCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -375,7 +375,7 @@
         biographyShareServerCategory.addRequested = false;
         biographyShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareServerCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareServerCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -401,7 +401,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareServerCategory/GetOne', biographyShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareServerCategory/', biographyShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             biographyShareServerCategory.selectedItem = response1.Item;
@@ -495,7 +495,7 @@
                 biographyShareServerCategory.showbusy = true;
                 biographyShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/GetOne", biographyShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/", biographyShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     biographyShareServerCategory.showbusy = false;
                     biographyShareServerCategory.showIsBusy = false;
@@ -755,7 +755,7 @@
         }
         biographyShareServerCategory.selectedItem.LinkMainImageId = node.Id;
         biographyShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             biographyShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="deliveryMemberSetting.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="deliveryMemberSetting.Add" ng-click="deliveryMemberSetting.openAddModal()" ng-show="deliveryMemberSetting.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="deliveryMemberSetting.Edit" ng-click="deliveryMemberSetting.openEditModal()" ng-show="deliveryMemberSetting.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="deliveryMemberSetting.Delete" ng-click="deliveryMemberSetting.deleteRow()" type="button" ng-show="deliveryMemberSetting.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="deliveryMemberSetting.Add" ng-click="deliveryMemberSetting.openAddModal()" ng-show="deliveryMemberSetting.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="deliveryMemberSetting.Edit" ng-click="deliveryMemberSetting.openEditModal()" ng-show="deliveryMemberSetting.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="deliveryMemberSetting.Delete" ng-click="deliveryMemberSetting.deleteRow()" type="button" ng-show="deliveryMemberSetting.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="deliveryMemberSetting.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i> </button>
             <!--<button class="btn btn-warning" type="button" ng-click="deliveryMemberSetting.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="deliveryMemberSetting.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

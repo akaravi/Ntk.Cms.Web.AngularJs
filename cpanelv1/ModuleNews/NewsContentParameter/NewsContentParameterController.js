@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             newsContentParameter.busyIndicator.isActive = false;
             newsContentParameter.ListItems = response.ListItems;
-            newsContentParameter.gridOptions.fillData(newsContentParameter.ListItems, response.resultAccess);
+            newsContentParameter.gridOptions.fillData(newsContentParameter.ListItems, response.Access);
             newsContentParameter.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newsContentParameter.gridOptions.totalRowCount = response.TotalRowCount;
             newsContentParameter.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
     newsContentParameter.addRequested = false;
     newsContentParameter.openAddModal = function () {
         newsContentParameter.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentParameter.busyIndicator.isActive = false;
             newsContentParameter.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/GetOne', newsContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/', newsContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentParameter.selectedItem = response.Item;
             if (newsContentParameter
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 newsContentParameter.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/GetOne', newsContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/', newsContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentParameter.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/delete', newsContentParameter.selectedItemForDelete, 'POST').success(function (res) {

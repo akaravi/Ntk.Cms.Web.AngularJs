@@ -21,7 +21,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageDependency/getall", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.ListItems = response.ListItems;
-            cmsModulePageDependencygrd.gridOptions.fillData(cmsModulePageDependencygrd.ListItems, response.resultAccess);
+            cmsModulePageDependencygrd.gridOptions.fillData(cmsModulePageDependencygrd.ListItems, response.Access);
             cmsModulePageDependencygrd.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsModulePageDependencygrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsModulePageDependencygrd.gridOptions.rowPerPage = response.RowPerPage;
@@ -47,7 +47,7 @@
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
         cmsModulePageDependencygrd.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.selectedItem = response.Item;
@@ -95,7 +95,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/GetOne', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.selectedItem = response.Item;
@@ -156,7 +156,7 @@
                 cmsModulePageDependencygrd.busyIndicator.isActive = true;
                 console.log(cmsModulePageDependencygrd.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/GetOne', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulePageDependencygrd.selectedItemForDelete = response.Item;

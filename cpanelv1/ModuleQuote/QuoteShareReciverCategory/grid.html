@@ -26,9 +26,9 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="quoteShareReciverCategory.addNewContentModel()" ng-show="quoteShareReciverCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="quoteShareReciverCategory.openEditModel()" ng-show="quoteShareReciverCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="quoteShareReciverCategory.deleteContent()" ng-show="quoteShareReciverCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="quoteShareReciverCategory.addNewContentModel()" ng-show="quoteShareReciverCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="quoteShareReciverCategory.openEditModel()" ng-show="quoteShareReciverCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="quoteShareReciverCategory.deleteContent()" ng-show="quoteShareReciverCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="quoteShareReciverCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="quoteShareReciverCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="quoteShareReciverCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

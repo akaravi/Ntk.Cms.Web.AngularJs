@@ -5,14 +5,14 @@
             <h3 class="m-t-none m-b"> {{ cmdUserBadLogin.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmCmsUserBadLoginEdit" novalidate ng-submit="cmdUserBadLogin.editRow(frmCmsUserBadLoginEdit)">
 
-                <div class='form-group' ng-show="cmdUserBadLogin.AccessEdit('DeviceId')">
+                <div class='form-group' ng-show="cmdUserBadLogin.CheckAccessEdit('DeviceId')">
                     <label class='col-sm-2 control-label'>{{'DEVICE_ID'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmdUserBadLogin.selectedItem.DeviceId' class='form-control'>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmdUserBadLogin.AccessEdit('RequestDate')">
+                <div class='form-group' ng-show="cmdUserBadLogin.CheckAccessEdit('RequestDate')">
                     <label class='col-sm-2 control-label'>{{'DATE_OF_REGISTER'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input dir="rtl"
@@ -32,21 +32,21 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmdUserBadLogin.AccessEdit('UsedUsername')">
+                <div class='form-group' ng-show="cmdUserBadLogin.CheckAccessEdit('UsedUsername')">
                     <label class='col-sm-2 control-label'>{{'USERNAME_USED'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmdUserBadLogin.selectedItem.UsedUsername' class='form-control'>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmdUserBadLogin.AccessEdit('UsedPwd')">
+                <div class='form-group' ng-show="cmdUserBadLogin.CheckAccessEdit('UsedPwd')">
                     <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmdUserBadLogin.selectedItem.UsedPwd' class='form-control'>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmdUserBadLogin.AccessEdit('LinkLinkUserIdId')">
+                <div class="form-group" ng-show="cmdUserBadLogin.CheckAccessEdit('LinkLinkUserIdId')">
                     <label class="col-sm-2 control-label">{{'SYSTEM_USER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" rasha-autocomplete="cmdUserBadLogin.linkUserIdSelector" ng-model="cmdUserBadLogin.selectedItem.LinkLinkUserIdId" />

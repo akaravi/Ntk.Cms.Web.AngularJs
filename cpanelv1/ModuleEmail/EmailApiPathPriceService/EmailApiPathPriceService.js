@@ -19,7 +19,7 @@
             return;
         }
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id == null || emailapipathpriceservice.selectedPrivateSiteConfig.Id == 0) emailapipathpriceservice.selectedPriceService.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedPrivateSiteConfig = response.Item;
@@ -33,7 +33,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"emailapipathpriceservice/getall", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailapipathpriceservice.ListItems = response.ListItems;
-            emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.resultAccess);
+            emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.Access);
             emailapipathpriceservice.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailapipathpriceservice.gridOptions.totalRowCount = response.TotalRowCount;
             emailapipathpriceservice.gridOptions.rowPerPage = response.RowPerPage;
@@ -52,7 +52,7 @@
         if (buttonIsPressed) { return };
         emailapipathpriceservice.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -96,7 +96,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetOne', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -122,7 +122,7 @@
             if (response.IsSuccess) {
                 emailapipathpriceservice.replaceItem(emailapipathpriceservice.selectedItem.Id, response.Item);
                 emailapipathpriceservice.busyIndicator.isActive = false;
-                emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.resultAccess);
+                emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.Access);
                 emailapipathpriceservice.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -154,7 +154,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetOne', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
@@ -251,7 +251,7 @@
             rashaErManage.checkAction(response);
             emailapipathpriceservice.OptionList = response.ListItems;
             emailapipathpriceservice.processFlowLogList = response.ListItems;
-            emailapipathpriceservice.gridLogs.fillData(emailapipathpriceservice.processFlowLogList, response.resultAccess);
+            emailapipathpriceservice.gridLogs.fillData(emailapipathpriceservice.processFlowLogList, response.Access);
             emailapipathpriceservice.gridLogs.currentPageNumber = response.CurrentPageNumber;
             emailapipathpriceservice.gridLogs.totalRowCount = response.TotalRowCount;
             emailapipathpriceservice.gridLogs.RowPerPage = response.RowPerPage;

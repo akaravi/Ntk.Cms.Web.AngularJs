@@ -28,7 +28,7 @@
         //    return;
         //}
         if (emailProcessTask.selectedPrivateSiteConfig.Id == null || emailProcessTask.selectedPrivateSiteConfig.Id == 0) emailProcessTask.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedPrivateSiteConfig = response.Item;
@@ -42,7 +42,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstask/getall", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailProcessTask.ListItems = response.ListItems;
-            emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.resultAccess);
+            emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.Access);
             emailProcessTask.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailProcessTask.gridOptions.totalRowCount = response.TotalRowCount;
             emailProcessTask.gridOptions.rowPerPage = response.RowPerPage;
@@ -61,7 +61,7 @@
         if (buttonIsPressed) { return };
         emailProcessTask.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -111,7 +111,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetOne', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -139,7 +139,7 @@
             if (response.IsSuccess) {
                 emailProcessTask.replaceItem(emailProcessTask.selectedItem.Id, response.Item);
                 emailProcessTask.busyIndicator.isActive = false;
-                emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.resultAccess);
+                emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.Access);
                 emailProcessTask.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -171,7 +171,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetOne', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
@@ -264,7 +264,7 @@
             rashaErManage.checkAction(response);
             emailProcessTask.OptionList = response.ListItems;
             emailProcessTask.processFlowLogList = response.ListItems;
-            emailProcessTask.gridLogs.fillData(emailProcessTask.processFlowLogList, response.resultAccess);
+            emailProcessTask.gridLogs.fillData(emailProcessTask.processFlowLogList, response.Access);
             emailProcessTask.gridLogs.currentPageNumber = response.CurrentPageNumber;
             emailProcessTask.gridLogs.totalRowCount = response.TotalRowCount;
             emailProcessTask.gridLogs.RowPerPage = response.RowPerPage;

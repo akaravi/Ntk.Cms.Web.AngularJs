@@ -27,7 +27,7 @@
 
             // Call Excerpt Function to shorten the length of long strings
             //excerptField(jobContractType.ListItems, "BotToken");
-            jobContractType.gridOptions.fillData(jobContractType.ListItems, response.resultAccess);
+            jobContractType.gridOptions.fillData(jobContractType.ListItems, response.Access);
             jobContractType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             jobContractType.gridOptions.totalRowCount = response.TotalRowCount;
             jobContractType.gridOptions.rowPerPage = response.RowPerPage;
@@ -45,7 +45,7 @@
     jobContractType.addRequested = false;
     jobContractType.openAddModal = function () {
         jobContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.busyIndicator.isActive = false;
             jobContractType.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/GetOne', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.selectedItem = response.Item;
             $modal.open({
@@ -158,7 +158,7 @@
             if (isConfirmed) {
                 jobContractType.busyIndicator.isActive = true;
                 console.log(jobContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/GetOne', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobContractType.selectedItemForDelete = response.Item;
                     console.log(jobContractType.selectedItemForDelete);

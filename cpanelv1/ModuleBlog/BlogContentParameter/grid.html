@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="blogContentParameter.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="blogContentParameter.Add" ng-click="blogContentParameter.openAddModal()" ng-show="blogContentParameter.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="blogContentParameter.Edit" ng-click="blogContentParameter.openEditModal()"ng-show="blogContentParameter.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="blogContentParameter.Delete" ng-click="blogContentParameter.deleteRow()" ng-show="blogContentParameter.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="blogContentParameter.Add" ng-click="blogContentParameter.openAddModal()" ng-show="blogContentParameter.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="blogContentParameter.Edit" ng-click="blogContentParameter.openEditModal()"ng-show="blogContentParameter.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="blogContentParameter.Delete" ng-click="blogContentParameter.deleteRow()" ng-show="blogContentParameter.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="blogContentParameter.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="blogContentParameter.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="blogContentParameter.getCount()">{{'QUANTITY'|lowercase|translate}}&nbsp;{{blogContentParameter.ListItemsTotalRowCount}}</button>

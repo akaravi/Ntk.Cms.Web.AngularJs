@@ -36,7 +36,7 @@
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
             shopProcess.ListItems = response.ListItems;
-            shopProcess.gridOptions.fillData(shopProcess.ListItems, response.resultAccess);
+            shopProcess.gridOptions.fillData(shopProcess.ListItems, response.Access);
             shopProcess.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopProcess.gridOptions.totalRowCount = response.TotalRowCount;
             shopProcess.gridOptions.rowPerPage = response.RowPerPage;
@@ -64,7 +64,7 @@
 //       shopProcess.modalTitle = 'اضافه';
 //       shopProcess.filePickerMainImage.filename = "";
 //       shopProcess.filePickerMainImage.fileId = null; 
-//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', "", 'GET').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/ViewModel', "", 'GET').success(function (response) {
 //           rashaErManage.checkAction(response);
 //           shopProcess.busyIndicator.isActive = false;
 //           shopProcess.selectedItem = response.Item;
@@ -147,7 +147,7 @@
         }
         shopProcess.busyIndicator.isActive = true;
         shopProcess.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
         shopProcess.filePickerMainImage.filename = null;
@@ -155,7 +155,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -255,7 +255,7 @@
             if (isConfirmed) {
                 shopProcess.busyIndicator.isActive = true;
                 console.log(shopProcess.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopProcess.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/delete', shopProcess.selectedItemForDelete, 'POST').success(function (res) {
@@ -289,11 +289,11 @@
             { name: "ClassName", displayName: "ClassName", sortable: true, type: "string", visible: true },
             { name: "virtual_Source.Title", displayName: "قالب", sortable: true, type: "string", displayForce: true, visible: true },
             { name: 'IsPublish', displayName: 'قابل نمایش برای همه؟', sortable: true, isCheckBox: true, type: 'boolean' },
-            { name: 'ActionButton1', displayName: 'عملیات ادمین', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="shopProcess.AccessAdd(\'JsonFormAdminMainJsonForm\')" ng-click="shopProcess.scrollToFormBuilderMainAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="shopProcess.AccessAdd(\'JsonFormAdminMainValues\')" title="مقداردهی" ng-click="shopProcess.showFormMainAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' },
-            { name: 'ActionButton2', displayName: 'عملیات ادمین سایت', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="shopProcess.AccessAdd(\'JsonFormAdminSiteJsonForm\')" ng-click="shopProcess.scrollToFormBuilderSiteAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="shopProcess.AccessAdd(\'JsonFormAdminSiteValuesDefault\')" title="مقداردهی" ng-click="shopProcess.showFormSiteAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' }
-            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"shopProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"shopProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'shopProcess.AccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"shopProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"shopProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"shopProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"shopProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
+            { name: 'ActionButton1', displayName: 'عملیات ادمین', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="shopProcess.CheckAccessAdd(\'JsonFormAdminMainJsonForm\')" ng-click="shopProcess.scrollToFormBuilderMainAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="shopProcess.CheckAccessAdd(\'JsonFormAdminMainValues\')" title="مقداردهی" ng-click="shopProcess.showFormMainAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' },
+            { name: 'ActionButton2', displayName: 'عملیات ادمین سایت', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="shopProcess.CheckAccessAdd(\'JsonFormAdminSiteJsonForm\')" ng-click="shopProcess.scrollToFormBuilderSiteAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="shopProcess.CheckAccessAdd(\'JsonFormAdminSiteValuesDefault\')" title="مقداردهی" ng-click="shopProcess.showFormSiteAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' }
+            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"shopProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"shopProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'shopProcess.CheckAccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"shopProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"shopProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"shopProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"shopProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
         ],
         data: {},
         multiSelect: false,
@@ -319,7 +319,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     shopProcess.scrollToFormBuilderMainAdmin = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -349,7 +349,7 @@
         shopProcess.showSaveButton = false;
         if (preview == "false") {
             shopProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', selectedId, 'GET').success(function (response) {
                 shopProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 shopProcess.selectedItem = response.Item;
@@ -395,7 +395,7 @@
     // Save Input Value Form
     shopProcess.saveJsonFormMainAdmin = function () {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -490,7 +490,7 @@
     // Show InputValue form builder and auto scroll to its position
     shopProcess.scrollToFormBuilderSiteAdmin = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -521,7 +521,7 @@
         shopProcess.showSaveButton = false;
         if (preview == "false") {
             shopProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', selectedId, 'GET').success(function (response) {
                 shopProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 shopProcess.selectedItem = response.Item;
@@ -562,7 +562,7 @@
     // Save Input Value Form
     shopProcess.saveJsonFormSiteAdmin = function () {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -681,7 +681,7 @@
 
     shopProcess.scrollToFormBuilder = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -710,7 +710,7 @@
         shopProcess.addRequested = true;
         var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, IntValue1: shopProcess.selectedAppId };
         var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, IntValue1: shopProcess.selectedSourceId };
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessvalue/getone', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessvalue/', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             shopProcess.addRequested = false;
             shopProcess.formJson = $builder.forms['default'];
@@ -727,7 +727,7 @@
     shopProcess.saveProcessInputCustomizeValue = function () {
         shopProcess.busyIndicator.isActive = true;
         shopProcess.selectedProcessId = shopProcess.gridOptions.selectedRow.item.Id;       //Storing selected Process Id for further uses
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -819,7 +819,7 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: shopProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/GetOne', ProcessId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/', ProcessId, 'GET').success(function (response) {
             shopProcess.selectedItem = response.Item;
             shopProcess.formJson = $builder.forms['default'];
             $builder.removeAllFormObject('default');
@@ -983,7 +983,7 @@
         }
         shopProcess.selectedItem.LinkModuleFilePreviewImageId = node.Id;
         shopProcess.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             shopProcess.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -1009,7 +1009,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 shopProcess.fileIdToDelete,
                 "GET"
               )
@@ -1060,7 +1060,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", "GET")
             .success(function(response) {
               shopProcess.FileItem = response.Item;
                 shopProcess.FileItem.FileName = uploadFile.name;

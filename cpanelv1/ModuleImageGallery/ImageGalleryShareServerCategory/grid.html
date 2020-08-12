@@ -10,14 +10,14 @@
                             <ul class="tree" tree-options="imageGalleryShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow || imageGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow ||imageGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow">
+                        <div style="margin-top: 20px;" ng-show="imageGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow || imageGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow ||imageGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow">
                             <a ng-click="imageGalleryShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Add" ng-click="imageGalleryShareServerCategory.addNewCategoryModel()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Edit" ng-click="imageGalleryShareServerCategory.EditCategoryModel()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Delete" ng-click="imageGalleryShareServerCategory.deleteCategory()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Add" ng-click="imageGalleryShareServerCategory.addNewCategoryModel()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Edit" ng-click="imageGalleryShareServerCategory.EditCategoryModel()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="imageGalleryShareServerCategory.Delete" ng-click="imageGalleryShareServerCategory.deleteCategory()" type="button" ng-show="imageGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="imageGalleryShareServerCategory.addNewContentModel()" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="imageGalleryShareServerCategory.openEditModel()" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="imageGalleryShareServerCategory.deleteContent()" ng-show="imageGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="imageGalleryShareServerCategory.addNewContentModel()" ng-show="imageGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="imageGalleryShareServerCategory.openEditModel()" ng-show="imageGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="imageGalleryShareServerCategory.deleteContent()" ng-show="imageGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="imageGalleryShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="imageGalleryShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="imageGalleryShareServerCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

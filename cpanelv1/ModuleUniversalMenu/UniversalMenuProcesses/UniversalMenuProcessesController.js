@@ -31,8 +31,8 @@
             rashaErManage.checkAction(response);
             processCtrl.ListItems = response.ListItems;
             processCtrl.busyIndicator.isActive = false;
-            //cmsModuleSitegrd.gridOptions.resultAccess = response.resultAccess;//دسترسی ها نمایش
-            processCtrl.gridOptions.fillData(processCtrl.ListItems, response.resultAccess); // دسترسی ها نمایش
+            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
+            processCtrl.gridOptions.fillData(processCtrl.ListItems, response.Access); // دسترسی ها نمایش
             processCtrl.gridOptions.currentPageNumber = response.CurrentPageNumber;
             processCtrl.gridOptions.totalRowCount = response.TotalRowCount;
             processCtrl.gridOptions.rowPerPage = response.RowPerPage;
@@ -54,7 +54,7 @@
         });
 
         // Get ViewModel of CmsModuleProcess
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.cmsModuleProcess = response.Item;
 
@@ -82,7 +82,7 @@
         processCtrl.valueSubmit = null;
         $builder.removeAllFormObject('default');   // Clear the form builder from previous values
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -133,7 +133,7 @@
         }
 
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetOne', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             processCtrl.addRequested = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -227,7 +227,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(processCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetOne', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     processCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/delete', processCtrl.selectedItemForDelete, 'POST').success(function (res) {
@@ -385,10 +385,10 @@
 
     processCtrl.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkModuleProcessCustomizeId) {
         // Get CmsModuleProcessCustomize
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetOne', LinkModuleProcessCustomizeId, "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/', LinkModuleProcessCustomizeId, "GET").success(function (response1) {
             processCtrl.selectedItem.LinkModuleProcessCustomizeId = response1.Item.Id;
             // Get CmsModuleProcess 
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetOne', response1.Item.LinkModuleProcessId, "GET").success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/', response1.Item.LinkModuleProcessId, "GET").success(function (response2) {
                 //rashaErManage.checkAction(response);
                 processCtrl.selectedItem.LinkModuleProcessId = response2.Item.Id;
                 for (var i = 0; i < processCtrl.cmsModulesListItems.length; i++) {
@@ -456,7 +456,7 @@
     processCtrl.openCustomizeInputValueModal = function (item) {
 
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', item.Id, 'GET').success(function (response) {
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             processCtrl.selectedItem = response.Item;
@@ -495,7 +495,7 @@
 
     processCtrl.submitValues = function (item) {
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetOne', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             processCtrl.selectedItem = response.Item;

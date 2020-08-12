@@ -37,7 +37,7 @@
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;
             newsComment.ListItems = response.ListItems;
-            newsComment.gridOptions.fillData(newsComment.ListItems , response.resultAccess);
+            newsComment.gridOptions.fillData(newsComment.ListItems , response.Access);
             newsComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newsComment.gridOptions.totalRowCount = response.TotalRowCount;
             newsComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -60,7 +60,7 @@
     newsComment.addRequested = false;
     newsComment.openAddModal = function () {
         newsComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;
             newsComment.selectedItem = response.Item;
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/GetOne', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsComment.selectedItem = response.Item;
             $modal.open({
@@ -174,7 +174,7 @@
             if (isConfirmed) {
                 newsComment.busyIndicator.isActive = true;
                 console.log(newsComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'newsComment/GetOne', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'newsComment/', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     newsComment.selectedItemForDelete = response.Item;
                     console.log(newsComment.selectedItemForDelete);

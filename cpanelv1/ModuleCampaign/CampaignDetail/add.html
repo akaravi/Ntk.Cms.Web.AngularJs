@@ -16,14 +16,14 @@
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('LinkCampaignContentId')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('LinkCampaignContentId')">
                                 <label class="col-sm-2 control-label">{{'Link_Campaign_Id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkCampaignContentId" rasha-autocomplete="campaignDetail.LinkCampaignContentIdSelector" ng-model="frmcampaignDetailAdd.selectedItem.LinkCampaignContentId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('LinkMemberGroupId')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('LinkMemberGroupId')">
                                 <label class="col-sm-2 control-label">{{'Link_Member_Group_Id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkMemberGroupId" rasha-autocomplete="campaignDetail.LinkMemberGroupIdSelector" ng-model="frmcampaignDetailAdd.selectedItem.LinkMemberGroupId" />
@@ -118,7 +118,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('Geolocationlatitude')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="campaignDetail.GeolocationConfig" />
@@ -190,7 +190,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class="form-group">
-                                <!--ng-show="campaignDetail.AccessAdd('LinkModuleProductId')"-->
+                                <!--ng-show="campaignDetail.CheckAccessAdd('LinkModuleProductId')"-->
                                 <label class="col-sm-2 control-label">{{'SELECT_CATEGORIES'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkProductId" rasha-autocomplete="campaignDetail.LinkModuleProductIdSelector" ng-model="frmcampaignDetailAdd.selectedItem.LinkModuleProductId" />
@@ -255,7 +255,7 @@
                     <tab heading="Item">
                         <div class="panel-body">
                             <!--tabStart-->
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('LinkCampaignItemId')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('LinkCampaignItemId')">
                                 <label class="col-sm-2 control-label">{{'Link_Campaign_Item_Id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkCampaignItemId" rasha-autocomplete="campaignDetail.LinkCampaignItemIdSelector" ng-model="frmcampaignDetailAdd.selectedItem.LinkCampaignItemId" />

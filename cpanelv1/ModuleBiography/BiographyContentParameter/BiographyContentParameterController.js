@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
             biographyContentParameter.ListItems = response.ListItems;
-            biographyContentParameter.gridOptions.fillData(biographyContentParameter.ListItems, response.resultAccess);
+            biographyContentParameter.gridOptions.fillData(biographyContentParameter.ListItems, response.Access);
             biographyContentParameter.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographyContentParameter.gridOptions.totalRowCount = response.TotalRowCount;
             biographyContentParameter.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
     biographyContentParameter.addRequested = false;
     biographyContentParameter.openAddModal = function () {
         biographyContentParameter.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
             biographyContentParameter.selectedItem = response.Item;
@@ -142,7 +142,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetOne', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.selectedItem = response.Item;
             if (biographyContentParameter
@@ -203,7 +203,7 @@
         rashaErManage.showYesNo("هشدار", "آیا می خواهید این مشخصه را حذف کنید", function (isConfirmed) {
             if (isConfirmed) {
                 biographyContentParameter.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetOne', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyContentParameter.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/delete', biographyContentParameter.selectedItemForDelete, 'POST').success(function (res) {

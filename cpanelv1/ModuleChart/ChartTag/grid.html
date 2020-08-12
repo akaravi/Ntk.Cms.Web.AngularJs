@@ -15,9 +15,9 @@
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="chartTag.Add" ng-click="chartTag.addNewCategoryModel()" ng-show="chartTag.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="chartTag.Edit" ng-click="chartTag.openEditCategoryModel()" ng-show="chartTag.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="chartTag.Delete" ng-click="chartTag.deleteCategory()" ng-show="chartTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="chartTag.Add" ng-click="chartTag.addNewCategoryModel()" ng-show="chartTag.gridOptions.Access.CheckAccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="chartTag.Edit" ng-click="chartTag.openEditCategoryModel()" ng-show="chartTag.gridOptions.Access.CheckAccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="chartTag.Delete" ng-click="chartTag.deleteCategory()" ng-show="chartTag.gridOptions.Access.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
                     </div>
@@ -32,9 +32,9 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="chartTag.openAddModel()" ng-show="chartTag.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                    <button class="btn btn-warning" ng-click="chartTag.openEditModel()" ng-show="chartTag.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="chartTag.deleteContent()" ng-show="chartTag.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="chartTag.openAddModel()" ng-show="chartTag.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="chartTag.openEditModel()" ng-show="chartTag.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="chartTag.deleteContent()" ng-show="chartTag.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
                     <button class="btn btn-success" ng-click="chartTag.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="chartTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="chartTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

@@ -84,7 +84,7 @@
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-            appApplication.gridOptions.fillData(appApplication.ListItems, response.resultAccess);
+            appApplication.gridOptions.fillData(appApplication.ListItems, response.Access);
             appApplication.gridOptions.currentPageNumber = response.CurrentPageNumber;
             appApplication.gridOptions.totalRowCount = response.TotalRowCount;
             appApplication.gridOptions.rowPerPage = response.RowPerPage;
@@ -140,7 +140,7 @@
         appApplication.FileIdSplashScreen.filename = "";
         appApplication.FileIdSplashScreen.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
@@ -237,7 +237,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/GetOne', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.selectedItem = response.Item;
@@ -266,7 +266,7 @@
             if (response.Item.LinkFileIdIcon != null) {
                 ajax
                     .call(
-                        cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                        cmsServerConfig.configApiServerPath + "FileContent/",
                         response.Item.LinkFileIdIcon,
                         "GET"
                     )
@@ -282,7 +282,7 @@
             if (response.Item.LinkFileIdLogo != null) {
                 ajax
                     .call(
-                        cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                        cmsServerConfig.configApiServerPath + "FileContent/",
                         response.Item.LinkFileIdLogo,
                         "GET"
                     )
@@ -298,7 +298,7 @@
             if (response.Item.LinkFileIdSplashScreen != null) {
                 ajax
                     .call(
-                        cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                        cmsServerConfig.configApiServerPath + "FileContent/",
                         response.Item.LinkFileIdSplashScreen,
                         "GET"
                     )
@@ -469,7 +469,7 @@
                 appApplication.busyIndicator.isActive = true;
                 console.log(appApplication.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/GetOne', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
@@ -813,7 +813,7 @@
         ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/buildApp', App.Id, 'GET').success(function (response) {
             /* var myVar = setInterval(myTimer,10000);
              function myTimer() {
-                 ajax.call(cmsServerConfig.configApiServerPath+'ApplicationApp/GetOne', App.Id, 'GET').success(function (response) {
+                 ajax.call(cmsServerConfig.configApiServerPath+'ApplicationApp/', App.Id, 'GET').success(function (response) {
                      $("#LastBuildStatusID").empty();
                    
                      $(document).ready(function()
@@ -906,7 +906,7 @@
         }
         appApplication.selectedItem.LinkModulesFilesIdIcon = node.Id;
         appApplication.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function (response) {
             appApplication.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

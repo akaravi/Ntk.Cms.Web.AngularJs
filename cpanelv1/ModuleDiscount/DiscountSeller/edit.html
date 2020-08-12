@@ -12,7 +12,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountSeller.AccessEdit('LinkMemberId')">
+                <div class="form-group" ng-show="discountSeller.CheckAccessEdit('LinkMemberId')">
                     <label class="col-sm-2 control-label">{{ 'LinkMemberId'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkMemberId" rasha-autocomplete="discountSeller.LinkMemberIdSelector" ng-model="frmdiscountSellerEdit.selectedItem.LinkMemberId" />

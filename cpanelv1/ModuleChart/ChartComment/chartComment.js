@@ -35,7 +35,7 @@
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;
             chartComment.ListItems = response.ListItems;
-            chartComment.gridOptions.fillData(chartComment.ListItems, response.resultAccess);
+            chartComment.gridOptions.fillData(chartComment.ListItems, response.Access);
             chartComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartComment.gridOptions.totalRowCount = response.TotalRowCount;
             chartComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -60,7 +60,7 @@
     chartComment.addRequested = false;
     chartComment.openAddModal = function () {
         chartComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;
             chartComment.selectedItem = response.Item;
@@ -112,7 +112,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/GetOne', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.selectedItem = response.Item;
             $modal.open({
@@ -174,7 +174,7 @@
             if (isConfirmed) {
                 chartComment.busyIndicator.isActive = true;
                 console.log(chartComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'chartComment/GetOne', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartComment/', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartComment.selectedItemForDelete = response.Item;
                     console.log(chartComment.selectedItemForDelete);

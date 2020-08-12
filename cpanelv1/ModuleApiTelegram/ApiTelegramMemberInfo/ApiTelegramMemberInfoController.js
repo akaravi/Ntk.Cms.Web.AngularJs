@@ -111,7 +111,7 @@
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
             memberInfo.ListItems = response.ListItems;
-            memberInfo.gridOptions.fillData(memberInfo.ListItems, response.resultAccess);
+            memberInfo.gridOptions.fillData(memberInfo.ListItems, response.Access);
             memberInfo.gridOptions.currentPageNumber = response.CurrentPageNumber;
             memberInfo.gridOptions.totalRowCount = response.TotalRowCount;
             memberInfo.gridOptions.rowPerPage = response.RowPerPage;
@@ -128,7 +128,7 @@
     memberInfo.addRequested = false;
     memberInfo.openAddModal = function () {
         memberInfo.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
             memberInfo.selectedItem = response.Item;
@@ -176,7 +176,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.selectedItem = response.Item;
             if (memberInfo
@@ -241,7 +241,7 @@
             if (isConfirmed) {
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;
                     console.log(memberInfo.selectedItemForDelete);
@@ -338,7 +338,7 @@
         engine.SortColumn = "ChatId";
         engine.SortType = 0;
         engine.RowPerPage = 1000000;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/getone", engine, "POST").success(function (response) { //Get Telegram user info from input logs
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/", engine, "POST").success(function (response) { //Get Telegram user info from input logs
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             memberInfo.selectedLogInput = response.Item;
@@ -362,10 +362,10 @@
         }
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/GetOne", selectedId, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/", selectedId, "GET").success(function (response) {
             memberInfo.selectedItem = response.Item;
             memberInfo.selectedItem.LinkMemberId = memberId;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/GetOne", memberId, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/", memberId, "GET").success(function (response) {
                 memberInfo.selectedMemberUser = response.Item;
                 memberInfo.addRequested = false;
                 memberInfo.busyIndicator.isActive = false;
@@ -463,7 +463,7 @@
             memberInfo.selectedItem.LinkMemberId = 'loading';
             memberInfo.selectedMemberUser = null;
             memberInfo.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/GetOne", selected.originalObject.Id, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/", selected.originalObject.Id, "GET").success(function (response) {
                 memberInfo.addRequested = false;
                 rashaErManage.checkAction(response);
                 memberInfo.selectedItem.LinkMemberId = selected.originalObject.Id;

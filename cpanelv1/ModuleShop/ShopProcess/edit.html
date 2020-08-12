@@ -13,13 +13,13 @@
             <h3 class="m-t-none m-b"> {{ shopProcess.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmshopProcessEdit" novalidate ng-submit="shopProcess.editRow(frmshopProcessEdit)" ng-init="shopProcess.loadEmojiPicker()">
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmshopProcessEdit.RecordStatus.$invalid && !frmshopProcessEdit.RecordStatus.$pristine,'has-success' : frmshopProcessEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="shopProcess"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('Title')"
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmshopProcessEdit.Title.$invalid && !frmshopProcessEdit.Title.$pristine,'has-success' : frmshopProcessEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('ClassName')">
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('ClassName')">
                     <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control"
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('IsPublish')">
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('IsPublish')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('AllowDirectAddToCart')">
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('AllowDirectAddToCart')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopProcess.AccessEdit('InputValueMethod')">
+                <div class="form-group" ng-show="shopProcess.CheckAccessEdit('InputValueMethod')">
                     <label class="col-sm-2 control-label">InputValueMethod</label>
                     <div class="col-sm-10">
                         <select class='form-control' name="InputValueMethod" ng-model="shopProcess.selectedItem.InputValueMethod" ng-options="x.Value as x.Description for x in shopProcess.InputValueMethod"></select>

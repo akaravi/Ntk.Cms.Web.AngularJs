@@ -9,20 +9,20 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleTag.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="articleTag.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmarticleTagAdd.RecordStatus.$invalid && !frmarticleTagAdd.RecordStatus.$pristine,'has-success' : frmarticleTagAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="articleTag"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleTag.AccessAdd('LinkCategoryTagId')">
+                            <div class="form-group" ng-show="articleTag.CheckAccessAdd('LinkCategoryTagId')">
                                 <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkCategoryTagId" rasha-autocomplete="articleTag.LinkCategoryTagIdSelector" ng-model="articleTag.selectedItem.LinkCategoryTagId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleTag.AccessAdd('Title')"
+                            <div class="form-group" ng-show="articleTag.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmarticleTagAdd.Title.$invalid && !frmarticleTagAdd.Title.$pristine,'has-success' : frmarticleTagAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

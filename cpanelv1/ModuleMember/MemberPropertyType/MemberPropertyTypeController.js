@@ -21,7 +21,7 @@
             rashaErManage.checkAction(response);
             memberPropertyType.busyIndicator.isActive = false;
             memberPropertyType.ListItems = response.ListItems;
-            memberPropertyType.gridOptions.fillData(memberPropertyType.ListItems, response.resultAccess);
+            memberPropertyType.gridOptions.fillData(memberPropertyType.ListItems, response.Access);
             memberPropertyType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             memberPropertyType.gridOptions.totalRowCount = response.TotalRowCount;
             memberPropertyType.gridOptions.rowPerPage = response.RowPerPage;
@@ -41,7 +41,7 @@
         memberPropertyType.filePickerMainImage.filename = "";
         memberPropertyType.filePickerMainImage.fileId = null;
         memberPropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyType.busyIndicator.isActive = false;
             memberPropertyType.selectedItem = response.Item;
@@ -87,13 +87,13 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/GetOne', memberPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/', memberPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyType.selectedItem = response.Item;
             memberPropertyType.filePickerMainImage.filename = null;
             memberPropertyType.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     memberPropertyType.filePickerMainImage.filename = response2.Item.FileName;
                     memberPropertyType.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -159,7 +159,7 @@
             if (isConfirmed) {
                 memberPropertyType.busyIndicator.isActive = true;
                 console.log(memberPropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/GetOne', memberPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/', memberPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     memberPropertyType.selectedItemForDelete = response.Item;
                     console.log(memberPropertyType.selectedItemForDelete);
@@ -335,13 +335,13 @@ memberPropertyType.alreadyExist = function (id, array) {
         memberPropertyType.fileIdToDelete = memberPropertyType.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", memberPropertyType.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", memberPropertyType.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 memberPropertyType.FileItem = response3.Item;
                                 memberPropertyType.FileItem.FileName = name;
@@ -443,7 +443,7 @@ memberPropertyType.alreadyExist = function (id, array) {
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 memberPropertyType.fileIdToDelete,
                 "GET"
               )
@@ -493,7 +493,7 @@ memberPropertyType.alreadyExist = function (id, array) {
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     memberPropertyType.FileItem = response.Item;
                     memberPropertyType.FileItem.FileName = uploadFile.name;
                     memberPropertyType.FileItem.uploadName = uploadFile.uploadName;

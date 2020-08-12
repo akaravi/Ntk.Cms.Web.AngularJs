@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="articleContentParameter.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="articleContentParameter.Add" ng-click="articleContentParameter.openAddModal()" ng-show="articleContentParameter.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="articleContentParameter.Edit" ng-click="articleContentParameter.openEditModal()"ng-show="articleContentParameter.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="articleContentParameter.Delete" ng-click="articleContentParameter.deleteRow()" ng-show="articleContentParameter.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="articleContentParameter.Add" ng-click="articleContentParameter.openAddModal()" ng-show="articleContentParameter.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="articleContentParameter.Edit" ng-click="articleContentParameter.openEditModal()"ng-show="articleContentParameter.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="articleContentParameter.Delete" ng-click="articleContentParameter.deleteRow()" ng-show="articleContentParameter.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="articleContentParameter.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="articleContentParameter.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="articleContentParameter.getCount()">{{'number'|lowercase|translate}}&nbsp;{{articleContentParameter.ListItemsTotalRowCount}}</button>

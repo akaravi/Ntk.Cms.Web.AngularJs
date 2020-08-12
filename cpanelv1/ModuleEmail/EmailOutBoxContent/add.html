@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('Message')"
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('Message')"
                                  ng-class="{'has-error' : frmemailOutBoxContentAdd.Message.$invalid && !frmemailOutBoxContentAdd.Message.$pristine,'has-success' : frmemailOutBoxContentAdd.Message.$valid}">
                                 <label class="col-sm-2 control-label"> {{'Message'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('Memo')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('Memo')">
                                 <label class="col-sm-2 control-label">{{"MEMO"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <textarea type="text" name="Memo" ng-model="emailOutBoxContent.selectedItem.Memo" class="form-control" style="resize:vertical"></textarea>
@@ -84,35 +84,35 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('CreditOverPlus')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('CreditOverPlus')">
                                 <label class="col-sm-2 control-label">{{"Credit_Over_Plus"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="CreditOverPlus" ng-model="emailOutBoxContent.selectedItem.CreditOverPlus" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('DefaultApiNumber')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('DefaultApiNumber')">
                                 <label class="col-sm-2 control-label">{{"Default_Api_Number"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="DefaultApiNumber" ng-model="emailOutBoxContent.selectedItem.DefaultApiNumber" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('Flash')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('Flash')">
                                 <label class="col-sm-2 control-label">{{"Flash"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="Flash" ng-model="emailOutBoxContent.selectedItem.Flash" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('EngineTryToSendCount')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('EngineTryToSendCount')">
                                 <label class="col-sm-2 control-label">{{"Engine_Try_To_Send_Count"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="EngineTryToSendCount" ng-model="emailOutBoxContent.selectedItem.EngineTryToSendCount" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailOutBoxContent.AccessAdd('OutBoxType')">
+                            <div class="form-group" ng-show="emailOutBoxContent.CheckAccessAdd('OutBoxType')">
                                 <label class="col-sm-2 control-label">{{"OutBox_Type"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="OutBoxType" ng-model="emailOutBoxContent.selectedItem.OutBoxType" />

@@ -144,7 +144,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"serviceShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceShareReciverCategory.ListItems = response.ListItems;
-            serviceShareReciverCategory.gridOptions.fillData(serviceShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            serviceShareReciverCategory.gridOptions.fillData(serviceShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             serviceShareReciverCategory.contentBusyIndicator.isActive = false;
             serviceShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             serviceShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -163,7 +163,7 @@
         if (buttonIsPressed) { return };
         serviceShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             serviceShareReciverCategory.selectedItem = response.Item;
@@ -209,7 +209,7 @@
 
         serviceShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetOne', serviceShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', serviceShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             serviceShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -321,7 +321,7 @@
                 serviceShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     serviceShareReciverCategory.selectedItemForDelete = response.Item;
@@ -380,7 +380,7 @@
             rashaErManage.checkAction(response);
             serviceShareReciverCategory.contentBusyIndicator.isActive = false;
             serviceShareReciverCategory.ListItems = response.ListItems;
-            serviceShareReciverCategory.gridOptions.fillData(serviceShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            serviceShareReciverCategory.gridOptions.fillData(serviceShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             serviceShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             serviceShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             serviceShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -403,7 +403,7 @@
         serviceShareReciverCategory.addRequested = false;
         serviceShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -429,7 +429,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/GetOne', serviceShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/', serviceShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             serviceShareReciverCategory.selectedItem = response1.Item;
@@ -523,7 +523,7 @@
                 serviceShareReciverCategory.showbusy = true;
                 serviceShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"serviceShareReciverCategory/GetOne", serviceShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"serviceShareReciverCategory/", serviceShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     serviceShareReciverCategory.showbusy = false;
                     serviceShareReciverCategory.showIsBusy = false;
@@ -783,7 +783,7 @@
         }
         serviceShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         serviceShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             serviceShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

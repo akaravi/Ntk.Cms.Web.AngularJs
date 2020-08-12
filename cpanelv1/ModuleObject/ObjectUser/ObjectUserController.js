@@ -328,7 +328,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         objectUser.filePickerFiles.filename = "";
         objectUser.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             //objectUser.busyIndicator.isActive = false;
@@ -401,7 +401,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, "POST").success(function (response) {
             objectUser.listComments = response.ListItems;
             rashaErManage.checkAction(response);
-            objectUser.gridOptionsfile.fillData(objectUser.listComments, response.resultAccess);
+            objectUser.gridOptionsfile.fillData(objectUser.listComments, response.Access);
             objectUser.gridOptionsfile.currentPageNumber = response.CurrentPageNumber;
             objectUser.gridOptionsfile.totalRowCount = response.TotalRowCount;
             objectUser.gridOptionsfile.RowPerPage = response.RowPerPage;
@@ -425,7 +425,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         objectUser.categoryBusyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+"objectGroup/getall", {}, 'POST').success(function (response) {
             objectUser.treeConfig.Items = response.ListItems;
-            objectUser.gridOptions.resultAccessGroup = response.resultAccess;
+            objectUser.gridOptions.AccessGroup = response.Access;
             objectUser.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -433,7 +433,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         ajax.call(cmsServerConfig.configApiServerPath+"objectuser/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             objectUser.ListItems = response.ListItems;
-            objectUser.gridOptions.fillData(objectUser.ListItems, response.resultAccess); // Sending Access as an argument
+            objectUser.gridOptions.fillData(objectUser.ListItems, response.Access); // Sending Access as an argument
             objectUser.allowedSearch = response.AllowedSearchField;
             objectUser.gridOptions.currentPageNumber = response.CurrentPageNumber;
             objectUser.gridOptions.totalRowCount = response.TotalRowCount;
@@ -454,7 +454,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         if (buttonIsPressed) return;
         objectUser.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             objectUser.selectedItem = response.Item;
@@ -477,7 +477,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         }
         objectUser.categoryBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/GetOne', objectUser.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/', objectUser.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             objectUser.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -560,7 +560,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             if (isConfirmed) {
                 objectUser.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
@@ -632,7 +632,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         objectUser.addRequested = false;
         objectUser.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             objectUser.selectedItem = response.Item;
@@ -715,7 +715,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/GetOne', objectUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/', objectUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             objectUser.selectedItem = response1.Item;
@@ -792,7 +792,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             if (isConfirmed) {
                 console.log(objectUser.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'objectUser/GetOne', objectUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'objectUser/', objectUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
@@ -949,13 +949,13 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         objectUser.fileIdToDelete = objectUser.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", objectUser.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 objectUser.FileItem = response3.Item;
                                 objectUser.FileItem.FileName = name;
@@ -1057,7 +1057,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 objectUser.fileIdToDelete,
                 "GET"
               )
@@ -1107,7 +1107,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     objectUser.FileItem = response.Item;
                     objectUser.FileItem.FileName = uploadFile.name;
                     objectUser.FileItem.uploadName = uploadFile.uploadName;

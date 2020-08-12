@@ -167,7 +167,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/getall", mscGalleryTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryTag.ListItems = response.ListItems;
-            mscGalleryTag.gridOptions.fillData(mscGalleryTag.ListItems, response.resultAccess); // Sending Access as an argument
+            mscGalleryTag.gridOptions.fillData(mscGalleryTag.ListItems, response.Access); // Sending Access as an argument
             mscGalleryTag.contentBusyIndicator.isActive = false;
             mscGalleryTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             mscGalleryTag.gridOptions.totalRowCount = response.TotalRowCount;
@@ -187,7 +187,7 @@
     // Open Add Category Modal 
     mscGalleryTag.addNewCategoryModel = function () {
         mscGalleryTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -233,7 +233,7 @@
 
         mscGalleryTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/GetOne', mscGalleryTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', mscGalleryTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             mscGalleryTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -346,7 +346,7 @@
             if (isConfirmed) {
                 mscGalleryTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mscGalleryTag.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/delete', mscGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
@@ -403,7 +403,7 @@
             rashaErManage.checkAction(response);
             mscGalleryTag.contentBusyIndicator.isActive = false;
             mscGalleryTag.ListItems = response.ListItems;
-            mscGalleryTag.gridOptions.fillData(mscGalleryTag.ListItems, response.resultAccess); // Sending Access as an argument
+            mscGalleryTag.gridOptions.fillData(mscGalleryTag.ListItems, response.Access); // Sending Access as an argument
             mscGalleryTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             mscGalleryTag.gridOptions.totalRowCount = response.TotalRowCount;
             mscGalleryTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -418,7 +418,7 @@
 
         mscGalleryTag.addRequested = false;
         mscGalleryTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryTag.selectedItem = response.Item;
             mscGalleryTag.selectedItem.LinkCategoryTagId = mscGalleryTag.CategoryTagId;
@@ -442,7 +442,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/GetOne', mscGalleryTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/', mscGalleryTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             mscGalleryTag.selectedItem = response1.Item;
@@ -525,7 +525,7 @@
                 console.log(mscGalleryTag.gridOptions.selectedRow.item);
                 mscGalleryTag.showbusy = true;
                 mscGalleryTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/GetOne", mscGalleryTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/", mscGalleryTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     mscGalleryTag.showbusy = false;
                     mscGalleryTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -721,7 +721,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             mscGalleryTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -798,14 +798,14 @@
         mscGalleryTag.fileIdToDelete = mscGalleryTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", mscGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", mscGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     mscGalleryTag.remove(mscGalleryTag.FileList, mscGalleryTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 mscGalleryTag.FileItem = response3.Item;
                                 mscGalleryTag.FileItem.FileName = name;
@@ -908,7 +908,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 mscGalleryTag.fileIdToDelete,
                 "GET"
               )
@@ -958,7 +958,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     mscGalleryTag.FileItem = response.Item;
                     mscGalleryTag.FileItem.FileName = uploadFile.name;
                     mscGalleryTag.FileItem.uploadName = uploadFile.uploadName;
@@ -1110,7 +1110,7 @@
         }
         mscGalleryTag.selectedItem.LinkMainImageId = node.Id;
         mscGalleryTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             mscGalleryTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

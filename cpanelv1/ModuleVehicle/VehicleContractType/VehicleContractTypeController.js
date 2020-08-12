@@ -27,7 +27,7 @@
 
             // Call Excerpt Function to shorten the length of long strings
             //excerptField(vehicleContractType.ListItems, "BotToken");
-            vehicleContractType.gridOptions.fillData(vehicleContractType.ListItems, response.resultAccess);
+            vehicleContractType.gridOptions.fillData(vehicleContractType.ListItems, response.Access);
             vehicleContractType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             vehicleContractType.gridOptions.totalRowCount = response.TotalRowCount;
             vehicleContractType.gridOptions.rowPerPage = response.RowPerPage;
@@ -45,7 +45,7 @@
     vehicleContractType.addRequested = false;
     vehicleContractType.openAddModal = function () {
         vehicleContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContractType.busyIndicator.isActive = false;
             vehicleContractType.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/GetOne', vehicleContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/', vehicleContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContractType.selectedItem = response.Item;
             $modal.open({
@@ -158,7 +158,7 @@
             if (isConfirmed) {
                 vehicleContractType.busyIndicator.isActive = true;
                 console.log(vehicleContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/GetOne', vehicleContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/', vehicleContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehicleContractType.selectedItemForDelete = response.Item;
                     console.log(vehicleContractType.selectedItemForDelete);

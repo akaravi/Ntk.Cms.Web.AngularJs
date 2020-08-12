@@ -48,7 +48,7 @@
             // Call Excerpt Function to shorten the length of long strings
             jobContract.gridOptions.myfilterText(jobContract.ListItems, "LinkJobContractTypeId", jobContract.contractTypes, "Title", "LinkContractTypeTitle");
             jobContract.gridOptions.myfilterText(jobContract.ListItems, "LinkPropertyId", listProperties, "Title", "LinkPropertyTitle");
-            jobContract.gridOptions.fillData(jobContract.ListItems, response.resultAccess);
+            jobContract.gridOptions.fillData(jobContract.ListItems, response.Access);
             jobContract.gridOptions.currentPageNumber = response.CurrentPageNumber;
             jobContract.gridOptions.totalRowCount = response.TotalRowCount;
             jobContract.gridOptions.rowPerPage = response.RowPerPage;
@@ -69,7 +69,7 @@
 
         jobContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -124,7 +124,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/GetOne', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -197,7 +197,7 @@
                 jobContract.busyIndicator.isActive = true;
                 console.log(jobContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/GetOne', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobContract.selectedItemForDelete = response.Item;

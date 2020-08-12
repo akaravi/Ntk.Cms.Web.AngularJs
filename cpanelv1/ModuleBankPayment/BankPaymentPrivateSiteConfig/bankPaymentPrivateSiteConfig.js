@@ -34,7 +34,7 @@
             privateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.ListItems = response.ListItems;
-            privateSiteConfig.gridOptions.fillData(privateSiteConfig.ListItems, response.resultAccess);
+            privateSiteConfig.gridOptions.fillData(privateSiteConfig.ListItems, response.Access);
             privateSiteConfig.gridOptions.currentPageNumber = response.CurrentPageNumber;
             privateSiteConfig.gridOptions.totalRowCount = response.TotalRowCount;
             privateSiteConfig.gridOptions.rowPerPage = response.RowPerPage;
@@ -69,7 +69,7 @@
         buttonIsPressed = true;
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.selectedItem = response.Item;
@@ -245,7 +245,7 @@
                 privateSiteConfig.replaceItem(privateSiteConfig.selectedItem.Id, response.Item);
                 privateSiteConfig.addRequested = false;
                 privateSiteConfig.busyIndicator.isActive = false;
-                privateSiteConfig.gridOptions.fillData(privateSiteConfig.ListItems, response.resultAccess);
+                privateSiteConfig.gridOptions.fillData(privateSiteConfig.ListItems, response.Access);
                 privateSiteConfig.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -279,7 +279,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/GetOne', privateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     privateSiteConfig.selectedItemForDelete = response.Item;

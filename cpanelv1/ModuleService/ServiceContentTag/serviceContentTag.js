@@ -11,7 +11,7 @@
             ServiceContentTag.busyIndicator.isActive = false;
 
             ServiceContentTag.ListItems = response.ListItems;
-            ServiceContentTag.gridOptions.fillData(ServiceContentTag.ListItems , response.resultAccess);
+            ServiceContentTag.gridOptions.fillData(ServiceContentTag.ListItems , response.Access);
             ServiceContentTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             ServiceContentTag.gridOptions.totalRowCount = response.TotalRowCount;
             ServiceContentTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -23,7 +23,7 @@
     ServiceContentTag.addRequested = false;
     ServiceContentTag.openAddModal = function () {
         ServiceContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/GetOne',  ServiceContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/',  ServiceContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 ServiceContentTag.busyIndicator.isActive = true;
                 console.log(ServiceContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/GetOne',  ServiceContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/',  ServiceContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ServiceContentTag.selectedItemForDelete = response.Item;
                     console.log(ServiceContentTag.selectedItemForDelete);

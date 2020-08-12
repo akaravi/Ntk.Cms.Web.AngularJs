@@ -2,9 +2,9 @@
     <!-- <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="cmsSiteLayoutController.Add" ng-click="cmsPageTemplategrd.openAddModal()" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddRow"  type="button">{{'ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsSiteLayoutController.Edit" ng-click="cmsPageTemplategrd.openEditModal()" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsSiteLayoutController.Delete" ng-click="cmsPageTemplategrd.deleteRow()" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteLayoutController.Add" ng-click="cmsPageTemplategrd.openAddModal()" ng-show="cmsPageTemplategrd.gridOptions.Access.CheckAccessAddRow"  type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsSiteLayoutController.Edit" ng-click="cmsPageTemplategrd.openEditModal()" ng-show="cmsPageTemplategrd.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsSiteLayoutController.Delete" ng-click="cmsPageTemplategrd.deleteRow()" ng-show="cmsPageTemplategrd.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" ng-click="cmsPageTemplategrd.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" type="button" ng-click="cmsPageTemplategrd.reportData()">{{'report'|lowercase|translate}}</button>
         </div>

@@ -16,7 +16,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"EmailPublicConfig/getall", emailPublicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailPublicConfig.ListItems = response.ListItems;
-            emailPublicConfig.gridOptions.fillData(emailPublicConfig.ListItems, response.resultAccess);
+            emailPublicConfig.gridOptions.fillData(emailPublicConfig.ListItems, response.Access);
             emailPublicConfig.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailPublicConfig.gridOptions.totalRowCount = response.TotalRowCount;
             emailPublicConfig.gridOptions.rowPerPage = response.RowPerPage;
@@ -157,7 +157,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailPublicConfig.replaceItem(emailPublicConfig.selectedItem.Id, response.Item);
-                emailPublicConfig.gridOptions.fillData(emailPublicConfig.ListItems, response.resultAccess);
+                emailPublicConfig.gridOptions.fillData(emailPublicConfig.ListItems, response.Access);
                 emailPublicConfig.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -191,7 +191,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/GetOne', emailPublicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPublicConfig.selectedItemForDelete = response.Item;
@@ -458,7 +458,7 @@
         }
         emailPublicConfig.selectedItem.LinkModuleFileLogoId = node.Id;
         emailPublicConfig.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             emailPublicConfig.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

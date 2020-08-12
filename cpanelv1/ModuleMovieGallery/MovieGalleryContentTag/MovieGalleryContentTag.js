@@ -11,7 +11,7 @@
             mvGalleryContentTag.busyIndicator.isActive = false;
 
             mvGalleryContentTag.ListItems = response.ListItems;
-            mvGalleryContentTag.gridOptions.fillData(mvGalleryContentTag.ListItems , response.resultAccess);
+            mvGalleryContentTag.gridOptions.fillData(mvGalleryContentTag.ListItems , response.Access);
             mvGalleryContentTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             mvGalleryContentTag.gridOptions.totalRowCount = response.TotalRowCount;
             mvGalleryContentTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -23,7 +23,7 @@
     mvGalleryContentTag.addRequested = false;
     mvGalleryContentTag.openAddModal = function () {
         mvGalleryContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/GetOne',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 mvGalleryContentTag.busyIndicator.isActive = true;
                 console.log(mvGalleryContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/GetOne',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mvGalleryContentTag.selectedItemForDelete = response.Item;
                     console.log(mvGalleryContentTag.selectedItemForDelete);

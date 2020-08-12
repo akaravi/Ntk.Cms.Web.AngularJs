@@ -144,7 +144,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"blogShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogShareReciverCategory.ListItems = response.ListItems;
-            blogShareReciverCategory.gridOptions.fillData(blogShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            blogShareReciverCategory.gridOptions.fillData(blogShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             blogShareReciverCategory.contentBusyIndicator.isActive = false;
             blogShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             blogShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -163,7 +163,7 @@
         if (buttonIsPressed) { return };
         blogShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             blogShareReciverCategory.selectedItem = response.Item;
@@ -209,7 +209,7 @@
 
         blogShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/GetOne', blogShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/', blogShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             blogShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -321,7 +321,7 @@
                 blogShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     blogShareReciverCategory.selectedItemForDelete = response.Item;
@@ -380,7 +380,7 @@
             rashaErManage.checkAction(response);
             blogShareReciverCategory.contentBusyIndicator.isActive = false;
             blogShareReciverCategory.ListItems = response.ListItems;
-            blogShareReciverCategory.gridOptions.fillData(blogShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            blogShareReciverCategory.gridOptions.fillData(blogShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             blogShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             blogShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             blogShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -403,7 +403,7 @@
         blogShareReciverCategory.addRequested = false;
         blogShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -429,7 +429,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogShareReciverCategory/GetOne', blogShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogShareReciverCategory/', blogShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             blogShareReciverCategory.selectedItem = response1.Item;
@@ -523,7 +523,7 @@
                 blogShareReciverCategory.showbusy = true;
                 blogShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"blogShareReciverCategory/GetOne", blogShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"blogShareReciverCategory/", blogShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     blogShareReciverCategory.showbusy = false;
                     blogShareReciverCategory.showIsBusy = false;
@@ -760,7 +760,7 @@
         }
         blogShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         blogShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             blogShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

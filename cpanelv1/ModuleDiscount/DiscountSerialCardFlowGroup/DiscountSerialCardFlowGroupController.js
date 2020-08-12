@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             discountSerialCardFlowGroup.ListItems = response.ListItems;
-            discountSerialCardFlowGroup.gridOptions.fillData(discountSerialCardFlowGroup.ListItems, response.resultAccess);
+            discountSerialCardFlowGroup.gridOptions.fillData(discountSerialCardFlowGroup.ListItems, response.Access);
             discountSerialCardFlowGroup.gridOptions.currentPageNumber = response.CurrentPageNumber;
             discountSerialCardFlowGroup.gridOptions.totalRowCount = response.TotalRowCount;
             discountSerialCardFlowGroup.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
     discountSerialCardFlowGroup.addRequested = false;
     discountSerialCardFlowGroup.openAddModal = function () {
         discountSerialCardFlowGroup.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             discountSerialCardFlowGroup.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/GetOne', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.selectedItem = response.Item;
             if (discountSerialCardFlowGroup
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountSerialCardFlowGroup.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/GetOne', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCardFlowGroup.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/delete', discountSerialCardFlowGroup.selectedItemForDelete, 'POST').success(function (res) {

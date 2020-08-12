@@ -4,9 +4,9 @@
         <div class="col-sm-12">
             <div rasha-loading="reservationContentTag.busyIndicator"></div>
 
-            <button class="btn btn-primary" rasha-userrole="reservationContentTag.Add" ng-click="reservationContentTag.openAddModal()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="reservationContentTag.Edit" ng-click="reservationContentTag.openEditModal()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="reservationContentTag.Delete" ng-click="reservationContentTag.deleteRow()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="reservationContentTag.Add" ng-click="reservationContentTag.openAddModal()" ng-show="reservationContentTag.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="reservationContentTag.Edit" ng-click="reservationContentTag.openEditModal()" ng-show="reservationContentTag.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="reservationContentTag.Delete" ng-click="reservationContentTag.deleteRow()" ng-show="reservationContentTag.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="reservationContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-warning" type="button" ng-click="reservationContentTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="reservationContentTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

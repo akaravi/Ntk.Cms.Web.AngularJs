@@ -10,14 +10,14 @@
                             <ul class="tree" tree-options="biographyShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessAddRow || biographyShareServerCategory.gridOptions.resultAccess.AccessEditRow ||biographyShareServerCategory.gridOptions.resultAccess.AccessDeleteRow">
+                        <div style="margin-top: 20px;" ng-show="biographyShareServerCategory.gridOptions.Access.CheckAccessAddRow || biographyShareServerCategory.gridOptions.Access.CheckAccessEditRow ||biographyShareServerCategory.gridOptions.Access.AccessDeleteRow">
                             <a ng-click="biographyShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="biographyShareServerCategory.Add" ng-click="biographyShareServerCategory.addNewCategoryModel()" type="button" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="biographyShareServerCategory.Edit" ng-click="biographyShareServerCategory.EditCategoryModel()" type="button" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="biographyShareServerCategory.Delete" ng-click="biographyShareServerCategory.deleteCategory()" type="button" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="biographyShareServerCategory.Add" ng-click="biographyShareServerCategory.addNewCategoryModel()" type="button" ng-show="biographyShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="biographyShareServerCategory.Edit" ng-click="biographyShareServerCategory.EditCategoryModel()" type="button" ng-show="biographyShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="biographyShareServerCategory.Delete" ng-click="biographyShareServerCategory.deleteCategory()" type="button" ng-show="biographyShareServerCategory.gridOptions.Access.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="biographyShareServerCategory.addNewContentModel()" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="biographyShareServerCategory.openEditModel()" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="biographyShareServerCategory.deleteContent()" ng-show="biographyShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="biographyShareServerCategory.addNewContentModel()" ng-show="biographyShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="biographyShareServerCategory.openEditModel()" ng-show="biographyShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="biographyShareServerCategory.deleteContent()" ng-show="biographyShareServerCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="biographyShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="biographyShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="biographyShareServerCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

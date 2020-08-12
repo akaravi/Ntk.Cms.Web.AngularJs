@@ -3,9 +3,9 @@
     <div class="row" >
         <div class="col-sm-12">
             <!--<div rasha-loading="memberInfo.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="memberInfo.Add" ng-click="memberInfo.openAddModal()" ng-show="memberInfo.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <!--<button class="btn btn-warning" rasha-userrole="memberInfo.Edit" ng-click="memberInfo.openEditModal()" type="button" ng-show="memberInfo.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}}</button>-->
-            <button class="btn btn-danger" rasha-userrole="memberInfo.Delete" ng-click="memberInfo.deleteRow()" type="button" ng-show="memberInfo.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="memberInfo.Add" ng-click="memberInfo.openAddModal()" ng-show="memberInfo.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <!--<button class="btn btn-warning" rasha-userrole="memberInfo.Edit" ng-click="memberInfo.openEditModal()" type="button" ng-show="memberInfo.gridOptions.Access.CheckAccessEditRow">{{'edit'|lowercase|translate}}</button>-->
+            <button class="btn btn-danger" rasha-userrole="memberInfo.Delete" ng-click="memberInfo.deleteRow()" type="button" ng-show="memberInfo.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="memberInfo.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="memberInfo.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="memberInfo.getCount()">{{'number'|lowercase|translate}}&nbsp;{{memberInfo.ListItemsTotalRowCount}}</button>

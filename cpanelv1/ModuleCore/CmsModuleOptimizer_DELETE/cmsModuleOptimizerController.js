@@ -9,7 +9,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"coreModuleOptimizer/getall", cmsModuleOptimizer.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.ListItems = response.ListItems;
-            cmsModuleOptimizer.gridOptions.fillData(cmsModuleOptimizer.ListItems, response.resultAccess);
+            cmsModuleOptimizer.gridOptions.fillData(cmsModuleOptimizer.ListItems, response.Access);
             cmsModuleOptimizer.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsModuleOptimizer.gridOptions.totalRowCount = response.TotalRowCount;
             cmsModuleOptimizer.gridOptions.rowPerPage = response.RowPerPage;
@@ -25,7 +25,7 @@
 
         cmsModuleOptimizer.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -74,7 +74,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetOne', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -134,7 +134,7 @@
             if (isConfirmed) {
                 console.log(cmsModuleOptimizer.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetOne', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

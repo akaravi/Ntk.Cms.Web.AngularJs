@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="jobPropertyDetail.AccessEdit('IconFont')">
+                <div class="form-group formControl" ng-show="jobPropertyDetail.CheckAccessEdit('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" ng-model="jobPropertyDetail.selectedItem.IconFont" name="IconFont" ng-focus="jobPropertyDetail.toggleIcons('true')" ng-blur="jobPropertyDetail.toggleIcons()" />

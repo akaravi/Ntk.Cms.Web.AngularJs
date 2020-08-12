@@ -171,7 +171,7 @@
                 type: 'string',
                 visible: 'true',
                 displayForce: true,
-                template: '<a type="button" ng-show="pollingContent.gridOptions.resultAccess.AccessAddRow || pollingContent.gridOptions.resultAccess.AccessEditRow" class="btn btn-success" ng-click="pollingContent.moveToOptions()"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;گزینه ها</a>'
+                template: '<a type="button" ng-show="pollingContent.gridOptions.Access.CheckAccessAddRow || pollingContent.gridOptions.Access.CheckAccessEditRow" class="btn btn-success" ng-click="pollingContent.moveToOptions()"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;گزینه ها</a>'
             }
         ],
         data: {},
@@ -309,7 +309,7 @@
 
   
 
-            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
             pollingContent.gridOptions.currentPageNumber = response.CurrentPageNumber;
             pollingContent.gridOptions.totalRowCount = response.TotalRowCount;
             pollingContent.gridOptions.rowPerPage = response.RowPerPage;
@@ -342,7 +342,7 @@
             rashaErManage.checkAction(response);
             pollingContent.OptionList = response.ListItems;
             pollingContent.calculatePercantage(pollingContent.OptionList);
-            pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.resultAccess);
+            pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.Access);
             pollingContent.gridOptions2.currentPageNumber = response.CurrentPageNumber;
             pollingContent.gridOptions2.totalRowCount = response.TotalRowCount;
             pollingContent.gridOptions2.RowPerPage = response.RowPerPage;
@@ -366,7 +366,7 @@
         pollingContent.addRequested = false;
         pollingContent.modalTitle = "ایجاد دسته جدید";
         buttonIsPressed == true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/GetViewModel", "", "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/ViewModel", "", "GET").success(function (response) {
             buttonIsPressed == false;
             rashaErManage.checkAction(response);
             pollingContent.selectedItem = response.Item;
@@ -424,7 +424,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/GetOne", pollingContent.treeConfig.currentNode.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/", pollingContent.treeConfig.currentNode.Id, "GET").success(function (response) {
             buttonIsPressed = false;
             pollingContent.showbusy = false;
             rashaErManage.checkAction(response);
@@ -485,7 +485,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/GetOne', pollingContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/', pollingContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             pollingContent.selectedItem = response1.Item;
             $modal.open({
@@ -561,7 +561,7 @@
             if (isConfirmed) {
                 pollingContent.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/GetOne", node.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/", node.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
@@ -610,7 +610,7 @@
             rashaErManage.checkAction(response);
             pollingContent.contentBusyIndicator.isActive = false;
             pollingContent.ListItems = response.ListItems;
-            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
             pollingContent.gridOptions.currentPageNumber = response.CurrentPageNumber;
             pollingContent.gridOptions.totalRowCount = response.TotalRowCount;
             pollingContent.gridOptions.rowPerPage = response.RowPerPage;
@@ -636,7 +636,7 @@
         pollingContent.filePickerFiles.fileId = null;
         pollingContent.addRequested = false;
         pollingContent.modalTitle = "اضافه";
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/GetViewModel", "", "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/ViewModel", "", "GET").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.selectedItem = response.Item;
             pollingContent.selectedItem.LinkCategoryId = node.Id;
@@ -658,7 +658,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/GetOne", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.selectedItem = response.Item;
             // pollingContent.FromDate.defaultDate = pollingContent.selectedItem.FromDate;
@@ -666,7 +666,7 @@
             pollingContent.filePickerMainImage.filename = null;
             pollingContent.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     pollingContent.filePickerMainImage.filename = response2.Item.FileName;
                     pollingContent.filePickerMainImage.fileId = response2.Item.Id
@@ -699,7 +699,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingContent.ListItems.unshift(response.Item);
-                pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+                pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
                 pollingContent.closeModal();
             }
             pollingContent.addRequested = false;
@@ -722,7 +722,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingContent.replaceItem(pollingContent.selectedItem.Id, response.Item, pollingContent.ListItems);
-                pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+                pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
                 pollingContent.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -739,14 +739,14 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/GetOne", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.ListItems);
-                            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+                            pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
                         }
                     }).error(function (data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
@@ -857,7 +857,7 @@
             $("#option" + optionIndex).attr("readonly", true);
             $("#editSaveBtn" + optionIndex).css("background-color", "#f8ac59");
             $("#editSaveBtn" + optionIndex).attr("title", "ویرایش");
-            ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/GetOne", pollingContent.OptionList[optionIndex].Id, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/", pollingContent.OptionList[optionIndex].Id, "GET").success(function (response) {
                 rashaErManage.checkAction(response);
                 pollingContent.selectedItemForUpdate = response.Item;
                 pollingContent.selectedItemForUpdate.Option = pollingContent.OptionList[optionIndex].Option;
@@ -897,7 +897,7 @@
             rashaErManage.checkAction(response);
             pollingContent.OptionList = response.ListItems;
             pollingContent.calculatePercantage(pollingContent.OptionList);
-            ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/GetViewModel", "", "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/ViewModel", "", "GET").success(function (response) {
                 rashaErManage.checkAction(response);
                 pollingContent.selectedItem = response.Item;
                 pollingContent.selectedItem.LinkPollingContentId = selectedId;
@@ -941,7 +941,7 @@
         // Delete all options
         pollingContent.contentBusyIndicator.isActive = true;
         for (var i = 0; i < pollingContent.listComments.length; i++) {
-            ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/GetOne", pollingContent.listComments[i].Id, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/", pollingContent.listComments[i].Id, "GET").success(function (response) {
                 pollingContent.showbusy = false;
                 pollingContent.showIsBusy = false;
                 rashaErManage.checkAction(response);
@@ -952,7 +952,7 @@
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         //pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id);
-                        pollingContent.gridOptions.fillData(pollingContent.ListItems, response.resultAccess);
+                        pollingContent.gridOptions.fillData(pollingContent.ListItems, response.Access);
                     }
                 }).error(function (data2, errCode2, c2, d2) {
                     rashaErManage.checkAction(data2);
@@ -994,7 +994,7 @@
         }
         pollingContent.addRequested = false;
         pollingContent.modalTitle = "اضافه";
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/GetViewModel", "", "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/ViewModel", "", "GET").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.selectedItem = response.Item;
             pollingContent.selectedItem.LinkPollingContentId = item.Id;
@@ -1044,7 +1044,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/GetOne", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.selectedItem = response.Item;
             // pollingContent.FromDate.defaultDate = pollingContent.selectedItem.FromDate;
@@ -1072,7 +1072,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingContent.replaceItem(pollingContent.selectedItem.Id, response.Item, pollingContent.OptionList);
-                pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.resultAccess);
+                pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.Access);
                 pollingContent.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -1088,14 +1088,14 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/GetOne", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.OptionList);
-                            pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.resultAccess);
+                            pollingContent.gridOptions2.fillData(pollingContent.OptionList, response.Access);
                         }
                     }).error(function (data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
@@ -1112,7 +1112,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), "آیا می خواهید این گزینه را حذف کنید؟", function (isConfirmed) {
             if (isConfirmed) {
                 pollingContent.addOptionBusyIndicator = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/GetOne", pollingContent.OptionList[index].Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.OptionList[index].Id, "GET").success(function (response) {
                     pollingContent.addOptionBusyIndicator = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
@@ -1251,7 +1251,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) { // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             pollingContent.attachedFiles.push({
                                 fileId: response.Item.Id,
@@ -1293,7 +1293,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                            cmsServerConfig.configApiServerPath + "FileContent/",
                             pollingContent.fileIdToDelete,
                             "GET"
                         )
@@ -1342,7 +1342,7 @@
                 }
             } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
                     pollingContent.FileItem = response.Item;
                     pollingContent.FileItem.FileName = uploadFile.name;
                     pollingContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1575,7 +1575,7 @@
         }
         pollingContent.selectedItem.LinkMainImageId = node.Id;
         pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function (response) {
             pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

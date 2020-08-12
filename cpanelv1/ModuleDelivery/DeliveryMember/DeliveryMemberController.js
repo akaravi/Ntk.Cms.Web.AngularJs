@@ -59,7 +59,7 @@
             deliveryMember.ListItems = response.ListItems;
             
             // Call Excerpt Function to shorten the length of long strings
-            deliveryMember.gridOptions.fillData(deliveryMember.ListItems, response.resultAccess);
+            deliveryMember.gridOptions.fillData(deliveryMember.ListItems, response.Access);
             deliveryMember.gridOptions.currentPageNumber = response.CurrentPageNumber;
             deliveryMember.gridOptions.totalRowCount = response.TotalRowCount;
             deliveryMember.gridOptions.rowPerPage = response.RowPerPage;
@@ -88,7 +88,7 @@
     deliveryMember.addRequested = false;
     deliveryMember.openAddModal = function () {
         deliveryMember.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMember.busyIndicator.isActive = false;
             deliveryMember.selectedItem = response.Item;
@@ -148,7 +148,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/GetOne', deliveryMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/', deliveryMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMember.selectedItem = response.Item;
             deliveryMember.StartDate.defaultDate = deliveryMember.selectedItem.StartDate;
@@ -220,7 +220,7 @@
             if (isConfirmed) {
                 deliveryMember.busyIndicator.isActive = true;
                 console.log(deliveryMember.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/GetOne', deliveryMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/', deliveryMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMember.selectedItemForDelete = response.Item;
                     console.log(deliveryMember.selectedItemForDelete);

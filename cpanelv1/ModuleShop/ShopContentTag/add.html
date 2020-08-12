@@ -8,7 +8,7 @@
                 
                 <div class='hr-line-dashed'></div>
              
-                <div class="form-group" ng-show="shopContentTag.AccessAdd('LinkContentId')"
+                <div class="form-group" ng-show="shopContentTag.CheckAccessAdd('LinkContentId')"
                      ng-class="{'has-error' : frmshopContentTagAdd.LinkContentId.$invalid && !frmshopContentTagAdd.LinkContentId.$pristine,'has-success' : frmshopContentTagAdd.LinkContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="shopContentTag.AccessAdd('LinkTagId')"
+                <div class="form-group" ng-show="shopContentTag.CheckAccessAdd('LinkTagId')"
                      ng-class="{'has-error' : frmshopContentTagAdd.LinkTagId.$invalid && !frmshopContentTagAdd.LinkTagId.$pristine,'has-success' : frmshopContentTagAdd.LinkTagId.$valid}">
                     <label class="col-sm-2 control-label">  {{'SELECT_TAG'|lowercase|translate}}  </label>
                     <div class="col-sm-10">

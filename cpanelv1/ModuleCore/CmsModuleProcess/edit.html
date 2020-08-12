@@ -5,12 +5,12 @@
             <h3 class="m-t-none m-b">{{'Edit_Public_Activity'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModuleEdit" novalidate ng-submit="cmsModulePrc.editRow(frmCmsModuleEdit)">
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModulePrcAdd.RecordStatus.$invalid && !frmcmsModulePrcAdd.RecordStatus.$pristine,'has-success' : frmcmsModulePrcAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsModulePrc"></div>
                 </div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessEdit('Title')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -25,7 +25,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine) || frmCmsModuleEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessEdit('TitleResourceLanguage')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleEdit.TitleResourceLanguage.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -41,14 +41,14 @@
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessEdit('TitleEn')">
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessEdit('TitleEn')">
                     <label class="col-sm-2 control-label">{{'NAME_EN' |lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="cmsModulePrc.selectedItem.TitleEn" class="form-control">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessEdit('ProcessName')">
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessEdit('ProcessName')">
                     <label class="col-sm-2 control-label">{{'PROCESS_NAME' |lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="cmsModulePrc.selectedItem.ProcessName" class="form-control">

@@ -16,7 +16,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getall", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.ListItems = response.ListItems;
-            emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.resultAccess);
+            emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.Access);
             emailOutBoxReciverLock.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailOutBoxReciverLock.gridOptions.totalRowCount = response.TotalRowCount;
             emailOutBoxReciverLock.gridOptions.rowPerPage = response.RowPerPage;
@@ -35,7 +35,7 @@
         if (buttonIsPressed) { return };
         emailOutBoxReciverLock.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.selectedItem = response.Item;
@@ -197,7 +197,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxReciverLock.replaceItem(emailOutBoxReciverLock.selectedItem.Id, response.Item);
-                emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.resultAccess);
+                emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.Access);
                 emailOutBoxReciverLock.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -231,7 +231,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/GetOne', emailOutBoxReciverLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailOutBoxReciverLock.selectedItemForDelete = response.Item;
@@ -472,7 +472,7 @@
         }
         emailOutBoxReciverLock.selectedItem.LinkModuleFileLogoId = node.Id;
         emailOutBoxReciverLock.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             emailOutBoxReciverLock.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

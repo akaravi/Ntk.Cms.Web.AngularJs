@@ -20,20 +20,20 @@
             <h3 class="m-t-none m-b"> {{ objectPropertyDetail.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmobjectPropertyDetailEdit" novalidate ng-submit="objectPropertyDetail.editContent(frmobjectPropertyDetailEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmobjectPropertyDetailEdit.RecordStatus.$invalid && !frmobjectPropertyDetailEdit.RecordStatus.$pristine,'has-success' : frmobjectPropertyDetailEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="objectPropertyDetail"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('LinkCategoryId')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('LinkCategoryId')">
                     <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCategoryId" rasha-autocomplete="objectPropertyDetail.LinkCategoryIdSelector" ng-model="objectPropertyDetail.selectedItem.LinkCategoryId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('Title')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmobjectPropertyDetailEdit.Title.$invalid && !frmobjectPropertyDetailEdit.Title.$pristine,'has-success' : frmobjectPropertyDetailEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="objectPropertyDetail.AccessEdit('IconFont')">
+                <div class="form-group formControl" ng-show="objectPropertyDetail.CheckAccessEdit('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" name="IconFont" ng-focus="objectPropertyDetail.toggleIcons('true')" ng-blur="objectPropertyDetail.toggleIcons()" ng-model="objectPropertyDetail.selectedItem.IconFont" />
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('InputDataType')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('InputDataType')"
                      ng-class="{'has-error' : frmobjectPropertyDetailEdit.InputDataType.$invalid && !frmobjectPropertyDetailEdit.InputDataType.$pristine,'has-success' : frmobjectPropertyDetailEdit.InputDataType.$valid}">
                     <label class="col-sm-2 control-label"> {{'INPUT_TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('LinkHistoryId')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('LinkHistoryId')">
                     <label class="col-sm-2 control-label">history</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkHistoryId" rasha-autocomplete="objectPropertyDetail.LinkHistoryIdSelector" ng-model="objectPropertyDetail.selectedItem.LinkHistoryId" />
@@ -115,7 +115,7 @@
                         <input class="form-control" type="number" ng-required="false" name="ShowInFormOrder" ng-model="objectPropertyDetail.selectedItem.ShowInFormOrder" />
                     </div>
                 </div>
-                <div class='hr-line-dashed' ng-show="objectPropertyDetail.AccessEdit('InvisibleForEndUser')"></div>
+                <div class='hr-line-dashed' ng-show="objectPropertyDetail.CheckAccessEdit('InvisibleForEndUser')"></div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="checkbox">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('InvisibleForSubmiter')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('InvisibleForSubmiter')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('Required')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('Required')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessEdit('IsSearchable')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessEdit('IsSearchable')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>

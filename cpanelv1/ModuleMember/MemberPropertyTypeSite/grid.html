@@ -6,9 +6,9 @@
         </div>
         <div class="col-sm-6">
             <!--<div rasha-loading="memberPropertyTypeSite.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="memberPropertyTypeSite.Add" ng-click="memberPropertyTypeSite.openAddModal()" ng-show="memberPropertyTypeSite.gridOptionsProperty.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="memberPropertyTypeSite.Edit" ng-click="memberPropertyTypeSite.openEditModal()" type="button" ng-show="memberPropertyTypeSite.gridOptionsProperty.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="memberPropertyTypeSite.Delete" ng-click="memberPropertyTypeSite.deleteRow()" type="button" ng-show="memberPropertyTypeSite.gridOptionsProperty.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="memberPropertyTypeSite.Add" ng-click="memberPropertyTypeSite.openAddModal()" ng-show="memberPropertyTypeSite.gridOptionsProperty.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="memberPropertyTypeSite.Edit" ng-click="memberPropertyTypeSite.openEditModal()" type="button" ng-show="memberPropertyTypeSite.gridOptionsProperty.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="memberPropertyTypeSite.Delete" ng-click="memberPropertyTypeSite.deleteRow()" type="button" ng-show="memberPropertyTypeSite.gridOptionsProperty.Access.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="memberPropertyTypeSite.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="memberPropertyTypeSite.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="memberPropertyTypeSite.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

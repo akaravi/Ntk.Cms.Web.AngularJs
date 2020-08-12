@@ -36,7 +36,7 @@
             rashaErManage.checkAction(response);
             taskSchedulerProcess.busyIndicator.isActive = false;
             taskSchedulerProcess.ListItems = response.ListItems;
-            taskSchedulerProcess.gridOptions.fillData(taskSchedulerProcess.ListItems, response.resultAccess);
+            taskSchedulerProcess.gridOptions.fillData(taskSchedulerProcess.ListItems, response.Access);
             taskSchedulerProcess.gridOptions.currentPageNumber = response.CurrentPageNumber;
             taskSchedulerProcess.gridOptions.totalRowCount = response.TotalRowCount;
             taskSchedulerProcess.gridOptions.rowPerPage = response.RowPerPage;
@@ -64,7 +64,7 @@
 //       taskSchedulerProcess.modalTitle = 'اضافه';
 //       taskSchedulerProcess.filePickerMainImage.filename = "";
 //       taskSchedulerProcess.filePickerMainImage.fileId = null; 
-//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', "", 'GET').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/ViewModel', "", 'GET').success(function (response) {
 //           rashaErManage.checkAction(response);
 //           taskSchedulerProcess.busyIndicator.isActive = false;
 //           taskSchedulerProcess.selectedItem = response.Item;
@@ -147,7 +147,7 @@
         }
         taskSchedulerProcess.busyIndicator.isActive = true;
         taskSchedulerProcess.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
         taskSchedulerProcess.filePickerMainImage.filename = null;
@@ -155,7 +155,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -255,7 +255,7 @@
             if (isConfirmed) {
                 taskSchedulerProcess.busyIndicator.isActive = true;
                 console.log(taskSchedulerProcess.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskSchedulerProcess.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/delete', taskSchedulerProcess.selectedItemForDelete, 'POST').success(function (res) {
@@ -289,11 +289,11 @@
             { name: "ClassName", displayName: "ClassName", sortable: true, type: "string", visible: true },
             { name: "virtual_Source.Title", displayName: "قالب", sortable: true, type: "string", displayForce: true, visible: true },
             { name: 'IsPublish', displayName: 'قابل نمایش برای همه؟', sortable: true, isCheckBox: true, type: 'boolean' },
-            { name: 'ActionButton1', displayName: 'عملیات ادمین', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.AccessAdd(\'JsonFormAdminMainJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderMainAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.AccessAdd(\'JsonFormAdminMainValues\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormMainAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' },
-            { name: 'ActionButton2', displayName: 'عملیات ادمین سایت', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.AccessAdd(\'JsonFormAdminSiteJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderSiteAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.AccessAdd(\'JsonFormAdminSiteValuesDefault\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormSiteAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' }
-            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"taskSchedulerProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'taskSchedulerProcess.AccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"taskSchedulerProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow\" ng-click=\"taskSchedulerProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
+            { name: 'ActionButton1', displayName: 'عملیات ادمین', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminMainJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderMainAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminMainValues\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormMainAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' },
+            { name: 'ActionButton2', displayName: 'عملیات ادمین سایت', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminSiteJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderSiteAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminSiteValuesDefault\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormSiteAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' }
+            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'taskSchedulerProcess.AccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
         ],
         data: {},
         multiSelect: false,
@@ -319,7 +319,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     taskSchedulerProcess.scrollToFormBuilderMainAdmin = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -349,7 +349,7 @@
         taskSchedulerProcess.showSaveButton = false;
         if (preview == "false") {
             taskSchedulerProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', selectedId, 'GET').success(function (response) {
                 taskSchedulerProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 taskSchedulerProcess.selectedItem = response.Item;
@@ -395,7 +395,7 @@
     // Save Input Value Form
     taskSchedulerProcess.saveJsonFormMainAdmin = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -490,7 +490,7 @@
     // Show InputValue form builder and auto scroll to its position
     taskSchedulerProcess.scrollToFormBuilderSiteAdmin = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -521,7 +521,7 @@
         taskSchedulerProcess.showSaveButton = false;
         if (preview == "false") {
             taskSchedulerProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', selectedId, 'GET').success(function (response) {
                 taskSchedulerProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 taskSchedulerProcess.selectedItem = response.Item;
@@ -562,7 +562,7 @@
     // Save Input Value Form
     taskSchedulerProcess.saveJsonFormSiteAdmin = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -681,7 +681,7 @@
 
     taskSchedulerProcess.scrollToFormBuilder = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -710,7 +710,7 @@
         taskSchedulerProcess.addRequested = true;
         var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, IntValue1: taskSchedulerProcess.selectedAppId };
         var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, IntValue1: taskSchedulerProcess.selectedSourceId };
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessvalue/getone', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessvalue/', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             taskSchedulerProcess.addRequested = false;
             taskSchedulerProcess.formJson = $builder.forms['default'];
@@ -727,7 +727,7 @@
     taskSchedulerProcess.saveProcessInputCustomizeValue = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
         taskSchedulerProcess.selectedProcessId = taskSchedulerProcess.gridOptions.selectedRow.item.Id;       //Storing selected Process Id for further uses
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -819,7 +819,7 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskSchedulerProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/GetOne', ProcessId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/', ProcessId, 'GET').success(function (response) {
             taskSchedulerProcess.selectedItem = response.Item;
             taskSchedulerProcess.formJson = $builder.forms['default'];
             $builder.removeAllFormObject('default');
@@ -983,7 +983,7 @@
         }
         taskSchedulerProcess.selectedItem.LinkModuleFilePreviewImageId = node.Id;
         taskSchedulerProcess.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             taskSchedulerProcess.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -1009,7 +1009,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 taskSchedulerProcess.fileIdToDelete,
                 "GET"
               )
@@ -1060,7 +1060,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", "GET")
             .success(function(response) {
               taskSchedulerProcess.FileItem = response.Item;
                 taskSchedulerProcess.FileItem.FileName = uploadFile.name;

@@ -3,9 +3,9 @@
     <div class="row" rasha-loading="vehiclePropertyType.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="vehiclePropertyType.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="vehiclePropertyType.Add" ng-click="vehiclePropertyType.openAddModal()" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="vehiclePropertyType.Edit" ng-click="vehiclePropertyType.openEditModal()" type="button" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="vehiclePropertyType.Delete" ng-click="vehiclePropertyType.deleteRow()" type="button" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="vehiclePropertyType.Add" ng-click="vehiclePropertyType.openAddModal()" ng-show="vehiclePropertyType.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehiclePropertyType.Edit" ng-click="vehiclePropertyType.openEditModal()" type="button" ng-show="vehiclePropertyType.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="vehiclePropertyType.Delete" ng-click="vehiclePropertyType.deleteRow()" type="button" ng-show="vehiclePropertyType.gridOptions.Access.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="vehiclePropertyType.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="vehiclePropertyType.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="vehiclePropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

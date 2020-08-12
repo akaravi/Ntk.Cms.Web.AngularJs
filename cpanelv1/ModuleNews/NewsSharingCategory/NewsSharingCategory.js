@@ -24,7 +24,7 @@
             rashaErManage.checkAction(response);
             newssharingcategory.categoryBusyIndicator.isActive = false;
             newssharingcategory.ListItems = response.ListItems;
-            newssharingcategory.gridOptions.resultAccess = response.resultAccess;
+            newssharingcategory.gridOptions.Access = response.Access;
             newssharingcategory.gridOptions.fillData(newssharingcategory.ListItems);
             newssharingcategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newssharingcategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -44,7 +44,7 @@
     newssharingcategory.addRequested = false;
     newssharingcategory.openAddModal = function () {
         newssharingcategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.selectedItem = response.Item;
             $modal.open({
@@ -87,7 +87,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/GetOne',  newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/',  newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.selectedItem = response.Item;
             $modal.open({
@@ -146,7 +146,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(newssharingcategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/GetOne', newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/', newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newssharingcategory.selectedItemForDelete = response.Item;
                     console.log(newssharingcategory.selectedItemForDelete);

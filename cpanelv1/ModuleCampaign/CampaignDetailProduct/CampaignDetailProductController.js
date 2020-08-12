@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             campaignDetailProduct.busyIndicator.isActive = false;
             campaignDetailProduct.ListItems = response.ListItems;
-            campaignDetailProduct.gridOptions.fillData(campaignDetailProduct.ListItems, response.resultAccess);
+            campaignDetailProduct.gridOptions.fillData(campaignDetailProduct.ListItems, response.Access);
             campaignDetailProduct.gridOptions.currentPageNumber = response.CurrentPageNumber;
             campaignDetailProduct.gridOptions.totalRowCount = response.TotalRowCount;
             campaignDetailProduct.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
     campaignDetailProduct.addRequested = false;
     campaignDetailProduct.openAddModal = function () {
         campaignDetailProduct.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailProduct.busyIndicator.isActive = false;
             campaignDetailProduct.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/GetOne', campaignDetailProduct.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/', campaignDetailProduct.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailProduct.selectedItem = response.Item;
             if (campaignDetailProduct
@@ -210,7 +210,7 @@
             if (isConfirmed) {
                 campaignDetailProduct.busyIndicator.isActive = true;
                 console.log(campaignDetailProduct.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/GetOne', campaignDetailProduct.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProduct/', campaignDetailProduct.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailProduct.selectedItemForDelete = response.Item;
                     console.log(campaignDetailProduct.selectedItemForDelete);

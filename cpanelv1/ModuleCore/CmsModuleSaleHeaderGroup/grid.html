@@ -4,9 +4,9 @@
     <div class="row" rasha-loading="CmsModuleHeaderG.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="CmsModuleHeaderG.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="CmsModuleHeaderG.Add" ng-click="CmsModuleHeaderG.openAddModal()" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="CmsModuleHeaderG.Edit" ng-click="CmsModuleHeaderG.openEditModal()" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="CmsModuleHeaderG.Delete" ng-click="CmsModuleHeaderG.deleteRow()" ng-show="CmsModuleHeaderG.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="CmsModuleHeaderG.Add" ng-click="CmsModuleHeaderG.openAddModal()" ng-show="CmsModuleHeaderG.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="CmsModuleHeaderG.Edit" ng-click="CmsModuleHeaderG.openEditModal()" ng-show="CmsModuleHeaderG.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="CmsModuleHeaderG.Delete" ng-click="CmsModuleHeaderG.deleteRow()" ng-show="CmsModuleHeaderG.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="CmsModuleHeaderG.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="CmsModuleHeaderG.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="CmsModuleHeaderG.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

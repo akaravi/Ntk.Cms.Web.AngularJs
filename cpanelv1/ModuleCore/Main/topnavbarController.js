@@ -162,8 +162,11 @@
                         lang: $rootScope.tokenInfo.UserLanguage
                     },
                     "POST").success(function (response) {
+                    if(response.IsSuccess)
+                    {
                     rashaErManage.checkAction(response);
                     $rootScope.tokenInfo = response;
+                    localStorage.setItem("userGlobaltoken", response.token);
 
                     $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
                     if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
@@ -173,11 +176,17 @@
 
                     if (data != 'UserAccessAdminAllowToAllData' && data != 'UserAccessAdminAllowToProfessionalData')
                         topNavBar.selectedItem.LinkCmsSiteId = SelectedCurrentSiteId;
-                    localStorage.setItem("userGlobaltoken", response.token);
+
                     if (!Silent)
                         rashaErManage.showMessage("دسترسی جدید اعمال گردید");
                     if (!Silent)
                         $state.reload();
+                    }
+                    else
+                    {
+                            rashaErManage.showMessage("دسترسی نمایش کلیه اطلاعات تغییر نکرد");
+                          rashaErManage.checkAction(data, errCode);
+                    }
                     topNavBar.busyIndicator.isActive = false;
                 }).error(function (data, errCode, c, d) {
                     topNavBar.busyIndicator.isActive = false;

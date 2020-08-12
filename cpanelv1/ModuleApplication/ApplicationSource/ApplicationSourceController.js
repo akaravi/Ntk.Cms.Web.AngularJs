@@ -22,7 +22,7 @@
             rashaErManage.checkAction(response);
             appSource.busyIndicator.isActive = false;
             appSource.ListItems = response.ListItems;
-            appSource.gridOptions.fillData(appSource.ListItems, response.resultAccess);
+            appSource.gridOptions.fillData(appSource.ListItems, response.Access);
             appSource.gridOptions.currentPageNumber = response.CurrentPageNumber;
             appSource.gridOptions.totalRowCount = response.TotalRowCount;
             appSource.gridOptions.rowPerPage = response.RowPerPage;
@@ -52,7 +52,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/GetOne', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appSource.selectedItem = response.Item;
@@ -75,7 +75,7 @@
             appSource.filePickerMainImage.filename = null;
             appSource.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response.Item.LinkMainImageId, "GET")
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         appSource.filePickerMainImage.filename = response2.Item.FileName;
@@ -151,7 +151,7 @@
             if (isConfirmed) {
                 appSource.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/GetOne', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appSource.selectedItemForDelete = response.Item;
@@ -305,7 +305,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                            cmsServerConfig.configApiServerPath + "FileContent/",
                             appSource.fileIdToDelete,
                             "GET"
                         )
@@ -356,7 +356,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", "GET")
                     .success(function (response) {
                         appSource.FileItem = response.Item;
                         appSource.FileItem.FileName = uploadFile.name;

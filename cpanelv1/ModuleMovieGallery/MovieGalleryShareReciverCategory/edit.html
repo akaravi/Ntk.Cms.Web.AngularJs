@@ -19,14 +19,14 @@
                     <div class="col-sm-10" rasha-record-status="movieGalleryShareReciverCategory"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="movieGalleryShareReciverCategory.AccessAdd('LinkShareReciverCategoryId')">
+                <div class="form-group" ng-show="movieGalleryShareReciverCategory.CheckAccessAdd('LinkShareReciverCategoryId')">
                     <label class="col-sm-2 control-label">{{'Link_Group_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkShareReciverCategoryId" rasha-autocomplete="movieGalleryShareReciverCategory.LinkShareReciverCategoryIdSelector" ng-model="frmmovieGalleryShareReciverCategoryAdd.selectedItem.LinkShareReciverCategoryId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="movieGalleryShareReciverCategory.AccessAdd('LinkShareServerCategoryId')">
+                <div class="form-group" ng-show="movieGalleryShareReciverCategory.CheckAccessAdd('LinkShareServerCategoryId')">
                     <label class="col-sm-2 control-label">{{'Link_Share_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkShareServerCategoryId" rasha-autocomplete="movieGalleryShareReciverCategory.LinkShareServerCategoryIdSelector" ng-model="frmmovieGalleryShareReciverCategoryAdd.selectedItem.LinkShareServerCategoryId" />

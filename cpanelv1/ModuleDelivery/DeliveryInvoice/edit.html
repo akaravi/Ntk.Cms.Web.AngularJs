@@ -5,7 +5,7 @@
             <h3 class="m-t-none m-b">{{'Edit_Invoice'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmdeliveryInvoiceEdit" novalidate ng-submit="deliveryInvoice.editRow(frmdeliveryInvoiceEdit)" >
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryInvoice.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="deliveryInvoice.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmdeliveryInvoiceEdit.RecordStatus.$invalid && !frmdeliveryInvoiceEdit.RecordStatus.$pristine,'has-success' : frmdeliveryInvoiceEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="deliveryInvoice"></div>
@@ -18,13 +18,13 @@
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="deliveryInvoice.AccessEdit('DeliveryNumber')">
+                <div class="form-group" ng-show="deliveryInvoice.CheckAccessEdit('DeliveryNumber')">
                     <label class="col-sm-2 control-label">{{"Delivery_Number"|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="number" ng-model="deliveryInvoice.selectedItem.DeliveryNumber" class="form-control" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="deliveryInvoice.AccessEdit('IsCompleted')">
+                <div class="form-group" ng-show="deliveryInvoice.CheckAccessEdit('IsCompleted')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="deliveryInvoice.selectedItem.IsCompleted" />{{'Is_Completed'|lowercase|translate}}
@@ -39,14 +39,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryInvoice.AccessEdit('LinkExternalModuleShopInvoiceId')">
+                <div class="form-group" ng-show="deliveryInvoice.CheckAccessEdit('LinkExternalModuleShopInvoiceId')">
                     <label class="col-sm-2 control-label">{{'Factor'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalModuleShopInvoiceId" rasha-autocomplete="deliveryInvoice.LinkExternalModuleShopInvoiceIdSelector" ng-model="frmdeliveryInvoiceEdit.selectedItem.LinkExternalModuleShopInvoiceId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryInvoice.AccessEdit('LinkDeliveryMemberSettingId')">
+                <div class="form-group" ng-show="deliveryInvoice.CheckAccessEdit('LinkDeliveryMemberSettingId')">
                     <label class="col-sm-2 control-label">{{'Delivery_Settings'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDeliveryMemberSettingId" rasha-autocomplete="deliveryInvoice.LinkDeliveryMemberSettingIdSelector" ng-model="deliveryInvoice.selectedItem.LinkExternalModuleShopInvoiceId" />

@@ -56,7 +56,7 @@
             deliveryInvoice.ListItems = response.ListItems;
        
             // Call Excerpt Function to shorten the length of long strings
-            deliveryInvoice.gridOptions.fillData(deliveryInvoice.ListItems, response.resultAccess);
+            deliveryInvoice.gridOptions.fillData(deliveryInvoice.ListItems, response.Access);
             deliveryInvoice.gridOptions.currentPageNumber = response.CurrentPageNumber;
             deliveryInvoice.gridOptions.totalRowCount = response.TotalRowCount;
             deliveryInvoice.gridOptions.rowPerPage = response.RowPerPage;
@@ -85,7 +85,7 @@
     deliveryInvoice.addRequested = false;
     deliveryInvoice.openAddModal = function () {
         deliveryInvoice.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;
             deliveryInvoice.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/GetOne', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.selectedItem = response.Item;
             deliveryInvoice.BeginTime.defaultDate = deliveryInvoice.selectedItem.BeginTime;
@@ -217,7 +217,7 @@
             if (isConfirmed) {
                 deliveryInvoice.busyIndicator.isActive = true;
                 console.log(deliveryInvoice.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/GetOne', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryInvoice.selectedItemForDelete = response.Item;
                     console.log(deliveryInvoice.selectedItemForDelete);

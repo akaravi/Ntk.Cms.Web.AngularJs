@@ -11,7 +11,7 @@
             rashaErManage.checkAction(response);
             articlecategory.ListItems = response.ListItems;
             articlecategory.categoryBusyIndicator.isActive = false;
-            articlecategory.gridOptions.fillData(articlecategory.ListItems, response.resultAccess);
+            articlecategory.gridOptions.fillData(articlecategory.ListItems, response.Access);
             articlecategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             articlecategory.gridOptions.totalRowCount = response.TotalRowCount;
             articlecategory.gridOptions.rowPerPage = response.RowPerPage;  
@@ -29,7 +29,7 @@
     articlecategory.addRequested = false;
     articlecategory.openAddModal = function () {
         articlecategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articlecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -97,7 +97,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/GetOne', articlecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/', articlecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articlecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -210,7 +210,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(articlecategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/GetOne',  articlecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/',  articlecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     articlecategory.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/delete', articlecategory.selectedItemForDelete, 'POST').success(function (res) {
@@ -318,7 +318,7 @@
         }
         articleContent.selectedItem.LinkMainImageId = node.Id;
         articleContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             articleContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

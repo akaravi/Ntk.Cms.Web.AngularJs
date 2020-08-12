@@ -2,10 +2,10 @@
     <!--<div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.openAddModal()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'ADD'|lowercase|translate}}</button>
-            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.autoAdd()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'AUTO_ADD'|lowercase|translate}}</button>
-            <button type="button" class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="cmsMdlPayPrc.openEditModal()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessEditRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'edit'|lowercase|translate}}</button>
-            <button type="button" class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="cmsMdlPayPrc.deleteRow()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessDeleteRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'delete'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.openAddModal()" ng-show="cmsMdlPayPrc.gridOptions.Access.CheckAccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'ADD'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.autoAdd()" ng-show="cmsMdlPayPrc.gridOptions.Access.CheckAccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="cmsMdlPayPrc.openEditModal()" ng-show="cmsMdlPayPrc.gridOptions.Access.CheckAccessEditRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'edit'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="cmsMdlPayPrc.deleteRow()" ng-show="cmsMdlPayPrc.gridOptions.Access.AccessDeleteRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'delete'|lowercase|translate}}</button>
             <button type="button" class="btn btn-success" ng-click="cmsMdlPayPrc.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
         </div>
     </div>

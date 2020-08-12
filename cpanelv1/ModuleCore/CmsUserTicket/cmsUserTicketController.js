@@ -12,7 +12,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreTokenUser/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.ListItems = response.ListItems;
-            cmsUserTicketgrd.gridOptions.fillData(cmsUserTicketgrd.ListItems , response.resultAccess);
+            cmsUserTicketgrd.gridOptions.fillData(cmsUserTicketgrd.ListItems , response.Access);
             cmsUserTicketgrd.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsUserTicketgrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsUserTicketgrd.gridOptions.rowPerPage = response.RowPerPage;
@@ -24,7 +24,7 @@
     cmsUserTicketgrd.addRequested = false;
     cmsUserTicketgrd.openAddModal = function () {
         cmsUserTicketgrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.selectedItem = response.Item;
             $modal.open({
@@ -62,7 +62,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/GetOne', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.selectedItem = response.Item;
             $modal.open({
@@ -118,7 +118,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUserTicketgrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/GetOne', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsUserTicketgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserTicketgrd.selectedItemForDelete);

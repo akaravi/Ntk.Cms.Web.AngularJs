@@ -5,36 +5,36 @@
             <h3 class="m-t-none m-b">{{'Edit_User_On_Site'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsSiteEdit" novalidate ng-submit="cmsSiteUser.editRow(frmCmsSiteEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="cmsSiteUser.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsSiteUserEdit.RecordStatus.$invalid && !frmcmsSiteUserEdit.RecordStatus.$pristine,'has-success' : frmcmsSiteUserEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsSiteUser"></div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2  control-label" ng-show="cmsSiteUser.AccessEdit('ExpireDate')"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                    <label class="col-sm-2  control-label" ng-show="cmsSiteUser.CheckAccessEdit('ExpireDate')"> {{'FINISH_DATE'|lowercase|translate}} </label>
                     <div class="col-sm-6 col-md-4">
                         
                         <adm-dtp ng-model='ExpireDate' ng-model-db="cmsSiteUser.selectedItem.ExpireDate"
                             full-data='ToDate_detail' mindate="{{FromDate_detail.unix}}" disable="{{!FromDate_detail}}"
-                            options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="cmsSiteUser.AccessEdit('ExpireDate')">
+                            options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="cmsSiteUser.CheckAccessEdit('ExpireDate')">
                         </adm-dtp>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.AccessEdit('LinkUserId')">
+                <div class="form-group" ng-show="cmsSiteUser.CheckAccessEdit('LinkUserId')">
                     <label class="col-sm-2 control-label">{{'USER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkUserId" rasha-autocomplete="cmsSiteUser.LinkUserIdSelector" ng-model="cmsSiteUser.selectedItem.LinkUserId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteUser.AccessEdit('LinkSiteId')">
+                <div class="form-group" ng-show="cmsSiteUser.CheckAccessEdit('LinkSiteId')">
                     <label class="col-sm-2 control-label">{{'SITE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkSiteId" rasha-autocomplete="cmsSiteUser.LinkSiteIdSelector" ng-model="cmsSiteUser.selectedItem.LinkSiteId" />
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsSiteUser.AccessEdit('LinkUserGroupId')"
+                <div class="form-group" ng-show="cmsSiteUser.CheckAccessEdit('LinkUserGroupId')"
                      ng-class="{'has-error' : frmCmsSiteEdit.UserGroup.$invalid && !frmCmsSiteEdit.UserGroup.$pristine,'has-success' : frmCmsSiteEdit.UserGroup.$valid}">
                     <label class="col-sm-2 control-label">{{'USER_GROUP'|lowercase|translate}}</label>
                     <div class="col-sm-10">

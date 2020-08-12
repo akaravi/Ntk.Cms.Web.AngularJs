@@ -19,7 +19,7 @@
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;
             inputLogCtrl.ListItems = response.ListItems;
-            inputLogCtrl.gridOptions.fillData(inputLogCtrl.ListItems, response.resultAccess);
+            inputLogCtrl.gridOptions.fillData(inputLogCtrl.ListItems, response.Access);
             inputLogCtrl.gridOptions.currentPageNumber = response.CurrentPageNumber;
             inputLogCtrl.gridOptions.totalRowCount = response.TotalRowCount;
             inputLogCtrl.gridOptions.rowPerPage = response.RowPerPage;
@@ -41,7 +41,7 @@
     inputLogCtrl.addRequested = false;
     inputLogCtrl.openAddModal = function () {
         inputLogCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;
             inputLogCtrl.selectedItem = response.Item;
@@ -90,7 +90,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/GetOne', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.selectedItem = response.Item;
             $modal.open({
@@ -152,7 +152,7 @@
             if (isConfirmed) {
                 inputLogCtrl.busyIndicator.isActive = true;
                 console.log(inputLogCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/GetOne', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     inputLogCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/delete', inputLogCtrl.selectedItemForDelete, 'POST').success(function (res) {

@@ -22,7 +22,7 @@
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;
             ServiceComment.ListItems = response.ListItems;
-            ServiceComment.gridOptions.fillData(ServiceComment.ListItems , response.resultAccess);
+            ServiceComment.gridOptions.fillData(ServiceComment.ListItems , response.Access);
             ServiceComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             ServiceComment.gridOptions.totalRowCount = response.TotalRowCount;
             ServiceComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -42,7 +42,7 @@
     ServiceComment.addRequested = false;
     ServiceComment.openAddModal = function () {
         ServiceComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;
             ServiceComment.selectedItem = response.Item;
@@ -88,7 +88,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/GetOne', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.selectedItem = response.Item;
             $modal.open({
@@ -150,7 +150,7 @@
             if (isConfirmed) {
                 ServiceComment.busyIndicator.isActive = true;
                 console.log(ServiceComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/GetOne', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     ServiceComment.selectedItemForDelete = response.Item;
                     console.log(ServiceComment.selectedItemForDelete);

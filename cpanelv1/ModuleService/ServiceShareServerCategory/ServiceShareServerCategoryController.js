@@ -115,7 +115,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceShareServerCategory.ListItems = response.ListItems;
-            serviceShareServerCategory.gridOptions.fillData(serviceShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            serviceShareServerCategory.gridOptions.fillData(serviceShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             serviceShareServerCategory.contentBusyIndicator.isActive = false;
             serviceShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             serviceShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -135,7 +135,7 @@
         if (buttonIsPressed) { return };
         serviceShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             serviceShareServerCategory.selectedItem = response.Item;
@@ -181,7 +181,7 @@
 
         serviceShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetOne', serviceShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', serviceShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             serviceShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -293,7 +293,7 @@
                 serviceShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     serviceShareServerCategory.selectedItemForDelete = response.Item;
@@ -352,7 +352,7 @@
             rashaErManage.checkAction(response);
             serviceShareServerCategory.contentBusyIndicator.isActive = false;
             serviceShareServerCategory.ListItems = response.ListItems;
-            serviceShareServerCategory.gridOptions.fillData(serviceShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            serviceShareServerCategory.gridOptions.fillData(serviceShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             serviceShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             serviceShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
             serviceShareServerCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -375,7 +375,7 @@
         serviceShareServerCategory.addRequested = false;
         serviceShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareServerCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareServerCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -401,7 +401,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareServerCategory/GetOne', serviceShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareServerCategory/', serviceShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             serviceShareServerCategory.selectedItem = response1.Item;
@@ -495,7 +495,7 @@
                 serviceShareServerCategory.showbusy = true;
                 serviceShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/GetOne", serviceShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/", serviceShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     serviceShareServerCategory.showbusy = false;
                     serviceShareServerCategory.showIsBusy = false;
@@ -755,7 +755,7 @@
         }
         serviceShareServerCategory.selectedItem.LinkMainImageId = node.Id;
         serviceShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             serviceShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

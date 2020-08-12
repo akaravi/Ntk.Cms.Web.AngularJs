@@ -167,7 +167,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"charttag/getall", chartTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.ListItems = response.ListItems;
-            chartTag.gridOptions.fillData(chartTag.ListItems, response.resultAccess); // Sending Access as an argument
+            chartTag.gridOptions.fillData(chartTag.ListItems, response.Access); // Sending Access as an argument
             chartTag.contentBusyIndicator.isActive = false;
             chartTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartTag.gridOptions.totalRowCount = response.TotalRowCount;
@@ -187,7 +187,7 @@
     // Open Add Category Modal 
     chartTag.addNewCategoryModel = function () {
         chartTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -233,7 +233,7 @@
 
         chartTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/GetOne', chartTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/', chartTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             chartTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -346,7 +346,7 @@
             if (isConfirmed) {
                 chartTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartTag.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/delete', chartTag.selectedItemForDelete, 'POST').success(function (res) {
@@ -403,7 +403,7 @@
             rashaErManage.checkAction(response);
             chartTag.contentBusyIndicator.isActive = false;
             chartTag.ListItems = response.ListItems;
-            chartTag.gridOptions.fillData(chartTag.ListItems, response.resultAccess); // Sending Access as an argument
+            chartTag.gridOptions.fillData(chartTag.ListItems, response.Access); // Sending Access as an argument
             chartTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartTag.gridOptions.totalRowCount = response.TotalRowCount;
             chartTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -418,7 +418,7 @@
 
         chartTag.addRequested = false;
         chartTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'charttag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'charttag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.selectedItem = response.Item;
             chartTag.selectedItem.LinkCategoryTagId = chartTag.CategoryTagId;
@@ -443,7 +443,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'charttag/GetOne', chartTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'charttag/', chartTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             chartTag.selectedItem = response1.Item;
@@ -526,7 +526,7 @@
                 console.log(chartTag.gridOptions.selectedRow.item);
                 chartTag.showbusy = true;
                 chartTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"charttag/GetOne", chartTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"charttag/", chartTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     chartTag.showbusy = false;
                     chartTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -722,7 +722,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             chartTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -799,14 +799,14 @@
         chartTag.fileIdToDelete = chartTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", chartTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     chartTag.remove(chartTag.FileList, chartTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 chartTag.FileItem = response3.Item;
                                 chartTag.FileItem.FileName = name;
@@ -909,7 +909,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 chartTag.fileIdToDelete,
                 "GET"
               )
@@ -959,7 +959,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     chartTag.FileItem = response.Item;
                     chartTag.FileItem.FileName = uploadFile.name;
                     chartTag.FileItem.uploadName = uploadFile.uploadName;
@@ -1111,7 +1111,7 @@
         }
         chartTag.selectedItem.LinkMainImageId = node.Id;
         chartTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             chartTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -11,7 +11,7 @@
                     <div class="col-sm-10" rasha-record-status="discountGroup"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="discountGroup.AccessAdd('Title')"
+                <div class="form-group" ng-show="discountGroup.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmdiscountGroupAdd.Title.$invalid && !frmdiscountGroupAdd.Title.$pristine,'has-success' : frmdiscountGroupAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">

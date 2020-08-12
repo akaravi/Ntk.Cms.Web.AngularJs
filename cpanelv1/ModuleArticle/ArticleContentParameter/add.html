@@ -17,21 +17,21 @@
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleContentParameter.AccessAdd('LinkContentParameterTypeId')">
+                            <div class="form-group" ng-show="articleContentParameter.CheckAccessAdd('LinkContentParameterTypeId')">
                                 <label class="col-sm-2 control-label">{{'ParameterType'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkContentParameterTypeId" rasha-autocomplete="articleContentParameter.LinkContentParameterTypeIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkContentParameterTypeId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleContentParameter.AccessAdd('LinkExternalCoreCmsSiteCategoryId')">
+                            <div class="form-group" ng-show="articleContentParameter.CheckAccessAdd('LinkExternalCoreCmsSiteCategoryId')">
                                 <label class="col-sm-2 control-label">{{'Site_Categories'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalCoreCmsSiteCategoryId" rasha-autocomplete="articleContentParameter.LinkExternalCoreCmsSiteCategoryIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkExternalCoreCmsSiteCategoryId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="articleContentParameter.AccessAdd('LinkModuleCategoryId')">
+                            <div class="form-group" ng-show="articleContentParameter.CheckAccessAdd('LinkModuleCategoryId')">
                                 <label class="col-sm-2 control-label">{{'Module_Categorization'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkModuleCategoryId" rasha-autocomplete="articleContentParameter.LinkModuleCategoryIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkModuleCategoryId" />

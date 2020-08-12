@@ -11,21 +11,21 @@
                     <div class="col-sm-10" rasha-record-status="emailOutBoxReciverLock"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailOutBoxReciverLock.AccessEdit('ProcessType')">
+                <div class="form-group" ng-show="emailOutBoxReciverLock.CheckAccessEdit('ProcessType')">
                     <label class="col-sm-2 control-label">{{'ProcessType'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="ProcessType" ng-model="emailOutBoxReciverLock.selectedItem.ProcessType" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailOutBoxReciverLock.AccessEdit('ProcessId')">
+                <div class="form-group" ng-show="emailOutBoxReciverLock.CheckAccessEdit('ProcessId')">
                     <label class="col-sm-2 control-label">{{'ProcessId'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="ProcessId" ng-model="emailOutBoxReciverLock.selectedItem.ProcessId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="emailOutBoxReciverLock.AccessEdit('ProcessIdSecond')">
+                <div class="form-group" ng-show="emailOutBoxReciverLock.CheckAccessEdit('ProcessIdSecond')">
                     <label class="col-sm-2 control-label">{{'ProcessIdSecond'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="ProcessIdSecond" ng-model="emailOutBoxReciverLock.selectedItem.ProcessIdSecond" />

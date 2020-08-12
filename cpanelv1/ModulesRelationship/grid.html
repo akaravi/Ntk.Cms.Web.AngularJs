@@ -2,14 +2,14 @@
     <!--    <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="modulesRelationship.openAddModal()" ng-show="modulesRelationship.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
-            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="modulesRelationship.openEditModal()" ng-show="modulesRelationship.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
-            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="modulesRelationship.deleteRow()" ng-show="modulesRelationship.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="modulesRelationship.openAddModal()" ng-show="modulesRelationship.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="modulesRelationship.openEditModal()" ng-show="modulesRelationship.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="modulesRelationship.deleteRow()" ng-show="modulesRelationship.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="modulesRelationship.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="modulesRelationship.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="modulesRelationship.getCount()">{{'number'|lowercase|translate}}&nbsp;{{modulesRelationship.ListItemsTotalRowCount}}</button>
-            <!--<button class="btn btn-danger" rasha-userrole="cmsUserTicketController.deleteSelectRow" ng-click="modulesRelationship.deleteSelectRow()" ng-show="modulesRelationship.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'Remove_Selected_Items'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.DeleteAll" ng-click="modulesRelationship.deleteAllRow()" ng-show="modulesRelationship.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'Remove_All_Items'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-danger" rasha-userrole="cmsUserTicketController.deleteSelectRow" ng-click="modulesRelationship.deleteSelectRow()" ng-show="modulesRelationship.gridOptions.Access.AccessDeleteRow" type="button">{{'Remove_Selected_Items'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.DeleteAll" ng-click="modulesRelationship.deleteAllRow()" ng-show="modulesRelationship.gridOptions.Access.AccessDeleteRow" type="button">{{'Remove_All_Items'|lowercase|translate}}</button>-->
         </div>
         <hr />
         <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">

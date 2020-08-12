@@ -5,7 +5,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"coreSiteActionPage/getall", cmsSiteActionPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.ListItems = response.ListItems;
-            cmsSiteActionPagegrd.gridOptions.fillData(cmsSiteActionPagegrd.ListItems,response.resultAccess);
+            cmsSiteActionPagegrd.gridOptions.fillData(cmsSiteActionPagegrd.ListItems,response.Access);
             cmsSiteActionPagegrd.gridOptions.currentPageNumber = response.CurrentPageNumber+1;
             cmsSiteActionPagegrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSiteActionPagegrd.gridOptions.rowPerPage = response.RowPerPage;
@@ -18,7 +18,7 @@
     cmsSiteActionPagegrd.addRequested = false;
     cmsSiteActionPagegrd.openAddModal = function () {
         cmsSiteActionPagegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.selectedItem = response.Item;
             $modal.open({
@@ -56,7 +56,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/GetOne',  cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/',  cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.selectedItem = response.Item;
             $modal.open({
@@ -111,7 +111,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/GetOne', cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/', cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteActionPagegrd.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/delete', cmsSiteActionPagegrd.selectedItemForDelete , 'POST').success(function (res) {

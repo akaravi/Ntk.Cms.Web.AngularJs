@@ -84,7 +84,7 @@
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-            discountOfferTransaction.gridOptions.fillData(discountOfferTransaction.ListItems, response.resultAccess);
+            discountOfferTransaction.gridOptions.fillData(discountOfferTransaction.ListItems, response.Access);
             discountOfferTransaction.gridOptions.currentPageNumber = response.CurrentPageNumber;
             discountOfferTransaction.gridOptions.totalRowCount = response.TotalRowCount;
             discountOfferTransaction.gridOptions.rowPerPage = response.RowPerPage;
@@ -117,7 +117,7 @@
     discountOfferTransaction.addRequested = false;
     discountOfferTransaction.openAddModal = function () {
         discountOfferTransaction.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.busyIndicator.isActive = false;
             discountOfferTransaction.selectedItem = response.Item;
@@ -170,7 +170,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/GetOne', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.selectedItem = response.Item;
             if (discountOfferTransaction
@@ -235,7 +235,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountOfferTransaction.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/GetOne', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountOfferTransaction.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/delete', discountOfferTransaction.selectedItemForDelete, 'POST').success(function (res) {

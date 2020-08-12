@@ -116,7 +116,7 @@
             rashaErManage.checkAction(response);
             ticketingTask.busyIndicator.isActive = false;
             ticketingTask.ListItems = response.ListItems;
-            ticketingTask.gridOptions.fillData(ticketingTask.ListItems, response.resultAccess);
+            ticketingTask.gridOptions.fillData(ticketingTask.ListItems, response.Access);
             ticketingTask.gridOptions.currentPageNumber = response.CurrentPageNumber;
             ticketingTask.gridOptions.totalRowCount = response.TotalRowCount;
             ticketingTask.gridOptions.rowPerPage = response.RowPerPage;
@@ -132,7 +132,7 @@
         ticketingTask.modalTitle = 'اضافه';
         ticketingTask.filePickerFiles.filename = "";
         ticketingTask.filePickerFiles.fileId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
@@ -151,7 +151,7 @@
             return;
         }
         ticketingTask.modalTitle = 'مشاهده تیکت';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingTask.selectedItem = response.Item;
             ticketingTask.parseFileIds(response.Item.LinkFileIds);
@@ -178,14 +178,14 @@
             return;
         }
         ticketingTask.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingTask.selectedItem = response.Item;
                 ticketingTask.parseFileIds(response.Item.LinkFileIds);
                 ticketingTask.filePickerFiles.filename = null;
                 ticketingTask.filePickerFiles.fileId = null;
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
                     rashaErManage.checkAction(responseTask);
                     if (responseTask.IsSuccess) {
                         ticketingTask.selectedItem.virtual_ticketing=responseTask.Item;
@@ -264,7 +264,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingTask.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/delete', ticketingTask.selectedItemForDelete, 'POST').success(function (res) {
@@ -291,7 +291,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingTask.answersGridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
                     console.log(ticketingTask.selectedItemForDelete);
@@ -352,7 +352,7 @@
                 ticketingTask.answersListItems = response.ListItems;
                 if (response.ListItems.length < 1)
                     ticketingTask.answersListItems.push({ Id: 0, LinkTicketId: 0, HtmlBody: "هیچ پاسخی وجود ندارد!" });
-                ticketingTask.answersGridOptions.fillData(ticketingTask.answersListItems, response.resultAccess);
+                ticketingTask.answersGridOptions.fillData(ticketingTask.answersListItems, response.Access);
                 ticketingTask.answersGridOptions.currentPageNumber = response.CurrentPageNumber;
                 ticketingTask.answersGridOptions.totalRowCount = response.TotalRowCount;
                 ticketingTask.answersGridOptions.RowPerPage = response.RowPerPage;
@@ -399,7 +399,7 @@
         ticketingTask.attachedFile = "";
         ticketingTask.filePickerFiles.filename = "";
         ticketingTask.filePickerFiles.fileId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/ViewModel', "", 'GET').success(function (response) {
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
@@ -525,7 +525,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             ticketingTask.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -561,14 +561,14 @@
         ticketingTask.fileIdToDelete = ticketingTask.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", ticketingTask.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", ticketingTask.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     ticketingTask.remove(ticketingTask.FileList, ticketingTask.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 ticketingTask.FileItem = response3.Item;
                                 ticketingTask.FileItem.FileName = name;

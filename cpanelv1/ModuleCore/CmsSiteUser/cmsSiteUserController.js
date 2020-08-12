@@ -18,7 +18,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteUser/getall", cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.ListItems = response.ListItems;
-            cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.resultAccess);
+            cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
             cmsSiteUser.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsSiteUser.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSiteUser.gridOptions.rowPerPage = response.RowPerPage;
@@ -50,7 +50,7 @@
             rashaErManage.checkAction(response);
             cmsSiteUser.busyIndicator.isActive = false;
             cmsSiteUser.ListItemsSite = response.ListItems;
-            cmsSiteUser.gridOptionsSite.fillData(cmsSiteUser.ListItemsSite, response.resultAccess);
+            cmsSiteUser.gridOptionsSite.fillData(cmsSiteUser.ListItemsSite, response.Access);
             cmsSiteUser.gridOptionsSite.currentPageNumber = response.CurrentPageNumber;
             cmsSiteUser.gridOptionsSite.totalRowCount = response.TotalRowCount;
             cmsSiteUser.gridOptionsSite.rowPerPage = response.RowPerPage;
@@ -75,7 +75,7 @@
         if (buttonIsPressed) { return };
         cmsSiteUser.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
@@ -108,9 +108,9 @@
         ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/add', cmsSiteUser.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/GetOne', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.ListItems.unshift(response1.Item);
                         cmsSiteUser.gridOptions.myfilterText(cmsSiteUser.ListItems, "LinkUserGroupId", cmsSiteUser.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -118,7 +118,7 @@
                         //cmsSiteUser.replaceItem(cmsSiteUser.selectedItem.Id, response1.Item);
                         cmsSiteUser.addRequested = false;
                         cmsSiteUser.busyIndicator.isActive = false;
-                        //cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.resultAccess);
+                        //cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
                         cmsSiteUser.closeModal();
                     }).error(function (data, errCode, c, d) {
                         cmsSiteUser.addRequested = false;
@@ -148,7 +148,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetOne', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
@@ -181,9 +181,9 @@
             cmsSiteUser.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/GetOne', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.replaceItem(cmsSiteUser.selectedItem.Id, response1.Item);
                     }).error(function (data, errCode, c, d) {
@@ -197,7 +197,7 @@
                 //cmsSiteUser.gridOptions.myfilterText(listItems, "LinkUserId", cmsSiteUser.cmsUsersListItems, "Username", "LinkUserTitle");
                 //cmsSiteUser.gridOptions.myfilterText(listItems, "LinkUserGroupId", cmsSiteUser.cmsUserGroups, "Title", "LinkUserGroupTitle");
                 cmsSiteUser.busyIndicator.isActive = false;
-                cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response1.resultAccess);
+                cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response1.Access);
                 cmsSiteUser.closeModal();
             }
 
@@ -232,7 +232,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetOne', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
@@ -391,7 +391,7 @@ cmsSiteUser.gridOptionsSite = {
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteUser/getall", filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.ListItems = response.ListItems;
-            cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.resultAccess);
+            cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
             cmsSiteUser.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsSiteUser.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSiteUser.gridOptions.rowPerPage = response.RowPerPage;

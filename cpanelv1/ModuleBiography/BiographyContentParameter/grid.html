@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="biographyContentParameter.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="biographyContentParameter.Add" ng-click="biographyContentParameter.openAddModal()" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="biographyContentParameter.Edit" ng-click="biographyContentParameter.openEditModal()"ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="biographyContentParameter.Delete" ng-click="biographyContentParameter.deleteRow()" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="biographyContentParameter.Add" ng-click="biographyContentParameter.openAddModal()" ng-show="biographyContentParameter.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="biographyContentParameter.Edit" ng-click="biographyContentParameter.openEditModal()"ng-show="biographyContentParameter.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="biographyContentParameter.Delete" ng-click="biographyContentParameter.deleteRow()" ng-show="biographyContentParameter.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="biographyContentParameter.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="biographyContentParameter.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="biographyContentParameter.getCount()">{{'QUANTITY'|lowercase|translate}}&nbsp;{{biographyContentParameter.ListItemsTotalRowCount}}</button>

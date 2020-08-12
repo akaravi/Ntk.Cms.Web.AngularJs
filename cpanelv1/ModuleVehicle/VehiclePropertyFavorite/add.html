@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmvehiclePropertyFavoriteAdd" novalidate ng-submit="vehiclePropertyFavorite.addNewRow(frmvehiclePropertyFavoriteAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyFavorite.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="vehiclePropertyFavorite.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmvehiclePropertyFavoriteAdd.LinkSourceId.$invalid && !frmvehiclePropertyFavoriteAdd.LinkSourceId.$pristine,'has-success' : frmvehiclePropertyFavoriteAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="vehiclePropertyFavorite"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyFavorite.AccessAdd('Title')"
+                <div class="form-group" ng-show="vehiclePropertyFavorite.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmvehiclePropertyFavoriteAdd.Title.$invalid && !frmvehiclePropertyFavoriteAdd.Title.$pristine,'has-success' : frmvehiclePropertyFavoriteAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyFavorite.AccessAdd('Description')" ng-class="{'has-error' : frmvehiclePropertyFavoriteAdd.Description.$invalid && !frmvehiclePropertyFavoriteAdd.Description.$pristine,'has-success' : frmvehiclePropertyFavoriteAdd.Description.$valid}">
+                <div class="form-group" ng-show="vehiclePropertyFavorite.CheckAccessAdd('Description')" ng-class="{'has-error' : frmvehiclePropertyFavoriteAdd.Description.$invalid && !frmvehiclePropertyFavoriteAdd.Description.$pristine,'has-success' : frmvehiclePropertyFavoriteAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="Description" ng-required="true" ng-model="vehiclePropertyFavorite.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

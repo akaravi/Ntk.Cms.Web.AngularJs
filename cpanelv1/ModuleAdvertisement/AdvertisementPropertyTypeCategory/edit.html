@@ -14,13 +14,13 @@
             <form method="get" class="form-horizontal" name="frmadvertisementPropertyTypeEdit" novalidate ng-submit="advertisementPropertyType.editCategory(frmadvertisementPropertyTypeEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyType.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="advertisementPropertyType.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmadvertisementPropertyTypeEdit.LinkSourceId.$invalid && !frmadvertisementPropertyTypeEdit.LinkSourceId.$pristine,'has-success' : frmadvertisementPropertyTypeEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="advertisementPropertyType"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyType.AccessEdit('Title')"
+                <div class="form-group" ng-show="advertisementPropertyType.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmadvertisementPropertyTypeEdit.Title.$invalid && !frmadvertisementPropertyTypeEdit.Title.$pristine,'has-success' : frmadvertisementPropertyTypeEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">

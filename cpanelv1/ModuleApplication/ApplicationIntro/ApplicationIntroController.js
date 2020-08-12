@@ -71,7 +71,7 @@
             applicationIntro.ListItems = response.ListItems;
             // applicationIntro.calculatePercantage(applicationIntro.ListItems);
 
-            applicationIntro.gridOptions.fillData(applicationIntro.ListItems, response.resultAccess);
+            applicationIntro.gridOptions.fillData(applicationIntro.ListItems, response.Access);
             applicationIntro.gridOptions.currentPageNumber = response.CurrentPageNumber;
             applicationIntro.gridOptions.totalRowCount = response.TotalRowCount;
             applicationIntro.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
 
         applicationIntro.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             applicationIntro.busyIndicator.isActive = false;
@@ -147,7 +147,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/GetOne', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -215,7 +215,7 @@
                 applicationIntro.busyIndicator.isActive = true;
                 console.log(applicationIntro.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/GetOne', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     applicationIntro.selectedItemForDelete = response.Item;

@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModuleSaleSerial.AccessAdd('LinkSiteIdDeposit')">
+                <div class="form-group" ng-show="cmsModuleSaleSerial.CheckAccessAdd('LinkSiteIdDeposit')">
                     <label class="col-sm-2 control-label"> {{'Link_Site_Id_Deposit'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control"  name="LinkSiteIdDeposit" rasha-autocomplete="cmsModuleSaleSerial.LinkSiteIdDepositSelector" ng-model="cmsModuleSaleSerial.selectedItem.LinkModuleId" />

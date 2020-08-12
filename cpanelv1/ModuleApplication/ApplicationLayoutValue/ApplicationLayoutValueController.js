@@ -30,7 +30,7 @@
                 rashaErManage.checkAction(response);
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.ListItems = response.ListItems;
-                appLayoutValue.gridOptions.fillData(appLayoutValue.ListItems, response.resultAccess);
+                appLayoutValue.gridOptions.fillData(appLayoutValue.ListItems, response.Access);
                 appLayoutValue.gridOptions.currentPageNumber = response.CurrentPageNumber;
                 appLayoutValue.gridOptions.totalRowCount = response.TotalRowCount;
                 appLayoutValue.gridOptions.rowPerPage = response.RowPerPage;
@@ -85,7 +85,7 @@
             IntValue1: appLayoutValue.gridOptions.selectedRow.item.Id
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/getone', filterDataModel, 'POST').success(function (responseValue) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/', filterDataModel, 'POST').success(function (responseValue) {
             appLayoutValue.busyIndicator.isActive = false;
             appLayoutValue.addRequested = false;
             appLayoutValue.selectedItem = responseValue.Item;

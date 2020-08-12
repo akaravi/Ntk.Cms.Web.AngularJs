@@ -15,7 +15,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymenttransactionlog/getall", emailProcessTaskLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailProcessTaskLog.ListItems = response.ListItems;
-            emailProcessTaskLog.gridOptions.fillData(emailProcessTaskLog.ListItems, response.resultAccess);
+            emailProcessTaskLog.gridOptions.fillData(emailProcessTaskLog.ListItems, response.Access);
             emailProcessTaskLog.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailProcessTaskLog.gridOptions.totalRowCount = response.TotalRowCount;
             emailProcessTaskLog.gridOptions.rowPerPage = response.RowPerPage;
@@ -34,7 +34,7 @@
         if (buttonIsPressed) { return };
         emailProcessTaskLog.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTaskLog.selectedItem = response.Item;
@@ -79,7 +79,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/GetOne', emailProcessTaskLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/', emailProcessTaskLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTaskLog.selectedItem = response.Item;
@@ -105,7 +105,7 @@
             if (response1.IsSuccess) {
                 emailProcessTaskLog.replaceItem(emailProcessTaskLog.selectedItem.Id, response1.Item);
                 emailProcessTaskLog.busyIndicator.isActive = false;
-                emailProcessTaskLog.gridOptions.fillData(emailProcessTaskLog.ListItems, response.resultAccess);
+                emailProcessTaskLog.gridOptions.fillData(emailProcessTaskLog.ListItems, response.Access);
                 emailProcessTaskLog.closeModal();
             }
 
@@ -140,7 +140,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/GetOne', emailProcessTaskLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/', emailProcessTaskLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailProcessTaskLog.selectedItemForDelete = response.Item;

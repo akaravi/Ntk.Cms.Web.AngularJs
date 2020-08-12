@@ -37,7 +37,7 @@
             platformCtrl.ListItems = response.ListItems;
             // Call FilterEnum to display enum desciption instead of its enum number
             filterEnum(platformCtrl.ListItems, platformCtrl.platformTypeArray);
-            platformCtrl.gridOptions.fillData(platformCtrl.ListItems , response.resultAccess);
+            platformCtrl.gridOptions.fillData(platformCtrl.ListItems , response.Access);
             platformCtrl.gridOptions.currentPgeNumber = response.CurrentPageNumber;
             platformCtrl.gridOptions.totalRowCount = response.TotalRowCount;
             platformCtrl.gridOptions.rowPerPage = response.RowPerPage;
@@ -63,7 +63,7 @@
     platformCtrl.addRequested = false;
     platformCtrl.openAddModal = function () {
         platformCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;
             platformCtrl.selectedItem = response.Item;
@@ -117,7 +117,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetOne', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.selectedItem = response.Item;
             $modal.open({
@@ -188,7 +188,7 @@
             if (isConfirmed) {
                 platformCtrl.busyIndicator.isActive = true;
                 console.log(platformCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetOne', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     platformCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'POST').success(function (res) {

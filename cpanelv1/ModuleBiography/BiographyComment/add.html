@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="biographyComment.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.RecordStatus.$invalid && !frmbiographyCommentAdd.RecordStatus.$pristine,'has-success' : frmbiographyCommentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="biographyComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.AccessAdd('Writer')"
+                            <div class="form-group" ng-show="biographyComment.CheckAccessAdd('Writer')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.Writer.$invalid && !frmbiographyCommentAdd.Writer.$pristine,'has-success' : frmbiographyCommentAdd.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="biographyComment.AccessAdd('Comment')"
+                            <div class="form-group" ng-show="biographyComment.CheckAccessAdd('Comment')"
                                  ng-class="{'has-error' : frmbiographyCommentAdd.Comment.$invalid && !frmbiographyCommentAdd.Comment.$pristine,'has-success' : frmbiographyCommentAdd.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -61,7 +61,7 @@
 
                 
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="biographyComment.AccessAdd('LinkbiographyContentId')"
+                <div class="form-group" ng-show="biographyComment.CheckAccessAdd('LinkbiographyContentId')"
                      ng-class="{'has-error' : frmbiographyCommentAdd.LinkbiographyContentId.$invalid && !frmbiographyCommentAdd.LinkbiographyContentId.$pristine,'has-success' : frmbiographyCommentAdd.LinkbiographyContentId.$valid}">
                     <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                     <div class="col-sm-10">

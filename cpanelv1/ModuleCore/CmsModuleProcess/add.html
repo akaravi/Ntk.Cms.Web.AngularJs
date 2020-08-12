@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Add_Public_Activity'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModuleAdd" novalidate ng-submit="cmsModulePrc.addNewRow(frmCmsModuleAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModulePrcAdd.RecordStatus.$invalid && !frmcmsModulePrcAdd.RecordStatus.$pristine,'has-success' : frmcmsModulePrcAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsModulePrc"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessAdd('Title')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmCmsModuleAdd.Title.$invalid && !frmCmsModuleAdd.Title.$pristine,'has-success' : frmCmsModuleAdd.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -26,7 +26,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleAdd.Title.$invalid && !frmCmsModuleAdd.Title.$pristine) || frmCmsModuleAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsModulePrc.AccessAdd('TitleResourceLanguage')"
+                <div class="form-group" ng-show="cmsModulePrc.CheckAccessAdd('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleAdd.TitleResourceLanguage.$invalid && !frmCmsModuleAdd.Title.$pristine,'has-success' : frmCmsModuleAdd.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -42,14 +42,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsModulePrc.AccessAdd('TitleEn')">
+                <div class='form-group' ng-show="cmsModulePrc.CheckAccessAdd('TitleEn')">
                     <label class='col-sm-2 control-label'>{{'NAME_EN'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmsModulePrc.selectedItem.TitleEn' class='form-control'>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsModulePrc.AccessAdd('ProcessName')">
+                <div class='form-group' ng-show="cmsModulePrc.CheckAccessAdd('ProcessName')">
                     <label class='col-sm-2 control-label'>{{'PROCESS_NAME'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type='text' ng-model='cmsModulePrc.selectedItem.ProcessName' class='form-control'>

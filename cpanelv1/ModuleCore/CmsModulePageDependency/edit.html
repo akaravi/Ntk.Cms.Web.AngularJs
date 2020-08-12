@@ -4,7 +4,7 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModulePageDependencygrd.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Edit_Page'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModulePageDependencyEdit" novalidate ng-submit="cmsModulePageDependencygrd.editRow(frmCmsModulePageDependencyEdit)">
-                <div class="form-group" ng-show="cmsModulePageDependencygrd.AccessEdit('Title')"
+                <div class="form-group" ng-show="cmsModulePageDependencygrd.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModulePageDependencyEdit.Title.$invalid && !frmCmsModulePageDependencyEdit.Title.$pristine,'has-success' : frmCmsModulePageDependencyEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'TITLE'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -16,7 +16,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModulePageDependencyEdit.Title.$invalid && !frmCmsModulePageDependencyEdit.Title.$pristine) || frmCmsModulePageDependencyEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsModulePageDependencygrd.AccessEdit('TitleResourceLanguage')"
+                <div class="form-group" ng-show="cmsModulePageDependencygrd.CheckAccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModulePageDependencyEdit.TitleResourceLanguage.$invalid && !frmCmsModulePageDependencyEdit.Title.$pristine,'has-success' : frmCmsModulePageDependencyEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsModulePageDependencygrd.AccessEdit('ClassActionName')">
+                <div class="form-group" ng-show="cmsModulePageDependencygrd.CheckAccessEdit('ClassActionName')">
                     <label class="col-sm-2 control-label">{{'CLASS'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="Class" style="direction: ltr" ng-model="cmsModulePageDependencygrd.selectedItem.ClassActionName" />

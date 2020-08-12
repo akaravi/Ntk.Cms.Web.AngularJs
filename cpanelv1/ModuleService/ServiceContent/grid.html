@@ -15,9 +15,9 @@
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceContent.Add" ng-click="serviceContent.addNewCategoryModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Edit" ng-click="serviceContent.openEditCategoryModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Delete" ng-click="serviceContent.deleteCategory()" ng-show="serviceContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceContent.Add" ng-click="serviceContent.addNewCategoryModel()" ng-show="serviceContent.gridOptions.Access.CheckAccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Edit" ng-click="serviceContent.openEditCategoryModel()" ng-show="serviceContent.gridOptions.Access.CheckAccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Delete" ng-click="serviceContent.deleteCategory()" ng-show="serviceContent.gridOptions.Access.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
                     </div>
@@ -30,9 +30,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="serviceContent.addNewContentModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="serviceContent.openEditModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="serviceContent.deleteContent()" ng-show="serviceContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="serviceContent.addNewContentModel()" ng-show="serviceContent.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="serviceContent.openEditModel()" ng-show="serviceContent.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="serviceContent.deleteContent()" ng-show="serviceContent.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="serviceContent.showAdvancedSearchPanel()"><i class="fa fa-search fontaesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="serviceContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="serviceContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

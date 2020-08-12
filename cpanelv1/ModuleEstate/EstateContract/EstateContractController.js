@@ -47,7 +47,7 @@
             // Call Excerpt Function to shorten the length of long strings
             estateContract.gridOptions.myfilterText(estateContract.ListItems, "LinkEstateContractTypeId", estateContract.contractTypes, "Title", "LinkContractTypeTitle");
             estateContract.gridOptions.myfilterText(estateContract.ListItems, "LinkPropertyId", listProperties, "Title", "LinkPropertyTitle");
-            estateContract.gridOptions.fillData(estateContract.ListItems, response.resultAccess);
+            estateContract.gridOptions.fillData(estateContract.ListItems, response.Access);
             estateContract.gridOptions.currentPageNumber = response.CurrentPageNumber;
             estateContract.gridOptions.totalRowCount = response.TotalRowCount;
             estateContract.gridOptions.rowPerPage = response.RowPerPage;
@@ -68,7 +68,7 @@
 
         estateContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -123,7 +123,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/GetOne', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -196,7 +196,7 @@
                 estateContract.busyIndicator.isActive = true;
                 console.log(estateContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/GetOne', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     estateContract.selectedItemForDelete = response.Item;

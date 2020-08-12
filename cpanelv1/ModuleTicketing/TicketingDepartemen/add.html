@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate ng-submit="ticketingDepartemen.addNewRow(frmnewsContentAdd)">
                 <div class='hr-line-dashed'></div>
                 <!-- Title -->
-                <div class="form-group" ng-show="ticketingDepartemen.AccessAdd('Title')"
+                <div class="form-group" ng-show="ticketingDepartemen.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -29,7 +29,7 @@
                 </div>
                 <div class='hr-line-dashed'></div>
                 <!-- Default Answer Body -->
-                <div class="form-group" ng-show="ticketingDepartemen.AccessAdd('DefaultAnswerBody')">
+                <div class="form-group" ng-show="ticketingDepartemen.CheckAccessAdd('DefaultAnswerBody')">
                     <label class="col-sm-2 control-label">{{'DEFAULT_ANSWER'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <div summernote class="summernote" config="ticketingDepartemen.summernoteOptions" ng-model="ticketingDepartemen.selectedItem.DefaultAnswerBody" ></div>

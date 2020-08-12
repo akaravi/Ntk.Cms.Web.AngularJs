@@ -226,7 +226,7 @@
             });
             /////////////////////////////////
             // Call Excerpt Function to shorten the length of long strings
-            appDate.gridOptions.fillData(appDate.ListItemsDate, response.resultAccess);
+            appDate.gridOptions.fillData(appDate.ListItemsDate, response.Access);
             appDate.gridOptions.currentPageNumber = response.CurrentPageNumber;
             appDate.gridOptions.totalRowCount = response.TotalRowCount;
             appDate.gridOptions.rowPerPage = response.RowPerPage;
@@ -248,7 +248,7 @@
                 console.log(data);
             });
             // Call Excerpt Function to shorten the length of long strings
-            appDate.gridContentDateDetail.fillData(appDate.ListItemsDateDetail, response.resultAccess);
+            appDate.gridContentDateDetail.fillData(appDate.ListItemsDateDetail, response.Access);
             appDate.gridContentDateDetail.currentPageNumber = response.CurrentPageNumber;
             appDate.gridContentDateDetail.totalRowCount = response.TotalRowCount;
             appDate.gridContentDateDetail.rowPerPage = response.RowPerPage;
@@ -358,8 +358,8 @@
 
             ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getall', engine2, 'POST').success(function (response) {
                 appDate.listDateDetails = response.ListItems;
-                //appDate.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
-                appDate.gridContentDateDetail.fillData(appDate.listDateDetails, response.resultAccess);
+                //appDate.gridOptions.Access = response.Access; // دسترسی ها نمایش
+                appDate.gridContentDateDetail.fillData(appDate.listDateDetails, response.Access);
                 appDate.gridContentDateDetail.currentPageNumber = response.CurrentPageNumber;
                 appDate.gridContentDateDetail.totalRowCount = response.TotalRowCount;
                 appDate.allowedSearch = response.AllowedSearchField;
@@ -383,7 +383,7 @@
         appDate.filePickerFileReport.filename = "";
         appDate.filePickerFileReport.fileId = null;
         appDate.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
             appDate.selectedItem = response.Item;
@@ -406,7 +406,7 @@
     appDate.addRequested = false;
     appDate.openAddModalDetail = function () {
         appDate.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
             appDate.selectedItemDetail = response.Item;
@@ -501,7 +501,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/GetOne', appDate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/', appDate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.selectedItem = response.Item;
             appDate.StartDateTime.defaultDate = appDate.selectedItem.StartDateTime;
@@ -509,7 +509,7 @@
             appDate.filePickerFileReport.filename = null;
             appDate.filePickerFileReport.fileId = null;
             if (response.Item.LinkFileReportId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkFileReportId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkFileReportId, 'GET').success(function (response2) {
                     appDate.filePickerFileReport.filename = response2.Item.FileName;
                     appDate.filePickerFileReport.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -536,7 +536,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetOne', appDate.gridContentDateDetail.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDate.gridContentDateDetail.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.selectedItemDetail = response.Item;
             appDate.StartService.defaultDate = appDate.selectedItemDetail.StartService;
@@ -652,7 +652,7 @@
             if (isConfirmed) {
                 appDate.busyIndicator.isActive = true;
                 console.log(appDate.gridContentDateDetail.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetOne', appDate.gridContentDateDetail.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDate.gridContentDateDetail.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appDate.selectedItemForDelete = response.Item;
                     console.log(appDate.selectedItemForDelete);
@@ -692,7 +692,7 @@
             if (isConfirmed) {
                 appDate.busyIndicator.isActive = true;
                 console.log(appDate.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/GetOne', appDate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/', appDate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appDate.selectedItemForDelete = response.Item;
                     console.log(appDate.selectedItemForDelete);
@@ -835,7 +835,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             appDate.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -913,14 +913,14 @@
         appDate.fileIdToDelete = appDate.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", appDate.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", appDate.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     appDate.remove(appDate.FileList, appDate.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 appDate.FileItem = response3.Item;
                                 appDate.FileItem.FileName = name;
@@ -1023,7 +1023,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                            cmsServerConfig.configApiServerPath+"FileContent/",
                             appDate.fileIdToDelete,
                             "GET"
                         )
@@ -1073,7 +1073,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     appDate.FileItem = response.Item;
                     appDate.FileItem.FileName = uploadFile.name;
                     appDate.FileItem.uploadName = uploadFile.uploadName;

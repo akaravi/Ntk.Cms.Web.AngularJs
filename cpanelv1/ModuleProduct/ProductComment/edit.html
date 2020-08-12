@@ -9,14 +9,14 @@
                     <div class="panel-body">
                         <!--tabStart-->
                         <div class='hr-line-dashed'></div>
-                        <div class="form-group" ng-show="ProductComment.AccessEdit('RecordStatus')"
+                        <div class="form-group" ng-show="ProductComment.CheckAccessEdit('RecordStatus')"
                              ng-class="{'has-error' : frmProductCommentAdd.RecordStatus.$invalid && !frmProductCommentAdd.RecordStatus.$pristine,'has-success' : frmProductCommentAdd.LinkSourceId.$valid}">
                             <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                             <div class="col-sm-10" rasha-record-status="ProductComment"></div>
                         </div>
 
                         <div class='hr-line-dashed'></div>
-                        <div class="form-group" ng-show="ProductComment.AccessEdit('Writer')"
+                        <div class="form-group" ng-show="ProductComment.CheckAccessEdit('Writer')"
                              ng-class="{'has-error' : frmProductCommentEdit.Writer.$invalid && !frmProductCommentEdit.Writer.$pristine,'has-success' : frmProductCommentEdit.Writer.$valid}">
                             <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                             <div class="col-sm-10">
@@ -33,7 +33,7 @@
                         </div>
 
                         <div class='hr-line-dashed'></div>
-                        <div class="form-group" ng-show="ProductComment.AccessEdit('Comment')"
+                        <div class="form-group" ng-show="ProductComment.CheckAccessEdit('Comment')"
                              ng-class="{'has-error' : frmProductCommentEdit.Comment.$invalid && !frmProductCommentEdit.Comment.$pristine,'has-success' : frmProductCommentEdit.Comment.$valid}">
                             <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                             <div class="col-sm-10">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class='hr-line-dashed'></div>
-                        <div class="form-group" ng-show="ProductComment.AccessEdit('LinkProductContentId')"
+                        <div class="form-group" ng-show="ProductComment.CheckAccessEdit('LinkProductContentId')"
                              ng-class="{'has-error' : frmProductCommentEdit.LinkProductContentId.$invalid && !frmProductCommentEdit.LinkProductContentId.$pristine,'has-success' : frmProductCommentEdit.LinkProductContentId.$valid}">
                             <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                             <div class="col-sm-10">

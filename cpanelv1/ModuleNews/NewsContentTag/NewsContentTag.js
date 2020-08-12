@@ -11,7 +11,7 @@
             newsContentTag.busyIndicator.isActive = false;
 
             newsContentTag.ListItems = response.ListItems;
-            newsContentTag.gridOptions.fillData(newsContentTag.ListItems , response.resultAccess);
+            newsContentTag.gridOptions.fillData(newsContentTag.ListItems , response.Access);
             newsContentTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newsContentTag.gridOptions.totalRowCount = response.TotalRowCount;
             newsContentTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -23,7 +23,7 @@
     newsContentTag.addRequested = false;
     newsContentTag.openAddModal = function () {
         newsContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetOne',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 newsContentTag.busyIndicator.isActive = true;
                 console.log(newsContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetOne',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentTag.selectedItemForDelete = response.Item;
                     console.log(newsContentTag.selectedItemForDelete);

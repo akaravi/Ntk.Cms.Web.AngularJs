@@ -1,10 +1,10 @@
 ﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopProcessCategoryController as shopProcessCategory" ng-init="shopProcessCategory.init()">
     <div class="row" rasha-loading="shopProcessCategory.busyIndicator">
         <div class="col-sm-12">
-           <!-- <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.openAddModal()" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
-            <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.autoAdd()" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="shopProcessCategory.Edit" ng-click="shopProcessCategory.openEditModal()" type="button" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="shopProcessCategory.Delete" ng-click="shopProcessCategory.deleteRow()" type="button" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+           <!-- <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.openAddModal()" ng-show="shopProcessCategory.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.autoAdd()" ng-show="shopProcessCategory.gridOptions.Access.CheckAccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="shopProcessCategory.Edit" ng-click="shopProcessCategory.openEditModal()" type="button" ng-show="shopProcessCategory.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="shopProcessCategory.Delete" ng-click="shopProcessCategory.deleteRow()" type="button" ng-show="shopProcessCategory.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="shopProcessCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="shopProcessCategory.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
         </div>

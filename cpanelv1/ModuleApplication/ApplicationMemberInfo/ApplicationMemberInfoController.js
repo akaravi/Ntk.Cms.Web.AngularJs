@@ -74,7 +74,7 @@
             memberInfo.ListItems = response.ListItems;
             memberInfo.calculatePercantage(memberInfo.ListItems);
 
-            memberInfo.gridOptions.fillData(memberInfo.ListItems, response.resultAccess);
+            memberInfo.gridOptions.fillData(memberInfo.ListItems, response.Access);
             memberInfo.gridOptions.currentPageNumber = response.CurrentPageNumber;
             memberInfo.gridOptions.totalRowCount = response.TotalRowCount;
             memberInfo.gridOptions.rowPerPage = response.RowPerPage;
@@ -115,7 +115,7 @@
 
         memberInfo.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationmemberInfo/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationmemberInfo/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -166,7 +166,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -234,7 +234,7 @@
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;

@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="imgGalleryComment.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="imgGalleryComment.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmimgGalleryCommentAdd.RecordStatus.$invalid && !frmimgGalleryCommentAdd.RecordStatus.$pristine,'has-success' : frmimgGalleryCommentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="imgGalleryComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="imgGalleryComment.AccessAdd('Writer')"
+                            <div class="form-group" ng-show="imgGalleryComment.CheckAccessAdd('Writer')"
                                  ng-class="{'has-error' : frmimgGalleryCommentAdd.Writer.$invalid && !frmimgGalleryCommentAdd.Writer.$pristine,'has-success' : frmimgGalleryCommentAdd.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="imgGalleryComment.AccessAdd('Comment')"
+                            <div class="form-group" ng-show="imgGalleryComment.CheckAccessAdd('Comment')"
                                  ng-class="{'has-error' : frmimgGalleryCommentAdd.Comment.$invalid && !frmimgGalleryCommentAdd.Comment.$pristine,'has-success' : frmimgGalleryCommentAdd.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>
-            <div class="form-group" ng-show="imgGalleryComment.AccessAdd('LinkimgGalleryContentId')"
+            <div class="form-group" ng-show="imgGalleryComment.CheckAccessAdd('LinkimgGalleryContentId')"
                  ng-class="{'has-error' : frmimgGalleryCommentAdd.LinkimgGalleryContentId.$invalid && !frmimgGalleryCommentAdd.LinkimgGalleryContentId.$pristine,'has-success' : frmimgGalleryCommentAdd.LinkimgGalleryContentId.$valid}">
                 <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                 <div class="col-sm-10">

@@ -22,7 +22,7 @@
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
             taskSchedulerProcessCategory.ListItems = response.ListItems;
-            taskSchedulerProcessCategory.gridOptions.fillData(taskSchedulerProcessCategory.ListItems, response.resultAccess);
+            taskSchedulerProcessCategory.gridOptions.fillData(taskSchedulerProcessCategory.ListItems, response.Access);
             taskSchedulerProcessCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             taskSchedulerProcessCategory.gridOptions.totalRowCount = response.TotalRowCount;
             taskSchedulerProcessCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -43,7 +43,7 @@
  //     taskSchedulerProcessCategory.filePickerMainImage.fileId = null;
  //     taskSchedulerProcessCategory.modalTitle = 'اضافه';
  //     buttonIsPressed = true;
- //     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/GetViewModel', "", 'GET').success(function (response) {
+ //     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/ViewModel', "", 'GET').success(function (response) {
  //         buttonIsPressed = false;
  //         rashaErManage.checkAction(response);
  //         taskSchedulerProcessCategory.busyIndicator.isActive = false;
@@ -102,7 +102,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/GetOne', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.selectedItem = response.Item;
@@ -111,7 +111,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -186,7 +186,7 @@
             if (isConfirmed) {
                 taskSchedulerProcessCategory.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/GetOne', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     taskSchedulerProcessCategory.selectedItemForDelete = response.Item;
@@ -312,7 +312,7 @@
              // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 taskSchedulerProcessCategory.fileIdToDelete,
                 "GET"
               )
@@ -363,7 +363,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", "GET")
             .success(function(response) {
               taskSchedulerProcessCategory.FileItem = response.Item;
                 taskSchedulerProcessCategory.FileItem.FileName = uploadFile.name;

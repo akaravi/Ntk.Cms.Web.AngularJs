@@ -21,7 +21,7 @@
             ajax.call(cmsServerConfig.configApiServerPath + "applicationThemeConfig/getAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 // Populate TreeConfig with all the Menu
                 themeConfig.ListItems = response.ListItems;
-                themeConfig.gridOptions.fillData(response.ListItems, response.resultAccess);
+                themeConfig.gridOptions.fillData(response.ListItems, response.Access);
                 themeConfig.gridOptions.currentPageNumber = response.CurrentPageNumber;
                 themeConfig.gridOptions.totalRowCount = response.TotalRowCount;
                 themeConfig.gridOptions.rowPerPage = response.RowPerPage;
@@ -157,7 +157,7 @@
                 if (fId >= 0)
                     themeConfig.ListItems[i].virtual_Source = themeConfig.sourceListItems[fId];
             }
-            themeConfig.gridOptions.fillData(themeConfig.ListItems, response.resultAccess);
+            themeConfig.gridOptions.fillData(themeConfig.ListItems, response.Access);
         }).error(function (data, errCode, c, d) {
             themeConfig.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
@@ -171,7 +171,7 @@
         themeConfig.filePickerMainImage.filename = "";
         themeConfig.filePickerMainImage.fileId = null;
         themeConfig.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/ViewModel', "", 'GET').success(function (response) {
             console.log(response);
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
@@ -198,7 +198,7 @@
             rashaErManage.showMessage("لطفاً یک ردیف جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/GetOne', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
             themeConfig.filePickerMainImage.filename = null;
@@ -211,7 +211,7 @@
             themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel = $.parseJSON(themeConfig.selectedItem.ThemeConfigRuntimeJsonValues);
             if (response.Item.LinkMainImageId != null) {
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response.Item.LinkMainImageId, "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         themeConfig.filePickerMainImage.filename = response2.Item.FileName;
@@ -294,7 +294,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 themeConfig.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/GetOne", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     themeConfig.busyIndicator.isActive = false;
                     rashaErManage.checkAction(response);
                     themeConfig.selectedItemForDelete = response.Item;
@@ -480,7 +480,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
+                            cmsServerConfig.configApiServerPath + "FileContent/",
                             themeConfig.fileIdToDelete,
                             "GET"
                         )
@@ -531,7 +531,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", "GET")
                     .success(function (response) {
                         themeConfig.FileItem = response.Item;
                         themeConfig.FileItem.FileName = uploadFile.name;

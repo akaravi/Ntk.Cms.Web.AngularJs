@@ -101,7 +101,7 @@
             emailPrivateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.ListItems = response.ListItems;
-            emailPrivateSiteConfig.gridOptions.fillData(emailPrivateSiteConfig.ListItems, response.resultAccess);
+            emailPrivateSiteConfig.gridOptions.fillData(emailPrivateSiteConfig.ListItems, response.Access);
             emailPrivateSiteConfig.gridOptions.currentPageNumber = response.CurrentPageNumber;
             emailPrivateSiteConfig.gridOptions.totalRowCount = response.TotalRowCount;
             emailPrivateSiteConfig.gridOptions.rowPerPage = response.RowPerPage;
@@ -140,7 +140,7 @@
         emailPrivateSiteConfig.defaultValue = {};
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetViewModel', '', 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.selectedItem = response.Item;
@@ -384,7 +384,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
                 emailPrivateSiteConfig.replaceItem(emailPrivateSiteConfig.selectedItem.Id, response.Item);
                 emailPrivateSiteConfig.addRequested = false;
                 emailPrivateSiteConfig.busyIndicator.isActive = false;
-                emailPrivateSiteConfig.gridOptions.fillData(emailPrivateSiteConfig.ListItems, response.resultAccess);
+                emailPrivateSiteConfig.gridOptions.fillData(emailPrivateSiteConfig.ListItems, response.Access);
                 emailPrivateSiteConfig.closeModal();
             }
         }).error(function(data, errCode, c, d) {
@@ -420,7 +420,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPrivateSiteConfig.selectedItemForDelete = response.Item;

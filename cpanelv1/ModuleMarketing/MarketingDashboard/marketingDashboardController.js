@@ -123,7 +123,7 @@ $scope.addEditMarketerGroup=function()
 //#help#
     $scope.getViewModel=function(viewmodelId)
     {
-        var ret=ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomer/GetOne', viewmodelId, 'GET');
+        var ret=ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomer/', viewmodelId, 'GET');
         ret.success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess)

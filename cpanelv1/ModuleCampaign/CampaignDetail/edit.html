@@ -15,14 +15,14 @@
                                 <div class="col-sm-10" rasha-record-status="campaignDetail"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('LinkCampaignContentId')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('LinkCampaignContentId')">
                                 <label class="col-sm-2 control-label">{{'Link_Campaign_Id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkCampaignContentId" rasha-autocomplete="campaignDetail.LinkCampaignContentIdSelector" ng-model="frmcampaignDetailEdit.selectedItem.LinkCampaignContentId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessAdd('LinkMemberGroupId')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessAdd('LinkMemberGroupId')">
                                 <label class="col-sm-2 control-label">{{'Link_Member_Group_Id'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkMemberGroupId" rasha-autocomplete="campaignDetail.LinkMemberGroupIdSelector" ng-model="frmcampaignDetailEdit.selectedItem.LinkMemberGroupId" />
@@ -117,7 +117,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="campaignDetail.AccessEdit('Geolocationlatitude')">
+                            <div class="form-group" ng-show="campaignDetail.CheckAccessEdit('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="campaignDetail.GeolocationConfig" />

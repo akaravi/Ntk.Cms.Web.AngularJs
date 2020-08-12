@@ -15,7 +15,7 @@
             rashaErManage.checkAction(response);
             biographycategory.ListItems = response.ListItems;
             biographycategory.categoryBusyIndicator.isActive = false;
-            biographycategory.gridOptions.fillData(biographycategory.ListItems, response.resultAccess);
+            biographycategory.gridOptions.fillData(biographycategory.ListItems, response.Access);
             biographycategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographycategory.gridOptions.totalRowCount = response.TotalRowCount;
             biographycategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -32,7 +32,7 @@
     biographycategory.addRequested = false;
     biographycategory.openAddModal = function () {
         biographycategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographycategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -102,7 +102,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/GetOne', biographycategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/', biographycategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographycategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -219,7 +219,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(biographycategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/GetOne',  biographycategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/',  biographycategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographycategory.selectedItemForDelete = response.Item;
                     console.log(biographycategory.selectedItemForDelete);
@@ -387,7 +387,7 @@
         }
         biographyContent.selectedItem.LinkMainImageId = node.Id;
         biographyContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             biographyContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

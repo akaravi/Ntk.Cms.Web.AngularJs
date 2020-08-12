@@ -1,9 +1,9 @@
 ﻿<div class="bestig wrapper wrapper-content animated fadeInRight" ng-controller="applicationIntroController as applicationIntro" ng-init="applicationIntro.init()">
     <div class="row" rasha-loading="applicationIntro.busyIndicator">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="applicationIntro.Add" ng-click="applicationIntro.openAddModal()" ng-show="applicationIntro.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="applicationIntro.Edit" ng-click="applicationIntro.openEditModal()" type="button" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="applicationIntro.Delete" ng-click="applicationIntro.deleteRow()" type="button" ng-show="applicationIntro.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="applicationIntro.Add" ng-click="applicationIntro.openAddModal()" ng-show="applicationIntro.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="applicationIntro.Edit" ng-click="applicationIntro.openEditModal()" type="button" ng-show="applicationIntro.gridOptions.Access.CheckAccessEditRow">{{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="applicationIntro.Delete" ng-click="applicationIntro.deleteRow()" type="button" ng-show="applicationIntro.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="applicationIntro.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="applicationIntro.openGridConfigModal()" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="applicationIntro.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

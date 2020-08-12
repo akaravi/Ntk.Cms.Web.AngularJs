@@ -56,7 +56,7 @@
             deliveryMemberSetting.ListItems = response.ListItems;
             
             // Call Excerpt Function to shorten the length of long strings
-            deliveryMemberSetting.gridOptions.fillData(deliveryMemberSetting.ListItems, response.resultAccess);
+            deliveryMemberSetting.gridOptions.fillData(deliveryMemberSetting.ListItems, response.Access);
             deliveryMemberSetting.gridOptions.currentPageNumber = response.CurrentPageNumber;
             deliveryMemberSetting.gridOptions.totalRowCount = response.TotalRowCount;
             deliveryMemberSetting.gridOptions.rowPerPage = response.RowPerPage;
@@ -85,7 +85,7 @@
     deliveryMemberSetting.addRequested = false;
     deliveryMemberSetting.openAddModal = function () {
         deliveryMemberSetting.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberSetting.busyIndicator.isActive = false;
             deliveryMemberSetting.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/GetOne', deliveryMemberSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/', deliveryMemberSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberSetting.selectedItem = response.Item;
             deliveryMemberSetting.BeginTime.defaultDate = deliveryMemberSetting.selectedItem.BeginTime;
@@ -217,7 +217,7 @@
             if (isConfirmed) {
                 deliveryMemberSetting.busyIndicator.isActive = true;
                 console.log(deliveryMemberSetting.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/GetOne', deliveryMemberSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberSetting/', deliveryMemberSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMemberSetting.selectedItemForDelete = response.Item;
                     console.log(deliveryMemberSetting.selectedItemForDelete);

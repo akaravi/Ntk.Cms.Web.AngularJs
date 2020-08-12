@@ -2,9 +2,9 @@
     <!-- <div class="container">-->
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Add" ng-click="domainAlias.openAddModal()" ng-show="domainAlias.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsSiteController.Edit" ng-click="domainAlias.openEditModal()" ng-show="domainAlias.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsSiteController.Delete" ng-click="domainAlias.deleteRow()" ng-show="domainAlias.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Add" ng-click="domainAlias.openAddModal()" ng-show="domainAlias.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsSiteController.Edit" ng-click="domainAlias.openEditModal()" ng-show="domainAlias.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsSiteController.Delete" ng-click="domainAlias.deleteRow()" ng-show="domainAlias.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" ng-click="domainAlias.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="domainAlias.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="domainAlias.getCount()">{{'number'|lowercase|translate}}&nbsp;{{domainAlias.ListItemsTotalRowCount}}</button>

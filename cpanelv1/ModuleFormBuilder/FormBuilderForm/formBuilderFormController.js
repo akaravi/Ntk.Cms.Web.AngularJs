@@ -22,8 +22,8 @@
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.ListItems = response.ListItems;
-            //cmsModuleSitegrd.gridOptions.resultAccess = response.resultAccess;//دسترسی ها نمایش
-            form.gridOptions.fillData(form.ListItems, response.resultAccess); // Send Access as an arguman
+            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
+            form.gridOptions.fillData(form.ListItems, response.Access); // Send Access as an arguman
             form.gridOptions.currentPageNumber = response.CurrentPageNumber;
             form.gridOptions.totalRowCount = response.TotalRowCount;
             form.gridOptions.rowPerPage = response.RowPerPage;
@@ -37,7 +37,7 @@
     form.addRequested = false;
     form.openAddModal = function () {
         form.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
             form.selectedItem.LinkModuleId = null;
@@ -84,7 +84,7 @@
             return;
         }
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
@@ -144,7 +144,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(form.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     form.selectedItemForDelete = response.Item;
                     console.log(form.selectedItemForDelete);
@@ -188,8 +188,8 @@
             { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'Description', displayName: 'توضیحات', sortable: true, type: 'string' },
-            { name: 'ActionButton2', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.resultAccess.AccessEditRow" ng-click="form.gotoFormBuilderValue(x.Id)" title=" مقادیر " type="button"><i class="fa fa-bars fa-1x" ></i></button>' },
-            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.resultAccess.AccessEditRow" ng-click="form.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
+            { name: 'ActionButton2', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.CheckAccessEditRow" ng-click="form.gotoFormBuilderValue(x.Id)" title=" مقادیر " type="button"><i class="fa fa-bars fa-1x" ></i></button>' },
+            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.CheckAccessEditRow" ng-click="form.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
         ],
         data: {},
         multiSelect: false,
@@ -254,7 +254,7 @@
     form.scrollToInputValueFormBuilderPanel = function (item) {
         form.gridOptions.selectedRow.item = item;
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', item.Id, 'GET').success(function (response) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
@@ -294,7 +294,7 @@
     // Save Input Value Form
     form.saveFormValues = function () {
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             form.selectedItem = response1.Item;

@@ -7,7 +7,7 @@
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
-                            <!--ng-show="place.AccessAdd('RecordStatus')"-->
+                            <!--ng-show="place.CheckAccessAdd('RecordStatus')"-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
                                  ng-class="{'has-error' : frmplaceAdd.LinkSourceId.$invalid && !frmplaceAdd.LinkSourceId.$pristine,'has-success' : frmplaceAdd.LinkSourceId.$valid}">

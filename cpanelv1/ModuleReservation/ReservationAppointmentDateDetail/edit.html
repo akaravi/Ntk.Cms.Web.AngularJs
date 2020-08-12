@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Edit_Reservation_Appointment_Date_Detail'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmappDateDetailEdit" novalidate ng-submit="appDateDetail.editRow(frmappDateDetailEdit)" >
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="appDateDetail.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="appDateDetail.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmappDateDetailEdit.RecordStatus.$invalid && !frmappDateDetailEdit.RecordStatus.$pristine,'has-success' : frmappDateDetailEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="appDateDetail"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="appDateDetail.AccessEdit('SessionStatus')">
+                <div class="form-group" ng-show="appDateDetail.CheckAccessEdit('SessionStatus')">
                     <label class="col-sm-2 control-label">{{'Service_Status'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select class='form-control' name="SessionStatus" ng-model="appDateDetail.selectedItem.SessionStatus" ng-options="x.Value as x.Description for x in appDateDetail.SessionStatus" required></select>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="appDateDetail.AccessEdit('LinkAppointmentDateId')">
+                <div class="form-group" ng-show="appDateDetail.CheckAccessEdit('LinkAppointmentDateId')">
                     <label class="col-sm-2 control-label">{{'Announcement_Of_The_Day'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkAppointmentDateId" rasha-autocomplete="appDateDetail.LinkAppointmentDateIdSelector" ng-model="frmappDateDetailEdit.selectedItem.LinkAppointmentDateId" />

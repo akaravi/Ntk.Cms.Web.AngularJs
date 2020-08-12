@@ -5,7 +5,7 @@
             <h3 class="m-t-none m-b">{{'Edit_Option'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmpollingContentAdd" novalidate ng-submit="pollingContent.editOption(frmpollingContentAdd,'true')">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="pollingContent.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="pollingContent.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmpollingContentEdit.RecordStatus.$invalid && !frmpollingContentEdit.RecordStatus.$pristine,'has-success' : frmpollingContentEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="pollingContent"></div>
@@ -26,14 +26,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="pollingContent.gridOptions2.AccessEdit('OptionAnswer')">
+                <div class="form-group" ng-show="pollingContent.gridOptions2.CheckAccessEdit('OptionAnswer')">
                     <label class="col-sm-2 control-label"> {{'OPTION_ANSWER'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="OptionAnswer" ng-model="pollingContent.selectedItem.OptionAnswer" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="pollingContent.gridOptions2.AccessEdit('LinkPollingContentId')">
+                <div class="form-group" ng-show="pollingContent.gridOptions2.CheckAccessEdit('LinkPollingContentId')">
                     <label class="col-sm-2 control-label">کد سیستمی نظرسنجی</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkPollingContentId" ng-model="pollingContent.selectedItem.LinkPollingContentId" readonly />

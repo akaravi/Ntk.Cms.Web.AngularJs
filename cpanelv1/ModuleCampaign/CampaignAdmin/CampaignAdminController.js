@@ -75,7 +75,7 @@
             rashaErManage.checkAction(response);
             campaignAdmin.busyIndicator.isActive = false;
             campaignAdmin.ListItems = response.ListItems;
-            campaignAdmin.gridOptions.fillData(campaignAdmin.ListItems, response.resultAccess);
+            campaignAdmin.gridOptions.fillData(campaignAdmin.ListItems, response.Access);
             campaignAdmin.gridOptions.currentPageNumber = response.CurrentPageNumber;
             campaignAdmin.gridOptions.totalRowCount = response.TotalRowCount;
             campaignAdmin.gridOptions.rowPerPage = response.RowPerPage;
@@ -92,7 +92,7 @@
     //campaignAdmin.addRequested = false;
     //campaignAdmin.openAddModal = function () {
     //    campaignAdmin.modalTitle = 'اضافه';
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/GetViewModel', "", 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/ViewModel', "", 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        campaignAdmin.busyIndicator.isActive = false;
     //        campaignAdmin.selectedItem = response.Item;
@@ -113,7 +113,7 @@
         campaignAdmin.ViewFindUserDiv = false;
         campaignAdmin.ViewNewUserDiv = false;
         campaignAdmin.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetViewModel', "", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/ViewModel', "", "GET").success(function (response1) {
             campaignAdmin.busyIndicator.isActive = false;
             campaignAdmin.selectedMemberUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -121,7 +121,7 @@
             campaignAdmin.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignAdmin.busyIndicator.isActive = false;
             campaignAdmin.selectedItem = response.Item;
@@ -217,7 +217,7 @@
     //        return;
     //    }
 
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/GetOne', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        campaignAdmin.selectedItem = response.Item;
     //        if (campaignAdmin
@@ -278,7 +278,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetViewModel', "", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/ViewModel', "", "GET").success(function (response2) {
             campaignAdmin.selectedMemberUser = response2.Item;
             campaignAdmin.busyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -286,7 +286,7 @@
             campaignAdmin.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/GetOne', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignAdmin.selectedItem = response.Item;
             if (response.Item.LinkModuleCoreCmsUserId != null)
@@ -386,7 +386,7 @@
             if (isConfirmed) {
                 campaignAdmin.busyIndicator.isActive = true;
                 console.log(campaignAdmin.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/GetOne', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignAdmin.selectedItemForDelete = response.Item;
                     console.log(campaignAdmin.selectedItemForDelete);
@@ -511,7 +511,7 @@
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: userId, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: userId, ClauseType: 1 });
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignAdmin.selectedUser = response.Item;
             if (campaignAdmin.selectedUser != null && campaignAdmin.selectedUser.Id != 0) {

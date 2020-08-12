@@ -5,7 +5,7 @@
             <h3 class="m-t-none m-b"> {{ cmsPageDesign.modalTitle }}</h3>
             <form method="get" class="form-horizontal" name="frmCmsPageAdd" novalidate ng-submit="cmsPageDesign.addNewRow(frmCmsPageAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmcmsPageDesignEdit.RecordStatus.$invalid && !frmcmsPageDesignEdit.RecordStatus.$pristine,'has-success' : frmcmsPageDesignEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsPageDesign"></div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessEdit('PageJsonValue')">
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessEdit('PageJsonValue')">
                     <label class="col-sm-2 control-label">{{'page'|lowercase|translate}}&nbsp;{{'default'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <div ng-repeat="x in cmsPageDesign.cmsDefaultPageListItems" class="file-box">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('Title')"
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmCmsPageAdd.Title.$invalid && !frmCmsPageAdd.Title.$pristine,'has-success' : frmCmsPageAdd.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <!--<div class='form-group' ng-show="cmsPageDesign.AccessAdd('PageAbilityType')">
+                <!--<div class='form-group' ng-show="cmsPageDesign.CheckAccessAdd('PageAbilityType')">
                     <label class='col-sm-2 control-label'>{{'page_type'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select class="form-control" ng-model="cmsPageDesign.selectedItem.PageAbilityType" ng-change="cmsPageDesign.onPageTypeChange(cmsPageDesign.selectedItem.PageAbilityType)">
@@ -62,7 +62,7 @@
                     </div>
                 </div>-->
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsPageDesign.AccessAdd('LinkCmsPageId')">
+                <div class='form-group' ng-show="cmsPageDesign.CheckAccessAdd('LinkCmsPageId')">
                     <label class='col-sm-2 control-label'>{{'select_master_page'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <select class="form-control" ng-model="cmsPageDesign.selectedItem.LinkCmsPageId">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsPageDesign.AccessAdd('Keyword')">
+                <div class='form-group' ng-show="cmsPageDesign.CheckAccessAdd('Keyword')">
                     <label class='col-sm-2 control-label'>{{'keywords' |lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <tags-input ng-model="cmsPageDesign.kwords" placeholder="{{'key_word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
@@ -81,14 +81,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsPageDesign.AccessAdd('Description')">
+                <div class='form-group' ng-show="cmsPageDesign.CheckAccessAdd('Description')">
                     <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='cmsPageDesign.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('PageDependencyIsDefualtPage')">
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('PageDependencyIsDefualtPage')">
                     <label class='col-sm-2 control-label'>{{'setting'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
@@ -104,28 +104,28 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkPageDependencyGuId')">
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('LinkPageDependencyGuId')">
                     <label class='col-sm-2 control-label'>{{'need'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkDependencyTitle" readonly="readonly" ng-model="cmsPageDesign.dependencyTitle" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('SpecialIdendity')">
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('SpecialIdendity')">
                     <label class="col-sm-2 control-label">{{'unique_identifier'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="cmsPageDesign.selectedItem.SpecialIdendity" class="form-control">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('SpecialUrlParameter')">
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('SpecialUrlParameter')">
                     <label class="col-sm-2 control-label">پارامتر عددی خاص</label>
                     <div class="col-sm-10">
                         <input type="text" ng-model="cmsPageDesign.selectedItem.SpecialUrlParameter" class="form-control">
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsPageDesign.AccessAdd('LinkPageDependencyGuId')"
+                <div class="form-group" ng-show="cmsPageDesign.CheckAccessAdd('LinkPageDependencyGuId')"
                      ng-class="{'has-error' : frmCmsSiteAdd.PageDependencyIsDefualtPage.$invalid && !frmCmsSiteAdd.PageDependencyIsDefualtPage.$pristine,'has-success' : frmCmsSiteAdd.PageDependencyIsDefualtPage.$valid}">
                     <label class="col-sm-2 control-label">{{'default_template'|lowercase|translate}}</label>
                     <div class="col-sm-10">

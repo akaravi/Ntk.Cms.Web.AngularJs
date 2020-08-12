@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmestatePropertyAdd.RecordStatus.$invalid && !frmestatePropertyAdd.RecordStatus.$pristine,'has-success' : frmestatePropertyAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="estateProperty"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('Title')"
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmestatePropertyAdd.Title.$invalid && !frmestatePropertyAdd.Title.$pristine,'has-success' : frmestatePropertyAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -49,7 +49,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div ng-show="estateProperty.AccessAdd('LinkPropertyTypeId')>-1 ">
+                            <div ng-show="estateProperty.CheckAccessAdd('LinkPropertyTypeId')>-1 ">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> {{'ESTATE_TYPE'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -119,21 +119,21 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('LinkLocationId')">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="estateProperty.LinkLocationIdSelector" ng-model="estateProperty.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('Geolocationlatitude')">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="estateProperty.GeolocationConfig" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('Address')>-1 ">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('Address')>-1 ">
                                 <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Address" ng-model="estateProperty.selectedItem.Address" />

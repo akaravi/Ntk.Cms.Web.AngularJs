@@ -99,7 +99,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"shopShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopShareServerCategory.ListItems = response.ListItems;
-            shopShareServerCategory.gridOptions.fillData(shopShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            shopShareServerCategory.gridOptions.fillData(shopShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             shopShareServerCategory.contentBusyIndicator.isActive = false;
             shopShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -117,7 +117,7 @@
         if (buttonIsPressed) { return };
         shopShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopShareServerCategory.selectedItem = response.Item;
@@ -163,7 +163,7 @@
 
         shopShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/GetOne', shopShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/', shopShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             shopShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -275,7 +275,7 @@
                 shopShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopShareServerCategory.selectedItemForDelete = response.Item;
@@ -334,7 +334,7 @@
             rashaErManage.checkAction(response);
             shopShareServerCategory.contentBusyIndicator.isActive = false;
             shopShareServerCategory.ListItems = response.ListItems;
-            shopShareServerCategory.gridOptions.fillData(shopShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            shopShareServerCategory.gridOptions.fillData(shopShareServerCategory.ListItems, response.Access); // Sending Access as an argument
             shopShareServerCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopShareServerCategory.gridOptions.totalRowCount = response.TotalRowCount;
             shopShareServerCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -357,7 +357,7 @@
         shopShareServerCategory.addRequested = false;
         shopShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopShareServerCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopShareServerCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -383,7 +383,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopShareServerCategory/GetOne', shopShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopShareServerCategory/', shopShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             shopShareServerCategory.selectedItem = response1.Item;
@@ -475,7 +475,7 @@
                 shopShareServerCategory.showbusy = true;
                 shopShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopShareServerCategory/GetOne", shopShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopShareServerCategory/", shopShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopShareServerCategory.showbusy = false;
                     shopShareServerCategory.showIsBusy = false;
@@ -712,7 +712,7 @@
         }
         shopShareServerCategory.selectedItem.LinkMainImageId = node.Id;
         shopShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             shopShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

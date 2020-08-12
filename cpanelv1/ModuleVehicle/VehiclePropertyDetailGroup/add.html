@@ -20,7 +20,7 @@
             <h3 class="m-t-none m-b">{{'add_category'|lowercase|translate}}</h3>
             <div class='hr-line-dashed'></div>
             <form method="get" class="form-horizontal" name="frmvehiclePropertyDetailAdd" novalidate ng-submit="vehiclePropertyDetail.addNewCategory(frmvehiclePropertyDetailAdd)">
-                <div class="form-group" ng-show="vehiclePropertyDetail.AccessAdd('Title')"
+                <div class="form-group" ng-show="vehiclePropertyDetail.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmvehiclePropertyDetailAdd.Title.$invalid && !frmvehiclePropertyDetailAdd.Title.$pristine,'has-success' : frmvehiclePropertyDetailAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'group_name'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="vehiclePropertyDetail.AccessAdd('IconFont')">
+                <div class="form-group formControl" ng-show="vehiclePropertyDetail.CheckAccessAdd('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" name="IconFont" ng-focus="vehiclePropertyDetail.toggleIcons('true')" ng-blur="vehiclePropertyDetail.toggleIcons()" />

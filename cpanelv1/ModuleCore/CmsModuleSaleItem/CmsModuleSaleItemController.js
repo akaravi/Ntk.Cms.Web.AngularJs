@@ -248,7 +248,7 @@
                     cmsModuleSaleItem.ListItems = response.ListItems;
                     cmsModuleSaleItem.gridOptions.fillData(
                         cmsModuleSaleItem.ListItems,
-                        response.resultAccess
+                        response.Access
                     ); // Sending Access as an argument
                     cmsModuleSaleItem.contentBusyIndicator.isActive = false;
                     cmsModuleSaleItem.gridOptions.currentPageNumber =
@@ -281,7 +281,7 @@
             cmsModuleSaleItem.addRequested = false;
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/GetViewModel", "", "GET")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/ViewModel", "", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
@@ -368,7 +368,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/GetOne",
+                    cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/",
                     cmsModuleSaleItem.treeConfig.currentNode.Id,
                     "GET"
                 )
@@ -534,7 +534,7 @@
                         // console.log(node.gridOptions.selectedRow.item);
                         buttonIsPressed = true;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/GetOne", node.Id, "GET")
+                            .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", node.Id, "GET")
                             .success(function (response) {
                                 buttonIsPressed = false;
                                 rashaErManage.checkAction(response);
@@ -617,7 +617,7 @@
                     cmsModuleSaleItem.ListItems = response.ListItems;
                     cmsModuleSaleItem.gridOptions.fillData(
                         cmsModuleSaleItem.ListItems,
-                        response.resultAccess
+                        response.Access
                     ); // Sending Access as an argument
                     cmsModuleSaleItem.gridOptions.currentPageNumber =
                         response.CurrentPageNumber;
@@ -655,7 +655,7 @@
             addNewContentModel = true;
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/GetViewModel", "", "GET")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/ViewModel", "", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     addNewContentModel = false;
@@ -695,7 +695,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/GetOne",
+                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -969,7 +969,7 @@
                         buttonIsPressed = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/GetOne",
+                                cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
                                 cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
@@ -1026,7 +1026,7 @@
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/GetOne",
+                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1067,7 +1067,7 @@
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/GetOne",
+                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1174,7 +1174,7 @@
         //                console.log("Item to be deleted: ", cmsModuleSaleItem.gridOptions.selectedRow.item);
         //                cmsModuleSaleItem.showbusy = true;
         //                cmsModuleSaleItem.showIsBusy = true;
-        //                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/GetOne', cmsModuleSaleItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        //                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/', cmsModuleSaleItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
         //                    cmsModuleSaleItem.showbusy = false;
         //                    cmsModuleSaleItem.showIsBusy = false;
         //                    rashaErManage.checkAction(response);
@@ -1440,7 +1440,7 @@
             cmsModuleSaleItem.selectedItem.LinkMainImageId = node.Id;
             cmsModuleSaleItem.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET")
                 .success(function (response) {
                     cmsModuleSaleItem.selectedItem.previewImageSrc =
                         cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;

@@ -143,7 +143,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.ListItems = response.ListItems;
-            biographyShareReciverCategory.gridOptions.fillData(biographyShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            biographyShareReciverCategory.gridOptions.fillData(biographyShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             biographyShareReciverCategory.contentBusyIndicator.isActive = false;
             biographyShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographyShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -163,7 +163,7 @@
         if (buttonIsPressed) { return };
         biographyShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.selectedItem = response.Item;
@@ -209,7 +209,7 @@
 
         biographyShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetOne', biographyShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', biographyShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             biographyShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -321,7 +321,7 @@
                 biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     biographyShareReciverCategory.selectedItemForDelete = response.Item;
@@ -382,7 +382,7 @@
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.contentBusyIndicator.isActive = false;
             biographyShareReciverCategory.ListItems = response.ListItems;
-            biographyShareReciverCategory.gridOptions.fillData(biographyShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            biographyShareReciverCategory.gridOptions.fillData(biographyShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             biographyShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             biographyShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             biographyShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -405,7 +405,7 @@
         biographyShareReciverCategory.addRequested = false;
         biographyShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -431,7 +431,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/GetOne', biographyShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/', biographyShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             biographyShareReciverCategory.selectedItem = response1.Item;
@@ -525,7 +525,7 @@
                 biographyShareReciverCategory.showbusy = true;
                 biographyShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/GetOne", biographyShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/", biographyShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     biographyShareReciverCategory.showbusy = false;
                     biographyShareReciverCategory.showIsBusy = false;
@@ -785,7 +785,7 @@
         }
         biographyShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         biographyShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             biographyShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

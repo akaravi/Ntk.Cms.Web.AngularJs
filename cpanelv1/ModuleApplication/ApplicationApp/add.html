@@ -19,14 +19,14 @@
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appApplication.AccessAdd('RecordStatus')"
+                                ng-show="appApplication.CheckAccessAdd('RecordStatus')"
                                 ng-class="{'has-error' : frmappApplicationAdd.RecordStatus.$invalid && !frmappApplicationAdd.RecordStatus.$pristine,'has-success' : frmappApplicationAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appApplication"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appApplication.AccessAdd('Title')"
+                                ng-show="appApplication.CheckAccessAdd('Title')"
                                 ng-class="{'has-error' : frmappApplicationAdd.Title.$invalid && !frmappApplicationAdd.Title.$pristine,'has-success' : frmappApplicationAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'APP_TITLE'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -50,7 +50,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appApplication.AccessAdd('LinkSourceId')"
+                                ng-show="appApplication.CheckAccessAdd('LinkSourceId')"
                                 ng-class="{'has-error' : frmappApplicationAdd.LinkSourceId.$invalid && !frmappApplicationAdd.LinkSourceId.$pristine,'has-success' : frmappApplicationAdd.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -83,7 +83,7 @@
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appApplication.AccessAdd('UserConfigJsonValues')">
+                                ng-show="appApplication.CheckAccessAdd('UserConfigJsonValues')">
                                 <div class="col-sm-12">
                                     <div ng-model="appApplication.submitValue" fb-form="default"
                                         fb-default="appApplication.defaultValue"></div>
@@ -91,7 +91,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
-                                ng-show="appApplication.AccessAdd('LinkThemeConfigId')">
+                                ng-show="appApplication.CheckAccessAdd('LinkThemeConfigId')">
                                 <label class="col-sm-2 control-label">{{'THEME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="LinkThemeConfigId"
@@ -108,7 +108,7 @@
                                     alt="{{appApplication.selectedItem.Title}}" />
                             </div>
                             <div id="treecontrol" class="form-group"
-                                ng-show="appApplication.AccessAdd('LinkModulesFilesIdIcon')">
+                                ng-show="appApplication.CheckAccessAdd('LinkModulesFilesIdIcon')">
                                 <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div treecontrol class="tree-boot" style="color:black"

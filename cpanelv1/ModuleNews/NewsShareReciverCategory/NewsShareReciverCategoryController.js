@@ -147,7 +147,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsShareReciverCategory.ListItems = response.ListItems;
-            newsShareReciverCategory.gridOptions.fillData(newsShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            newsShareReciverCategory.gridOptions.fillData(newsShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             newsShareReciverCategory.contentBusyIndicator.isActive = false;
             newsShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newsShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -167,7 +167,7 @@
         if (buttonIsPressed) { return };
         newsShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             newsShareReciverCategory.selectedItem = response.Item;
@@ -213,7 +213,7 @@
 
         newsShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/GetOne', newsShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/', newsShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             newsShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -325,7 +325,7 @@
                 newsShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'NewsShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     newsShareReciverCategory.selectedItemForDelete = response.Item;
@@ -384,7 +384,7 @@
             rashaErManage.checkAction(response);
             newsShareReciverCategory.contentBusyIndicator.isActive = false;
             newsShareReciverCategory.ListItems = response.ListItems;
-            newsShareReciverCategory.gridOptions.fillData(newsShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            newsShareReciverCategory.gridOptions.fillData(newsShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             newsShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             newsShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             newsShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -407,7 +407,7 @@
         newsShareReciverCategory.addRequested = false;
         newsShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -433,7 +433,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsShareReciverCategory/GetOne', newsShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsShareReciverCategory/', newsShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             newsShareReciverCategory.selectedItem = response1.Item;
@@ -527,7 +527,7 @@
                 newsShareReciverCategory.showbusy = true;
                 newsShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/GetOne", newsShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/", newsShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     newsShareReciverCategory.showbusy = false;
                     newsShareReciverCategory.showIsBusy = false;
@@ -787,7 +787,7 @@
         }
         newsShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         newsShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             newsShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

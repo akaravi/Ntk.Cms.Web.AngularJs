@@ -3,9 +3,9 @@
     <div class="row" rasha-loading="cmsSiteMenu.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="cmsSiteMenu.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="cmsSiteMenu.Add" ng-click="cmsSiteMenu.openAddModal()" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsSiteMenu.Edit" ng-click="cmsSiteMenu.openEditModal()" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsSiteMenu.Delete" ng-click="cmsSiteMenu.deleteRow()" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteMenu.Add" ng-click="cmsSiteMenu.openAddModal()" ng-show="cmsSiteMenu.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsSiteMenu.Edit" ng-click="cmsSiteMenu.openEditModal()" ng-show="cmsSiteMenu.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsSiteMenu.Delete" ng-click="cmsSiteMenu.deleteRow()" ng-show="cmsSiteMenu.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="cmsSiteMenu.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <!--<button class="btn btn-warning" type="button" ng-click="cmsSiteMenu.openGridConfigModal()" id="gridView-btn">{{'display_setting'|lowercase|translate}}</button>-->
             <!--<button class="btn btn-default" type="button" ng-click="cmsSiteMenu.reportData()">{{'report'|lowercase|translate}}</button>-->

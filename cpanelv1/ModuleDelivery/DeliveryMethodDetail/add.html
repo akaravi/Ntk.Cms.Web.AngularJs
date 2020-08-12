@@ -5,19 +5,19 @@
             <h3 class="m-t-none m-b">{{'Add_Delivery_Method_Detail'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmdeliveryMethodDetailAdd" novalidate ng-submit="deliveryMethodDetail.addNewRow(frmdeliveryMethodDetailAdd)" ng-init="deliveryMethodDetail.loadEmojiPicker()">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryMethodDetail.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="deliveryMethodDetail.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmdeliveryMethodDetailAdd.RecordStatus.$invalid && !frmdeliveryMethodDetailAdd.RecordStatus.$pristine,'has-success' : frmdeliveryMethodDetailAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="deliveryMethodDetail"></div>
                 </div>
-                <div class="form-group" ng-show="deliveryMethodDetail.AccessAdd('IsCircular')">
+                <div class="form-group" ng-show="deliveryMethodDetail.CheckAccessAdd('IsCircular')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="deliveryMethodDetail.selectedItem.IsCircular" />{{'IsCircular'|lowercase|translate}}
                         </label>
                     </div>
                 </div>
-                <div class="form-group" ng-show="deliveryMethodDetail.AccessAdd('NeedToAcceptFromDeliveryMember')">
+                <div class="form-group" ng-show="deliveryMethodDetail.CheckAccessAdd('NeedToAcceptFromDeliveryMember')">
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
                             <input icheck type="checkbox" value="option1" ng-model="deliveryMethodDetail.selectedItem.NeedToAcceptFromDeliveryMember" />{{'Need_To_Accept_From_Delivery_Member'|lowercase|translate}}
@@ -32,14 +32,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryMethodDetail.AccessAdd('LinkExternalModuleShopProductId')">
+                <div class="form-group" ng-show="deliveryMethodDetail.CheckAccessAdd('LinkExternalModuleShopProductId')">
                     <label class="col-sm-2 control-label">{{'Factor_Row'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalModuleShopProductId" rasha-autocomplete="deliveryMethodDetail.LinkExternalModuleShopProductIdSelector" ng-model="frmdeliveryMethodDetailEdit.selectedItem.LinkExternalModuleShopProductId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="deliveryMethodDetail.AccessAdd('LinkLocationId')">
+                <div class="form-group" ng-show="deliveryMethodDetail.CheckAccessAdd('LinkLocationId')">
                     <label class="col-sm-2 control-label">{{'CITY'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkLocationId" rasha-autocomplete="deliveryMethodDetail.LinkLocationIdSelector" ng-model="deliveryMethodDetail.selectedItem.LinkLocationId" />

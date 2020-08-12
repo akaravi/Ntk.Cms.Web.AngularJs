@@ -38,7 +38,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.ListItems = response.ListItems;
-            cmsModulegrd.gridOptions.fillData(cmsModulegrd.ListItems, response.resultAccess);
+            cmsModulegrd.gridOptions.fillData(cmsModulegrd.ListItems, response.Access);
             cmsModulegrd.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsModulegrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsModulegrd.gridOptions.rowPerPage = response.RowPerPage;
@@ -53,7 +53,7 @@
     cmsModulegrd.addRequested = false;
     cmsModulegrd.openAddModal = function () {
         cmsModulegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;
             $modal.open({
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOne', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -170,7 +170,7 @@
             if (isConfirmed) {
                 console.log(cmsModulegrd.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOne', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulegrd.selectedItemForDelete = response.Item;
@@ -203,11 +203,11 @@
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'ClassName', displayName: 'ClassName', sortable: true, type: 'string' },
             { name: 'Description', displayName: 'توضیحات', sortable: true, type: 'string' },
-            { name: 'ModuleConfigAdminMainJson', displayName: 'تنظیمات ماژول', sortable: true, visible: 'cmsModulegrd.AccessEdit("ModuleConfigAdminMainJson")', template: '<a class="btn btn-success" ng-click="cmsModulegrd.openModuleConfigModalDefault(x)" title="مقداردهی"><i class="fa fa-pencil" aria-hidden="true"></i></a>' },
-            // { name: 'ModuleConfigAdminMainJson', displayName: 'تنظیمات ماژول', sortable: true, visible: 'cmsModulegrd.AccessEdit("ModuleConfigAdminMainJson")', template: '<a ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigAdminMainJson\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigAdminMainJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>&nbsp;<a ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigAdminMainJsonForm\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigAdminMainJsonForm\', \'ModuleConfigAdminMainJson\')" title="مقداردهی"><i class="fa fa-pencil" aria-hidden="true"></i></a>' },
-            // { name: 'ModuleConfigSiteAccessDefaultJson', displayName: 'تنظیمات دسترسی', sortable: true, visible: 'cmsModulegrd.AccessEdit("ModuleConfigSiteAccessDefaultJson")', template: '<a ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigSiteAccessDefaultJson\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigSiteAccessJsonFrom\')" title="طراحی فرم\"><i class=\"fa fa-paint-brush\" aria-hidden="true"></i></a>&nbsp;<a  ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigSiteJsonForm\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigSiteAccessJsonFrom\', \'ModuleConfigSiteAccessDefaultJson\')" title="مقداردهی"><i class=\"fa fa-pencil\" aria-hidden="true"></i></a>' },
-            // { name: 'ModuleConfigSiteDefaultJson', displayName: 'تنظیمات سایت', sortable: true, template: '<a ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigSiteJsonForm\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigSiteJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>&nbsp;<a ng-if="cmsModulegrd.AccessEdit(\'ModuleConfigSiteDefaultJson\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigSiteJsonForm\', \'ModuleConfigSiteDefaultJson\')" title="مقداردهی"><i class=\"fa fa-pencil\" aria-hidden="true"></i></a>' },
-            // { name: 'ModuleSiteStorageValuesJsonForm', displayName: 'مقادیر موردنیاز', sortable: true, visible: 'cmsModulegrd.AccessEdit("ModuleSiteStorageValuesJsonForm")', type: 'string', template: '<a ng-if="cmsModulegrd.AccessEdit(\'ModuleSiteStorageValuesJsonForm\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleSiteStorageValuesJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>' }
+            { name: 'ModuleConfigAdminMainJson', displayName: 'تنظیمات ماژول', sortable: true, visible: 'cmsModulegrd.CheckAccessEdit("ModuleConfigAdminMainJson")', template: '<a class="btn btn-success" ng-click="cmsModulegrd.openModuleConfigModalDefault(x)" title="مقداردهی"><i class="fa fa-pencil" aria-hidden="true"></i></a>' },
+            // { name: 'ModuleConfigAdminMainJson', displayName: 'تنظیمات ماژول', sortable: true, visible: 'cmsModulegrd.CheckAccessEdit("ModuleConfigAdminMainJson")', template: '<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigAdminMainJson\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigAdminMainJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>&nbsp;<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigAdminMainJsonForm\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigAdminMainJsonForm\', \'ModuleConfigAdminMainJson\')" title="مقداردهی"><i class="fa fa-pencil" aria-hidden="true"></i></a>' },
+            // { name: 'ModuleConfigSiteAccessDefaultJson', displayName: 'تنظیمات دسترسی', sortable: true, visible: 'cmsModulegrd.CheckAccessEdit("ModuleConfigSiteAccessDefaultJson")', template: '<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigSiteAccessDefaultJson\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigSiteAccessJsonFrom\')" title="طراحی فرم\"><i class=\"fa fa-paint-brush\" aria-hidden="true"></i></a>&nbsp;<a  ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigSiteJsonForm\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigSiteAccessJsonFrom\', \'ModuleConfigSiteAccessDefaultJson\')" title="مقداردهی"><i class=\"fa fa-pencil\" aria-hidden="true"></i></a>' },
+            // { name: 'ModuleConfigSiteDefaultJson', displayName: 'تنظیمات سایت', sortable: true, template: '<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigSiteJsonForm\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleConfigSiteJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>&nbsp;<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleConfigSiteDefaultJson\')" class="btn btn-success" ng-click="cmsModulegrd.openPreviewModal(x, \'ModuleConfigSiteJsonForm\', \'ModuleConfigSiteDefaultJson\')" title="مقداردهی"><i class=\"fa fa-pencil\" aria-hidden="true"></i></a>' },
+            // { name: 'ModuleSiteStorageValuesJsonForm', displayName: 'مقادیر موردنیاز', sortable: true, visible: 'cmsModulegrd.CheckAccessEdit("ModuleSiteStorageValuesJsonForm")', type: 'string', template: '<a ng-if="cmsModulegrd.CheckAccessEdit(\'ModuleSiteStorageValuesJsonForm\')" class="btn btn-warning" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessWatchRow" ng-click="cmsModulegrd.designForm(x, \'ModuleSiteStorageValuesJsonForm\')" title="طراحی فرم"><i class="fa fa-paint-brush" aria-hidden="true"></i></a>' }
         ],
         data: {},
         multiSelect: false,
@@ -371,7 +371,7 @@
 
     cmsModulegrd.scrollToFormBuilder = function (item) {
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MobilecmsModulegrd/GetOne', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MobilecmsModulegrd/', item.Id, 'GET').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;

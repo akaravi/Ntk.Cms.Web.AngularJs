@@ -6,7 +6,7 @@
             <form method="get" class="form-horizontal" name="frmreservationServiceAdd" novalidate ng-submit="reservationService.addNewRow(frmreservationServiceAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="reservationService.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmreservationServiceAdd.LinkSourceId.$invalid && !frmreservationServiceAdd.LinkSourceId.$pristine,'has-success' : frmreservationServiceAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="reservationService"></div>
@@ -14,7 +14,7 @@
                 
                 <div class='hr-line-dashed'></div>
                 <div class="form-group"
-                     ng-show="reservationService.AccessAdd('Title')"
+                     ng-show="reservationService.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmreservationServiceAdd.Title.$invalid && !frmreservationServiceAdd.Title.$pristine,'has-success' : frmreservationServiceAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessAdd('Description')" ng-class="{'has-error' : frmreservationServiceAdd.Description.$invalid && !frmreservationServiceAdd.Description.$pristine,'has-success' : frmreservationServiceAdd.Description.$valid}">
+                <div class="form-group" ng-show="reservationService.CheckAccessAdd('Description')" ng-class="{'has-error' : frmreservationServiceAdd.Description.$invalid && !frmreservationServiceAdd.Description.$pristine,'has-success' : frmreservationServiceAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control ltr-support" ng-required="true" name="Description" ng-model="reservationService.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
@@ -44,7 +44,7 @@
                 </div>
                 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessAdd('LinkExternalModuleShopContentId')">
+                <div class="form-group" ng-show="reservationService.CheckAccessAdd('LinkExternalModuleShopContentId')">
                     <label class="col-sm-2 control-label">{{'Commodity'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalModuleShopContentId" rasha-autocomplete="reservationService.LinkExternalModuleShopContentIdSelector" ng-model="reservationService.selectedItem.LinkExternalModuleShopContentId" />
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessAdd('TimeUnits')">
+                <div class="form-group" ng-show="reservationService.CheckAccessAdd('TimeUnits')">
                     <label class="col-sm-2 control-label"> {{'UNIT_TIME_NEED'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" type="number" ng-required="true" name="TimeUnits" value="1" ng-model="reservationService.selectedItem.TimeUnits" />

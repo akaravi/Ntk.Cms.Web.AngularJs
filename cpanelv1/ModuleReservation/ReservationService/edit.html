@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmreservationServiceEdit" novalidate ng-submit="reservationService.editRow(frmreservationServiceEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="reservationService.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmreservationServiceEdit.LinkSourceId.$invalid && !frmreservationServiceEdit.LinkSourceId.$pristine,'has-success' : frmreservationServiceEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="reservationService"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessEdit('Title')"
+                <div class="form-group" ng-show="reservationService.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmreservationServiceEdit.Title.$invalid && !frmreservationServiceEdit.Title.$pristine,'has-success' : frmreservationServiceEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessEdit('Description')" ng-class="{'has-error' : frmreservationServiceEdit.Description.$invalid && !frmreservationServiceEdit.Description.$pristine,'has-success' : frmreservationServiceEdit.Description.$valid}">
+                <div class="form-group" ng-show="reservationService.CheckAccessEdit('Description')" ng-class="{'has-error' : frmreservationServiceEdit.Description.$invalid && !frmreservationServiceEdit.Description.$pristine,'has-success' : frmreservationServiceEdit.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control ltr-support" ng-required="true" name="Description" ng-model="reservationService.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
@@ -41,14 +41,14 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessEdit('LinkExternalModuleShopContentId')">
+                <div class="form-group" ng-show="reservationService.CheckAccessEdit('LinkExternalModuleShopContentId')">
                     <label class="col-sm-2 control-label">{{'Commodity'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkExternalModuleShopContentId" rasha-autocomplete="reservationService.LinkExternalModuleShopContentIdSelector" ng-model="reservationService.selectedItem.LinkExternalModuleShopContentId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="reservationService.AccessEdit('TimeUnits')">
+                <div class="form-group" ng-show="reservationService.CheckAccessEdit('TimeUnits')">
                     <label class="col-sm-2 control-label"> {{'UNIT_TIME_NEED'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" type="number" ng-required="true" name="TimeUnits" value="1" ng-model="reservationService.selectedItem.TimeUnits" />

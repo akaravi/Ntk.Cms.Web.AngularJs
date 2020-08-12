@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmjobPropertyTypeAdd" novalidate ng-submit="jobPropertyType.addNewRow(frmjobPropertyTypeAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobPropertyType.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="jobPropertyType.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmjobPropertyTypeAdd.LinkSourceId.$invalid && !frmjobPropertyTypeAdd.LinkSourceId.$pristine,'has-success' : frmjobPropertyTypeAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="jobPropertyType"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobPropertyType.AccessAdd('Title')"
+                <div class="form-group" ng-show="jobPropertyType.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmjobPropertyTypeAdd.Title.$invalid && !frmjobPropertyTypeAdd.Title.$pristine,'has-success' : frmjobPropertyTypeAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="jobPropertyType.AccessAdd('Description')" ng-class="{'has-error' : frmjobPropertyTypeAdd.Description.$invalid && !frmjobPropertyTypeAdd.Description.$pristine,'has-success' : frmjobPropertyTypeAdd.Description.$valid}">
+                <div class="form-group" ng-show="jobPropertyType.CheckAccessAdd('Description')" ng-class="{'has-error' : frmjobPropertyTypeAdd.Description.$invalid && !frmjobPropertyTypeAdd.Description.$pristine,'has-success' : frmjobPropertyTypeAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="Description" ng-required="true" ng-model="jobPropertyType.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

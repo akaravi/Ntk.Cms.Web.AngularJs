@@ -11,7 +11,7 @@
             chartContentTag.busyIndicator.isActive = false;
 
             chartContentTag.ListItems = response.ListItems;
-            chartContentTag.gridOptions.fillData(chartContentTag.ListItems , response.resultAccess);
+            chartContentTag.gridOptions.fillData(chartContentTag.ListItems , response.Access);
             chartContentTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartContentTag.gridOptions.totalRowCount = response.TotalRowCount;
             chartContentTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -23,7 +23,7 @@
     chartContentTag.addRequested = false;
     chartContentTag.openAddModal = function () {
         chartContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetOne',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 chartContentTag.busyIndicator.isActive = true;
                 console.log(chartContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetOne',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartContentTag.selectedItemForDelete = response.Item;
                     console.log(chartContentTag.selectedItemForDelete);

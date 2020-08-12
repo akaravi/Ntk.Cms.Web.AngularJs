@@ -10,7 +10,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUserBadLogin/getall", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.ListItems = response.ListItems;
-            cmdUserBadLogin.gridOptions.fillData(cmdUserBadLogin.ListItems ,  response.resultAccess);
+            cmdUserBadLogin.gridOptions.fillData(cmdUserBadLogin.ListItems ,  response.Access);
             cmdUserBadLogin.gridOptions.currentPageNumber = response.CurrentPageNumber+1;
             cmdUserBadLogin.gridOptions.totalRowCount = response.TotalRowCount;
             cmdUserBadLogin.gridOptions.rowPerPage = response.RowPerPage;
@@ -23,7 +23,7 @@
     cmdUserBadLogin.addRequested = false;
     cmdUserBadLogin.openAddModal = function () {
         cmdUserBadLogin.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.selectedItem = response.Item;
             $modal.open({
@@ -60,7 +60,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/GetOne', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.selectedItem = response.Item;
             $modal.open({
@@ -113,7 +113,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmdUserBadLogin.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/GetOne', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmdUserBadLogin.selectedItemForDelete = response.Item;
                     console.log(cmdUserBadLogin.selectedItemForDelete);

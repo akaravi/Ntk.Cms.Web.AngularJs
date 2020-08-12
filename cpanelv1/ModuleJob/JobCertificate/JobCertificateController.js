@@ -18,7 +18,7 @@
             rashaErManage.checkAction(response);
             jobCertificate.busyIndicator.isActive = false;
             jobCertificate.ListItems = response.ListItems;
-            jobCertificate.gridOptions.fillData(jobCertificate.ListItems, response.resultAccess);
+            jobCertificate.gridOptions.fillData(jobCertificate.ListItems, response.Access);
             jobCertificate.gridOptions.currentPageNumber = response.CurrentPageNumber;
             jobCertificate.gridOptions.totalRowCount = response.TotalRowCount;
             jobCertificate.gridOptions.rowPerPage = response.RowPerPage;
@@ -39,7 +39,7 @@
 
         jobCertificate.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -92,7 +92,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/GetOne', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -160,7 +160,7 @@
                 jobCertificate.busyIndicator.isActive = true;
                 console.log(jobCertificate.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/GetOne', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobCertificate.selectedItemForDelete = response.Item;

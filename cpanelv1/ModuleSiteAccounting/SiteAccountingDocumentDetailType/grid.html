@@ -3,9 +3,9 @@
     <div class="row" rasha-loading="ServiceTag.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="ServiceTag.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="ServiceTag.Add" ng-click="ServiceTag.openAddModal()" ng-show="ServiceTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="ServiceTag.Edit" ng-click="ServiceTag.openEditModal()" ng-show="ServiceTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="ServiceTag.Delete" ng-click="ServiceTag.deleteRow()" ng-show="ServiceTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="ServiceTag.Add" ng-click="ServiceTag.openAddModal()" ng-show="ServiceTag.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="ServiceTag.Edit" ng-click="ServiceTag.openEditModal()" ng-show="ServiceTag.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="ServiceTag.Delete" ng-click="ServiceTag.deleteRow()" ng-show="ServiceTag.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="ServiceTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <!--<button class="btn btn-warning" type="button" ng-click="ServiceTag.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <!--<button class="btn btn-default" type="button" ng-click="ServiceTag.reportData()"> {{'report'|lowercase|translate}} </button>-->

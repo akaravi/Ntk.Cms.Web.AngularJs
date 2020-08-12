@@ -47,7 +47,7 @@
             // Call Excerpt Function to shorten the length of long strings
             advertisementContract.gridOptions.myfilterText(advertisementContract.ListItems, "LinkContractTypeId", advertisementContract.contractTypes, "Title", "LinkContractTypeTitle");
             advertisementContract.gridOptions.myfilterText(advertisementContract.ListItems, "LinkPropertyId", listProperties, "Title", "LinkPropertyTitle");
-            advertisementContract.gridOptions.fillData(advertisementContract.ListItems, response.resultAccess);
+            advertisementContract.gridOptions.fillData(advertisementContract.ListItems, response.Access);
             advertisementContract.gridOptions.currentPageNumber = response.CurrentPageNumber;
             advertisementContract.gridOptions.totalRowCount = response.TotalRowCount;
             advertisementContract.gridOptions.rowPerPage = response.RowPerPage;
@@ -68,7 +68,7 @@
 
         advertisementContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -123,7 +123,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/GetOne', advertisementContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/', advertisementContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -196,7 +196,7 @@
                 advertisementContract.busyIndicator.isActive = true;
                 console.log(advertisementContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/GetOne', advertisementContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontract/', advertisementContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     advertisementContract.selectedItemForDelete = response.Item;

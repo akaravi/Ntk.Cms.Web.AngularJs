@@ -20,7 +20,7 @@
                 cmsUserGroupgrd.ListItems = response2.ListItems;
                 if (cmsUserGroupgrd.ListItems != undefined && cmsUserGroupgrd.ListItems != null) {
                     cmsUserGroupgrd.setUserTypeTitleDescriptioninGrid();
-                    cmsUserGroupgrd.gridOptions.fillData(cmsUserGroupgrd.ListItems, response2.resultAccess);
+                    cmsUserGroupgrd.gridOptions.fillData(cmsUserGroupgrd.ListItems, response2.Access);
                     cmsUserGroupgrd.gridOptions.currentPageNumber = response2.CurrentPageNumber;
                     cmsUserGroupgrd.gridOptions.totalRowCount = response2.TotalRowCount;
                     cmsUserGroupgrd.gridOptions.rowPerPage = response2.RowPerPage;
@@ -39,7 +39,7 @@
     cmsUserGroupgrd.addRequested = false;
     cmsUserGroupgrd.openAddModal = function () {
         cmsUserGroupgrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/ViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetOne', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUserGroupgrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetOne', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsUserGroupgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserGroupgrd.selectedItemForDelete);

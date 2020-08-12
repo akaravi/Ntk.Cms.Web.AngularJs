@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmvehicleContractAdd" novalidate ng-submit="vehicleContract.addNewRow(frmvehicleContractAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehicleContract.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="vehicleContract.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmvehicleContractAdd.LinkSourceId.$invalid && !frmvehicleContractAdd.LinkSourceId.$pristine,'has-success' : frmvehicleContractAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="vehicleContract"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehicleContract.AccessAdd('Title')"
+                <div class="form-group" ng-show="vehicleContract.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmvehicleContractAdd.Title.$invalid && !frmvehicleContractAdd.Title.$pristine,'has-success' : frmvehicleContractAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehicleContract.AccessAdd('Description')">
+                <div class="form-group" ng-show="vehicleContract.CheckAccessAdd('Description')">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" ng-required="true" name="Description" ng-model="vehicleContract.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
@@ -79,7 +79,7 @@
                         <span style="left: 10px !important;" ng-show="frmvehicleContractAdd.Title.$valid && frmvehicleContractAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                         <span style="left: 10px !important;" ng-show="(frmvehicleContractAdd.Title.$invalid && !frmvehicleContractAdd.Title.$pristine) || frmvehicleContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group" ng-show="vehicleContract.AccessAdd('Description')"
+                    <div class="form-group" ng-show="vehicleContract.CheckAccessAdd('Description')"
                          ng-class="{'has-error' : frmvehicleContractAdd.Description.$invalid && !frmvehicleContractAdd.Description.$pristine,'has-success' : frmvehicleContractAdd.Description.$valid}">
                         <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                         <div class="col-sm-10">

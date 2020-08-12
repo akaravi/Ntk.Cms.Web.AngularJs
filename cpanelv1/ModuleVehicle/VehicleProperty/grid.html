@@ -2,9 +2,9 @@
     <!-- <div class="container">-->
     <div class="row" id="topMenuSource">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.Access.AccessEditRow">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="vehicleProperty.showAdvancedSearchPanel()">&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="vehicleProperty.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="vehicleProperty.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
@@ -30,9 +30,9 @@
     </div>
     <!--<div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="vehicleProperty.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
         </div>
     </div>-->

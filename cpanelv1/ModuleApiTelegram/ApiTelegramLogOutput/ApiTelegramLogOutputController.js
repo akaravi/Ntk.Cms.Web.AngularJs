@@ -21,7 +21,7 @@
             rashaErManage.checkAction(response);
             logOutputCtrl.busyIndicator.isActive = false;
             logOutputCtrl.ListItems = response.ListItems;
-            logOutputCtrl.gridOptions.fillData(logOutputCtrl.ListItems, response.resultAccess);
+            logOutputCtrl.gridOptions.fillData(logOutputCtrl.ListItems, response.Access);
             logOutputCtrl.gridOptions.currentPageNumber = response.CurrentPageNumber;
             logOutputCtrl.gridOptions.totalRowCount = response.TotalRowCount;
             logOutputCtrl.gridOptions.rowPerPage = response.RowPerPage;
@@ -38,7 +38,7 @@
     logOutputCtrl.addRequested = false;
     logOutputCtrl.openAddModal = function () {
         logOutputCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logOutputCtrl.busyIndicator.isActive = false;
             logOutputCtrl.selectedItem = response.Item;
@@ -85,7 +85,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetOne', logOutputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/', logOutputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logOutputCtrl.selectedItem = response.Item;
             $modal.open({
@@ -147,7 +147,7 @@
             if (isConfirmed) {
                 logOutputCtrl.busyIndicator.isActive = true;
                 console.log(logOutputCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/GetOne', logOutputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/', logOutputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     logOutputCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/delete', logOutputCtrl.selectedItemForDelete, 'POST').success(function (res) {

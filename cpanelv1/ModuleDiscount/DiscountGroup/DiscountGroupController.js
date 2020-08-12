@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
             discountGroup.ListItems = response.ListItems;
-            discountGroup.gridOptions.fillData(discountGroup.ListItems, response.resultAccess);
+            discountGroup.gridOptions.fillData(discountGroup.ListItems, response.Access);
             discountGroup.gridOptions.currentPageNumber = response.CurrentPageNumber;
             discountGroup.gridOptions.totalRowCount = response.TotalRowCount;
             discountGroup.gridOptions.rowPerPage = response.RowPerPage;
@@ -95,7 +95,7 @@
     discountGroup.addRequested = false;
     discountGroup.openAddModal = function () {
         discountGroup.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
             discountGroup.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetOne', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.selectedItem = response.Item;
             if (discountGroup
@@ -210,7 +210,7 @@
             if (isConfirmed) {
                 discountGroup.busyIndicator.isActive = true;
                 
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetOne', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountGroup.selectedItemForDelete = response.Item;
                     

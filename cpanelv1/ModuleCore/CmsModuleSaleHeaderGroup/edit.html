@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmCmsModuleHeaderGEdit" novalidate ng-submit="CmsModuleHeaderG.editRow(frmCmsModuleHeaderGEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGAdd.RecordStatus.$invalid && !frmCmsModuleHeaderGAdd.RecordStatus.$pristine,'has-success' : frmCmsModuleHeaderGAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="CmsModuleHeaderG"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('Title')"
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGEdit.Title.$invalid && !frmCmsModuleHeaderGEdit.Title.$pristine,'has-success' : frmCmsModuleHeaderGEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -28,7 +28,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleHeaderGEdit.Title.$invalid && !frmCmsModuleHeaderGEdit.Title.$pristine) || frmCmsModuleHeaderGEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('TitleResourceLanguage')"
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGEdit.TitleResourceLanguage.$invalid && !frmCmsModuleHeaderGEdit.Title.$pristine,'has-success' : frmCmsModuleHeaderGEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('Description')"
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('Description')"
                      ng-class="{'has-error' : frmCmsModuleHeaderGEdit.Description.$invalid && !frmCmsModuleHeaderGEdit.Description.$pristine,'has-success' : frmCmsModuleHeaderGEdit.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -59,14 +59,14 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsModuleHeaderGEdit.Description.$invalid && !frmCmsModuleHeaderGEdit.Description.$pristine) || frmCmsModuleHeaderGEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('LinkUserGroupId')">
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('LinkUserGroupId')">
                     <label class="col-sm-2 control-label">{{'Link_User_Group_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkUserGroupId" rasha-autocomplete="CmsModuleHeaderG.LinkUserGroupIdSelector" ng-model="CmsModuleHeaderG.selectedItem.LinkUserGroupId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="CmsModuleHeaderG.AccessEdit('LinkCmsSiteCategoryId')">
+                <div class="form-group" ng-show="CmsModuleHeaderG.CheckAccessEdit('LinkCmsSiteCategoryId')">
                     <label class="col-sm-2 control-label"> {{'Link_Cms_Site_Category_Id'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCmsSiteCategoryId" rasha-autocomplete="CmsModuleHeaderG.LinkCmsSiteCategoryIdSelector" ng-model="CmsModuleHeaderG.selectedItem.LinkCmsSiteCategoryId" />

@@ -20,7 +20,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmmenuItemCtrlAdd.RecordStatus.$invalid && !frmmenuItemCtrlAdd.RecordStatus.$pristine,'has-success' : frmmenuItemCtrlAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="menuItemCtrl"></div>
@@ -58,7 +58,7 @@
                                     <a href="http://unicode.org/emoji/charts/full-emoji-list.html" target="blank" class="pull-right" style="font-family: Georgia, serif; font-size: 15px;">Full Emoji List</a>
                                 </div>
                             </div>
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('Key')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('Key')">
                                 <label class="col-sm-2 control-label"> {{'KEY'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control"
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('AddKeyToTitle')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('AddKeyToTitle')">
                                 <div class="col-sm-10" style="float: left;">
                                     <label class="checkbox-inline">
                                         <input icheck type="checkbox" value="option1" id="ShowInMenu" ng-model="menuItemCtrl.selectedItem.AddKeyToTitle" /> {{'KEY_SHOW_IN_MENU'|lowercase|translate}}
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('HiddenMenu')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('HiddenMenu')">
                                 <div class="col-sm-10" style="float: left;">
                                     <label class="checkbox-inline">
                                         <input icheck type="checkbox" value="option1" ng-model="menuItemCtrl.selectedItem.HiddenMenu" />{{'HIDDEN'|lowercase|translate}}
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('ShowInMenuOrder')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('ShowInMenuOrder')">
                                 <label class="col-sm-2 control-label">{{'SHOW_ORDER_IN_MENU'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" name="ShowInMenuOrder" min="1" ng-model="menuItemCtrl.selectedItem.ShowInMenuOrder" />
@@ -99,7 +99,7 @@
                             <div class='hr-line-dashed'></div>
                             <h4> {{'SELECT_FROM_OPERATIONS_IS_DEFINED'|lowercase|translate}} </h4>
                             <div class="back1" ng-show="menuItemCtrl.selectFromDefinedPanel">
-                                <div class="form-group" ng-show="menuItemCtrl.AccessAdd('MenuItemProcesses')">
+                                <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('MenuItemProcesses')">
                                     <br />
                                     <div class="col-sm-8 checkBoxList" style="overflow-y: auto;">
                                         <div ng-repeat="permission in menuItemCtrl.processesListItems" style="padding-right: 20px;">
@@ -190,7 +190,7 @@
                     <tab heading="{{'ACCESS_SETTINGS' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('AccessCheck')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('AccessCheck')">
                                 <div class="col-sm-10" style="float: left;">
                                     <label class="checkbox-inline">
                                         <input icheck type="checkbox" value="option1" ng-model="menuItemCtrl.selectedItem.AccessCheck" ng-click="menuItemCtrl.showAccessListPanel()" />{{'ACCESS_SETTINGS'|lowercase|translate}}
@@ -246,7 +246,7 @@
                     <tab heading="{{'SCHEDULE_SETTINGS' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
-                            <div class="form-group" ng-show="menuItemCtrl.AccessAdd('LinkTaskSchedulerId')">
+                            <div class="form-group" ng-show="menuItemCtrl.CheckAccessAdd('LinkTaskSchedulerId')">
                                 <div class="col-sm-10" style="float: left;">
                                     <label class="checkbox-inline">
                                         <input icheck type="checkbox" value="1" id="scheduleSettings_check" ng-click="menuItemCtrl.toggleScheduleSettings('scheduleSettings')" /> {{'SCHEDULE_SETTINGS'|lowercase|translate}}

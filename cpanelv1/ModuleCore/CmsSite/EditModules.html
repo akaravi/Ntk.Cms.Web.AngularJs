@@ -53,12 +53,12 @@
                                 ng-class="{enabled: x.Checked, disabled: !x.Checked}">
                                 <td>
                                     <div
-                                        ng-show="cmsSitegrd.AccessEdit('ExpireDate')">
+                                        ng-show="cmsSitegrd.CheckAccessEdit('ExpireDate')">
                                         <input type="checkbox" ng-model="x.Checked"
                                             ng-click="cmsSitegrd.onModuleCkeckedChange( x)">
                                     </div>
                                     <div
-                                        ng-show="!cmsSitegrd.AccessEdit('ExpireDate')">
+                                        ng-show="!cmsSitegrd.CheckAccessEdit('ExpireDate')">
                                         <input type="checkbox" ng-model="x.Checked" disabled>
                                     </div>
                                     &nbsp;<h4>
@@ -69,11 +69,11 @@
                                 </td>
                                 <td>
                                     <div
-                                        ng-show="!cmsSitegrd.AccessEdit('ExpireDate')">
+                                        ng-show="!cmsSitegrd.CheckAccessEdit('ExpireDate')">
                                         <label>{{x.ModuleSiteExpireDate|jalaliDate:'HH:mm jYY/jMM/jDD'}}</label>
                                     </div>
                                     <div
-                                        ng-show="cmsSitegrd.AccessEdit('ExpireDate')">
+                                        ng-show="cmsSitegrd.CheckAccessEdit('ExpireDate')">
                                         <adm-dtp ng-model='ExpireDate' ng-model-db="x.ModuleSiteExpireDate"
                                             full-data='ExpireDate_detail'
                                             options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}'

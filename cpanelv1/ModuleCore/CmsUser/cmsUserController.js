@@ -37,7 +37,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/getall", cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUser.ListItems = response.ListItems;
-            cmsUser.gridOptions.fillData(cmsUser.ListItems, response.resultAccess);
+            cmsUser.gridOptions.fillData(cmsUser.ListItems, response.Access);
             cmsUser.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsUser.gridOptions.totalRowCount = response.TotalRowCount;
             cmsUser.gridOptions.rowPerPage = response.RowPerPage;
@@ -58,7 +58,7 @@
         cmsUser.filePickerFiles.filename = "";
         cmsUser.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/ViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsUser.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsUser.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             cmsUser.filePickerMainImage.filename = null;
             cmsUser.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     cmsUser.filePickerMainImage.filename = response2.Item.FileName;
                     cmsUser.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -188,7 +188,7 @@
                 console.log(cmsUser.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
                 cmsUser.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsUser.selectedItemForDelete = response.Item;
@@ -395,7 +395,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             cmsUser.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -472,14 +472,14 @@
         cmsUser.fileIdToDelete = cmsUser.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", cmsUser.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     cmsUser.remove(cmsUser.FileList, cmsUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 cmsUser.FileItem = response3.Item;
                                 cmsUser.FileItem.FileName = name;
@@ -582,7 +582,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 cmsUser.fileIdToDelete,
                 "GET"
               )
@@ -632,7 +632,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     cmsUser.FileItem = response.Item;
                     cmsUser.FileItem.FileName = uploadFile.name;
                     cmsUser.FileItem.uploadName = uploadFile.uploadName;

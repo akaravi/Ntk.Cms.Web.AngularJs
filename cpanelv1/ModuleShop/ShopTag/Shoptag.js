@@ -167,7 +167,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"shoptag/getall", shopTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.ListItems = response.ListItems;
-            shopTag.gridOptions.fillData(shopTag.ListItems, response.resultAccess); // Sending Access as an argument
+            shopTag.gridOptions.fillData(shopTag.ListItems, response.Access); // Sending Access as an argument
             shopTag.contentBusyIndicator.isActive = false;
             shopTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopTag.gridOptions.totalRowCount = response.TotalRowCount;
@@ -187,7 +187,7 @@
     // Open Add Category Modal 
     shopTag.addNewCategoryModel = function () {
         shopTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -233,7 +233,7 @@
 
         shopTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/GetOne', shopTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/', shopTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             shopTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -346,7 +346,7 @@
             if (isConfirmed) {
                 shopTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopTag.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/delete', shopTag.selectedItemForDelete, 'POST').success(function (res) {
@@ -403,7 +403,7 @@
             rashaErManage.checkAction(response);
             shopTag.contentBusyIndicator.isActive = false;
             shopTag.ListItems = response.ListItems;
-            shopTag.gridOptions.fillData(shopTag.ListItems, response.resultAccess); // Sending Access as an argument
+            shopTag.gridOptions.fillData(shopTag.ListItems, response.Access); // Sending Access as an argument
             shopTag.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopTag.gridOptions.totalRowCount = response.TotalRowCount;
             shopTag.gridOptions.rowPerPage = response.RowPerPage;
@@ -418,7 +418,7 @@
 
         shopTag.addRequested = false;
         shopTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.selectedItem = response.Item;
             shopTag.selectedItem.LinkCategoryTagId = shopTag.CategoryTagId;
@@ -442,7 +442,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/GetOne', shopTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/', shopTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             shopTag.selectedItem = response1.Item;
@@ -525,7 +525,7 @@
                 console.log(shopTag.gridOptions.selectedRow.item);
                 shopTag.showbusy = true;
                 shopTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shoptag/GetOne", shopTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shoptag/", shopTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     shopTag.showbusy = false;
                     shopTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -721,7 +721,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             shopTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -798,14 +798,14 @@
         shopTag.fileIdToDelete = shopTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", shopTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     shopTag.remove(shopTag.FileList, shopTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 shopTag.FileItem = response3.Item;
                                 shopTag.FileItem.FileName = name;
@@ -908,7 +908,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
+                cmsServerConfig.configApiServerPath+"FileContent/",
                 shopTag.fileIdToDelete,
                 "GET"
               )
@@ -958,7 +958,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     shopTag.FileItem = response.Item;
                     shopTag.FileItem.FileName = uploadFile.name;
                     shopTag.FileItem.uploadName = uploadFile.uploadName;
@@ -1110,7 +1110,7 @@
         }
         shopTag.selectedItem.LinkMainImageId = node.Id;
         shopTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             shopTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

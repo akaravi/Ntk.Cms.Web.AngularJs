@@ -2,9 +2,9 @@
     <!--    <div class="container">-->
     <div class="row" >
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="processCtrl.Add" ng-click="processCtrl.openAddModal()" ng-show="processCtrl.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="processCtrl.Edit" ng-click="processCtrl.openEditModal()" ng-show="processCtrl.gridOptions.resultAccess.AccessEditRow"  type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="processCtrl.Delete" ng-click="processCtrl.deleteRow()" ng-show="processCtrl.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="processCtrl.Add" ng-click="processCtrl.openAddModal()" ng-show="processCtrl.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="processCtrl.Edit" ng-click="processCtrl.openEditModal()" ng-show="processCtrl.gridOptions.Access.AccessEditRow"  type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="processCtrl.Delete" ng-click="processCtrl.deleteRow()" ng-show="processCtrl.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="processCtrl.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-warning" type="button" ng-click="processCtrl.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="processCtrl.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

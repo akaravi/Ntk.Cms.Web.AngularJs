@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="appDateDetail.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="appDateDetail.Add" ng-click="appDateDetail.openAddModal()" ng-show="appDateDetail.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="appDateDetail.Edit" ng-click="appDateDetail.openEditModal()" ng-show="appDateDetail.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="appDateDetail.Delete" ng-click="appDateDetail.deleteRow()" type="button" ng-show="appDateDetail.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="appDateDetail.Add" ng-click="appDateDetail.openAddModal()" ng-show="appDateDetail.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="appDateDetail.Edit" ng-click="appDateDetail.openEditModal()" ng-show="appDateDetail.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="appDateDetail.Delete" ng-click="appDateDetail.deleteRow()" type="button" ng-show="appDateDetail.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="appDateDetail.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i> </button>
             <!--<button class="btn btn-warning" type="button" ng-click="appDateDetail.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="appDateDetail.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

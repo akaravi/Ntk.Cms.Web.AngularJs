@@ -2,9 +2,9 @@
     <!--    <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="emailPublicConfig.Add" ng-click="emailPublicConfig.autoAdd()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="emailPublicConfig.Edit" ng-click="emailPublicConfig.openEditModal()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="emailPublicConfig.Delete" ng-click="emailPublicConfig.deleteRow()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="emailPublicConfig.Add" ng-click="emailPublicConfig.autoAdd()" ng-show="emailPublicConfig.gridOptions.Access.CheckAccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailPublicConfig.Edit" ng-click="emailPublicConfig.openEditModal()" ng-show="emailPublicConfig.gridOptions.Access.CheckAccessAddRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailPublicConfig.Delete" ng-click="emailPublicConfig.deleteRow()" ng-show="emailPublicConfig.gridOptions.Access.CheckAccessAddRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="emailPublicConfig.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-warning" type="button" ng-click="emailPublicConfig.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="emailPublicConfig.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-<!--ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow"
-ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" 
-ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditRow"
-ng-show="emailPublicConfig.gridOptions.resultAccess.AccessDeleteRow"-->
+<!--ng-show="emailPublicConfig.gridOptions.Access.CheckAccessAddRow"
+ng-show="emailPublicConfig.gridOptions.Access.CheckAccessAddRow" 
+ng-show="emailPublicConfig.gridOptions.Access.CheckAccessEditRow"
+ng-show="emailPublicConfig.gridOptions.Access.AccessDeleteRow"-->

@@ -61,15 +61,15 @@
                             <div class="form-group">
                                 <label class="col-sm-2  control-label">{{'START_DATE'|lowercase|translate}}</label>
                                 <div class="col-sm-6  col-md-4">
-                                    <adm-dtp ng-model='FromDate' ng-model-db="pollingContent.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.AccessAdd('FromDate')"></adm-dtp>
+                                    <adm-dtp ng-model='FromDate' ng-model-db="pollingContent.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.CheckAccessAdd('FromDate')"></adm-dtp>
                                 </div>
                                 <label class="col-sm-2  control-label">{{'FINISH_DATE'|lowercase|translate}} </label>
                                 <div class="col-sm-6 col-md-4">
-                                    <adm-dtp ng-model='ExpireDate' ng-model-db="pollingContent.selectedItem.ExpireDate" full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.AccessAdd('ExpireDate')"></adm-dtp>
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="pollingContent.selectedItem.ExpireDate" full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.CheckAccessAdd('ExpireDate')"></adm-dtp>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="pollingContent.AccessAdd('ViewStatisticsBeforeVote')">
+                            <div class="form-group" ng-show="pollingContent.CheckAccessAdd('ViewStatisticsBeforeVote')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="pollingContent.AccessAdd('ViewStatisticsAfterVote')">
+                            <div class="form-group" ng-show="pollingContent.CheckAccessAdd('ViewStatisticsAfterVote')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -129,7 +129,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="pollingContent.AccessAdd('Geolocationlatitude')">
+                            <div class="form-group" ng-show="pollingContent.CheckAccessAdd('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="pollingContent.GeolocationConfig" />

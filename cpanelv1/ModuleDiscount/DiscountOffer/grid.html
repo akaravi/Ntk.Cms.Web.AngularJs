@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="discountOffer.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="discountOffer.Add" ng-click="discountOffer.openAddModal()" type="button" ng-show="discountOffer.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="discountOffer.Edit" ng-click="discountOffer.openEditModal()" type="button" ng-show="discountOffer.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="discountOffer.Delete" ng-click="discountOffer.deleteRow()" type="button" ng-show="discountOffer.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="discountOffer.Add" ng-click="discountOffer.openAddModal()" type="button" ng-show="discountOffer.gridOptions.Access.CheckAccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountOffer.Edit" ng-click="discountOffer.openEditModal()" type="button" ng-show="discountOffer.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="discountOffer.Delete" ng-click="discountOffer.deleteRow()" type="button" ng-show="discountOffer.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="discountOffer.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="discountOffer.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="discountOffer.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

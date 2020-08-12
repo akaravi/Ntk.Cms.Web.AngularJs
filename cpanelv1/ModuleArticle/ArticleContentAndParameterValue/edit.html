@@ -12,14 +12,14 @@
                     <div class="col-sm-10" rasha-record-status="articleContentAndParameterValue"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="articleContentAndParameterValue.AccessEdit('LinkContentParameterId')">
+                <div class="form-group" ng-show="articleContentAndParameterValue.CheckAccessEdit('LinkContentParameterId')">
                     <label class="col-sm-2 control-label">{{'Parameter'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkContentParameterId" rasha-autocomplete="articleContentAndParameterValue.LinkContentParameterIdSelector" ng-model="frmarticleContentAndParameterValueAdd.selectedItem.LinkContentParameterId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="articleContentAndParameterValue.AccessEdit('LinkContentId')">
+                <div class="form-group" ng-show="articleContentAndParameterValue.CheckAccessEdit('LinkContentId')">
                     <label class="col-sm-2 control-label">{{'CONTENT'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkContentId" rasha-autocomplete="articleContentAndParameterValue.LinkContentIdSelector" ng-model="frmarticleContentAndParameterValueAdd.selectedItem.LinkContentId" />

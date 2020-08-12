@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmcmsSitegrdAdd.RecordStatus.$invalid && !frmcmsSitegrdAdd.RecordStatus.$pristine,'has-success' : frmcmsSitegrdAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="cmsSitegrd"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsSitegrd.AccessAdd('OwnerSiteSetStatus')">
+                            <div class='form-group' ng-show="cmsSitegrd.CheckAccessAdd('OwnerSiteSetStatus')">
                                 <label class='col-sm-2 control-label'>{{'condition'|lowercase|translate}}:</label>
                                 <div class='col-sm-10'>
                                     <label><input type="radio" ng-model="cmsSitegrd.selectedItem.OwnerSiteSetStatus" ng-value="1">&nbsp;{{'ACTIVE'|lowercase|translate}}</label><br />
@@ -26,7 +26,7 @@
                             </div>
                             <!-- Redirect -->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Redirect')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('Redirect')">
                                 <label class="col-sm-2 control-label">Redirect به:</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr" name="Redirect" ng-model="cmsSitegrd.selectedItem.Redirect" />
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('UserLanguage')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('UserLanguage')">
                                 <label class="col-sm-2 control-label">{{ 'UserLanguage'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="UserLanguage" ng-model="cmsSitegrd.selectedItem.UserLanguage" ng-options="x.Value as x.Description for x in cmsSitegrd.UserLanguage"></select>
@@ -170,7 +170,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Title')"
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmCmsSiteAdd.Title.$invalid && !frmCmsSiteAdd.Title.$pristine,'has-success' : frmCmsSiteAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -187,7 +187,7 @@
                             </div>
                             <!-- Copyright -->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Copyright')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('Copyright')">
                                 <label class="col-sm-2 control-label">{{'COPYRIGHT'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr" name="Copyright" ng-model="cmsSitegrd.selectedItem.Copyright" />
@@ -195,7 +195,7 @@
                             </div>
                             <!-- WebMasterEmail -->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('WebMasterEmail')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('WebMasterEmail')">
                                 <label class="col-sm-2 control-label">{{'Web_Master_Email'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr" name="WebMasterEmail" ng-model="cmsSitegrd.selectedItem.WebMasterEmail" />
@@ -203,14 +203,14 @@
                             </div>
                             <!-- WebEditorEmail -->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('WebEditorEmail')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('WebEditorEmail')">
                                 <label class="col-sm-2 control-label">{{'Web_Editor_Email'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr" name="WebEditorEmail" ng-model="cmsSitegrd.selectedItem.WebEditorEmail" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"  ng-show="cmsSitegrd.AccessAdd('ViewInCmsSiteLIst')">
+                            <div class="form-group"  ng-show="cmsSitegrd.CheckAccessAdd('ViewInCmsSiteLIst')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
@@ -221,7 +221,7 @@
                             </div>
                             <!-- Keywords -->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsSitegrd.AccessAdd('Keyword')">
+                            <div class='form-group' ng-show="cmsSitegrd.CheckAccessAdd('Keyword')">
                                 <label class='col-sm-2 control-label'>{{'KEYWORDS'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <tags-input ng-model="cmsSitegrd.kwords" placeholder="{{'Key_Word' |lowercase|translate}}" min-length="2" add-on-enter="true">
@@ -231,14 +231,14 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsSitegrd.AccessAdd('Description')">
+                            <div class='form-group' ng-show="cmsSitegrd.CheckAccessAdd('Description')">
                                 <label class='col-sm-2 control-label'>{{'DESCRIPTION'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <textarea type='text' ng-required="true" ng-model='cmsSitegrd.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('LinkSiteCategoryId')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('LinkSiteCategoryId')">
                                 <label class="col-sm-2 control-label">{{'SELECT_CATEGORIES_SITE'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="LinkSiteCategoryId" ng-model="cmsSitegrd.selectedItem.LinkSiteCategoryId">
@@ -254,7 +254,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('Domain')"
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('Domain')"
                                  ng-class="{'has-error' : frmCmsSiteAdd.Domain.$invalid && !frmCmsSiteAdd.Domain.$pristine,'has-success' : frmCmsSiteAdd.Domain.$valid}">
                                 <label class="col-sm-2 control-label">{{'DOMAIN'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -270,7 +270,7 @@
                             </div>
                             <!-- SubDomain -->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('SubDomain')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('SubDomain')">
                                 <label class="col-sm-2 control-label">{{'SUBDOMAIN'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr" name="SubDomain" ng-model="cmsSitegrd.selectedItem.SubDomain" />
@@ -283,7 +283,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsSitegrd.AccessAdd('LinkFavIconId')">
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('LinkFavIconId')">
                                 <label class="col-sm-2 control-label"> {{'FAV_ICON'|lowercase|translate}} </label>
                                 <a class="btn btn-primary uoload-file-m" href="" ng-click="cmsSitegrd.openUploadModal()" aria-label="Upload">
                                     {{'UPLOAD'|lowercase|translate}}
@@ -301,8 +301,8 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="back1" ng-show="cmsSitegrd.AccessAdd('HasAccountingForm')">
-                                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('HasAccountingForm')" style="margin-top:10px;">
+                            <div class="back1" ng-show="cmsSitegrd.CheckAccessAdd('HasAccountingForm')">
+                                <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('HasAccountingForm')" style="margin-top:10px;">
                                     <label class="col-sm-4 control-label">{{'Is_There_A_Form_Of_Payment'|lowercase|translate}}</label>
                                     <div class="col-sm-8">
                                         <div class="checkbox">
@@ -311,21 +311,21 @@
                                     </div>
                                 </div>
                                 <div class='hr-line-dashed'></div>
-                                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('AccountingFormNo')">
+                                <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('AccountingFormNo')">
                                     <label class="col-sm-4 control-label">{{'Payment_Form_Number'|lowercase|translate}}</label>
                                     <div class="col-sm-8">
                                         <input type="number" class="form-control" name="AccountingFormNo" ng-model="cmsSitegrd.selectedItem.AccountingFormNo" />
                                     </div>
                                 </div>
                                 <div class='hr-line-dashed'></div>
-                                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('AccountingFormCreatedDate')">
+                                <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('AccountingFormCreatedDate')">
                                     <label class="col-sm-4 control-label">{{'Date_Of_Registration_Of_Payment_Form'|lowercase|translate}}</label>
                                     <div class="col-sm-8">
                                         <div rasha-date-picker="cmsSitegrd.AccountingFormCreatedDateDatePickerConfig" ng-model="cmsSitegrd.selectedItem.AccountingFormCreatedDate"></div><input type="hidden" ng-model="cmsSitegrd.AccountingFormCreatedDate" />
                                     </div>
                                 </div>
                                 <div class='hr-line-dashed'></div>
-                                <div class="form-group" ng-show="cmsSitegrd.AccessAdd('AccountingFormUpdatedDate')">
+                                <div class="form-group" ng-show="cmsSitegrd.CheckAccessAdd('AccountingFormUpdatedDate')">
                                     <label class="col-sm-4 control-label">{{'Date_Of_Last_Edit_Of_Payment_Form'|lowercase|translate}}</label>
                                     <div class="col-sm-8">
                                         <div rasha-date-picker="cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig" ng-model="cmsSitegrd.selectedItem.AccountingFormUpdatedDate"></div><input type="hidden" ng-model="cmsSitegrd.AccountingFormUpdatedDate" />

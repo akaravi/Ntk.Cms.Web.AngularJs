@@ -20,13 +20,13 @@
             <h3 class="m-t-none m-b"> {{ objectPropertyDetail.modalTitle}}</h3>
             <form method="get" class="form-horizontal" name="frmobjectPropertyDetailAdd" novalidate>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmobjectPropertyDetailAdd.RecordStatus.$invalid && !frmobjectPropertyDetailAdd.RecordStatus.$pristine,'has-success' : frmobjectPropertyDetailAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="objectPropertyDetail"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('Title')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmobjectPropertyDetailAdd.Title.$invalid && !frmobjectPropertyDetailAdd.Title.$pristine,'has-success' : frmobjectPropertyDetailAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="objectPropertyDetail.AccessAdd('IconFont')">
+                <div class="form-group formControl" ng-show="objectPropertyDetail.CheckAccessAdd('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" name="IconFont" ng-focus="objectPropertyDetail.toggleIcons('true')" ng-blur="objectPropertyDetail.toggleIcons()" />
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('InputDataType')"
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('InputDataType')"
                      ng-class="{'has-error' : frmobjectPropertyDetailAdd.InputDataType.$invalid && !frmobjectPropertyDetailAdd.InputDataType.$pristine,'has-success' : frmobjectPropertyDetailAdd.InputDataType.$valid}">
                     <label class="col-sm-2 control-label"> {{'INPUT_TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -100,14 +100,14 @@
                     </div>
                 </div>
                 <!--<div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('LinkHistoryId')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('LinkHistoryId')">
                     <label class="col-sm-2 control-label">history</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkHistoryId" rasha-autocomplete="objectPropertyDetail.LinkHistoryIdSelector" ng-model="objectPropertyDetail.selectedItem.LinkHistoryId" />
                     </div>
                 </div>-->
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('InvisibleForEndUser')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('InvisibleForEndUser')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('InvisibleForSubmiter')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('InvisibleForSubmiter')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="objectPropertyDetail.AccessAdd('Required')">
+                <div class="form-group" ng-show="objectPropertyDetail.CheckAccessAdd('Required')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>

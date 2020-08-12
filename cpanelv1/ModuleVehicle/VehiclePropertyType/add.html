@@ -6,14 +6,14 @@
             <form method="get" class="form-horizontal" name="frmvehiclePropertyTypeAdd" novalidate ng-submit="vehiclePropertyType.addNewRow(frmvehiclePropertyTypeAdd)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyType.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="vehiclePropertyType.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmvehiclePropertyTypeAdd.LinkSourceId.$invalid && !frmvehiclePropertyTypeAdd.LinkSourceId.$pristine,'has-success' : frmvehiclePropertyTypeAdd.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="vehiclePropertyType"></div>
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyType.AccessAdd('Title')"
+                <div class="form-group" ng-show="vehiclePropertyType.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmvehiclePropertyTypeAdd.Title.$invalid && !frmvehiclePropertyTypeAdd.Title.$pristine,'has-success' : frmvehiclePropertyTypeAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -31,7 +31,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="vehiclePropertyType.AccessAdd('Description')" ng-class="{'has-error' : frmvehiclePropertyTypeAdd.Description.$invalid && !frmvehiclePropertyTypeAdd.Description.$pristine,'has-success' : frmvehiclePropertyTypeAdd.Description.$valid}">
+                <div class="form-group" ng-show="vehiclePropertyType.CheckAccessAdd('Description')" ng-class="{'has-error' : frmvehiclePropertyTypeAdd.Description.$invalid && !frmvehiclePropertyTypeAdd.Description.$pristine,'has-success' : frmvehiclePropertyTypeAdd.Description.$valid}">
                     <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="Description" ng-required="true" ng-model="vehiclePropertyType.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

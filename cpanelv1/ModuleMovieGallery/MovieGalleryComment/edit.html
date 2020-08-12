@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mvGalleryComment.AccessEdit('RecordStatus')"
+                            <div class="form-group" ng-show="mvGalleryComment.CheckAccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmmvGalleryCommentAdd.RecordStatus.$invalid && !frmmvGalleryCommentAdd.RecordStatus.$pristine,'has-success' : frmmvGalleryCommentAdd.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="mvGalleryComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mvGalleryComment.AccessEdit('Writer')"
+                            <div class="form-group" ng-show="mvGalleryComment.CheckAccessEdit('Writer')"
                                  ng-class="{'has-error' : frmmvGalleryCommentEdit.Writer.$invalid && !frmmvGalleryCommentEdit.Writer.$pristine,'has-success' : frmmvGalleryCommentEdit.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -33,7 +33,7 @@
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="mvGalleryComment.AccessEdit('Comment')"
+                            <div class="form-group" ng-show="mvGalleryComment.CheckAccessEdit('Comment')"
                                  ng-class="{'has-error' : frmmvGalleryCommentEdit.Comment.$invalid && !frmmvGalleryCommentEdit.Comment.$pristine,'has-success' : frmmvGalleryCommentEdit.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>
-            <div class="form-group" ng-show="mvGalleryComment.AccessEdit('LinkmvGalleryContentId')"
+            <div class="form-group" ng-show="mvGalleryComment.CheckAccessEdit('LinkmvGalleryContentId')"
                  ng-class="{'has-error' : frmmvGalleryCommentEdit.LinkmvGalleryContentId.$invalid && !frmmvGalleryCommentEdit.LinkmvGalleryContentId.$pristine,'has-success' : frmmvGalleryCommentEdit.LinkmvGalleryContentId.$valid}">
                 <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
                 <div class="col-sm-10">

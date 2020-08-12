@@ -11,7 +11,7 @@
                     <div class="col-sm-10" rasha-record-status="privateSiteConfig"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="privateSiteConfig.AccessAdd('LinkprivateSiteConfigId')">
+                <div class='form-group' ng-show="privateSiteConfig.CheckAccessAdd('LinkprivateSiteConfigId')">
                     <label class="col-sm-2 control-label">{{'Bank'|lowercase|translate}}</label>
 
                     <div class='col-sm-10'>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('Title')"
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmprivateSiteConfigAdd.Title.$invalid && !frmprivateSiteConfigAdd.Title.$pristine,'has-success' : frmprivateSiteConfigAdd.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -41,7 +41,7 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('CurrencyUnitRatioByShop')"
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('CurrencyUnitRatioByShop')"
                      ng-class="{'has-error' : frmprivateSiteConfigAdd.CurrencyUnitRatioByShop.$invalid && !frmprivateSiteConfigAdd.CurrencyUnitRatioByShop.$pristine,'has-success' : frmprivateSiteConfigAdd.CurrencyUnitRatioByShop.$valid}">
                     <label class="col-sm-2 control-label"> {{'CURRENCYUNITRATIOBYSHOP'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -58,42 +58,42 @@
                 </div>
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('MaxTransactionAmount')">
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('MaxTransactionAmount')">
                     <label class="col-sm-2 control-label">{{'MAX_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="number" min="0" step="0.01" class="form-control" name="MaxTransactionAmount" ng-model="privateSiteConfig.selectedItem.MaxTransactionAmount" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('MinTransactionAmount')">
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('MinTransactionAmount')">
                     <label class="col-sm-2 control-label"> {{'MIN_TRANSACTION_AMOUNT'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" step="0.01" name="MinTransactionAmount" ng-model="privateSiteConfig.selectedItem.MinTransactionAmount" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('FixFeeTransactionAmount')">
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('FixFeeTransactionAmount')">
                     <label class="col-sm-2 control-label">{{'FIX_FEE_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input type="number" min="0" step="0.01" class="form-control" name="FixFeeTransactionAmount" ng-model="privateSiteConfig.selectedItem.FixFeeTransactionAmount" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class='form-group' ng-show="privateSiteConfig.AccessAdd('PercentFeeTransactionAmount')">
+                <div class='form-group' ng-show="privateSiteConfig.CheckAccessAdd('PercentFeeTransactionAmount')">
                     <label class='col-sm-2 control-label'>{{'PERCENT_FEE_TRANSACTION_AMOUNT'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <input type="number" min="0" step="0.01" name="PercentFeeTransactionAmount" ng-model='privateSiteConfig.selectedItem.PercentFeeTransactionAmount' class='form-control' />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessAdd('Memo')">
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessAdd('Memo')">
                     <label class='col-sm-2 control-label'>{{'MEMO'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <textarea name="Memo" ng-model='privateSiteConfig.selectedItem.Memo' class="form-control" style="resize:vertical;height:60px;"></textarea>
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group" ng-show="privateSiteConfig.AccessEdit('PrivateConfigJsonValues')">
+                <div class="form-group" ng-show="privateSiteConfig.CheckAccessEdit('PrivateConfigJsonValues')">
                     <label class='col-sm-2 control-label'>{{'SETTINGS'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <div ng-model="privateSiteConfig.submitValue" fb-form="default" fb-default="privateSiteConfig.defaultValue"></div>

@@ -36,7 +36,7 @@
             rashaErManage.checkAction(response);
             mscGalleryComment.busyIndicator.isActive = false;
             mscGalleryComment.ListItems = response.ListItems;
-            mscGalleryComment.gridOptions.fillData(mscGalleryComment.ListItems , response.resultAccess);
+            mscGalleryComment.gridOptions.fillData(mscGalleryComment.ListItems , response.Access);
             mscGalleryComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             mscGalleryComment.gridOptions.totalRowCount = response.TotalRowCount;
             mscGalleryComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -58,7 +58,7 @@
     mscGalleryComment.addRequested = false;
     mscGalleryComment.openAddModal = function () {
         mscGalleryComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryComment.busyIndicator.isActive = false;
             mscGalleryComment.selectedItem = response.Item;
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/GetOne', mscGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/', mscGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryComment.selectedItem = response.Item;
             $modal.open({
@@ -168,7 +168,7 @@
             if (isConfirmed) {
                 mscGalleryComment.busyIndicator.isActive = true;
                 console.log(mscGalleryComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/GetOne', mscGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/', mscGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     mscGalleryComment.selectedItemForDelete = response.Item;
                     console.log(mscGalleryComment.selectedItemForDelete);

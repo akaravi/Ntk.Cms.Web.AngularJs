@@ -15,9 +15,9 @@
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceTag.Add" ng-click="serviceTag.addNewCategoryModel()" ng-show="serviceTag.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceTag.Edit" ng-click="serviceTag.openEditCategoryModel()" ng-show="serviceTag.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
-                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceTag.Delete" ng-click="serviceTag.deleteCategory()" ng-show="serviceTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceTag.Add" ng-click="serviceTag.addNewCategoryModel()" ng-show="serviceTag.gridOptions.Access.CheckAccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceTag.Edit" ng-click="serviceTag.openEditCategoryModel()" ng-show="serviceTag.gridOptions.Access.CheckAccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceTag.Delete" ng-click="serviceTag.deleteCategory()" ng-show="serviceTag.gridOptions.Access.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
                     </div>
@@ -32,9 +32,9 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="serviceTag.openAddModel()" ng-show="serviceTag.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                    <button class="btn btn-warning" ng-click="serviceTag.openEditModel()" ng-show="serviceTag.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
-                    <button class="btn btn-danger" ng-click="serviceTag.deleteContent()" ng-show="serviceTag.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="serviceTag.openAddModel()" ng-show="serviceTag.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="serviceTag.openEditModel()" ng-show="serviceTag.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="serviceTag.deleteContent()" ng-show="serviceTag.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
                     <button class="btn btn-success" ng-click="serviceTag.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="serviceTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="serviceTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

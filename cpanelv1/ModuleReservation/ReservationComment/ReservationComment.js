@@ -37,7 +37,7 @@
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;
             reservationComment.ListItems = response.ListItems;
-            reservationComment.gridOptions.fillData(reservationComment.ListItems , response.resultAccess);
+            reservationComment.gridOptions.fillData(reservationComment.ListItems , response.Access);
             reservationComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             reservationComment.gridOptions.totalRowCount = response.TotalRowCount;
             reservationComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -60,7 +60,7 @@
     reservationComment.addRequested = false;
     reservationComment.openAddModal = function () {
         reservationComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;
             reservationComment.selectedItem = response.Item;
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/GetOne', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.selectedItem = response.Item;
             $modal.open({
@@ -170,7 +170,7 @@
             if (isConfirmed) {
                 reservationComment.busyIndicator.isActive = true;
                 console.log(reservationComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/GetOne', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     reservationComment.selectedItemForDelete = response.Item;
                     console.log(reservationComment.selectedItemForDelete);

@@ -259,7 +259,7 @@ if($rootScope.tokenInfo)
                 rashaErManage.checkAction(response7);
                 dashb.onlineUsersCount = response7.TotalRowCount;
                 dashb.UserTicketList=response7.ListItems;
-                dashb.gridOptions.fillData(dashb.UserTicketList , response7.resultAccess);
+                dashb.gridOptions.fillData(dashb.UserTicketList , response7.Access);
                 dashb.gridOptions.currentPageNumber = response7.CurrentPageNumber;
                 dashb.gridOptions.totalRowCount = response7.TotalRowCount;
             }).error(function (data, errCode, c, d) {

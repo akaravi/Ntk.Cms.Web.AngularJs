@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="cmsUser.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmcmsUserAdd.RecordStatus.$invalid && !frmcmsUserAdd.RecordStatus.$pristine,'has-success' : frmcmsUserAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                                 <div class="col-sm-10" rasha-record-status="cmsUser"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-class="{'has-error' : frmCmsUserAdd.Username.$invalid && !frmCmsUserAdd.Username.$pristine,'has-success' : frmCmsUserAdd.Username.$valid}"
-                                 ng-show="cmsUser.AccessAdd('Username')">
+                                 ng-show="cmsUser.CheckAccessAdd('Username')">
                                 <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
@@ -32,7 +32,7 @@
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-class="{'has-error' : frmCmsUserAdd.Pwd.$invalid && !frmCmsUserAdd.Pwd.$pristine,'has-success' : frmCmsUserAdd.Pwd.$valid}"
-                                 ng-show="cmsUser.AccessAdd('Pwd')">
+                                 ng-show="cmsUser.CheckAccessAdd('Pwd')">
                                 <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" style="direction: ltr;"
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.AccessAdd('Name')"
+                            <div class="form-group" ng-show="cmsUser.CheckAccessAdd('Name')"
                                  ng-class="{'has-error' : frmCmsUserAdd.Name.$invalid && !frmCmsUserAdd.Name.$pristine,'has-success' : frmCmsUserAdd.Name.$valid}">
                                 <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.AccessAdd('LastName')"
+                            <div class="form-group" ng-show="cmsUser.CheckAccessAdd('LastName')"
                                  ng-class="{'has-error' : frmCmsUserAdd.LastName.$invalid && !frmCmsUserAdd.LastName.$pristine,'has-success' : frmCmsUserAdd.LastName.$valid}">
                                 <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.AccessAdd('Gender')">
+                            <div class="form-group" ng-show="cmsUser.CheckAccessAdd('Gender')">
                                 <label class="col-sm-2 control-label">Gender</label>
                                 <div class="col-sm-10">
                                     <select class='form-control' name="Gender" ng-model="cmsUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in cmsUser.Gender" required></select>
@@ -101,56 +101,56 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('NationalCode')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('NationalCode')">
                                 <label class='col-sm-2 control-label'>{{'NATIONAL_CODE'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="phoneNo" type='text' name="NationalCode" ng-model='cmsUser.selectedItem.NationalCode' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('CompanyName')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('CompanyName')">
                                 <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' name="CompanyName" ng-model='cmsUser.selectedItem.CompanyName' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsUser.AccessAdd('LinkLocationId')">
+                            <div class="form-group" ng-show="cmsUser.CheckAccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label"> شهر</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="cmsUser.LinkLocationIdSelector" ng-model="frmcmsUserAdd.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('Address')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('Address')">
                                 <label class='col-sm-2 control-label'>{{'ADDRESS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' name="Address" ng-model='cmsUser.selectedItem.Address' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('Tell')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('Tell')">
                                 <label class='col-sm-2 control-label'>{{'TELL'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="phoneNo" type='text' name="Tell" ng-model='cmsUser.selectedItem.Tell' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('Mobile')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('Mobile')">
                                 <label class='col-sm-2 control-label'>{{'Mobile'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Mobile' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('Email')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('Email')">
                                 <label class='col-sm-2 control-label'>{{'Email'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input type='text' ng-model='cmsUser.selectedItem.Email' class='form-control'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class='form-group' ng-show="cmsUser.AccessAdd('FirewallAllowIP')">
+                            <div class='form-group' ng-show="cmsUser.CheckAccessAdd('FirewallAllowIP')">
                                 <label class='col-sm-2 control-label'>{{'FIREWALLALLOWIP'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
                                     <input id="ip" type='text' name="Tell" ng-model='cmsUser.selectedItem.FirewallAllowIP' class='form-control'>

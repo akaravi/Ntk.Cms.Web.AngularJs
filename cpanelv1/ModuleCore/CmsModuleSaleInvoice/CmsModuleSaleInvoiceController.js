@@ -37,7 +37,7 @@
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             cmsModuleSaleInvoice.ListItems = response.ListItems;
-            cmsModuleSaleInvoice.gridOptions.fillData(cmsModuleSaleInvoice.ListItems , response.resultAccess);
+            cmsModuleSaleInvoice.gridOptions.fillData(cmsModuleSaleInvoice.ListItems , response.Access);
             cmsModuleSaleInvoice.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsModuleSaleInvoice.gridOptions.totalRowCount = response.TotalRowCount;
             cmsModuleSaleInvoice.gridOptions.rowPerPage = response.RowPerPage;
@@ -59,7 +59,7 @@
     cmsModuleSaleInvoice.addRequested = false;
     cmsModuleSaleInvoice.openAddModal = function () {
         cmsModuleSaleInvoice.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             cmsModuleSaleInvoice.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetOne', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.selectedItem = response.Item;
             $modal.open({
@@ -169,7 +169,7 @@
             if (isConfirmed) {
                 cmsModuleSaleInvoice.busyIndicator.isActive = true;
                 console.log(cmsModuleSaleInvoice.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetOne', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     cmsModuleSaleInvoice.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/delete', cmsModuleSaleInvoice.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
@@ -268,7 +268,7 @@ cmsModuleSaleInvoice.showlistDetail=function (IdInvoice){
 ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleInvoiceDetail/getall", engine, "POST").success(function (response) {
             cmsModuleSaleInvoice.listComments = response.ListItems;
             rashaErManage.checkAction(response);
-            cmsModuleSaleInvoice.gridOptionsDetail.fillData(cmsModuleSaleInvoice.listComments, response.resultAccess);
+            cmsModuleSaleInvoice.gridOptionsDetail.fillData(cmsModuleSaleInvoice.listComments, response.Access);
             cmsModuleSaleInvoice.gridOptionsDetail.currentPageNumber = response.CurrentPageNumber;
             cmsModuleSaleInvoice.gridOptionsDetail.totalRowCount = response.TotalRowCount;
             cmsModuleSaleInvoice.gridOptionsDetail.RowPerPage = response.RowPerPage;

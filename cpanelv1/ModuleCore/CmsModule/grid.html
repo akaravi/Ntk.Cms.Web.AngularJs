@@ -1,10 +1,10 @@
 ﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModuleGridCtrl as cmsModulegrd" ng-init="cmsModulegrd.init()">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-xs-12">
-            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.openAddModal()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.autoAdd()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsModuleController.Edit" ng-click="cmsModulegrd.openEditModal()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsModuleController.Delete" ng-click="cmsModulegrd.deleteRow()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.openAddModal()" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.autoAdd()" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleController.Edit" ng-click="cmsModulegrd.openEditModal()" ng-show="cmsModulegrd.gridOptions.Access.CheckAccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleController.Delete" ng-click="cmsModulegrd.deleteRow()" ng-show="cmsModulegrd.gridOptions.Access.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="cmsModulegrd.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" ng-click="cmsModulegrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="cmsModulegrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsModulegrd.ListItemsTotalRowCount}}</button>

@@ -16,7 +16,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentpublicconfig/getall", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.ListItems = response.ListItems;
-            publicConfig.gridOptions.fillData(publicConfig.ListItems, response.resultAccess);
+            publicConfig.gridOptions.fillData(publicConfig.ListItems, response.Access);
             publicConfig.gridOptions.currentPageNumber = response.CurrentPageNumber;
             publicConfig.gridOptions.totalRowCount = response.TotalRowCount;
             publicConfig.gridOptions.rowPerPage = response.RowPerPage;
@@ -156,7 +156,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 publicConfig.replaceItem(publicConfig.selectedItem.Id, response.Item);
-                publicConfig.gridOptions.fillData(publicConfig.ListItems, response.resultAccess);
+                publicConfig.gridOptions.fillData(publicConfig.ListItems, response.Access);
                 publicConfig.closeModal();
             }
         }).error(function (data, errCode, c, d) {
@@ -190,7 +190,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/GetOne', publicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/', publicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     publicConfig.selectedItemForDelete = response.Item;
@@ -457,7 +457,7 @@
         }
         publicConfig.selectedItem.LinkModuleFileLogoId = node.Id;
         publicConfig.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             publicConfig.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

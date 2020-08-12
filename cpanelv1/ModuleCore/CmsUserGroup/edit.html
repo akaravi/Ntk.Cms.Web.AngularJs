@@ -7,13 +7,13 @@
 
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsUserGroupgrd.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="cmsUserGroupgrd.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsUserGroupgrdEdit.RecordStatus.$invalid && !frmcmsUserGroupgrdEdit.RecordStatus.$pristine,'has-success' : frmcmsUserGroupgrdEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label">{{'CONDIRION'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsUserGroupgrd"></div>
                 </div>
 
-                <div class="form-group" ng-show="cmsUserGroupgrd.AccessEdit('Title')"
+                <div class="form-group" ng-show="cmsUserGroupgrd.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsUserGroupEdit.Title.$invalid && !frmCmsUserGroupEdit.Title.$pristine,'has-success' : frmCmsUserGroupEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -28,7 +28,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsUserGroupEdit.Title.$invalid && !frmCmsUserGroupEdit.Title.$pristine) || frmCmsUserGroupEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsUserGroupgrd.AccessEdit('TitleResourceLanguage')"
+                <div class="form-group" ng-show="cmsUserGroupgrd.CheckAccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsUserGroupEdit.TitleResourceLanguage.$invalid && !frmCmsUserGroupEdit.Title.$pristine,'has-success' : frmCmsUserGroupEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="cmsUserGroupgrd.AccessEdit('UserType')">
+                <div class='form-group' ng-show="cmsUserGroupgrd.CheckAccessEdit('UserType')">
                     <label class='col-sm-2 control-label'>{{'ID'|lowercase|translate}}</label>
                     <div class='col-sm-10'>
                         <select class='form-control' ng-model='cmsUserGroupgrd.selectedItem.UserType'>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsUserGroupgrd.AccessEdit('Description')"  ng-class="{'has-error' : frmCmsUserGroupEdit.Description.$invalid && !frmCmsUserGroupEdit.Description.$pristine,'has-success' : frmCmsUserGroupEdit.Description.$valid}">
+                <div class="form-group" ng-show="cmsUserGroupgrd.CheckAccessEdit('Description')"  ng-class="{'has-error' : frmCmsUserGroupEdit.Description.$invalid && !frmCmsUserGroupEdit.Description.$pristine,'has-success' : frmCmsUserGroupEdit.Description.$valid}">
                     <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" ng-required="true" name="Description" ng-model="cmsUserGroupgrd.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

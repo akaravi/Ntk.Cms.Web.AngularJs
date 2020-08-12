@@ -45,7 +45,7 @@
             rashaErManage.checkAction(response);
             discountSerialCard.busyIndicator.isActive = false;
             discountSerialCard.ListItems = response.ListItems;
-            discountSerialCard.gridOptions.fillData(discountSerialCard.ListItems, response.resultAccess);
+            discountSerialCard.gridOptions.fillData(discountSerialCard.ListItems, response.Access);
             discountSerialCard.gridOptions.currentPageNumber = response.CurrentPageNumber;
             discountSerialCard.gridOptions.totalRowCount = response.TotalRowCount;
             discountSerialCard.gridOptions.rowPerPage = response.RowPerPage;
@@ -78,7 +78,7 @@
         discountSerialCard.ViewFindUserDiv = false;
         discountSerialCard.ViewNewUserDiv = false;
         discountSerialCard.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/ViewModel', "", "GET").success(function (response1) {
             discountSerialCard.busyIndicator.isActive = false;
             discountSerialCard.selectedMemberUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -86,7 +86,7 @@
             discountSerialCard.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCard.busyIndicator.isActive = false;
             discountSerialCard.selectedItem = response.Item;
@@ -163,7 +163,7 @@
     //        return;
     //    }
 
-    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/GetOne', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountSerialCard.selectedItem = response.Item;
     //        if (discountSerialCard
@@ -188,7 +188,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/ViewModel', "", "GET").success(function (response2) {
             discountSerialCard.selectedMemberUser = response2.Item;
 
             discountSerialCard.busyIndicator.isActive = false;
@@ -197,7 +197,7 @@
             discountSerialCard.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/GetOne', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCard.selectedItem = response.Item;
             discountSerialCard.ViewInfoUserDiv = false;
@@ -210,7 +210,7 @@
                 var engine = { Filters: [] };
                 engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
                 engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
-                ajax.call(cmsServerConfig.configApiServerPath+'memberuser/GetOne', engine, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCard.selectedMemberUser = response.Item;
                     if (discountSerialCard.selectedMemberUser != null && discountSerialCard.selectedMemberUser.Id > 0) {
@@ -324,7 +324,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountSerialCard.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/GetOne', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCard.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/delete', discountSerialCard.selectedItemForDelete, 'POST').success(function (res) {
@@ -484,7 +484,7 @@
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: memberNa, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: memberNa, ClauseType: 1 });
-        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/GetOne', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCard.selectedMemberUser = response.Item;
             if (discountSerialCard.selectedMemberUser != null && discountSerialCard.selectedMemberUser.Id > 0) {

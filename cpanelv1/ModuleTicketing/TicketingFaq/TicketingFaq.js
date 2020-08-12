@@ -39,7 +39,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"ticketingFaq/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.ListItems = response.ListItems;
-            ticketingFaq.gridOptions.fillData(response.ListItems, response.resultAccess);
+            ticketingFaq.gridOptions.fillData(response.ListItems, response.Access);
             ticketingFaq.busyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -56,7 +56,7 @@
 
     ticketingFaq.openAddModal = function () {
         ticketingFaq.modalTitle = "اضافه";
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/ViewModel', "", 'GET').success(function (response) {
             ticketingFaq.selectedItem = response.Item;
             ticketingFaq.selectedItem.ActionDate = date;
             $modal.open({
@@ -74,7 +74,7 @@
             return;
         }
         ticketingFaq.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetOne', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.selectedItem = response.Item;
             $modal.open({
@@ -138,7 +138,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetOne', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingFaq.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'POST').success(function (res) {

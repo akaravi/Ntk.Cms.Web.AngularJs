@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessEdit('RecordStatus')"
+                            <div class="form-group" ng-show="estateProperty.CheckAccessEdit('RecordStatus')"
                                  ng-class="{'has-error' : frmestatePropertyEdit.LinkSourceId.$invalid && !frmestatePropertyEdit.LinkSourceId.$pristine,'has-success' : frmestatePropertyEdit.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="estateProperty"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessEdit('Title')"
+                            <div class="form-group" ng-show="estateProperty.CheckAccessEdit('Title')"
                                  ng-class="{'has-error' : frmestatePropertyEdit.Title.$invalid && !frmestatePropertyEdit.Title.$pristine,'has-success' : frmestatePropertyEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessEdit('Description')" ng-class="{'has-error' : frmestatePropertyEdit.Description.$invalid && !frmestatePropertyEdit.Description.$pristine,'has-success' : frmestatePropertyEdit.Description.$valid}">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessEdit('Description')" ng-class="{'has-error' : frmestatePropertyEdit.Description.$invalid && !frmestatePropertyEdit.Description.$pristine,'has-success' : frmestatePropertyEdit.Description.$valid}">
                                 <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="Description" ng-required="true" title="{{'Added_Description_On_Estate'|lowercase|translate}}" ng-model="estateProperty.selectedItem.Description" style="resize:vertical;height:65px;"></textarea>
@@ -49,7 +49,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div ng-show="estateProperty.AccessEdit('LinkPropertyTypeId')>-1 ">
+                            <div ng-show="estateProperty.CheckAccessEdit('LinkPropertyTypeId')>-1 ">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> {{'ESTATE_TYPE'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
@@ -114,21 +114,21 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessAdd('LinkLocationId')">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="estateProperty.LinkLocationIdSelector" ng-model="estateProperty.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessEdit('Geolocationlatitude')">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessEdit('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="estateProperty.GeolocationConfig" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="estateProperty.AccessEdit('Address')>-1 ">
+                            <div class="form-group" ng-show="estateProperty.CheckAccessEdit('Address')>-1 ">
                                 <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Address" ng-model="estateProperty.selectedItem.Address" />

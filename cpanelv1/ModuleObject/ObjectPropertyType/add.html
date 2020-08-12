@@ -8,14 +8,14 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="objectPropertyType.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="objectPropertyType.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmobjectPropertyTypeAdd.LinkSourceId.$invalid && !frmobjectPropertyTypeAdd.LinkSourceId.$pristine,'has-success' : frmobjectPropertyTypeAdd.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="objectPropertyType"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="objectPropertyType.AccessAdd('Title')"
+                            <div class="form-group" ng-show="objectPropertyType.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmobjectPropertyTypeAdd.Title.$invalid && !frmobjectPropertyTypeAdd.Title.$pristine,'has-success' : frmobjectPropertyTypeAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -33,7 +33,7 @@
 
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="objectPropertyType.AccessAdd('Description')" ng-class="{'has-error' : frmobjectPropertyTypeAdd.Description.$invalid && !frmobjectPropertyTypeAdd.Description.$pristine,'has-success' : frmobjectPropertyTypeAdd.Description.$valid}">
+                            <div class="form-group" ng-show="objectPropertyType.CheckAccessAdd('Description')" ng-class="{'has-error' : frmobjectPropertyTypeAdd.Description.$invalid && !frmobjectPropertyTypeAdd.Description.$pristine,'has-success' : frmobjectPropertyTypeAdd.Description.$valid}">
                                 <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="Description" ng-required="true" ng-model="objectPropertyType.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

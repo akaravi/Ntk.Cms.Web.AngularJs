@@ -8,13 +8,13 @@
                     <tab heading="{{'Specifications' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="shopContent.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="shopContent.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmshopContentAdd.RecordStatus.$invalid && !frmshopContentAdd.RecordStatus.$pristine,'has-success' : frmshopContentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="shopContent"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="shopContent.AccessAdd('Title')"
+                            <div class="form-group" ng-show="shopContent.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmshopContentAdd.Title.$invalid && !frmshopContentAdd.Title.$pristine,'has-success' : frmshopContentAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

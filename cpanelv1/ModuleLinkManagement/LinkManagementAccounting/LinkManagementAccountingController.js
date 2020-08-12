@@ -63,7 +63,7 @@
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
             linkManagementAccounting.ListItems = response.ListItems;
-            linkManagementAccounting.gridOptions.fillData(linkManagementAccounting.ListItems , response.resultAccess);
+            linkManagementAccounting.gridOptions.fillData(linkManagementAccounting.ListItems , response.Access);
             linkManagementAccounting.gridOptions.currentPageNumber = response.CurrentPageNumber;
             linkManagementAccounting.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementAccounting.gridOptions.rowPerPage = response.RowPerPage;
@@ -85,7 +85,7 @@
     linkManagementAccounting.addRequested = false;
     linkManagementAccounting.openAddModal = function () {
         linkManagementAccounting.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
             linkManagementAccounting.selectedItem = response.Item;
@@ -133,7 +133,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetOne', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.selectedItem = response.Item;
             linkManagementAccounting.BeginDate.defaultDate = linkManagementAccounting.selectedItem.BeginDate;
@@ -197,7 +197,7 @@
             if (isConfirmed) {
                 linkManagementAccounting.busyIndicator.isActive = true;
                 console.log(linkManagementAccounting.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetOne', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccounting.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

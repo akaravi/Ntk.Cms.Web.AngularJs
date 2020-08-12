@@ -16,7 +16,7 @@
             rashaErManage.checkAction(response);
             logNotification.busyIndicator.isActive = false;
             logNotification.ListItems = response.ListItems;
-            logNotification.gridOptions.fillData(logNotification.ListItems, response.resultAccess);
+            logNotification.gridOptions.fillData(logNotification.ListItems, response.Access);
             logNotification.gridOptions.currentPageNumber = response.CurrentPageNumber;
             logNotification.gridOptions.totalRowCount = response.TotalRowCount;
             logNotification.gridOptions.rowPerPage = response.RowPerPage;

@@ -15,7 +15,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcess/getall", cmsMdlPayPrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.ListItems = response.ListItems;
-            cmsMdlPayPrc.gridOptions.fillData(cmsMdlPayPrc.ListItems, response.resultAccess);
+            cmsMdlPayPrc.gridOptions.fillData(cmsMdlPayPrc.ListItems, response.Access);
             cmsMdlPayPrc.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsMdlPayPrc.gridOptions.totalRowCount = response.TotalRowCount;
             cmsMdlPayPrc.gridOptions.rowPerPage = response.RowPerPage;
@@ -40,7 +40,7 @@
         cmsMdlPayPrc.modalTitle = 'اضافه';
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/ViewModel', '', 'GET').success(function (response) {
             cmsMdlPayPrc.addRequested = false;
             cmsMdlPayPrc.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -90,7 +90,7 @@
             return;
         }
         cmsMdlPayPrc.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOne', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.selectedItem = response.Item;
@@ -148,7 +148,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 cmsMdlPayPrc.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOne', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPayPrc.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/delete', cmsMdlPayPrc.selectedItemForDelete, 'POST').success(function (res) {

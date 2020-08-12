@@ -70,7 +70,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/getall", shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopService.ListItems = response.ListItems;
-            shopService.gridOptions.fillData(shopService.ListItems, response.resultAccess); // Sending Access as an argument
+            shopService.gridOptions.fillData(shopService.ListItems, response.Access); // Sending Access as an argument
             shopService.busyIndicator.isActive = false;
             shopService.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopService.gridOptions.totalRowCount = response.TotalRowCount;
@@ -92,7 +92,7 @@
         shopService.addRequested = false;
         shopService.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopService.selectedItem = response.Item;
@@ -115,7 +115,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/GetOne', shopService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/', shopService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopService.selectedItem = response.Item;
@@ -200,7 +200,7 @@
                 shopService.showbusy = true;
                 shopService.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/GetOne", shopService.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/", shopService.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopService.showbusy = false;
                     shopService.showIsBusy = false;

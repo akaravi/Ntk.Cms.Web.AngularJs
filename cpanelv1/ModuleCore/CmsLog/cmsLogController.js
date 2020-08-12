@@ -17,7 +17,7 @@
             });    
         cmsLog.ListItems = response.ListItems;
     
-            cmsLog.gridOptions.fillData(cmsLog.ListItems , response.resultAccess);
+            cmsLog.gridOptions.fillData(cmsLog.ListItems , response.Access);
             cmsLog.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsLog.gridOptions.totalRowCount = response.TotalRowCount;
             cmsLog.gridOptions.rowPerPage = response.RowPerPage;
@@ -103,7 +103,7 @@ cmsLog.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsLog.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/GetOne', cmsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/', cmsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsLog.selectedItemForDelete = response.Item;
                     console.log(cmsLog.selectedItemForDelete);

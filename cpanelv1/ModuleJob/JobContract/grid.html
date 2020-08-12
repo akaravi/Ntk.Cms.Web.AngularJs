@@ -3,9 +3,9 @@
     <div class="row" rasha-loading="jobContract.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="jobContract.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="jobContract.Add" ng-click="jobContract.openAddModal()" ng-show="jobContract.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="jobContract.Edit" ng-click="jobContract.openEditModal()" type="button" ng-show="jobContract.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="jobContract.Delete" ng-click="jobContract.deleteRow()" type="button" ng-show="jobContract.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="jobContract.Add" ng-click="jobContract.openAddModal()" ng-show="jobContract.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="jobContract.Edit" ng-click="jobContract.openEditModal()" type="button" ng-show="jobContract.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="jobContract.Delete" ng-click="jobContract.deleteRow()" type="button" ng-show="jobContract.gridOptions.Access.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="jobContract.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="jobContract.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <!--<button class="btn btn-default" type="button" ng-click="jobContract.reportData()"> {{'report'|lowercase|translate}} </button>-->

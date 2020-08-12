@@ -9,14 +9,14 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="reservationComment.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="reservationComment.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmreservationCommentAdd.RecordStatus.$invalid && !frmreservationCommentAdd.RecordStatus.$pristine,'has-success' : frmreservationCommentAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="reservationComment"></div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="reservationComment.AccessAdd('Writer')"
+                            <div class="form-group" ng-show="reservationComment.CheckAccessAdd('Writer')"
                                  ng-class="{'has-error' : frmreservationCommentAdd.Writer.$invalid && !frmreservationCommentAdd.Writer.$pristine,'has-success' : frmreservationCommentAdd.Writer.$valid}">
                                 <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="reservationComment.AccessAdd('Comment')"
+                            <div class="form-group" ng-show="reservationComment.CheckAccessAdd('Comment')"
                                  ng-class="{'has-error' : frmreservationCommentAdd.Comment.$invalid && !frmreservationCommentAdd.Comment.$pristine,'has-success' : frmreservationCommentAdd.Comment.$valid}">
                                 <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
                                 <div class="col-sm-10">

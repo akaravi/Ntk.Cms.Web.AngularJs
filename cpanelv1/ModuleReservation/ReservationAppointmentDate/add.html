@@ -8,7 +8,7 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="appDate.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmappDateAdd.LinkSourceId.$invalid && !frmappDateAdd.LinkSourceId.$pristine,'has-success' : frmappDateAdd.LinkSourceId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appDate"></div>
@@ -31,7 +31,7 @@
                                     <input class="form-control" name="LinkContentId" rasha-autocomplete="appDate.LinkContentIdSelector" ng-model="appDate.selectedItem.LinkContentId" />
                                 </div>
                             </div>
-                            <!--ng-show="appDate.AccessAdd('ServiceTimeMinute')"-->
+                            <!--ng-show="appDate.CheckAccessAdd('ServiceTimeMinute')"-->
                             <div class='hr-line-dashed'></div>
                             <div class="form-group"
                                  ng-class="{'has-error' : frmappDateAdd.ServiceTimeMinute.$invalid && !frmappDateAdd.ServiceTimeMinute.$pristine,'has-success' : frmappDateAdd.ServiceTimeMinute.$valid}">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appDate.AccessAdd('LinkReservationServiceId')">
+                            <div class="form-group" ng-show="appDate.CheckAccessAdd('LinkReservationServiceId')">
                                 <label class="col-sm-2 control-label">{{'Service'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkReservationServiceId" rasha-autocomplete="appDate.LinkReservationServiceIdSelector" ng-model="frmappDateAdd.selectedItem.LinkReservationServiceId" />

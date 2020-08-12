@@ -15,7 +15,7 @@
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
             vehiclePropertyType.ListItems = response.ListItems;
-            vehiclePropertyType.gridOptions.fillData(vehiclePropertyType.ListItems, response.resultAccess);
+            vehiclePropertyType.gridOptions.fillData(vehiclePropertyType.ListItems, response.Access);
             vehiclePropertyType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             vehiclePropertyType.gridOptions.totalRowCount = response.TotalRowCount;
             vehiclePropertyType.gridOptions.rowPerPage = response.RowPerPage;
@@ -33,7 +33,7 @@
     vehiclePropertyType.addRequested = false;
     vehiclePropertyType.openAddModal = function () {
         vehiclePropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
             vehiclePropertyType.selectedItem = response.Item;
@@ -79,7 +79,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetOne', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.selectedItem = response.Item;
             $modal.open({
@@ -141,7 +141,7 @@
             if (isConfirmed) {
                 vehiclePropertyType.busyIndicator.isActive = true;
                 console.log(vehiclePropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetOne', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehiclePropertyType.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyType.selectedItemForDelete);

@@ -36,7 +36,7 @@
             rashaErManage.checkAction(response);
             ProductComment.busyIndicator.isActive = false;
             ProductComment.ListItems = response.ListItems;
-            ProductComment.gridOptions.fillData(ProductComment.ListItems , response.resultAccess);
+            ProductComment.gridOptions.fillData(ProductComment.ListItems , response.Access);
             ProductComment.gridOptions.currentPageNumber = response.CurrentPageNumber;
             ProductComment.gridOptions.totalRowCount = response.TotalRowCount;
             ProductComment.gridOptions.rowPerPage = response.RowPerPage;
@@ -59,7 +59,7 @@
     ProductComment.addRequested = false;
     ProductComment.openAddModal = function () {
         ProductComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ProductComment.busyIndicator.isActive = false;
             ProductComment.selectedItem = response.Item;
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/GetOne', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ProductComment.selectedItem = response.Item;
             $modal.open({
@@ -170,7 +170,7 @@
             if (isConfirmed) {
                 ProductComment.busyIndicator.isActive = true;
                 console.log(ProductComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/GetOne', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     ProductComment.selectedItemForDelete = response.Item;
                     console.log(ProductComment.selectedItemForDelete);

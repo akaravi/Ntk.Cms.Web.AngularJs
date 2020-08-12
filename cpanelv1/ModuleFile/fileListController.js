@@ -21,7 +21,7 @@
             rashaErManage.checkAction(response);
             filesList.busyIndicator.isActive = false;
             filesList.ListItems = response.ListItems;
-            filesList.gridOptions.fillData(filesList.ListItems, response.resultAccess);
+            filesList.gridOptions.fillData(filesList.ListItems, response.Access);
             filesList.gridOptions.currentPageNumber = response.CurrentPageNumber;
             filesList.gridOptions.totalRowCount = response.TotalRowCount;
             filesList.gridOptions.rowPerPage = response.RowPerPage;
@@ -68,7 +68,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             filesList.selectedItem = response.Item;
             $modal.open({
@@ -129,7 +129,7 @@
             if (isConfirmed) {
                 filesList.busyIndicator.isActive = true;
                 console.log(filesList.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     filesList.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', filesList.selectedItemForDelete, 'POST').success(function (res) {

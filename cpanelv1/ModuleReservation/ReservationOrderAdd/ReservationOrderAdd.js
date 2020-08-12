@@ -153,8 +153,8 @@
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
             ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getall', orderAdd.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 orderAdd.listComments = response.ListItems;
-                //orderAdd.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
-                orderAdd.gridContentOptions.fillData(orderAdd.listComments, response.resultAccess);
+                //orderAdd.gridOptions.Access = response.Access; // دسترسی ها نمایش
+                orderAdd.gridContentOptions.fillData(orderAdd.listComments, response.Access);
                 orderAdd.gridContentOptions.currentPageNumber = response.CurrentPageNumber;
                 orderAdd.gridContentOptions.totalRowCount = response.TotalRowCount;
                 orderAdd.allowedSearch = response.AllowedSearchField;
@@ -276,7 +276,7 @@ orderAdd.ShowInvoiceSale = function (Detail,Service) {
      /*ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/AddOrder", orderAdd.ListOrderAdd, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.ListOrderAdd = response.ListItems;
-            //orderAdd.gridOptions.fillData(orderAdd.ListItems, response.resultAccess);
+            //orderAdd.gridOptions.fillData(orderAdd.ListItems, response.Access);
             //orderAdd.setPaymentStatusEnum(orderAdd.ListItems, orderAdd.PaymentStatus); // Sending Access as an argument
             //orderAdd.addRequested = false;
             //orderAdd.busyIndicator.isActive = false;
@@ -297,7 +297,7 @@ orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
             {
                 orderAdd.ListOrderAdd = [];
             }*/
-            //orderAdd.gridOptions.fillData(orderAdd.ListItems, response.resultAccess);
+            //orderAdd.gridOptions.fillData(orderAdd.ListItems, response.Access);
             //orderAdd.setPaymentStatusEnum(orderAdd.ListItems, orderAdd.PaymentStatus); // Sending Access as an argument
             //orderAdd.addRequested = false;
             //orderAdd.busyIndicator.isActive = false;
@@ -425,7 +425,7 @@ orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
         }
         orderAdd.selectedItem.LinkMainImageId = node.Id;
         orderAdd.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             orderAdd.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

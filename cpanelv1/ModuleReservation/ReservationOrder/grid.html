@@ -3,9 +3,9 @@
     <div class="row" rasha-loading="order.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="order.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="order.Add" ng-click="order.openAddModal()" ng-show="order.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button><!--ng-show="order.gridOptions.resultAccess.AccessAddRow"-->
-            <button class="btn btn-warning" rasha-userrole="order.Edit" ng-click="order.openEditModal()" ng-show="order.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button><!--ng-show="order.gridOptions.resultAccess.AccessEditRow"-->
-            <button class="btn btn-danger" rasha-userrole="order.Delete" ng-click="order.deleteRow()" ng-show="order.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button><!--ng-show="order.gridOptions.resultAccess.AccessDeleteRow"-->
+            <button class="btn btn-primary" rasha-userrole="order.Add" ng-click="order.openAddModal()" ng-show="order.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button><!--ng-show="order.gridOptions.Access.CheckAccessAddRow"-->
+            <button class="btn btn-warning" rasha-userrole="order.Edit" ng-click="order.openEditModal()" ng-show="order.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button><!--ng-show="order.gridOptions.Access.CheckAccessEditRow"-->
+            <button class="btn btn-danger" rasha-userrole="order.Delete" ng-click="order.deleteRow()" ng-show="order.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button><!--ng-show="order.gridOptions.Access.AccessDeleteRow"-->
             <button class="btn btn-success" type="button" ng-click="order.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="order.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="order.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

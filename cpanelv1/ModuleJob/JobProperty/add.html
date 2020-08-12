@@ -9,13 +9,13 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="jobProperty.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="jobProperty.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmjobPropertyAdd.RecordStatus.$invalid && !frmjobPropertyAdd.RecordStatus.$pristine,'has-success' : frmjobPropertyAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="jobProperty"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="jobProperty.AccessAdd('Title')"
+                            <div class="form-group" ng-show="jobProperty.CheckAccessAdd('Title')"
                                  ng-class="{'has-error' : frmjobPropertyAdd.Title.$invalid && !frmjobPropertyAdd.Title.$pristine,'has-success' : frmjobPropertyAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -49,7 +49,7 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div ng-show="jobProperty.AccessAdd('LinkPropertyTypeId')>-1 ">
+                            <div ng-show="jobProperty.CheckAccessAdd('LinkPropertyTypeId')>-1 ">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{'Type_Of_Advertiser'|lowercase|translate}}</label>
                                     <div class="col-sm-10">
@@ -158,21 +158,21 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="jobProperty.AccessAdd('LinkLocationId')">
+                            <div class="form-group" ng-show="jobProperty.CheckAccessAdd('LinkLocationId')">
                                 <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkLocationId" rasha-autocomplete="jobProperty.LinkLocationIdSelector" ng-model="jobProperty.selectedItem.LinkLocationId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="jobProperty.AccessAdd('Geolocationlatitude')">
+                            <div class="form-group" ng-show="jobProperty.CheckAccessAdd('Geolocationlatitude')">
                                 <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <div rasha-map="jobProperty.GeolocationConfig" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="jobProperty.AccessAdd('Address')>-1 ">
+                            <div class="form-group" ng-show="jobProperty.CheckAccessAdd('Address')>-1 ">
                                 <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Address" ng-model="jobProperty.selectedItem.Address" />

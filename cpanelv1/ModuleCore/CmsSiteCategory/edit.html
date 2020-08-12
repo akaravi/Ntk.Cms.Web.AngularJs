@@ -6,13 +6,13 @@
             <form method="get" class="form-horizontal" name="frmCmsSiteCategoryEdit" novalidate ng-submit="cmsSiteCategorygrd.editRow(frmCmsSiteCategoryEdit)">
 
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteCategorygrd.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="cmsSiteCategorygrd.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsSiteCategorygrdEdit.LinkSourceId.$invalid && !frmcmsSiteCategorygrdEdit.LinkSourceId.$pristine,'has-success' : frmcmsSiteCategorygrdEdit.LinkSourceId.$valid}">
                     <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
                     <div class="col-sm-10" rasha-record-status="cmsSiteCategorygrd"></div>
                 </div>
 
-                <div class="form-group" ng-show="cmsSiteCategorygrd.AccessEdit('Title')"
+                <div class="form-group" ng-show="cmsSiteCategorygrd.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsSiteCategoryEdit.Title.$invalid && !frmCmsSiteCategoryEdit.Title.$pristine,'has-success' : frmCmsSiteCategoryEdit.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -27,7 +27,7 @@
                         <span style="left: 10px !important;" ng-show="(frmCmsSiteCategoryEdit.Title.$invalid && !frmCmsSiteCategoryEdit.Title.$pristine) || frmCmsSiteCategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
                 </div>
-                <div class="form-group" ng-show="cmsSiteCategorygrd.AccessEdit('TitleResourceLanguage')"
+                <div class="form-group" ng-show="cmsSiteCategorygrd.CheckAccessEdit('TitleResourceLanguage')"
                      ng-class="{'has-error' : frmCmsSiteCategoryEdit.TitleResourceLanguage.$invalid && !frmCmsSiteCategoryEdit.Title.$pristine,'has-success' : frmCmsSiteCategoryEdit.TitleResourceLanguage.$valid}">
                     <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                     <div class="col-sm-10">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="cmsSiteCategorygrd.AccessEdit('Description')"  ng-class="{'has-error' : frmCmsSiteCategoryEdit.Description.$invalid && !frmCmsSiteCategoryEdit.Description.$pristine,'has-success' : frmCmsSiteCategoryEdit.Description.$valid}">
+                <div class="form-group" ng-show="cmsSiteCategorygrd.CheckAccessEdit('Description')"  ng-class="{'has-error' : frmCmsSiteCategoryEdit.Description.$invalid && !frmCmsSiteCategoryEdit.Description.$pristine,'has-success' : frmCmsSiteCategoryEdit.Description.$valid}">
                     <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" ng-required="true" name="Description" ng-model="cmsSiteCategorygrd.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>

@@ -20,7 +20,7 @@
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.ListItems = response.ListItems;
             cmsSiteCategoryCmsModule.TotalRowCount = response.TotalRowCount;
-            cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.resultAccess);
+            cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.Access);
             cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
             cmsSiteCategoryCmsModule.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsSiteCategoryCmsModule.gridOptions.totalRowCount = response.TotalRowCount;
@@ -50,7 +50,7 @@
 
     cmsSiteCategoryCmsModule.openAddModal = function () {
         cmsSiteCategoryCmsModule.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/ViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.selectedItem = response.Item;
             $modal.open({
@@ -72,7 +72,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSiteCategoryCmsModule.ListItems.unshift(response.Item);
-                cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.resultAccess);
+                cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.Access);
                 cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
                 cmsSiteCategoryCmsModule.closeModal();
             }
@@ -89,7 +89,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/GetOne', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.selectedItem = response.Item;
             $modal.open({
@@ -114,7 +114,7 @@
                 cmsSiteCategoryCmsModule.addRequested = false;
                 //cmsSiteCategoryCmsModule.replaceItem(cmsSiteCategoryCmsModule.selectedItem.Id, response.Item);
                 //cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
-                //cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.resultAccess);
+                //cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.Access);
                 cmsSiteCategoryCmsModule.closeModal();
             }
 
@@ -147,7 +147,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/GetOne', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteCategoryCmsModule.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/delete', cmsSiteCategoryCmsModule.selectedItemForDelete, 'POST').success(function (res) {
@@ -242,7 +242,7 @@
         model.Filters.push({ PropertyName: "LinkModuleId", SearchType: 0, IntValue1: parseInt(module.Id) });
         model.Filters.push({ PropertyName: "LinkSiteId", SearchType: 0, IntValue1: parseInt(cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id) });
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/GetOne', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', model, 'POST').success(function (response) {
             cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
             cmsSiteCategoryCmsModule.cmsModuleSite = response.Item;
             cmsSiteCategoryCmsModule.formJson = $builder.forms['default'];

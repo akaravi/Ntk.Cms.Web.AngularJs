@@ -145,7 +145,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.ListItems = response.ListItems;
-            musicGalleryShareReciverCategory.gridOptions.fillData(musicGalleryShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            musicGalleryShareReciverCategory.gridOptions.fillData(musicGalleryShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             musicGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             musicGalleryShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -164,7 +164,7 @@
         if (buttonIsPressed) { return };
         musicGalleryShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.selectedItem = response.Item;
@@ -210,7 +210,7 @@
 
         musicGalleryShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/GetOne', musicGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/', musicGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             musicGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -322,7 +322,7 @@
                 musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     musicGalleryShareReciverCategory.selectedItemForDelete = response.Item;
@@ -381,7 +381,7 @@
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.ListItems = response.ListItems;
-            musicGalleryShareReciverCategory.gridOptions.fillData(musicGalleryShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            musicGalleryShareReciverCategory.gridOptions.fillData(musicGalleryShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             musicGalleryShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             musicGalleryShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             musicGalleryShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -404,7 +404,7 @@
         musicGalleryShareReciverCategory.addRequested = false;
         musicGalleryShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -430,7 +430,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/GetOne', musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/', musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             musicGalleryShareReciverCategory.selectedItem = response1.Item;
@@ -525,7 +525,7 @@
                 musicGalleryShareReciverCategory.showbusy = true;
                 musicGalleryShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/GetOne", musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/", musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     musicGalleryShareReciverCategory.showbusy = false;
                     musicGalleryShareReciverCategory.showIsBusy = false;
@@ -785,7 +785,7 @@
         }
         musicGalleryShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         musicGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             musicGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -2,14 +2,14 @@
     <!--    <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="coreIdentityUserLogin.openAddModal()" ng-show="coreIdentityUserLogin.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
-            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="coreIdentityUserLogin.openEditModal()" ng-show="coreIdentityUserLogin.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
-            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="coreIdentityUserLogin.deleteRow()" ng-show="coreIdentityUserLogin.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="coreIdentityUserLogin.openAddModal()" ng-show="coreIdentityUserLogin.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="coreIdentityUserLogin.openEditModal()" ng-show="coreIdentityUserLogin.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="coreIdentityUserLogin.deleteRow()" ng-show="coreIdentityUserLogin.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="coreIdentityUserLogin.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="coreIdentityUserLogin.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="coreIdentityUserLogin.getCount()">{{'number'|lowercase|translate}}&nbsp;{{coreIdentityUserLogin.ListItemsTotalRowCount}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.deleteSelectRow" ng-click="coreIdentityUserLogin.deleteSelectRow()" ng-show="coreIdentityUserLogin.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'Remove_Selected_Items'|lowercase|translate}}</button>
-            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.DeleteAll" ng-click="coreIdentityUserLogin.deleteAllRow()" ng-show="coreIdentityUserLogin.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'Remove_All_Items'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.deleteSelectRow" ng-click="coreIdentityUserLogin.deleteSelectRow()" ng-show="coreIdentityUserLogin.gridOptions.Access.AccessDeleteRow" type="button">{{'Remove_Selected_Items'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.DeleteAll" ng-click="coreIdentityUserLogin.deleteAllRow()" ng-show="coreIdentityUserLogin.gridOptions.Access.AccessDeleteRow" type="button">{{'Remove_All_Items'|lowercase|translate}}</button>
         </div>
         <hr />
         <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">

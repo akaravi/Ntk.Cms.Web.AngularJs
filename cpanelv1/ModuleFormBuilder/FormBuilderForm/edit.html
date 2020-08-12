@@ -4,14 +4,14 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="form.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Edit_Form'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmCmsModuleEdit" novalidate ng-submit="form.editRow(frmCmsModuleEdit)">
-                <div class="form-group" ng-show="form.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="form.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmcmsModuleProcessgrdEdit.RecordStatus.$invalid && !frmcmsModuleProcessgrdEdit.RecordStatus.$pristine,'has-success' : frmcmsModuleProcessgrdEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="form"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
 
-                <div class="form-group" ng-show="form.AccessEdit('Title')"
+                <div class="form-group" ng-show="form.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmCmsModuleEdit.Title.$invalid && !frmCmsModuleEdit.Title.$pristine,'has-success' : frmCmsModuleEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -27,14 +27,14 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="form.AccessEdit('Description')">
+                <div class='form-group' ng-show="form.CheckAccessEdit('Description')">
                     <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-required="true" ng-model='form.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
                     </div>
                 </div>
                 <!--<div class='hr-line-dashed'></div>
-                <div class='form-group' ng-show="form.AccessEdit('FormValues')">
+                <div class='form-group' ng-show="form.CheckAccessEdit('FormValues')">
                     <label class='col-sm-2 control-label'> {{'FORM_VALUE'|lowercase|translate}} </label>
                     <div class='col-sm-10'>
                         <textarea type='text' ng-model='form.selectedItem.FormValues' class='form-control' style="height: 55px;"></textarea>

@@ -144,7 +144,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareReciverCategory.ListItems = response.ListItems;
-            chartShareReciverCategory.gridOptions.fillData(chartShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            chartShareReciverCategory.gridOptions.fillData(chartShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             chartShareReciverCategory.contentBusyIndicator.isActive = false;
             chartShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
@@ -163,7 +163,7 @@
         if (buttonIsPressed) { return };
         chartShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             chartShareReciverCategory.selectedItem = response.Item;
@@ -209,7 +209,7 @@
 
         chartShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/GetOne', chartShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/', chartShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             chartShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -321,7 +321,7 @@
                 chartShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/GetOne', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     chartShareReciverCategory.selectedItemForDelete = response.Item;
@@ -380,7 +380,7 @@
             rashaErManage.checkAction(response);
             chartShareReciverCategory.contentBusyIndicator.isActive = false;
             chartShareReciverCategory.ListItems = response.ListItems;
-            chartShareReciverCategory.gridOptions.fillData(chartShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
+            chartShareReciverCategory.gridOptions.fillData(chartShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
             chartShareReciverCategory.gridOptions.currentPageNumber = response.CurrentPageNumber;
             chartShareReciverCategory.gridOptions.totalRowCount = response.TotalRowCount;
             chartShareReciverCategory.gridOptions.rowPerPage = response.RowPerPage;
@@ -403,7 +403,7 @@
         chartShareReciverCategory.addRequested = false;
         chartShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/GetViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -429,7 +429,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/GetOne', chartShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/', chartShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             chartShareReciverCategory.selectedItem = response1.Item;
@@ -523,7 +523,7 @@
                 chartShareReciverCategory.showbusy = true;
                 chartShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/GetOne", chartShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/", chartShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     chartShareReciverCategory.showbusy = false;
                     chartShareReciverCategory.showIsBusy = false;
@@ -784,7 +784,7 @@
         }
         chartShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
         chartShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
             chartShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

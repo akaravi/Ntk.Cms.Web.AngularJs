@@ -4,9 +4,9 @@
         <div class="col-sm-12">
             <div rasha-loading="chartContentTag.busyIndicator"></div>
 
-            <button class="btn btn-primary" rasha-userrole="chartContentTag.Add" ng-click="chartContentTag.openAddModal()" ng-show="chartContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="chartContentTag.Edit" ng-click="chartContentTag.openEditModal()" ng-show="chartContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
-            <button class="btn btn-danger" rasha-userrole="chartContentTag.Delete" ng-click="chartContentTag.deleteRow()" ng-show="chartContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="chartContentTag.Add" ng-click="chartContentTag.openAddModal()" ng-show="chartContentTag.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="chartContentTag.Edit" ng-click="chartContentTag.openEditModal()" ng-show="chartContentTag.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="chartContentTag.Delete" ng-click="chartContentTag.deleteRow()" ng-show="chartContentTag.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="chartContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-warning" type="button" ng-click="chartContentTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="chartContentTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

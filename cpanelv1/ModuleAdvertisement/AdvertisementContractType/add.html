@@ -5,13 +5,13 @@
             <h3 class="m-t-none m-b">{{'Add_Contract_Type'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmadvertisementContractTypeAdd" novalidate ng-submit="advertisementContractType.addNewRow(frmadvertisementContractTypeAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementContractType.AccessAdd('RecordStatus')"
+                <div class="form-group" ng-show="advertisementContractType.CheckAccessAdd('RecordStatus')"
                      ng-class="{'has-error' : frmadvertisementContractTypeAdd.RecordStatus.$invalid && !frmadvertisementContractTypeAdd.RecordStatus.$pristine,'has-success' : frmadvertisementContractTypeAdd.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="advertisementContractType"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementContractType.AccessAdd('Title')"
+                <div class="form-group" ng-show="advertisementContractType.CheckAccessAdd('Title')"
                      ng-class="{'has-error' : frmadvertisementContractTypeAdd.Title.$invalid && !frmadvertisementContractTypeAdd.Title.$pristine,'has-success' : frmadvertisementContractTypeAdd.Title.$valid}">
                     <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
                     <div class="col-sm-10">

@@ -8,27 +8,27 @@
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('RecordStatus')"
+                            <div class="form-group" ng-show="value.CheckAccessAdd('RecordStatus')"
                                  ng-class="{'has-error' : frmvalueAdd.RecordStatus.$invalid && !frmvalueAdd.RecordStatus.$pristine,'has-success' : frmvalueAdd.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="value"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('Title')">
+                            <div class="form-group" ng-show="value.CheckAccessAdd('Title')">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="Title" ng-model="value.selectedItem.Title" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('LinkExternalUserId')">
+                            <div class="form-group" ng-show="value.CheckAccessAdd('LinkExternalUserId')">
                                 <label class="col-sm-2 control-label">{{'USER'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalUserId" rasha-autocomplete="value.LinkExternalUserIdSelector" ng-model="value.selectedItem.LinkExternalUserId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('LinkExternalModuleMemberId')">
+                            <div class="form-group" ng-show="value.CheckAccessAdd('LinkExternalModuleMemberId')">
                                 <label class="col-sm-2 control-label">{{'Member'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkExternalModuleMemberId" rasha-autocomplete="value.LinkExternalModuleMemberIdSelector" ng-model="value.selectedItem.LinkExternalModuleMemberId" />
@@ -39,14 +39,14 @@
                     <tab heading="{{'FORM'|lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('LinkFormId')">
+                            <div class="form-group" ng-show="value.CheckAccessAdd('LinkFormId')">
                                 <label class="col-sm-2 control-label"> {{'FORM'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-options="x.Id as x.Title for x in value.formListItems" ng-model="value.selectedItem.LinkFormId" ng-change="value.onLinkFormIdChange(value.selectedItem.LinkFormId,null)"></select>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="value.AccessAdd('JsonValues')">
+                            <div class="form-group" ng-show="value.CheckAccessAdd('JsonValues')">
                                 <!--<label class="col-sm-2 control-label"> {{'FORM'|lowercase|translate}} </label>-->
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div ng-model="value.submitValue" fb-form="default" fb-default="value.defaultValue"></div>

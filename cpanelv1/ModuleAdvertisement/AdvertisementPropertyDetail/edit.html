@@ -20,20 +20,20 @@
             <h3 class="m-t-none m-b">{{'Edit_Attribute'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmadvertisementPropertyDetailEdit" novalidate ng-submit="advertisementPropertyDetail.editContent(frmadvertisementPropertyDetailEdit)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('RecordStatus')"
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('RecordStatus')"
                      ng-class="{'has-error' : frmadvertisementPropertyDetailEdit.RecordStatus.$invalid && !frmadvertisementPropertyDetailEdit.RecordStatus.$pristine,'has-success' : frmadvertisementPropertyDetailEdit.RecordStatus.$valid}">
                     <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                     <div class="col-sm-10" rasha-record-status="advertisementPropertyDetail"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessAdd('LinkCategoryId')">
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessAdd('LinkCategoryId')">
                     <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCategoryId" rasha-autocomplete="advertisementPropertyDetail.LinkCategoryIdSelector" ng-model="advertisementPropertyDetail.selectedItem.LinkCategoryId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('Title')"
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('Title')"
                      ng-class="{'has-error' : frmadvertisementPropertyDetailEdit.Title.$invalid && !frmadvertisementPropertyDetailEdit.Title.$pristine,'has-success' : frmadvertisementPropertyDetailEdit.Title.$valid}">
                     <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group formControl" ng-show="advertisementPropertyDetail.AccessEdit('IconFont')">
+                <div class="form-group formControl" ng-show="advertisementPropertyDetail.CheckAccessEdit('IconFont')">
                     <label class="col-sm-2 control-label"> {{'icon'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control inputControl" id="iconFont" name="IconFont" ng-focus="advertisementPropertyDetail.toggleIcons('true')" ng-blur="advertisementPropertyDetail.toggleIcons()" ng-model="advertisementPropertyDetail.selectedItem.IconFont" />
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('InputDataType')"
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('InputDataType')"
                      ng-class="{'has-error' : frmadvertisementPropertyDetailEdit.InputDataType.$invalid && !frmadvertisementPropertyDetailEdit.InputDataType.$pristine,'has-success' : frmadvertisementPropertyDetailEdit.InputDataType.$valid}">
                     <label class="col-sm-2 control-label"> {{'INPUT_TYPE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
@@ -98,7 +98,7 @@
                         <input class="form-control" type="number" ng-required="false" name="ShowInFormOrder" ng-model="advertisementPropertyDetail.selectedItem.ShowInFormOrder" />
                     </div>
                 </div>
-                <div class='hr-line-dashed' ng-show="advertisementPropertyDetail.AccessEdit('InvisibleForEndUser')"></div>
+                <div class='hr-line-dashed' ng-show="advertisementPropertyDetail.CheckAccessEdit('InvisibleForEndUser')"></div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="checkbox">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('InvisibleForSubmiter')">
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('InvisibleForSubmiter')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('Required')">
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('Required')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="advertisementPropertyDetail.AccessEdit('IsSearchable')">
+                <div class="form-group" ng-show="advertisementPropertyDetail.CheckAccessEdit('IsSearchable')">
                     <div class="col-sm-12">
                         <div class="checkbox">
                             <label>

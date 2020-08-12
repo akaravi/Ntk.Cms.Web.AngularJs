@@ -11,14 +11,14 @@
                     <div class="col-sm-10" rasha-record-status="campaignAdmin"></div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="campaignAdmin.AccessAdd('LinkCampaignDetailId')">
+                <div class="form-group" ng-show="campaignAdmin.CheckAccessAdd('LinkCampaignDetailId')">
                     <label class="col-sm-2 control-label">{{'Link_Campaign_Detail_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCampaignDetailId" rasha-autocomplete="campaignAdmin.LinkCampaignDetailIdSelector" ng-model="frmcampaignAdminEdit.selectedItem.LinkCampaignDetailId" />
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="campaignAdmin.AccessAdd('LinkCampaignItemId')">
+                <div class="form-group" ng-show="campaignAdmin.CheckAccessAdd('LinkCampaignItemId')">
                     <label class="col-sm-2 control-label">{{'Link_Campaign_Item_Id'|lowercase|translate}}</label>
                     <div class="col-sm-10">
                         <input class="form-control" name="LinkCampaignItemId" rasha-autocomplete="campaignAdmin.LinkCampaignItemIdSelector" ng-model="frmcampaignAdminEdit.selectedItem.LinkCampaignItemId" />

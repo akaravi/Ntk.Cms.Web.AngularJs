@@ -15,7 +15,7 @@
                                 <div class="col-sm-10" rasha-record-status="emailProcessTask"></div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailProcessTask.AccessEdit('Credit')"
+                            <div class="form-group" ng-show="emailProcessTask.CheckAccessEdit('Credit')"
                                  ng-class="{'has-error' : frmemailProcessTaskAdd.Credit.$invalid && !frmemailProcessTaskAdd.Credit.$pristine,'has-success' : frmemailProcessTaskAdd.Credit.$valid}">
                                 <label class="col-sm-2 control-label"> {{'Credit'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -49,28 +49,28 @@
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="emailProcessTask.AccessEdit('DefaultSubject')">
+                            <div class="form-group" ng-show="emailProcessTask.CheckAccessEdit('DefaultSubject')">
                                 <label class="col-sm-2 control-label">{{'DefaultSubject'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="DefaultSubject" ng-model="emailProcessTask.selectedItem.DefaultSubject" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailProcessTask.AccessEdit('DefaultSender')">
+                            <div class="form-group" ng-show="emailProcessTask.CheckAccessEdit('DefaultSender')">
                                 <label class="col-sm-2 control-label">{{"DefaultSender"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="DefaultSender" ng-model="emailProcessTask.selectedItem.DefaultSender" class="form-control" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailProcessTask.AccessEdit('DefaultSenderDisplayName')">
+                            <div class="form-group" ng-show="emailProcessTask.CheckAccessEdit('DefaultSenderDisplayName')">
                                 <label class="col-sm-2 control-label">{{"DefaultSenderDisplayName"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="DefaultSenderDisplayName" ng-model="emailProcessTask.selectedItem.DefaultSenderDisplayName" class="form-control" />
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group" ng-show="emailProcessTask.AccessEdit('DefaultBody')">
+                            <div class="form-group" ng-show="emailProcessTask.CheckAccessEdit('DefaultBody')">
                                 <label class="col-sm-2 control-label">{{"DefaultBody"|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="DefaultBody" ng-model="emailProcessTask.selectedItem.DefaultBody" class="form-control" />
