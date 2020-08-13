@@ -1301,18 +1301,14 @@ function rashaGrid($compile, $rootScope, ajax) {
                     }
                 });
             }
-            config.Accesschanged = function () {
-                if (config.Access.CheckAccessWatchField == undefined && 1 == 2) {
-                    config.Access.CheckAccessWatchField = [];
-                    for (var i = 0; i < config.columns.length; i++)
-                        config.Access.CheckAccessWatchField.push(config.columns[i].name);
-                }
-                for (var i = 0; i < config.columns.length; i++) {
-                    if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.CheckAccessWatchField != undefined && config.Access.CheckAccessWatchField.indexOf(config.columns[i].name) < 0) {
-                        config.Access.CheckAccessWatchField.push(config.columns[i].name);
-                    }
-                }
-            };
+            // config.Accesschanged = function () {
+               
+            //     for (var i = 0; i < config.columns.length; i++) {
+            //         if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.CheckAccessWatchField != undefined && config.Access.CheckAccessWatchField.indexOf(config.columns[i].name) < 0) {
+            //             config.Access.CheckAccessWatchField.push(config.columns[i].name);
+            //         }
+            //     }
+            // };
             config.selectNextRow = function () {
 
             };
@@ -1354,7 +1350,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             config.fillData = function (response, resultAccessSet) {
 
                 if (resultAccessSet != undefined) config.Access = resultAccessSet;
-                config.Accesschanged();
+                //config.Accesschanged();
                 if (!response) {
                     var $fixedHeader = $("#" + config.getUniqueId);
                     $fixedHeader.hide();
@@ -1552,7 +1548,7 @@ function queryBuilder($compile) {
                 var retOut=false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
                     if (column.FieldName==fieldName)
-                        retOut= column.CheckAccessWatchField;
+                        retOut= column.AccessWatchField;
                 });
                 return retOut;
             }
@@ -1561,7 +1557,7 @@ function queryBuilder($compile) {
                 var retOut=false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
                     if (column.FieldName==fieldName)
-                        retOut= column.CheckAccessSearchField;
+                        retOut= column.AccessSearchField;
                 });
                 return retOut;
             }
@@ -1570,7 +1566,7 @@ function queryBuilder($compile) {
                 var retOut=false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
                     if (column.FieldName==fieldName)
-                        retOut= column.CheckAccessEditField;
+                        retOut= column.AccessEditField;
                 });
                 return retOut;
             }
@@ -1579,7 +1575,7 @@ function queryBuilder($compile) {
                 var retOut=false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
                     if (column.FieldName==fieldName)
-                        retOut= column.CheckAccessAddField;
+                        retOut= column.AccessAddField;
                 });
                 return retOut;
             }
@@ -1589,7 +1585,7 @@ function queryBuilder($compile) {
                 var fields = [];
                 if (config.gridOptions.Access.FieldsInfo )
                     $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                        if (column.CheckAccessSearchField)
+                        if (column.AccessSearchField)
                             {
                                 ///AccessSearchField
                         if (column.FieldType === 'System.Int32' || column.FieldType === 'System.Int64') {
@@ -6292,15 +6288,15 @@ angular.module('inspinia')
             return $sce.trustAsHtml(text);
         };
     }])
-    .filter('allowedWatchField', function () {
-        return function (inputDate, inputFieldName) {
-            if (config
-                .Access ==
-                undefined ||
-                config.Access.CheckAccessWatchField[inputFieldName]) return inputDate;
-            return "****";
-        }
-    })
+    // .filter('allowedWatchField', function () {
+    //     return function (inputDate, inputFieldName) {
+    //         if (config
+    //             .Access ==
+    //             undefined ||
+    //             config.Access.CheckAccessWatchField[inputFieldName]) return inputDate;
+    //         return "****";
+    //     }
+    // })
     .directive("trumbowygNg", function () {
         "use strict";
         return {

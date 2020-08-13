@@ -164,7 +164,7 @@
 
     cmsModuleOptimizer.gridOptions = {
         columns: [
-            { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },//, filter: 'allowedWatchField'
+            { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'ClassName', displayName: 'ClassName', sortable: true, type: 'string' },
             { name: 'LastRunDateTime', displayName: 'آخرین اجرا', isDateTime: true, sortable: true, type: 'string' },
