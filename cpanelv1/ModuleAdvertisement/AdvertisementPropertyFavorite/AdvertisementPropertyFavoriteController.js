@@ -139,11 +139,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 advertisementPropertyFavorite.busyIndicator.isActive = true;
-                console.log(advertisementPropertyFavorite.gridOptions.selectedRow.item);
+                //console.log(advertisementPropertyFavorite.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementPropertyFavorite.selectedItemForDelete = response.Item;
-                    console.log(advertisementPropertyFavorite.selectedItemForDelete);
+                    //console.log(advertisementPropertyFavorite.selectedItemForDelete);
                     ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/delete', advertisementPropertyFavorite.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementPropertyFavorite.busyIndicator.isActive = false;
