@@ -121,7 +121,7 @@
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulecampaign/CampaignItemGroup/add.html',
@@ -171,7 +171,7 @@
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (campaignItem.selectedItem.LinkMainImageId > 0)

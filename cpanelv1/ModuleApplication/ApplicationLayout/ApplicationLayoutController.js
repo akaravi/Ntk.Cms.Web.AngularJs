@@ -152,7 +152,7 @@
                         IntValueForceNullSearch: true
                     }]
                 };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,'', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appLayout.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appLayout.selectedItem.LinkModuleFilePreviewImageId > 0)
@@ -387,7 +387,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

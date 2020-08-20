@@ -3367,7 +3367,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 if (angular.isDefined(config.extension) && config.extension != "") {
                     extensions = config.extension.split(",");
                 }
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", id, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ id,'', 'GET').success(function (response) {
                     config.FileList = [];
                     angular.forEach(response.ListItems, function (value1, key1) {
                         if (extensions.length > 0)
@@ -4069,7 +4069,7 @@ function rashaUpload($compile, ajax, $http) {
 
                 vehicleProperty.FileList = [];
                 //get list of file from category id
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", '', 'GET').success(function (response) {
                     vehicleProperty.FileList = response.ListItems;
                 }).error(function (data) {
                     console.log(data);

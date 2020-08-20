@@ -50,7 +50,7 @@
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulePolling/pollingCategory/add.html',
@@ -124,7 +124,7 @@
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingcategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingcategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (pollingcategory.selectedItem.LinkMainImageId > 0)
@@ -377,7 +377,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
