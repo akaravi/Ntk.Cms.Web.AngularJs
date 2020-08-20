@@ -366,7 +366,7 @@
     //get list of file from category id
     fdm.getCategoryFiles = function (id) {
         fdm.loadingBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ id,"", 'GET').success(function (response) {
             fdm.FileList = response.ListItems;
             fdm.FileList.sort(compare);
             fdm.msgText = fdm.msgText + ", " + response.ListItems.length + " files were loaded";

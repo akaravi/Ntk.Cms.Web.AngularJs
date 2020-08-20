@@ -1103,7 +1103,7 @@ imgGallery.LinkCategoryIdSelector = {
         $("#addRequests").fadeIn("slow");
         imgGallery.addRequested = true;
         if (imgGallery.treeOptions.dirSelectable) {
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", selectedFolder.Id, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ selectedFolder.Id,"", 'GET').success(function (response) {
                 angular.forEach(response.ListItems, function (value, key) {
                     var newObject = jQuery.extend({}, imgGallery.selectedItem);   //#Clone a Javascript Object
                     newObject.LinkFileId = value.Id;

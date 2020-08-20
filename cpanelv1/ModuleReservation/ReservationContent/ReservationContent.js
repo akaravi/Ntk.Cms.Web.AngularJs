@@ -529,9 +529,8 @@
                             };
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
-                                    filterModelRootFiles,
-                                    "POST"
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+    filterModelRootFiles,"",
+                                    "GET"
                                 )
                                 .success(function (response2) {
                                     //Get files in root
@@ -618,9 +617,8 @@
                             };
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
-                                    filterModelRootFiles,
-                                    "POST"
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+  filterModelRootFiles,"",
+                                    "GET"
                                 )
                                 .success(function (response2) {
                                     //Get files in root
@@ -1734,7 +1732,7 @@
 
             reservationContent.FileList = [];
             //get list of file from category id
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
                 reservationContent.FileList = response.ListItems;
             }).error(function (data) {
                 console.log(data);
@@ -2227,7 +2225,7 @@
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
                             .success(function (response2) {
                                 angular.forEach(response2.ListItems, function (value, key) {
                                     node.Children.push(value);

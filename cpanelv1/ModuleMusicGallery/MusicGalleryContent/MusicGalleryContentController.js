@@ -506,7 +506,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetFilesFromCategory', mscGallery.selectedItem.FolderId, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetFilesFromCategory/'+ mscGallery.selectedItem.FolderId,"", 'GET').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

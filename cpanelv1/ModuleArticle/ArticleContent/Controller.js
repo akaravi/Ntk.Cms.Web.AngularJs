@@ -639,8 +639,8 @@
               };
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory",
-                  filterModelRootFiles,
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+filterModelRootFiles,
+                  "",
                   "GET"
                 )
                 .success(function (response2) {
@@ -724,8 +724,8 @@
               };
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory",
-                  filterModelRootFiles,
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+filterModelRootFiles,
+                  "",
                   "GET"
                 )
                 .success(function (response2) {
