@@ -2,8 +2,8 @@
     <!--    <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="cmsUserGroupController.Add" ng-click="cmsUserGroupgrd.openAddModal()" ng-show="cmsUserGroupgrd.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsUserGroupController.Edit" ng-click="cmsUserGroupgrd.openEditModal()" ng-show="cmsUserGroupgrd.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsUserGroupController.Add" ng-click="cmsUserGroupgrd.openAddModal()" ng-show="cmsUserGroupgrd.gridOptions.Access.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsUserGroupController.Edit" ng-click="cmsUserGroupgrd.openEditModal()" ng-show="cmsUserGroupgrd.gridOptions.Access.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="cmsUserGroupController.Delete" ng-click="cmsUserGroupgrd.deleteRow()" ng-show="cmsUserGroupgrd.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="cmsUserGroupgrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="cmsUserGroupgrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsUserGroupgrd.ListItemsTotalRowCount}}</button>

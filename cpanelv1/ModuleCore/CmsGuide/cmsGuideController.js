@@ -393,7 +393,7 @@
                     rashaErManage.checkAction(response);
                     cmsGuide.selectedItemForDelete = response.Item;
                     console.log(cmsGuide.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/delete', cmsGuide.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/', cmsGuide.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsGuide.replaceItem(cmsGuide.selectedItemForDelete.Id);
@@ -511,9 +511,9 @@
     cmsGuide.deleteAttachedfieldName = function(index) {
       ajax
         .call(
-          cmsServerConfig.configApiServerPath+"CoreGuide/delete",
-          cmsGuide.contractsList[index],
-          "POST"
+          cmsServerConfig.configApiServerPath+"CoreGuide/",
+          cmsGuide.contractsList[index].Id,
+          "DELETE"
         )
         .success(function(res) {
           rashaErManage.checkAction(res);

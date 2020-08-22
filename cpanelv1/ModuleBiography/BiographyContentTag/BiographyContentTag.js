@@ -138,7 +138,7 @@
                     rashaErManage.checkAction(response);
                     biographyContentTag.selectedItemForDelete = response.Item;
                     console.log(biographyContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/delete',  biographyContentTag.selectedItemForDelete , 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/',  biographyContentTag.selectedItemForDelete.Id , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyContentTag.busyIndicator.isActive = false;
 

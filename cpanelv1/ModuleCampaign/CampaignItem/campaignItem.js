@@ -120,8 +120,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulecampaign/CampaignItemGroup/add.html',
@@ -170,8 +170,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (campaignItem.selectedItem.LinkMainImageId > 0)
@@ -268,7 +268,7 @@
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/delete', campaignItem.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/', campaignItem.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //campaignItem.replaceCategoryItem(campaignItem.treeConfig.Items, node.Id);
@@ -472,7 +472,7 @@
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     //console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/delete", campaignItem.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/", campaignItem.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         campaignItem.treeConfig.showbusy = false;
                         campaignItem.showIsBusy = false;

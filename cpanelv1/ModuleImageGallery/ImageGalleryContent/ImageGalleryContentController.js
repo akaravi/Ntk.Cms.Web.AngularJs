@@ -330,11 +330,13 @@ imgGallery.LinkCategoryIdSelector = {
                         imgGallery.selectedItem.ContentTags.push(newObject);
                     }
                 });
+                if (imgGallery.selectedItem.ContentTags && imgGallery.selectedItem.ContentTags.length > 0) {
                 ajax.call(cmsServerConfig.configApiServerPath+'imagegallerycontentTag/addbatch', imgGallery.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
+            }
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -419,8 +421,8 @@ imgGallery.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 imgGallery.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(imgGallery.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleImageGallery/ImageGalleryCategory/add.html',
@@ -474,8 +476,8 @@ imgGallery.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 imgGallery.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(imgGallery.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (imgGallery.selectedItem.LinkMainImageId > 0)
@@ -573,7 +575,7 @@ imgGallery.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     imgGallery.selectedItemForDelete = response.Item;
                     console.log(imgGallery.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/delete', imgGallery.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/', imgGallery.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         imgGallery.treeBusyIndicator.isActive = false;
                         imgGallery.addRequested = true;
                         if (res.IsSuccess) {
@@ -660,7 +662,7 @@ imgGallery.LinkCategoryIdSelector = {
                 //ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/getall", imgGallery.selectedRow.item.Id, "POST").success(function (response) {
                 //    rashaErManage.checkAction(response);
                 //    imgGallery.selectedItemsForDelete = response.ListItems;
-                ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/DeleteFilterModel", deleteFilterModel, 'POST').success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/DeleteFilterModel", deleteFilterModel.Id, 'DELETE').success(function (res) {
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         //imgGallery.replaceItem(imgGallery.selectedItemForDelete.Id);
@@ -785,8 +787,8 @@ imgGallery.LinkCategoryIdSelector = {
         imgGallery.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
             imgGallery.dataForTheTree = response1.ListItems;
-            var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+            
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                 //imgGallery.dataForTheTree.concat(response2.ListItems);
                 Array.prototype.push.apply(imgGallery.dataForTheTree, response2.ListItems);
                 $modal.open({
@@ -1066,7 +1068,7 @@ imgGallery.LinkCategoryIdSelector = {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1181,7 +1183,7 @@ imgGallery.LinkCategoryIdSelector = {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

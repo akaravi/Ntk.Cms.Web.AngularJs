@@ -10,13 +10,13 @@
                             <ul class="tree" tree-options="movieGalleryShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="movieGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow || movieGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow ||movieGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow">
+                        <div style="margin-top: 20px;" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessAddRow || movieGalleryShareServerCategory.gridOptions.Access.AccessEditRow ||movieGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow">
                             <a ng-click="movieGalleryShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="movieGalleryShareServerCategory.Add" ng-click="movieGalleryShareServerCategory.addNewCategoryModel()" type="button" ng-show="movieGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="movieGalleryShareServerCategory.Edit" ng-click="movieGalleryShareServerCategory.EditCategoryModel()" type="button" ng-show="movieGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="movieGalleryShareServerCategory.Add" ng-click="movieGalleryShareServerCategory.addNewCategoryModel()" type="button" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="movieGalleryShareServerCategory.Edit" ng-click="movieGalleryShareServerCategory.EditCategoryModel()" type="button" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
                                 <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="movieGalleryShareServerCategory.Delete" ng-click="movieGalleryShareServerCategory.deleteCategory()" type="button" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
@@ -35,8 +35,8 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="movieGalleryShareServerCategory.addNewContentModel()" ng-show="movieGalleryShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="movieGalleryShareServerCategory.openEditModel()" ng-show="movieGalleryShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="movieGalleryShareServerCategory.addNewContentModel()" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="movieGalleryShareServerCategory.openEditModel()" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="movieGalleryShareServerCategory.deleteContent()" ng-show="movieGalleryShareServerCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="movieGalleryShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="movieGalleryShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>

@@ -162,7 +162,7 @@
                     rashaErManage.checkAction(response);
                     estateContractType.selectedItemForDelete = response.Item;
                     console.log(estateContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/delete', estateContractType.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

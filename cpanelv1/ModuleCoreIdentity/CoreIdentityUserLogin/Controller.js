@@ -107,7 +107,7 @@ coreIdentityUserLogin.listforDel=listforDel;
                     rashaErManage.checkAction(response);
                     coreIdentityUserLogin.selectedItemForDelete = response.Item;
                     console.log(coreIdentityUserLogin.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/delete', coreIdentityUserLogin.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/', coreIdentityUserLogin.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             coreIdentityUserLogin.replaceItem(coreIdentityUserLogin.selectedItemForDelete.Id);

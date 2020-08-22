@@ -160,7 +160,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobPosition.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobposition/delete', jobPosition.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobposition/', jobPosition.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobPosition.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

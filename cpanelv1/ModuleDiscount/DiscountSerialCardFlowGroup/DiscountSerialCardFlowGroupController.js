@@ -212,7 +212,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCardFlowGroup.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/delete', discountSerialCardFlowGroup.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountSerialCardFlowGroup.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

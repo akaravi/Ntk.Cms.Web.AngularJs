@@ -201,8 +201,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mscGalleryTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mscGalleryTag.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulemscGallery/mscGalleryCategorytag/add.html',
@@ -252,8 +252,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mscGalleryTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryTagId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mscGalleryTag.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (mscGalleryTag.selectedItem.LinkMainImageId > 0)
@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mscGalleryTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/delete', mscGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', mscGalleryTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         mscGalleryTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             mscGalleryTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     mscGalleryTag.selectedItemForDelete = response.Item;
                     console.log(mscGalleryTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/delete", mscGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/", mscGalleryTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         mscGalleryTag.categoryBusyIndicator.isActive = false;
                         mscGalleryTag.treeConfig.showbusy = false;
                         mscGalleryTag.showIsBusy = false;
@@ -759,7 +759,7 @@
 
         mscGalleryTag.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             mscGalleryTag.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", mscGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     mscGalleryTag.remove(mscGalleryTag.FileList, mscGalleryTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1088,7 +1088,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

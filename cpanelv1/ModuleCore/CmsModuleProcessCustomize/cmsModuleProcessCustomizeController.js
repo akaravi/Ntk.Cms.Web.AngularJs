@@ -200,7 +200,7 @@
                     rashaErManage.checkAction(response);
                     cmsMdlPrcCustm.selectedItemForDelete = response.Item;
                     console.log(cmsMdlPrcCustm.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/delete', cmsMdlPrcCustm.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/', cmsMdlPrcCustm.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsMdlPrcCustm.replaceItem(cmsMdlPrcCustm.selectedItemForDelete.Id);
@@ -228,7 +228,7 @@
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'TitleEn', displayName: 'عنوان لاتین', sortable: true, type: 'string' },
             { name: 'CmsModuleProcess.Title', displayName: 'فعّالیت ماژول', sortable: true, type: 'link', displayForce: true },
-            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, template: '<button class="btn btn-success" ng-show="cmsMdlPrcCustm.gridOptions.Access.CheckAccessEditRow" ng-click="cmsMdlPrcCustm.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
+            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, template: '<button class="btn btn-success" ng-show="cmsMdlPrcCustm.gridOptions.Access.AccessEditRow" ng-click="cmsMdlPrcCustm.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
         ],
         data: {},
         multiSelect: false,

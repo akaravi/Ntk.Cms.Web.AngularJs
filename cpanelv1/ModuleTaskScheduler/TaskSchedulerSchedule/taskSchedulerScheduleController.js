@@ -373,7 +373,7 @@
                     rashaErManage.checkAction(response);
                     schedule.selectedItemForDelete = response.Item;
                     console.log(schedule.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/delete", schedule.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/", schedule.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         schedule.contentBusyIndicator.isActive = false;
                         schedule.treeConfig.showbusy = false;
                         schedule.showIsBusy = false;

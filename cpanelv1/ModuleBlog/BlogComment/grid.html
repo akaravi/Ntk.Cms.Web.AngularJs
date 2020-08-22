@@ -5,8 +5,8 @@
     <div class="row" rasha-loading="blogComment.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="blogComment.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="blogComment.Add" ng-click="blogComment.openAddModal()" ng-show="blogComment.gridOptions.Access.CheckAccessAddRow" type="button"> {{'add'|lowercase|translate}} </button>
-            <button class="btn btn-warning" rasha-userrole="blogComment.Edit" ng-click="blogComment.openEditModal()" ng-show="blogComment.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="blogComment.Add" ng-click="blogComment.openAddModal()" ng-show="blogComment.gridOptions.Access.AccessAddRow" type="button"> {{'add'|lowercase|translate}} </button>
+            <button class="btn btn-warning" rasha-userrole="blogComment.Edit" ng-click="blogComment.openEditModal()" ng-show="blogComment.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="blogComment.Delete" ng-click="blogComment.deleteRow()" ng-show="blogComment.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="blogComment.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="blogComment.openGridConfigModal()" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>

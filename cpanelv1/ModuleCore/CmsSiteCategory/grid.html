@@ -2,8 +2,8 @@
     <!-- <div class="container">-->
     <div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="cmsSiteCategoryController.Add" ng-click="cmsSiteCategorygrd.openAddModal()" ng-show="cmsSiteCategorygrd.gridOptions.Access.CheckAccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsSiteCategoryController.Edit" ng-click="cmsSiteCategorygrd.openEditModal()" ng-show="cmsSiteCategorygrd.gridOptions.Access.CheckAccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteCategoryController.Add" ng-click="cmsSiteCategorygrd.openAddModal()" ng-show="cmsSiteCategorygrd.gridOptions.Access.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsSiteCategoryController.Edit" ng-click="cmsSiteCategorygrd.openEditModal()" ng-show="cmsSiteCategorygrd.gridOptions.Access.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="cmsSiteCategoryController.Delete" ng-click="cmsSiteCategorygrd.deleteRow()" ng-show="cmsSiteCategorygrd.gridOptions.Access.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
             <button class="btn btn-success" ng-click="cmsSiteCategorygrd.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" type="button" ng-click="cmsSiteCategorygrd.reportData()">{{'report'|lowercase|translate}}</button>

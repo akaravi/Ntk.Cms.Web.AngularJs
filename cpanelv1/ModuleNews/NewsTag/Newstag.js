@@ -201,8 +201,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 newsTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(newsTag.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulenews/newsCategorytag/add.html',
@@ -252,8 +252,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 newsTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryTagId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(newsTag.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (newsTag.selectedItem.LinkMainImageId > 0)
@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/delete', newsTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/', newsTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         newsTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             newsTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     newsTag.selectedItemForDelete = response.Item;
                     console.log(newsTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"newstag/delete", newsTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"newstag/", newsTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         newsTag.categoryBusyIndicator.isActive = false;
                         newsTag.treeConfig.showbusy = false;
                         newsTag.showIsBusy = false;
@@ -759,7 +759,7 @@
 
         newsTag.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             newsTag.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", newsTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     newsTag.remove(newsTag.FileList, newsTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1088,7 +1088,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

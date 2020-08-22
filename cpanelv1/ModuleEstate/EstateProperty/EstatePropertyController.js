@@ -402,7 +402,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     estateProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/delete', estateProperty.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -841,7 +841,7 @@
 
     estateProperty.deleteContract = function (index) {
         estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/delete', estateProperty.contractsList[index], 'POST').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.contractsList[index].Id, 'DELETE').success(function (res) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -898,7 +898,7 @@
 
         estateProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             estateProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -940,7 +940,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

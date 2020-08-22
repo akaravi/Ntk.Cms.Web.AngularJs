@@ -212,7 +212,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/', newsContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentParameter.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/delete', newsContentParameter.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameter/', newsContentParameter.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         newsContentParameter.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

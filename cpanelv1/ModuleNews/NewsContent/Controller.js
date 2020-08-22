@@ -629,17 +629,10 @@
             .success(function (response1) {
               //Get root directories
               newsContent.dataForTheTree = response1.ListItems;
-              var filterModelRootFiles = {
-                Filters: [{
-                  PropertyName: "LinkCategoryId",
-                  SearchType: 0,
-                  IntValue1: null,
-                  IntValueForceNullSearch: true
-                }]
-              };
+           
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+              filterModelRootFiles,"",
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/","",
                   "GET"
                 )
                 .success(function (response2) {
@@ -713,17 +706,10 @@
             .success(function (response1) {
               //Get root directories
               newsContent.dataForTheTree = response1.ListItems;
-              var filterModelRootFiles = {
-                Filters: [{
-                  PropertyName: "LinkCategoryId",
-                  SearchType: 0,
-                  IntValue1: null,
-                  IntValueForceNullSearch: true
-                }]
-              };
+             
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+  filterModelRootFiles,"",
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/","",
                   "GET"
                 )
                 .success(function (response2) {
@@ -856,9 +842,9 @@
                 newsContent.selectedItemForDelete = response.Item;
                 ajax
                   .call(
-                    cmsServerConfig.configApiServerPath + "newsCategory/delete",
-                    newsContent.selectedItemForDelete,
-                    "POST"
+                    cmsServerConfig.configApiServerPath + "newsCategory/",
+                    newsContent.selectedItemForDelete.Id,
+                    "DELETE"
                   )
                   .success(function (res) {
                     newsContent.categoryBusyIndicator.isActive = false;
@@ -1298,6 +1284,7 @@
                 item.LinkContentId = response.Item.Id;
               }
             });
+            if (newsContent.tags && newsContent.tags.length > 0) {
             ajax.call(cmsServerConfig.configApiServerPath + "newsContentTag/addbatch", newsContent.tags, "POST").success(function (response) {
                 rashaErManage.checkAction(response);
               })
@@ -1305,9 +1292,9 @@
                 rashaErManage.checkAction(data, errCode);
               });
             ///Save inputTags
-          }
-        })
-        .error(function (data, errCode, c, d) {
+            }
+        }}
+        ).error(function (data, errCode, c, d) {
           rashaErManage.checkAction(data, errCode);
           newsContent.addRequested = false;
           newsContent.categoryBusyIndicator.isActive = false;
@@ -1342,7 +1329,7 @@
       newsContent.ContentTagsAdded = differenceInFirstArray(newsContent.tags, newsContent.selectedItem.ContentTags, 'LinkTagId');
       //remove
       if (newsContent.ContentTagsRemoved && newsContent.ContentTagsRemoved.length > 0) {
-        ajax.call(cmsServerConfig.configApiServerPath + "newsContentTag/DeleteList", newsContent.ContentTagsRemoved, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "newsContentTag/DeleteList", newsContent.ContentTagsRemoved, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1374,7 +1361,7 @@
         $.each(newsContent.ContentOtherInfosRemoved, function (index, item) {
           OtherInfosRemovedModel.push(item);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "newsContentOtherInfo/DeleteList", OtherInfosRemovedModel, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "newsContentOtherInfo/DeleteList", OtherInfosRemovedModel, "POSt").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1417,7 +1404,7 @@
             LinkDestinationId: item.Id
           });
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "newsContentSimilar/DeleteList", SimilarsRemovedModel, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "newsContentSimilar/DeleteList", SimilarsRemovedModel, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1448,7 +1435,7 @@
       //remove
       if (newsContent.ContentModuleRelationShipRemoved && newsContent.ContentModuleRelationShipRemoved.length > 0) {
 
-        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/DeleteList", newsContent.ContentModuleRelationShipRemoved, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/DeleteList", newsContent.ContentModuleRelationShipRemoved, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1541,9 +1528,9 @@
                 newsContent.selectedItemForDelete = response.Item;
                 ajax
                   .call(
-                    cmsServerConfig.configApiServerPath + "newsContent/delete",
-                    newsContent.selectedItemForDelete,
-                    "POST"
+                    cmsServerConfig.configApiServerPath + "newsContent/",
+                    newsContent.selectedItemForDelete.Id,
+                    "DELETE"
                   )
                   .success(function (res) {
                     newsContent.categoryBusyIndicator.isActive = false;
@@ -1789,7 +1776,7 @@
 
             var itemCopy = angular.copy(item);
             itemCopy.rowOption = null;
-            ajax.call(cmsServerConfig.configApiServerPath + "newsComment/delete", itemCopy, "POST")
+            ajax.call(cmsServerConfig.configApiServerPath + "newsComment/", itemCopy.Id, "DELETE")
               .success(function (res) {
                 newsContent.treeConfig.showbusy = false;
                 newsContent.showbusy = false;
@@ -1978,9 +1965,9 @@
     newsContent.deleteAttachedfieldName = function (index) {
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "newsContent/delete",
-          newsContent.contractsList[index],
-          "POST"
+          cmsServerConfig.configApiServerPath + "newsContent/",
+          newsContent.contractsList[index].Id,
+          "DELETE"
         )
         .success(function (res) {
           rashaErManage.checkAction(res);
@@ -2043,7 +2030,7 @@
       newsContent.FileList = [];
       //get list of file from category id
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", "GET")
         .success(function (response) {
           newsContent.FileList = response.ListItems;
         })
@@ -2061,7 +2048,7 @@
 
       newsContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
         newsContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2078,7 +2065,7 @@
 
       newsContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
         newsContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2124,7 +2111,7 @@
           if (response1.IsSuccess == true) {
 
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/", response1.Item.Id, "DELETE")
               .success(function (response2) {
                 newsContent.remove(
                   newsContent.FileList,
@@ -2703,7 +2690,7 @@
               node.Children.push(value);
             });
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
               .success(function (response2) {
                 angular.forEach(response2.ListItems, function (value, key) {
                   node.Children.push(value);

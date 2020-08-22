@@ -4,8 +4,8 @@
         <div class="col-sm-12">
             <div rasha-loading="productContentTag.busyIndicator"></div>
 
-            <button class="btn btn-primary" rasha-userrole="productContentTag.Add" ng-click="productContentTag.openAddModal()" ng-show="productContentTag.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="productContentTag.Edit" ng-click="productContentTag.openEditModal()" ng-show="productContentTag.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="productContentTag.Add" ng-click="productContentTag.openAddModal()" ng-show="productContentTag.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="productContentTag.Edit" ng-click="productContentTag.openEditModal()" ng-show="productContentTag.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="productContentTag.Delete" ng-click="productContentTag.deleteRow()" ng-show="productContentTag.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="productContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="productContentTag.reportData()"> {{'report'|lowercase|translate}} </button>

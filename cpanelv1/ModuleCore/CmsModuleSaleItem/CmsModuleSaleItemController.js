@@ -306,21 +306,12 @@
                         .success(function (response1) {
                             //Get root directories
                             cmsModuleSaleItem.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                        
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
-                                    filterModelRootFiles,
-                                    "POST"
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",
+                                    "",
+                                    "GET"
                                 )
                                 .success(function (response2) {
                                     //Get files in root
@@ -400,19 +391,10 @@
                         .success(function (response1) {
                             //Get root directories
                             cmsModuleSaleItem.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                        
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+  filterModelRootFiles,"",
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","",
                                     "GET"
                                 )
                                 .success(function (response2) {
@@ -541,9 +523,9 @@
                                 console.log(cmsModuleSaleItem.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/delete",
-                                        cmsModuleSaleItem.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/",
+                                        cmsModuleSaleItem.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -981,9 +963,9 @@
                                 console.log(cmsModuleSaleItem.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/delete",
-                                        cmsModuleSaleItem.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                                        cmsModuleSaleItem.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -1179,7 +1161,7 @@
         //                    rashaErManage.checkAction(response);
         //                    cmsModuleSaleItem.selectedItemForDelete = response.Item;
         //                    console.log(cmsModuleSaleItem.selectedItemForDelete);
-        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/delete', cmsModuleSaleItem.selectedItemForDelete, 'POST').success(function (res) {
+        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/', cmsModuleSaleItem.selectedItemForDelete.Id, 'DELETE').success(function (res) {
         //                        cmsModuleSaleItem.treeConfig.showbusy = false;
         //                        cmsModuleSaleItem.showIsBusy = false;
         //                        rashaErManage.checkAction(res);
@@ -1413,7 +1395,7 @@
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
                             .success(function (response2) {
                                 angular.forEach(response2.ListItems, function (value, key) {
                                     node.Children.push(value);

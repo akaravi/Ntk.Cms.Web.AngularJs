@@ -13,8 +13,8 @@
     <div class="row" rasha-loading="place.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="place.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="place.Add" ng-click="place.openAddModal()" ng-show="place.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button><!--ng-show="place.gridOptions.Access.CheckAccessAddRow"-->
-            <button class="btn btn-warning" rasha-userrole="place.Edit" ng-click="place.openEditModal()" ng-show="place.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button><!--ng-show="place.gridOptions.Access.CheckAccessEditRow"-->
+            <button class="btn btn-primary" rasha-userrole="place.Add" ng-click="place.openAddModal()" ng-show="place.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button><!--ng-show="place.gridOptions.Access.AccessAddRow"-->
+            <button class="btn btn-warning" rasha-userrole="place.Edit" ng-click="place.openEditModal()" ng-show="place.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button><!--ng-show="place.gridOptions.Access.AccessEditRow"-->
             <button class="btn btn-danger" rasha-userrole="place.Delete" ng-click="place.deleteRow()" ng-show="place.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button><!--ng-show="place.gridOptions.Access.AccessDeleteRow"-->
             <button class="btn btn-success" type="button" ng-click="place.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="place.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>

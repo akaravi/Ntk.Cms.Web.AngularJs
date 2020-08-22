@@ -492,19 +492,7 @@
                 linkManagementBillboard.ListItems.unshift(response.Item);
                 linkManagementBillboard.gridOptions.fillData(linkManagementBillboard.ListItems);
                 linkManagementBillboard.closeModal();
-                //Save inputTags
-                //linkManagementBillboard.selectedItem.ContentTags = [];
-                //$.each(linkManagementBillboard.tags, function (index, item) {
-                //    var newObject = $.extend({}, linkManagementBillboard.ModuleContentTag);
-                //    newObject.LinkTagId = item.id;
-                //    newObject.LinkContentId = response.Item.Id;
-                //    linkManagementBillboard.selectedItem.ContentTags.push(newObject);
-                //});
-                //ajax.call(cmsServerConfig.configApiServerPath+'biographyContentTag/addbatch', linkManagementBillboard.selectedItem.ContentTags, 'POST').success(function (response) {
-                //    console.log(response);
-                //}).error(function (data, errCode, c, d) {
-                //    rashaErManage.checkAction(data, errCode);
-                //});
+   
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -595,7 +583,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementBillboard.selectedItemForDelete = response.Item;
                     console.log(linkManagementBillboard.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/delete", linkManagementBillboard.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/", linkManagementBillboard.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         linkManagementBillboard.categoryBusyIndicator.isActive = false;
                         linkManagementBillboard.treeConfig.showbusy = false;
                         linkManagementBillboard.showIsBusy = false;
@@ -814,7 +802,7 @@
     //                rashaErManage.checkAction(response);
     //                linkManagementBillboard.selectedItemForDelete = response.Item;
     //                console.log(linkManagementBillboard.selectedItemForDelete);
-    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/delete', linkManagementBillboard.selectedItemForDelete, 'POST').success(function (res) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItemForDelete.Id, 'DELETE').success(function (res) {
     //                    linkManagementBillboard.treeConfig.showbusy = false;
     //                    linkManagementBillboard.showIsBusy = false;
     //                    rashaErManage.checkAction(res);
@@ -1001,7 +989,7 @@
 
         linkManagementBillboard.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             linkManagementBillboard.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1044,7 +1032,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     linkManagementBillboard.remove(linkManagementBillboard.FileList, linkManagementBillboard.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1331,7 +1319,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

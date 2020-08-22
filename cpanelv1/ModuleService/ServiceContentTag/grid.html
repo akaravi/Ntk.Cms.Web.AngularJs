@@ -4,8 +4,8 @@
         <div class="col-sm-12">
             <div rasha-loading="ServiceContentTag.busyIndicator"></div>
 
-            <button class="btn btn-primary" rasha-userrole="ServiceContentTag.Add" ng-click="ServiceContentTag.openAddModal()" ng-show="ServiceContentTag.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="ServiceContentTag.Edit" ng-click="ServiceContentTag.openEditModal()" ng-show="ServiceContentTag.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="ServiceContentTag.Add" ng-click="ServiceContentTag.openAddModal()" ng-show="ServiceContentTag.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="ServiceContentTag.Edit" ng-click="ServiceContentTag.openEditModal()" ng-show="ServiceContentTag.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="ServiceContentTag.Delete" ng-click="ServiceContentTag.deleteRow()" ng-show="ServiceContentTag.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="ServiceContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="ServiceContentTag.reportData()"> {{'report'|lowercase|translate}} </button>

@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="reservationcategory.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="reservationcategory.Add" ng-click="reservationcategory.openAddModal()" ng-show="reservationcategory.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="reservationcategory.Edit" ng-click="reservationcategory.openEditModal()"ng-show="reservationcategory.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="reservationcategory.Add" ng-click="reservationcategory.openAddModal()" ng-show="reservationcategory.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="reservationcategory.Edit" ng-click="reservationcategory.openEditModal()"ng-show="reservationcategory.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="reservationcategory.Delete" ng-click="reservationcategory.deleteRow()" ng-show="reservationcategory.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="reservationcategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="reservationcategory.reportData()"> {{'report'|lowercase|translate}} </button>

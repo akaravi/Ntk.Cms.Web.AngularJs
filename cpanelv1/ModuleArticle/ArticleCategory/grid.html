@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="articlecategory.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="articlecategory.Add" ng-click="articlecategory.openAddModal()" ng-show="articlecategory.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="articlecategory.Edit" ng-click="articlecategory.openEditModal()"ng-show="articlecategory.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="articlecategory.Add" ng-click="articlecategory.openAddModal()" ng-show="articlecategory.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="articlecategory.Edit" ng-click="articlecategory.openEditModal()"ng-show="articlecategory.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="articlecategory.Delete" ng-click="articlecategory.deleteRow()" ng-show="articlecategory.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="articlecategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="articlecategory.reportData()"> {{'report'|lowercase|translate}} </button>

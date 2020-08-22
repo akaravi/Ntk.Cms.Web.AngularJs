@@ -162,7 +162,7 @@
                     rashaErManage.checkAction(response);
                     vehicleContractType.selectedItemForDelete = response.Item;
                     console.log(vehicleContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/delete', vehicleContractType.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontracttype/', vehicleContractType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehicleContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

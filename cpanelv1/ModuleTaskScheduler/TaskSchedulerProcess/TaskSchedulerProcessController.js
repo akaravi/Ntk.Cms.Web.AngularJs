@@ -80,8 +80,8 @@
 //           };
 //           ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
 //               taskSchedulerProcess.dataForTheTree = response1.ListItems;
-//               var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-//               ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+//               
+//               ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
 //                   Array.prototype.push.apply(taskSchedulerProcess.dataForTheTree, response2.ListItems);
 //                   $modal.open({
 //                       templateUrl: 'cpanelv1/ModuleTaskScheduler/TaskSchedulerProcess/add.html',
@@ -183,8 +183,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 taskSchedulerProcess.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(taskSchedulerProcess.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (taskSchedulerProcess.selectedItem.LinkModuleFilePreviewImageId > 0)
@@ -258,7 +258,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskSchedulerProcess.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/delete', taskSchedulerProcess.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         taskSchedulerProcess.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -291,9 +291,9 @@
             { name: 'IsPublish', displayName: 'قابل نمایش برای همه؟', sortable: true, isCheckBox: true, type: 'boolean' },
             { name: 'ActionButton1', displayName: 'عملیات ادمین', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminMainJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderMainAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminMainValues\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormMainAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' },
             { name: 'ActionButton2', displayName: 'عملیات ادمین سایت', sortable: true, displayForce: true, width: '140px', template: '<button class="btn btn-success" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminSiteJsonForm\')" ng-click="taskSchedulerProcess.scrollToFormBuilderSiteAdmin(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" aria-hidden="true"></i></button>&nbsp;<button class="btn btn-warning" ng-show="taskSchedulerProcess.CheckAccessAdd(\'JsonFormAdminSiteValuesDefault\')" title="مقداردهی" ng-click="taskSchedulerProcess.showFormSiteAdmin(\'false\',x.Id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>' }
-            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'taskSchedulerProcess.AccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
-            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"taskSchedulerProcess.gridOptions.Access.CheckAccessAddRow\" ng-click=\"taskSchedulerProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
+            //{ name: "JsonForm", displayName: "فرم ساز", sortable: true, displayForce: true, template: "<button class=\"btn btn-warning\" ng-show=\"taskSchedulerProcess.gridOptions.Access.AccessAddRow\" ng-click=\"taskSchedulerProcess.scrollToFormBuilder(x)\" title=\"ساخت فرم\" type=\"button\"><i class=\"fa fa-paint-brush\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormAdminSystemValue", displayName: "تنظیمات مدیر", sortable: true, displayForce: true, visible: 'taskSchedulerProcess.AccessEdit("JsonFormAdminSystemValue")', template: "<button class=\"btn btn-info\" ng-show=\"taskSchedulerProcess.gridOptions.Access.AccessAddRow\" ng-click=\"taskSchedulerProcess.openAdminMainForm(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" },
+            //{ name: "JsonFormDefaultValue", displayName: "پیش فرض", sortable: true, displayForce: true, template: "<button class=\"btn btn-success\" ng-show=\"taskSchedulerProcess.gridOptions.Access.AccessAddRow\" ng-click=\"taskSchedulerProcess.openPreviewModal(x.Id)\" title=\"مقداردهی مقادیر پیش فرض\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>" }
         ],
         data: {},
         multiSelect: false,
@@ -961,7 +961,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

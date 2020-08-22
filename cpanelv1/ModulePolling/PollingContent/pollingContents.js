@@ -171,7 +171,7 @@
                 type: 'string',
                 visible: 'true',
                 displayForce: true,
-                template: '<a type="button" ng-show="pollingContent.gridOptions.Access.CheckAccessAddRow || pollingContent.gridOptions.Access.CheckAccessEditRow" class="btn btn-success" ng-click="pollingContent.moveToOptions()"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;گزینه ها</a>'
+                template: '<a type="button" ng-show="pollingContent.gridOptions.Access.AccessAddRow || pollingContent.gridOptions.Access.AccessEditRow" class="btn btn-success" ng-click="pollingContent.moveToOptions()"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;گزینه ها</a>'
             }
         ],
         data: {},
@@ -381,15 +381,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = {
-                    Filters: [{
-                        PropertyName: "LinkCategoryId",
-                        SearchType: 0,
-                        IntValue1: null,
-                        IntValueForceNullSearch: true
-                    }]
-                };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+               
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulePolling/pollingCategory/add.html',
@@ -443,15 +436,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = {
-                    Filters: [{
-                        PropertyName: "LinkCategoryId",
-                        SearchType: 0,
-                        IntValue1: null,
-                        IntValueForceNullSearch: true
-                    }]
-                };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+               
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (pollingContent.selectedItem.LinkMainImageId > 0)
@@ -565,7 +551,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/", pollingContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         if (res.IsSuccess) {
                             pollingContent.categoryBusyIndicator.isActive = false;
                             if (pollingContent.selectedItemForDelete.LinkParentId == null) {
@@ -742,7 +728,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/", pollingContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.ListItems);
@@ -946,7 +932,7 @@
                 pollingContent.showIsBusy = false;
                 rashaErManage.checkAction(response);
                 pollingContent.selectedItemForDelete = response.Item;
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/", pollingContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                     pollingContent.treeConfig.showbusy = false;
                     pollingContent.showIsBusy = false;
                     rashaErManage.checkAction(res);
@@ -1091,7 +1077,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.OptionList);
@@ -1116,7 +1102,7 @@
                     pollingContent.addOptionBusyIndicator = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         pollingContent.addOptionBusyIndicator = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -1234,7 +1220,7 @@
     }
 
     pollingContent.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/delete', pollingContent.contractsList[index], 'POST').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/', pollingContent.contractsList[index].Id, 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 pollingContent.contractsList.splice(index, 1);
@@ -1553,7 +1539,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

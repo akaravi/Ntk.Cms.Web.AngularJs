@@ -14,8 +14,8 @@
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="quoteContentCtrl.Add" ng-click="quoteContent.addNewCategoryModel()" ng-show="quoteContent.gridOptions.Access.CheckAccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="quoteContentCtrl.Edit" ng-click="quoteContent.editCategoryModel()" ng-show="quoteContent.gridOptions.Access.CheckAccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="quoteContentCtrl.Add" ng-click="quoteContent.addNewCategoryModel()" ng-show="quoteContent.gridOptions.Access.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="quoteContentCtrl.Edit" ng-click="quoteContent.editCategoryModel()" ng-show="quoteContent.gridOptions.Access.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
                                 <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="quoteContentCtrl.Delete" ng-click="quoteContent.deleteCategory()" ng-show="quoteContent.gridOptions.Access.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
@@ -31,8 +31,8 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="quoteContent.addNewContentModel()" ng-show="quoteContent.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                    <button class="btn btn-warning" ng-click="quoteContent.openEditModel()" ng-show="quoteContent.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="quoteContent.addNewContentModel()" ng-show="quoteContent.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="quoteContent.openEditModel()" ng-show="quoteContent.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="quoteContent.deleteContent()" ng-show="quoteContent.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
                     <button class="btn btn-success" ng-click="quoteContent.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="quoteContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>

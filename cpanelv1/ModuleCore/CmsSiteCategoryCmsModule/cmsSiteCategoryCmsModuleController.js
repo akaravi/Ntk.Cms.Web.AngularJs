@@ -150,7 +150,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteCategoryCmsModule.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/delete', cmsSiteCategoryCmsModule.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteCategoryCmsModule.replaceItem(cmsSiteCategoryCmsModule.selectedItemForDelete.Id);

@@ -205,7 +205,7 @@
                     rashaErManage.checkAction(response);
                     botConfigCtrl.selectedItemForDelete = response.Item;
                     console.log(botConfigCtrl.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/delete', botConfigCtrl.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/', botConfigCtrl.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         botConfigCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

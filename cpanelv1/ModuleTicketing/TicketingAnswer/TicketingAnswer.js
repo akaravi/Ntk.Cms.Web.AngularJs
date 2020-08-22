@@ -166,7 +166,7 @@
                     rashaErManage.checkAction(response);
                     ticketingAnswer.selectedItemForDelete = response.Item;
                     console.log(ticketingAnswer.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/delete', ticketingAnswer.selectedItemForDelete , 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingAnswer.selectedItemForDelete.Id , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingAnswer.replaceItem(ticketingAnswer.selectedItemForDelete.Id);

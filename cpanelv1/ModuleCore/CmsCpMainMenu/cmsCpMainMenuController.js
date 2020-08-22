@@ -101,7 +101,7 @@
             { name: 'TitleML', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'virtual_Parent.Title', displayName: 'صفحه والد', sortable: true, type: 'link', displayForce: true },
             { name: 'ShowInMenuOrder', displayName: 'ترتیب نمایش', sortable: true, type: 'integer' },
-            { name: 'ActionButton', displayName: 'تغییر ترتیب', sortable: true, type: 'string', displayForce: true, width: '85px', template: '<i class=\"fa fa-arrow-circle-up\" aria-hidden=\"true\" style=\"font-size:25px;color:#1ab394;text-align: center;\" title=\"انتقال به بالا\" ng-click=\"cmsCpMainMenugrd.editStepGoUp(x, $index)\" ng-show="cmsCpMainMenugrd.gridOptions.Access.CheckAccessEditRow"></i>&nbsp<i class=\"fa fa-arrow-circle-down\"  aria-hidden=\"true\" title=\"انتقال به پایین\" style=\"font-size:25px;color:#ec4758;text-align: center;\" ng-click=\"cmsCpMainMenugrd.editStepGoDown(x, $index)\" ng-show="cmsCpMainMenugrd.gridOptions.Access.CheckAccessEditRow"></i>' }
+            { name: 'ActionButton', displayName: 'تغییر ترتیب', sortable: true, type: 'string', displayForce: true, width: '85px', template: '<i class=\"fa fa-arrow-circle-up\" aria-hidden=\"true\" style=\"font-size:25px;color:#1ab394;text-align: center;\" title=\"انتقال به بالا\" ng-click=\"cmsCpMainMenugrd.editStepGoUp(x, $index)\" ng-show="cmsCpMainMenugrd.gridOptions.Access.AccessEditRow"></i>&nbsp<i class=\"fa fa-arrow-circle-down\"  aria-hidden=\"true\" title=\"انتقال به پایین\" style=\"font-size:25px;color:#ec4758;text-align: center;\" ng-click=\"cmsCpMainMenugrd.editStepGoDown(x, $index)\" ng-show="cmsCpMainMenugrd.gridOptions.Access.AccessEditRow"></i>' }
         ],
         data: {},
         multiSelect: false,
@@ -351,7 +351,7 @@
                     rashaErManage.checkAction(response);
                     cmsCpMainMenugrd.selectedItemForDelete = response.Item;
                     console.log(cmsCpMainMenugrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/delete', cmsCpMainMenugrd.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', cmsCpMainMenugrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsCpMainMenugrd.replaceItem(cmsCpMainMenugrd.selectedItemForDelete.Id);

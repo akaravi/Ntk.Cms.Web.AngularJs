@@ -10,13 +10,13 @@
                             <ul class="tree" tree-options="serviceShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="serviceShareServerCategory.gridOptions.Access.CheckAccessAddRow || serviceShareServerCategory.gridOptions.Access.CheckAccessEditRow ||serviceShareServerCategory.gridOptions.Access.AccessDeleteRow">
+                        <div style="margin-top: 20px;" ng-show="serviceShareServerCategory.gridOptions.Access.AccessAddRow || serviceShareServerCategory.gridOptions.Access.AccessEditRow ||serviceShareServerCategory.gridOptions.Access.AccessDeleteRow">
                             <a ng-click="serviceShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceShareServerCategory.Add" ng-click="serviceShareServerCategory.addNewCategoryModel()" type="button" ng-show="serviceShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceShareServerCategory.Edit" ng-click="serviceShareServerCategory.EditCategoryModel()" type="button" ng-show="serviceShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceShareServerCategory.Add" ng-click="serviceShareServerCategory.addNewCategoryModel()" type="button" ng-show="serviceShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceShareServerCategory.Edit" ng-click="serviceShareServerCategory.EditCategoryModel()" type="button" ng-show="serviceShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
                                 <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceShareServerCategory.Delete" ng-click="serviceShareServerCategory.deleteCategory()" type="button" ng-show="serviceShareServerCategory.gridOptions.Access.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
                         </div>
@@ -35,8 +35,8 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="serviceShareServerCategory.addNewContentModel()" ng-show="serviceShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="serviceShareServerCategory.openEditModel()" ng-show="serviceShareServerCategory.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="serviceShareServerCategory.addNewContentModel()" ng-show="serviceShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="serviceShareServerCategory.openEditModel()" ng-show="serviceShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="serviceShareServerCategory.deleteContent()" ng-show="serviceShareServerCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="serviceShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-warning" type="button" ng-click="serviceShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>

@@ -139,7 +139,7 @@
                     rashaErManage.checkAction(response);
                     ServiceContentTag.selectedItemForDelete = response.Item;
                     console.log(ServiceContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/delete',  ServiceContentTag.selectedItemForDelete , 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/',  ServiceContentTag.selectedItemForDelete.Id , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         ServiceContentTag.busyIndicator.isActive = false;
 

@@ -171,7 +171,7 @@
                 console.log(cmsModuleSaleInvoice.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     cmsModuleSaleInvoice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/delete', cmsModuleSaleInvoice.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsModuleSaleInvoice.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

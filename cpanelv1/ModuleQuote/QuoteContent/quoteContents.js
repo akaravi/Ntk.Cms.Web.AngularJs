@@ -262,8 +262,8 @@ quoteContent.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 quoteContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(quoteContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleQuote/QuoteCategory/add.html',
@@ -317,8 +317,8 @@ quoteContent.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 quoteContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(quoteContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (quoteContent.selectedItem.LinkMainImageId > 0)
@@ -420,7 +420,7 @@ quoteContent.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/delete', quoteContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/', quoteContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         if (res.IsSuccess) {
                             //quoteContent.replaceCategoryItem(quoteContent.treeConfig.Items, node.Id);
                             console.log("Deleted Successfully !");
@@ -652,7 +652,7 @@ quoteContent.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/delete", quoteContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/", quoteContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         quoteContent.categoryBusyIndicator.isActive = false;
                         quoteContent.treeConfig.showbusy = false;
                         quoteContent.showIsBusy = false;
@@ -1063,7 +1063,7 @@ quoteContent.LinkCategoryIdSelector = {
 
         quoteContent.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             quoteContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1105,7 +1105,7 @@ quoteContent.LinkCategoryIdSelector = {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", quoteContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     quoteContent.remove(quoteContent.FileList, quoteContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1394,7 +1394,7 @@ quoteContent.LinkCategoryIdSelector = {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

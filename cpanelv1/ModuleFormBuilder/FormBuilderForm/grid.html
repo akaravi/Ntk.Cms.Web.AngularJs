@@ -2,8 +2,8 @@
     <!-- <div class="container">-->
     <div class="row" rasha-loading="form.busyIndicator">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="form.openAddModal()" ng-show="form.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="form.openEditModal()" ng-show="form.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="form.openAddModal()" ng-show="form.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="form.openEditModal()" ng-show="form.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="form.deleteRow()" ng-show="form.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="form.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="form.toggleExportForm()"> {{'report'|lowercase|translate}} </button>

@@ -144,15 +144,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appLayout.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = {
-                    Filters: [{
-                        PropertyName: "LinkCategoryId",
-                        SearchType: 0,
-                        IntValue1: null,
-                        IntValueForceNullSearch: true
-                    }]
-                };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,'', 'GET').success(function (response2) { //Get files in root
+           
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",'', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appLayout.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appLayout.selectedItem.LinkModuleFilePreviewImageId > 0)
@@ -233,7 +226,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appLayout.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/', appLayout.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appLayout.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -387,7 +380,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

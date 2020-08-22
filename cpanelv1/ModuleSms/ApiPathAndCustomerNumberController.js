@@ -90,7 +90,7 @@
                     rashaErManage.checkAction(response);
                     apiPathCustomer.selectedItemForDelete = response.Item;
                     console.log(apiPathCustomer.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/delete', apiPathCustomer.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/', apiPathCustomer.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         console.log(res);
                         if (res.IsSuccess) {
                             console.log("Deleted Succesfully !");

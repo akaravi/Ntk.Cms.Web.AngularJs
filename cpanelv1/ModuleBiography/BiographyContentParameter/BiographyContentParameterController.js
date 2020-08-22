@@ -206,7 +206,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyContentParameter.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/delete', biographyContentParameter.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyContentParameter.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

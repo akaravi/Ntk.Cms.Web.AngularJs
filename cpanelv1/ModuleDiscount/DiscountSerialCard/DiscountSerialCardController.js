@@ -327,7 +327,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCard.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/delete', discountSerialCard.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountSerialCard.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

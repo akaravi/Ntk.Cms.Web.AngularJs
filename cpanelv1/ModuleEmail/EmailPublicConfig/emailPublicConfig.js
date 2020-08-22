@@ -117,8 +117,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
                 emailPublicConfig.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) {
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) {
                     Array.prototype.push.apply(emailPublicConfig.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (emailPublicConfig.selectedItem.LinkModuleFileLogoId > 0)
@@ -195,7 +195,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPublicConfig.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/delete', emailPublicConfig.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailPublicConfig.replaceItem(emailPublicConfig.selectedItemForDelete.Id);
@@ -437,7 +437,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

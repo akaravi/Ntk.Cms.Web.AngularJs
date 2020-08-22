@@ -219,7 +219,7 @@
                     rashaErManage.checkAction(response);
                     deliveryMethod.selectedItemForDelete = response.Item;
                     console.log(deliveryMethod.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethod/delete', deliveryMethod.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethod/', deliveryMethod.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryMethod.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

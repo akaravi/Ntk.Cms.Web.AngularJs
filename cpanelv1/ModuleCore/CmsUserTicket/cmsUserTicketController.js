@@ -122,7 +122,7 @@
                     rashaErManage.checkAction(response);
                     cmsUserTicketgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserTicketgrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/delete', cmsUserTicketgrd.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/', cmsUserTicketgrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsUserTicketgrd.replaceItem(cmsUserTicketgrd.selectedItemForDelete.Id);

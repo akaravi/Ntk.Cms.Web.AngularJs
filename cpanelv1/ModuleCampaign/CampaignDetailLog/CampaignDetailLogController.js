@@ -264,7 +264,7 @@
                     rashaErManage.checkAction(response);
                     campaignDetailLog.selectedItemForDelete = response.Item;
                     console.log(campaignDetailLog.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/', campaignDetailLog.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailLog.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -488,7 +488,7 @@
     }
 
     campaignDetailLog.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.contractsList[index], 'POST').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/', campaignDetailLog.contractsList[index].Id, 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignDetailLog.contractsList.splice(index, 1);
@@ -543,7 +543,7 @@
 
         campaignDetailLog.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             campaignDetailLog.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -585,7 +585,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     campaignDetailLog.remove(campaignDetailLog.FileList, campaignDetailLog.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

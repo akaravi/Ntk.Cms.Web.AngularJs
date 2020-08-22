@@ -171,7 +171,7 @@
                 console.log(linkManagementMember.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementMember.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/delete', linkManagementMember.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/', linkManagementMember.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementMember.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

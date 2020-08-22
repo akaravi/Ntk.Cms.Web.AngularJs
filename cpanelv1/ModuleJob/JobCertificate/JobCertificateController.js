@@ -164,7 +164,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobCertificate.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/delete', jobCertificate.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/', jobCertificate.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobCertificate.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

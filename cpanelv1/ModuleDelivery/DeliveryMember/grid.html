@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="deliveryMember.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="deliveryMember.Add" ng-click="deliveryMember.openAddModal()" ng-show="deliveryMember.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="deliveryMember.Edit" ng-click="deliveryMember.openEditModal()" ng-show="deliveryMember.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="deliveryMember.Add" ng-click="deliveryMember.openAddModal()" ng-show="deliveryMember.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="deliveryMember.Edit" ng-click="deliveryMember.openEditModal()" ng-show="deliveryMember.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="deliveryMember.Delete" ng-click="deliveryMember.deleteRow()" type="button" ng-show="deliveryMember.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="deliveryMember.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i> </button>
             <!--<button class="btn btn-warning" type="button" ng-click="deliveryMember.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->

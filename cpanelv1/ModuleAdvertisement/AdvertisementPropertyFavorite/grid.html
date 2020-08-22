@@ -3,8 +3,8 @@
     <div class="row" rasha-loading="advertisementPropertyFavorite.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="advertisementPropertyFavorite.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="advertisementPropertyFavorite.Add" ng-click="advertisementPropertyFavorite.openAddModal()" ng-show="advertisementPropertyFavorite.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="advertisementPropertyFavorite.Edit" ng-click="advertisementPropertyFavorite.openEditModal()" type="button" ng-show="advertisementPropertyFavorite.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="advertisementPropertyFavorite.Add" ng-click="advertisementPropertyFavorite.openAddModal()" ng-show="advertisementPropertyFavorite.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="advertisementPropertyFavorite.Edit" ng-click="advertisementPropertyFavorite.openEditModal()" type="button" ng-show="advertisementPropertyFavorite.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="advertisementPropertyFavorite.Delete" ng-click="advertisementPropertyFavorite.deleteRow()" type="button" ng-show="advertisementPropertyFavorite.gridOptions.Access.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="advertisementPropertyFavorite.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="advertisementPropertyFavorite.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>

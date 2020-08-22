@@ -201,8 +201,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 biographyTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(biographyTag.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulebiography/biographyCategorytag/add.html',
@@ -252,8 +252,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 biographyTag.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryTagId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(biographyTag.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (biographyTag.selectedItem.LinkMainImageId > 0)
@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/delete', biographyTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/', biographyTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         biographyTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             biographyTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -530,7 +530,7 @@
                     rashaErManage.checkAction(response);
                     biographyTag.selectedItemForDelete = response.Item;
                     console.log(biographyTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"biographytag/delete", biographyTag.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"biographytag/", biographyTag.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         biographyTag.categoryBusyIndicator.isActive = false;
                         biographyTag.treeConfig.showbusy = false;
                         biographyTag.showIsBusy = false;
@@ -758,7 +758,7 @@
 
         biographyTag.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             biographyTag.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -800,7 +800,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", biographyTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     biographyTag.remove(biographyTag.FileList, biographyTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1086,7 +1086,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

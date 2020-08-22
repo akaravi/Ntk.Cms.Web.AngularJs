@@ -156,15 +156,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = {
-                    Filters: [{
-                        PropertyName: "LinkCategoryId",
-                        SearchType: 0,
-                        IntValue1: null,
-                        IntValueForceNullSearch: true
-                    }]
-                };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,'', 'GET').success(function (response2) { //Get files in root
+               
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",'', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleApplication/ApplicationApp/add.html',
@@ -325,15 +318,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = {
-                    Filters: [{
-                        PropertyName: "LinkCategoryId",
-                        SearchType: 0,
-                        IntValue1: null,
-                        IntValueForceNullSearch: true
-                    }]
-                };
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ filterModelRootFiles,'', 'GET').success(function (response2) { //Get files in root
+             
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",'', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appApplication.selectedItem.LinkModulesFilesIdIcon > 0)
@@ -473,7 +459,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'app/delete', appApplication.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appApplication.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -884,7 +870,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="pollingcategory.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="pollingcategory.Add" ng-click="pollingcategory.openAddModal()" ng-show="pollingcategory.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="pollingcategory.Edit" ng-click="pollingcategory.openEditModal()" ng-show="pollingcategory.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="pollingcategory.Add" ng-click="pollingcategory.openAddModal()" ng-show="pollingcategory.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="pollingcategory.Edit" ng-click="pollingcategory.openEditModal()" ng-show="pollingcategory.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="pollingcategory.Delete" ng-click="pollingcategory.deleteRow()" ng-show="pollingcategory.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="pollingcategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
             <button class="btn btn-primary" type="button" ng-click="pollingcategory.reportData()"> {{'report'|lowercase|translate}} </button>

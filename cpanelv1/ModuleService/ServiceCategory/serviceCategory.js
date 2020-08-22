@@ -45,8 +45,8 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 serviceContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(serviceContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleService/ServiceCategory/add.html',
@@ -116,8 +116,8 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 Servicecategory.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(Servicecategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (Servicecategory.selectedItem.LinkMainImageId > 0)
@@ -224,7 +224,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     rashaErManage.checkAction(response);
                     Servicecategory.selectedItemForDelete = response.Item;
                     console.log(Servicecategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/delete', Servicecategory.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/', Servicecategory.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         Servicecategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -366,7 +366,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

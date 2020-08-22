@@ -229,7 +229,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPagegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/delete', cmsPagegrd.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPagegrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPagegrd.replaceItem(cmsPagegrd.selectedItemForDelete.Id);

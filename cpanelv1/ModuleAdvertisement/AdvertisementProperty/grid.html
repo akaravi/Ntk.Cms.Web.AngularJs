@@ -2,8 +2,8 @@
     <!-- <div class="container">-->
     <div class="row" id="topMenuSource">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="advertisementProperty.Add" ng-click="advertisementProperty.openAddModal()" ng-show="advertisementProperty.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="advertisementProperty.Edit" ng-click="advertisementProperty.openEditModal()" type="button" ng-show="advertisementProperty.gridOptions.Access.CheckAccessEditRow">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="advertisementProperty.Add" ng-click="advertisementProperty.openAddModal()" ng-show="advertisementProperty.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="advertisementProperty.Edit" ng-click="advertisementProperty.openEditModal()" type="button" ng-show="advertisementProperty.gridOptions.Access.AccessEditRow">{{'edit'|lowercase|translate}}</button>
             <button class="btn btn-danger" rasha-userrole="advertisementProperty.Delete" ng-click="advertisementProperty.deleteRow()" type="button" ng-show="advertisementProperty.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="advertisementProperty.showAdvancedSearchPanel()">&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="advertisementProperty.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
@@ -30,8 +30,8 @@
     </div>
     <!--<div class="row">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="advertisementProperty.Add" ng-click="advertisementProperty.openAddModal()" ng-show="advertisementProperty.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="advertisementProperty.Edit" ng-click="advertisementProperty.openEditModal()" type="button" ng-show="advertisementProperty.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="advertisementProperty.Add" ng-click="advertisementProperty.openAddModal()" ng-show="advertisementProperty.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="advertisementProperty.Edit" ng-click="advertisementProperty.openEditModal()" type="button" ng-show="advertisementProperty.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="advertisementProperty.Delete" ng-click="advertisementProperty.deleteRow()" type="button" ng-show="advertisementProperty.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="advertisementProperty.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
         </div>

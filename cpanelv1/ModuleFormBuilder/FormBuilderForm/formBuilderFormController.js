@@ -148,7 +148,7 @@
                     rashaErManage.checkAction(response);
                     form.selectedItemForDelete = response.Item;
                     console.log(form.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/delete', form.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             form.replaceItem(form.selectedItemForDelete.Id);
@@ -188,8 +188,8 @@
             { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'Description', displayName: 'توضیحات', sortable: true, type: 'string' },
-            { name: 'ActionButton2', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.CheckAccessEditRow" ng-click="form.gotoFormBuilderValue(x.Id)" title=" مقادیر " type="button"><i class="fa fa-bars fa-1x" ></i></button>' },
-            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.CheckAccessEditRow" ng-click="form.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
+            { name: 'ActionButton2', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.AccessEditRow" ng-click="form.gotoFormBuilderValue(x.Id)" title=" مقادیر " type="button"><i class="fa fa-bars fa-1x" ></i></button>' },
+            { name: 'ActionButton', displayName: 'طرّاحی مقادیر ورودی', sortable: true, displayForce: true, width: '185px', template: '<button class="btn btn-success" ng-show="form.gridOptions.Access.AccessEditRow" ng-click="form.scrollToInputValueFormBuilderPanel(x)" title="طرّاحی مقادیر وردوی" type="button"><i class="fa fa-bars fa-1x" ></i></button>' }
         ],
         data: {},
         multiSelect: false,

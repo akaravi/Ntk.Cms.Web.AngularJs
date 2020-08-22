@@ -230,7 +230,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     processCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/delete', processCtrl.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         processCtrl.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

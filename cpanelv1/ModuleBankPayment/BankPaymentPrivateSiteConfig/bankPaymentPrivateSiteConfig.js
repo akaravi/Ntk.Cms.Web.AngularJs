@@ -283,7 +283,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     privateSiteConfig.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/delete', privateSiteConfig.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             privateSiteConfig.replaceItem(privateSiteConfig.selectedItemForDelete.Id);

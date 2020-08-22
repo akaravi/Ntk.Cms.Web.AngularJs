@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="discountSellerPriceSetting.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="discountSellerPriceSetting.Add" ng-click="discountSellerPriceSetting.openAddModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.Access.CheckAccessAddRow">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="discountSellerPriceSetting.Edit" ng-click="discountSellerPriceSetting.openEditModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="discountSellerPriceSetting.Add" ng-click="discountSellerPriceSetting.openAddModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.Access.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountSellerPriceSetting.Edit" ng-click="discountSellerPriceSetting.openEditModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="discountSellerPriceSetting.Delete" ng-click="discountSellerPriceSetting.deleteRow()" type="button" ng-show="discountSellerPriceSetting.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="discountSellerPriceSetting.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="discountSellerPriceSetting.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>

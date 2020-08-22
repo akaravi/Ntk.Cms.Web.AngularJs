@@ -330,11 +330,13 @@ mvGallery.LinkCategoryIdSelector = {
                         mvGallery.selectedItem.ContentTags.push(newObject);
                     }
                 });
+                if (mvGallery.selectedItem.ContentTags && mvGallery.selectedItem.ContentTags.length > 0) {
                 ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontentTag/addbatch', mvGallery.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
+            }
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -419,8 +421,8 @@ mvGallery.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mvGallery.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulemovieGallery/movieGalleryCategory/add.html',
@@ -474,8 +476,8 @@ mvGallery.LinkCategoryIdSelector = {
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mvGallery.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (mvGallery.selectedItem.LinkMainImageId > 0)
@@ -573,7 +575,7 @@ mvGallery.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     mvGallery.selectedItemForDelete = response.Item;
                     console.log(mvGallery.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/delete', mvGallery.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/', mvGallery.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         mvGallery.treeBusyIndicator.isActive = false;
                         mvGallery.addRequested = true;
                         if (res.IsSuccess) {
@@ -785,8 +787,8 @@ mvGallery.LinkCategoryIdSelector = {
         mvGallery.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
             mvGallery.dataForTheTree = response1.ListItems;
-            var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+            
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                 //mvGallery.dataForTheTree.concat(response2.ListItems);
                 Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                 $modal.open({
@@ -1066,7 +1068,7 @@ mvGallery.LinkCategoryIdSelector = {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1179,7 +1181,7 @@ mvGallery.LinkCategoryIdSelector = {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

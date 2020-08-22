@@ -153,7 +153,7 @@
 
                     rashaErManage.checkAction(response);
                     emailapipathcompany.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/delete', emailapipathcompany.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/', emailapipathcompany.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailapipathcompany.replaceItem(emailapipathcompany.selectedItemForDelete.Id);

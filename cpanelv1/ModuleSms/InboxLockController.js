@@ -139,7 +139,7 @@
                     rashaErManage.checkAction(response);
                     inboxLock.selectedItemForDelete = response.Item;
                     console.log(inboxLock.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/delete', inboxLock.selectedItemForDelete , 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/', inboxLock.selectedItemForDelete.Id , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             inboxLock.replaceItem(inboxLock.selectedItemForDelete.Id);

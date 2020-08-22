@@ -155,7 +155,7 @@
                     rashaErManage.checkAction(response);
                     siteAccDocumentDetail.selectedItemForDelete = response.Item;
                     console.log(siteAccDocumentDetail.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/delete', siteAccDocumentDetail.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/', siteAccDocumentDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         siteAccDocumentDetail.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

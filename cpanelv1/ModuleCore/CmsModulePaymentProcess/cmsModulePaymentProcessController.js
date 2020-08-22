@@ -151,7 +151,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPayPrc.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/delete', cmsMdlPayPrc.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/', cmsMdlPayPrc.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsMdlPayPrc.addRequested = false;
                         if (res.IsSuccess) {

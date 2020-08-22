@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="newsContentParameter.categoryBusyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="newsContentParameter.Add" ng-click="newsContentParameter.openAddModal()" ng-show="newsContentParameter.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="newsContentParameter.Edit" ng-click="newsContentParameter.openEditModal()"ng-show="newsContentParameter.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="newsContentParameter.Add" ng-click="newsContentParameter.openAddModal()" ng-show="newsContentParameter.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="newsContentParameter.Edit" ng-click="newsContentParameter.openEditModal()"ng-show="newsContentParameter.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="newsContentParameter.Delete" ng-click="newsContentParameter.deleteRow()" ng-show="newsContentParameter.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" ng-click="newsContentParameter.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="newsContentParameter.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

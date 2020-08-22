@@ -401,7 +401,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     advertisementProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/delete', advertisementProperty.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/', advertisementProperty.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -840,7 +840,7 @@
 
     advertisementProperty.deleteContract = function (index) {
         advertisementProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/delete', advertisementProperty.contractsList[index], 'POST').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/', advertisementProperty.contractsList[index].Id, 'DELETE').success(function (res) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -897,7 +897,7 @@
 
         advertisementProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             advertisementProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -939,7 +939,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", advertisementProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     advertisementProperty.remove(advertisementProperty.FileList, advertisementProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

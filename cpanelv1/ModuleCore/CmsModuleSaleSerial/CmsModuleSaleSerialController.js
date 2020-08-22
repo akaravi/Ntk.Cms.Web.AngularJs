@@ -575,19 +575,10 @@
                         .success(function (response1) {
                             //Get root directories
                             cmsModuleSaleSerial.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                          
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+                                   filterModelRootFiles,"",
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","",
                                     "GET"
                                 )
                                 .success(function (response2) {
@@ -668,21 +659,12 @@
                         .success(function (response1) {
                             //Get root directories
                             cmsModuleSaleSerial.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                       
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
-                                    filterModelRootFiles,
-                                    "POST"
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",
+                                    "",
+                                    "GET"
                                 )
                                 .success(function (response2) {
                                     //Get files in root
@@ -810,9 +792,9 @@
                                 console.log(cmsModuleSaleSerial.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/delete",
-                                        cmsModuleSaleSerial.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/",
+                                        cmsModuleSaleSerial.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleSerial.categoryBusyIndicator.isActive = false;
@@ -1244,9 +1226,9 @@
                                 console.log(cmsModuleSaleSerial.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleSerial/delete",
-                                        cmsModuleSaleSerial.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleSerial/",
+                                        cmsModuleSaleSerial.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleSerial.categoryBusyIndicator.isActive = false;
@@ -1442,7 +1424,7 @@
         //                    rashaErManage.checkAction(response);
         //                    cmsModuleSaleSerial.selectedItemForDelete = response.Item;
         //                    console.log(cmsModuleSaleSerial.selectedItemForDelete);
-        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleSerial/delete', cmsModuleSaleSerial.selectedItemForDelete, 'POST').success(function (res) {
+        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleSerial/', cmsModuleSaleSerial.selectedItemForDelete.Id, 'DELETE').success(function (res) {
         //                        cmsModuleSaleSerial.treeConfig.showbusy = false;
         //                        cmsModuleSaleSerial.showIsBusy = false;
         //                        rashaErManage.checkAction(res);
@@ -1675,7 +1657,7 @@
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
                             .success(function (response2) {
                                 angular.forEach(response2.ListItems, function (value, key) {
                                     node.Children.push(value);

@@ -190,7 +190,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopProcessCategory.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/delete', shopProcessCategory.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/', shopProcessCategory.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopProcessCategory.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

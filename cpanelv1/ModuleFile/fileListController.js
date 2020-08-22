@@ -132,7 +132,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     filesList.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', filesList.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         filesList.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

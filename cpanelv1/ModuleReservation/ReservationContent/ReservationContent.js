@@ -517,19 +517,10 @@
                         .success(function (response1) {
                             //Get root directories
                             reservationContent.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                        
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+    filterModelRootFiles,"",
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","",
                                     "GET"
                                 )
                                 .success(function (response2) {
@@ -605,19 +596,10 @@
                         .success(function (response1) {
                             //Get root directories
                             reservationContent.dataForTheTree = response1.ListItems;
-                            var filterModelRootFiles = {
-                                Filters: [
-                                    {
-                                        PropertyName: "LinkCategoryId",
-                                        SearchType: 0,
-                                        IntValue1: null,
-                                        IntValueForceNullSearch: true
-                                    }
-                                ]
-                            };
+                      
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+  filterModelRootFiles,"",
+                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","",
                                     "GET"
                                 )
                                 .success(function (response2) {
@@ -733,9 +715,9 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationCategory/delete",
-                                        reservationContent.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"reservationCategory/",
+                                        reservationContent.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         reservationContent.categoryBusyIndicator.isActive = false;
@@ -1105,6 +1087,7 @@
                                 reservationContent.selectedItem.ContentTags.push(newObject);
                             }
                         });
+                        if (reservationContent.selectedItem.ContentTags&& reservationContent.selectedItem.ContentTags.length > 0) {
                         ajax
                             .call(
                                 cmsServerConfig.configApiServerPath+"reservationContentTag/addbatch",
@@ -1117,6 +1100,7 @@
                             .error(function (data, errCode, c, d) {
                                 rashaErManage.checkAction(data, errCode);
                             });
+                        }
                     }
                 })
                 .error(function (data, errCode, c, d) {
@@ -1219,9 +1203,9 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationContent/delete",
-                                        reservationContent.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"reservationContent/",
+                                        reservationContent.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         reservationContent.categoryBusyIndicator.isActive = false;
@@ -1460,9 +1444,9 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationContent/delete",
-                                        reservationContent.selectedItemForDelete,
-                                        "POST"
+                                        cmsServerConfig.configApiServerPath+"reservationContent/",
+                                        reservationContent.selectedItemForDelete.Id,
+                                        "DELETE"
                                     )
                                     .success(function (res) {
                                         reservationContent.treeConfig.showbusy = false;
@@ -1648,9 +1632,9 @@
         reservationContent.deleteAttachedfieldName = function (index) {
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/delete",
-                    reservationContent.contractsList[index],
-                    "POST"
+                    cmsServerConfig.configApiServerPath+"reservationContent/",
+                    reservationContent.contractsList[index].Id,
+                    "DELETE"
                 )
                 .success(function (res) {
                     rashaErManage.checkAction(res);
@@ -1714,7 +1698,7 @@
             reservationContent.FileList = [];
             //get list of file from category id
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", "GET")
                 .success(function (response) {
                     reservationContent.FileList = response.ListItems;
                 })
@@ -1732,7 +1716,7 @@
 
             reservationContent.FileList = [];
             //get list of file from category id
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
                 reservationContent.FileList = response.ListItems;
             }).error(function (data) {
                 console.log(data);
@@ -1777,7 +1761,7 @@
                     if (response1.IsSuccess == true) {
                         console.log(response1.Item);
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/", response1.Item.Id, "DELETE")
                             .success(function (response2) {
                                 reservationContent.remove(
                                     reservationContent.FileList,
@@ -2225,7 +2209,7 @@
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
                             .success(function (response2) {
                                 angular.forEach(response2.ListItems, function (value, key) {
                                     node.Children.push(value);

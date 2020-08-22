@@ -114,7 +114,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/', cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteActionPagegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/delete', cmsSiteActionPagegrd.selectedItemForDelete , 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/', cmsSiteActionPagegrd.selectedItemForDelete.Id , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteActionPagegrd.replaceItem(cmsSiteActionPagegrd.selectedItemForDelete.Id);

@@ -4,8 +4,8 @@
     <div class="row" rasha-loading="pollingOption.busyIndicator">
         <div class="col-sm-12">
             <!--<div rasha-loading="pollingOption.busyIndicator"></div>-->
-            <button class="btn btn-primary" rasha-userrole="pollingOption.Add" ng-click="pollingOption.openAddModal()" ng-show="pollingOption.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="pollingOption.Edit" ng-click="pollingOption.openEditModal()" ng-show="pollingOption.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="pollingOption.Add" ng-click="pollingOption.openAddModal()" ng-show="pollingOption.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="pollingOption.Edit" ng-click="pollingOption.openEditModal()" ng-show="pollingOption.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="pollingOption.Delete" ng-click="pollingOption.deleteRow()" ng-show="pollingOption.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="pollingOption.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <!--<button class="btn btn-warning" type="button" ng-click="pollingOption.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>-->

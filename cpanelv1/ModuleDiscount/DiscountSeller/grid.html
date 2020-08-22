@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="discountSeller.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="discountSeller.Add" ng-click="discountSeller.openAddModal()" type="button" ng-show="discountSeller.gridOptions.Access.CheckAccessAddRow">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="discountSeller.Edit" ng-click="discountSeller.openEditModal()" type="button" ng-show="discountSeller.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="discountSeller.Add" ng-click="discountSeller.openAddModal()" type="button" ng-show="discountSeller.gridOptions.Access.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountSeller.Edit" ng-click="discountSeller.openEditModal()" type="button" ng-show="discountSeller.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="discountSeller.Delete" ng-click="discountSeller.deleteRow()" type="button" ng-show="discountSeller.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="discountSeller.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="discountSeller.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>

@@ -132,8 +132,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 shopShareServerCategory.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(shopShareServerCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleShop/ShopShareMainAdminSetting/add.html',
@@ -182,8 +182,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 shopShareServerCategory.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(shopShareServerCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (shopShareServerCategory.selectedItem.LinkMainImageId > 0)
@@ -280,7 +280,7 @@
                     rashaErManage.checkAction(response);
                     shopShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(shopShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/delete', shopShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ShopShareMainAdminSetting/', shopShareServerCategory.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         shopShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //shopShareServerCategory.replaceCategoryItem(shopShareServerCategory.treeConfig.Items, node.Id);
@@ -482,7 +482,7 @@
                     rashaErManage.checkAction(response);
                     shopShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(shopShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopShareServerCategory/delete", shopShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopShareServerCategory/", shopShareServerCategory.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         shopShareServerCategory.categoryBusyIndicator.isActive = false;
                         shopShareServerCategory.treeConfig.showbusy = false;
                         shopShareServerCategory.showIsBusy = false;
@@ -690,7 +690,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

@@ -175,7 +175,7 @@
                 console.log(articleComment.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'articleComment/', articleComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     articleComment.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'articleComment/delete', articleComment.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'articleComment/', articleComment.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         articleComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

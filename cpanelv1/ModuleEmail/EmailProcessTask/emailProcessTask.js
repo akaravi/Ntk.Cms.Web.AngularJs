@@ -176,7 +176,7 @@
 
                     rashaErManage.checkAction(response);
                     emailProcessTask.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/delete', emailProcessTask.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailProcessTask.replaceItem(emailProcessTask.selectedItemForDelete.Id);

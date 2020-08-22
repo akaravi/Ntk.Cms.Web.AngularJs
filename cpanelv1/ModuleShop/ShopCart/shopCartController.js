@@ -390,7 +390,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/delete", shopCart.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/", shopCart.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         shopCart.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -743,7 +743,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/delete", shopCart.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/", shopCart.selectedItemForDelete.Id, 'DELETE').success(function (res) {
 
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

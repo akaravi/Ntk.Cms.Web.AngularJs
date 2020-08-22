@@ -634,17 +634,10 @@
             .success(function (response1) {
               //Get root directories
               biographyContent.dataForTheTree = response1.ListItems;
-              var filterModelRootFiles = {
-                Filters: [{
-                  PropertyName: "LinkCategoryId",
-                  SearchType: 0,
-                  IntValue1: null,
-                  IntValueForceNullSearch: true
-                }]
-              };
+           
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+filterModelRootFiles,
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",
                   "",
                   "GET"
                 )
@@ -719,17 +712,10 @@
             .success(function (response1) {
               //Get root directories
               biographyContent.dataForTheTree = response1.ListItems;
-              var filterModelRootFiles = {
-                Filters: [{
-                  PropertyName: "LinkCategoryId",
-                  SearchType: 0,
-                  IntValue1: null,
-                  IntValueForceNullSearch: true
-                }]
-              };
+             
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+filterModelRootFiles,
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",
                   "",
                   "GET"
                 )
@@ -863,9 +849,9 @@
                 biographyContent.selectedItemForDelete = response.Item;
                 ajax
                   .call(
-                    cmsServerConfig.configApiServerPath + "biographyCategory/delete",
-                    biographyContent.selectedItemForDelete,
-                    "POST"
+                    cmsServerConfig.configApiServerPath + "biographyCategory/",
+                    biographyContent.selectedItemForDelete.Id,
+                    "DELETE"
                   )
                   .success(function (res) {
                     biographyContent.categoryBusyIndicator.isActive = false;
@@ -1312,12 +1298,14 @@
                 item.LinkContentId = response.Item.Id;
               }
             });
+            if (biographyContent.tags && biographyContent.tags.length > 0) {
             ajax.call(cmsServerConfig.configApiServerPath + "biographyContentTag/addbatch", biographyContent.tags, "POST").success(function (response) {
                 rashaErManage.checkAction(response);
               })
               .error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
               });
+            }
             ///Save inputTags
           }
         })
@@ -1356,7 +1344,7 @@
       biographyContent.ContentTagsAdded = differenceInFirstArray(biographyContent.tags, biographyContent.selectedItem.ContentTags, 'LinkTagId');
       //remove
       if (biographyContent.ContentTagsRemoved && biographyContent.ContentTagsRemoved.length > 0) {
-        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentTag/DeleteList", biographyContent.ContentTagsRemoved, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentTag/DeleteList", biographyContent.ContentTagsRemoved, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1388,7 +1376,7 @@
         $.each(biographyContent.ContentOtherInfosRemoved, function (index, item) {
           OtherInfosRemovedModel.push(item);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentOtherInfo/DeleteList", OtherInfosRemovedModel, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentOtherInfo/DeleteList", OtherInfosRemovedModel, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1431,7 +1419,7 @@
             LinkDestinationId: item.Id
           });
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentSimilar/DeleteList", SimilarsRemovedModel, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "biographyContentSimilar/DeleteList", SimilarsRemovedModel, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1462,7 +1450,7 @@
       //remove
       if (biographyContent.ContentModuleRelationShipRemoved && biographyContent.ContentModuleRelationShipRemoved.length > 0) {
 
-        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/DeleteList", biographyContent.ContentModuleRelationShipRemoved, "Delete").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/DeleteList", biographyContent.ContentModuleRelationShipRemoved, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1555,9 +1543,9 @@
                 biographyContent.selectedItemForDelete = response.Item;
                 ajax
                   .call(
-                    cmsServerConfig.configApiServerPath + "biographyContent/delete",
-                    biographyContent.selectedItemForDelete,
-                    "POST"
+                    cmsServerConfig.configApiServerPath + "biographyContent/",
+                    biographyContent.selectedItemForDelete.Id,
+                    "DELETE"
                   )
                   .success(function (res) {
                     biographyContent.categoryBusyIndicator.isActive = false;
@@ -1803,7 +1791,7 @@
 
             var itemCopy = angular.copy(item);
             itemCopy.rowOption = null;
-            ajax.call(cmsServerConfig.configApiServerPath + "biographyComment/delete", itemCopy, "POST")
+            ajax.call(cmsServerConfig.configApiServerPath + "biographyComment/", itemCopy.Id, "DELETE")
               .success(function (res) {
                 biographyContent.treeConfig.showbusy = false;
                 biographyContent.showbusy = false;
@@ -1992,9 +1980,9 @@
     biographyContent.deleteAttachedfieldName = function (index) {
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "biographyContent/delete",
-          biographyContent.contractsList[index],
-          "POST"
+          cmsServerConfig.configApiServerPath + "biographyContent/",
+          biographyContent.contractsList[index].Id,
+          "DELETE"
         )
         .success(function (res) {
           rashaErManage.checkAction(res);
@@ -2057,7 +2045,7 @@
       biographyContent.FileList = [];
       //get list of file from category id
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", "GET")
         .success(function (response) {
           biographyContent.FileList = response.ListItems;
         })
@@ -2075,7 +2063,7 @@
 
       biographyContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
         biographyContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2092,7 +2080,7 @@
 
       biographyContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
         biographyContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2138,7 +2126,7 @@
           if (response1.IsSuccess == true) {
 
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/", response1.Item.Id, "DELETE")
               .success(function (response2) {
                 biographyContent.remove(
                   biographyContent.FileList,
@@ -2717,7 +2705,7 @@
               node.Children.push(value);
             });
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ node.Id,"", "GET")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
               .success(function (response2) {
                 angular.forEach(response2.ListItems, function (value, key) {
                   node.Children.push(value);

@@ -136,7 +136,7 @@
                     rashaErManage.checkAction(response);
                     outBoxDetailBulkLock.selectedItemForDelete = response.Item;
                     console.log(outBoxDetailBulkLock.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/delete', outBoxDetailBulkLock.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/', outBoxDetailBulkLock.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             outBoxDetailBulkLock.replaceItem(outBoxDetailBulkLock.selectedItemForDelete.Id);

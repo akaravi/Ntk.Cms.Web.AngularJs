@@ -564,7 +564,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/delete', objectUser.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/', objectUser.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         if (res.IsSuccess) {
                             objectUser.gridOptions.advancedSearchData.engine.Filters = null;
                             objectUser.gridOptions.advancedSearchData.engine.Filters = [];
@@ -796,7 +796,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectUser/delete', objectUser.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'objectUser/', objectUser.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         //objectUser.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -910,7 +910,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
 
         objectUser.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             objectUser.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -952,7 +952,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {

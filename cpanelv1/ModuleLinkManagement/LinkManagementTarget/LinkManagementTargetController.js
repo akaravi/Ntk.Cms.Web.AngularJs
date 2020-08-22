@@ -392,8 +392,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 linkManagementTarget.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(linkManagementTarget.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulelinkManagement/linkManagementTargetCategory/add.html',
@@ -447,8 +447,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 linkManagementTarget.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(linkManagementTarget.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (linkManagementTarget.selectedItem.LinkMainImageId > 0)
@@ -550,7 +550,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementTarget.selectedItemForDelete = response.Item;
                     console.log(linkManagementTarget.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/delete', linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/', linkManagementTarget.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         linkManagementTarget.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //linkManagementTarget.replaceCategoryItem(linkManagementTarget.treeConfig.Items, node.Id);
@@ -759,11 +759,7 @@
                     newObject.LinkContentId = response.Item.Id;
                     linkManagementTarget.selectedItem.ContentTags.push(newObject);
                 });
-                //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementContentTag/addbatch', linkManagementTarget.selectedItem.ContentTags, 'POST').success(function (response) {
-                //    console.log(response);
-                //}).error(function (data, errCode, c, d) {
-                //    rashaErManage.checkAction(data, errCode);
-                //});
+        
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -853,7 +849,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementTarget.selectedItemForDelete = response.Item;
                     console.log(linkManagementTarget.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/delete", linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/", linkManagementTarget.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         linkManagementTarget.categoryBusyIndicator.isActive = false;
                         linkManagementTarget.treeConfig.showbusy = false;
                         linkManagementTarget.showIsBusy = false;
@@ -1005,7 +1001,7 @@
     //                rashaErManage.checkAction(response);
     //                linkManagementTarget.selectedItemForDelete = response.Item;
     //                console.log(linkManagementTarget.selectedItemForDelete);
-    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/delete', linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/', linkManagementTarget.selectedItemForDelete.Id, 'DELETE').success(function (res) {
     //                    linkManagementTarget.treeConfig.showbusy = false;
     //                    linkManagementTarget.showIsBusy = false;
     //                    rashaErManage.checkAction(res);
@@ -1211,7 +1207,7 @@
 
         linkManagementTarget.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             linkManagementTarget.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1253,7 +1249,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementTarget.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     linkManagementTarget.remove(linkManagementTarget.FileList, linkManagementTarget.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1652,7 +1648,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

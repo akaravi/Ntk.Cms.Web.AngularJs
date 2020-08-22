@@ -150,7 +150,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskScheduleProcessValue.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/delete', taskScheduleProcessValue.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/', taskScheduleProcessValue.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         taskScheduleProcessValue.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

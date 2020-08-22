@@ -214,7 +214,7 @@
                     rashaErManage.checkAction(response);
                     discountGroup.selectedItemForDelete = response.Item;
                     
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/delete', discountGroup.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/', discountGroup.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountGroup.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

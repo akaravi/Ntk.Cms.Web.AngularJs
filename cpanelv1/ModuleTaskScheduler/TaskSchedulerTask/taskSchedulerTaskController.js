@@ -412,7 +412,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
                 ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     task.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/delete', task.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         task.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

@@ -2289,7 +2289,7 @@ function rashaErManage($state, notify, SweetAlert) {
 function ajax($http, $state) {
     this.call = function (url, data, method, isasync) {
         if (!method) method = 'POST';
-        if (!data) data = '';
+        if (!data || data=="null") data = '';
         if (isasync == undefined) isasync = true;
         else {
             if (isasync == 'true') isasync = true;
@@ -2297,10 +2297,15 @@ function ajax($http, $state) {
         }
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
       
-        if (method.toUpperCase() == 'GET') {
+        if (method.toUpperCase() == 'GET' ) {
             url = url + '/' + data;
             data = '';
         }
+        if (method.toUpperCase() == 'DELETE' ) {
+            url = url + '/' + data;
+            data = '';
+        }
+        
         //x-www-form-urlencoded
         return $http({
             'method': method,
@@ -3367,7 +3372,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 if (angular.isDefined(config.extension) && config.extension != "") {
                     extensions = config.extension.split(",");
                 }
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/"+ id,'', 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", id, 'GET').success(function (response) {
                     config.FileList = [];
                     angular.forEach(response.ListItems, function (value1, key1) {
                         if (extensions.length > 0)
@@ -3789,7 +3794,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", fileIdToDelete, 'GET').success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     //console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                                         remove(config.FileList, fileIdToDelete);
                                         if (response2.IsSuccess == true) {
                                             // Save New file
@@ -4069,7 +4074,7 @@ function rashaUpload($compile, ajax, $http) {
 
                 vehicleProperty.FileList = [];
                 //get list of file from category id
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", '', 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", '', 'GET').success(function (response) {
                     vehicleProperty.FileList = response.ListItems;
                 }).error(function (data) {
                     console.log(data);
@@ -4111,7 +4116,7 @@ function rashaUpload($compile, ajax, $http) {
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.fileIdToDelete, 'GET').success(function (response1) {
                     if (response1.IsSuccess == true) {
                         //console.log(response1.Item);
-                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                             config.remove(config.FileList, config.fileIdToDelete);
                             if (response2.IsSuccess == true) {
                                 // Save New file
@@ -5020,17 +5025,17 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     isFolder = true;
                 var prompMessage = "آیا می خواهید این فایل را حذف کنید؟";
                 var urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/';
-                var urlDelete = cmsServerConfig.configApiServerPath + 'FileContent/delete';
+                var urlDelete = cmsServerConfig.configApiServerPath + 'FileContent/';
                 if (isFolder) {
                     prompMessage = "آیا می خواهید این پوشه و تمامی محتوایات آن حذف شود؟";
                     urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/';
-                    urlDelete = cmsServerConfig.configApiServerPath + 'FileCategory/delete';
+                    urlDelete = cmsServerConfig.configApiServerPath + 'FileCategory/';
                 }
                 rashaErManage.showYesNo("اخطار!!!", prompMessage, function (isConfirmed) {
                     if (isConfirmed) {
                         ajax.call(urlViewModel, config.folderFileSelected[0].Id, 'GET')
                             .success(function (response) {
-                                ajax.call(urlDelete, response.Item, 'POST')
+                                ajax.call(urlDelete, response.Item.Id, 'DELETE')
                                     .success(function (response) {
                                         rashaErManage.checkAction(response);
                                         if (response.IsSuccess)

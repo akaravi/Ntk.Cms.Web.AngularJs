@@ -163,7 +163,7 @@
                     rashaErManage.checkAction(response);
                     memberPropertyType.selectedItemForDelete = response.Item;
                     console.log(memberPropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/delete', memberPropertyType.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'memberpropertytype/', memberPropertyType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         memberPropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -296,7 +296,7 @@ memberPropertyType.alreadyExist = function (id, array) {
 
         memberPropertyType.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             memberPropertyType.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -338,7 +338,7 @@ memberPropertyType.alreadyExist = function (id, array) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", memberPropertyType.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {

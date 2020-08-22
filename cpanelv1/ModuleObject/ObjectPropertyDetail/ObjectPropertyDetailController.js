@@ -261,7 +261,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
                     ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailGroup/', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         objectPropertyDetail.selectedItemForDelete = response.Item;
-                        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailGroup/delete', objectPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailGroup/', objectPropertyDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
 
                             if (res.IsSuccess) {
                                 objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
@@ -492,7 +492,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
                     objectPropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     objectPropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetail/delete", objectPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetail/", objectPropertyDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         objectPropertyDetail.treeConfig.showbusy = false;
                         objectPropertyDetail.showIsBusy = false;
                         rashaErManage.checkAction(res);

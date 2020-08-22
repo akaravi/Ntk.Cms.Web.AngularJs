@@ -239,7 +239,7 @@
                     shopCombine.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopCombine.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/delete", shopCombine.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/", shopCombine.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         shopCombine.busyIndicator.isActive = false;
                         shopCombine.showIsBusy = false;
                         rashaErManage.checkAction(res);

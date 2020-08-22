@@ -1,9 +1,9 @@
 ﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="applicationSourceController as appSource" ng-init="appSource.init()">
     <div class="row" rasha-loading="appSource.busyIndicator">
         <div class="col-sm-12">
-           <!-- <button class="btn btn-primary" rasha-userrole="appSource.Add" ng-click="appSource.openAddModal()" ng-show="appSource.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
-            <button class="btn btn-primary" rasha-userrole="appSource.Add" ng-click="appSource.autoAdd()" ng-show="appSource.gridOptions.Access.CheckAccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="appSource.Edit" ng-click="appSource.openEditModal()" type="button" ng-show="appSource.gridOptions.Access.CheckAccessEditRow"> {{'edit'|lowercase|translate}} </button>
+           <!-- <button class="btn btn-primary" rasha-userrole="appSource.Add" ng-click="appSource.openAddModal()" ng-show="appSource.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="appSource.Add" ng-click="appSource.autoAdd()" ng-show="appSource.gridOptions.Access.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="appSource.Edit" ng-click="appSource.openEditModal()" type="button" ng-show="appSource.gridOptions.Access.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="appSource.Delete" ng-click="appSource.deleteRow()" type="button" ng-show="appSource.gridOptions.Access.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="appSource.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="appSource.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>

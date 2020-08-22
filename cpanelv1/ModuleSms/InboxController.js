@@ -151,7 +151,7 @@
                     rashaErManage.checkAction(response);
                     inbox.selectedItemForDelete = response.Item;
                     console.log(inbox.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/delete', inbox.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/', inbox.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             inbox.replaceItem(inbox.selectedItemForDelete.Id);

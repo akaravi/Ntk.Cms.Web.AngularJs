@@ -278,7 +278,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopSalePrice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/delete', shopSalePrice.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/', shopSalePrice.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         if (res.IsSuccess) {
                             shopSalePrice.gridOptions.advancedSearchData.engine.Filters = null;
                             shopSalePrice.gridOptions.advancedSearchData.engine.Filters = [];
@@ -544,7 +544,7 @@
                     shopSalePrice.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopSalePrice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/delete", shopSalePrice.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/", shopSalePrice.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         shopSalePrice.categoryBusyIndicator.isActive = false;
                         shopSalePrice.treeConfig.showbusy = false;
                         shopSalePrice.showIsBusy = false;
@@ -839,7 +839,7 @@
 
         shopSalePrice.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             shopSalePrice.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -881,7 +881,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopSalePrice.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {

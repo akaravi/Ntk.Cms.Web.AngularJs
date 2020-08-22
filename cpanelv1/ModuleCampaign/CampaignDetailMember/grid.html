@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div rasha-loading="campaignDetailMember.busyIndicator"></div>
-            <button class="btn btn-primary" rasha-userrole="campaignDetailMember.Add" ng-click="campaignDetailMember.openAddModal()" ng-show="campaignDetailMember.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="campaignDetailMember.Edit" ng-click="campaignDetailMember.openEditModal()" ng-show="campaignDetailMember.gridOptions.Access.CheckAccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="campaignDetailMember.Add" ng-click="campaignDetailMember.openAddModal()" ng-show="campaignDetailMember.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="campaignDetailMember.Edit" ng-click="campaignDetailMember.openEditModal()" ng-show="campaignDetailMember.gridOptions.Access.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="campaignDetailMember.Delete" ng-click="campaignDetailMember.deleteRow()" ng-show="campaignDetailMember.gridOptions.Access.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
             <button class="btn btn-success" type="button" ng-click="campaignDetailMember.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="campaignDetailMember.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>

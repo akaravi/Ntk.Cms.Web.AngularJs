@@ -405,8 +405,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleChart/ChartCategory/add.html',
@@ -456,8 +456,8 @@
             };
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartContent.dataForTheTree = response1.ListItems;
-                var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+ filterModelRootFiles,"", 'GET').success(function (response2) { //Get files in root
+                
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/","", 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (chartContent.selectedItem.LinkMainImageId > 0)
@@ -560,7 +560,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/', chartContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //chartContent.replaceCategoryItem(chartContent.treeConfig.Items, node.Id);
@@ -807,11 +807,13 @@
                         chartContent.selectedItem.ContentTags.push(newObject);
                     }
                 });
+                if (chartContent.selectedItem.ContentTags && chartContent.selectedItem.ContentTags.length > 0) {
                 ajax.call(cmsServerConfig.configApiServerPath+'chartContentTag/addbatch', chartContent.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
+            }
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -905,7 +907,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"chartContent/delete", chartContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"chartContent/", chartContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
@@ -1162,7 +1164,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', chartContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1213,7 +1215,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', chartContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1423,7 +1425,7 @@
 
         chartContent.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             chartContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1440,7 +1442,7 @@
 
         chartContent.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             chartContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1481,7 +1483,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     chartContent.remove(chartContent.FileList, chartContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -1876,7 +1878,7 @@
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/"+node.Id,'', 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/",node.Id, 'GET').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });

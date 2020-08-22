@@ -10,12 +10,12 @@
                             <ul class="tree" tree-options="shopShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="shopShareServerCategory.gridOptions.Access.CheckAccessAddRow || shopShareServerCategory.gridOptions.Access.AccessEditRow ||shopShareServerCategory.gridOptions.Access.AccessDeleteRow">
+                        <div style="margin-top: 20px;" ng-show="shopShareServerCategory.gridOptions.Access.AccessAddRow || shopShareServerCategory.gridOptions.Access.AccessEditRow ||shopShareServerCategory.gridOptions.Access.AccessDeleteRow">
                             <a ng-click="shopShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="shopShareServerCategory.Add" ng-click="shopShareServerCategory.addNewCategoryModel()" type="button" ng-show="shopShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="shopShareServerCategory.Add" ng-click="shopShareServerCategory.addNewCategoryModel()" type="button" ng-show="shopShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
                                 <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="shopShareServerCategory.Edit" ng-click="shopShareServerCategory.EditCategoryModel()" type="button" ng-show="shopShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
                                 <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="shopShareServerCategory.Delete" ng-click="shopShareServerCategory.deleteCategory()" type="button" ng-show="shopShareServerCategory.gridOptions.Access.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
                             </div>
@@ -35,7 +35,7 @@
             </div>
             <div class="row" id="topMenu">
                 <div class="col-md-12" style="text-align: center;">
-                    <button class="btn btn-primary" ng-click="shopShareServerCategory.addNewContentModel()" ng-show="shopShareServerCategory.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="shopShareServerCategory.addNewContentModel()" ng-show="shopShareServerCategory.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
                     <button class="btn btn-warning" ng-click="shopShareServerCategory.openEditModel()" ng-show="shopShareServerCategory.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="shopShareServerCategory.deleteContent()" ng-show="shopShareServerCategory.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="shopShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>

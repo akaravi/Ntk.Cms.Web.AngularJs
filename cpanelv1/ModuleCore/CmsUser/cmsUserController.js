@@ -193,7 +193,7 @@
                     rashaErManage.checkAction(response);
                     cmsUser.selectedItemForDelete = response.Item;
                     console.log(cmsUser.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/delete', cmsUser.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsUser.addRequested = false;
                         if (res.IsSuccess) {
@@ -433,7 +433,7 @@
 
         cmsUser.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             cmsUser.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -475,7 +475,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     cmsUser.remove(cmsUser.FileList, cmsUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

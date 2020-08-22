@@ -436,7 +436,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSitegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/delete', cmsSitegrd.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSitegrd.replaceItem(cmsSitegrd.selectedItemForDelete.Id);
@@ -684,7 +684,7 @@
     }
 
     cmsSitegrd.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/delete', cmsSitegrd.aliasesList[index], 'POST').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.aliasesList[index].Id, 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 cmsSitegrd.aliasesList.splice(index, 1);
@@ -808,7 +808,7 @@
         var changedAny=false;
         //remove
         if (cmsSitegrd.CmsModuleSiteRemoved && cmsSitegrd.CmsModuleSiteRemoved.length > 0) {
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/DeleteList", cmsSitegrd.CmsModuleSiteRemoved, "Delete").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/DeleteList", cmsSitegrd.CmsModuleSiteRemoved, "POST").success(function (response) {
                     rashaErManage.checkAction(response);
                     rashaErManage.showMessage("ماژول های اضافه حذف شد");
                 })
@@ -868,7 +868,7 @@
 
         cmsSitegrd.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             cmsSitegrd.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -911,7 +911,7 @@
         ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {

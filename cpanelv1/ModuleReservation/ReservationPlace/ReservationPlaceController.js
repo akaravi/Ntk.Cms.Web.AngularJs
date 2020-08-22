@@ -211,7 +211,7 @@
                     rashaErManage.checkAction(response);
                     place.selectedItemForDelete = response.Item;
                     console.log(place.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/delete', place.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/', place.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         place.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -389,7 +389,7 @@
 
         place.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             place.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -432,7 +432,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", place.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     place.remove(place.FileList, place.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

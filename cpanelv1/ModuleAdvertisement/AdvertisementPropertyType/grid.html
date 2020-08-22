@@ -14,8 +14,8 @@
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>
                             <div id="categoryButtons" style="display: none;">
-                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="advertisementPropertyType.Add" ng-click="advertisementPropertyType.openAddCategoryModal()" ng-show="advertisementPropertyType.gridOptions.Access.CheckAccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
-                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="advertisementPropertyType.Edit" ng-click="advertisementPropertyType.openEditCategoryModal()" ng-show="advertisementPropertyType.gridOptions.Access.CheckAccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}}</button>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="advertisementPropertyType.Add" ng-click="advertisementPropertyType.openAddCategoryModal()" ng-show="advertisementPropertyType.gridOptions.Access.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="advertisementPropertyType.Edit" ng-click="advertisementPropertyType.openEditCategoryModal()" ng-show="advertisementPropertyType.gridOptions.Access.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}}</button>
                                 <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="advertisementPropertyType.Delete" ng-click="advertisementPropertyType.deleteCategory()" ng-show="advertisementPropertyType.gridOptions.Access.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
                             </div>
                         </div>
@@ -28,8 +28,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-primary" ng-click="advertisementPropertyType.openAddModal()" ng-show="advertisementPropertyType.gridOptions.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="advertisementPropertyType.openEditModal()" ng-show="advertisementPropertyType.gridOptions.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="advertisementPropertyType.openAddModal()" ng-show="advertisementPropertyType.gridOptions.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="advertisementPropertyType.openEditModal()" ng-show="advertisementPropertyType.gridOptions.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="advertisementPropertyType.deleteRow()" ng-show="advertisementPropertyType.gridOptions.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="advertisementPropertyType.showAdvancedSearchPanel()"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="advertisementPropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

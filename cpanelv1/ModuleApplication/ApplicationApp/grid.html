@@ -1,8 +1,8 @@
 ﻿<div class="bestig wrapper wrapper-content animated fadeInRight" ng-controller="applicationAppController as appApplication" ng-init="appApplication.init()">
     <div class="row" rasha-loading="appApplication.busyIndicator">
         <div class="col-sm-12">
-            <button class="btn btn-primary" rasha-userrole="appApplication.Add" ng-click="appApplication.openAddModal()" ng-show="appApplication.gridOptions.Access.CheckAccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
-            <button class="btn btn-warning" rasha-userrole="appApplication.Edit" ng-click="appApplication.openEditModal()" type="button" ng-show="appApplication.gridOptions.Access.CheckAccessEditRow">{{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="appApplication.Add" ng-click="appApplication.openAddModal()" ng-show="appApplication.gridOptions.Access.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="appApplication.Edit" ng-click="appApplication.openEditModal()" type="button" ng-show="appApplication.gridOptions.Access.AccessEditRow">{{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="appApplication.Delete" ng-click="appApplication.deleteRow()" type="button" ng-show="appApplication.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="appApplication.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="appApplication.openGridConfigModal()" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>

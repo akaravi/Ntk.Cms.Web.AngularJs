@@ -206,7 +206,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/', blogContentParameterType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogContentParameterType.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/delete', blogContentParameterType.selectedItemForDelete, 'POST').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/', blogContentParameterType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         blogContentParameterType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
