@@ -2879,7 +2879,7 @@ function rashaLoading($compile) {
             } else
                 config = scope[atr];
             if (config != undefined)
-                config.pictureUrl = "cpanelv1/images/loading.png";
+                config.pictureUrl = "images/loading.png";
             var template = '<div ng-show="??config??.isActive" id="rashaLoading" style="border: 2px solid #a1a1a1;border-radius:15px;"><img src="{{??config??.pictureUrl}}"><p><br>{{??config??.message}}</p></div>';
             template = template.replaceAll("??config??", atr);
             var el = $compile(template)(scope);
@@ -3332,7 +3332,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             //Category Tree config
             //First Config init 
             config.pictureId = 1;
-            config.pictureUrl = "cpanelv1/images/loading.png";
+            config.pictureUrl = "images/loading.png";
             //ngModel.$setViewValue(config.pictureId);
             config.topCategory = [];
             config.topCategoryIndex = 0;
@@ -3995,7 +3995,7 @@ function rashaUpload($compile, ajax, $http) {
             //Category Tree config
             //First Config init 
             config.pictureId = 1;
-            config.pictureUrl = "cpanelv1/images/loading.png";
+            config.pictureUrl = "images/loading.png";
             //ngModel.$setViewValue(config.pictureId);
             config.topCategory = [];
             config.topCategoryIndex = 0;

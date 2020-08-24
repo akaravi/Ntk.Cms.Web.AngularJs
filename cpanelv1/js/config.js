@@ -3,7 +3,7 @@ var cmsServerConfig = {
     configApiServerPath: "https://apicms.ir/api/v1/",
 	//configApiServerPath: "http://localhost:2390/api/v1/",
     configMvcServerPath: "https://oco.ir",
-    configCpanelImages: "/cpanelv1/images/",
+    configCpanelImages: "/images/",
     configPathFileByIdAndName:"https://oco.ir/files/",
     configRouteThumbnails:"https://oco.ir/imageThumbnails/",
     nnnnnnnnnnn:"https://apicms.ir/api/files/",
