@@ -1304,8 +1304,8 @@ function rashaGrid($compile, $rootScope, ajax) {
             // config.Accesschanged = function () {
                
             //     for (var i = 0; i < config.columns.length; i++) {
-            //         if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.CheckAccessWatchField != undefined && config.Access.CheckAccessWatchField.indexOf(config.columns[i].name) < 0) {
-            //             config.Access.CheckAccessWatchField.push(config.columns[i].name);
+            //         if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.AccessWatchField != undefined && config.Access.AccessWatchField.indexOf(config.columns[i].name) < 0) {
+            //             config.Access.AccessWatchField.push(config.columns[i].name);
             //         }
             //     }
             // };
@@ -6298,7 +6298,7 @@ angular.module('inspinia')
     //         if (config
     //             .Access ==
     //             undefined ||
-    //             config.Access.CheckAccessWatchField[inputFieldName]) return inputDate;
+    //             config.Access.AccessWatchField[inputFieldName]) return inputDate;
     //         return "****";
     //     }
     // })

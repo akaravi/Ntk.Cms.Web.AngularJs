@@ -30,7 +30,7 @@
                         <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasDepositPrice">{{x.virtual_ContractType.UnitDepositPrice}}</label>
                         <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasRentPrice">{{x.virtual_ContractType.UnitRentPrice}}</label>
                     </div>
-                    <button class="btn btn-warning" style="margin:2px 5px 10px 0px;float:left" title="{{'edit'|lowercase|translate}}" ng-disabled="memberProperty.addRequested" ng-click="memberProperty.editContract($index)" ng-show="memberProperty.contractsListresultAccess.CheckAccessEditRow"><i class="fa fa-edit" aria-hidden="false"></i></button>
+                    <button class="btn btn-warning" style="margin:2px 5px 10px 0px;float:left" title="{{'edit'|lowercase|translate}}" ng-disabled="memberProperty.addRequested" ng-click="memberProperty.editContract($index)" ng-show="memberProperty.contractsListresultAccess.AccessEditRow"><i class="fa fa-edit" aria-hidden="false"></i></button>
                     <button class="btn btn-danger" style="margin:2px 5px 10px 0px;float:left" title="{{'delete'|lowercase|translate}}" ng-disabled="memberProperty.addRequested" ng-click="memberProperty.deleteContract($index)" ng-show="memberProperty.contractsListresultAccess.AccessDeleteRow"><i class="fa fa-remove" aria-hidden="false"></i></button>
                 </div>
                 <div class='hr-line-dashed'></div>

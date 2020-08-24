@@ -545,7 +545,7 @@
                 type: 'string',
                 visible: true,
                 displayForce: true,
-                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.CheckAccessWatchRow" class="btn btn-primary" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.openAliasesModal(x.Id)"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;دامنه ها</a>'
+                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.AccessWatchRow" class="btn btn-primary" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.openAliasesModal(x.Id)"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;دامنه ها</a>'
             },
             {
                 name: 'SetModules',
@@ -554,7 +554,7 @@
                 type: 'string',
                 visible: true,
                 displayForce: true,
-                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.CheckAccessWatchRow" class="btn btn-success" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.openModulesModal(x.Id)"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;ماژول ها</a>'
+                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.AccessWatchRow" class="btn btn-success" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.openModulesModal(x.Id)"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;ماژول ها</a>'
             },
             {
                 name: 'Login',
@@ -563,7 +563,7 @@
                 type: 'string',
                 visible: true,
                 displayForce: true,
-                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.CheckAccessWatchRow" class="btn btn-warning" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.loginToSite(x.Id)"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;ورود</a>'
+                template: '<a type="button" ng-show="cmsSitegrd.gridOptions.Access.AccessWatchRow" class="btn btn-warning" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.loginToSite(x.Id)"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;ورود</a>'
             },
             {
                 name: 'Login',

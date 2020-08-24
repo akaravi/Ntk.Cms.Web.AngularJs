@@ -44,7 +44,7 @@
                 visible: true
             },
             //{ name: 'PriorityKey', displayName: 'اولویت', sortable: true, type: 'integer', visible: true,displayForce:true }
-            //{ name: 'ActionButtons', displayName: 'اپراتورها', sortable: true, type: 'string', visible: true, displayForce: true, template: '<a type="button" ng-show="ticketingDepartemen.gridOptions.Access.CheckAccessWatchRow" class="btn btn-primary" ng-click="ticketingDepartemen.openOperatorModal(x.Id)"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;اپراتورها</a>' }
+            //{ name: 'ActionButtons', displayName: 'اپراتورها', sortable: true, type: 'string', visible: true, displayForce: true, template: '<a type="button" ng-show="ticketingDepartemen.gridOptions.Access.AccessWatchRow" class="btn btn-primary" ng-click="ticketingDepartemen.openOperatorModal(x.Id)"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;اپراتورها</a>' }
             //{ name: 'DefaultAnswerBody', displayName: 'جواب پیش فرض', sortable: true, type: 'string', visible: true }
         ],
         data: {},

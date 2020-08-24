@@ -58,12 +58,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button class="btn btn-primary" ng-click="pollingContent.openAddOptionModal()" ng-show="pollingContent.gridOptions2.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
-                    <button class="btn btn-warning" ng-click="pollingContent.openEditOptionModal()" ng-show="pollingContent.gridOptions2.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="pollingContent.openAddOptionModal()" ng-show="pollingContent.gridOptions2.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="pollingContent.openEditOptionModal()" ng-show="pollingContent.gridOptions2.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
                     <button class="btn btn-danger" ng-click="pollingContent.deleteOption()" ng-show="pollingContent.gridOptions2.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
                     <button class="btn btn-success" ng-click="pollingContent.showAdvancedSearchPanel()"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
                     <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="pollingContent.toggleExportForm('options')">{{'report'|lowercase|translate}}&nbsp;</button>
-                    <button class="btn btn-default" ng-click="pollingContent.getOptionsCount()" ng-show="pollingContent.gridOptions2.Access.CheckAccessWatchRow">{{'QUANTITY'|lowercase|translate}}&nbsp;{{pollingContent.ListItemsTotalOptionsRowCount}}</button>
+                    <button class="btn btn-default" ng-click="pollingContent.getOptionsCount()" ng-show="pollingContent.gridOptions2.Access.AccessWatchRow">{{'QUANTITY'|lowercase|translate}}&nbsp;{{pollingContent.ListItemsTotalOptionsRowCount}}</button>
                 </div>
                 <hr />
             </div>

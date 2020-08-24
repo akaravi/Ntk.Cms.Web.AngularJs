@@ -53,8 +53,8 @@
                 <div rasha-grid="memberProperty.gridOptions"></div>
             </div>
             <div class="col-md-12" id="showlistHistory" >
-                <button class="btn btn-primary" ng-click="memberProperty.openAddModalHistory()" ng-show="memberProperty.gridOptionsHistory.Access.CheckAccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
-                <button class="btn btn-warning" ng-click="memberProperty.openEditModelHistory()" ng-show="memberProperty.gridOptionsHistory.Access.CheckAccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                <button class="btn btn-primary" ng-click="memberProperty.openAddModalHistory()" ng-show="memberProperty.gridOptionsHistory.Access.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                <button class="btn btn-warning" ng-click="memberProperty.openEditModelHistory()" ng-show="memberProperty.gridOptionsHistory.Access.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
                 <button class="btn btn-danger" ng-click="memberProperty.deleteContentHistory()" ng-show="memberProperty.gridOptionsHistory.Access.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
                 <div rasha-grid="memberProperty.gridOptionsHistory" ng-show="memberProperty.showlistHistory"></div>
             </div>
