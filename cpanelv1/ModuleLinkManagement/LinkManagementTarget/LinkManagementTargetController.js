@@ -259,12 +259,12 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/getAllSharingLinkType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/EnumSharingPriceType","", 'GET').success(function (response) {
             linkManagementTarget.SharingLinkType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/getAllContentSettingType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/EnumManagementContentSettingType", "", 'GET').success(function (response) {
             linkManagementTarget.ContentSettingType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

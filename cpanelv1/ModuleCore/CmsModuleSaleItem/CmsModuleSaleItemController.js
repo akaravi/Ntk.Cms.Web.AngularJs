@@ -222,7 +222,7 @@
 
         //init Function
         cmsModuleSaleItem.init = function () {
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/getAllEnumCmsModuleSaleItemType", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/EnumCmsModuleSaleItemType", "", 'GET').success(function (response) {
                 cmsModuleSaleItem.EnumCmsModuleSaleItemType = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);

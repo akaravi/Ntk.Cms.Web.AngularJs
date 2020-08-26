@@ -57,12 +57,12 @@
         } catch (error) {
             console.log(error)
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getAllSharingLinkType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/EnumSharingPriceType", "", 'GET').success(function (response) {
             linkManagementBillboardPattern.SharingLinkType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
             });
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getAllSettingType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/EnumManagementContentSettingType", "", 'GET').success(function (response) {
             linkManagementBillboardPattern.SettingType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

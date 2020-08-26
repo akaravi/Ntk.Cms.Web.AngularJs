@@ -16,7 +16,7 @@
     if (itemRecordStatus != undefined) cmsPagegrd.itemRecordStatus = itemRecordStatus;
 
     cmsPagegrd.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPage/EnumModelCoreCmsPageUtilityToolsAction", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPage/EnumModelCoreCmsPageUtilityToolsAction", "", 'GET').success(function (response) {
             cmsPagegrd.Action = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -78,7 +78,7 @@
             rashaErManage.checkAction(response);
             discountOfferTransaction.busyIndicator.isActive = false;
             discountOfferTransaction.ListItems = response.ListItems;
-            ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferTransaction/EnumDiscountOfferTransactionType", {}, 'POST').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferTransaction/EnumDiscountOfferTransactionType", "", 'GET').success(function (responseGetEnum) {
                 discountOfferTransaction.DiscountOfferTransactionType = responseGetEnum;
                 discountOfferTransaction.setEnumDiscountOfferTransactionType(discountOfferTransaction.ListItems, discountOfferTransaction.DiscountOfferTransactionType);
             }).error(function (data, errCode, c, d) {
