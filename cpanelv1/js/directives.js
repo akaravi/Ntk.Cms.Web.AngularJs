@@ -2336,13 +2336,13 @@ function ajax($http, $state) {
             else isasync = false;
         }
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
-      
-        if (method.toUpperCase() == 'GET' ) {
-            url = url + '/' + data;
-            data = '';
+        if(url.lastIndexOf("/") != url.length-1)
+        {
+            url = url + '/';
         }
-        if (method.toUpperCase() == 'DELETE' ) {
-            url = url + '/' + data;
+
+        if (method.toUpperCase() == 'GET' || method.toUpperCase() == 'DELETE') {
+            url = url +  data;
             data = '';
         }
         
