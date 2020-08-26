@@ -1735,7 +1735,7 @@ function queryBuilder($compile) {
                             if (result.rules[i].typeChild == "ObjectId") {
                                 Filter = {
                                     PropertyName: propertyName,
-                                    ObjectIdValue1Set: value,
+                                    ObjectIdValueSet: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };

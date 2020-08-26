@@ -99,7 +99,7 @@
     //#help#بارگزاری لیست
     cmsPageDesign.onloadmydata = function () {
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters=[];
-        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue1: cmsPageDesign.dependencyId, SearchType: 0 }); 
+        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValueSet: cmsPageDesign.dependencyId, SearchType: 0 }); 
         cmsPageDesign.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
