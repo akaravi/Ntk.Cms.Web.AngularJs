@@ -128,7 +128,7 @@
         }
         shopItem.busyIndicator.isActive = true;
         shopItem.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/add', shopItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/', shopItem.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopItem.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -153,7 +153,7 @@
         }
         shopItem.busyIndicator.isActive = true;
         shopItem.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/edit', shopItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/', shopItem.selectedItem, "PUT").success(function (response) {
             shopItem.busyIndicator.isActive = false;
             shopItem.addRequested = false;
             shopItem.showIsBusy = false;

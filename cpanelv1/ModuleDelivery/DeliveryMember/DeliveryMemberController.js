@@ -121,7 +121,7 @@
         //deliveryMember.selectedItem.StartDateTime = deliveryMember.StartDateTime;
         //deliveryMember.selectedItem.EndDateTime = deliveryMember.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/add', deliveryMember.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/', deliveryMember.selectedItem, 'POST').success(function (response) {
             deliveryMember.addRequested = false;
             deliveryMember.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -174,7 +174,7 @@
             return;
         }
         deliveryMember.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/edit', deliveryMember.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMember/', deliveryMember.selectedItem, "PUT").success(function (response) {
             deliveryMember.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryMember.busyIndicator.isActive = false;

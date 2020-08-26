@@ -65,7 +65,7 @@
         }
         objectPropertyType.busyIndicator.isActive = true;
         objectPropertyType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectpropertytype/add', objectPropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectpropertytype/', objectPropertyType.selectedItem, 'POST').success(function (response) {
             objectPropertyType.addRequested = false;
             objectPropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -117,7 +117,7 @@
             return;
         }
         objectPropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectpropertytype/edit', objectPropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectpropertytype/', objectPropertyType.selectedItem, "PUT").success(function (response) {
             objectPropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             objectPropertyType.busyIndicator.isActive = false;
@@ -370,7 +370,7 @@ objectPropertyType.alreadyExist = function (id, array) {
     }
     //save new file
     objectPropertyType.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectPropertyType.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectPropertyType.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 objectPropertyType.FileItem = response.Item;
                 objectPropertyType.showSuccessIcon();
@@ -502,7 +502,7 @@ objectPropertyType.alreadyExist = function (id, array) {
                     objectPropertyType.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- objectPropertyType.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectPropertyType.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectPropertyType.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             objectPropertyType.FileItem = response.Item;
                             objectPropertyType.showSuccessIcon();

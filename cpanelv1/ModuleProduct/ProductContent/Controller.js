@@ -772,7 +772,7 @@
         productContent.selectedItem.LinkParentId =
         productContent.treeConfig.currentNode.Id;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "productCategory/add", productContent.selectedItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "productCategory/", productContent.selectedItem, "POST")
         .success(function (response) {
           productContent.addRequested = false;
           rashaErManage.checkAction(response);
@@ -798,7 +798,7 @@
       productContent.categoryBusyIndicator.isActive = true;
       productContent.addRequested = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "productCategory/edit", productContent.selectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "productCategory/", productContent.selectedItem, "PUT")
         .success(function (response) {
           //productContent.showbusy = false;
           productContent.treeConfig.showbusy = false;
@@ -1062,7 +1062,7 @@
         productContent.selectedItemOtherInfos.LinkContentId = productContent.gridOptions.selectedRow.item.Id;
         productContent.OtherInfos.push(productContent.selectedItemOtherInfos);
         productContent.selectedItemOtherInfos = {};
-        // ajax.call(cmsServerConfig.configApiServerPath + 'productContentOtherInfo/add', productContent.selectedItemOtherInfos, 'POST').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath + 'productContentOtherInfo/', productContent.selectedItemOtherInfos, 'POST').success(function (response) {
         //   rashaErManage.checkAction(response);
         //   if (response.IsSuccess) {
         //     productContent.selectedItemOtherInfos = response.Item;
@@ -1267,7 +1267,7 @@
       }
       var apiSelectedItem = productContent.selectedItem;
 
-      ajax.call(cmsServerConfig.configApiServerPath + "productContent/add", apiSelectedItem, "POST").success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "productContent/", apiSelectedItem, "POST").success(function (response) {
           rashaErManage.checkAction(response);
           productContent.categoryBusyIndicator.isActive = false;
           if (response.IsSuccess) {
@@ -1465,7 +1465,7 @@
       apiSelectedItem = angular.extend(apiSelectedItem, productContent.selectedItem);
       apiSelectedItem.OtherInfos = [];
       ajax
-        .call(cmsServerConfig.configApiServerPath + "productContent/edit", apiSelectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "productContent/", apiSelectedItem, "PUT")
         .success(function (response) {
           productContent.categoryBusyIndicator.isActive = false;
           productContent.addRequested = false;
@@ -1582,7 +1582,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "productContent/edit", productContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "productContent/", productContent.selectedItem, "PUT")
             .success(function (response2) {
               rashaErManage.checkAction(response2);
               if (response2.IsSuccess) {
@@ -1623,7 +1623,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "productContent/edit", productContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "productContent/", productContent.selectedItem, "PUT")
             .success(function (response2) {
               productContent.categoryBusyIndicator.isActive = true;
               rashaErManage.checkAction(response2);
@@ -1732,7 +1732,7 @@
         item.RecordStatus = 1;
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ProductComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ProductComment/', itemCopy, "PUT").success(function (response) {
           rashaErManage.checkAction(response);
           if(response.IsSuccess)
           productContent.showComment(productContent.gridOptions.selectedRow.item.Id)
@@ -1748,7 +1748,7 @@
         item.RecordStatus = 5;//DeniedConfirmed
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ProductComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ProductComment/', itemCopy, "PUT").success(function (response) {
           if(response.IsSuccess)
           productContent.showComment(productContent.gridOptions.selectedRow.item.Id)
           rashaErManage.checkAction(response);
@@ -2157,7 +2157,7 @@
     //save new file
     productContent.saveNewFile = function () {
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/add", productContent.FileItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/", productContent.FileItem, "POST")
         .success(function (response) {
           if (response.IsSuccess) {
             productContent.FileItem = response.Item;
@@ -2286,7 +2286,7 @@
             productContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- productContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", productContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", productContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 productContent.FileItem = response.Item;
                 productContent.showSuccessIcon();
@@ -2390,7 +2390,7 @@
             productContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- productContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", productContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", productContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 productContent.FileItem = response.Item;
                 productContent.showSuccessIcon();
@@ -2504,7 +2504,7 @@
               // ------- productContent.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", productContent.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", productContent.FileItem, "POST")
                 .success(function (response) {
                   if (response.IsSuccess) {
                     productContent.FileItem = response.Item;

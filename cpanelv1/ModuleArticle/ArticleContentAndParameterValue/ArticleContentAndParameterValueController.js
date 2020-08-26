@@ -119,7 +119,7 @@
         }
         articleContentAndParameterValue.busyIndicator.isActive = true;
         articleContentAndParameterValue.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/add', articleContentAndParameterValue.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/', articleContentAndParameterValue.selectedItem, 'POST').success(function (response) {
             articleContentAndParameterValue.addRequested = false;
             articleContentAndParameterValue.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         articleContentAndParameterValue.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/edit', articleContentAndParameterValue.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/', articleContentAndParameterValue.selectedItem, "PUT").success(function (response) {
             articleContentAndParameterValue.addRequested = true;
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.busyIndicator.isActive = false;

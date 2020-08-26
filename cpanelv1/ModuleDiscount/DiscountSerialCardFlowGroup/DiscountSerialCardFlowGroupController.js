@@ -119,7 +119,7 @@
         }
         discountSerialCardFlowGroup.busyIndicator.isActive = true;
         discountSerialCardFlowGroup.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/add', discountSerialCardFlowGroup.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.selectedItem, 'POST').success(function (response) {
             discountSerialCardFlowGroup.addRequested = false;
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         discountSerialCardFlowGroup.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/edit', discountSerialCardFlowGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/', discountSerialCardFlowGroup.selectedItem, "PUT").success(function (response) {
             discountSerialCardFlowGroup.addRequested = true;
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;

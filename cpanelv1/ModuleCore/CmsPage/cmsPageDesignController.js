@@ -151,7 +151,7 @@
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.PageDependencyIsDefualtPage = (response.Item.PageDependencyIsDefualtPage == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPageDesign.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = cmsPageDesign.pageList.indexOf(item);
@@ -207,7 +207,7 @@
                 else
                     cmsPageDesign.selectedItem.Keyword += ',' + item.text;
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPageDesign.selectedItem, 'POST').success(function (response) {
             cmsPageDesign.addRequested = false;
             cmsPageDesign.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -226,7 +226,7 @@
             return;
         cmsPageDesign.addRequested = true;
         if (frm.$name == "frmCmsPageAdd") {   // Functions was called from add modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPageDesign.selectedItem, 'POST').success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -242,7 +242,7 @@
             });
         }
         else {  // Functions was called from edit modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPageDesign.selectedItem, "PUT").success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -314,7 +314,7 @@
             else
                 cmsPageDesign.selectedItem.Keyword += ',' + item.text;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPageDesign.selectedItem, "PUT").success(function (response) {
             cmsPageDesign.busyIndicator.isActive = false;
             cmsPageDesign.addRequested = false;
             if (response.IsSuccess) {
@@ -576,7 +576,7 @@
 
     //save new file
     cmsPageDesign.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsPageDesign.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 cmsPageDesign.FileItem = response.Item;
                 return 1;
@@ -696,7 +696,7 @@
                     cmsPageDesign.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- cmsPageDesign.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsPageDesign.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             cmsPageDesign.FileItem = response.Item;
                             $("#save-icon" + index).removeClass("fa-save");

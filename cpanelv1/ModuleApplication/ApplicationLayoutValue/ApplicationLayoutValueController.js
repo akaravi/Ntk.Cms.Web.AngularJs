@@ -124,7 +124,7 @@
         //start load ApplicationLayoutvalue If Exist
         appLayoutValue.selectedItem.JsonFormValues = $.trim(angular.toJson(appLayoutValue.ConfigSite));
         if (appLayoutValue.selectedItem.Id && appLayoutValue.selectedItem.Id > 0) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/Edit', appLayoutValue.selectedItem, 'PUT').success(function (responseValue) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/', appLayoutValue.selectedItem, "PUT").success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
                 appLayoutValue.closeModal();
@@ -136,7 +136,7 @@
             appLayoutValue.selectedItem.LinkLayoutId = appLayoutValue.gridOptions.selectedRow.item.Id;
             //appLayoutValue.selectedItem.LinkSourceId = parseInt(appLayoutValue.sourceId);
             appLayoutValue.selectedItem.LinkApplicationId = parseInt(appLayoutValue.appId);
-            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/Add', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
                 appLayoutValue.closeModal();

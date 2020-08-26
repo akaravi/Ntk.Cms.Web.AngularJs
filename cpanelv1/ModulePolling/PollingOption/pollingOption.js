@@ -67,8 +67,8 @@
 
         $.each(pollingOption.OptionList, function (index, option) {
 
-            //ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/add', pollingOption.selectedItem, 'POST').success(function (response) {
-            ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/add', option, 'POST').success(function (response) {
+            //ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/', pollingOption.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/', option, 'POST').success(function (response) {
                 pollingOption.addRequested = false;
                 pollingOption.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
@@ -113,7 +113,7 @@
             return;
         }
         pollingOption.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/edit', pollingOption.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/', pollingOption.selectedItem, "PUT").success(function (response) {
             pollingOption.addRequested = true;
             rashaErManage.checkAction(response);
             pollingOption.busyIndicator.isActive = false;

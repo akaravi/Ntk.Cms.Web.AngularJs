@@ -195,7 +195,7 @@
         if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, linkManagementBillboard.ModuleTag);   //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/biographyTag/add', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/biographyTag/', tagObject, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     linkManagementBillboard.tags[linkManagementBillboard.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -476,7 +476,7 @@
         //    $.each(apiSelectedItem.Similars, function (index, item) {
         //        item.Destination = [];
         //    });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/add', linkManagementBillboard.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -546,7 +546,7 @@
                 item.TargetCategory.Title = Title
 
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/edit', linkManagementBillboard.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response) {
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
             linkManagementBillboard.addRequested = false;
             linkManagementBillboard.treeConfig.showbusy = false;
@@ -667,7 +667,7 @@
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/edit', linkManagementBillboard.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = linkManagementBillboard.ListItems.indexOf(linkManagementBillboard.gridOptions.selectedRow.item);
@@ -693,7 +693,7 @@
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/edit', linkManagementBillboard.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response2) {
                 linkManagementBillboard.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1065,7 +1065,7 @@
     }
     //save new file
     linkManagementBillboard.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboard.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 linkManagementBillboard.FileItem = response.Item;
                 linkManagementBillboard.showSuccessIcon();
@@ -1198,7 +1198,7 @@
                     linkManagementBillboard.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- linkManagementBillboard.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboard.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementBillboard.FileItem = response.Item;
                             linkManagementBillboard.showSuccessIcon();

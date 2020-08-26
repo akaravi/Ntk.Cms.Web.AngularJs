@@ -50,7 +50,7 @@
             return;
 
         cmsModuleOptimizer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/add', cmsModuleOptimizer.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/', cmsModuleOptimizer.selectedItem, 'POST').success(function (response) {
             // cmsModuleOptimizer.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -91,7 +91,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/edit', cmsModuleOptimizer.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/', cmsModuleOptimizer.selectedItem, "PUT").success(function (response) {
             cmsModuleOptimizer.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

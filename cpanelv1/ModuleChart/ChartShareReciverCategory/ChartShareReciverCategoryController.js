@@ -260,7 +260,7 @@
         chartShareReciverCategory.selectedItem.LinkParentId = null;
         if (chartShareReciverCategory.treeConfig.currentNode != null)
             chartShareReciverCategory.selectedItem.LinkParentId = chartShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/add', chartShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/', chartShareReciverCategory.selectedItem, 'POST').success(function (response) {
             chartShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -288,7 +288,7 @@
         }
         chartShareReciverCategory.categoryBusyIndicator.isActive = true;
         chartShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/edit', chartShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/', chartShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //chartShareReciverCategory.showbusy = false;
             chartShareReciverCategory.treeConfig.showbusy = false;
             chartShareReciverCategory.addRequested = false;
@@ -454,7 +454,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/add', chartShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/', chartShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -487,7 +487,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/edit', chartShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareReciverCategory/', chartShareReciverCategory.selectedItem, "PUT").success(function (response) {
             chartShareReciverCategory.categoryBusyIndicator.isActive = false;
             chartShareReciverCategory.addRequested = false;
             chartShareReciverCategory.treeConfig.showbusy = false;

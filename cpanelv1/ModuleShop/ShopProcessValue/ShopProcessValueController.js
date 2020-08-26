@@ -63,7 +63,7 @@
         }
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopProcessvalue/add', taskScheduleProcessValue.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProcessvalue/', taskScheduleProcessValue.selectedItem, 'POST').success(function (response) {
             taskScheduleProcessValue.addRequested = false;
             taskScheduleProcessValue.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -106,7 +106,7 @@
             return;
         }
         taskScheduleProcessValue.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopProcessvalue/edit', taskScheduleProcessValue.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProcessvalue/', taskScheduleProcessValue.selectedItem, "PUT").success(function (response) {
             taskScheduleProcessValue.addRequested = true;
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.busyIndicator.isActive = false;

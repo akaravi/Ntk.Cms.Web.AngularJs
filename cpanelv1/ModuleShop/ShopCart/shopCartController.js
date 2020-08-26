@@ -323,7 +323,7 @@
             return;
         }
         shopCart.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/add', shopCart.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/', shopCart.selectedItem, 'POST').success(function (response) {
             //rashaErManage.checkAction(response);
             shopCart.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -353,7 +353,7 @@
         shopCart.busyIndicator.isActive = true;
         shopCart.addRequested = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/', shopCart.selectedItem, "PUT").success(function (response) {
             shopCart.busyIndicator.isActive = false;
             shopCart.addRequested = false;
             shopCart.showIsBusy = false;
@@ -498,7 +498,7 @@
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
             shopCart.selectedItem.PaymentStatus = 2;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopCart/', shopCart.selectedItem, "PUT").success(function (response) {
                 rashaErManage.showMessage("پرداخت در محل");
                 shopCart.init();
             }).error(function (data, errCode, c, d) {
@@ -661,7 +661,7 @@
         //if (!shopCart.contentExists(shopCart.selectedItemSaleDetail)) {
         shopCart.addRequested = true;
         shopCart.selectedItemSaleDetail.LinkContentId = shopCart.selectedItem.LinkContentId;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/add', shopCart.selectedItemSaleDetail, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/', shopCart.selectedItemSaleDetail, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.addRequested = false;
 
@@ -713,7 +713,7 @@
         }
         shopCart.addRequested = true;
         shopCart.selectedItemSaleDetail.LinkContentId = shopCart.selectedItem.LinkContentId;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/edit', shopCart.selectedItemSaleDetail, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/', shopCart.selectedItemSaleDetail, "PUT").success(function (response) {
             shopCart.addRequested = false;
 
             rashaErManage.checkAction(response);

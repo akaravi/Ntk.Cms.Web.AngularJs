@@ -42,7 +42,7 @@
     }
 
     apiSetting.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/add', apiSetting.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apipath/', apiSetting.selectedItem, 'POST').success(function (response) {
             apiSetting.addRequested = false;
             rashaErManage.checkAction(response);
             apiSetting.goBack();
@@ -54,7 +54,7 @@
 
     apiSetting.editRow = function () {
         apiSetting.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/edit', apiSetting.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apipath/', apiSetting.selectedItem, "PUT").success(function (response) {
             apiSetting.addRequested = false;
             rashaErManage.checkAction(response);
             apiSetting.goBack();

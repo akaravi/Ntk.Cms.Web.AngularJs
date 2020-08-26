@@ -165,11 +165,11 @@
                     }
 
                 })
-                .state("index.cmscpmainmenu", {
-                    url: "/cmscpmainmenu",
-                    templateUrl: "cpanelv1/ModuleCore/cmsCpMainMenu/grid.html",
-                    controller: "cmsCpMainMenuGridCtrl",
-                    controllerAs: "cmsCpMainMenugrd",
+                .state("index.corecpmainmenu", {
+                    url: "/orecpmainmenu",
+                    templateUrl: "cpanelv1/ModuleCore/coreCpMainMenu/grid.html",
+                    controller: "coreCpMainMenuGridCtrl",
+                    controllerAs: "coreCpMainMenugrd",
                     data: {
                         pageTitle: "منو"
                     },
@@ -183,7 +183,7 @@
                                 return $ocLazyLoad.load(['minicolors', {
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsCpMainMenu/cmsCpMainMenuController.js'
+                                        'cpanelv1/ModuleCore/CoreCpMainMenu/coreCpMainMenuController.js'
                                     ]
                                 }]);
                             }

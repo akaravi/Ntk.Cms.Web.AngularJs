@@ -107,7 +107,7 @@
         if (param.$valid) {
             var ds = register.selectedItem;
             register.setPasswordBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/add", ds , "POST").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/", ds , "POST").success(function (response) {
                 register.setPasswordBusyIndicator.isActive = false;
                 if (response.IsSuccess == true) {
                     register.selectedItem.Id = response.Item.Id;
@@ -129,7 +129,7 @@
     register.updateProfile = function (param) {
         if (param.$valid) {
             var ds = register.selectedItem;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/edit",  ds , "PUT").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/",  ds , "PUT").success(function (response) {
                 register.updateProfileBusyIndicator.isActive = false;
                 if (response.IsSuccess == true) {                    
                     notify({ message: 'حساب کاربری شما با موفقیت ویرایش شد شد', classes: 'alert-success', templateUrl: template });                    

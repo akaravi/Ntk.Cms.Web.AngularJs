@@ -172,7 +172,7 @@
         vehicleProperty.addRequested = true;
         var valueItem = {};
         vehicleProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/add', vehicleProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/', vehicleProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 vehicleProperty.closeModal();
@@ -298,7 +298,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         vehicleProperty.busyIndicator.isActive = true;
         vehicleProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(vehicleProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/edit', vehicleProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/', vehicleProperty.selectedItem, "PUT").success(function (response) {
             vehicleProperty.addRequested = true;
             rashaErManage.checkAction(response);
             vehicleProperty.busyIndicator.isActive = false;
@@ -385,7 +385,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             vehicleProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailValue/EditBatch', vehicleProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailValue/EditBatch', vehicleProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 vehicleProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -800,7 +800,7 @@
         }
         vehicleProperty.addRequested = true;
         vehicleProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/add', vehicleProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/', vehicleProperty.selectedItem, 'POST').success(function (response) {
             vehicleProperty.addRequested = false;
             vehicleProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -854,7 +854,7 @@
 
     vehicleProperty.editContract = function (index) {
         vehicleProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/edit', vehicleProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/', vehicleProperty.contractsList[index], "PUT").success(function (res) {
             vehicleProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -1018,7 +1018,7 @@
     }
     //save new file
     vehicleProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", vehicleProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", vehicleProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 vehicleProperty.FileItem = response.Item;
                 vehicleProperty.showSuccessIcon();
@@ -1151,7 +1151,7 @@
                     vehicleProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- vehicleProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", vehicleProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", vehicleProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             vehicleProperty.FileItem = response.Item;
                             vehicleProperty.showSuccessIcon();

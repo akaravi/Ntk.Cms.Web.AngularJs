@@ -113,7 +113,7 @@
             return;
         cmsMdlPrcCustm.addRequested = true;
         cmsMdlPrcCustm.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/add', cmsMdlPrcCustm.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/', cmsMdlPrcCustm.selectedItem, 'POST').success(function (response) {
             cmsMdlPrcCustm.addRequested = false;
             cmsMdlPrcCustm.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -159,7 +159,7 @@
         var myControlerAdd = "";
         if (cmsMdlPrcCustm.selectedItem.AutoEdit) myControlerAdd = "Auto";
         cmsMdlPrcCustm.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/edit' + myControlerAdd, cmsMdlPrcCustm.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/edit' + myControlerAdd, cmsMdlPrcCustm.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsMdlPrcCustm.addRequested = false;
@@ -366,7 +366,7 @@
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPrcCustm.selectedItem.ProcessInputValueForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPrcCustm.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/edit', cmsMdlPrcCustm.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/', cmsMdlPrcCustm.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPrcCustm.closeModal();

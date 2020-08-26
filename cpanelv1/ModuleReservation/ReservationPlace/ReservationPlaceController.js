@@ -107,7 +107,7 @@
         //    return;
         place.busyIndicator.isActive = true;
         place.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/add', place.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/', place.selectedItem, 'POST').success(function (response) {
             place.addRequested = false;
             place.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -165,7 +165,7 @@
         //place.busyIndicator.isActive = true;
         place.addRequested = true;
         place.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/', place.selectedItem, "PUT").success(function (response) {
             place.addRequested = true;
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
@@ -302,7 +302,7 @@
 
         // place.selectedItem.JsonPlaceValue = JSON.stringify(place.ntkDragg.valueGet());
 
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/', place.selectedItem, "PUT").success(function (response) {
             place.addRequested = true;
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
@@ -465,7 +465,7 @@
     }
     //save new file
     place.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", place.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", place.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 place.FileItem = response.Item;
                 place.showSuccessIcon();
@@ -597,7 +597,7 @@
                     place.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- place.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", place.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", place.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             place.FileItem = response.Item;
                             place.showSuccessIcon();

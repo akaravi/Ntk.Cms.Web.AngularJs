@@ -309,7 +309,7 @@
         //     var tagObject = jQuery.extend({}, reservationContent.ModuleTag); //#Clone a Javascript Object
         //     tagObject.Title = tag.text;
         //     ajax
-        //       .call("/api/reservationTag/add", tagObject, "POST")
+        //       .call("/api/reservationTag/", tagObject, "POST")
         //       .success(function(response) {
         //         rashaErManage.checkAction(response);
         //         if (response.IsSuccess) {
@@ -643,7 +643,7 @@
                 reservationContent.selectedItem.LinkParentId =
                     reservationContent.treeConfig.currentNode.Id;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/add", reservationContent.selectedItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "reservationCategory/", reservationContent.selectedItem, "POST")
                 .success(function (response) {
                     reservationContent.addRequested = false;
                     rashaErManage.checkAction(response);
@@ -669,7 +669,7 @@
             reservationContent.categoryBusyIndicator.isActive = true;
             reservationContent.addRequested = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/edit", reservationContent.selectedItem, "PUT")
+                .call(cmsServerConfig.configApiServerPath + "reservationCategory/", reservationContent.selectedItem, "PUT")
                 .success(function (response) {
                     //reservationContent.showbusy = false;
                     reservationContent.treeConfig.showbusy = false;
@@ -1067,7 +1067,7 @@
                     item.Destination = [];
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/add", apiSelectedItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "reservationContent/", apiSelectedItem, "POST")
                 .success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationContent.categoryBusyIndicator.isActive = false;
@@ -1147,7 +1147,7 @@
                     item.Destination = [];
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", apiSelectedItem, "PUT")
+                .call(cmsServerConfig.configApiServerPath + "reservationContent/", apiSelectedItem, "PUT")
                 .success(function (response) {
                     reservationContent.categoryBusyIndicator.isActive = false;
                     reservationContent.addRequested = false;
@@ -1256,7 +1256,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", reservationContent.selectedItem, "PUT")
+                        .call(cmsServerConfig.configApiServerPath + "reservationContent/", reservationContent.selectedItem, "PUT")
                         .success(function (response2) {
                             rashaErManage.checkAction(response2);
                             if (response2.IsSuccess) {
@@ -1298,7 +1298,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", reservationContent.selectedItem, "PUT")
+                        .call(cmsServerConfig.configApiServerPath + "reservationContent/", reservationContent.selectedItem, "PUT")
                         .success(function (response2) {
                             reservationContent.categoryBusyIndicator.isActive = true;
                             rashaErManage.checkAction(response2);
@@ -1807,7 +1807,7 @@
         //save new file
         reservationContent.saveNewFile = function () {
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", reservationContent.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", reservationContent.FileItem, "POST")
                 .success(function (response) {
                     if (response.IsSuccess) {
                         reservationContent.FileItem = response.Item;
@@ -1935,7 +1935,7 @@
                         reservationContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                         // ------- reservationContent.saveNewFile()  ----------------------
                         var result = 0;
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", reservationContent.FileItem, 'POST').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", reservationContent.FileItem, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 reservationContent.FileItem = response.Item;
                                 reservationContent.showSuccessIcon();
@@ -2050,7 +2050,7 @@
                             // ------- reservationContent.saveNewFile()  ----------------------
                             var result = 0;
                             ajax
-                                .call(cmsServerConfig.configApiServerPath + "FileContent/add", reservationContent.FileItem, "POST")
+                                .call(cmsServerConfig.configApiServerPath + "FileContent/", reservationContent.FileItem, "POST")
                                 .success(function (response) {
                                     if (response.IsSuccess) {
                                         reservationContent.FileItem = response.Item;

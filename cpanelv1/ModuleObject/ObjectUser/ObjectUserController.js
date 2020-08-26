@@ -503,7 +503,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         objectUser.selectedItem.LinkParentId = null;
         if (objectUser.treeConfig.currentNode != null)
             objectUser.selectedItem.LinkParentId = objectUser.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/add', objectUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/', objectUser.selectedItem, 'POST').success(function (response) {
             objectUser.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -528,7 +528,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             return;
         }
         objectUser.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/edit', objectUser.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/', objectUser.selectedItem, "PUT").success(function (response) {
             objectUser.addRequested = true;
             //objectUser.showbusy = false;
             objectUser.treeConfig.showbusy = false;
@@ -737,7 +737,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
             return;
         objectUser.categoryBusyIndicator.isActive = true;
         objectUser.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/add', objectUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/', objectUser.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             objectUser.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -763,7 +763,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         }
         objectUser.addRequested = true;
         objectUser.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/edit', objectUser.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectuser/', objectUser.selectedItem, "PUT").success(function (response) {
             objectUser.addRequested = false;
             objectUser.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -984,7 +984,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
     }
     //save new file
     objectUser.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectUser.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectUser.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 objectUser.FileItem = response.Item;
                 objectUser.showSuccessIcon();
@@ -1116,7 +1116,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                     objectUser.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- objectUser.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectUser.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectUser.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             objectUser.FileItem = response.Item;
                             objectUser.showSuccessIcon();

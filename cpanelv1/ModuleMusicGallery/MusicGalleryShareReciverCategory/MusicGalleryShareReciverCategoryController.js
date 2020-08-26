@@ -261,7 +261,7 @@
         musicGalleryShareReciverCategory.selectedItem.LinkParentId = null;
         if (musicGalleryShareReciverCategory.treeConfig.currentNode != null)
             musicGalleryShareReciverCategory.selectedItem.LinkParentId = musicGalleryShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -289,7 +289,7 @@
         }
         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
         musicGalleryShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/', musicGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //musicGalleryShareReciverCategory.showbusy = false;
             musicGalleryShareReciverCategory.treeConfig.showbusy = false;
             musicGalleryShareReciverCategory.addRequested = false;
@@ -455,7 +455,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -489,7 +489,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/', musicGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.addRequested = false;
             musicGalleryShareReciverCategory.treeConfig.showbusy = false;

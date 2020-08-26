@@ -57,7 +57,7 @@
     //    if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
     //        var tagObject = jQuery.extend({}, imgGallery.ModuleTag);   //#Clone a Javascript Object
     //        tagObject.Title = tag.text;
-    //        ajax.call('/api/imagegalleryTag/add', tagObject, 'POST').success(function (response) {
+    //        ajax.call('/api/imagegalleryTag/', tagObject, 'POST').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            if (response.IsSuccess) {
     //                imgGallery.tags[imgGallery.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -310,7 +310,7 @@ imgGallery.LinkCategoryIdSelector = {
         }
         imgGallery.addRequested = true;
         imgGallery.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'imagegallerycontent/add', imgGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imagegallerycontent/', imgGallery.selectedItem, 'POST').success(function (response) {
             imgGallery.addRequested = false;
             imgGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -370,7 +370,7 @@ imgGallery.LinkCategoryIdSelector = {
         });
         imgGallery.addRequested = true;
         imgGallery.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'imagegallerycontent/edit', imgGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imagegallerycontent/', imgGallery.selectedItem, "PUT").success(function (response) {
             imgGallery.addRequested = false;
             imgGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -516,7 +516,7 @@ imgGallery.LinkCategoryIdSelector = {
         imgGallery.selectedItem.LinkCategorytId = null;
         if (imgGallery.treeConfig.currentNode != null)
             imgGallery.selectedItem.LinkParentId = imgGallery.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/add', imgGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/', imgGallery.selectedItem, 'POST').success(function (response) {
             imgGallery.treeBusyIndicator.isActive = false;
             imgGallery.addRequested = false;
             rashaErManage.checkAction(response);
@@ -541,7 +541,7 @@ imgGallery.LinkCategoryIdSelector = {
         }
         imgGallery.addRequested = true;
         imgGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/edit', imgGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryCategory/', imgGallery.selectedItem, "PUT").success(function (response) {
             imgGallery.addRequested = false;
             imgGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -1114,7 +1114,7 @@ imgGallery.LinkCategoryIdSelector = {
                     imgGallery.contentsToAdd.push(newObject);
                 });
                 angular.forEach(imgGallery.contentsToAdd, function (value, key) {
-                    ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/add", value, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/", value, 'POST').success(function (response) {
                         value.addIsSuccess = response.IsSuccess;
                         value.addErrorMessage = response.ErrorMessage;
                     }).error(function (data, errCode, c, d) {
@@ -1138,7 +1138,7 @@ imgGallery.LinkCategoryIdSelector = {
                 imgGallery.contentsToAdd.push(newObject);
             });
             angular.forEach(imgGallery.contentsToAdd, function (value, key) {
-                ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/add", value, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/", value, 'POST').success(function (response) {
                     value.addIsSuccess = response.IsSuccess;
                     value.addErrorMessage = response.ErrorMessage;
                 }).error(function (data, errCode, c, d) {

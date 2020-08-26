@@ -103,7 +103,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         cmsSiteMenu.busyIndicator.isActive = true;
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.selectedItem.JsonValues = $.trim(angular.toJson(cmsSiteMenu.treeMenuConfig.treeMenuContent));
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/add', cmsSiteMenu.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/', cmsSiteMenu.selectedItem, 'POST').success(function (response) {
             cmsSiteMenu.addRequested = false;
             cmsSiteMenu.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -163,7 +163,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
             return;
         cmsSiteMenu.busyIndicator.isActive = true;
         cmsSiteMenu.selectedItem.JsonValues = $.trim(angular.toJson(cmsSiteMenu.treeMenuConfig.treeMenuContent));
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/edit', cmsSiteMenu.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/', cmsSiteMenu.selectedItem, "PUT").success(function (response) {
             cmsSiteMenu.addRequested = false;
             rashaErManage.checkAction(response);
             cmsSiteMenu.busyIndicator.isActive = false;

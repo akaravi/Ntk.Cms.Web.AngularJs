@@ -65,7 +65,7 @@
         }
         sessionCtrl.busyIndicator.isActive = true;
         sessionCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/add', sessionCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/', sessionCtrl.selectedItem, 'POST').success(function (response) {
             sessionCtrl.addRequested = false;
             sessionCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -111,7 +111,7 @@
         }
 
         sessionCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/edit', sessionCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/', sessionCtrl.selectedItem, "PUT").success(function (response) {
             sessionCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             sessionCtrl.busyIndicator.isActive = false;

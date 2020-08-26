@@ -145,7 +145,7 @@
     //    if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
     //        var tagObject = jQuery.extend({}, campaignContent.ModuleTag);   //#Clone a Javascript Object
     //        tagObject.Title = tag.text;
-    //        ajax.call('/api/newsTag/add', tagObject, 'POST').success(function (response) {
+    //        ajax.call('/api/newsTag/', tagObject, 'POST').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            if (response.IsSuccess) {
     //                campaignContent.tags[campaignContent.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -378,7 +378,7 @@
         campaignContent.selectedItem.LinkParentId = null;
         if (campaignContent.treeConfig.currentNode != null)
             campaignContent.selectedItem.LinkParentId = campaignContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/add', campaignContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/', campaignContent.selectedItem, 'POST').success(function (response) {
             campaignContent.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -406,7 +406,7 @@
         }
         campaignContent.categoryBusyIndicator.isActive = true;
         campaignContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/edit', campaignContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/', campaignContent.selectedItem, "PUT").success(function (response) {
             //campaignContent.showbusy = false;
             campaignContent.treeConfig.showbusy = false;
             campaignContent.addRequested = false;
@@ -625,7 +625,7 @@
             rashaErManage.showMessage(($filter('translatentk')('To_Add_Content_Please_Select_The_Category')));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/add', campaignContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/', campaignContent.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -690,7 +690,7 @@
             rashaErManage.showMessage(($filter('translatentk')('To_Add_Content_Please_Select_The_Category')));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/edit', campaignContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/', campaignContent.selectedItem, "PUT").success(function (response) {
             campaignContent.categoryBusyIndicator.isActive = false;
             campaignContent.addRequested = false;
             campaignContent.treeConfig.showbusy = false;
@@ -769,7 +769,7 @@
             rashaErManage.checkAction(response);
             campaignContent.selectedItem = response.Item;
             campaignContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/edit', campaignContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/', campaignContent.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = campaignContent.ListItems.indexOf(campaignContent.gridOptions.selectedRow.item);
@@ -798,7 +798,7 @@
             rashaErManage.checkAction(response);
             campaignContent.selectedItem = response.Item;
             campaignContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/edit', campaignContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/', campaignContent.selectedItem, "PUT").success(function (response2) {
                 campaignContent.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1190,7 +1190,7 @@
     }
     //save new file
     campaignContent.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 campaignContent.FileItem = response.Item;
                 campaignContent.showSuccessIcon();
@@ -1322,7 +1322,7 @@
                     campaignContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- campaignContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             campaignContent.FileItem = response.Item;
                             campaignContent.showSuccessIcon();

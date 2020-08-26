@@ -46,7 +46,7 @@
         }
         filesList.busyIndicator.isActive = true;
         filesList.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/add', filesList.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.selectedItem, 'POST').success(function (response) {
             filesList.addRequested = false;
             filesList.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -88,7 +88,7 @@
             return;
         }
         filesList.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', filesList.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', filesList.selectedItem, "PUT").success(function (response) {
             filesList.addRequested = true;
             rashaErManage.checkAction(response);
             filesList.busyIndicator.isActive = false;

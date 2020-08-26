@@ -45,7 +45,7 @@
         chartContentTag.addRequested = true;
         chartContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/add', chartContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/', chartContentTag.selectedItem , 'POST').success(function (response) {
             chartContentTag.addRequested = false;
             chartContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         chartContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/edit',  chartContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/',  chartContentTag.selectedItem , "PUT").success(function (response) {
             chartContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             chartContentTag.busyIndicator.isActive = false;

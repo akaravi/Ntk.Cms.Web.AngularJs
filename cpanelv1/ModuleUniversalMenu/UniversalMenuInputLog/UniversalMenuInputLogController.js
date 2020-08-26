@@ -66,7 +66,7 @@
         }
         inputLogCtrl.busyIndicator.isActive = true;
         inputLogCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/add', inputLogCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/', inputLogCtrl.selectedItem, 'POST').success(function (response) {
             inputLogCtrl.addRequested = false;
             inputLogCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -110,7 +110,7 @@
             return;
         }
         inputLogCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/edit', inputLogCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/', inputLogCtrl.selectedItem, "PUT").success(function (response) {
             inputLogCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;

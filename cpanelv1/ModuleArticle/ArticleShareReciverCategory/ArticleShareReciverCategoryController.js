@@ -262,7 +262,7 @@
         articleShareReciverCategory.selectedItem.LinkParentId = null;
         if (articleShareReciverCategory.treeConfig.currentNode != null)
             articleShareReciverCategory.selectedItem.LinkParentId = articleShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/add', articleShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/', articleShareReciverCategory.selectedItem, 'POST').success(function (response) {
             articleShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -290,7 +290,7 @@
         }
         articleShareReciverCategory.categoryBusyIndicator.isActive = true;
         articleShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/edit', articleShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/', articleShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //articleShareReciverCategory.showbusy = false;
             articleShareReciverCategory.treeConfig.showbusy = false;
             articleShareReciverCategory.addRequested = false;
@@ -456,7 +456,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_The_Article_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareReciverCategory/add', articleShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleShareReciverCategory/', articleShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -489,7 +489,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_The_Article_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareReciverCategory/edit', articleShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleShareReciverCategory/', articleShareReciverCategory.selectedItem, "PUT").success(function (response) {
             articleShareReciverCategory.categoryBusyIndicator.isActive = false;
             articleShareReciverCategory.addRequested = false;
             articleShareReciverCategory.treeConfig.showbusy = false;

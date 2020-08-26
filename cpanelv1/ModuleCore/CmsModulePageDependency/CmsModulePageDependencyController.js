@@ -65,7 +65,7 @@
             return;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
         cmsModulePageDependencygrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/add', cmsModulePageDependencygrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/', cmsModulePageDependencygrd.selectedItem, 'POST').success(function (response) {
             cmsModulePageDependencygrd.addRequested = false;
             cmsModulePageDependencygrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -113,7 +113,7 @@
             return;
         cmsModulePageDependencygrd.addRequested = true;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/edit', cmsModulePageDependencygrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/', cmsModulePageDependencygrd.selectedItem, "PUT").success(function (response) {
             cmsModulePageDependencygrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

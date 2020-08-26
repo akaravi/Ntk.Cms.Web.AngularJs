@@ -94,7 +94,7 @@
         }
         estateContract.busyIndicator.isActive = true;
         estateContract.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/add', estateContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.selectedItem, 'POST').success(function (response) {
             estateContract.addRequested = false;
             estateContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -147,7 +147,7 @@
             return;
         }
         estateContract.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/edit', estateContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.selectedItem, "PUT").success(function (response) {
             estateContract.addRequested = true;
             rashaErManage.checkAction(response);
             estateContract.busyIndicator.isActive = false;

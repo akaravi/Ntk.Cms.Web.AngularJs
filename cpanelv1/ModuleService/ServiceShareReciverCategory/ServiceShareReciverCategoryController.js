@@ -260,7 +260,7 @@
         serviceShareReciverCategory.selectedItem.LinkParentId = null;
         if (serviceShareReciverCategory.treeConfig.currentNode != null)
             serviceShareReciverCategory.selectedItem.LinkParentId = serviceShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/add', serviceShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', serviceShareReciverCategory.selectedItem, 'POST').success(function (response) {
             serviceShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -288,7 +288,7 @@
         }
         serviceShareReciverCategory.categoryBusyIndicator.isActive = true;
         serviceShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/edit', serviceShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceShareMainAdminSetting/', serviceShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //serviceShareReciverCategory.showbusy = false;
             serviceShareReciverCategory.treeConfig.showbusy = false;
             serviceShareReciverCategory.addRequested = false;
@@ -454,7 +454,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/add', serviceShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/', serviceShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -487,7 +487,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/edit', serviceShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceShareReciverCategory/', serviceShareReciverCategory.selectedItem, "PUT").success(function (response) {
             serviceShareReciverCategory.categoryBusyIndicator.isActive = false;
             serviceShareReciverCategory.addRequested = false;
             serviceShareReciverCategory.treeConfig.showbusy = false;

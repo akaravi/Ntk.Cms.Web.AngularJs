@@ -65,7 +65,7 @@
 
         newssharingcategory.addRequested = true;
         newssharingcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/add',  newssharingcategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/',  newssharingcategory.selectedItem , 'POST').success(function (response) {
             newssharingcategory.addRequested = false;
             rashaErManage.checkAction(response);
             newssharingcategory.categoryBusyIndicator.isActive = false;
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/edit',  newssharingcategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/',  newssharingcategory.selectedItem , "PUT").success(function (response) {
             newssharingcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -139,7 +139,7 @@
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/add', privateSiteConfig.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 privateSiteConfig.ListItems.unshift(response.Item);
@@ -238,7 +238,7 @@
 
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
 
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.selectedItem, "PUT").success(function (response) {
             privateSiteConfig.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -490,7 +490,7 @@
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivateSiteConfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivateSiteConfig/', privateSiteConfig.selectedItem, "PUT").success(function (response) {
             privateSiteConfig.addRequested = true;
             privateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

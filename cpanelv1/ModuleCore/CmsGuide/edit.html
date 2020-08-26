@@ -3,24 +3,24 @@
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsGuide.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Edit_Help' |lowercase|translate}}</h3>
-            <form method="get" class="form-horizontal" name="frmCmsCpMainMenuEdit" novalidate ng-submit="cmsGuide.editRow(frmCmsCpMainMenuEdit)">
+            <form method="get" class="form-horizontal" name="frmCoreCpMainMenuEdit" novalidate ng-submit="cmsGuide.editRow(frmCoreCpMainMenuEdit)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class="form-group" ng-show="cmsGuide.CheckAccessEdit('Title')"
-                                 ng-class="{'has-error' : frmCmsCpMainMenuEdit.Title.$invalid && !frmCmsCpMainMenuEdit.Title.$pristine,'has-success' : frmCmsCpMainMenuEdit.Title.$valid}">
+                                 ng-class="{'has-error' : frmCoreCpMainMenuEdit.Title.$invalid && !frmCoreCpMainMenuEdit.Title.$pristine,'has-success' : frmCoreCpMainMenuEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{ 'title' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control"
                                            ng-required="true"
                                            name="Title"
                                            ng-model="cmsGuide.selectedItem.Title" />
-                                    <div class="m-t-xs" ng-show="frmCmsCpMainMenuEdit.Title.$invalid">
-                                        <small class="text-danger" ng-show="frmCmsCpMainMenuEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
+                                    <div class="m-t-xs" ng-show="frmCoreCpMainMenuEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmCoreCpMainMenuEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
                                     </div>
-                                    <span style="left: 10px !important;" ng-show="frmCmsCpMainMenuEdit.Title.$valid && frmCmsCpMainMenuEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                    <span style="left: 10px !important;" ng-show="(frmCmsCpMainMenuEdit.Title.$invalid && !frmCmsCpMainMenuEdit.Title.$pristine) || frmCmsCpMainMenuEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmCoreCpMainMenuEdit.Title.$valid && frmCoreCpMainMenuEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmCoreCpMainMenuEdit.Title.$invalid && !frmCoreCpMainMenuEdit.Title.$pristine) || frmCoreCpMainMenuEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>

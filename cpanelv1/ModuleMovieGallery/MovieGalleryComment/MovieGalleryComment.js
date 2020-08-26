@@ -79,7 +79,7 @@
         }
         mvGalleryComment.busyIndicator.isActive = true;
         mvGalleryComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/add', mvGalleryComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/', mvGalleryComment.selectedItem, 'POST').success(function (response) {
             mvGalleryComment.addRequested = false;
             mvGalleryComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -125,7 +125,7 @@
             return;
         }
         mvGalleryComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/edit', mvGalleryComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/', mvGalleryComment.selectedItem, "PUT").success(function (response) {
             mvGalleryComment.addRequested = true;
             rashaErManage.checkAction(response);
             mvGalleryComment.busyIndicator.isActive = false;

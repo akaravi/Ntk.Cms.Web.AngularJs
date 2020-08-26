@@ -45,7 +45,7 @@
         newsContentTag.addRequested = true;
         newsContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/add', newsContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/', newsContentTag.selectedItem , 'POST').success(function (response) {
             newsContentTag.addRequested = false;
             newsContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         newsContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/edit',  newsContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/',  newsContentTag.selectedItem , "PUT").success(function (response) {
             newsContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             newsContentTag.busyIndicator.isActive = false;

@@ -45,7 +45,7 @@
         mscGalleryContentTag.addRequested = true;
         mscGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/add', mscGalleryContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/', mscGalleryContentTag.selectedItem , 'POST').success(function (response) {
             mscGalleryContentTag.addRequested = false;
             mscGalleryContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         mscGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/edit',  mscGalleryContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/',  mscGalleryContentTag.selectedItem , "PUT").success(function (response) {
             mscGalleryContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             mscGalleryContentTag.busyIndicator.isActive = false;

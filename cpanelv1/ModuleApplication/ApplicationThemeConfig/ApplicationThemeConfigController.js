@@ -245,7 +245,7 @@
         themeConfig.selectedItem.ThemeConfigRuntimeJsonValues = $.trim(angular.toJson(themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel));
         themeConfig.selectedItem.ThemeConfigLayoutJsonValues = $.trim(angular.toJson(themeConfig.ListItemsLayoutTheme));
         //
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/add', themeConfig.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/', themeConfig.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 themeConfig.ListItems.unshift(response.Item);
@@ -271,7 +271,7 @@
 
         themeConfig.selectedItem.ThemeConfigLayoutJsonValues = $.trim(angular.toJson(themeConfig.ListItemsLayoutTheme));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'applicationThemeConfig/edit', themeConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'applicationThemeConfig/', themeConfig.selectedItem, "PUT").success(function (response) {
             themeConfig.addRequested = false;
             themeConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -542,7 +542,7 @@
                         // ------- themeConfig.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", themeConfig.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/", themeConfig.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     themeConfig.FileItem = response.Item;

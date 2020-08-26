@@ -119,7 +119,7 @@
         }
         campaignDetailItem.busyIndicator.isActive = true;
         campaignDetailItem.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/add', campaignDetailItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/', campaignDetailItem.selectedItem, 'POST').success(function (response) {
             campaignDetailItem.addRequested = false;
             campaignDetailItem.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         campaignDetailItem.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/edit', campaignDetailItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/', campaignDetailItem.selectedItem, "PUT").success(function (response) {
             campaignDetailItem.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailItem.busyIndicator.isActive = false;

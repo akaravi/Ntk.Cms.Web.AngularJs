@@ -202,7 +202,7 @@
         if (!shopInvoiceSaleDetail.contentExists(shopInvoiceSaleDetail.selectedItem)) {
             shopInvoiceSaleDetail.addRequested = true;
             shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/add', shopInvoiceSaleDetail.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSaleDetail.selectedItem, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.addRequested = false;
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
@@ -229,7 +229,7 @@
         }
         shopInvoiceSaleDetail.addRequested = true;
         shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSaleDetail.selectedItem, "PUT").success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -290,7 +290,7 @@
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSaleDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = shopInvoiceSaleDetail.ListItems.indexOf(shopInvoiceSaleDetail.gridOptions.selectedRow.item);
@@ -316,7 +316,7 @@
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSaleDetail.selectedItem, "PUT").success(function (response2) {
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {

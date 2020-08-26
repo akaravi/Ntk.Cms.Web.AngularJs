@@ -71,7 +71,7 @@
         if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, shopSalePrice.ModuleTag);   //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/productTag/add', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/productTag/', tagObject, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     shopSalePrice.tags[shopSalePrice.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -217,7 +217,7 @@
         shopSalePrice.selectedItem.LinkParentId = null;
         if (shopSalePrice.treeConfig.currentNode != null)
             shopSalePrice.selectedItem.LinkParentId = shopSalePrice.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/add', shopSalePrice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/', shopSalePrice.selectedItem, 'POST').success(function (response) {
             shopSalePrice.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -242,7 +242,7 @@
             return;
         }
         shopSalePrice.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/edit', shopSalePrice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/', shopSalePrice.selectedItem, "PUT").success(function (response) {
             shopSalePrice.addRequested = true;
             //shopSalePrice.showbusy = false;
             shopSalePrice.treeConfig.showbusy = false;
@@ -447,7 +447,7 @@
             else
                 shopSalePrice.selectedItem.Keyword += ',' + item.text;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/add', shopSalePrice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/', shopSalePrice.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopSalePrice.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -504,7 +504,7 @@
             else
                 shopSalePrice.selectedItem.Keyword += ',' + item.text;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/edit', shopSalePrice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/', shopSalePrice.selectedItem, "PUT").success(function (response) {
             shopSalePrice.categoryBusyIndicator.isActive = false;
             shopSalePrice.addRequested = false;
             shopSalePrice.treeConfig.showbusy = false;
@@ -582,7 +582,7 @@
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
             shopSalePrice.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/edit', shopSalePrice.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/', shopSalePrice.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = shopSalePrice.ListItems.indexOf(shopSalePrice.gridOptions.selectedRow.item);
@@ -609,7 +609,7 @@
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
             shopSalePrice.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/edit', shopSalePrice.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/', shopSalePrice.selectedItem, "PUT").success(function (response2) {
                 shopSalePrice.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -913,7 +913,7 @@
     }
     //save new file
     shopSalePrice.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopSalePrice.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopSalePrice.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 shopSalePrice.FileItem = response.Item;
                 shopSalePrice.showSuccessIcon();
@@ -1045,7 +1045,7 @@
                     shopSalePrice.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- shopSalePrice.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopSalePrice.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopSalePrice.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             shopSalePrice.FileItem = response.Item;
                             shopSalePrice.showSuccessIcon();

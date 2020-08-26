@@ -128,7 +128,7 @@
     //        return;
     //    discountOffer.busyIndicator.isActive = true;
     //    discountOffer.addRequested = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/add', discountOffer.selectedItem, 'POST').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/', discountOffer.selectedItem, 'POST').success(function (response) {
     //        discountOffer.addRequested = false;
     //        discountOffer.busyIndicator.isActive = false;
     //        rashaErManage.checkAction(response);
@@ -199,7 +199,7 @@
 
             discountOffer.addRequested = true;
             discountOffer.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     discountOffer.selectedItem.LinkMemberId = response1.Item.Id;
@@ -214,7 +214,7 @@
         }
     }
     discountOffer.addSerialCard = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/add', discountOffer.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/', discountOffer.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 //ثبت درخواست اضافه کردن از طریق کنترلرهای دیگر
@@ -238,11 +238,11 @@
     //    if (discountOffer.addNewMemberUser == "1") {
     //        discountOffer.addRequested = true;
     //        discountOffer.busyIndicator.isActive = true;
-    //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
+    //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
     //            rashaErManage.checkAction(response1);
     //            if (response1.IsSuccess) {
     //                discountOffer.selectedItem.LinkMemberId = response1.Item.Id;
-    //                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', discountOffer.selectedItem, 'PUT').success(function (response2) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', discountOffer.selectedItem, "PUT").success(function (response2) {
     //                    rashaErManage.checkAction(response2);
     //                    discountOffer.addRequested = false;
     //                    discountOffer.busyIndicator.isActive = false;
@@ -265,7 +265,7 @@
     //        discountOffer.addRequested = true;
     //        discountOffer.busyIndicator.isActive = true;
     //        //discountOffer.selectedItem.LinkMemberId = selected.originalObject.Id; //Delete MemberUser
-    //        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', discountOffer.selectedItem, 'PUT').success(function (response) {
+    //        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', discountOffer.selectedItem, "PUT").success(function (response) {
     //            rashaErManage.checkAction(response);
     //            discountOffer.addRequested = false;
     //            discountOffer.busyIndicator.isActive = false;
@@ -309,7 +309,7 @@
     //    if (frm.$invalid)
     //        return;
     //    discountOffer.busyIndicator.isActive = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/edit', discountOffer.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/', discountOffer.selectedItem, "PUT").success(function (response) {
     //        discountOffer.addRequested = true;
     //        rashaErManage.checkAction(response);
     //        discountOffer.busyIndicator.isActive = false;
@@ -429,7 +429,7 @@
 
             discountOffer.addRequested = true;
             discountOffer.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountOffer.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     discountOffer.selectedItem.LinkMemberId = response1.Item.Id;
@@ -448,7 +448,7 @@
     discountOffer.editSerialCard = function () {
 
         discountOffer.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/edit', discountOffer.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/', discountOffer.selectedItem, "PUT").success(function (response) {
             discountOffer.addRequested = true;
             rashaErManage.checkAction(response);
             discountOffer.busyIndicator.isActive = false;

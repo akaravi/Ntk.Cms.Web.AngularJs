@@ -181,7 +181,7 @@
         if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, linkManagementTarget.ModuleTag);   //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/linkManagementTag/add', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/linkManagementTag/', tagObject, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     linkManagementTarget.tags[linkManagementTarget.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -326,7 +326,7 @@
 
     //            var filterModelparam = { Filters: [] };
     //            filterModelparam.Filters.push({ PropertyName: "LinkModuleCategoryId", SearchType: 0, IntValue1: Idparam });
-    //            ajax.call(cmsServerConfig.configApiServerPath+'linkManagementContentAndParameterValue/add', filterModelparam, 'POST').success(function (response1) {
+    //            ajax.call(cmsServerConfig.configApiServerPath+'linkManagementContentAndParameterValue/', filterModelparam, 'POST').success(function (response1) {
     //                linkManagementTarget.ListItemsparam = response1.ListItems;
     //            }).error(function (data, errCode, c, d) {
     //                rashaErManage.checkAction(data, errCode);
@@ -484,7 +484,7 @@
         linkManagementTarget.selectedItem.LinkParentId = null;
         if (linkManagementTarget.treeConfig.currentNode != null)
             linkManagementTarget.selectedItem.LinkParentId = linkManagementTarget.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/add', linkManagementTarget.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/', linkManagementTarget.selectedItem, 'POST').success(function (response) {
 
             linkManagementTarget.addRequested = false;
             rashaErManage.checkAction(response);
@@ -512,7 +512,7 @@
         }
         linkManagementTarget.addRequested = true;
         linkManagementTarget.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/edit', linkManagementTarget.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/', linkManagementTarget.selectedItem, "PUT").success(function (response) {
             linkManagementTarget.addRequested = true;
             //linkManagementTarget.showbusy = false;
             linkManagementTarget.treeConfig.showbusy = false;
@@ -744,7 +744,7 @@
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTarget.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -808,7 +808,7 @@
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/', apiSelectedItem, "PUT").success(function (response) {
             linkManagementTarget.categoryBusyIndicator.isActive = false;
             linkManagementTarget.addRequested = false;
             linkManagementTarget.treeConfig.showbusy = false;
@@ -886,7 +886,7 @@
             rashaErManage.checkAction(response);
             linkManagementTarget.selectedItem = response.Item;
             linkManagementTarget.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/edit', linkManagementTarget.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/', linkManagementTarget.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = linkManagementTarget.ListItems.indexOf(linkManagementTarget.gridOptions.selectedRow.item);
@@ -912,7 +912,7 @@
             rashaErManage.checkAction(response);
             linkManagementTarget.selectedItem = response.Item;
             linkManagementTarget.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/edit', linkManagementTarget.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/', linkManagementTarget.selectedItem, "PUT").success(function (response2) {
                 linkManagementTarget.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1282,7 +1282,7 @@
     }
     //save new file
     linkManagementTarget.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementTarget.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementTarget.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 linkManagementTarget.FileItem = response.Item;
                 linkManagementTarget.showSuccessIcon();
@@ -1420,7 +1420,7 @@
                     linkManagementTarget.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- linkManagementTarget.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementTarget.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementTarget.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementTarget.FileItem = response.Item;
                             linkManagementTarget.showSuccessIcon();

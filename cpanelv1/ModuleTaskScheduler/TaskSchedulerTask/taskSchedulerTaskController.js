@@ -217,7 +217,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
       if (from == "Content") {
 
             task.newProcess.JsonFormAdminSiteValues=$.trim(angular.toJson(task.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessValue/edit', task.newProcess, "PUT").success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessValue/', task.newProcess, "PUT").success(function (response1) {
                 task.editProcessvalue = response1.Item.Id;
                 $builder.removeAllFormObject('default');
                $scope.modalInstance.close();
@@ -313,7 +313,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
         task.addRequested = true;
         task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
         
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/add', task.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItem, 'POST').success(function (response) {
             task.addRequested = false;
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -365,7 +365,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
             return;
         }
         task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/edit', task.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItem, "PUT").success(function (response) {
             task.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -707,7 +707,7 @@ task.RunTaskNow=function(TaskId)
             task.selectedItem.LinkProcessCategoryId = null;
             task.selectedItem.LinkModuleProcessId = null;
             task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItem, "PUT").success(function (response) {
                 task.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {

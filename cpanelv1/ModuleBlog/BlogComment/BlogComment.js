@@ -91,7 +91,7 @@
         }
         blogComment.busyIndicator.isActive = true;
         blogComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/add', blogComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/', blogComment.selectedItem, 'POST').success(function (response) {
             blogComment.addRequested = false;
             blogComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -137,7 +137,7 @@
             return;
         }
         blogComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/edit', blogComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/', blogComment.selectedItem, "PUT").success(function (response) {
             blogComment.addRequested = true;
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;

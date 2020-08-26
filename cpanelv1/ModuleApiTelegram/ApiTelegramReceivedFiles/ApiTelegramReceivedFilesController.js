@@ -53,7 +53,7 @@
         }
         receivedFiles.busyIndicator.isActive = true;
         receivedFiles.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/add', receivedFiles.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/', receivedFiles.selectedItem, 'POST').success(function (response) {
             receivedFiles.addRequested = false;
             receivedFiles.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -98,7 +98,7 @@
             return;
         }
         receivedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/edit', receivedFiles.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/', receivedFiles.selectedItem, "PUT").success(function (response) {
             receivedFiles.addRequested = true;
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;

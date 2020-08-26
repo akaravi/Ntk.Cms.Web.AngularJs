@@ -45,7 +45,7 @@
         ServiceContentTag.addRequested = true;
         ServiceContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/add', ServiceContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/', ServiceContentTag.selectedItem , 'POST').success(function (response) {
             ServiceContentTag.addRequested = false;
             ServiceContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         ServiceContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/edit',  ServiceContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceContenttag/',  ServiceContentTag.selectedItem , "PUT").success(function (response) {
             ServiceContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             ServiceContentTag.busyIndicator.isActive = false;

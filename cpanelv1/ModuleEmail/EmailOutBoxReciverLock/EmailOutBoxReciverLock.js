@@ -57,7 +57,7 @@
         }
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/add', emailOutBoxReciverLock.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxReciverLock.ListItems.unshift(response.Item);
@@ -191,7 +191,7 @@
 
         emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
 
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItem, "PUT").success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             emailOutBoxReciverLock.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -413,7 +413,7 @@
         emailOutBoxReciverLock.busyIndicator.isActive = true;
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.busyIndicator.isActive = false;
             emailOutBoxReciverLock.addRequested = false;

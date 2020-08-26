@@ -44,7 +44,7 @@
         blogContentTag.addRequested = true;
         blogContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'BlogContenttag/add', blogContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BlogContenttag/', blogContentTag.selectedItem , 'POST').success(function (response) {
             blogContentTag.addRequested = false;
             blogContentTag.busyIndicator.isActive = false;
 
@@ -89,7 +89,7 @@
         }
         blogContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'BlogContenttag/edit',  blogContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BlogContenttag/',  blogContentTag.selectedItem , "PUT").success(function (response) {
             blogContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             blogContentTag.busyIndicator.isActive = false;

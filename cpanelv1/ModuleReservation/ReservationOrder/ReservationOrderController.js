@@ -110,7 +110,7 @@
         //    return;
         order.busyIndicator.isActive = true;
         order.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/add', order.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.selectedItem, 'POST').success(function (response) {
             order.addRequested = false;
             order.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -162,7 +162,7 @@
         //order.busyIndicator.isActive = true;
         order.addRequested = true;
          order.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/edit', order.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.selectedItem, "PUT").success(function (response) {
             order.addRequested = true;
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;

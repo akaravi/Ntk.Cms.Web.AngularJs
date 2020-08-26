@@ -143,7 +143,7 @@
         advertisementProperty.addRequested = true;
         var valueItem = {};
         advertisementProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/', advertisementProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 advertisementProperty.closeModal();
@@ -269,7 +269,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         advertisementProperty.busyIndicator.isActive = true;
         advertisementProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(advertisementProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/edit', advertisementProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/', advertisementProperty.selectedItem, "PUT").success(function (response) {
             advertisementProperty.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementProperty.busyIndicator.isActive = false;
@@ -356,7 +356,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             advertisementProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/EditBatch', advertisementProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/EditBatch', advertisementProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 advertisementProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -771,7 +771,7 @@
         }
         advertisementProperty.addRequested = true;
         advertisementProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/', advertisementProperty.selectedItem, 'POST').success(function (response) {
             advertisementProperty.addRequested = false;
             advertisementProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -825,7 +825,7 @@
 
     advertisementProperty.editContract = function (index) {
         advertisementProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/edit', advertisementProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/', advertisementProperty.contractsList[index], "PUT").success(function (res) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -972,7 +972,7 @@
     }
     //save new file
     advertisementProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", advertisementProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 advertisementProperty.FileItem = response.Item;
                 advertisementProperty.showSuccessIcon();
@@ -1105,7 +1105,7 @@
                     advertisementProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- advertisementProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", advertisementProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             advertisementProperty.FileItem = response.Item;
                             advertisementProperty.showSuccessIcon();

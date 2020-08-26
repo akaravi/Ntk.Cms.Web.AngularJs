@@ -261,7 +261,7 @@
         movieGalleryShareReciverCategory.selectedItem.LinkParentId = null;
         if (movieGalleryShareReciverCategory.treeConfig.currentNode != null)
             movieGalleryShareReciverCategory.selectedItem.LinkParentId = movieGalleryShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -289,7 +289,7 @@
         }
         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
         movieGalleryShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/', movieGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //movieGalleryShareReciverCategory.showbusy = false;
             movieGalleryShareReciverCategory.treeConfig.showbusy = false;
             movieGalleryShareReciverCategory.addRequested = false;
@@ -455,7 +455,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -489,7 +489,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/', movieGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             movieGalleryShareReciverCategory.addRequested = false;
             movieGalleryShareReciverCategory.treeConfig.showbusy = false;

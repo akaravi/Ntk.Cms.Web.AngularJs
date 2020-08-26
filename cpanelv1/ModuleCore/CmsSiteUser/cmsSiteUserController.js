@@ -105,7 +105,7 @@
         }
         cmsSiteUser.addRequested = true;
         cmsSiteUser.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/add', cmsSiteUser.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
@@ -177,7 +177,7 @@
             }
         }
         cmsSiteUser.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/edit', cmsSiteUser.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.selectedItem, "PUT").success(function (response1) {
             cmsSiteUser.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {

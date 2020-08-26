@@ -164,7 +164,7 @@
         pollingLog.selectedItem.LinkParentId = null;
         if (pollingLog.treeConfig.currentNode != null)
             pollingLog.selectedItem.LinkParentId = pollingLog.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/add", pollingLog.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/", pollingLog.selectedItem, "POST").success(function (response) {
             pollingLog.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -188,7 +188,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/edit", pollingLog.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/", pollingLog.selectedItem, "PUT").success(function (response) {
             pollingLog.addRequested = true;
             //pollingLog.showbusy = false;
             pollingLog.treeConfig.showbusy = false;
@@ -332,7 +332,7 @@
         }
         pollingLog.selectedItem.ContentTags = [43, 48, 51];
         pollingLog.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/add", pollingLog.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/", pollingLog.selectedItem, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingLog.ListItems.unshift(response.Item);
@@ -352,7 +352,7 @@
             return;
         }
         pollingLog.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/edit", pollingLog.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/", pollingLog.selectedItem, "PUT").success(function (response) {
             pollingLog.addRequested = false;
             pollingLog.treeConfig.showbusy = false;
             pollingLog.showIsBusy = false;
@@ -456,7 +456,7 @@
                 rashaErManage.checkAction(response);
                 pollingLog.selectedItemForUpdate = response.Item;
                 pollingLog.selectedItemForUpdate.Option = pollingLog.OptionList[optionIndex].Option;
-                ajax.call(cmsServerConfig.configApiServerPath+"pollingOption/edit", pollingLog.selectedItemForUpdate, "PUT").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"pollingOption/", pollingLog.selectedItemForUpdate, "PUT").success(function (res) {
                     rashaErManage.checkAction(res);
                 }).error(function (data2, errCode2, c2, d2) {
                     rashaErManage.checkAction(data2);
@@ -561,7 +561,7 @@
         pollingLog.contentBusyIndicator.isActive = true;
         pollingLog.addRequested = true;
         for (var i = 0; i < pollingLog.OptionList.length; i++) {
-            ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/add', pollingLog.OptionList[i], 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/', pollingLog.OptionList[i], 'POST').success(function (response) {
                 pollingLog.addRequested = false;
                 pollingLog.contentBusyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
@@ -612,7 +612,7 @@
             return;
         }
         pollingLog.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/add", pollingLog.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/", pollingLog.selectedItem, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingLog.selectedItem.Option = ""; //Clear textbox

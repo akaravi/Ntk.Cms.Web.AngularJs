@@ -144,7 +144,7 @@
         estateProperty.addRequested = true;
         var valueItem = {};
         estateProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/add', estateProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 estateProperty.closeModal();
@@ -270,7 +270,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         estateProperty.busyIndicator.isActive = true;
         estateProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(estateProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/edit', estateProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, "PUT").success(function (response) {
             estateProperty.addRequested = true;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -357,7 +357,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             estateProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch', estateProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch', estateProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 estateProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -772,7 +772,7 @@
         }
         estateProperty.addRequested = true;
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/add', estateProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.selectedItem, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -826,7 +826,7 @@
 
     estateProperty.editContract = function (index) {
         estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/edit', estateProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.contractsList[index], "PUT").success(function (res) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -973,7 +973,7 @@
     }
     //save new file
     estateProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 estateProperty.FileItem = response.Item;
                 estateProperty.showSuccessIcon();
@@ -1106,7 +1106,7 @@
                     estateProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- estateProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             estateProperty.FileItem = response.Item;
                             estateProperty.showSuccessIcon();

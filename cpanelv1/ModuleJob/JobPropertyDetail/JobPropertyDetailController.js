@@ -71,18 +71,18 @@
     //init Function
     jobPropertyDetail.init = function () {
         jobPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
             jobPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
-            jobPropertyDetail.inputDataTypeArray = response.ListItems;
-        }).error(function (data, errCode, c, d) {
-            console.log(data);
-        });
+        // ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        //     jobPropertyDetail.inputDataTypeArray = response.ListItems;
+        // }).error(function (data, errCode, c, d) {
+        //     console.log(data);
+        // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
             jobPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -144,7 +144,7 @@
         jobPropertyDetail.addRequested = true;
         jobPropertyDetail.selectedItem.LinkPropertyTypeId = jobPropertyDetail.propertyTypeId;
         jobPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/add', jobPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/', jobPropertyDetail.selectedItem, 'POST').success(function (response) {
             jobPropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -189,7 +189,7 @@
         }
         jobPropertyDetail.categorybusyIndicator.isActive = true;
         jobPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/', jobPropertyDetail.selectedItem, "PUT").success(function (response) {
             jobPropertyDetail.addRequested = true;
             jobPropertyDetail.treeConfig.showbusy = false;
             jobPropertyDetail.showIsBusy = false;
@@ -342,7 +342,7 @@
         jobPropertyDetail.selectedItem.DefaultValue.nameValue = jobPropertyDetail.attachedFields;
         jobPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(jobPropertyDetail.selectedItem.DefaultValue));
         jobPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/add', jobPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/', jobPropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 // filter text
@@ -410,7 +410,7 @@
         jobPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(jobPropertyDetail.selectedItem.DefaultValue));
         jobPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         jobPropertyDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response) {
             // jobPropertyDetail.addRequested = false;
             jobPropertyDetail.treeConfig.showbusy = false;
             jobPropertyDetail.showIsBusy = false;
@@ -562,7 +562,7 @@
             jobPropertyDetail.attachedFields[jobPropertyDetail.selectedIndex] = FieldName;
             jobPropertyDetail.selectedItem.DefaultValue.nameValue = jobPropertyDetail.attachedFields;
             jobPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(jobPropertyDetail.selectedItem.DefaultValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 jobPropertyDetail.disableUpdate();
                 $("#FieldName").val("");
@@ -627,14 +627,14 @@
             jobPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             jobPropertyDetail.selectedItem.ShowInFormOrder = jobPropertyDetail.ListItems[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         jobPropertyDetail.selectedItem = response3.Item;
                         jobPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // Swap two item in the grid list without requesting a GetAll
@@ -669,14 +669,14 @@
             jobPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             jobPropertyDetail.selectedItem.ShowInFormOrder = jobPropertyDetail.ListItems[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         jobPropertyDetail.selectedItem = response3.Item;
                         jobPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetail/', jobPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // جابجا کردن مکان دو آیتم در آرایه
@@ -721,14 +721,14 @@
             jobPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             jobPropertyDetail.selectedItem.ShowInFormOrder = jobPropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         jobPropertyDetail.selectedItem = response3.Item;
                         jobPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 jobPropertyDetail.treeConfig.Items[index + 1] = response4.Item;
@@ -771,14 +771,14 @@
             jobPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             jobPropertyDetail.selectedItem.ShowInFormOrder = jobPropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         jobPropertyDetail.selectedItem = response3.Item;
                         jobPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/edit', jobPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyDetailGroup/', jobPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 jobPropertyDetail.treeConfig.Items[index - 1] = response4.Item;

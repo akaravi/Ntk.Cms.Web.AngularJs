@@ -94,7 +94,7 @@
         }
         vehicleContract.busyIndicator.isActive = true;
         vehicleContract.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/add', vehicleContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/', vehicleContract.selectedItem, 'POST').success(function (response) {
             vehicleContract.addRequested = false;
             vehicleContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -147,7 +147,7 @@
             return;
         }
         vehicleContract.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/edit', vehicleContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/', vehicleContract.selectedItem, "PUT").success(function (response) {
             vehicleContract.addRequested = true;
             rashaErManage.checkAction(response);
             vehicleContract.busyIndicator.isActive = false;

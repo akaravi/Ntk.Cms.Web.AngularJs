@@ -61,7 +61,7 @@
         if (frm.$invalid)
             return;
         cmsLocation.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/add', cmsLocation.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/', cmsLocation.selectedItem, 'POST').success(function (response) {
             cmsLocation.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -105,7 +105,7 @@
             rashaErManage.showMessage($filter('translatentk')('Email_Format_Is_Not_Correct'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/edit', cmsLocation.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/', cmsLocation.selectedItem, "PUT").success(function (response) {
             cmsLocation.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

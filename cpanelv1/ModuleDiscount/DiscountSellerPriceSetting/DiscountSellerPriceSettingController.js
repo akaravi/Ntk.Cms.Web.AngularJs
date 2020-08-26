@@ -119,7 +119,7 @@
         }
         discountSellerPriceSetting.busyIndicator.isActive = true;
         discountSellerPriceSetting.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/add', discountSellerPriceSetting.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/', discountSellerPriceSetting.selectedItem, 'POST').success(function (response) {
             discountSellerPriceSetting.addRequested = false;
             discountSellerPriceSetting.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         discountSellerPriceSetting.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/edit', discountSellerPriceSetting.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/', discountSellerPriceSetting.selectedItem, "PUT").success(function (response) {
             discountSellerPriceSetting.addRequested = true;
             rashaErManage.checkAction(response);
             discountSellerPriceSetting.busyIndicator.isActive = false;

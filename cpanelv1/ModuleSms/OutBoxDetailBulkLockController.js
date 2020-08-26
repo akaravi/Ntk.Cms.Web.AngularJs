@@ -35,7 +35,7 @@
             return;
         }
         outBoxDetailBulkLock.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/add', outBoxDetailBulkLock.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/', outBoxDetailBulkLock.selectedItem, 'POST').success(function (response) {
             outBoxDetailBulkLock.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -73,7 +73,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/', outBoxDetailBulkLock.selectedItem, "PUT").success(function (response) {
             outBoxDetailBulkLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -95,7 +95,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/', outBoxDetailBulkLock.selectedItem, "PUT").success(function (response) {
             outBoxDetailBulkLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

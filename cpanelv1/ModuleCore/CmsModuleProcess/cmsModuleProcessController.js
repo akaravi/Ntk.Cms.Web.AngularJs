@@ -65,7 +65,7 @@
         if (frm.$invalid)
             return;
         cmsModulePrc.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/add', cmsModulePrc.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/', cmsModulePrc.selectedItem, 'POST').success(function (response) {
             cmsModulePrc.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -103,7 +103,7 @@
         var myControlerAdd = "";
         if (cmsModulePrc.selectedItem.AutoEdit) myControlerAdd = "Auto";
         cmsModulePrc.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/edit' + myControlerAdd, cmsModulePrc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/edit' + myControlerAdd, cmsModulePrc.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsModulePrc.addRequested = false;

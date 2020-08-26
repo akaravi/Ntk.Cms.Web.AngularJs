@@ -493,7 +493,7 @@
         pollingContent.selectedItem.LinkParentId = null;
         if (pollingContent.treeConfig.currentNode != null)
             pollingContent.selectedItem.LinkParentId = pollingContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/add", pollingContent.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/", pollingContent.selectedItem, "POST").success(function (response) {
             pollingContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -516,7 +516,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/edit", pollingContent.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/", pollingContent.selectedItem, "PUT").success(function (response) {
             pollingContent.addRequested = true;
             //pollingContent.showbusy = false;
             pollingContent.treeConfig.showbusy = false;
@@ -681,7 +681,7 @@
             return;
         }
         pollingContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/add", pollingContent.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/", pollingContent.selectedItem, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 pollingContent.ListItems.unshift(response.Item);
@@ -703,7 +703,7 @@
             return;
         }
         pollingContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/edit", pollingContent.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingcontent/", pollingContent.selectedItem, "PUT").success(function (response) {
             pollingContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -847,7 +847,7 @@
                 rashaErManage.checkAction(response);
                 pollingContent.selectedItemForUpdate = response.Item;
                 pollingContent.selectedItemForUpdate.Option = pollingContent.OptionList[optionIndex].Option;
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/edit", pollingContent.selectedItemForUpdate, "PUT").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/", pollingContent.selectedItemForUpdate, "PUT").success(function (res) {
                     rashaErManage.checkAction(res);
                 }).error(function (data2, errCode2, c2, d2) {
                     rashaErManage.checkAction(data2);
@@ -956,7 +956,7 @@
         pollingContent.contentBusyIndicator.isActive = true;
         pollingContent.addRequested = true;
         for (var i = 0; i < pollingContent.OptionList.length; i++) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'pollingOption/add', pollingContent.OptionList[i], 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'pollingOption/', pollingContent.OptionList[i], 'POST').success(function (response) {
                 pollingContent.addRequested = false;
                 pollingContent.contentBusyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
@@ -1003,7 +1003,7 @@
             return;
         }
         pollingContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/add", pollingContent.selectedItem, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.selectedItem, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 if (addtoGrid) {
@@ -1053,7 +1053,7 @@
             return;
         }
         pollingContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/edit", pollingContent.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/", pollingContent.selectedItem, "PUT").success(function (response) {
             pollingContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1337,7 +1337,7 @@
                     pollingContent.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- pollingContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", pollingContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", pollingContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             pollingContent.FileItem = response.Item;
                             pollingContent.showSuccessIcon();

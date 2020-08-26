@@ -28,7 +28,7 @@
 
     cmsUser.init = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", "", 'GET').success(function (response) {
             cmsUser.Gender = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -84,7 +84,7 @@
         cmsUser.selectedItem.LinkFileIds = "";
         cmsUser.stringfyLinkFileIds();
         cmsUser.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', cmsUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItem, 'POST').success(function (response) {
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -146,7 +146,7 @@
         //Save attached file ids into cmsUser.selectedItem.LinkFileIds
         cmsUser.selectedItem.LinkFileIds = "";
         cmsUser.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/edit', cmsUser.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItem, "PUT").success(function (response) {
             buttonIsPressed = false;
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
@@ -508,7 +508,7 @@
     }
     //save new file
     cmsUser.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsUser.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 cmsUser.FileItem = response.Item;
                 cmsUser.showSuccessIcon();
@@ -641,7 +641,7 @@
                     cmsUser.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- cmsUser.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsUser.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             cmsUser.FileItem = response.Item;
                             cmsUser.showSuccessIcon();

@@ -140,7 +140,7 @@
         }
         memberInfo.busyIndicator.isActive = true;
         memberInfo.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -188,7 +188,7 @@
             return;
         }
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/', memberInfo.selectedItem, "PUT").success(function (response) {
             memberInfo.addRequested = true;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;

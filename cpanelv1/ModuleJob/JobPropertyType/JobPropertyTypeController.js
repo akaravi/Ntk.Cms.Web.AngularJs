@@ -57,7 +57,7 @@
         }
         jobPropertyType.busyIndicator.isActive = true;
         jobPropertyType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/add', jobPropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/', jobPropertyType.selectedItem, 'POST').success(function (response) {
             jobPropertyType.addRequested = false;
             jobPropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -99,7 +99,7 @@
             return;
         }
         jobPropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/edit', jobPropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/', jobPropertyType.selectedItem, "PUT").success(function (response) {
             jobPropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;

@@ -45,7 +45,7 @@
         mvGalleryContentTag.addRequested = true;
         mvGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/add', mvGalleryContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/', mvGalleryContentTag.selectedItem , 'POST').success(function (response) {
             mvGalleryContentTag.addRequested = false;
             mvGalleryContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         mvGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/edit',  mvGalleryContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/',  mvGalleryContentTag.selectedItem , "PUT").success(function (response) {
             mvGalleryContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             mvGalleryContentTag.busyIndicator.isActive = false;

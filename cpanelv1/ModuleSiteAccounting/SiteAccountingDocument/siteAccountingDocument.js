@@ -63,7 +63,7 @@
         }
         ServiceComment.busyIndicator.isActive = true;
         ServiceComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/add', ServiceComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/', ServiceComment.selectedItem, 'POST').success(function (response) {
             ServiceComment.addRequested = false;
             ServiceComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
             return;
         }
         ServiceComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/edit', ServiceComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/', ServiceComment.selectedItem, "PUT").success(function (response) {
             ServiceComment.addRequested = true;
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;

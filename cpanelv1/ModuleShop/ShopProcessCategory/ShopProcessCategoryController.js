@@ -69,7 +69,7 @@
 //       }
 //       shopProcessCategory.busyIndicator.isActive = true;
 //       shopProcessCategory.addRequested = true;
-//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/add', shopProcessCategory.selectedItem, 'POST').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/', shopProcessCategory.selectedItem, 'POST').success(function (response) {
 //           shopProcessCategory.addRequested = false;
 //           shopProcessCategory.busyIndicator.isActive = false;
 //           rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
         }
         shopProcessCategory.addRequested = true;
         shopProcessCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/', shopProcessCategory.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -279,7 +279,7 @@
         shopProcessCategory.addRequested = true;
         shopProcessCategory.busyIndicator.isActive = true;
         shopProcessCategory.selectedItem[shopProcessCategory.selectedConfig] = $.trim(angular.toJson(shopProcessCategory.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/', shopProcessCategory.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.addRequested = false;
             shopProcessCategory.busyIndicator.isActive = false;
@@ -374,7 +374,7 @@
               // ------- shopProcessCategory.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", shopProcessCategory.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", shopProcessCategory.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     shopProcessCategory.FileItem = response.Item;

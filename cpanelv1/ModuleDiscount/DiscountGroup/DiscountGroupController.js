@@ -119,7 +119,7 @@
         }
         discountGroup.busyIndicator.isActive = true;
         discountGroup.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/add', discountGroup.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/', discountGroup.selectedItem, 'POST').success(function (response) {
             discountGroup.addRequested = false;
             discountGroup.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         discountGroup.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/edit', discountGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/', discountGroup.selectedItem, "PUT").success(function (response) {
             discountGroup.addRequested = true;
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;

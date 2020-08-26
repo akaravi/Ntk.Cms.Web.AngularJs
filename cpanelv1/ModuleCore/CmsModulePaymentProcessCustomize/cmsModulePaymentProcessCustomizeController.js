@@ -106,7 +106,7 @@
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/add', cmsMdlPayPrcCust.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/', cmsMdlPayPrcCust.selectedItem, 'POST').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -152,7 +152,7 @@
             return;
         var myControlerAdd = "";
         if (cmsMdlPayPrcCust.selectedItem.AutoEdit) myControlerAdd = "Auto";
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit' + myControlerAdd, cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit' + myControlerAdd, cmsMdlPayPrcCust.selectedItem, "PUT").success(function (response) {
             cmsMdlPayPrcCust.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -381,7 +381,7 @@
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormMainAdminClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/', cmsMdlPayPrcCust.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -450,7 +450,7 @@
 
     cmsMdlPayPrcCust.saveSubmitValuesMainAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (cmsMdlPayPrcCust.updateMode == "add")
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;
@@ -547,7 +547,7 @@
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormEndUserClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/', cmsMdlPayPrcCust.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -616,7 +616,7 @@
 
     cmsMdlPayPrcCust.saveSubmitValuesEndUser = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (cmsMdlPayPrcCust.updateMode == "add")
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;
@@ -712,7 +712,7 @@
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormSiteAdminClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/', cmsMdlPayPrcCust.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -781,7 +781,7 @@
 
     cmsMdlPayPrcCust.saveSubmitValuesSiteAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (cmsMdlPayPrcCust.updateMode == "add")
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;

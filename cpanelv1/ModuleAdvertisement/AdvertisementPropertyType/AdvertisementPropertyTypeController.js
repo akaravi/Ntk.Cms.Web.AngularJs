@@ -174,7 +174,7 @@
         advertisementPropertyType.selectedItem.LinkParentId = null;
         if (advertisementPropertyType.treeConfig.currentNode != null)
             advertisementPropertyType.selectedItem.LinkParentId = advertisementPropertyType.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/add', advertisementPropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/', advertisementPropertyType.selectedItem, 'POST').success(function (response) {
             advertisementPropertyType.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -202,7 +202,7 @@
         }
         advertisementPropertyType.addRequested = true;
         advertisementPropertyType.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/edit', advertisementPropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/', advertisementPropertyType.selectedItem, "PUT").success(function (response) {
             advertisementPropertyType.addRequested = true;
             //advertisementPropertyType.showbusy = false;
             advertisementPropertyType.treeConfig.showbusy = false;
@@ -319,7 +319,7 @@
         }
         advertisementPropertyType.busyIndicator.isActive = true;
         advertisementPropertyType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/add', advertisementPropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/', advertisementPropertyType.selectedItem, 'POST').success(function (response) {
             advertisementPropertyType.addRequested = false;
             advertisementPropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -361,7 +361,7 @@
             return;
         }
         advertisementPropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/edit', advertisementPropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/', advertisementPropertyType.selectedItem, "PUT").success(function (response) {
             advertisementPropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementPropertyType.busyIndicator.isActive = false;

@@ -287,7 +287,7 @@
         if (reservationTag.treeConfig.currentNode != null)
             reservationTag.selectedItem.LinkParentId = reservationTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/add', reservationTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/', reservationTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             reservationTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         reservationTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/edit', reservationTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/', reservationTag.selectedItem, "PUT").success(function (response) {
             reservationTag.addRequested = true;
             //reservationTag.showbusy = false;
             reservationTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         reservationTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationtag/add', reservationTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationtag/', reservationTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         reservationTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationtag/edit', reservationTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationtag/', reservationTag.selectedItem, "PUT").success(function (response) {
             reservationTag.categoryBusyIndicator.isActive = false;
             reservationTag.addRequested = false;
             reservationTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     reservationTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", reservationTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", reservationTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 reservationTag.FileItem = response.Item;
                 reservationTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     reservationTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- reservationTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", reservationTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", reservationTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             reservationTag.FileItem = response.Item;
                             reservationTag.showSuccessIcon();

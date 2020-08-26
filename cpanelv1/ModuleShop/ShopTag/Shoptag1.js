@@ -287,7 +287,7 @@
         if (shopTag.treeConfig.currentNode != null)
             shopTag.selectedItem.LinkParentId = shopTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/add', shopTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/', shopTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             shopTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         shopTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/edit', shopTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/', shopTag.selectedItem, "PUT").success(function (response) {
             shopTag.addRequested = true;
             //shopTag.showbusy = false;
             shopTag.treeConfig.showbusy = false;
@@ -466,7 +466,7 @@
         shopTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/add', shopTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/', shopTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -493,7 +493,7 @@
         shopTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/edit', shopTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shoptag/', shopTag.selectedItem, "PUT").success(function (response) {
             shopTag.categoryBusyIndicator.isActive = false;
             shopTag.addRequested = false;
             shopTag.treeConfig.showbusy = false;
@@ -833,7 +833,7 @@
     }
     //save new file
     shopTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 shopTag.FileItem = response.Item;
                 shopTag.showSuccessIcon();
@@ -965,7 +965,7 @@
                     shopTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- shopTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             shopTag.FileItem = response.Item;
                             shopTag.showSuccessIcon();

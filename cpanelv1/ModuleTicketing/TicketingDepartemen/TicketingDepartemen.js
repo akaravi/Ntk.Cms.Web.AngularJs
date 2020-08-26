@@ -141,7 +141,7 @@
         }
         ticketingDepartemen.selectedItem.LinkCmsPageId = 1;
         ticketingDepartemen.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.ListItems.unshift(response.Item);
@@ -162,7 +162,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/edit', ticketingDepartemen.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/', ticketingDepartemen.selectedItem, "PUT").success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -272,7 +272,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -426,7 +426,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/add', ticketingDepartemen.TypeOperator.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/', ticketingDepartemen.TypeOperator.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.TypeOperator.ListItems.unshift(response.Item);

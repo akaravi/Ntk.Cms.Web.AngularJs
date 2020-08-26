@@ -57,7 +57,7 @@
         }
         vehiclePropertyType.busyIndicator.isActive = true;
         vehiclePropertyType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/add', vehiclePropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/', vehiclePropertyType.selectedItem, 'POST').success(function (response) {
             vehiclePropertyType.addRequested = false;
             vehiclePropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -99,7 +99,7 @@
             return;
         }
         vehiclePropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/edit', vehiclePropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/', vehiclePropertyType.selectedItem, "PUT").success(function (response) {
             vehiclePropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;

@@ -107,7 +107,7 @@
         processCtrl.busyIndicator.isActive = true;
         processCtrl.addRequested = true;
         processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/add', processCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItem, 'POST').success(function (response) {
             processCtrl.addRequested = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -184,7 +184,7 @@
             return;
         }
         processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/edit', processCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItem, "PUT").success(function (response) {
             processCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -502,7 +502,7 @@
             processCtrl.selectedItem.LinkModuleId = null;
             processCtrl.selectedItem.LinkModuleProcessId = null;
             processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItem, "PUT").success(function (response) {
                 processCtrl.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {

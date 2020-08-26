@@ -60,7 +60,7 @@
         form.addRequested = true;
         form.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/add', form.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.selectedItem, 'POST').success(function (response) {
             form.addRequested = false;
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -106,7 +106,7 @@
         }
         var myControlerAdd = "";
         if (form.selectedItem.AutoEdit) myControlerAdd = "Auto";
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/edit' + myControlerAdd, form.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/edit' + myControlerAdd, form.selectedItem, "PUT").success(function (response) {
             form.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -301,7 +301,7 @@
             // $builder.forms['default'] -> get the form in Json format
             form.selectedItem.JsonForm = $.trim(angular.toJson($builder.forms['default']));
             form.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/edit', form.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/', form.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     form.replaceItem(form.gridOptions.selectedRow.item.Id, response2.Item);

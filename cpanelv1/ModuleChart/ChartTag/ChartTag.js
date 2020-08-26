@@ -287,7 +287,7 @@
         if (chartTag.treeConfig.currentNode != null)
             chartTag.selectedItem.LinkParentId = chartTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/add', chartTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/', chartTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             chartTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         chartTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/edit', chartTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/', chartTag.selectedItem, "PUT").success(function (response) {
             chartTag.addRequested = true;
             //chartTag.showbusy = false;
             chartTag.treeConfig.showbusy = false;
@@ -468,7 +468,7 @@
         chartTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'charttag/add', chartTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'charttag/', chartTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -495,7 +495,7 @@
         chartTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'charttag/edit', chartTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'charttag/', chartTag.selectedItem, "PUT").success(function (response) {
             chartTag.categoryBusyIndicator.isActive = false;
             chartTag.addRequested = false;
             chartTag.treeConfig.showbusy = false;
@@ -835,7 +835,7 @@
     }
     //save new file
     chartTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 chartTag.FileItem = response.Item;
                 chartTag.showSuccessIcon();
@@ -968,7 +968,7 @@
                     chartTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- chartTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             chartTag.FileItem = response.Item;
                             chartTag.showSuccessIcon();

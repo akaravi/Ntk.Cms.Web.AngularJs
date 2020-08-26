@@ -152,7 +152,7 @@
         }
         memberInfo.busyIndicator.isActive = true;
         memberInfo.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -200,7 +200,7 @@
             return;
         }
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.selectedItem, "PUT").success(function (response) {
             memberInfo.addRequested = true;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -386,11 +386,11 @@
         if (memberInfo.addNewMemberUser == "1") {
             memberInfo.addRequested = true;
             memberInfo.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', memberInfo.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', memberInfo.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     memberInfo.selectedItem.LinkMemberId = response1.Item.Id;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.selectedItem, "PUT").success(function (response2) {
                         rashaErManage.checkAction(response2);
                         memberInfo.addRequested = false;
                         memberInfo.busyIndicator.isActive = false;
@@ -413,7 +413,7 @@
             memberInfo.addRequested = true;
             memberInfo.busyIndicator.isActive = true;
             //memberInfo.selectedItem.LinkMemberId = selected.originalObject.Id; //Delete MemberUser
-            ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 memberInfo.addRequested = false;
                 memberInfo.busyIndicator.isActive = false;
@@ -429,7 +429,7 @@
     memberInfo.editMemberUserGroup = function (frm) {
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/edit', memberInfo.selectedMemberUser, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/', memberInfo.selectedMemberUser, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 memberInfo.addRequested = false;
@@ -445,7 +445,7 @@
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
         memberInfo.selectedItem.LinkMemberId = null;//Delete MemberUser
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/', memberInfo.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;

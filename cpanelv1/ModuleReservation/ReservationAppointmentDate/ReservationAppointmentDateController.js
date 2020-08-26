@@ -439,7 +439,7 @@
         //appDate.selectedItem.StartDateTime = appDate.StartDateTime;
         //appDate.selectedItem.EndDateTime = appDate.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/add', appDate.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/', appDate.selectedItem, 'POST').success(function (response) {
             appDate.addRequested = false;
             appDate.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -472,7 +472,7 @@
         //appDate.selectedItemDetail.StartDateTime = appDate.StartDateTime;
         //appDate.selectedItemDetail.EndDateTime = appDate.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/add', appDate.selectedItemDetail, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDate.selectedItemDetail, 'POST').success(function (response) {
             appDate.addRequested = false;
             appDate.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -564,7 +564,7 @@
             return;
         }
         appDate.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/edit', appDate.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/', appDate.selectedItem, "PUT").success(function (response) {
             appDate.addRequested = true;
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
@@ -589,7 +589,7 @@
             return;
         }
         appDate.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/edit', appDate.selectedItemDetail, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDate.selectedItemDetail, "PUT").success(function (response) {
             appDate.addRequested = true;
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
@@ -949,7 +949,7 @@
     }
     //save new file
     appDate.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", appDate.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", appDate.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 appDate.FileItem = response.Item;
                 appDate.showSuccessIcon();
@@ -1082,7 +1082,7 @@
                     appDate.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- appDate.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", appDate.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", appDate.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             appDate.FileItem = response.Item;
                             appDate.showSuccessIcon();

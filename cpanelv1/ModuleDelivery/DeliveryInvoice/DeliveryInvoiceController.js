@@ -118,7 +118,7 @@
         //deliveryInvoice.selectedItem.StartDateTime = deliveryInvoice.StartDateTime;
         //deliveryInvoice.selectedItem.EndDateTime = deliveryInvoice.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/add', deliveryInvoice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/', deliveryInvoice.selectedItem, 'POST').success(function (response) {
             deliveryInvoice.addRequested = false;
             deliveryInvoice.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -171,7 +171,7 @@
             return;
         }
         deliveryInvoice.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/edit', deliveryInvoice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/', deliveryInvoice.selectedItem, "PUT").success(function (response) {
             deliveryInvoice.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;

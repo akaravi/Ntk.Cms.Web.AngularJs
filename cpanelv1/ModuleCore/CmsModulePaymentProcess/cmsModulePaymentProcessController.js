@@ -68,7 +68,7 @@
             return;
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/add', cmsMdlPayPrc.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/', cmsMdlPayPrc.selectedItem, 'POST').success(function (response) {
             cmsMdlPayPrc.busyIndicator.isActive = false;
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
@@ -109,7 +109,7 @@
         if (cmsMdlPayPrc.selectedItem.AutoEdit) myControlerAdd = "Auto";
         cmsMdlPayPrc.busyIndicator.isActive = true;
         cmsMdlPayPrc.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/edit' + myControlerAdd, cmsMdlPayPrc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/edit' + myControlerAdd, cmsMdlPayPrc.selectedItem, "PUT").success(function (response) {
             cmsMdlPayPrc.busyIndicator.isActive = false;
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);

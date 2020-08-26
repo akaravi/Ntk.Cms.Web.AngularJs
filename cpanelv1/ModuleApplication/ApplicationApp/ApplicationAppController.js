@@ -203,7 +203,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/add', appApplication.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -411,7 +411,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/edit', appApplication.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;

@@ -109,7 +109,7 @@
             return;
         cmsPagegrd.addRequested = true;
         cmsPagegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPagegrd.selectedItem, 'POST').success(function (response) {
             cmsPagegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -128,7 +128,7 @@
             return;
         cmsPagegrd.addRequested = true;
         if (frm.$name == "frmCmsPageAdd") {   // Functions was called from add modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPagegrd.selectedItem, 'POST').success(function (response) {
                 cmsPagegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -144,7 +144,7 @@
             });
         }
         else {  // Functions was called from edit modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPagegrd.selectedItem, "PUT").success(function (response) {
                 cmsPagegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -189,7 +189,7 @@
             return;
         cmsPagegrd.busyIndicator.isActive = true;
         cmsPagegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/', cmsPagegrd.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPagegrd.addRequested = false;

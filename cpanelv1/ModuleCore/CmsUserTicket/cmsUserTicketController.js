@@ -41,7 +41,7 @@
             return;
 
         cmsUserTicketgrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/add', cmsUserTicketgrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/', cmsUserTicketgrd.selectedItem, 'POST').success(function (response) {
             cmsUserTicketgrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -78,7 +78,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/edit', cmsUserTicketgrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/', cmsUserTicketgrd.selectedItem, "PUT").success(function (response) {
             cmsUserTicketgrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

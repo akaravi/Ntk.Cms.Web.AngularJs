@@ -55,7 +55,7 @@
         }
         trancsLog.addRequested = true;
         trancsLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'transactionlog/add', trancsLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'transactionlog/', trancsLog.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 trancsLog.ListItems.unshift(response.Item);
@@ -99,7 +99,7 @@
             return;
         }
         trancsLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/edit', trancsLog.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/', trancsLog.selectedItem, "PUT").success(function (response1) {
             trancsLog.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {

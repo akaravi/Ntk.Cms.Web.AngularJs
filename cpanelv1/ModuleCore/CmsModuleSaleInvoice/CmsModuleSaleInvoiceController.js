@@ -80,7 +80,7 @@
         }
         cmsModuleSaleInvoice.busyIndicator.isActive = true;
         cmsModuleSaleInvoice.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/add', cmsModuleSaleInvoice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.selectedItem, 'POST').success(function (response) {
             cmsModuleSaleInvoice.addRequested = false;
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -126,7 +126,7 @@
             return;
         }
         cmsModuleSaleInvoice.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/edit', cmsModuleSaleInvoice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/', cmsModuleSaleInvoice.selectedItem, "PUT").success(function (response) {
             cmsModuleSaleInvoice.addRequested = true;
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;

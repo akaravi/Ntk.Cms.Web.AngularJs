@@ -45,7 +45,7 @@
         reservationContentTag.addRequested = true;
         reservationContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/add', reservationContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/', reservationContentTag.selectedItem , 'POST').success(function (response) {
             reservationContentTag.addRequested = false;
             reservationContentTag.busyIndicator.isActive = false;
 
@@ -90,7 +90,7 @@
         }
         reservationContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/edit',  reservationContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/',  reservationContentTag.selectedItem , "PUT").success(function (response) {
             reservationContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             reservationContentTag.busyIndicator.isActive = false;

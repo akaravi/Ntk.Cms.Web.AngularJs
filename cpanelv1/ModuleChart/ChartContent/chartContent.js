@@ -222,7 +222,7 @@
     //    if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
     //        var tagObject = jQuery.extend({}, chartContent.ModuleTag);   //#Clone a Javascript Object
     //        tagObject.Title = tag.text;
-    //        ajax.call('/api/chartTag/add', tagObject, 'POST').success(function (response) {
+    //        ajax.call('/api/chartTag/', tagObject, 'POST').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            if (response.IsSuccess) {
     //                chartContent.tags[chartContent.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -495,7 +495,7 @@
         if (chartContent.treeConfig.currentNode != null)
             chartContent.selectedItem.LinkParentId = chartContent.treeConfig.currentNode.Id;
         chartContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/add', chartContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/', chartContent.selectedItem, 'POST').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -522,7 +522,7 @@
             return;
         }
         chartContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartCategory/edit', chartContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartCategory/', chartContent.selectedItem, "PUT").success(function (response) {
             chartContent.addRequested = true;
             //chartContent.showbusy = false;
             chartContent.treeConfig.showbusy = false;
@@ -790,7 +790,7 @@
                 item.Destination = [];
             });
 
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.contentBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -866,7 +866,7 @@
                 item.Destination = [];
             });
 
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', apiSelectedItem, "PUT").success(function (response) {
             chartContent.contentBusyIndicator.isActive = false;
             chartContent.addRequested = false;
             chartContent.treeConfig.showbusy = false;
@@ -1049,7 +1049,7 @@
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
             chartContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', chartContent.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = chartContent.ListItems.indexOf(chartContent.gridOptions.selectedRow.item);
@@ -1075,7 +1075,7 @@
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
             chartContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/', chartContent.selectedItem, "PUT").success(function (response2) {
                 chartContent.contentBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1516,7 +1516,7 @@
     }
     //save new file
     chartContent.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 chartContent.FileItem = response.Item;
                 chartContent.showSuccessIcon();
@@ -1653,7 +1653,7 @@
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- chartContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             chartContent.FileItem = response.Item;
                             chartContent.showSuccessIcon();
@@ -1758,7 +1758,7 @@
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- chartContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", chartContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             chartContent.FileItem = response.Item;
                             chartContent.showSuccessIcon();

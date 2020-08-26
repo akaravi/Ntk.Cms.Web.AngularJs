@@ -78,7 +78,7 @@
         }
         blogCategory.busyIndicator.isActive = true;
         blogCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/add',  blogCategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/',  blogCategory.selectedItem , 'POST').success(function (response) {
             blogCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -151,7 +151,7 @@
             return;
         }
         blogCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/', blogCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/', blogCategory.selectedItem, "PUT").success(function (response) {
             blogCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -177,7 +177,7 @@
             return;
         }
         blogCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/edit/', blogCategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/edit/', blogCategory.selectedItem , "PUT").success(function (response) {
             blogCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -79,7 +79,7 @@
         }
         mscGalleryComment.busyIndicator.isActive = true;
         mscGalleryComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/add', mscGalleryComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/', mscGalleryComment.selectedItem, 'POST').success(function (response) {
             mscGalleryComment.addRequested = false;
             mscGalleryComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -125,7 +125,7 @@
             return;
         }
         mscGalleryComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/edit', mscGalleryComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryComment/', mscGalleryComment.selectedItem, "PUT").success(function (response) {
             mscGalleryComment.addRequested = true;
             rashaErManage.checkAction(response);
             mscGalleryComment.busyIndicator.isActive = false;

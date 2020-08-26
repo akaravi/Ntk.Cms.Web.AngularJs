@@ -128,7 +128,7 @@
         //appDateDetail.selectedItem.StartDateTime = appDateDetail.StartDateTime;
         //appDateDetail.selectedItem.EndDateTime = appDateDetail.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/add', appDateDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDateDetail.selectedItem, 'POST').success(function (response) {
             appDateDetail.addRequested = false;
             appDateDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -182,7 +182,7 @@
             return;
         }
         appDateDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/edit', appDateDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/', appDateDetail.selectedItem, "PUT").success(function (response) {
             appDateDetail.addRequested = true;
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;

@@ -116,7 +116,7 @@
             return;
         blogContentParameterType.busyIndicator.isActive = true;
         blogContentParameterType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/add', blogContentParameterType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/', blogContentParameterType.selectedItem, 'POST').success(function (response) {
             blogContentParameterType.addRequested = false;
             blogContentParameterType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -163,7 +163,7 @@
         if (frm.$invalid)
             return;
         blogContentParameterType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/edit', blogContentParameterType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameterType/', blogContentParameterType.selectedItem, "PUT").success(function (response) {
             blogContentParameterType.addRequested = true;
             rashaErManage.checkAction(response);
             blogContentParameterType.busyIndicator.isActive = false;

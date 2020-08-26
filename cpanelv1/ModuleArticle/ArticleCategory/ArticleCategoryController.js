@@ -75,7 +75,7 @@
         }
         articlecategory.categoryBusyIndicator.isActive = true;
         articlecategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/add',  articlecategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/',  articlecategory.selectedItem , 'POST').success(function (response) {
             articlecategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -144,7 +144,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/', articlecategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articlecategory/', articlecategory.selectedItem, "PUT").success(function (response) {
             articlecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -167,7 +167,7 @@
             return;
         }
         articlecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleCategory/edit/', articlecategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleCategory/edit/', articlecategory.selectedItem , "PUT").success(function (response) {
             articlecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -351,7 +351,7 @@
 
     fdm.saveNewFolder = function () {
         fdm.loadingBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/add", fdm.Item, 'Post').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.Item, 'Post').success(function (response) {
             fdm.Item = response.Item;
             fdm.loadingBusyIndicator.isActive = false;
             fdm.categoryList.unshift(response.Item);
@@ -493,7 +493,7 @@
                                             fdm.FileItem.LinkCategoryId = fdm.thisCategory;
                                             // ------- fdm.saveNewFile()  ----------------------
                                             var result = 0;
-                                            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", fdm.FileItem, 'POST').success(function (response) {
+                                            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.FileItem, 'POST').success(function (response) {
                                                 fdm.loadingBusyIndicator.isActive = false;
                                                 if (response.IsSuccess) {
                                                     fdm.FileItem = response.Item;
@@ -575,7 +575,7 @@
                     fdm.FileItem.LinkCategoryId = fdm.thisCategory;
                     // ------- fdm.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", fdm.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.FileItem, 'POST').success(function (response) {
                         fdm.loadingBusyIndicator.isActive = false;
                         if (response.IsSuccess) {
                             fdm.FileItem = response.Item;
@@ -692,7 +692,7 @@
     }
     //save new file
     fdm.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", fdm.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.FileItem, 'POST').success(function (response) {
             fdm.loadingBusyIndicator.isActive = false;
             if (response.IsSuccess) {
                 fdm.FileItem = response.Item;
@@ -837,7 +837,7 @@
             fdm.loadingBusyIndicator.isActive = true;
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", id, 'GET').success(function (response) {
                 response.Item.LinkParentId = parentFolderDes;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/add', response.Item, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item, 'POST').success(function (response) {
                     fdm.categoryList.unshift(response.Item);
                     fdm.loadingBusyIndicator.isActive = false;
 
@@ -916,7 +916,7 @@
             fdm.loadingBusyIndicator.isActive = true;
             ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", id, 'GET').success(function (response) {
                 response.Item.LinkCategoryId = parentFolderDes;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', response.Item, 'PUT').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item, "PUT").success(function (response) {
                     if (fdm.FileList.length > 0) {
                         fdm.replace(fdm.FileList, response.Item);
                         fdm.refreshFolder();
@@ -978,7 +978,7 @@
 
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", id, 'GET').success(function (response) {
                 response.Item.LinkParentId = fdm.thisCategory;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/edit', response.Item, 'PUT').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item, "PUT").success(function (response) {
                     fdm.replace(fdm.categoryList, response.Item);
                     fdm.refreshFolder();
                     fdm.loadingBusyIndicator.isActive = false;
@@ -1055,7 +1055,7 @@
             ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToRename, 'GET').success(function (response) {
                 var ext = response.Item.FileName.split('.').pop();
                 response.Item.FileName = newFileName + "." + ext;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', response.Item, 'PUT').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item, "PUT").success(function (response) {
                     fdm.replace(fdm.FileList, response.Item);
                     fdm.loadingBusyIndicator.isActive = false;
                     fdm.refreshFolder();
@@ -1076,7 +1076,7 @@
         } else if (fdm.fileTypes == 2) { //folder type
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToRename, 'GET').success(function (response) {
                 response.Item.Title = newFileName;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/edit', response.Item, 'PUT').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item, "PUT").success(function (response) {
                     fdm.replace(fdm.categoryList, response.Item);
                     fdm.loadingBusyIndicator.isActive = false;
                     fdm.refreshFolder();
@@ -1337,7 +1337,7 @@
             fdm.FileItem.LinkCategoryId = fdm.thisCategory;
             // ------- fdm.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", fdm.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.FileItem, 'POST').success(function (response) {
                 fdm.loadingBusyIndicator.isActive = false;
                 if (response.IsSuccess) {
                     fdm.FileItem = response.Item;

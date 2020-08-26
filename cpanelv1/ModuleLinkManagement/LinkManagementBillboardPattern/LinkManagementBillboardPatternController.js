@@ -116,7 +116,7 @@
         }
         linkManagementBillboardPattern.busyIndicator.isActive = true;
         linkManagementBillboardPattern.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/add', linkManagementBillboardPattern.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/', linkManagementBillboardPattern.selectedItem, 'POST').success(function (response) {
             linkManagementBillboardPattern.addRequested = false;
             linkManagementBillboardPattern.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -176,7 +176,7 @@
             return;
         }
         linkManagementBillboardPattern.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/edit', linkManagementBillboardPattern.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/', linkManagementBillboardPattern.selectedItem, "PUT").success(function (response) {
             linkManagementBillboardPattern.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.busyIndicator.isActive = false;
@@ -547,7 +547,7 @@
     }
     //save new file
     linkManagementBillboardPattern.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 linkManagementBillboardPattern.FileItem = response.Item;
                 linkManagementBillboardPattern.showSuccessIcon();
@@ -680,7 +680,7 @@
                     linkManagementBillboardPattern.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- linkManagementBillboardPattern.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementBillboardPattern.FileItem = response.Item;
                             linkManagementBillboardPattern.showSuccessIcon();

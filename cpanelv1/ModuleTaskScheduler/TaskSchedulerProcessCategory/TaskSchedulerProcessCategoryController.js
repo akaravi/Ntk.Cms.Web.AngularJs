@@ -69,7 +69,7 @@
 //       }
 //       taskSchedulerProcessCategory.busyIndicator.isActive = true;
 //       taskSchedulerProcessCategory.addRequested = true;
-//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/add', taskSchedulerProcessCategory.selectedItem, 'POST').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/', taskSchedulerProcessCategory.selectedItem, 'POST').success(function (response) {
 //           taskSchedulerProcessCategory.addRequested = false;
 //           taskSchedulerProcessCategory.busyIndicator.isActive = false;
 //           rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
         }
         taskSchedulerProcessCategory.addRequested = true;
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/', taskSchedulerProcessCategory.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -279,7 +279,7 @@
         taskSchedulerProcessCategory.addRequested = true;
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
         taskSchedulerProcessCategory.selectedItem[taskSchedulerProcessCategory.selectedConfig] = $.trim(angular.toJson(taskSchedulerProcessCategory.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/', taskSchedulerProcessCategory.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.addRequested = false;
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
@@ -374,7 +374,7 @@
               // ------- taskSchedulerProcessCategory.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", taskSchedulerProcessCategory.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", taskSchedulerProcessCategory.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     taskSchedulerProcessCategory.FileItem = response.Item;

@@ -265,7 +265,7 @@
         cmsGuide.addRequested = true;
         if (cmsGuide.selectedItem.isDependencyModule == false || cmsGuide.selectedItem.isDependencyModule == undefined)
             cmsGuide.selectedItem.LinkModuleId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/add', cmsGuide.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/', cmsGuide.selectedItem, 'POST').success(function (response) {
             cmsGuide.busyIndicator.isActive = false;
             cmsGuide.addRequested = false;
             rashaErManage.checkAction(response);
@@ -339,7 +339,7 @@
         cmsGuide.addRequested = true;
       cmsGuide.selectedItem.LinkFileIds = "";
       cmsGuide.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/edit', cmsGuide.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/', cmsGuide.selectedItem, "PUT").success(function (response) {
             cmsGuide.addRequested = false;
             cmsGuide.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

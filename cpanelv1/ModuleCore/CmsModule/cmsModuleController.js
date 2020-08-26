@@ -83,7 +83,7 @@
             return;
         cmsModulegrd.addRequested = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/add', cmsModulegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             cmsModulegrd.addRequested = false;
             rashaErManage.checkAction(response);
@@ -127,7 +127,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.selectedItem, "PUT").success(function (response) {
             cmsModulegrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -531,7 +531,7 @@
             // $builder.forms['default'] -> get the form in Json format
             cmsModulegrd.selectedItem[cmsModulegrd.formName] = $.trim(angular.toJson($builder.forms['default']));
             cmsModulegrd.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsModulegrd.closeModal();
@@ -556,7 +556,7 @@
             rashaErManage.checkAction(response1);
             cmsModulegrd.selectedItem = response1.Item;
             cmsModulegrd.selectedItem[cmsModulegrd.fieldName] = $.trim(angular.toJson(cmsModulegrd.submitValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/', cmsModulegrd.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsModulegrd.closeModal();

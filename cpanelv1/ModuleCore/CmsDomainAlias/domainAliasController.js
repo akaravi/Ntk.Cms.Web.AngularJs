@@ -66,7 +66,7 @@
             return;
         domainAlias.busyIndicator.isActive = true;
         domainAlias.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/add', domainAlias.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/', domainAlias.selectedItem, 'POST').success(function (response) {
             domainAlias.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -104,7 +104,7 @@
         if (frm.$invalid)
             return;
         domainAlias.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/edit', domainAlias.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/', domainAlias.selectedItem, "PUT").success(function (response) {
             domainAlias.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

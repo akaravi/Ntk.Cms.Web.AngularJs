@@ -267,7 +267,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
           item.SuperSeder = [];
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/add', apiSelectedItem, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', apiSelectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailPrivateSiteConfig.ListItems.unshift(response.Item);
@@ -377,7 +377,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
           item.SuperSeder = [];
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/edit', apiSelectedItem, 'PUT').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', apiSelectedItem, "PUT").success(function(response) {
             emailPrivateSiteConfig.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -729,7 +729,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.busyIndicator.isActive = true;
         emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'emailPrivateSiteConfig/edit', emailPrivateSiteConfig.selectedItem, 'PUT').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailPrivateSiteConfig/', emailPrivateSiteConfig.selectedItem, "PUT").success(function(response) {
             emailPrivateSiteConfig.addRequested = true;
             emailPrivateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

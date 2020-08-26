@@ -37,7 +37,7 @@
         }
 
         outBoxDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/add', outBoxDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/', outBoxDetail.selectedItem, 'POST').success(function (response) {
             outBoxDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -77,7 +77,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/edit', outBoxDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/', outBoxDetail.selectedItem, "PUT").success(function (response) {
             outBoxDetail.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -98,7 +98,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/edit', outBoxDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/', outBoxDetail.selectedItem, "PUT").success(function (response) {
             outBoxDetail.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

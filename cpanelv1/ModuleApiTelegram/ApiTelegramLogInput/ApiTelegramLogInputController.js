@@ -103,7 +103,7 @@ logInputCtrl.treeOptions = {
         }
         logInputCtrl.busyIndicator.isActive = true;
         logInputCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/add', logInputCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/', logInputCtrl.selectedItem, 'POST').success(function (response) {
             logInputCtrl.addRequested = false;
             logInputCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -148,7 +148,7 @@ logInputCtrl.treeOptions = {
             return;
         }
         logInputCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/edit', logInputCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/', logInputCtrl.selectedItem, "PUT").success(function (response) {
             logInputCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             logInputCtrl.busyIndicator.isActive = false;

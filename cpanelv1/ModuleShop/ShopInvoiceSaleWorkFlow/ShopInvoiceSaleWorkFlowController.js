@@ -119,7 +119,7 @@
         }
         shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
         shopInvoiceSaleWorkFlow.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/add', shopInvoiceSaleWorkFlow.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/', shopInvoiceSaleWorkFlow.selectedItem, 'POST').success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = false;
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/edit', shopInvoiceSaleWorkFlow.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/', shopInvoiceSaleWorkFlow.selectedItem, "PUT").success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = true;
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;

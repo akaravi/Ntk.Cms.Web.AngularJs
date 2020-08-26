@@ -71,7 +71,7 @@
         }
         newscategory.categoryBusyIndicator.isActive = true;
         newscategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newscategory/add', newscategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newscategory/', newscategory.selectedItem, 'POST').success(function (response) {
             newscategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -138,7 +138,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newscategory/', newscategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newscategory/', newscategory.selectedItem, "PUT").success(function (response) {
             newscategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -163,7 +163,7 @@
             return;
         }
         newscategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsCategory/edit/', newscategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsCategory/edit/', newscategory.selectedItem, "PUT").success(function (response) {
             newscategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

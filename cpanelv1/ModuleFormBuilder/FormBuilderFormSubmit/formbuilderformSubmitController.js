@@ -85,7 +85,7 @@
         value.busyIndicator.isActive = true;
         value.addRequested = true;
         value.selectedItem.JsonValues = $.trim(angular.toJson(value.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/add', value.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/', value.selectedItem, 'POST').success(function (response) {
             value.addRequested = false;
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -132,7 +132,7 @@
         }
         value.addRequested = true;
         value.selectedItem.JsonValues = $.trim(angular.toJson(value.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/edit', value.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/', value.selectedItem, "PUT").success(function (response) {
             value.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

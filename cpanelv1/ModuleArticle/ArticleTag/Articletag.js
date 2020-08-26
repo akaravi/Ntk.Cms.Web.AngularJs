@@ -282,7 +282,7 @@
         if (articleTag.treeConfig.currentNode != null)
             articleTag.selectedItem.LinkParentId = articleTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/add', articleTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/', articleTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             articleTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -310,7 +310,7 @@
             return;
         }
         articleTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/edit', articleTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/', articleTag.selectedItem, "PUT").success(function (response) {
             articleTag.addRequested = true;
             //articleTag.showbusy = false;
             articleTag.treeConfig.showbusy = false;
@@ -460,7 +460,7 @@
         articleTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'articletag/add', articleTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articletag/', articleTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -487,7 +487,7 @@
         articleTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'articletag/edit', articleTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articletag/', articleTag.selectedItem, "PUT").success(function (response) {
             articleTag.categoryBusyIndicator.isActive = false;
             articleTag.addRequested = false;
             articleTag.treeConfig.showbusy = false;
@@ -928,7 +928,7 @@
     }
     //save new file
     articleTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", articleTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", articleTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 articleTag.FileItem = response.Item;
                 articleTag.showSuccessIcon();
@@ -1061,7 +1061,7 @@
                     articleTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- articleTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", articleTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", articleTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             articleTag.FileItem = response.Item;
                             articleTag.showSuccessIcon();

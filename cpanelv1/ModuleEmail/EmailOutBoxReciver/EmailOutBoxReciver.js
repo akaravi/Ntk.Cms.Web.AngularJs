@@ -88,7 +88,7 @@
         }
         emailOutBoxReciver.addRequested = true;
         emailOutBoxReciver.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/add', emailOutBoxReciver.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/', emailOutBoxReciver.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxReciver.ListItems.unshift(response.Item);
@@ -222,7 +222,7 @@
 
         emailOutBoxReciver.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciver.submitValue));
 
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/edit', emailOutBoxReciver.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/', emailOutBoxReciver.selectedItem, "PUT").success(function (response) {
             emailOutBoxReciver.addRequested = false;
             emailOutBoxReciver.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -449,7 +449,7 @@
         emailOutBoxReciver.busyIndicator.isActive = true;
         emailOutBoxReciver.addRequested = true;
         emailOutBoxReciver.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciver.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/edit', emailOutBoxReciver.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/', emailOutBoxReciver.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciver.busyIndicator.isActive = false;
             emailOutBoxReciver.addRequested = false;

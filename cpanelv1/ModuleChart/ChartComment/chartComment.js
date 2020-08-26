@@ -85,7 +85,7 @@
         }
         chartComment.busyIndicator.isActive = true;
         chartComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/add', chartComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/', chartComment.selectedItem, 'POST').success(function (response) {
             chartComment.addRequested = false;
             chartComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -132,7 +132,7 @@
             return;
         }
         chartComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/edit', chartComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/', chartComment.selectedItem, "PUT").success(function (response) {
             chartComment.addRequested = true;
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;

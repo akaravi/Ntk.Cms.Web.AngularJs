@@ -118,7 +118,7 @@
         //deliveryMethodDetail.selectedItem.StartDateTime = deliveryMethodDetail.StartDateTime;
         //deliveryMethodDetail.selectedItem.EndDateTime = deliveryMethodDetail.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/add', deliveryMethodDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/', deliveryMethodDetail.selectedItem, 'POST').success(function (response) {
             deliveryMethodDetail.addRequested = false;
             deliveryMethodDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -171,7 +171,7 @@
             return;
         }
         deliveryMethodDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/edit', deliveryMethodDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/', deliveryMethodDetail.selectedItem, "PUT").success(function (response) {
             deliveryMethodDetail.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;

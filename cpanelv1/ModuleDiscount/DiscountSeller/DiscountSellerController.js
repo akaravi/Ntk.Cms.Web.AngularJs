@@ -102,7 +102,7 @@
             }
             discountSeller.addRequested = true;
             discountSeller.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', discountSeller.selectedUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     discountSeller.selectedItem.LinkModuleCoreCmsUserId = response1.Item.Id;
@@ -133,7 +133,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/add', discountSeller.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/', discountSeller.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 discountSeller.ListItems.unshift(response.Item);
@@ -231,7 +231,7 @@
 
             discountSeller.addRequested = true;
             discountSeller.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', discountSeller.selectedUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 discountSeller.busyIndicator.isActive = false;
                 discountSeller.addRequested = false;
@@ -254,7 +254,7 @@
     discountSeller.editSellserInternal = function () {
 
         discountSeller.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/edit', discountSeller.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/', discountSeller.selectedItem, "PUT").success(function (response) {
             discountSeller.addRequested = true;
             rashaErManage.checkAction(response);
             discountSeller.busyIndicator.isActive = false;

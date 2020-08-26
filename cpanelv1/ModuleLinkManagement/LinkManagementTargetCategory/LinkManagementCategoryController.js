@@ -76,7 +76,7 @@
         }
         linkManagementCategory.categoryBusyIndicator.isActive = true;
         linkManagementCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/add',  linkManagementCategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/',  linkManagementCategory.selectedItem , 'POST').success(function (response) {
             linkManagementCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -147,7 +147,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/', linkManagementCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/', linkManagementCategory.selectedItem, "PUT").success(function (response) {
             linkManagementCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -170,7 +170,7 @@
             return;
         }
         linkManagementCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/edit/', linkManagementCategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/edit/', linkManagementCategory.selectedItem , "PUT").success(function (response) {
             linkManagementCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

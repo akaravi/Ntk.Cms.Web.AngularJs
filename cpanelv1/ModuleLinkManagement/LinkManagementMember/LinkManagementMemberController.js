@@ -80,7 +80,7 @@
         }
         linkManagementMember.busyIndicator.isActive = true;
         linkManagementMember.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/add', linkManagementMember.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/', linkManagementMember.selectedItem, 'POST').success(function (response) {
             linkManagementMember.addRequested = false;
             linkManagementMember.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -126,7 +126,7 @@
             return;
         }
         linkManagementMember.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/edit', linkManagementMember.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/', linkManagementMember.selectedItem, "PUT").success(function (response) {
             linkManagementMember.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;

@@ -35,7 +35,7 @@
             return;
 
         cmsSiteActionPagegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/add',  cmsSiteActionPagegrd.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/',  cmsSiteActionPagegrd.selectedItem , 'POST').success(function (response) {
             cmsSiteActionPagegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -72,7 +72,7 @@
 	if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/edit', cmsSiteActionPagegrd.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/', cmsSiteActionPagegrd.selectedItem , "PUT").success(function (response) {
             cmsSiteActionPagegrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

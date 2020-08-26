@@ -71,7 +71,7 @@
         }
         reservationcategory.categoryBusyIndicator.isActive = true;
         reservationcategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/add', reservationcategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/', reservationcategory.selectedItem, 'POST').success(function (response) {
             reservationcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -138,7 +138,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/', reservationcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/', reservationcategory.selectedItem, "PUT").success(function (response) {
             reservationcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -163,7 +163,7 @@
             return;
         }
         reservationcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategory/edit/', reservationcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategory/edit/', reservationcategory.selectedItem, "PUT").success(function (response) {
             reservationcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

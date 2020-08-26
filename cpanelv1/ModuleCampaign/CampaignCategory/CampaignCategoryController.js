@@ -71,7 +71,7 @@
         }
         campaignCategory.categoryBusyIndicator.isActive = true;
         campaignCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/add', campaignCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/', campaignCategory.selectedItem, 'POST').success(function (response) {
             campaignCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -137,7 +137,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/', campaignCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/', campaignCategory.selectedItem, "PUT").success(function (response) {
             campaignCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -162,7 +162,7 @@
             return;
         }
         campaignCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/edit/', campaignCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/edit/', campaignCategory.selectedItem, "PUT").success(function (response) {
             campaignCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

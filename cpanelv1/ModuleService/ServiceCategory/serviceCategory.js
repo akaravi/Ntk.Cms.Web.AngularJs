@@ -77,7 +77,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         }
         Servicecategory.categoryBusyIndicator.isActive = true;
         Servicecategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/add',  Servicecategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/',  Servicecategory.selectedItem , 'POST').success(function (response) {
             Servicecategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -149,7 +149,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/', Servicecategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/', Servicecategory.selectedItem, "PUT").success(function (response) {
             Servicecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -174,7 +174,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         Servicecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceCategory/edit/', Servicecategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceCategory/edit/', Servicecategory.selectedItem , "PUT").success(function (response) {
             Servicecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

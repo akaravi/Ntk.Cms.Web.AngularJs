@@ -310,7 +310,7 @@
         //Concat whilte list and black list group ids
         menuItemCtrl.selectedItem.AccessWhiteListGroup = getWhilteList();
         menuItemCtrl.selectedItem.AccessBlackListGroup = getBlackList();
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/add', menuItemCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 menuItemCtrl.ListItems.push(response.Item);
@@ -350,7 +350,7 @@
 
         menuItemCtrl.addRequested = true;
         menuItemCtrl.editProcess(false);
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, "PUT").success(function (response) {
             menuItemCtrl.addRequested = false;
             menuItemCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -540,14 +540,14 @@
             menuItemCtrl.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             menuItemCtrl.selectedItem.ShowInMenuOrder = menuItemCtrl.ListItems[index - 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/', menuItemCtrl.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         menuItemCtrl.selectedItem = response3.Item;
                         menuItemCtrl.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, "PUT").success(function (response4) {
                             menuItemCtrl.busyIndicator.isActive = false;
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
@@ -594,14 +594,14 @@
             menuItemCtrl.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             menuItemCtrl.selectedItem.ShowInMenuOrder = menuItemCtrl.ListItems[index + 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/', menuItemCtrl.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         menuItemCtrl.selectedItem = response3.Item;
                         menuItemCtrl.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/', menuItemCtrl.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             menuItemCtrl.busyIndicator.isActive = false;
                             if (response4.IsSuccess) {

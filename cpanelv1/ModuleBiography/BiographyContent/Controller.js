@@ -779,7 +779,7 @@
         biographyContent.selectedItem.LinkParentId =
         biographyContent.treeConfig.currentNode.Id;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "biographyCategory/add", biographyContent.selectedItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "biographyCategory/", biographyContent.selectedItem, "POST")
         .success(function (response) {
           biographyContent.addRequested = false;
           rashaErManage.checkAction(response);
@@ -805,7 +805,7 @@
       biographyContent.categoryBusyIndicator.isActive = true;
       biographyContent.addRequested = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "biographyCategory/edit", biographyContent.selectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "biographyCategory/", biographyContent.selectedItem, "PUT")
         .success(function (response) {
           //biographyContent.showbusy = false;
           biographyContent.treeConfig.showbusy = false;
@@ -1069,7 +1069,7 @@
         biographyContent.selectedItemOtherInfos.LinkContentId = biographyContent.gridOptions.selectedRow.item.Id;
         biographyContent.OtherInfos.push(biographyContent.selectedItemOtherInfos);
         biographyContent.selectedItemOtherInfos = {};
-        // ajax.call(cmsServerConfig.configApiServerPath + 'biographyContentOtherInfo/add', biographyContent.selectedItemOtherInfos, 'POST').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath + 'biographyContentOtherInfo/', biographyContent.selectedItemOtherInfos, 'POST').success(function (response) {
         //   rashaErManage.checkAction(response);
         //   if (response.IsSuccess) {
         //     biographyContent.selectedItemOtherInfos = response.Item;
@@ -1281,7 +1281,7 @@
       }
       var apiSelectedItem = biographyContent.selectedItem;
 
-      ajax.call(cmsServerConfig.configApiServerPath + "biographyContent/add", apiSelectedItem, "POST").success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "biographyContent/", apiSelectedItem, "POST").success(function (response) {
           rashaErManage.checkAction(response);
           biographyContent.categoryBusyIndicator.isActive = false;
           if (response.IsSuccess) {
@@ -1479,7 +1479,7 @@
       apiSelectedItem = angular.extend(apiSelectedItem, biographyContent.selectedItem);
       apiSelectedItem.OtherInfos = [];
       ajax
-        .call(cmsServerConfig.configApiServerPath + "biographyContent/edit", apiSelectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "biographyContent/", apiSelectedItem, "PUT")
         .success(function (response) {
           biographyContent.categoryBusyIndicator.isActive = false;
           biographyContent.addRequested = false;
@@ -1596,7 +1596,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "biographyContent/edit", biographyContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "biographyContent/", biographyContent.selectedItem, "PUT")
             .success(function (response2) {
               rashaErManage.checkAction(response2);
               if (response2.IsSuccess) {
@@ -1637,7 +1637,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "biographyContent/edit", biographyContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "biographyContent/", biographyContent.selectedItem, "PUT")
             .success(function (response2) {
               biographyContent.categoryBusyIndicator.isActive = true;
               rashaErManage.checkAction(response2);
@@ -1746,7 +1746,7 @@
         item.RecordStatus = 1;
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'BiographyComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BiographyComment/', itemCopy, "PUT").success(function (response) {
           rashaErManage.checkAction(response);
           if(response.IsSuccess)
           biographyContent.showComment(biographyContent.gridOptions.selectedRow.item.Id)
@@ -1762,7 +1762,7 @@
         item.RecordStatus = 5;//DeniedConfirmed
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'BiographyComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BiographyComment/', itemCopy, "PUT").success(function (response) {
           if(response.IsSuccess)
           biographyContent.showComment(biographyContent.gridOptions.selectedRow.item.Id)
           rashaErManage.checkAction(response);
@@ -2171,7 +2171,7 @@
     //save new file
     biographyContent.saveNewFile = function () {
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/add", biographyContent.FileItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/", biographyContent.FileItem, "POST")
         .success(function (response) {
           if (response.IsSuccess) {
             biographyContent.FileItem = response.Item;
@@ -2300,7 +2300,7 @@
             biographyContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- biographyContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", biographyContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", biographyContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 biographyContent.FileItem = response.Item;
                 biographyContent.showSuccessIcon();
@@ -2404,7 +2404,7 @@
             biographyContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- biographyContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", biographyContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", biographyContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 biographyContent.FileItem = response.Item;
                 biographyContent.showSuccessIcon();
@@ -2518,7 +2518,7 @@
               // ------- biographyContent.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", biographyContent.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", biographyContent.FileItem, "POST")
                 .success(function (response) {
                   if (response.IsSuccess) {
                     biographyContent.FileItem = response.Item;

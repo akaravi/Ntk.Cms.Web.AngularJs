@@ -287,7 +287,7 @@
         if (newsTag.treeConfig.currentNode != null)
             newsTag.selectedItem.LinkParentId = newsTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/add', newsTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/', newsTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             newsTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         newsTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/edit', newsTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/', newsTag.selectedItem, "PUT").success(function (response) {
             newsTag.addRequested = true;
             //newsTag.showbusy = false;
             newsTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         newsTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newstag/add', newsTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newstag/', newsTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         newsTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newstag/edit', newsTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newstag/', newsTag.selectedItem, "PUT").success(function (response) {
             newsTag.categoryBusyIndicator.isActive = false;
             newsTag.addRequested = false;
             newsTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     newsTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", newsTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", newsTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 newsTag.FileItem = response.Item;
                 newsTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     newsTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- newsTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", newsTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", newsTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             newsTag.FileItem = response.Item;
                             newsTag.showSuccessIcon();

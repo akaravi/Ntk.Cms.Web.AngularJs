@@ -115,7 +115,7 @@
         }
         discountSerialCard.busyIndicator.isActive = true;
         discountSerialCard.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/add', discountSerialCard.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 discountSerialCard.ListItems.unshift(response.Item);
@@ -138,7 +138,7 @@
 
         //        discountSerialCard.addRequested = true;
         //        discountSerialCard.busyIndicator.isActive = true;
-        //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountSerialCard.selectedMemberUser, 'POST').success(function (response1) {
+        //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountSerialCard.selectedMemberUser, 'POST').success(function (response1) {
         //            rashaErManage.checkAction(response1);
         //            if (response1.IsSuccess) {
         //                discountSerialCard.selectedItem.LinkMemberId = response1.Item.Id;
@@ -265,7 +265,7 @@
 
             discountSerialCard.addRequested = true;
             discountSerialCard.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountSerialCard.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountSerialCard.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     discountSerialCard.selectedItem.LinkMemberId = response1.Item.Id;
@@ -284,7 +284,7 @@
     discountSerialCard.editSerialCard = function () {
 
         discountSerialCard.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/edit', discountSerialCard.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCard/', discountSerialCard.selectedItem, "PUT").success(function (response) {
             discountSerialCard.addRequested = true;
             rashaErManage.checkAction(response);
             discountSerialCard.busyIndicator.isActive = false;

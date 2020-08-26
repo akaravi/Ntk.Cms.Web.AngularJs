@@ -41,7 +41,7 @@
             return;
 
         cmsUserTicketLog.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUserLog/add', cmsUserTicketLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUserLog/', cmsUserTicketLog.selectedItem, 'POST').success(function (response) {
             cmsUserTicketLog.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -78,7 +78,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUserLog/edit', cmsUserTicketLog.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUserLog/', cmsUserTicketLog.selectedItem, "PUT").success(function (response) {
             cmsUserTicketLog.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

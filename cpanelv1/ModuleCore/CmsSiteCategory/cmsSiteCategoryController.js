@@ -38,7 +38,7 @@
             return;
 
         cmsSiteCategorygrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/add', cmsSiteCategorygrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/', cmsSiteCategorygrd.selectedItem, 'POST').success(function (response) {
             cmsSiteCategorygrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -75,7 +75,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/edit', cmsSiteCategorygrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/', cmsSiteCategorygrd.selectedItem, "PUT").success(function (response) {
             cmsSiteCategorygrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

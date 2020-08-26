@@ -81,7 +81,7 @@
         }
         newsComment.busyIndicator.isActive = true;
         newsComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/add', newsComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/', newsComment.selectedItem, 'POST').success(function (response) {
             newsComment.addRequested = false;
             newsComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -131,7 +131,7 @@
             return;
         }
         newsComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/edit', newsComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/', newsComment.selectedItem, "PUT").success(function (response) {
             newsComment.addRequested = true;
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;

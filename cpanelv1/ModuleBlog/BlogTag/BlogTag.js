@@ -287,7 +287,7 @@
         if (blogTag.treeConfig.currentNode != null)
             blogTag.selectedItem.LinkParentId = blogTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/add', blogTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/', blogTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             blogTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         blogTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/edit', blogTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/', blogTag.selectedItem, "PUT").success(function (response) {
             blogTag.addRequested = true;
             //blogTag.showbusy = false;
             blogTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         blogTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'blogtag/add', blogTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogtag/', blogTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         blogTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'blogtag/edit', blogTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogtag/', blogTag.selectedItem, "PUT").success(function (response) {
             blogTag.categoryBusyIndicator.isActive = false;
             blogTag.addRequested = false;
             blogTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     blogTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", blogTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", blogTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 blogTag.FileItem = response.Item;
                 blogTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     blogTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- blogTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", blogTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", blogTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             blogTag.FileItem = response.Item;
                             blogTag.showSuccessIcon();

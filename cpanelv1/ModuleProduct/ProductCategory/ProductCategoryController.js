@@ -77,7 +77,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         }
         Productcategory.categoryBusyIndicator.isActive = true;
         Productcategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/add',  Productcategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/',  Productcategory.selectedItem , 'POST').success(function (response) {
             Productcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -149,7 +149,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/', Productcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/', Productcategory.selectedItem, "PUT").success(function (response) {
             Productcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -174,7 +174,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         Productcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/edit/', Productcategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/edit/', Productcategory.selectedItem , "PUT").success(function (response) {
             Productcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -156,7 +156,7 @@
         }
         shopCombine.addRequested = true;
         shopCombine.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/', shopCombine.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.addRequested = false;
             shopCombine.busyIndicator.isActive = false;
@@ -202,7 +202,7 @@
         }
         shopCombine.busyIndicator.isActive = true;
         shopCombine.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/edit', shopCombine.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/', shopCombine.selectedItem, "PUT").success(function (response) {
             shopCombine.busyIndicator.isActive = false;
             shopCombine.addRequested = false;
             shopCombine.showIsBusy = false;
@@ -379,7 +379,7 @@
         }
         shopCombine.selectedItem.LinkProductCombineId = shopCombine.selectedItem.Id;
         shopCombine.selectedItem.Id = 0;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/', shopCombine.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopCombine.selectedItem.ProductItemCombines.push({ LinkProductItemId: shopCombine.selectedItem.LinkProductItemId, LinkProductItemTitle: shopCombine.selectedItem.LinkProductItemTitle });

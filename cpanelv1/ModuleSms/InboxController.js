@@ -39,7 +39,7 @@
         }
 
         inbox.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/add', inbox.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/', inbox.selectedItem, 'POST').success(function (response) {
             inbox.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -79,7 +79,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/', inbox.selectedItem, "PUT").success(function (response) {
             inbox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -104,7 +104,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/', inbox.selectedItem, "PUT").success(function (response) {
             inbox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

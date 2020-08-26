@@ -109,7 +109,7 @@
 //        }
 //        shopProcess.busyIndicator.isActive = true;
 //        shopProcess.addRequested = true;
-//        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/add', shopProcess.selectedItem, 'POST').success(function (response) {
+//        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, 'POST').success(function (response) {
 //            shopProcess.addRequested = false;
 //            shopProcess.busyIndicator.isActive = false;
 //            rashaErManage.checkAction(response);
@@ -214,7 +214,7 @@
             return;
         }
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, "PUT").success(function (response) {
             shopProcess.addRequested = true;
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
@@ -402,7 +402,7 @@
             // $builder.forms['default'] -> get the form in Json format
             shopProcess.selectedItem.JsonFormAdminMainJsonForm = $.trim(angular.toJson($builder.forms['default']));
             shopProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     shopProcess.closeModal();
@@ -471,7 +471,7 @@
 
     shopProcess.saveSubmitValuesMainAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (shopProcess.updateMode == "add")
         //    updateMethod = "POST";
         shopProcess.addRequested = true;
@@ -569,7 +569,7 @@
             // $builder.forms['default'] -> get the form in Json format
             shopProcess.selectedItem.JsonFormAdminSiteJsonForm = $.trim(angular.toJson($builder.forms['default']));
             shopProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     shopProcess.closeModal();
@@ -638,7 +638,7 @@
 
     shopProcess.saveSubmitValuesSiteAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (shopProcess.updateMode == "add")
         //    updateMethod = "POST";
         shopProcess.addRequested = true;
@@ -734,7 +734,7 @@
             // $builder.forms['default'] -> get the form in Json format
             shopProcess.selectedItem.JsonForm = $.trim(angular.toJson($builder.forms['default']));
             shopProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     shopProcess.closeModal();
@@ -920,7 +920,7 @@
             shopProcess.selectedItem.JsonFormDefaultValue = $.trim(angular.toJson(shopProcess.submitValue));
         else
             shopProcess.selectedItem.JsonFormAdminSystemValue = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/', shopProcess.selectedItem, "PUT").success(function (response) {
             shopProcess.addRequested = true;
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
@@ -1071,7 +1071,7 @@
               // ------- shopProcess.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", shopProcess.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", shopProcess.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     shopProcess.FileItem = response.Item;

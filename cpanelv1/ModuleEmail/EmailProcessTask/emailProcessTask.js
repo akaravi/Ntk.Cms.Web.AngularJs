@@ -82,7 +82,7 @@
         
         emailProcessTask.addRequested = true;
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/add', emailProcessTask.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
 
@@ -133,7 +133,7 @@
         }
        
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/edit', emailProcessTask.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItem, "PUT").success(function (response) {
             emailProcessTask.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

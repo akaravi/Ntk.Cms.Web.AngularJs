@@ -50,7 +50,7 @@
 
     apiCompany.editRow = function () {
         apiCompany.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/edit',  apiCompany.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/',  apiCompany.selectedItem , "PUT").success(function (response) {
             apiCompany.addRequested = false;
             rashaErManage.checkAction(response);
             apiCompany.closeModal();
@@ -61,7 +61,7 @@
         });
     }; 
     apiCompany.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/add', apiCompany.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/', apiCompany.selectedItem , 'POST').success(function (response) {
             apiCompany.addRequested = false;
             apiCompany.closeModal();
             apiCompany.init();

@@ -70,7 +70,7 @@
         }
         advertisementContractType.busyIndicator.isActive = true;
         advertisementContractType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/add', advertisementContractType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/', advertisementContractType.selectedItem, 'POST').success(function (response) {
             advertisementContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -114,7 +114,7 @@
             return;
         }
         advertisementContractType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/edit', advertisementContractType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/', advertisementContractType.selectedItem, "PUT").success(function (response) {
             advertisementContractType.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;

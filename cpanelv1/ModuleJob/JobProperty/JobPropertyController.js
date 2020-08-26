@@ -144,7 +144,7 @@
         jobProperty.addRequested = true;
         var valueItem = {};
         jobProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/add', jobProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/', jobProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobProperty.closeModal();
@@ -270,7 +270,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         jobProperty.busyIndicator.isActive = true;
         jobProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(jobProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/edit', jobProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/', jobProperty.selectedItem, "PUT").success(function (response) {
             jobProperty.addRequested = true;
             rashaErManage.checkAction(response);
             jobProperty.busyIndicator.isActive = false;
@@ -357,7 +357,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             jobProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/EditBatch', jobProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/EditBatch', jobProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 jobProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -777,7 +777,7 @@
         }
         jobProperty.addRequested = true;
         jobProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/add', jobProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/', jobProperty.selectedItem, 'POST').success(function (response) {
             jobProperty.addRequested = false;
             jobProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -831,7 +831,7 @@
 
     jobProperty.editContract = function (index) {
         jobProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/edit', jobProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/', jobProperty.contractsList[index], "PUT").success(function (res) {
             jobProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -978,7 +978,7 @@
     }
     //save new file
     jobProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", jobProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 jobProperty.FileItem = response.Item;
                 jobProperty.showSuccessIcon();
@@ -1111,7 +1111,7 @@
                     jobProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- jobProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", jobProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             jobProperty.FileItem = response.Item;
                             jobProperty.showSuccessIcon();

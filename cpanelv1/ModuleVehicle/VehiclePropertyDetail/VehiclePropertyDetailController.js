@@ -90,18 +90,18 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
     //init Function
     vehiclePropertyDetail.init = function () {
         vehiclePropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
             vehiclePropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
-            vehiclePropertyDetail.inputDataTypeArray = response.ListItems;
-        }).error(function (data, errCode, c, d) {
-            console.log(data);
-        });
+        // ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        //     vehiclePropertyDetail.inputDataTypeArray = response.ListItems;
+        // }).error(function (data, errCode, c, d) {
+        //     console.log(data);
+        // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
             vehiclePropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -163,7 +163,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         vehiclePropertyDetail.addRequested = true;
         vehiclePropertyDetail.selectedItem.LinkPropertyTypeId = vehiclePropertyDetail.propertyTypeId;
         vehiclePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/add', vehiclePropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, 'POST').success(function (response) {
             vehiclePropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -208,7 +208,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         }
         vehiclePropertyDetail.categorybusyIndicator.isActive = true;
         vehiclePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response) {
             vehiclePropertyDetail.addRequested = true;
             vehiclePropertyDetail.treeConfig.showbusy = false;
             vehiclePropertyDetail.showIsBusy = false;
@@ -361,7 +361,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         vehiclePropertyDetail.selectedItem.DefaultValue.nameValue = vehiclePropertyDetail.attachedFields;
         vehiclePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(vehiclePropertyDetail.selectedItem.DefaultValue));
         vehiclePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/add', vehiclePropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 // filter text
@@ -429,7 +429,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         vehiclePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(vehiclePropertyDetail.selectedItem.DefaultValue));
         vehiclePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         vehiclePropertyDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response) {
             // vehiclePropertyDetail.addRequested = false;
             vehiclePropertyDetail.treeConfig.showbusy = false;
             vehiclePropertyDetail.showIsBusy = false;
@@ -581,7 +581,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             vehiclePropertyDetail.attachedFields[vehiclePropertyDetail.selectedIndex] = FieldName;
             vehiclePropertyDetail.selectedItem.DefaultValue.nameValue = vehiclePropertyDetail.attachedFields;
             vehiclePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(vehiclePropertyDetail.selectedItem.DefaultValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 vehiclePropertyDetail.disableUpdate();
                 $("#FieldName").val("");
@@ -646,14 +646,14 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             vehiclePropertyDetail.selectedItem.ShowInFormOrder = vehiclePropertyDetail.ListItems[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // Swap two item in the grid list without requesting a GetAll
@@ -688,14 +688,14 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             vehiclePropertyDetail.selectedItem.ShowInFormOrder = vehiclePropertyDetail.ListItems[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // جابجا کردن مکان دو آیتم در آرایه
@@ -740,14 +740,14 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             vehiclePropertyDetail.selectedItem.ShowInFormOrder = vehiclePropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 vehiclePropertyDetail.treeConfig.Items[index + 1] = response4.Item;
@@ -790,14 +790,14 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             vehiclePropertyDetail.selectedItem.ShowInFormOrder = vehiclePropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/', vehiclePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 vehiclePropertyDetail.treeConfig.Items[index - 1] = response4.Item;

@@ -71,7 +71,7 @@
         }
         campaignItemGroup.categoryBusyIndicator.isActive = true;
         campaignItemGroup.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/add', campaignItemGroup.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/', campaignItemGroup.selectedItem, 'POST').success(function (response) {
             campaignItemGroup.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -138,7 +138,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/', campaignItemGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/', campaignItemGroup.selectedItem, "PUT").success(function (response) {
             campaignItemGroup.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -163,7 +163,7 @@
             return;
         }
         campaignItemGroup.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/edit/', campaignItemGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/edit/', campaignItemGroup.selectedItem, "PUT").success(function (response) {
             campaignItemGroup.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

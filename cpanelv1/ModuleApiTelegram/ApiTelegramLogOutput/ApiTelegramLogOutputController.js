@@ -61,7 +61,7 @@
         }
         logOutputCtrl.busyIndicator.isActive = true;
         logOutputCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/add', logOutputCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/', logOutputCtrl.selectedItem, 'POST').success(function (response) {
             logOutputCtrl.addRequested = false;
             logOutputCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -106,7 +106,7 @@
             return;
         }
         logOutputCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/edit', logOutputCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/', logOutputCtrl.selectedItem, "PUT").success(function (response) {
             logOutputCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             logOutputCtrl.busyIndicator.isActive = false;

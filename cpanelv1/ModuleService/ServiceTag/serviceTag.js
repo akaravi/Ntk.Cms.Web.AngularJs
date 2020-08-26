@@ -287,7 +287,7 @@
         if (serviceTag.treeConfig.currentNode != null)
             serviceTag.selectedItem.LinkParentId = serviceTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceCategorytag/add', serviceTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceCategorytag/', serviceTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             serviceTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         serviceTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceCategorytag/edit', serviceTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceCategorytag/', serviceTag.selectedItem, "PUT").success(function (response) {
             serviceTag.addRequested = true;
             //serviceTag.showbusy = false;
             serviceTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         serviceTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'servicetag/add', serviceTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'servicetag/', serviceTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         serviceTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'servicetag/edit', serviceTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'servicetag/', serviceTag.selectedItem, "PUT").success(function (response) {
             serviceTag.categoryBusyIndicator.isActive = false;
             serviceTag.addRequested = false;
             serviceTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     serviceTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", serviceTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", serviceTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 serviceTag.FileItem = response.Item;
                 serviceTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     serviceTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- serviceTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", serviceTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", serviceTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             serviceTag.FileItem = response.Item;
                             serviceTag.showSuccessIcon();

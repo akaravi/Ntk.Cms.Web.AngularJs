@@ -79,7 +79,7 @@
         }
         biographyComment.busyIndicator.isActive = true;
         biographyComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/add', biographyComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/', biographyComment.selectedItem, 'POST').success(function (response) {
             biographyComment.addRequested = false;
             biographyComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -125,7 +125,7 @@
             return;
         }
         biographyComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/edit', biographyComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/', biographyComment.selectedItem, "PUT").success(function (response) {
             biographyComment.addRequested = true;
             rashaErManage.checkAction(response);
             biographyComment.busyIndicator.isActive = false;

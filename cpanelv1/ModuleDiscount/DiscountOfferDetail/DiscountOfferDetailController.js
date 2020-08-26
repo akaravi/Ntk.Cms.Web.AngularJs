@@ -133,7 +133,7 @@
         }
         discountOfferDetail.busyIndicator.isActive = true;
         discountOfferDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/add', discountOfferDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/', discountOfferDetail.selectedItem, 'POST').success(function (response) {
             discountOfferDetail.addRequested = false;
             discountOfferDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -239,7 +239,7 @@
             return;
         }
         discountOfferDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/', discountOfferDetail.selectedItem, "PUT").success(function (response) {
             discountOfferDetail.addRequested = true;
             rashaErManage.checkAction(response);
             discountOfferDetail.busyIndicator.isActive = false;
@@ -442,11 +442,11 @@
     //    if (discountOfferDetail.addNewMemberUser == "1") {
     //        discountOfferDetail.addRequested = true;
     //        discountOfferDetail.busyIndicator.isActive = true;
-    //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountOfferDetail.selectedMemberUser, 'POST').success(function (response1) {
+    //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', discountOfferDetail.selectedMemberUser, 'POST').success(function (response1) {
     //            rashaErManage.checkAction(response1);
     //            if (response1.IsSuccess) {
     //                discountOfferDetail.selectedItem.LinkMemberId = response1.Item.Id;
-    //                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response2) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/', discountOfferDetail.selectedItem, "PUT").success(function (response2) {
     //                    rashaErManage.checkAction(response2);
     //                    discountOfferDetail.addRequested = false;
     //                    discountOfferDetail.busyIndicator.isActive = false;
@@ -469,7 +469,7 @@
     //        discountOfferDetail.addRequested = true;
     //        discountOfferDetail.busyIndicator.isActive = true;
     //        //discountOfferDetail.selectedItem.LinkMemberId = selected.originalObject.Id; //Delete MemberUser
-    //        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+    //        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/', discountOfferDetail.selectedItem, "PUT").success(function (response) {
     //            rashaErManage.checkAction(response);
     //            discountOfferDetail.addRequested = false;
     //            discountOfferDetail.busyIndicator.isActive = false;
@@ -485,7 +485,7 @@
     //discountOfferDetail.editMemberUserGroup = function (frm) {
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/edit', discountOfferDetail.selectedMemberUser, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/', discountOfferDetail.selectedMemberUser, "PUT").success(function (response) {
     //        rashaErManage.checkAction(response);
     //        if (response.IsSuccess) {
     //            discountOfferDetail.addRequested = false;
@@ -501,7 +501,7 @@
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
     //    discountOfferDetail.selectedItem.LinkMemberId = null;//Delete MemberUser
-    //    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/', discountOfferDetail.selectedItem, "PUT").success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOfferDetail.addRequested = false;
     //        discountOfferDetail.busyIndicator.isActive = false;

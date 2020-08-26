@@ -287,7 +287,7 @@
         if (mscGalleryTag.treeConfig.currentNode != null)
             mscGalleryTag.selectedItem.LinkParentId = mscGalleryTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/add', mscGalleryTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', mscGalleryTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             mscGalleryTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         mscGalleryTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/edit', mscGalleryTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/', mscGalleryTag.selectedItem, "PUT").success(function (response) {
             mscGalleryTag.addRequested = true;
             //mscGalleryTag.showbusy = false;
             mscGalleryTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         mscGalleryTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/add', mscGalleryTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/', mscGalleryTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         mscGalleryTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/edit', mscGalleryTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'mscGallerytag/', mscGalleryTag.selectedItem, "PUT").success(function (response) {
             mscGalleryTag.categoryBusyIndicator.isActive = false;
             mscGalleryTag.addRequested = false;
             mscGalleryTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     mscGalleryTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", mscGalleryTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", mscGalleryTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 mscGalleryTag.FileItem = response.Item;
                 mscGalleryTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     mscGalleryTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- mscGalleryTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", mscGalleryTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", mscGalleryTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             mscGalleryTag.FileItem = response.Item;
                             mscGalleryTag.showSuccessIcon();

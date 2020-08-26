@@ -446,7 +446,7 @@
                 cmsModuleSaleItem.selectedItem.LinkParentId =
                     cmsModuleSaleItem.treeConfig.currentNode.Id;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/add", cmsModuleSaleItem.selectedItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", cmsModuleSaleItem.selectedItem, "POST")
                 .success(function (response) {
                     cmsModuleSaleItem.addRequested = false;
                     rashaErManage.checkAction(response);
@@ -475,7 +475,7 @@
             cmsModuleSaleItem.addRequested = true;
             cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/edit", cmsModuleSaleItem.selectedItem, "PUT")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", cmsModuleSaleItem.selectedItem, "PUT")
                 .success(function (response) {
                     cmsModuleSaleItem.addRequested = true;
                     //cmsModuleSaleItem.showbusy = false;
@@ -731,7 +731,7 @@
             //    item.Destination = [];
             //  });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/add", cmsModuleSaleItem.selectedItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "POST")
                 .success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -800,7 +800,7 @@
             //    item.Destination = [];
             //  });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/edit", cmsModuleSaleItem.selectedItem, "PUT")
+                .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
                 .success(function (response) {
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                     cmsModuleSaleItem.addRequested = false;
@@ -1019,7 +1019,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/edit", cmsModuleSaleItem.selectedItem, "PUT")
+                        .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
                         .success(function (response2) {
                             rashaErManage.checkAction(response2);
                             if (response2.IsSuccess) {
@@ -1060,7 +1060,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/edit", cmsModuleSaleItem.selectedItem, "PUT")
+                        .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
                         .success(function (response2) {
                             cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
                             rashaErManage.checkAction(response2);

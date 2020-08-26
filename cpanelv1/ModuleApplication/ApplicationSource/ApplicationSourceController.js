@@ -110,7 +110,7 @@
         appSource.selectedItem.DefaultConfigBuilderSiteJsonValues = $.trim(angular.toJson(appSource.ConfigBuilderSite));
         appSource.selectedItem.DefaultConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appSource.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/edit', appSource.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/', appSource.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             appSource.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -367,7 +367,7 @@
                         // ------- appSource.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", appSource.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/", appSource.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     appSource.FileItem = response.Item;

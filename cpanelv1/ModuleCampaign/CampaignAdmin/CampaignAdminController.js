@@ -143,7 +143,7 @@
     //        return;
     //    campaignAdmin.busyIndicator.isActive = true;
     //    campaignAdmin.addRequested = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/add', campaignAdmin.selectedItem, 'POST').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.selectedItem, 'POST').success(function (response) {
     //        campaignAdmin.addRequested = false;
     //        campaignAdmin.busyIndicator.isActive = false;
     //        rashaErManage.checkAction(response);
@@ -178,7 +178,7 @@
 
             campaignAdmin.addRequested = true;
             campaignAdmin.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', campaignAdmin.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', campaignAdmin.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignAdmin.selectedItem.LinkModuleCoreCmsUserId = response1.Item.Id;
@@ -193,7 +193,7 @@
         }
     }
     campaignAdmin.addSerialCard = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/add', campaignAdmin.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 campaignAdmin.ListItems.unshift(response.Item);
@@ -238,7 +238,7 @@
     //    if (frm.$invalid)
     //        return;
     //    campaignAdmin.busyIndicator.isActive = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/edit', campaignAdmin.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.selectedItem, "PUT").success(function (response) {
     //        campaignAdmin.addRequested = true;
     //        rashaErManage.checkAction(response);
     //        campaignAdmin.busyIndicator.isActive = false;
@@ -325,7 +325,7 @@
 
             campaignAdmin.addRequested = true;
             campaignAdmin.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', campaignAdmin.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', campaignAdmin.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignAdmin.selectedItem.LinkModuleCoreCmsUserId = response1.Item.Id;
@@ -344,7 +344,7 @@
     campaignAdmin.editSerialCard = function () {
 
         campaignAdmin.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/edit', campaignAdmin.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/', campaignAdmin.selectedItem, "PUT").success(function (response) {
             campaignAdmin.addRequested = true;
             rashaErManage.checkAction(response);
             campaignAdmin.busyIndicator.isActive = false;

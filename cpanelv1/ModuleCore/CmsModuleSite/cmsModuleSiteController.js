@@ -89,7 +89,7 @@
         }
 
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/add', cmsModuleSitegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.selectedItem, 'POST').success(function (response) {
             cmsModuleSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -141,7 +141,7 @@
             }
         }
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/edit', cmsModuleSitegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsModuleSitegrd.addRequested = false;

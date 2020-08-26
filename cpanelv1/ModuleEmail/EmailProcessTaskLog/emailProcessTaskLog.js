@@ -55,7 +55,7 @@
         }
         emailProcessTaskLog.addRequested = true;
         emailProcessTaskLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'transactionlog/add', emailProcessTaskLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'transactionlog/', emailProcessTaskLog.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailProcessTaskLog.ListItems.unshift(response.Item);
@@ -99,7 +99,7 @@
             return;
         }
         emailProcessTaskLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/edit', emailProcessTaskLog.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/', emailProcessTaskLog.selectedItem, "PUT").success(function (response1) {
             emailProcessTaskLog.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {

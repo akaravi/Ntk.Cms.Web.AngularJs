@@ -179,7 +179,7 @@
 
         appLayout.selectedItem.JsonFormAdminSystemValue = $.trim(angular.toJson(appLayout.ConfigAdmin));
         appLayout.selectedItem.JsonFormDefaultValue = $.trim(angular.toJson(appLayout.ConfigSite));
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/edit', appLayout.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/', appLayout.selectedItem, "PUT").success(function (response) {
             appLayout.addRequested = true;
             rashaErManage.checkAction(response);
             appLayout.busyIndicator.isActive = false;
@@ -490,7 +490,7 @@
                         // ------- appLayout.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", appLayout.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/", appLayout.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     appLayout.FileItem = response.Item;

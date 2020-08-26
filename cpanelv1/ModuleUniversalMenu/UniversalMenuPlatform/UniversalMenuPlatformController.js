@@ -84,7 +84,7 @@
         }
         platformCtrl.busyIndicator.isActive = true;
         platformCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/add', platformCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/', platformCtrl.selectedItem, 'POST').success(function (response) {
             platformCtrl.addRequested = false;
             platformCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -138,7 +138,7 @@
         }
 
         platformCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/edit', platformCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/', platformCtrl.selectedItem, "PUT").success(function (response) {
             platformCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;

@@ -90,7 +90,7 @@
         if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, orderAdd.ModuleTag);   //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/biographyTag/add', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/biographyTag/', tagObject, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     orderAdd.tags[orderAdd.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id

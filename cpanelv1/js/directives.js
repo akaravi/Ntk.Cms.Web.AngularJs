@@ -1364,6 +1364,46 @@ function rashaGrid($compile, $rootScope, ajax) {
                     //$fixedHeader.css('width', tableWidth + "px !important;");
                     $fixedHeader.hide();
                 }
+                //access
+                config.CheckAccessWatch = function (fieldName) 
+                {
+                    var retOut=false;
+                    $.each(config.Access.FieldsInfo, function (index, column) {
+                        if (column.FieldName==fieldName)
+                            retOut= column.AccessWatchField;
+                    });
+                    return retOut;
+                }
+                config.CheckAccessSearch = function (fieldName) 
+                {
+                    var retOut=false;
+                    $.each(config.Access.FieldsInfo, function (index, column) {
+                        if (column.FieldName==fieldName)
+                            retOut= column.AccessSearchField;
+                    });
+                    return retOut;
+                }
+                config.CheckAccessEdit = function (fieldName) 
+                {
+                    var retOut=false;
+                    $.each(config.Access.FieldsInfo, function (index, column) {
+                        if (column.FieldName==fieldName)
+                            retOut= column.AccessEditField;
+                    });
+                    return retOut;
+                }
+                config.CheckAccessAdd = function (fieldName) 
+                {
+                    var retOut=false;
+                    $.each(config.Access.FieldsInfo, function (index, column) {
+                        if (column.FieldName==fieldName)
+                            retOut= column.AccessAddField;
+                    });
+                    return retOut;
+                }
+                //access
+
+
                 angular.forEach(response, function (item, key) {
                     //for (var key in item) {
                     //    var value = item[key];
@@ -3807,7 +3847,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                                     FileItem.LinkCategoryId = config.thisCategory;
                                                     // ------- fdm.saveNewFile()  ----------------------
                                                     var result = 0;
-                                                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", FileItem, 'POST').success(function (response) {
+                                                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function (response) {
                                                         if (response.IsSuccess) {
                                                             FileItem = response.Item;
                                                             showSuccessIcon();
@@ -3874,7 +3914,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             FileItem.LinkCategoryId = config.thisCategory;
                             // ------- fdm.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", FileItem, 'POST').success(function (response) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function (response) {
 
                                 if (response.IsSuccess) {
                                     FileItem = response.Item;
@@ -4147,7 +4187,7 @@ function rashaUpload($compile, ajax, $http) {
             }
             //save new file
             config.saveNewFile = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", config.FileItem, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function (response) {
                     if (response.IsSuccess) {
                         config.FileItem = response.Item;
                         config.showSuccessIcon();
@@ -4275,7 +4315,7 @@ function rashaUpload($compile, ajax, $http) {
                             config.FileItem.LinkCategoryId = null; //Save the new file in the root
                             // ------- config.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", config.FileItem, 'POST').success(function (response) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function (response) {
                                 if (response.IsSuccess) {
                                     config.FileItem = response.Item;
                                     config.showSuccessIcon();
@@ -4376,7 +4416,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
                     scope.menuDrop[objectId].JsonValues = JSON.stringify(scope.data);
 
-                    ajax.call(cmsServerConfig.configApiServerPath + 'WebDesignerMainMenu/edit', scope.menuDrop[objectId], 'PUT').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'WebDesignerMainMenu/', scope.menuDrop[objectId], "PUT").success(function (response) {
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
                             //console.log("Add Succseeded!");
@@ -5491,10 +5531,10 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 }
                 var newName = fileFolder.newTitle;
                 var urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/';
-                var urlEdit = cmsServerConfig.configApiServerPath + 'FileCategory/edit';
+                var urlEdit = cmsServerConfig.configApiServerPath + 'FileCategory/';
                 if (!fileFolder.isFolder) {
                     urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/';
-                    urlEdit = cmsServerConfig.configApiServerPath + 'FileContent/edit';
+                    urlEdit = cmsServerConfig.configApiServerPath + 'FileContent/';
                     newName = newName + "." + fileFolder.extension;
                 }
                 if (config.fileExstsWithName(newName)) {
@@ -5508,7 +5548,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                             response.Item.Title = newName;
                         else
                             response.Item.FileName = newName;
-                        ajax.call(urlEdit, response.Item, 'PUT').success(function (response2) {
+                        ajax.call(urlEdit, response.Item, "PUT").success(function (response2) {
                             if (response2.IsSuccess == true)
                                 config.refresh();
                             else
@@ -5667,7 +5707,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                         //config.BusyIndicator.isActive=true;
                         response.Item.Title = folderName;
                         response.Item.LinkParentId = config.lastCategoryId;
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/add", response.Item, 'Post').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/", response.Item, 'Post').success(function (response2) {
                             if (response2.IsSuccess == true) {
                                 //config.BusyIndicator.isActive=false;
                                 config.lastnewFolderInserted = response2.Item;

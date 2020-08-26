@@ -89,18 +89,18 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     //init Function
     estatePropertyDetail.init = function () {
         estatePropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
             estatePropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
-            estatePropertyDetail.inputDataTypeArray = response.ListItems;
-        }).error(function (data, errCode, c, d) {
-            console.log(data);
-        });
+        // ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        //     estatePropertyDetail.inputDataTypeArray = response.ListItems;
+        // }).error(function (data, errCode, c, d) {
+        //     console.log(data);
+        // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
             estatePropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -162,7 +162,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         estatePropertyDetail.addRequested = true;
         estatePropertyDetail.selectedItem.LinkPropertyTypeId = estatePropertyDetail.propertyTypeId;
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/add', estatePropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', estatePropertyDetail.selectedItem, 'POST').success(function (response) {
             estatePropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -207,7 +207,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         }
         estatePropertyDetail.categorybusyIndicator.isActive = true;
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response) {
             estatePropertyDetail.addRequested = true;
             estatePropertyDetail.treeConfig.showbusy = false;
             estatePropertyDetail.showIsBusy = false;
@@ -360,7 +360,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         estatePropertyDetail.selectedItem.DefaultValue.nameValue = estatePropertyDetail.attachedFields;
         estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/add', estatePropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 // filter text
@@ -428,7 +428,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         estatePropertyDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response) {
             // estatePropertyDetail.addRequested = false;
             estatePropertyDetail.treeConfig.showbusy = false;
             estatePropertyDetail.showIsBusy = false;
@@ -580,7 +580,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.attachedFields[estatePropertyDetail.selectedIndex] = FieldName;
             estatePropertyDetail.selectedItem.DefaultValue.nameValue = estatePropertyDetail.attachedFields;
             estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 estatePropertyDetail.disableUpdate();
                 $("#FieldName").val("");
@@ -645,14 +645,14 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.ListItems[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // Swap two item in the grid list without requesting a GetAll
@@ -687,14 +687,14 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.ListItems[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // جابجا کردن مکان دو آیتم در آرایه
@@ -739,14 +739,14 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 estatePropertyDetail.treeConfig.Items[index + 1] = response4.Item;
@@ -789,14 +789,14 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 estatePropertyDetail.treeConfig.Items[index - 1] = response4.Item;

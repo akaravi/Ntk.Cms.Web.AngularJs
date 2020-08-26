@@ -56,7 +56,7 @@
         }
         vehiclePropertyFavorite.busyIndicator.isActive = true;
         vehiclePropertyFavorite.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/add', vehiclePropertyFavorite.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/', vehiclePropertyFavorite.selectedItem, 'POST').success(function (response) {
             vehiclePropertyFavorite.addRequested = false;
             vehiclePropertyFavorite.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -98,7 +98,7 @@
             return;
         }
         vehiclePropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/edit', vehiclePropertyFavorite.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/', vehiclePropertyFavorite.selectedItem, "PUT").success(function (response) {
             vehiclePropertyFavorite.addRequested = true;
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;

@@ -204,7 +204,7 @@
         shopProcess.busyIndicator.isActive = true;
         shopProcess.addRequested = true;
         shopProcess.selectedItem.JsonFormAdminSiteValues = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/add', shopProcess.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/', shopProcess.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -221,7 +221,7 @@
 
     shopProcess.saveSubmitValues = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (shopProcess.updateMode == "add")
         //    updateMethod = "POST";
         shopProcess.addRequested = true;
@@ -247,7 +247,7 @@
         shopProcess.busyIndicator.isActive = true;
 
         shopProcess.selectedItem.JsonFormAdminSiteValues = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/', shopProcess.selectedItem, "PUT").success(function (response) {
             shopProcess.addRequested = false;
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -627,7 +627,7 @@
             shopProcess.selectedItem.LinkProcessCategoryId = null;
             shopProcess.selectedItem.LinkModuleProcessId = null;
             shopProcess.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(shopProcess.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/', shopProcess.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/', shopProcess.selectedItem, "PUT").success(function (response) {
                 shopProcess.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {

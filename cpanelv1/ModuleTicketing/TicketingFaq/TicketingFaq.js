@@ -94,7 +94,7 @@
         }
 
         ticketingFaq.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/add', ticketingFaq.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/', ticketingFaq.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 
             if (response.IsSuccess) {
@@ -117,7 +117,7 @@
             return;
         }
         ticketingFaq.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/edit', ticketingFaq.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/', ticketingFaq.selectedItem, "PUT").success(function (response) {
             ticketingFaq.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

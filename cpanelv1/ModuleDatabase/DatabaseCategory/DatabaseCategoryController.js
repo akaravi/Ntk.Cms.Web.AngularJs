@@ -50,7 +50,7 @@
         }
         dbCategory.busyIndicator.isActive = true;
         dbCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/add',  dbCategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/',  dbCategory.selectedItem , 'POST').success(function (response) {
             dbCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -92,7 +92,7 @@
             return;
         }
         dbCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/', dbCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/', dbCategory.selectedItem, "PUT").success(function (response) {
             dbCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -118,7 +118,7 @@
             return;
         }
         dbCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/edit/', dbCategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/edit/', dbCategory.selectedItem , "PUT").success(function (response) {
             dbCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

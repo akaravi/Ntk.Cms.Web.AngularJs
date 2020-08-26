@@ -70,7 +70,7 @@
         }
         estateContractType.busyIndicator.isActive = true;
         estateContractType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/add', estateContractType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.selectedItem, 'POST').success(function (response) {
             estateContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -114,7 +114,7 @@
             return;
         }
         estateContractType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/edit', estateContractType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.selectedItem, "PUT").success(function (response) {
             estateContractType.addRequested = true;
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
@@ -211,10 +211,10 @@
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'Title', displayName: 'نوع معامله', sortable: true, type: 'string', visible: true },
-            { name: 'HasSalePrice', displayName: 'قیمت فروش دارد', sortable: true, type: 'string', isCheckBox: true, visible: true },
-            { name: 'HasPresalePrice', displayName: 'قیمت پیش فروش دارد', sortable: true, type: 'string', isCheckBox: true, visible: true },
-            { name: 'HasRentPrice', displayName: 'اجاره/اقساط دارد', sortable: true, type: 'string', isCheckBox: true, visible: true },
-            { name: 'HasDepositPrice', displayName: 'قیمت رهن دارد', sortable: true, type: 'string', isCheckBox: true, visible: true }
+            { name: 'HasSalePrice', displayName: 'قیمت فروش دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
+            { name: 'HasPresalePrice', displayName: 'قیمت پیش فروش دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
+            { name: 'HasRentPrice', displayName: 'اجاره/اقساط دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
+            { name: 'HasDepositPrice', displayName: 'قیمت رهن دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true }
         ],
         data: {},
         multiSelect: false,

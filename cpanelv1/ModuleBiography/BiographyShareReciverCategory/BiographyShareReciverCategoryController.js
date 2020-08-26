@@ -260,7 +260,7 @@
         biographyShareReciverCategory.selectedItem.LinkParentId = null;
         if (biographyShareReciverCategory.treeConfig.currentNode != null)
             biographyShareReciverCategory.selectedItem.LinkParentId = biographyShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
             biographyShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -288,7 +288,7 @@
         }
         biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
         biographyShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/', biographyShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //biographyShareReciverCategory.showbusy = false;
             biographyShareReciverCategory.treeConfig.showbusy = false;
             biographyShareReciverCategory.addRequested = false;
@@ -456,7 +456,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Biography_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -489,7 +489,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Biography_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/', biographyShareReciverCategory.selectedItem, "PUT").success(function (response) {
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
             biographyShareReciverCategory.addRequested = false;
             biographyShareReciverCategory.treeConfig.showbusy = false;

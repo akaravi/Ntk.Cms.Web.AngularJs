@@ -84,7 +84,7 @@
         }
         transc.addRequested = true;
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/add', transc.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
@@ -149,7 +149,7 @@
             }
         }
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/edit', transc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.selectedItem, "PUT").success(function (response) {
             transc.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

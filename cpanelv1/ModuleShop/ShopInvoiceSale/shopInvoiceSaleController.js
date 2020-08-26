@@ -361,7 +361,7 @@ shopInvoiceSale.printDiv = function(divName) {
             return;
         }
         shopInvoiceSale.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/add', shopInvoiceSale.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/', shopInvoiceSale.selectedItem, 'POST').success(function (response) {
             //rashaErManage.checkAction(response);
             shopInvoiceSale.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -392,7 +392,7 @@ shopInvoiceSale.printDiv = function(divName) {
         shopInvoiceSale.busyIndicator.isActive = true;
         shopInvoiceSale.addRequested = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/edit', shopInvoiceSale.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/', shopInvoiceSale.selectedItem, "PUT").success(function (response) {
             shopInvoiceSale.busyIndicator.isActive = false;
             shopInvoiceSale.addRequested = false;
             shopInvoiceSale.showIsBusy = false;
@@ -537,7 +537,7 @@ shopInvoiceSale.printDiv = function(divName) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItem = response.Item;
             shopInvoiceSale.selectedItem.PaymentStatus = 2;
-            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/edit', shopInvoiceSale.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/', shopInvoiceSale.selectedItem, "PUT").success(function (response) {
                 rashaErManage.showMessage("پرداخت در محل");
                 shopInvoiceSale.init();
             }).error(function (data, errCode, c, d) {
@@ -702,7 +702,7 @@ shopInvoiceSale.printDiv = function(divName) {
         //if (!shopInvoiceSale.contentExists(shopInvoiceSale.selectedItemSaleDetail)) {
         shopInvoiceSale.addRequested = true;
         shopInvoiceSale.selectedItemSaleDetail.LinkContentId = shopInvoiceSale.selectedItem.LinkContentId;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/add', shopInvoiceSale.selectedItemSaleDetail, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSale.selectedItemSaleDetail, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.addRequested = false;
 
@@ -755,7 +755,7 @@ shopInvoiceSale.printDiv = function(divName) {
         }
         shopInvoiceSale.addRequested = true;
         shopInvoiceSale.selectedItemSaleDetail.LinkContentId = shopInvoiceSale.selectedItem.LinkContentId;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSale.selectedItemSaleDetail, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/', shopInvoiceSale.selectedItemSaleDetail, "PUT").success(function (response) {
             shopInvoiceSale.addRequested = false;
 
             rashaErManage.checkAction(response);

@@ -109,7 +109,7 @@
 //        }
 //        taskSchedulerProcess.busyIndicator.isActive = true;
 //        taskSchedulerProcess.addRequested = true;
-//        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/add', taskSchedulerProcess.selectedItem, 'POST').success(function (response) {
+//        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, 'POST').success(function (response) {
 //            taskSchedulerProcess.addRequested = false;
 //            taskSchedulerProcess.busyIndicator.isActive = false;
 //            rashaErManage.checkAction(response);
@@ -214,7 +214,7 @@
             return;
         }
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/edit', taskSchedulerProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, "PUT").success(function (response) {
             taskSchedulerProcess.addRequested = true;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.busyIndicator.isActive = false;
@@ -402,7 +402,7 @@
             // $builder.forms['default'] -> get the form in Json format
             taskSchedulerProcess.selectedItem.JsonFormAdminMainJsonForm = $.trim(angular.toJson($builder.forms['default']));
             taskSchedulerProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/edit', taskSchedulerProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     taskSchedulerProcess.closeModal();
@@ -471,7 +471,7 @@
 
     taskSchedulerProcess.saveSubmitValuesMainAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (taskSchedulerProcess.updateMode == "add")
         //    updateMethod = "POST";
         taskSchedulerProcess.addRequested = true;
@@ -569,7 +569,7 @@
             // $builder.forms['default'] -> get the form in Json format
             taskSchedulerProcess.selectedItem.JsonFormAdminSiteJsonForm = $.trim(angular.toJson($builder.forms['default']));
             taskSchedulerProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/edit', taskSchedulerProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     taskSchedulerProcess.closeModal();
@@ -638,7 +638,7 @@
 
     taskSchedulerProcess.saveSubmitValuesSiteAdmin = function () {
         var updateMethod = "PUT";
-        var updateMode = "edit";
+        var updateMode = "";
         //if (taskSchedulerProcess.updateMode == "add")
         //    updateMethod = "POST";
         taskSchedulerProcess.addRequested = true;
@@ -734,7 +734,7 @@
             // $builder.forms['default'] -> get the form in Json format
             taskSchedulerProcess.selectedItem.JsonForm = $.trim(angular.toJson($builder.forms['default']));
             taskSchedulerProcess.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/edit', taskSchedulerProcess.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     taskSchedulerProcess.closeModal();
@@ -920,7 +920,7 @@
             taskSchedulerProcess.selectedItem.JsonFormDefaultValue = $.trim(angular.toJson(taskSchedulerProcess.submitValue));
         else
             taskSchedulerProcess.selectedItem.JsonFormAdminSystemValue = $.trim(angular.toJson(taskSchedulerProcess.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/edit', taskSchedulerProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/', taskSchedulerProcess.selectedItem, "PUT").success(function (response) {
             taskSchedulerProcess.addRequested = true;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.busyIndicator.isActive = false;
@@ -1071,7 +1071,7 @@
               // ------- taskSchedulerProcess.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", taskSchedulerProcess.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", taskSchedulerProcess.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     taskSchedulerProcess.FileItem = response.Item;

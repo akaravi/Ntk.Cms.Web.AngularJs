@@ -161,7 +161,7 @@
         //Save attached file ids into campaignDetailLog.selectedItem.LinkFileIds
         campaignDetailLog.selectedItem.LinkFileIds = "";
         campaignDetailLog.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/add', campaignDetailLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/', campaignDetailLog.selectedItem, 'POST').success(function (response) {
             campaignDetailLog.addRequested = false;
             campaignDetailLog.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -219,7 +219,7 @@
         //Save attached file ids into campaignDetailLog.selectedItem.LinkFileIds
         campaignDetailLog.selectedItem.LinkFileIds = "";
         campaignDetailLog.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/edit', campaignDetailLog.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/', campaignDetailLog.selectedItem, "PUT").success(function (response) {
             campaignDetailLog.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailLog.busyIndicator.isActive = false;
@@ -618,7 +618,7 @@
     }
     //save new file
     campaignDetailLog.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignDetailLog.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 campaignDetailLog.FileItem = response.Item;
                 campaignDetailLog.showSuccessIcon();
@@ -750,7 +750,7 @@
                     campaignDetailLog.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- campaignDetailLog.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignDetailLog.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailLog.FileItem = response.Item;
                             campaignDetailLog.showSuccessIcon();

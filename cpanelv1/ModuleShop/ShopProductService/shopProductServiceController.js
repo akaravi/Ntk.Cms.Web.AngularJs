@@ -137,7 +137,7 @@
         }
         shopService.busyIndicator.isActive = true;
         shopService.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/add', shopService.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/', shopService.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopService.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -169,7 +169,7 @@
         //    else
         //        shopService.selectedItem.Keyword += ',' + item.text;
         //});
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/edit', shopService.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/', shopService.selectedItem, "PUT").success(function (response) {
             shopService.busyIndicator.isActive = false;
             shopService.addRequested = false;
             shopService.showIsBusy = false;

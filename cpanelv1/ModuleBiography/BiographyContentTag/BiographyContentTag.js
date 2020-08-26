@@ -44,7 +44,7 @@
         biographyContentTag.addRequested = true;
         biographyContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/add', biographyContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/', biographyContentTag.selectedItem , 'POST').success(function (response) {
             biographyContentTag.addRequested = false;
             biographyContentTag.busyIndicator.isActive = false;
 
@@ -89,7 +89,7 @@
         }
         biographyContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/edit',  biographyContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/',  biographyContentTag.selectedItem , "PUT").success(function (response) {
             biographyContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             biographyContentTag.busyIndicator.isActive = false;

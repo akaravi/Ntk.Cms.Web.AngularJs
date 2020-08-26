@@ -170,7 +170,7 @@
 
             campaignDetailMember.addRequested = true;
             campaignDetailMember.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignDetailMember.selectedItem.LinkMemberId = response1.Item.Id;
@@ -185,7 +185,7 @@
         }
     }
     campaignDetailMember.addSerialCard = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/add', campaignDetailMember.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/', campaignDetailMember.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 campaignDetailMember.ListItems.unshift(response.Item);
@@ -238,7 +238,7 @@
     //    //Save attached file ids into campaignDetailMember.selectedItem.LinkFileIds
     //    campaignDetailMember.selectedItem.LinkFileIds = "";
     //    campaignDetailMember.stringfyLinkFileIds();
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/', campaignDetailMember.selectedItem, "PUT").success(function (response) {
     //        campaignDetailMember.addRequested = true;
     //        rashaErManage.checkAction(response);
     //        campaignDetailMember.busyIndicator.isActive = false;
@@ -329,7 +329,7 @@
 
             campaignDetailMember.addRequested = true;
             campaignDetailMember.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignDetailMember.selectedItem.LinkMemberId = response1.Item.Id;
@@ -351,7 +351,7 @@
         //Save attached file ids into campaignDetailMember.selectedItem.LinkFileIds
         campaignDetailMember.selectedItem.LinkFileIds = "";
         campaignDetailMember.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/', campaignDetailMember.selectedItem, "PUT").success(function (response) {
             campaignDetailMember.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailMember.busyIndicator.isActive = false;
@@ -790,7 +790,7 @@
     }
     //save new file
     campaignDetailMember.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignDetailMember.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 campaignDetailMember.FileItem = response.Item;
                 campaignDetailMember.showSuccessIcon();
@@ -922,7 +922,7 @@
                     campaignDetailMember.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- campaignDetailMember.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", campaignDetailMember.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailMember.FileItem = response.Item;
                             campaignDetailMember.showSuccessIcon();

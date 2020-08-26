@@ -67,7 +67,7 @@
             return;
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
         cmsSiteCategoryCmsModule.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/add', cmsSiteCategoryCmsModule.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.selectedItem, 'POST').success(function (response) {
             cmsSiteCategoryCmsModule.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -106,7 +106,7 @@
         if (frm.$invalid)
             return;
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/edit', cmsSiteCategoryCmsModule.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.selectedItem, "PUT").success(function (response) {
             cmsSiteCategoryCmsModule.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -278,7 +278,7 @@
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
         cmsSiteCategoryCmsModule.addRequested = true;
         cmsSiteCategoryCmsModule.cmsModuleSite[cmsSiteCategoryCmsModule.configName] = $.trim(angular.toJson(cmsSiteCategoryCmsModule.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/edit', cmsSiteCategoryCmsModule.cmsModuleSite, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsSiteCategoryCmsModule.cmsModuleSite, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSiteCategoryCmsModule.closeModal();

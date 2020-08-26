@@ -91,7 +91,7 @@
         }
         reservationService.busyIndicator.isActive = true;
         reservationService.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationService/add', reservationService.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationService/', reservationService.selectedItem, 'POST').success(function (response) {
             reservationService.addRequested = false;
             reservationService.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -137,7 +137,7 @@
             return;
         }
         reservationService.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/edit', reservationService.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/', reservationService.selectedItem, "PUT").success(function (response) {
             reservationService.addRequested = true;
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;

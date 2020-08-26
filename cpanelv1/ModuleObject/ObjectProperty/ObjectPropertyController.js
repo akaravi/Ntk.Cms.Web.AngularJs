@@ -350,7 +350,7 @@ objectProperty.selectedItemLinkobjectUserId=false;
         //objectProperty.addRequested = true;
         objectProperty.selectedItemhistory.LinkPropertyId=objectProperty.PropertyID;
         //objectProperty.listHistorysSelectedLinkPropertyTypeId
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/add', objectProperty.selectedItemhistory, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.selectedItemhistory, 'POST').success(function (response) {
             //objectProperty.addRequested = false;
             //objectProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -466,7 +466,7 @@ objectProperty.selectedItemLinkobjectUserId=false;
             return;
         }
         //objectProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/edit', objectProperty.selectedItemhistory, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.selectedItemhistory, "PUT").success(function (response) {
             //objectProperty.addRequested = true;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
@@ -874,7 +874,7 @@ objectProperty.PropertyID=PropertyId;
         objectProperty.selectedItem.LinkParentId = null;
         if (objectProperty.treeConfig.currentNode != null)
             objectProperty.selectedItem.LinkParentId = objectProperty.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/add', objectProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/', objectProperty.selectedItem, 'POST').success(function (response) {
             objectProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -899,7 +899,7 @@ objectProperty.PropertyID=PropertyId;
             return;
         }
         objectProperty.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/edit', objectProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/', objectProperty.selectedItem, "PUT").success(function (response) {
             objectProperty.addRequested = true;
             //objectProperty.showbusy = false;
             objectProperty.treeConfig.showbusy = false;
@@ -1065,7 +1065,7 @@ objectProperty.PropertyID=PropertyId;
         objectProperty.addRequested = true;
         var valueItem = {};
         objectProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/add', objectProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 objectProperty.closeModal();
@@ -1192,7 +1192,7 @@ objectProperty.PropertyID=PropertyId;
         // Edit Property: Title, Description, LinkPropertyTypeId
         //objectProperty.busyIndicator.isActive = true;
         objectProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(objectProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/edit', objectProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.selectedItem, "PUT").success(function (response) {
             objectProperty.addRequested = true;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
@@ -1278,7 +1278,7 @@ objectProperty.PropertyID=PropertyId;
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             objectProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/EditBatch', objectProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/EditBatch', objectProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 //objectProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -1686,7 +1686,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
     }
     //save new file
     objectProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 objectProperty.FileItem = response.Item;
                 objectProperty.showSuccessIcon();
@@ -1818,7 +1818,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
                     objectProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- objectProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", objectProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             objectProperty.FileItem = response.Item;
                             objectProperty.showSuccessIcon();

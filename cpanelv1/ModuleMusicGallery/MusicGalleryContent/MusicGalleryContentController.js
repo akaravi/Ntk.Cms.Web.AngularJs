@@ -59,7 +59,7 @@
     //    if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
     //        var tagObject = jQuery.extend({}, mscGallery.ModuleTag);   //#Clone a Javascript Object
     //        tagObject.Title = tag.text;
-    //        ajax.call('/api/MusicGalleryTag/add', tagObject, 'POST').success(function (response) {
+    //        ajax.call('/api/MusicGalleryTag/', tagObject, 'POST').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            if (response.IsSuccess) {
     //                mscGallery.tags[mscGallery.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -280,7 +280,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/add', mscGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/', mscGallery.selectedItem, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             mscGallery.treeBusyIndicator.isActive = false;
@@ -343,7 +343,7 @@ mscGallery.LinkCategoryIdSelector = {
             newObject.LinkContentId = mscGallery.selectedItem.Id;
             mscGallery.selectedItem.ContentTags.push(newObject);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/', mscGallery.selectedItem, "PUT").success(function (response) {
             mscGallery.treeBusyIndicator.isActive = false;
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
@@ -484,7 +484,7 @@ mscGallery.LinkCategoryIdSelector = {
         mscGallery.selectedItem.LinkCategorytId = null;
         if (mscGallery.treeConfig.currentNode != null)
             mscGallery.selectedItem.LinkParentId = mscGallery.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/add', mscGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/', mscGallery.selectedItem, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -519,7 +519,7 @@ mscGallery.LinkCategoryIdSelector = {
                         mscGallery.selectedItem.LinkFileId = value.Id;
                         mscGallery.selectedItem.Title = value.FileName;
                         mscGallery.selectedItem.LinkCategoryId = node.Id;
-                        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/add', mscGallery.selectedItem, 'POST').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/', mscGallery.selectedItem, 'POST').success(function (response) {
                             rashaErManage.checkAction(response);
                             value.addIsSuccess = null;
                             if (response.IsSuccess) {
@@ -555,7 +555,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/', mscGallery.selectedItem, "PUT").success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

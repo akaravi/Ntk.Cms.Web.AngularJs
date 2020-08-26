@@ -287,7 +287,7 @@
         if (biographyTag.treeConfig.currentNode != null)
             biographyTag.selectedItem.LinkParentId = biographyTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/add', biographyTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/', biographyTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             biographyTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         biographyTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/edit', biographyTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/', biographyTag.selectedItem, "PUT").success(function (response) {
             biographyTag.addRequested = true;
             //biographyTag.showbusy = false;
             biographyTag.treeConfig.showbusy = false;
@@ -467,7 +467,7 @@
         biographyTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographytag/add', biographyTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographytag/', biographyTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         biographyTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographytag/edit', biographyTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographytag/', biographyTag.selectedItem, "PUT").success(function (response) {
             biographyTag.categoryBusyIndicator.isActive = false;
             biographyTag.addRequested = false;
             biographyTag.treeConfig.showbusy = false;
@@ -834,7 +834,7 @@
     }
     //save new file
     biographyTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", biographyTag.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", biographyTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 biographyTag.FileItem = response.Item;
                 biographyTag.showSuccessIcon();
@@ -967,7 +967,7 @@
                     biographyTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- biographyTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", biographyTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", biographyTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             biographyTag.FileItem = response.Item;
                             biographyTag.showSuccessIcon();

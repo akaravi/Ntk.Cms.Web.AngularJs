@@ -53,7 +53,7 @@
 
     apiPathCustomer.editRow = function () {
         apiPathCustomer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/edit', apiPathCustomer.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/', apiPathCustomer.selectedItem, "PUT").success(function (response) {
             apiPathCustomer.addRequested = false;
             rashaErManage.checkAction(response);
             apiPathCustomer.closeModal();
@@ -64,7 +64,7 @@
         });
     };
     apiPathCustomer.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/add', apiPathCustomer.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/', apiPathCustomer.selectedItem, 'POST').success(function (response) {
             apiPathCustomer.addRequested = false;
             apiPathCustomer.closeModal();
             apiPathCustomer.init();

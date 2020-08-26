@@ -56,7 +56,7 @@
         }
         advertisementPropertyFavorite.busyIndicator.isActive = true;
         advertisementPropertyFavorite.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/add', advertisementPropertyFavorite.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/', advertisementPropertyFavorite.selectedItem, 'POST').success(function (response) {
             advertisementPropertyFavorite.addRequested = false;
             advertisementPropertyFavorite.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -98,7 +98,7 @@
             return;
         }
         advertisementPropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/edit', advertisementPropertyFavorite.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/', advertisementPropertyFavorite.selectedItem, "PUT").success(function (response) {
             advertisementPropertyFavorite.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;

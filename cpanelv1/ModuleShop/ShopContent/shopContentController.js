@@ -550,7 +550,7 @@
         shopContent.selectedItem.LinkParentId = null;
         if (shopContent.treeConfig.currentNode != null)
             shopContent.selectedItem.LinkParentId = shopContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/add', shopContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.selectedItem, 'POST').success(function (response) {
             shopContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -574,7 +574,7 @@
             return;
         }
         shopContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/edit', shopContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.selectedItem, "PUT").success(function (response) {
             shopContent.addRequested = true;
             //shopContent.showbusy = false;
             shopContent.treeConfig.showbusy = false;
@@ -893,7 +893,7 @@
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -951,7 +951,7 @@
                 item.Destination = [];
             });
         shopContent.saveCollection();
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', apiSelectedItem, "PUT").success(function (response) {
             shopContent.categoryBusyIndicator.isActive = false;
             shopContent.addRequested = false;
             shopContent.treeConfig.showbusy = false;
@@ -1552,7 +1552,7 @@
     }
     //save new file
     shopContent.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 shopContent.FileItem = response.Item;
                 shopContent.showSuccessIcon();
@@ -1680,7 +1680,7 @@
                     shopContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- shopContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             shopContent.FileItem = response.Item;
                             shopContent.showSuccessIcon();
@@ -1784,7 +1784,7 @@
                     shopContent.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- shopContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", shopContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             shopContent.FileItem = response.Item;
                             shopContent.showSuccessIcon();

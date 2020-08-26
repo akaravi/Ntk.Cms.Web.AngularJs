@@ -83,7 +83,7 @@
         }
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/add', emailOutBoxContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxContent.ListItems.unshift(response.Item);
@@ -220,7 +220,7 @@
 
         emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
 
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, "PUT").success(function (response) {
             emailOutBoxContent.addRequested = false;
             emailOutBoxContent.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -467,7 +467,7 @@
         emailOutBoxContent.busyIndicator.isActive = true;
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.busyIndicator.isActive = false;
             emailOutBoxContent.addRequested = false;

@@ -67,7 +67,7 @@
         //}
         siteAccDocumentDetailType.busyIndicator.isActive = true;
         siteAccDocumentDetailType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/add', siteAccDocumentDetailType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/', siteAccDocumentDetailType.selectedItem, 'POST').success(function (response) {
             siteAccDocumentDetailType.addRequested = false;
             siteAccDocumentDetailType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -112,7 +112,7 @@
             return;
         }
         siteAccDocumentDetailType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/edit', siteAccDocumentDetailType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/', siteAccDocumentDetailType.selectedItem, "PUT").success(function (response) {
             siteAccDocumentDetailType.addRequested = true;
             rashaErManage.checkAction(response);
             siteAccDocumentDetailType.busyIndicator.isActive = false;

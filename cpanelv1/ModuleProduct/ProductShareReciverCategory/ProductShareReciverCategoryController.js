@@ -261,7 +261,7 @@
         productShareReciverCategory.selectedItem.LinkParentId = null;
         if (productShareReciverCategory.treeConfig.currentNode != null)
             productShareReciverCategory.selectedItem.LinkParentId = productShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductShareMainAdminSetting/add', productShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductShareMainAdminSetting/', productShareReciverCategory.selectedItem, 'POST').success(function (response) {
             productShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -289,7 +289,7 @@
         }
         productShareReciverCategory.categoryBusyIndicator.isActive = true;
         productShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductShareMainAdminSetting/edit', productShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductShareMainAdminSetting/', productShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //productShareReciverCategory.showbusy = false;
             productShareReciverCategory.treeConfig.showbusy = false;
             productShareReciverCategory.addRequested = false;
@@ -455,7 +455,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'productShareReciverCategory/add', productShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'productShareReciverCategory/', productShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -488,7 +488,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'productShareReciverCategory/edit', productShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'productShareReciverCategory/', productShareReciverCategory.selectedItem, "PUT").success(function (response) {
             productShareReciverCategory.categoryBusyIndicator.isActive = false;
             productShareReciverCategory.addRequested = false;
             productShareReciverCategory.treeConfig.showbusy = false;

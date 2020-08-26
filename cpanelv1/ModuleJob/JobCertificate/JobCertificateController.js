@@ -65,7 +65,7 @@
         }
         jobCertificate.busyIndicator.isActive = true;
         jobCertificate.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/add', jobCertificate.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/', jobCertificate.selectedItem, 'POST').success(function (response) {
             jobCertificate.addRequested = false;
             jobCertificate.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -116,7 +116,7 @@
             return;
         }
         jobCertificate.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/edit', jobCertificate.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/', jobCertificate.selectedItem, "PUT").success(function (response) {
             jobCertificate.addRequested = true;
             rashaErManage.checkAction(response);
             jobCertificate.busyIndicator.isActive = false;

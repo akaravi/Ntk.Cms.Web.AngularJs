@@ -28,7 +28,7 @@
 
     coreIdentityUser.init = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", {}, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", "", 'GET').success(function (response) {
             coreIdentityUser.Gender = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -84,7 +84,7 @@
         coreIdentityUser.selectedItem.LinkFileIds = "";
         coreIdentityUser.stringfyLinkFileIds();
         coreIdentityUser.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/add', coreIdentityUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/', coreIdentityUser.selectedItem, 'POST').success(function (response) {
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -146,7 +146,7 @@
         //Save attached file ids into coreIdentityUser.selectedItem.LinkFileIds
         coreIdentityUser.selectedItem.LinkFileIds = "";
         coreIdentityUser.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/edit', coreIdentityUser.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/', coreIdentityUser.selectedItem, "PUT").success(function (response) {
             buttonIsPressed = false;
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
@@ -508,7 +508,7 @@
     }
     //save new file
     coreIdentityUser.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", coreIdentityUser.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 coreIdentityUser.FileItem = response.Item;
                 coreIdentityUser.showSuccessIcon();
@@ -641,7 +641,7 @@
                     coreIdentityUser.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- coreIdentityUser.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", coreIdentityUser.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             coreIdentityUser.FileItem = response.Item;
                             coreIdentityUser.showSuccessIcon();

@@ -294,7 +294,7 @@
         schedule.addRequested = true;
         schedule.selectedItem.ScheduleUsageType=2;
         //schedule.selectedItem.ProcessInputValue = $.trim(angular.toJson(schedule.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/add', schedule.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/', schedule.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             schedule.contentBusyIndicator.isActive = false;
             if (response1.IsSuccess) {
@@ -335,7 +335,7 @@
            }
         schedule.contentBusyIndicator.isActive = true;
         schedule.editRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/edit', schedule.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/', schedule.selectedItem, "PUT").success(function (response1) {
             schedule.editRequested = false;
             rashaErManage.checkAction(response1);
             schedule.contentBusyIndicator.isActive = false;

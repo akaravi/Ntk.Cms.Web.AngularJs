@@ -355,7 +355,7 @@ quoteContent.LinkCategoryIdSelector = {
         quoteContent.selectedItem.LinkParentId = null;
         if (quoteContent.treeConfig.currentNode != null)
             quoteContent.selectedItem.LinkParentId = quoteContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/add', quoteContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/', quoteContent.selectedItem, 'POST').success(function (response) {
             quoteContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -382,7 +382,7 @@ quoteContent.LinkCategoryIdSelector = {
             return;
         }
         quoteContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/edit', quoteContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/', quoteContent.selectedItem, "PUT").success(function (response) {
             quoteContent.addRequested = true;
             //quoteContent.showbusy = false;
             quoteContent.treeConfig.showbusy = false;
@@ -578,7 +578,7 @@ quoteContent.LinkCategoryIdSelector = {
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -611,7 +611,7 @@ quoteContent.LinkCategoryIdSelector = {
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/', apiSelectedItem, "PUT").success(function (response) {
             quoteContent.categoryBusyIndicator.isActive = false;
             quoteContent.addRequested = false;
             quoteContent.treeConfig.showbusy = false;
@@ -794,7 +794,7 @@ quoteContent.LinkCategoryIdSelector = {
             rashaErManage.checkAction(response);
             quoteContent.selectedItem = response.Item;
             quoteContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/', quoteContent.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = quoteContent.ListItems.indexOf(quoteContent.gridOptions.selectedRow.item);
@@ -820,7 +820,7 @@ quoteContent.LinkCategoryIdSelector = {
             rashaErManage.checkAction(response);
             quoteContent.selectedItem = response.Item;
             quoteContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/', quoteContent.selectedItem, "PUT").success(function (response2) {
                 quoteContent.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1138,7 +1138,7 @@ quoteContent.LinkCategoryIdSelector = {
     }
     //save new file
     quoteContent.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", quoteContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 quoteContent.FileItem = response.Item;
                 quoteContent.showSuccessIcon();
@@ -1276,7 +1276,7 @@ quoteContent.LinkCategoryIdSelector = {
                     quoteContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- quoteContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", quoteContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             quoteContent.FileItem = response.Item;
                             quoteContent.showSuccessIcon();

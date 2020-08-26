@@ -79,7 +79,7 @@
         }
         imgGalleryComment.busyIndicator.isActive = true;
         imgGalleryComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/add', imgGalleryComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/', imgGalleryComment.selectedItem, 'POST').success(function (response) {
             imgGalleryComment.addRequested = false;
             imgGalleryComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -125,7 +125,7 @@
             return;
         }
         imgGalleryComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/edit', imgGalleryComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/', imgGalleryComment.selectedItem, "PUT").success(function (response) {
             imgGalleryComment.addRequested = true;
             rashaErManage.checkAction(response);
             imgGalleryComment.busyIndicator.isActive = false;

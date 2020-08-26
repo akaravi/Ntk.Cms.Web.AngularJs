@@ -116,7 +116,7 @@
             return;
         biographyContentParameter.busyIndicator.isActive = true;
         biographyContentParameter.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/add', biographyContentParameter.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.selectedItem, 'POST').success(function (response) {
             biographyContentParameter.addRequested = false;
             biographyContentParameter.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -163,7 +163,7 @@
         if (frm.$invalid)
             return;
         biographyContentParameter.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/edit', biographyContentParameter.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/', biographyContentParameter.selectedItem, "PUT").success(function (response) {
             biographyContentParameter.addRequested = true;
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;

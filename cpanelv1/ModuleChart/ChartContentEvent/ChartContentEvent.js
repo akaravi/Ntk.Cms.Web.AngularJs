@@ -141,7 +141,7 @@ var todayDate = moment().format();
         }
         chartContentEvent.busyIndicator.isActive = true;
         chartContentEvent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/add', chartContentEvent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/', chartContentEvent.selectedItem, 'POST').success(function (response) {
             chartContentEvent.addRequested = false;
             chartContentEvent.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -194,7 +194,7 @@ var todayDate = moment().format();
             return;
         }
         chartContentEvent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/edit', chartContentEvent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/', chartContentEvent.selectedItem, "PUT").success(function (response) {
             chartContentEvent.addRequested = true;
             rashaErManage.checkAction(response);
             chartContentEvent.busyIndicator.isActive = false;

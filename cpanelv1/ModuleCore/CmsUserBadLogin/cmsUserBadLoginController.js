@@ -39,7 +39,7 @@
 	if (frm.$invalid)
             return;
         cmdUserBadLogin.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/add', cmdUserBadLogin.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/', cmdUserBadLogin.selectedItem , 'POST').success(function (response) {
             cmdUserBadLogin.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -75,7 +75,7 @@
     cmdUserBadLogin.editRow = function (frm) {
 	if (frm.$invalid)
             return;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/edit',  cmdUserBadLogin.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/',  cmdUserBadLogin.selectedItem , "PUT").success(function (response) {
             cmdUserBadLogin.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

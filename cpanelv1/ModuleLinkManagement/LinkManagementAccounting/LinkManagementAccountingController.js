@@ -106,7 +106,7 @@
         }
         linkManagementAccounting.busyIndicator.isActive = true;
         linkManagementAccounting.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/add', linkManagementAccounting.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/', linkManagementAccounting.selectedItem, 'POST').success(function (response) {
             linkManagementAccounting.addRequested = false;
             linkManagementAccounting.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -154,7 +154,7 @@
             return;
         }
         linkManagementAccounting.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/edit', linkManagementAccounting.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/', linkManagementAccounting.selectedItem, "PUT").success(function (response) {
             linkManagementAccounting.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;

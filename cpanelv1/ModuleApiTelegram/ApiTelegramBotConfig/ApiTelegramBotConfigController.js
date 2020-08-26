@@ -108,7 +108,7 @@
         }
         botConfigCtrl.busyIndicator.isActive = true;
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/add', botConfigCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/', botConfigCtrl.selectedItem, 'POST').success(function (response) {
             botConfigCtrl.addRequested = false;
             botConfigCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -157,7 +157,7 @@
         if (!botConfigCtrl.selectUniversalMenuOnUndetectableKey)
             botConfigCtrl.selectedItem.LinkUniversalMenuIdOnUndetectableKey = null;
         botConfigCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/', botConfigCtrl.selectedItem, "PUT").success(function (response) {
             botConfigCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;
@@ -319,7 +319,7 @@
                     if (botConfigCtrl.selectedItem.first_name != botConfigCtrl.gridOptions.data[selectedIndex].Title || botConfigCtrl.gridOptions.data[selectedIndex].Username != botConfigCtrl.selectedItem.username) {
                         botConfigCtrl.selectedBotConfig.Title = botConfigCtrl.selectedItem.first_name;
                         botConfigCtrl.selectedBotConfig.Username = botConfigCtrl.selectedItem.username;
-                        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedBotConfig, 'PUT').success(function (response2) { //ذخیره مشخصات ربات 
+                        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/', botConfigCtrl.selectedBotConfig, "PUT").success(function (response2) { //ذخیره مشخصات ربات 
                             if (response2.IsSuccess) {
                                 botConfigCtrl.gridOptions.data[selectedIndex].Title = botConfigCtrl.selectedItem.first_name;
                                 botConfigCtrl.gridOptions.data[selectedIndex].Username = botConfigCtrl.selectedItem.username;

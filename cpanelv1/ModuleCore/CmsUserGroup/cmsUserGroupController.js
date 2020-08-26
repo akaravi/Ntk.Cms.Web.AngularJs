@@ -56,7 +56,7 @@
             return;
 
         cmsUserGroupgrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/add', cmsUserGroupgrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/', cmsUserGroupgrd.selectedItem, 'POST').success(function (response) {
             cmsUserGroupgrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -94,7 +94,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/edit', cmsUserGroupgrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/', cmsUserGroupgrd.selectedItem, "PUT").success(function (response) {
             cmsUserGroupgrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -151,7 +151,7 @@
 
         emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
 
-        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/edit', emailPublicConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.selectedItem, "PUT").success(function (response) {
             emailPublicConfig.addRequested = false;
             emailPublicConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -397,7 +397,7 @@
         emailPublicConfig.busyIndicator.isActive = true;
         emailPublicConfig.addRequested = true;
         emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/edit', emailPublicConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailPublicConfig.busyIndicator.isActive = false;
             emailPublicConfig.addRequested = false;

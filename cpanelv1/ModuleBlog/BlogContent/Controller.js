@@ -762,7 +762,7 @@
         blogContent.selectedItem.LinkParentId =
         blogContent.treeConfig.currentNode.Id;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "blogCategory/add", blogContent.selectedItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "blogCategory/", blogContent.selectedItem, "POST")
         .success(function (response) {
           blogContent.addRequested = false;
           rashaErManage.checkAction(response);
@@ -788,7 +788,7 @@
       blogContent.categoryBusyIndicator.isActive = true;
       blogContent.addRequested = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "blogCategory/edit", blogContent.selectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "blogCategory/", blogContent.selectedItem, "PUT")
         .success(function (response) {
           //blogContent.showbusy = false;
           blogContent.treeConfig.showbusy = false;
@@ -1052,7 +1052,7 @@
         blogContent.selectedItemOtherInfos.LinkContentId = blogContent.gridOptions.selectedRow.item.Id;
         blogContent.OtherInfos.push(blogContent.selectedItemOtherInfos);
         blogContent.selectedItemOtherInfos = {};
-        // ajax.call(cmsServerConfig.configApiServerPath + 'blogContentOtherInfo/add', blogContent.selectedItemOtherInfos, 'POST').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath + 'blogContentOtherInfo/', blogContent.selectedItemOtherInfos, 'POST').success(function (response) {
         //   rashaErManage.checkAction(response);
         //   if (response.IsSuccess) {
         //     blogContent.selectedItemOtherInfos = response.Item;
@@ -1255,7 +1255,7 @@
       }
       var apiSelectedItem = blogContent.selectedItem;
 
-      ajax.call(cmsServerConfig.configApiServerPath + "blogContent/add", apiSelectedItem, "POST").success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "blogContent/", apiSelectedItem, "POST").success(function (response) {
           rashaErManage.checkAction(response);
           blogContent.categoryBusyIndicator.isActive = false;
           if (response.IsSuccess) {
@@ -1453,7 +1453,7 @@
       apiSelectedItem = angular.extend(apiSelectedItem, blogContent.selectedItem);
       apiSelectedItem.OtherInfos = [];
       ajax
-        .call(cmsServerConfig.configApiServerPath + "blogContent/edit", apiSelectedItem, "PUT")
+        .call(cmsServerConfig.configApiServerPath + "blogContent/", apiSelectedItem, "PUT")
         .success(function (response) {
           blogContent.categoryBusyIndicator.isActive = false;
           blogContent.addRequested = false;
@@ -1570,7 +1570,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "blogContent/edit", blogContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "blogContent/", blogContent.selectedItem, "PUT")
             .success(function (response2) {
               rashaErManage.checkAction(response2);
               if (response2.IsSuccess) {
@@ -1611,7 +1611,7 @@
             false :
             true;
           ajax
-            .call(cmsServerConfig.configApiServerPath + "blogContent/edit", blogContent.selectedItem, "PUT")
+            .call(cmsServerConfig.configApiServerPath + "blogContent/", blogContent.selectedItem, "PUT")
             .success(function (response2) {
               blogContent.categoryBusyIndicator.isActive = true;
               rashaErManage.checkAction(response2);
@@ -1720,7 +1720,7 @@
         item.RecordStatus = 1;
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'BlogComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BlogComment/', itemCopy, "PUT").success(function (response) {
           rashaErManage.checkAction(response);
           if(response.IsSuccess)
           blogContent.showComment(blogContent.gridOptions.selectedRow.item.Id)
@@ -1736,7 +1736,7 @@
         item.RecordStatus = 5;//DeniedConfirmed
         var itemCopy = angular.copy(item);
         itemCopy.rowOption = null;
-        ajax.call(cmsServerConfig.configApiServerPath + 'BlogComment/edit', itemCopy, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BlogComment/', itemCopy, "PUT").success(function (response) {
           if(response.IsSuccess)
           blogContent.showComment(blogContent.gridOptions.selectedRow.item.Id)
           rashaErManage.checkAction(response);
@@ -2145,7 +2145,7 @@
     //save new file
     blogContent.saveNewFile = function () {
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/add", blogContent.FileItem, "POST")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/", blogContent.FileItem, "POST")
         .success(function (response) {
           if (response.IsSuccess) {
             blogContent.FileItem = response.Item;
@@ -2274,7 +2274,7 @@
             blogContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- blogContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", blogContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", blogContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 blogContent.FileItem = response.Item;
                 blogContent.showSuccessIcon();
@@ -2378,7 +2378,7 @@
             blogContent.FileItem.LinkCategoryId = null; //Save the new file in the root
             // ------- blogContent.saveNewFile()  ----------------------
             var result = 0;
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", blogContent.FileItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", blogContent.FileItem, 'POST').success(function (response) {
               if (response.IsSuccess) {
                 blogContent.FileItem = response.Item;
                 blogContent.showSuccessIcon();
@@ -2492,7 +2492,7 @@
               // ------- blogContent.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", blogContent.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/", blogContent.FileItem, "POST")
                 .success(function (response) {
                   if (response.IsSuccess) {
                     blogContent.FileItem = response.Item;

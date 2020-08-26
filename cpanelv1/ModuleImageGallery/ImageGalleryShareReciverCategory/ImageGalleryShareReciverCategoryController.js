@@ -262,7 +262,7 @@
         imageGalleryShareReciverCategory.selectedItem.LinkParentId = null;
         if (imageGalleryShareReciverCategory.treeConfig.currentNode != null)
             imageGalleryShareReciverCategory.selectedItem.LinkParentId = imageGalleryShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/add', imageGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/', imageGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             imageGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -290,7 +290,7 @@
         }
         imageGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
         imageGalleryShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/edit', imageGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/', imageGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             //imageGalleryShareReciverCategory.showbusy = false;
             imageGalleryShareReciverCategory.treeConfig.showbusy = false;
             imageGalleryShareReciverCategory.addRequested = false;
@@ -456,7 +456,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'imageGalleryShareReciverCategory/add', imageGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imageGalleryShareReciverCategory/', imageGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             imageGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -489,7 +489,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'imageGalleryShareReciverCategory/edit', imageGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imageGalleryShareReciverCategory/', imageGalleryShareReciverCategory.selectedItem, "PUT").success(function (response) {
             imageGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             imageGalleryShareReciverCategory.addRequested = false;
             imageGalleryShareReciverCategory.treeConfig.showbusy = false;

@@ -282,7 +282,7 @@
         dbContent.selectedItem.LinkParentId = null;
         //if (dbContent.treeConfig.currentNode != null)
         //    dbContent.selectedItem.LinkParentId = dbContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/add', dbContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/', dbContent.selectedItem, 'POST').success(function (response) {
             dbContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -309,7 +309,7 @@
             return;
         }
         dbContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/edit', dbContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/', dbContent.selectedItem, "PUT").success(function (response) {
             dbContent.addRequested = true;
             //dbContent.showbusy = false;
             dbContent.treeConfig.showbusy = false;
@@ -492,7 +492,7 @@
             }
             return val;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/add', dbContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/', dbContent.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -523,7 +523,7 @@
             }
             return val;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/', dbContent.selectedItem, "PUT").success(function (response) {
             dbContent.categoryBusyIndicator.isActive = false;
             dbContent.addRequested = false;
             dbContent.treeConfig.showbusy = false;
@@ -600,7 +600,7 @@
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/', dbContent.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = dbContent.ListItems.indexOf(dbContent.gridOptions.selectedRow.item);
@@ -629,7 +629,7 @@
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/', dbContent.selectedItem, "PUT").success(function (response2) {
                 dbContent.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {

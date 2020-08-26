@@ -114,7 +114,7 @@
         ticketingAnswer.selectedItem.LinkCmsPageId = 1;
         console.log((ticketingAnswer.selectedItem));
         ticketingAnswer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/add',  ticketingAnswer.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/',  ticketingAnswer.selectedItem , 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             console.log(response);
             if (response.IsSuccess) {
@@ -138,7 +138,7 @@
             return;
         }
         ticketingAnswer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/edit',  ticketingAnswer.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/',  ticketingAnswer.selectedItem , "PUT").success(function (response) {
             ticketingAnswer.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

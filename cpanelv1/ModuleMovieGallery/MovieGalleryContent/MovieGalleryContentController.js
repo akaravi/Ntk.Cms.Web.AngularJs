@@ -57,7 +57,7 @@
     //    if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
     //        var tagObject = jQuery.extend({}, mvGallery.ModuleTag);   //#Clone a Javascript Object
     //        tagObject.Title = tag.text;
-    //        ajax.call('/api/movieGalleryTag/add', tagObject, 'POST').success(function (response) {
+    //        ajax.call('/api/movieGalleryTag/', tagObject, 'POST').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            if (response.IsSuccess) {
     //                mvGallery.tags[mvGallery.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
@@ -310,7 +310,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/add', mvGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/', mvGallery.selectedItem, 'POST').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -370,7 +370,7 @@ mvGallery.LinkCategoryIdSelector = {
         });
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/', mvGallery.selectedItem, "PUT").success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -516,7 +516,7 @@ mvGallery.LinkCategoryIdSelector = {
         mvGallery.selectedItem.LinkCategorytId = null;
         if (mvGallery.treeConfig.currentNode != null)
             mvGallery.selectedItem.LinkParentId = mvGallery.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/add', mvGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/', mvGallery.selectedItem, 'POST').success(function (response) {
             mvGallery.treeBusyIndicator.isActive = false;
             mvGallery.addRequested = false;
             rashaErManage.checkAction(response);
@@ -541,7 +541,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/', mvGallery.selectedItem, "PUT").success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -1114,7 +1114,7 @@ mvGallery.LinkCategoryIdSelector = {
                     mvGallery.contentsToAdd.push(newObject);
                 });
                 angular.forEach(mvGallery.contentsToAdd, function (value, key) {
-                    ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/add", value, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/", value, 'POST').success(function (response) {
                         value.addIsSuccess = response.IsSuccess;
                         value.addErrorMessage = response.ErrorMessage;
                     }).error(function (data, errCode, c, d) {
@@ -1137,7 +1137,7 @@ mvGallery.LinkCategoryIdSelector = {
                 mvGallery.contentsToAdd.push(newObject);
             });
             angular.forEach(mvGallery.contentsToAdd, function (value, key) {
-                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/add", value, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/", value, 'POST').success(function (response) {
                     value.addIsSuccess = response.IsSuccess;
                     value.addErrorMessage = response.ErrorMessage;
                 }).error(function (data, errCode, c, d) {

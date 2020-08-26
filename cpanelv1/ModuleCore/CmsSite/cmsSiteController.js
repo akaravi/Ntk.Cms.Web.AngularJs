@@ -91,7 +91,7 @@
         if (!angular.isDefined(tag.id)) { //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, cmsSitegrd.ModuleTag); //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/cmsSiteTag/add', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/cmsSiteTag/', tagObject, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     cmsSitegrd.tags[cmsSitegrd.tags.length - 1] = {
@@ -237,7 +237,7 @@
                 cmsSitegrd.selectedItem.Keyword += ',' + item.text;
         });
         if (cmsSitegrd.selectedItem.mode == 1)
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/add', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
                 cmsSitegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -255,12 +255,12 @@
                 cmsSitegrd.addRequested = false;
             });
         if (cmsSitegrd.selectedItem.mode == 2) //ساخت سایت با کاربر جدید
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/add', cmsSitegrd.selectedItem, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsSitegrd.selectedItem, 'POST').success(function (response1) {
                 cmsSitegrd.addRequested = false;
                 rashaErManage.checkAction(response1);
                 cmsSitegrd.selectedUser = response1.Item;
                 if (response1.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/add', cmsSitegrd.selectedItem, 'POST').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response2) {
                         cmsSitegrd.addRequested = false;
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
@@ -270,7 +270,7 @@
                             cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, response2.Access);
                             cmsSitegrd.busyIndicator.isActive = false;
                             cmsSitegrd.closeModal();
-                            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/add', {
+                            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', {
                                 LinkSiteId: response2.Item.Id,
                                 LinkUserId: cmsSitegrd.selectedUser.Id,
                                 LinkUserGroupId: cmsSitegrd.selectedItem.LinkUserGroupId
@@ -299,7 +299,7 @@
                 rashaErManage.checkAction(response);
                 cmsSitegrd.selectedUser = response.Item;
                 if (cmsSitegrd.selectedUser.Id > 0)
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/add', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
                         cmsSitegrd.addRequested = false;
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
@@ -309,7 +309,7 @@
                             cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, cmsSitegrd.gridOptions.Access);
                             cmsSitegrd.busyIndicator.isActive = false;
                             cmsSitegrd.closeModal();
-                            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/add', {
+                            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', {
                                 LinkSiteId: response.Item.Id,
                                 LinkUserId: cmsSitegrd.selectedUser.Id,
                                 LinkUserGroupId: cmsSitegrd.selectedItem.LinkUserGroupId,
@@ -390,7 +390,7 @@
         if (frm.$invalid)
             return;
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/edit', cmsSitegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, "PUT").success(function (response) {
             cmsSitegrd.addRequested = true;
             rashaErManage.checkAction(response);
             cmsSitegrd.addRequested = false;
@@ -666,7 +666,7 @@
         if (frm.$invalid)
             return;
         cmsSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/add', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
             cmsSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -942,7 +942,7 @@
 
     //save new file
     cmsSitegrd.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", cmsSitegrd.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 cmsSitegrd.FileItem = response.Item;
                 return 1;
@@ -1059,7 +1059,7 @@
                     cmsSitegrd.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- cmsSitegrd.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", cmsSitegrd.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             cmsSitegrd.FileItem = response.Item;
                             $("#save-icon" + index).removeClass("fa-save");
@@ -1445,7 +1445,7 @@
     //             cmsSitegrd.busyIndicator.isActive = false;
     //         });
     //     } else if (cmsSitegrd.configType == "ConfigSiteAccess") {
-    //         ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/edit', cmsSitegrd.cmsModuleSite, 'PUT').success(function (response) {
+    //         ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', cmsSitegrd.cmsModuleSite, "PUT").success(function (response) {
     //             rashaErManage.checkAction(response);
     //             if (response.IsSuccess) {
     //                 //cmsSitegrd.closeModal();

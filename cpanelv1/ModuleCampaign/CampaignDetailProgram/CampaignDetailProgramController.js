@@ -119,7 +119,7 @@
         }
         campaignDetailProgram.busyIndicator.isActive = true;
         campaignDetailProgram.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/add', campaignDetailProgram.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/', campaignDetailProgram.selectedItem, 'POST').success(function (response) {
             campaignDetailProgram.addRequested = false;
             campaignDetailProgram.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         campaignDetailProgram.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/edit', campaignDetailProgram.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/', campaignDetailProgram.selectedItem, "PUT").success(function (response) {
             campaignDetailProgram.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailProgram.busyIndicator.isActive = false;

@@ -35,7 +35,7 @@
             return;
 
         cmsPageTemplategrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/add', cmsPageTemplategrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/', cmsPageTemplategrd.selectedItem, 'POST').success(function (response) {
             cmsPageTemplategrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -69,7 +69,7 @@
     cmsPageTemplategrd.editRow = function (frm) {
 	if (frm.$invalid)
             return;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/edit', cmsPageTemplategrd.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/', cmsPageTemplategrd.selectedItem , "PUT").success(function (response) {
             cmsPageTemplategrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -67,7 +67,7 @@
 
         emailapipathcompany.addRequested = true;
         emailapipathcompany.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/add', emailapipathcompany.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/', emailapipathcompany.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
                 emailapipathcompany.ListItems.unshift(response1.Item);
@@ -110,7 +110,7 @@
             return;
         }
         emailapipathcompany.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/edit', emailapipathcompany.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/', emailapipathcompany.selectedItem, "PUT").success(function (response) {
             emailapipathcompany.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

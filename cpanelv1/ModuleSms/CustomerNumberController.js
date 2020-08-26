@@ -60,7 +60,7 @@
 
     customerNumber.editRow = function () {
         customerNumber.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/edit', customerNumber.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.selectedItem, "PUT").success(function (response) {
             customerNumber.addRequested = false;
             rashaErManage.checkAction(response);
             customerNumber.closeModal();
@@ -71,7 +71,7 @@
         });
     };
     customerNumber.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/add', customerNumber.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.selectedItem, 'POST').success(function (response) {
             customerNumber.addRequested = false;
             customerNumber.closeModal();
             customerNumber.init();

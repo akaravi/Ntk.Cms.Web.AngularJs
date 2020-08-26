@@ -95,7 +95,7 @@
         }
         jobContract.busyIndicator.isActive = true;
         jobContract.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/add', jobContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/', jobContract.selectedItem, 'POST').success(function (response) {
             jobContract.addRequested = false;
             jobContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -148,7 +148,7 @@
             return;
         }
         jobContract.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/edit', jobContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/', jobContract.selectedItem, "PUT").success(function (response) {
             jobContract.addRequested = true;
             rashaErManage.checkAction(response);
             jobContract.busyIndicator.isActive = false;

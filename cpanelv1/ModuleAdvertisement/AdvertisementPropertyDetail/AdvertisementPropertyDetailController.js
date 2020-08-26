@@ -88,18 +88,18 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
     //init Function
     advertisementPropertyDetail.init = function () {
         advertisementPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
             advertisementPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
-            advertisementPropertyDetail.inputDataTypeArray = response.ListItems;
-        }).error(function (data, errCode, c, d) {
-            console.log(data);
-        });
+        // ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        //     advertisementPropertyDetail.inputDataTypeArray = response.ListItems;
+        // }).error(function (data, errCode, c, d) {
+        //     console.log(data);
+        // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
             advertisementPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -161,7 +161,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         advertisementPropertyDetail.addRequested = true;
         advertisementPropertyDetail.selectedItem.LinkPropertyTypeId = advertisementPropertyDetail.propertyTypeId;
         advertisementPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/add', advertisementPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, 'POST').success(function (response) {
             advertisementPropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -206,7 +206,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         }
         advertisementPropertyDetail.categorybusyIndicator.isActive = true;
         advertisementPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response) {
             advertisementPropertyDetail.addRequested = true;
             advertisementPropertyDetail.treeConfig.showbusy = false;
             advertisementPropertyDetail.showIsBusy = false;
@@ -359,7 +359,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         advertisementPropertyDetail.selectedItem.DefaultValue.nameValue = advertisementPropertyDetail.attachedFields;
         advertisementPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(advertisementPropertyDetail.selectedItem.DefaultValue));
         advertisementPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/add', advertisementPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 // filter text
@@ -427,7 +427,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         advertisementPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(advertisementPropertyDetail.selectedItem.DefaultValue));
         advertisementPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         advertisementPropertyDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response) {
             // advertisementPropertyDetail.addRequested = false;
             advertisementPropertyDetail.treeConfig.showbusy = false;
             advertisementPropertyDetail.showIsBusy = false;
@@ -579,7 +579,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             advertisementPropertyDetail.attachedFields[advertisementPropertyDetail.selectedIndex] = FieldName;
             advertisementPropertyDetail.selectedItem.DefaultValue.nameValue = advertisementPropertyDetail.attachedFields;
             advertisementPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(advertisementPropertyDetail.selectedItem.DefaultValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 advertisementPropertyDetail.disableUpdate();
                 $("#FieldName").val("");
@@ -644,14 +644,14 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             advertisementPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             advertisementPropertyDetail.selectedItem.ShowInFormOrder = advertisementPropertyDetail.ListItems[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         advertisementPropertyDetail.selectedItem = response3.Item;
                         advertisementPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // Swap two item in the grid list without requesting a GetAll
@@ -686,14 +686,14 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             advertisementPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             advertisementPropertyDetail.selectedItem.ShowInFormOrder = advertisementPropertyDetail.ListItems[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         advertisementPropertyDetail.selectedItem = response3.Item;
                         advertisementPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetail/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // جابجا کردن مکان دو آیتم در آرایه
@@ -738,14 +738,14 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             advertisementPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             advertisementPropertyDetail.selectedItem.ShowInFormOrder = advertisementPropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         advertisementPropertyDetail.selectedItem = response3.Item;
                         advertisementPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 advertisementPropertyDetail.treeConfig.Items[index + 1] = response4.Item;
@@ -788,14 +788,14 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             advertisementPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             advertisementPropertyDetail.selectedItem.ShowInFormOrder = advertisementPropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         advertisementPropertyDetail.selectedItem = response3.Item;
                         advertisementPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/edit', advertisementPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyDetailGroup/', advertisementPropertyDetail.selectedItem, "PUT").success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 advertisementPropertyDetail.treeConfig.Items[index - 1] = response4.Item;

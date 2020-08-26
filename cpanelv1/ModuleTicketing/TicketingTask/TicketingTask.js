@@ -217,7 +217,7 @@
         ticketingTask.stringfyLinkFileIds();
         console.log((ticketingTask.selectedItem));
         ticketingTask.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/add', ticketingTask.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', ticketingTask.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             //console.log(response);
             if (response.IsSuccess) {
@@ -242,7 +242,7 @@
         ticketingTask.addRequested = true;
         ticketingTask.selectedItem.LinkFileIds = "";
         ticketingTask.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/edit', ticketingTask.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingTask.selectedItem, "PUT").success(function (response) {
             ticketingTask.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -426,7 +426,7 @@
         ticketingTask.selectedItem.LinkFileIds = "";
         ticketingTask.stringfyLinkFileIds();
         ticketingTask.selectedItem.LinkTicketId    =ticketingTask.gridOptions.selectedRow.item.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/add', ticketingTask.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingTask.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingTask.answersListItems.unshift(response.Item);
@@ -597,7 +597,7 @@
     }
     //save new file
     ticketingTask.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", ticketingTask.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", ticketingTask.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 ticketingTask.FileItem = response.Item;
                 ticketingTask.showSuccessIcon();
