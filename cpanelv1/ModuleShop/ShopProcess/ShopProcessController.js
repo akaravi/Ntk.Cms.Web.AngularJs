@@ -21,7 +21,7 @@
     shopProcess.selectedAppTitle = $stateParams.apptitle;
 
     shopProcess.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/getAllInputValueMethod", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/EnumInputValueMethod","", 'GET').success(function (response) {
             shopProcess.InputValueMethod = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

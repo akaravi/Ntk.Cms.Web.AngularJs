@@ -59,7 +59,7 @@
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;
             appDateDetail.ListItems = response.ListItems;
-            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getAllSessionStatusEnum", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/EnumSessionStatus","", 'GET').success(function (response) {
                 appDateDetail.SessionStatus = response.ListItems;
                 appDateDetail.setSessionStatusEnum(appDateDetail.ListItems, appDateDetail.SessionStatus);
             }).error(function (data, errCode, c, d) {

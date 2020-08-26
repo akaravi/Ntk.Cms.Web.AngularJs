@@ -172,13 +172,13 @@
     shopInvoiceSale.init = function () {
         shopInvoiceSale.addRequested = true;
         shopInvoiceSale.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/GetAllPaymentStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/EnumInvoicePaymentStatus", "", 'GET').success(function (response) {
             shopInvoiceSale.PaymentStatus = response.ListItems;
             
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/GetAllInvoiceStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/EnumInvoiceStatus","", 'GET').success(function (response) {
             shopInvoiceSale.InvoiceStatus = response.ListItems;
             shopInvoiceSale.setInvoiceStatusEnum(shopInvoiceSale.ListItems, shopInvoiceSale.InvoiceStatus);
         }).error(function (data, errCode, c, d) {

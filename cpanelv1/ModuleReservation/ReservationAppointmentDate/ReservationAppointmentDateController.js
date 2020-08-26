@@ -214,12 +214,12 @@
             appDate.busyIndicator.isActive = false;
             appDate.ListItemsDate = response.ListItems;
             //////////////مقداردهی مقادیر enum////////////////////
-            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/getAllGenerateTypeEnum", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/getAllGenerateTypeEnum", "", 'GET').success(function (response) {
                 appDate.GenerateTypeEnum = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);
             });
-            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/getAllReservationType", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/EnumReservationType", "", 'GET').success(function (response) {
                 appDate.ReservationType = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);
@@ -241,7 +241,7 @@
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
             appDate.ListItemsDateDetail = response.ListItems;
-            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getAllSessionStatusEnum", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/EnumSessionStatus", "", 'GET').success(function (response) {
                 appDate.SessionStatus = response.ListItems;
                 appDate.setSessionStatusEnum(appDate.ListItemsDateDetail, appDate.SessionStatus);
             }).error(function (data, errCode, c, d) {

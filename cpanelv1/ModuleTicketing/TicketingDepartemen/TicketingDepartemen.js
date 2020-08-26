@@ -81,7 +81,7 @@
             ticketingDepartemen.gridOptions.fillData(response.ListItems, response.Access);
             ticketingDepartemen.busyIndicator.isActive = false;
             if (!angular.isDefined(ticketingDepartemen.priorityEnum))
-                ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/GetPriorityEnum", {}, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/EnumTicketingDepartemenPriority", "", 'GET').success(function (response) {
                     ticketingDepartemen.priorityEnum = response.ListItems;
                     ticketingDepartemen.filterPriorityEnum(ticketingDepartemen.ListItems, ticketingDepartemen.priorityEnum);
                 }).error(function (data, errCode, c, d) {

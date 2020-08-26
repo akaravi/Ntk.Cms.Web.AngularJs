@@ -34,7 +34,7 @@
             console.log(error);
         }
          //////////////مقداردهی مقادیر enum////////////////////
-            ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/getAllPaymentType", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/EnumPaymentType", "", 'GET').success(function (response) {
                 reservationService.PaymentType = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);

@@ -29,7 +29,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
 
     cmsSiteMenu.init = function () {
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainMenu/getAreaType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainMenu/EnumCmsSiteMenuAreaType", "", 'GET').success(function (response) {
             cmsSiteMenu.AreaType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

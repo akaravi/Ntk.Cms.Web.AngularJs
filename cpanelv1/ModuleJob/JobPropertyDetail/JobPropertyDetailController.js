@@ -71,18 +71,18 @@
     //init Function
     jobPropertyDetail.init = function () {
         jobPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             jobPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
         //     jobPropertyDetail.inputDataTypeArray = response.ListItems;
         // }).error(function (data, errCode, c, d) {
         //     console.log(data);
         // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
             jobPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

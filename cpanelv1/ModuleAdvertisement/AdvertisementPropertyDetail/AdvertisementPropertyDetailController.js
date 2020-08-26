@@ -88,18 +88,18 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
     //init Function
     advertisementPropertyDetail.init = function () {
         advertisementPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             advertisementPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
         //     advertisementPropertyDetail.inputDataTypeArray = response.ListItems;
         // }).error(function (data, errCode, c, d) {
         //     console.log(data);
         // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
             advertisementPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

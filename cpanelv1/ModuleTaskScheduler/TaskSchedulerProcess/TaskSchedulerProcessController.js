@@ -21,7 +21,7 @@
     taskSchedulerProcess.selectedAppTitle = $stateParams.apptitle;
 
     taskSchedulerProcess.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/getAllInputValueMethod", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/EnumInputValueMethod", "", 'GET').success(function (response) {
             taskSchedulerProcess.InputValueMethod = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

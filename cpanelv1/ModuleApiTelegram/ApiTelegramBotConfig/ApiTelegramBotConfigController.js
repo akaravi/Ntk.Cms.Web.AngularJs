@@ -25,12 +25,12 @@
     }
     botConfigCtrl.init = function () {
         botConfigCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/EnumScheduleCronType","", 'GET').success(function (response) {
             botConfigCtrl.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function (response) {
             botConfigCtrl.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

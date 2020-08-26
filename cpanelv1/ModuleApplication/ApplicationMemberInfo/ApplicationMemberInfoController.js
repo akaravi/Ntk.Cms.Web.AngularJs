@@ -85,7 +85,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //@help برای زمانبندی
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumScheduleCronType", "", 'GET').success(function (response) {
             memberInfo.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -97,7 +97,7 @@
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function (response) {
             memberInfo.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -89,7 +89,7 @@
             });
 
         if (!angular.isDefined(cmsPageDesign.pageAbilityTypeEnum))
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getenumpagetype', {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/EnumPageAbilityType', "", 'GET').success(function (response) {
                 cmsPageDesign.pageAbilityTypeEnum = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);

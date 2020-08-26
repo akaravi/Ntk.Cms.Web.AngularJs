@@ -2342,6 +2342,7 @@ function ajax($http, $state) {
         }
 
         if (method.toUpperCase() == 'GET' || method.toUpperCase() == 'DELETE') {
+            if(!data) data='';
             url = url +  data;
             data = '';
         }

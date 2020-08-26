@@ -498,7 +498,7 @@
       } catch (error) {
         //console.log(error);
       }
-      ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/GetEnum", {}, 'POST').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/EnumModuleRelationshipName", "", 'GET').success(function (response) {
         rashaErManage.checkAction(response);
         biographyContent.EnumModuleRelationshipName = response.ListItems;
         if (biographyContent.EnumModuleRelationshipName && biographyContent.EnumModuleRelationshipName.length) {

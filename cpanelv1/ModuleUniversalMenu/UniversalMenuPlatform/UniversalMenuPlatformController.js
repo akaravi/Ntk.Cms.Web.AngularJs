@@ -17,7 +17,7 @@
             console.log(error)
         }
         //Set combobox items
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuPlatform/GetEnum", engine, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuPlatform/EnumUniversalMenuPlatformType", "", 'GET').success(function (response1) {
             platformCtrl.platformTypeArray = response1;
         }).error(function (data, errCode, c, d) {
             console.log(data);

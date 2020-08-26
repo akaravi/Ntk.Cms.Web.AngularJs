@@ -112,18 +112,18 @@ memberPropertyDetail.LinkCategoryIdSelector = {
     //init Function
     memberPropertyDetail.init = function () {
         memberPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             memberPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
         //     memberPropertyDetail.inputDataTypeArray = response.ListItems;
         // }).error(function (data, errCode, c, d) {
         //     console.log(data);
         // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
             memberPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

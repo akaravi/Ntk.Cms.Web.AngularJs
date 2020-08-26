@@ -71,7 +71,7 @@
                 rashaErManage.checkAction(data, errCode);
             });
             //Get all Sources
-            ajax.call(cmsServerConfig.configApiServerPath + "app/getBuildStatusEnum", {}, 'POST').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath + "app/EnumBuildStatusType", "", 'GET').success(function (responseGetEnum) {
                 appApplication.buildStatusEnum = responseGetEnum.ListItems;
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
             }).error(function (data, errCode, c, d) {
@@ -97,12 +97,12 @@
 
 
         //@help برای زمانبندی
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumScheduleCronType", "", 'GET').success(function (response) {
             appApplication.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function (response) {
             appApplication.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

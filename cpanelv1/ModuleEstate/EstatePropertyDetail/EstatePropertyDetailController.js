@@ -89,18 +89,18 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     //init Function
     estatePropertyDetail.init = function () {
         estatePropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             estatePropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
         //     estatePropertyDetail.inputDataTypeArray = response.ListItems;
         // }).error(function (data, errCode, c, d) {
         //     console.log(data);
         // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
             estatePropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -75,17 +75,17 @@
     };
     task.init = function () {
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/getAllActionType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/EnumActionType", "", 'GET').success(function (response) {
             task.ActionType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/EnumScheduleCronType", "", 'GET').success(function (response) {
             task.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function (response) {
             task.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

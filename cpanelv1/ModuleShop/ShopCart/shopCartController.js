@@ -143,13 +143,13 @@
     shopCart.init = function () {
         shopCart.addRequested = true;
         shopCart.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetAllPaymentStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/EnumInvoicePaymentStatus", "", 'GET').success(function (response) {
             shopCart.PaymentStatus = response.ListItems;
 
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetAllInvoiceStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/EnumInvoiceStatus", "", 'GET').success(function (response) {
             shopCart.InvoiceStatus = response.ListItems;
             shopCart.setInvoiceStatusEnum(shopCart.ListItems, shopCart.InvoiceStatus);
         }).error(function (data, errCode, c, d) {

@@ -90,18 +90,18 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
     //init Function
     vehiclePropertyDetail.init = function () {
         vehiclePropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/getAllUiDesignType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             vehiclePropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
         //     vehiclePropertyDetail.inputDataTypeArray = response.ListItems;
         // }).error(function (data, errCode, c, d) {
         //     console.log(data);
         // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/GetInputDataTypeEnum", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
             vehiclePropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
