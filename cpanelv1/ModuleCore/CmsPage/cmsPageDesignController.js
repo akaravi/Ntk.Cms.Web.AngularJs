@@ -81,7 +81,7 @@
 
 
         if (!angular.isDefined(cmsPageDesign.cmsPageTemplatesListItems))
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getallAvailable', {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getallAvailable', "", 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.cmsPageTemplatesListItems = response.ListItems;
             }).error(function (data, errCode, c, d) {
