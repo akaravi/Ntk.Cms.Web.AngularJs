@@ -535,7 +535,7 @@ $scope.addNewProductToDb=function(frm)
         $scope.getAllData('position',{});
         $scope.getAllData('customer',{});
         $scope.getAllData('product',{});
-        $scope.getAllData('reminder',{Filters:[{PropertyName:'CustomerSettingActivityType',EnumValue1:'Reminder'}]});
+        $scope.getAllData('reminder',{Filters:[{PropertyName:'CustomerSettingActivityType',EnumValue:'Reminder'}]});
     }
 
     

@@ -260,7 +260,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Name',
-        //defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue1: 'Available' }],
+        //defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue: 'Available' }],
         rowPerPage: 200,
         scope: order,
         columnOptions: {
@@ -280,7 +280,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Id',
-        defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue1: 'Available' }],
+        defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue: 'Available' }],
         rowPerPage: 200,
         scope: order,
         columnOptions: {

@@ -900,7 +900,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                             data.Filters.push({
                                 PropertyName: config.columnOptions.columns[i].name,
                                 SearchType: 5,
-                                StringValue1: config.filterText,
+                                StringValue: config.filterText,
                                 ClauseType: 1
                             });
                     }
@@ -1735,21 +1735,21 @@ function queryBuilder($compile) {
                             if (result.rules[i].typeChild == "ObjectId") {
                                 Filter = {
                                     PropertyName: propertyName,
-                                    ObjectIdValueSet: value,
+                                    ObjectIdValue: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
                             } else {
                                 if (searchType == 4) Filter = {
                                     PropertyName: propertyName,
-                                    StringValue1: value,
+                                    StringValue: value,
                                     StringValue2: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
                                 else Filter = {
                                     PropertyName: propertyName,
-                                    StringValue1: value,
+                                    StringValue: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
@@ -1758,14 +1758,14 @@ function queryBuilder($compile) {
                         } else if (result.rules[i].type == "boolean") { // Type is boolean
                             if (searchType == 4) Filter = {
                                 PropertyName: propertyName,
-                                BooleanValue1: value[0],
+                                BooleanValue: value[0],
                                 BooleanValue2: value[1],
                                 SearchType: searchType,
                                 ClauseType: clauseType
                             };
                             else Filter = {
                                 PropertyName: propertyName,
-                                BooleanValue1: value,
+                                BooleanValue: value,
                                 SearchType: searchType,
                                 ClauseType: clauseType
                             };

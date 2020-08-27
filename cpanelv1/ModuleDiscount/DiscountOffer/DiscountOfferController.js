@@ -373,7 +373,7 @@
                 discountOffer.LinkMember = true;
                 //SEARCH MEMNER
                 var engine = { Filters: [] };
-                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: discountOffer.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
+                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: discountOffer.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
                 engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: discountOffer.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
                 ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
@@ -641,7 +641,7 @@
         discountOffer.ViewNewUserDiv = false;
         var filterValue = {
             PropertyName: "NationalCode",
-            StringValue1: memberNa,
+            StringValue: memberNa,
             SearchType: 0
         }
         var filterModel = {

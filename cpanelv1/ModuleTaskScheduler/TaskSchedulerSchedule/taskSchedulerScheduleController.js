@@ -74,7 +74,7 @@
                 ContentFullSearch: null,
                 Filters: [{
                     PropertyName: "ScheduleUsageType",
-                    EnumValue1: "limitation",
+                    EnumValue: "limitation",
                     SearchType: 0,
                 }]
             }
@@ -153,7 +153,7 @@
             var filterModel = {
                 Filters: [{
                     PropertyName: "ScheduleUsageType",
-                    EnumValue1: "limitation",
+                    EnumValue: "limitation",
                     SearchType: 0,
                 }]
             };

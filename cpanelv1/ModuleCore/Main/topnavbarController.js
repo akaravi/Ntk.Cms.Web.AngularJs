@@ -237,13 +237,13 @@
                     engine.Filters.push({
                         PropertyName: "Title",
                         SearchType: 5,
-                        StringValue1: input,
+                        StringValue: input,
                         ClauseType: 1
                     });
                     engine.Filters.push({
                         PropertyName: "SubDomain",
                         SearchType: 5,
-                        StringValue1: input,
+                        StringValue: input,
                         ClauseType: 1
                     });
                 } else {

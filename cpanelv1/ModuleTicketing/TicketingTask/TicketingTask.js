@@ -107,7 +107,7 @@
             ticketingTask.gridOptions.advancedSearchData.engine = {
                 Filters: [{
                         PropertyName: "TicketStatus",
-                        EnumValue1: "Unread",
+                        EnumValue: "Unread",
                         SearchType: 0,
                 }]
             };

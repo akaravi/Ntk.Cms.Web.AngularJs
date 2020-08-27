@@ -172,7 +172,7 @@
                 discountSeller.LinkMember = true;
                 //SEARCH MEMNER
                 var engine = { Filters: [] };
-                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: discountSeller.gridOptions.selectedRow.item.LinkModuleCoreCmsUserId, ClauseType: 1 });
+                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: discountSeller.gridOptions.selectedRow.item.LinkModuleCoreCmsUserId, ClauseType: 1 });
                 engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: discountSeller.gridOptions.selectedRow.item.LinkModuleCoreCmsUserId, ClauseType: 1 });
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', engine, 'POST').success(function (response3) {
                     rashaErManage.checkAction(response);
@@ -424,7 +424,7 @@
         discountSeller.ViewFindUserDiv = false;
         discountSeller.ViewNewUserDiv = false;
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: userId, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: userId, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: userId, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', engine, 'POST').success(function (response) {
 

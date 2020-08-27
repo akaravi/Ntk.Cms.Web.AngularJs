@@ -203,7 +203,7 @@ if($rootScope.tokenInfo)
             var filterModelTicket = {
                 Filters: [{
                     PropertyName: "TicketStatus",
-                    EnumValue1: "Unread",
+                    EnumValue: "Unread",
                     SearchType: 0,
                 }]
             };
@@ -216,7 +216,7 @@ if($rootScope.tokenInfo)
             var filterModelShop = {
                 Filters: [{
                     PropertyName: "PaymentStatus",
-                    EnumValue1: "WithoutPayment",
+                    EnumValue: "WithoutPayment",
                     SearchType: 0,
                 }]
             };
@@ -229,7 +229,7 @@ if($rootScope.tokenInfo)
             var filterModelChart = {
                 Filters: [{
                     PropertyName: "RecordStatus",
-                    EnumValue1: "Pending",
+                    EnumValue: "Pending",
                     SearchType: 0,
                 }]
             };

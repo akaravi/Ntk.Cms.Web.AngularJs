@@ -421,7 +421,7 @@
     shopInvoiceSaleDetail.contentListItems = [];
     shopInvoiceSaleDetail.inputContentChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue1: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue: input, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+"shopcontent/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.contentListItems = response.ListItems;

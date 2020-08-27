@@ -1297,7 +1297,7 @@ memberProperty.PropertyID=PropertyId;
  engine.Filters.push(filterValue1);
         var filterValue = {
             PropertyName: "IsHistoryable",
-            BooleanValue1: historyable,
+            BooleanValue: historyable,
             SearchType: 0,
             ClauseType:2
         }
@@ -1385,7 +1385,7 @@ var engine = {};
  engine.Filters.push(filterValue1);
         var filterValue = {
             PropertyName: "IsHistoryable",
-            BooleanValue1: historyable,
+            BooleanValue: historyable,
             SearchType: 0,
             ClauseType:2
         }

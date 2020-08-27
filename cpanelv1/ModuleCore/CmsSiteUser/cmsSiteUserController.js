@@ -434,8 +434,8 @@ cmsSiteUser.gridOptionsSite = {
     //ngautocomplete
     cmsSiteUser.inputSiteChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "SubDomain", SearchType: 5, StringValue1: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "SubDomain", SearchType: 5, StringValue: input, ClauseType: 1 });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -447,8 +447,8 @@ cmsSiteUser.gridOptionsSite = {
     //ngautocomplete
     cmsSiteUser.inputUserChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue1: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);

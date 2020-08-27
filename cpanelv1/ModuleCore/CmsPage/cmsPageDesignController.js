@@ -66,7 +66,7 @@
         }
         //#help# یافتن صفحه های مادر
         if (cmsPageDesign.classActioName != null && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0) {
-            var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue1: "CoreMainTemplateWithEmbeddedChild" }] };
+            var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue: "CoreMainTemplateWithEmbeddedChild" }] };
             ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.dependencyId = response.ListItems[0].Id;

@@ -315,13 +315,13 @@
         engine.Filters.push({
             PropertyName: "Name",
             SearchType: 5,
-            StringValue1: input,
+            StringValue: input,
             ClauseType: 1
         });
         engine.Filters.push({
             PropertyName: "LastName",
             SearchType: 5,
-            StringValue1: input,
+            StringValue: input,
             ClauseType: 1
         });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });

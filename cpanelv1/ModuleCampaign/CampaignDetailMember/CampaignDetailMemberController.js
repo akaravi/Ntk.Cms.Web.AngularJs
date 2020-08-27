@@ -499,7 +499,7 @@
         campaignDetailMember.ViewNewUserDiv = false;
         var filterValue = {
             PropertyName: "NationalCode",
-            StringValue1: memberNa,
+            StringValue: memberNa,
             SearchType: 0
         }
         var filterModel = {

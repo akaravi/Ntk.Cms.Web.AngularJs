@@ -159,7 +159,7 @@
             shopCart.gridOptions.advancedSearchData.engine = {
                 Filters: [{
                     PropertyName: "PaymentStatus",
-                    EnumValue1: "WithoutPayment",
+                    EnumValue: "WithoutPayment",
                     SearchType: 0,
                 }]
             };
@@ -568,8 +568,8 @@
     shopCart.cmsUsersListItems = [];
     shopCart.inputUserChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue1: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.cmsUsersListItems = response.ListItems;
