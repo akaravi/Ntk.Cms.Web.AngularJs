@@ -147,7 +147,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                estateProperty.closeModal();
+                
                 ajax.call(cmsServerConfig.configApiServerPath+"estatepropertydetailvalue/ViewModel", "", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
@@ -164,6 +164,11 @@
                                     }
                                 });
                                 valueItem.Value = estateProperty.selectionValueNames;
+                                if(valueItem.Value){
+                                    valueItem.Value= JSON.stringify(valueItem.Value)
+                                }else{
+                                    valueItem.Value=""
+                                }
                             }
                             else {
 
@@ -181,8 +186,10 @@
                             }
                         } else
                             valueItem.Value = estateProperty.propertyDetailsListItems[i].value;
+                       
                         estateProperty.valueItems.push(valueItem);
                     }
+                    estateProperty.closeModal();
                     ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.valueItems, 'POST').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
@@ -202,6 +209,7 @@
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
+                
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -300,7 +308,6 @@
             engine.Filters.push(filterValue);
             ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/deleteList', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
-                console.log(response.Item);
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 estateProperty.busyIndicator.isActive = false;
@@ -308,7 +315,6 @@
             });
             ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
-                console.log(response.Item);
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 estateProperty.busyIndicator.isActive = false;
@@ -335,23 +341,37 @@
                                 estateProperty.propertyDetailValuesListItems[j].Value = String(estateProperty.propertyDetailsListItems[i].value);
                         } else { // Detail is CheckBox
                             var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
-                            estateProperty.propertyDetailValuesListItems[j].Value = estateProperty[checkboxName];
+                            estateProperty.propertyDetailValuesListItems[j].Value = JSON.stringify(estateProperty[checkboxName]);
                         }
+                    
                     }
                 }
                 if (!estateProperty.propertyDetailsListItems[i].valueFound) {
-                    console.log(estateProperty.propertyDetailsListItems[i]);
                     var proeprtyDetailValue = { LinkPropertyId: 0, LinkPropertyDetailId: 0, Value: 0 };
                     if (estateProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice == false) { // Detail is not CheckBox
                         if (estateProperty.propertyDetailsListItems[i].DefaultValue.forceUse) { // Detail is RadioButton/DropDown
-                            estateProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val() }); //Get the value if the element is a DropDown
+                            var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val() }
+                          
+                            
+                            estateProperty.propertyDetailValuesListItems.push(newValue); //Get the value if the element is a DropDown
                         }
-                        else
+                        else{
+                            var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: String(estateProperty.propertyDetailsListItems[i].value) }
+                            
+                            
                             // Detail is not a CheckBox, nor a RadioButton
-                            estateProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: String(estateProperty.propertyDetailsListItems[i].value) });
+                            estateProperty.propertyDetailValuesListItems.push(newValue);
+                        }
                     } else { // Detail is CheckBox
                         var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
-                        estateProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: estateProperty[checkboxName] });
+                        var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: estateProperty[checkboxName] }
+                        if(newValue.Value){
+                            newValue.Value= JSON.stringify(newValue.Value)
+                        }else{
+                            newValue.Value=""
+                        }
+                        estateProperty.propertyDetailValuesListItems.push(newValue);
+                        
                     }
                 }
             }
@@ -611,7 +631,7 @@
                             if (estateProperty.propertyDetailValuesListItems[j].Value != null) {
                                 if (jsonDefaultValue != undefined && jsonDefaultValue != null && jsonDefaultValue.nameValue != undefined && jsonDefaultValue.nameValue != null && 0 < jsonDefaultValue.nameValue.length) {
                                     if (jsonDefaultValue.multipleChoice) {   // Detail is CheckBox
-                                        var multipleValues = estateProperty.propertyDetailValuesListItems[j].Value.split(',');
+                                        var multipleValues = JSON.parse(estateProperty.propertyDetailValuesListItems[j].Value);//.split(',');
                                         setSelection(estateProperty.propertyDetailsListItems[i].Id, multipleValues);
 
                                     }
@@ -939,7 +959,6 @@
         // Delete the file
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
-                console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
@@ -1053,7 +1072,6 @@
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
-                  console.log(response1.Item);
                   ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {

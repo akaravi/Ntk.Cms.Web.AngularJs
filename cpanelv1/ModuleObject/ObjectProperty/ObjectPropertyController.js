@@ -378,7 +378,12 @@ objectProperty.selectedItemLinkobjectUserId=false;
                                         objectProperty.selectionValueNames.push(this.value);
                                     }
                                 });
-                                valueItem.Value = objectProperty.selectionValueNames.toString();
+                                valueItem.Value = objectProperty.selectionValueNames;
+                                if(valueItem.Value){
+                                    valueItem.Value= JSON.stringify(valueItem.Value)
+                                }else{
+                                    valueItem.Value=""
+                                }
                             }
                             else {
 
@@ -1255,8 +1260,8 @@ objectProperty.PropertyID=PropertyId;
                                 // Detail is not a CheckBox, nor a RadioButton
                                 objectProperty.propertyDetailValuesListItems[j].Value = String(objectProperty.propertyDetailsListItems[i].value);
                         } else { // Detail is CheckBox
-                            var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id.toString();
-                            objectProperty.propertyDetailValuesListItems[j].Value = objectProperty[checkboxName];
+                            var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id;
+                            objectProperty.propertyDetailValuesListItems[j].Value =JSON.stringify( objectProperty[checkboxName]);
                         }
                     }
                 }
@@ -1271,8 +1276,17 @@ objectProperty.PropertyID=PropertyId;
                             // Detail is not a CheckBox, nor a RadioButton
                             objectProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: String(objectProperty.propertyDetailsListItems[i].value) });
                     } else { // Detail is CheckBox
-                        var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id.toString();
-                        objectProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: objectProperty[checkboxName] });
+                        
+                        
+                        var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id;
+                        var newValue={ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: objectProperty[checkboxName] }
+
+                        if(newValue.Value){
+                            newValue.Value= JSON.stringify(newValue.Value)
+                        }else{
+                            newValue.Value=""
+                        }
+                        objectProperty.propertyDetailValuesListItems.push(newValue);
                     }
                 }
             }
