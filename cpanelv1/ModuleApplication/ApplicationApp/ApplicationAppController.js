@@ -51,7 +51,7 @@
 
     appApplication.init = function () {
         appApplication.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "app/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "Application/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
             appApplication.ListItems = response.ListItems;
@@ -71,7 +71,7 @@
                 rashaErManage.checkAction(data, errCode);
             });
             //Get all Sources
-            ajax.call(cmsServerConfig.configApiServerPath + "app/EnumBuildStatusType", "", 'GET').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath + "Application/EnumBuildStatusType", "", 'GET').success(function (responseGetEnum) {
                 appApplication.buildStatusEnum = responseGetEnum.ListItems;
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
             }).error(function (data, errCode, c, d) {
@@ -140,7 +140,7 @@
         appApplication.FileIdSplashScreen.filename = "";
         appApplication.FileIdSplashScreen.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
@@ -203,7 +203,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -230,7 +230,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.selectedItem = response.Item;
@@ -411,7 +411,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
@@ -455,11 +455,11 @@
                 appApplication.busyIndicator.isActive = true;
                 console.log(appApplication.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'app/', appApplication.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appApplication.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -712,7 +712,7 @@
     appApplication.exportFile = function () {
         appApplication.addRequested = true;
         appApplication.gridOptions.advancedSearchData.engine.ExportFile = appApplication.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.reportDownloadLink = response.LinkFile;
@@ -783,7 +783,7 @@
 
     //Get TotalRowCount
     appApplication.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "app/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "Application/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -796,10 +796,10 @@
 
     appApplication.buildApp = function (App, LastBuildStatus) {
         rashaErManage.showMessage("دستور برای سرور ارسال شد");
-        ajax.call(cmsServerConfig.configApiServerPath + 'app/build', App.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/build', App.Id, 'GET').success(function (response) {
             /* var myVar = setInterval(myTimer,10000);
              function myTimer() {
-                 ajax.call(cmsServerConfig.configApiServerPath+'app/', App.Id, 'GET').success(function (response) {
+                 ajax.call(cmsServerConfig.configApiServerPath+'Application/', App.Id, 'GET').success(function (response) {
                      $("#LastBuildStatusID").empty();
                    
                      $(document).ready(function()

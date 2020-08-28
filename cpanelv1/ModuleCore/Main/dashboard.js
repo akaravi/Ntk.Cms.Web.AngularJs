@@ -179,7 +179,7 @@ if($rootScope.tokenInfo)
                     ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/count", {}, "POST").success(function (response4) {
                         rashaErManage.checkAction(response4);
                         dashb.cmsUserCount = response4.TotalRowCount;
-                        ajax.call(cmsServerConfig.configApiServerPath + "app/count", {}, "POST").success(function (response5) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "Application/count", {}, "POST").success(function (response5) {
                             rashaErManage.checkAction(response5);
                             dashb.applicationCount = response5.TotalRowCount;
                         }).error(function (data, errCode, c, d) {
