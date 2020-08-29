@@ -427,7 +427,7 @@
         displayMember: 'Title',
         id: 'Id',
         fId: 'LinkLocationId',
-        url: 'CmsLocation',
+        url: 'CoreLocation',
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'LinkLocationId',
