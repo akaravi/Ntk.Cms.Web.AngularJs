@@ -45,7 +45,7 @@
 
     cmsPagegrd.goTohtmlbuilder = function (item) {
         var token=localStorage.getItem("userGlobaltoken");
-        //var urlTemplate = 'HtmlBuilder/?id=' + item.Id+ '&token=' + token;
+        
         var urlTemplate = 'HtmlBuilder2/token/?id=' + item.Id+ '&token=' + token;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
@@ -91,7 +91,7 @@
             // Select Canvas as default theme
             $.each(cmsPagegrd.cmsPageTemplatesListItems, function (index, item) {
                 if (item.Title == "Canvas" || item.Title == "canvas")
-                    cmsPagegrd.selectedItem.LinkPageTemplateId = item.Id
+                    cmsPagegrd.selectedItem.LinkPageTemplateGuId = item.Id
             });
 
             $modal.open({
@@ -253,8 +253,8 @@
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'TitleML', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'ClassActionName', displayName: 'عنوان کلاس', sortable: true, type: 'string' },
-            { name: 'virtual_CmsModule.Title', displayName: 'ماژول', sortable: true, type: 'string', displayForce: true },
-            { name: 'ActionButtons', displayName: 'عملیات', sortable: true, type: 'string', visible: true, width: '155px', displayForce: true, template: '<button type="button" class="btn btn-primary" ng-click="cmsPagegrd.redirectToBoxes(x.Id, x.Title, x.ClassActionName, x.virtual_CmsModule.Id, x.virtual_CmsModule.Title)"  class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;صفحات</button>' }
+            { name: 'CmsModuleClassName', displayName: 'ماژول', sortable: true, type: 'string', displayForce: true },
+            { name: 'ActionButtons', displayName: 'عملیات', sortable: true, type: 'string', visible: true, width: '155px', displayForce: true, template: '<button type="button" class="btn btn-primary" ng-click="cmsPagegrd.redirectToBoxes(x.Id, x.Title, x.ClassActionName, x.LinkModuleId, x.CmsModuleClassName)"  class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;صفحات</button>' }
         ],
         data: {},
         multiSelect: false,
@@ -325,8 +325,8 @@
                 return cmsPagegrd.cmsPageTemplatesListItems[i].Folder;
         }
     }
-    cmsPagegrd.redirectToBoxes = function (dependencyId, dependencyTitle, classActioName, moduleId, moduleTitle) {
-        $state.go('index.cmspagesdesign', { dependencyId: dependencyId, dependencyTitle: dependencyTitle, classActioName: classActioName, moduleId: moduleId, moduleTitle: moduleTitle });
+    cmsPagegrd.redirectToBoxes = function (dependencyId, dependencyTitle, classActioName, moduleId, CmsModuleClassName) {
+        $state.go('index.cmspagesdesign', { dependencyId: dependencyId, dependencyTitle: dependencyTitle, classActioName: classActioName, moduleId: moduleId, CmsModuleClassName: CmsModuleClassName });
         }
 
     //Get TotalRowCount

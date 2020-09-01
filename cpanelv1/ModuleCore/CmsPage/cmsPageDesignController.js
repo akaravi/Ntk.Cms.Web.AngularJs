@@ -19,7 +19,7 @@
             { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'ClassActionName', displayName: 'عنوان کلاس', sortable: true, type: 'string' },
-            { name: 'virtual_CmsModule.Title', displayName: 'ماژول', sortable: true, type: 'link', displayForce: true }
+            { name: 'CmsModuleClassName', displayName: 'ماژول', sortable: true, type: 'link', displayForce: true }
         ],
         data: {},
         multiSelect: false,
@@ -54,9 +54,10 @@
 
 
     cmsPageDesign.dependencyId = $stateParams.dependencyId;
+    cmsPageDesign.mastePageDependencyId = "";
     cmsPageDesign.dependencyTitle = $stateParams.dependencyTitle;
     cmsPageDesign.moduleId = $stateParams.moduleId;
-    cmsPageDesign.moduleTitle = $stateParams.moduleTitle;
+    cmsPageDesign.moduleTitle = $stateParams.CmsModuleClassName;
     cmsPageDesign.classActioName = $stateParams.classActioName;
     //#cmsPageDesign.init
     cmsPageDesign.init = function () {
@@ -65,18 +66,20 @@
                 cmsPageDesign.backToPreviousState();
         }
         //#help# یافتن صفحه های مادر
-        if (cmsPageDesign.classActioName != null && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0) {
+        
             var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue: "CoreMainTemplateWithEmbeddedChild" }] };
             ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
-                cmsPageDesign.dependencyId = response.ListItems[0].Id;
+                cmsPageDesign.mastePageDependencyId = response.ListItems[0].Id;
+                if (!cmsPageDesign.dependencyId  || (cmsPageDesign.classActioName && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0)) {
+                    cmsPageDesign.dependencyId=cmsPageDesign.mastePageDependencyId
+                } 
+                
                 cmsPageDesign.onloadmydata();
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-        } else {
-            cmsPageDesign.onloadmydata();
-        }
+            
         //#help# صفحه بر اساس نیازمندی
 
 
@@ -118,6 +121,22 @@
             cmsPageDesign.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
+        var materPageEngine={};
+        materPageEngine.Filters=[];
+        materPageEngine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue: cmsPageDesign.mastePageDependencyId, SearchType: 0 }); 
+        cmsPageDesign.busyIndicator.isActive = true;
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', materPageEngine, 'POST').success(function (response) {
+            rashaErManage.checkAction(response);
+  
+            cmsPageDesign.masterPageListItems = response.ListItems;
+            
+
+        }).error(function (data, errCode, c, d) {
+
+            rashaErManage.checkAction(data, errCode);
+        });
+
+        
     }
   
     cmsPageDesign.goTohtmlbuilder = function (item) {
@@ -182,7 +201,7 @@
             // Select Canvas as default theme
             $.each(cmsPageDesign.cmsPageTemplatesListItems, function (index, item) {
                 if (item.Title == "bootstrap راست به چپ" || item.Title == "bootstrap راست به چپ")
-                    cmsPageDesign.selectedItem.LinkPageTemplateId = item.Id
+                    cmsPageDesign.selectedItem.LinkPageTemplateGuId = item.Id
             });
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleCore/cmsPage/add.html',
@@ -486,7 +505,7 @@
 
     cmsPageDesign.onPageTypeChange = function (value) {
         if (value == 2)
-            cmsPageDesign.selectedItem.LinkCmsPageId = 0;
+            cmsPageDesign.selectedItem.LinkCmsPageGuId = 0;
     }
 
 
