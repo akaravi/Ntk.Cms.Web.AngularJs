@@ -376,8 +376,31 @@
                 }
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
+                var itemAddList=[];
+                var itemEditList=[];
+            angular.forEach(estateProperty.propertyDetailValuesListItems, function (item, key) {
+                if (item.Id &&item.Id>0) {
+                    itemEditList.push(item)
+                }
+                else
+                {
+                    itemAddList.push(item)
+                }
+            });
             estateProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch', estateProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch',itemEditList, "PUT").success(function (response) {
+                rashaErManage.checkAction(response);
+                estateProperty.busyIndicator.isActive = false;
+                if (response.IsSuccess) {
+                    estateProperty.addRequested = false;
+                    estateProperty.closeModal();
+                }
+            }).error(function (data, errCode, c, d) {
+                rashaErManage.checkAction(data, errCode);
+                estateProperty.addRequested = false;
+                estateProperty.busyIndicator.isActive = false;
+            });
+            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch',itemAddList, "POST").success(function (response) {
                 rashaErManage.checkAction(response);
                 estateProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
