@@ -31,7 +31,7 @@ login.Captcha=function(){
     login.loginRequest = true;
     login.loginBusyIndicator.isActive = true;
     ajax.call(cmsServerConfig.configApiServerPath+"Auth/captcha", "", "GET").success(function (response) {
-        login.captchaModel=response;
+        login.captchaModel= response.Item;
         login.loginRequest = false;
         login.loginBusyIndicator.isActive = false;
     }).error(function (data, errCode, c, d) {
