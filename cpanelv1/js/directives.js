@@ -2156,6 +2156,20 @@ function rashaErManage($state, notify, SweetAlert) {
                 return;
 
                 //notify({ message: response, classes: 'alert-danger', templateUrl: template });
+            }else if (response.errors && response.errors.ErrorException) {
+                console.log(response.errors);
+                angular.forEach(response.errors.ErrorException, function (handler, event) {
+                    notify({
+                        message: 'Error: '+ handler,
+                        classes: 'alert-danger',
+                        templateUrl: template
+                    });
+                });
+
+              
+                return;
+
+                //notify({ message: response, classes: 'alert-danger', templateUrl: template });
             }
             if (response.ErrorType == 15) {
                 response.ErrorMessage = "حذف امکان پذیر نیست. این آیتم شامل زیرمجموعه می باشد";

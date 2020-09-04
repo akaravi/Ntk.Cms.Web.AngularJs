@@ -18,6 +18,13 @@
                 <input type="password" ng-disabled="login.loginRequest" class="form-control" style="direction:ltr" placeholder="{{'PASSWORD' |lowercase|translate}}" required="" ng-model="login.passwordData">
             </div>
             <div class="form-group">
+                <img ng-src="{{login.captchaModel.image}}"  ng-click="login.Captcha()" >
+                <button class="btn" ng-click="login.Captcha()"><i class="fa fa-sync"></i></button>
+            </div>
+            <div class="form-group">
+                <input type="text" autocomplete="false" ng-disabled="login.loginRequest" class="form-control" style="direction:ltr" placeholder="{{'محتوای عکس' |lowercase|translate}}" required="" ng-model="login.captchaText">
+            </div>
+            <div class="form-group">
                 <select class="form-control ltr-support" ng-model="login.language" ng-change="login.changeLang()">
                     <option value="fa_IR">فارسی</option>
                     <option value="en_US">English</option>

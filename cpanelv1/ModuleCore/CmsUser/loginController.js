@@ -1,7 +1,13 @@
 ﻿app.controller("loginCtrl", ["$scope", "$http", "ajax", "rashaErManage", "$state", "$translate", "$filter", function ($scope, $http, ajax, rashaErManage, $state, $translate, $filter) {
 
-
+ 
     var login = this;
+
+    login.captchaModel={
+        Expire: "",
+        Key: "",
+        image: ""
+    }
     //For Show Loading Indicator
     login.loginBusyIndicator = {
         isActive: false,
@@ -19,21 +25,48 @@
             login.language = savedLang;
             $translate.use(savedLang);
         }
+        login.Captcha();
     }
+login.Captcha=function(){
+    login.loginRequest = true;
+    login.loginBusyIndicator.isActive = true;
+    ajax.call(cmsServerConfig.configApiServerPath+"Auth/captcha", "", "GET").success(function (response) {
+        login.captchaModel=response;
+        login.loginRequest = false;
+        login.loginBusyIndicator.isActive = false;
+    }).error(function (data, errCode, c, d) {
+        login.loginRequest = false;
+        login.loginBusyIndicator.isActive = false;
 
+        rashaErManage.checkAction(data, errCode);
+    });
+
+}
     login.loginRequest = false;
     login.verifyLogin = function () {
         login.loginRequest = true;
         login.loginBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", { 'email': login.emailData, 'password': login.passwordData, 'lang': login.language }, "POST").success(function (response) {
+        var modelDto={
+            captchaKey: login.captchaModel.Key,
+            captchaText: login.captchaText,
+             email: login.emailData, 
+             password: login.passwordData, 
+             lang: login.language 
+            };
+        ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", modelDto, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;
             if (response.IsSuccess && response.Item) {
                 localStorage.setItem("userGlobaltoken", response.token);
                 $state.go("siteSelector", {});
-                //$state.go("index.main", {});
-
+            }
+            else
+            {
+                login.emailData ="";
+                login.passwordData ="";
+                login.captchaText ="";
+                login.Captcha();
             }
 
         }).error(function (data, errCode, c, d) {
@@ -41,6 +74,7 @@
             login.loginBusyIndicator.isActive = false;
             login.emailData ="";
             login.passwordData ="";
+            login.captchaText ="";
             //login.init();
             rashaErManage.checkAction(data, errCode);
         });
