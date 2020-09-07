@@ -1,6 +1,6 @@
 ﻿<div xng-show="navCtrl.showSiteSelector" ng-controller="navigationCtrl as navCtrl" ng-init="navCtrl.init()">
     <div class="container">
-        <div class="row" style="background:#fff; margin-top:20%;border-radius: 3px;">
+        <div class="row" style="background:#fff; margin-top:2%;border-radius: 3px;">
             <div class="col-md-12">
                 <h4 ng-if="navCtrl.ownerSite.length==0" style="margin: 20px 20px 0 0;">{{'YOU_DONT_HAVE_ANY_SITE_CREATE_NEW_SITE'|lowercase|translate}} <button class="btn btn-primary" ng-click="navCtrl.newSite()" ng-if="navCtrl.ownerSite.length==0">{{'PAGE_LOGIN_BUTTON_NEWSITE'|lowercase|translate}}</button></h4>
                 <div class="row col-sm-12" style="padding: 0px; margin: 20px 0px 20px 0px;">
