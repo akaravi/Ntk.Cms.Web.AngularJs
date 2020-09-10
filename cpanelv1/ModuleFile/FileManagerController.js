@@ -48,7 +48,6 @@
     //init get 150 folder of user in first loading
     fdm.init = function () {
         fdm.loadingBusyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getall", { RowPerPage: 150 }, 'Post').success(function (response) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getall", { RowPerPage: 500 }, 'Post').success(function (response) {
             fdm.msgText = "Total " + response.ListItems.length + " folders were loaded";
             if (response.ListItems.length == 1)
@@ -456,6 +455,25 @@
     //for refreshing folder
     fdm.refreshFolder = function () {
         fdm.OnCategoryChange(fdm.thisCategory, true);
+
+        fdm.loadingBusyIndicator.isActive = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getall", { RowPerPage: 500 }, 'Post').success(function (response) {
+            fdm.msgText = "Total " + response.ListItems.length + " folders were loaded";
+            if (response.ListItems.length == 1)
+                fdm.msgText = response.ListItems.length + " folder was loaded";
+            fdm.msgColor = "#007e1e";
+            fdm.categoryList = response.ListItems;
+            fdm.categoryList.sort(compareCategory);
+            fdm.OnCategoryChange(null, false);
+            fdm.topCategory[fdm.topCategoryIndex] = 0;
+            fdm.loadingBusyIndicator.isActive = false;
+        }).error(function (data) {
+            console.log(data);
+            fdm.msgText = "An Error Accrued .";
+            fdm.msgColor = "#ff0000";
+            fdm.loadingBusyIndicator.isActive = false;
+        });
+
     }
 
     //upload file
@@ -1400,6 +1418,30 @@
                 fdm.msgColor = "#ff0000";
                 fdm.showErrorIcon();
 
+            }
+            else {
+                fdm.msgText = "برروز خطا";
+                fdm.msgColor = "#ff0000";
+                fdm.showErrorIcon();
+                fdm.loadingBusyIndicator.isActive = false;
+            }
+        }).error(function (data) {
+            fdm.msgText = "An error occured during saving process!";
+            fdm.msgColor = "#ff0000";
+            fdm.showErrorIcon();
+            fdm.loadingBusyIndicator.isActive = false;
+            return -1;
+        });
+    }
+    fdm.rootFileToRootFolder = function () {
+      
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/CopyCutFileRootToRootFolder", "", 'Get').success(function (response) {
+            fdm.loadingBusyIndicator.isActive = false;
+            if (response.IsSuccess) {
+                fdm.msgText = "فایل های داخل روت به فولدی به نام Root منتقل شد";
+                fdm.msgColor = "#007e1e";
+                fdm.showErrorIcon();
+                fdm.refreshFolder()
             }
             else {
                 fdm.msgText = "برروز خطا";
