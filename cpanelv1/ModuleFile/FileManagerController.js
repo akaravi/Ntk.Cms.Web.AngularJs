@@ -406,8 +406,8 @@
     fdm.deleteFileOrFolder = function () {
         fdm.loadingBusyIndicator.isActive = true;
         if (fdm.fileTypes == 1) { // file type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.Id, 'DELETE').success(function (response) {
+            // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', fdm.fileIdToDelete.Id, 'DELETE').success(function (response) {
                     fdm.loadingBusyIndicator.isActive = false;
                     //fdm.getCategoryFiles(fdm.thisCategory);
                     if (response.IsSuccess) {
@@ -419,17 +419,17 @@
                     fdm.loadingBusyIndicator.isActive = false;
                     return false;
                 });
-            }).error(function (data) {
-                console.log(data);
-                fdm.msgText = "An error occrued during deleting the file!";
-                fdm.msgColor = "#ff0000";
-                fdm.loadingBusyIndicator.isActive = false;
-                return false;
+            // }).error(function (data) {
+            //     console.log(data);
+            //     fdm.msgText = "An error occrued during deleting the file!";
+            //     fdm.msgColor = "#ff0000";
+            //     fdm.loadingBusyIndicator.isActive = false;
+            //     return false;
 
-            });
+            // });
         } else if (fdm.fileTypes == 2) { // Folder type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item.Id, 'DELETE').success(function (response) {
+            //ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', fdm.fileIdToDelete.Id, 'DELETE').success(function (response) {
                     if (response.IsSuccess) {
                         fdm.loadingBusyIndicator.isActive = false;
                         fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
@@ -442,37 +442,19 @@
                     fdm.loadingBusyIndicator.isActive = false;
                     return false;
                 });
-            }).error(function (data) {
-                console.log(data);
-                fdm.msgText = "An Error Accrued .";
-                fdm.msgColor = "#ff0000";
-                fdm.loadingBusyIndicator.isActive = false;
-                return false;
-            });
+            // }).error(function (data) {
+            //     console.log(data);
+            //     fdm.msgText = "An Error Accrued .";
+            //     fdm.msgColor = "#ff0000";
+            //     fdm.loadingBusyIndicator.isActive = false;
+            //     return false;
+            // });
         }
     }
 
     //for refreshing folder
     fdm.refreshFolder = function () {
         fdm.OnCategoryChange(fdm.thisCategory, true);
-
-        fdm.loadingBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getall", { RowPerPage: 500 }, 'Post').success(function (response) {
-            fdm.msgText = "Total " + response.ListItems.length + " folders were loaded";
-            if (response.ListItems.length == 1)
-                fdm.msgText = response.ListItems.length + " folder was loaded";
-            fdm.msgColor = "#007e1e";
-            fdm.categoryList = response.ListItems;
-            fdm.categoryList.sort(compareCategory);
-            fdm.OnCategoryChange(null, false);
-            fdm.topCategory[fdm.topCategoryIndex] = 0;
-            fdm.loadingBusyIndicator.isActive = false;
-        }).error(function (data) {
-            console.log(data);
-            fdm.msgText = "An Error Accrued .";
-            fdm.msgColor = "#ff0000";
-            fdm.loadingBusyIndicator.isActive = false;
-        });
 
     }
 
