@@ -23,7 +23,14 @@
         defaultDate: date,
         setTime: function (date) { this.defaultDate = date; }
     }
+    botConfigCtrl.SetAllWebhookUpdateShow=false;
     botConfigCtrl.init = function () {
+        if ($rootScope.tokenInfo &&  $rootScope.tokenInfo.Item) {
+
+            if($rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData&& $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData)
+            {botConfigCtrl.SetAllWebhookUpdateShow=true;
+            }
+        }
         botConfigCtrl.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/EnumScheduleCronType","", 'GET').success(function (response) {
             botConfigCtrl.ScheduleCronType = response.ListItems;
@@ -356,6 +363,17 @@
             rashaErManage.checkAction(data, errCode);
         });
     }
+    botConfigCtrl.setAllWebhookUpdate = function () {
+        
+            ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetAllWebhookUpdate', "", 'GET').success(function (response) {
+                rashaErManage.showMessage(response.ErrorMessage);
+                console.log(response);
+            }).error(function (data, errCode, c, d) {
+                rashaErManage.checkAction(data, errCode);
+                botConfigCtrl.busyIndicator.isActive = false;
+            });
+    }
+    
 
     botConfigCtrl.setWebhook = function (data) {
         ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetWebhookAsync', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {

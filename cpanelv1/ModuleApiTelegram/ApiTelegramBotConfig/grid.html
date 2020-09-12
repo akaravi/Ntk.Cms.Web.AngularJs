@@ -10,6 +10,7 @@
             <button class="btn btn-danger" type="button" ng-click="botConfigCtrl.qrCode()">{{'QR_Code'|lowercase|translate}}</button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="botConfigCtrl.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="botConfigCtrl.getCount()">{{'number'|lowercase|translate}}&nbsp;{{botConfigCtrl.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-warning"  ng-click="botConfigCtrl.setAllWebhookUpdate()" type="button" ng-show="botConfigCtrl.SetAllWebhookUpdateShow"> {{'hook Address Update'|lowercase|translate}} </button>
         </div>
     </div>
     <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
