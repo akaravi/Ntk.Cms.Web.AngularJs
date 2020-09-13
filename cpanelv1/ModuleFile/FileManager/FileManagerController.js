@@ -406,8 +406,8 @@
     fdm.deleteFileOrFolder = function () {
         fdm.loadingBusyIndicator.isActive = true;
         if (fdm.fileTypes == 1) { // file type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.Id, 'DELETE').success(function (response) {
+            //ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                     fdm.loadingBusyIndicator.isActive = false;
                     //fdm.getCategoryFiles(fdm.thisCategory);
                     if (response.IsSuccess) {
@@ -419,17 +419,17 @@
                     fdm.loadingBusyIndicator.isActive = false;
                     return false;
                 });
-            }).error(function (data) {
-                console.log(data);
-                fdm.msgText = "An error occrued during deleting the file!";
-                fdm.msgColor = "#ff0000";
-                fdm.loadingBusyIndicator.isActive = false;
-                return false;
+            // }).error(function (data) {
+            //     console.log(data);
+            //     fdm.msgText = "An error occrued during deleting the file!";
+            //     fdm.msgColor = "#ff0000";
+            //     fdm.loadingBusyIndicator.isActive = false;
+            //     return false;
 
-            });
+            // });
         } else if (fdm.fileTypes == 2) { // Folder type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item.Id, 'DELETE').success(function (response) {
+            //ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                     if (response.IsSuccess) {
                         fdm.loadingBusyIndicator.isActive = false;
                         fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
@@ -442,13 +442,13 @@
                     fdm.loadingBusyIndicator.isActive = false;
                     return false;
                 });
-            }).error(function (data) {
-                console.log(data);
-                fdm.msgText = "An Error Accrued .";
-                fdm.msgColor = "#ff0000";
-                fdm.loadingBusyIndicator.isActive = false;
-                return false;
-            });
+            // }).error(function (data) {
+            //     console.log(data);
+            //     fdm.msgText = "An Error Accrued .";
+            //     fdm.msgColor = "#ff0000";
+            //     fdm.loadingBusyIndicator.isActive = false;
+            //     return false;
+            // });
         }
     }
 
@@ -473,10 +473,10 @@
                     fdm.fileIdToDelete = fdm.selectedIndex;
                     fdm.loadingBusyIndicator.isActive = true;
                     // Delete the file
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response1) {
-                        if (response1.IsSuccess == true) {
-                            console.log(response1.Item);
-                            ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                    // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response1) {
+                    //     if (response1.IsSuccess == true) {
+                    //         console.log(response1.Item);
+                            ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', fdm.fileIdToDelete, 'DELETE').success(function (response2) {
                                 fdm.loadingBusyIndicator.isActive = false;
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 if (response2.IsSuccess == true) {
@@ -539,14 +539,14 @@
                                 else {
                                     console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                                 }
-                            }).error(function (data, errCode, c, d) {
-                                console.log(data);
-                                fdm.msgText = "An error occrued during deleting the old file!";
-                                fdm.msgTextERROR = "An error occrued during deleting the old file!";
-                                fdm.msgColor = "#ff0000";
-                                fdm.loadingBusyIndicator.isActive = false;
-                            });
-                        }
+                            // }).error(function (data, errCode, c, d) {
+                            //     console.log(data);
+                            //     fdm.msgText = "An error occrued during deleting the old file!";
+                            //     fdm.msgTextERROR = "An error occrued during deleting the old file!";
+                            //     fdm.msgColor = "#ff0000";
+                            //     fdm.loadingBusyIndicator.isActive = false;
+                            // });
+                        //}
                     }).error(function (data) {
                         console.log(data);
                         fdm.msgText = "An error occrued during getting the old file!";
@@ -644,10 +644,10 @@
         fdm.loadingBusyIndicator.isActive = true;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response1) {
-            if (response1.IsSuccess == true) {
-                console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+        // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response1) {
+        //     if (response1.IsSuccess == true) {
+        //         console.log(response1.Item);
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/',  fdm.fileIdToDelete, 'DELETE').success(function (response2) {
                     fdm.loadingBusyIndicator.isActive = false;
                     fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                     if (response2.IsSuccess == true) {
@@ -681,13 +681,13 @@
                     fdm.msgColor = "#ff0000";
                     fdm.loadingBusyIndicator.isActive = false;
                 });
-            }
-        }).error(function (data) {
-            console.log(data);
-            fdm.msgText = "An error occrued during getting the old file!";
-            fdm.msgColor = "#ff0000";
-            fdm.loadingBusyIndicator.isActive = false;
-        });
+        //     }
+        // }).error(function (data) {
+        //     console.log(data);
+        //     fdm.msgText = "An error occrued during getting the old file!";
+        //     fdm.msgColor = "#ff0000";
+        //     fdm.loadingBusyIndicator.isActive = false;
+        // });
     }
     //save new file
     fdm.saveNewFile = function () {
@@ -750,8 +750,8 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.Id, 'DELETE').success(function (response) {
+                    //ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 fdm.copyWork(id, name, parentFolderDes);
@@ -761,12 +761,12 @@
                             console.log(data);
                             fdm.loadingBusyIndicator.isActive = false;
                         });
-                    }).error(function (data) {
-                        console.log(data);
-                        fdm.msgText = "An error occrued during deleting the file!";
-                        fdm.msgColor = "#ff0000";
-                        fdm.loadingBusyIndicator.isActive = false;
-                    });
+                    // }).error(function (data) {
+                    //     console.log(data);
+                    //     fdm.msgText = "An error occrued during deleting the file!";
+                    //     fdm.msgColor = "#ff0000";
+                    //     fdm.loadingBusyIndicator.isActive = false;
+                    // });
                     // End of fdm.delete() ---------------------------------
                     return;
                 }
@@ -806,8 +806,8 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item.Id, 'DELETE').success(function (response) {
+                    //ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
                                 fdm.copyWork(id, name, parentFolderDes);
@@ -818,12 +818,12 @@
                             fdm.msgColor = "#ff0000";
                             console.log(data);
                         });
-                    }).error(function (data) {
-                        console.log(data);
-                        fdm.msgText = "An Error Accrued .";
-                        fdm.msgColor = "#ff0000";
-                        fdm.loadingBusyIndicator.isActive = false;
-                    });
+                    // }).error(function (data) {
+                    //     console.log(data);
+                    //     fdm.msgText = "An Error Accrued .";
+                    //     fdm.msgColor = "#ff0000";
+                    //     fdm.loadingBusyIndicator.isActive = false;
+                    // });
                     // End of fdm.delete() ---------------------------------
                     return;
                 } else {
@@ -886,8 +886,8 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.Id, 'DELETE').success(function (response) {
+                    //ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 fdm.cutWork(id, name, parentFolderDes);
@@ -897,12 +897,12 @@
                             console.log(data);
                             fdm.loadingBusyIndicator.isActive = false;
                         });
-                    }).error(function (data) {
-                        console.log(data);
-                        fdm.msgText = "An error occrued during deleting the file!";
-                        fdm.msgColor = "#ff0000";
-                        fdm.loadingBusyIndicator.isActive = false;
-                    });
+                    // }).error(function (data) {
+                    //     console.log(data);
+                    //     fdm.msgText = "An error occrued during deleting the file!";
+                    //     fdm.msgColor = "#ff0000";
+                    //     fdm.loadingBusyIndicator.isActive = false;
+                    // });
                     // End of fdm.delete() ---------------------------------
                     return;
                 } else {
@@ -946,8 +946,8 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', response.Item.Id, 'DELETE').success(function (response) {
+                    //ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/", fdm.fileIdToDelete, 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/', fdm.fileIdToDelete, 'DELETE').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
                                 fdm.cutWork(id, name, parentFolderDes);
@@ -958,12 +958,12 @@
                             fdm.msgColor = "#ff0000";
                             console.log(data);
                         });
-                    }).error(function (data) {
-                        console.log(data);
-                        fdm.msgText = "An Error Accrued .";
-                        fdm.msgColor = "#ff0000";
-                        fdm.loadingBusyIndicator.isActive = false;
-                    });
+                    // }).error(function (data) {
+                    //     console.log(data);
+                    //     fdm.msgText = "An Error Accrued .";
+                    //     fdm.msgColor = "#ff0000";
+                    //     fdm.loadingBusyIndicator.isActive = false;
+                    // });
                     // End of fdm.delete() ---------------------------------
                     return;
                 } else {

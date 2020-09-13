@@ -1138,10 +1138,14 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
-                    estateProperty.FileItem = response.Item;
+                // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                //     estateProperty.FileItem = response.Item;
+                    estateProperty.FileItem = {};
                     estateProperty.FileItem.FileName = uploadFile.name;
                     estateProperty.FileItem.uploadName = uploadFile.uploadName;
+                    estateProperty.FileItem.ModuleName = "Estate";
+                    estateProperty.FileItem.ModuleEntityName = "";
+                    estateProperty.FileItem.ModuleEntityId = estateProperty.selectedItem.Id;
                     estateProperty.FileItem.Extension = uploadFile.name.split('.').pop();
                     estateProperty.FileItem.FileSrc = uploadFile.name;
                     estateProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
@@ -1165,12 +1169,12 @@
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
-                        estateProperty.showErrorIcon();
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass("flashing-button");
-                        $("#save-icon" + index).addClass("fa-remove");
-                    });
+                    // }).error(function (data) {
+                    //     estateProperty.showErrorIcon();
+                    //     $("#save-icon" + index).removeClass("fa-save");
+                    //     $("#save-button" + index).removeClass("flashing-button");
+                    //     $("#save-icon" + index).addClass("fa-remove");
+                    // });
                     //-----------------------------------
                 }).error(function (data) {
                     console.log(data);
