@@ -196,11 +196,8 @@
                 estateContract.busyIndicator.isActive = true;
                 console.log(estateContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
-                    buttonIsPressed = false;
-                    rashaErManage.checkAction(response);
-                    estateContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/', estateContract.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+      
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/',estateContract.gridOptions.selectedRow.item.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -213,11 +210,7 @@
                         estateContract.busyIndicator.isActive = false;
 
                     });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                    estateContract.busyIndicator.isActive = false;
-
-                });
+              
             }
         });
     }

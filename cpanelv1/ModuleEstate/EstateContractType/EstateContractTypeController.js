@@ -9,7 +9,7 @@
     if (itemRecordStatus != undefined) estateContractType.itemRecordStatus = itemRecordStatus;
 
 
-
+    estateContractType.Access={}
     estateContractType.init = function () {
         estateContractType.busyIndicator.isActive = true;
 
@@ -19,6 +19,12 @@
         } catch (error) {
             console.log(error);
         }
+        ajax.call(cmsServerConfig.configApiServerPath+"estateContracttype/ViewModel", "", 'Get').success(function (response) {
+            estateContractType.Access=response.Access;
+            estateContractType.gridOptions.fillData(estateContractType.ListItems, estateContractType.Access);
+        }).error(function (data, errCode, c, d) {
+            rashaErManage.checkAction(data, errCode);
+        });
 
         ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -27,7 +33,7 @@
 
             // Call Excerpt Function to shorten the length of long strings
             //excerptField(estateContractType.ListItems, "BotToken");
-            estateContractType.gridOptions.fillData(estateContractType.ListItems, response.Access);
+            estateContractType.gridOptions.fillData(estateContractType.ListItems, estateContractType.Access);
             estateContractType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             estateContractType.gridOptions.totalRowCount = response.TotalRowCount;
             estateContractType.gridOptions.rowPerPage = response.RowPerPage;
@@ -157,12 +163,8 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 estateContractType.busyIndicator.isActive = true;
-                console.log(estateContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
-                    rashaErManage.checkAction(response);
-                    estateContractType.selectedItemForDelete = response.Item;
-                    console.log(estateContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+      
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/', estateContractType.gridOptions.selectedRow.item.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -175,11 +177,7 @@
                         estateContractType.busyIndicator.isActive = false;
 
                     });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                    estateContractType.busyIndicator.isActive = false;
-
-                });
+              
             }
         });
     }
