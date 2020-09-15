@@ -1367,6 +1367,8 @@ function rashaGrid($compile, $rootScope, ajax) {
                 //access
                 config.CheckAccessWatch = function (fieldName) 
                 {
+                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                        return false;
                     var retOut=false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
                         if (column.FieldName==fieldName)
@@ -1376,6 +1378,8 @@ function rashaGrid($compile, $rootScope, ajax) {
                 }
                 config.CheckAccessSearch = function (fieldName) 
                 {
+                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                        return false;
                     var retOut=false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
                         if (column.FieldName==fieldName)
@@ -1385,6 +1389,8 @@ function rashaGrid($compile, $rootScope, ajax) {
                 }
                 config.CheckAccessEdit = function (fieldName) 
                 {
+                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                        return false;
                     var retOut=false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
                         if (column.FieldName==fieldName)
@@ -1394,6 +1400,8 @@ function rashaGrid($compile, $rootScope, ajax) {
                 }
                 config.CheckAccessAdd = function (fieldName) 
                 {
+                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                        return false;
                     var retOut=false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
                         if (column.FieldName==fieldName)

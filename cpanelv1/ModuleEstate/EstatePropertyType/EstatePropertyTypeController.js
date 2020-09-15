@@ -12,16 +12,25 @@
         multiSelect: false,
     }
     estatePropertyType.ListItems = [];
+    estatePropertyType.Access={};
     estatePropertyType.selectUniversalMenuOnUndetectableKey = true;
     if (itemRecordStatus != undefined) estatePropertyType.itemRecordStatus = itemRecordStatus;
 
     estatePropertyType.init = function () {
         estatePropertyType.busyIndicator.isActive = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/ViewModel", "", 'GET').success(function (response) {
+            rashaErManage.checkAction(response);
+            estatePropertyType.Access=   response.Access;
+            estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems,estatePropertyType.Access);
+        }).error(function (data, errCode, c, d) {
+            
+            rashaErManage.checkAction(data, errCode);
+        });
         ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/getall", estatePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyType.busyIndicator.isActive = false;
             estatePropertyType.ListItems = response.ListItems;
-            estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems, response.Access);
+            estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems,estatePropertyType.Access);
             estatePropertyType.gridOptions.currentPageNumber = response.CurrentPageNumber;
             estatePropertyType.gridOptions.totalRowCount = response.TotalRowCount;
             estatePropertyType.gridOptions.rowPerPage = response.RowPerPage;
@@ -158,11 +167,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 estatePropertyType.busyIndicator.isActive = true;
-                console.log(estatePropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/', estatePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
-                    rashaErManage.checkAction(response);
-                    estatePropertyType.selectedItemForDelete = response.Item;
-                    console.log(estatePropertyType.selectedItemForDelete);
+              
                     ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/', estatePropertyType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estatePropertyType.busyIndicator.isActive = false;
@@ -175,11 +180,7 @@
                         estatePropertyType.busyIndicator.isActive = false;
 
                     });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                    estatePropertyType.busyIndicator.isActive = false;
-
-                });
+        
             }
         });
     }
@@ -335,9 +336,9 @@ estatePropertyType.alreadyExist = function (id, array) {
         estatePropertyType.fileIdToDelete = estatePropertyType.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estatePropertyType.fileIdToDelete, 'GET').success(function (response1) {
-            if (response1.IsSuccess == true) {
-                console.log(response1.Item);
+        // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estatePropertyType.fileIdToDelete, 'GET').success(function (response1) {
+        //     if (response1.IsSuccess == true) {
+        //         console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
@@ -363,10 +364,10 @@ estatePropertyType.alreadyExist = function (id, array) {
                 }).error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-            }
-        }).error(function (data) {
-            console.log(data);
-        });
+        //     }
+        // }).error(function (data) {
+        //     console.log(data);
+        // });
     }
     //save new file
     estatePropertyType.saveNewFile = function () {

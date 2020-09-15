@@ -85,22 +85,19 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     estatePropertyDetail.addRequested = false;
 
     estatePropertyDetail.estatePropertyDetailGroupListItems = [];
-
+    estatePropertyDetail.PropertyType=[];
+    
+    estatePropertyDetail.Access={};
     //init Function
     estatePropertyDetail.init = function () {
         estatePropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumUiPropertyDesign", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyType/EnumUiPropertyDesign", "", 'GET').success(function (response) {
             estatePropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        // ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
-        //     estatePropertyDetail.inputDataTypeArray = response.ListItems;
-        // }).error(function (data, errCode, c, d) {
-        //     console.log(data);
-        // });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/EnumInputDataType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyType/EnumInputDataType", "", 'GET').success(function (response) {
             estatePropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -109,30 +106,46 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         if ($stateParams.propertyParam != undefined && $stateParams.propertyParam != null)
             estatePropertyDetail.propertyTypeId = $stateParams.propertyParam;
         else
-            estatePropertyDetail.propertyTypeId = 1;
+             $state.go("index.estatepropertytype");
 
-        var filterValue = {
-            PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(estatePropertyDetail.propertyTypeId),
-            SearchType: 0
-        }
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
+            
 
+            ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyType/ViewModel", "", 'GET').success(function (response) {
+                    estatePropertyDetail.gridOptions.Access =response.Access;
+                    estatePropertyDetail.Access =response.Access;
+            }).error(function (data, errCode, c, d) {
+                console.log(data);
+            });
         estatePropertyDetail.groupResultAccess = null;
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetailGroup/getall", estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            estatePropertyDetail.estatePropertyDetailGroupListItems = response.ListItems;
-            estatePropertyDetail.treeConfig.Items = response.ListItems;
-            estatePropertyDetail.groupResultAccess = response.Access;
+        if( estatePropertyDetail.propertyTypeId){
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyType/", estatePropertyDetail.propertyTypeId, 'GET').success(function (response) {
+            if(response.IsSuccess)
+            {
+                estatePropertyDetail.PropertyType =response.Item;
+                estatePropertyDetail.groupResultAccess = response.Access;
+            }
             estatePropertyDetail.categorybusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyType/getall", estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            estatePropertyDetail.propertyTypeListItems = response.ListItems;
+        }
+        var filterValue = {
+            PropertyName: "LinkPropertyTypeId",
+            value: estatePropertyDetail.propertyTypeId,
+            SearchType: 0
+        }
+        var engine = {};
+        engine.Filters = [];
+        engine.Filters.push(filterValue);
+        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetailGroup/Getall",engine, 'POST').success(function (response) {
+            if(response.IsSuccess)
+            {
+                estatePropertyDetail.treeConfig.Items =response.ListItems;
+            }
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+     
     };
 
     // Open Add Category Modal 
@@ -235,9 +248,9 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
                 if (isConfirmed) {
                     estatePropertyDetail.categorybusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', node.Id, 'GET').success(function (response) {
-                        rashaErManage.checkAction(response);
-                        estatePropertyDetail.selectedItemForDelete = response.Item;
+                    // ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', node.Id, 'GET').success(function (response) {
+                    //     rashaErManage.checkAction(response);
+                    //     estatePropertyDetail.selectedItemForDelete = response.Item;
                         ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', estatePropertyDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
 
                             if (res.IsSuccess) {
@@ -254,11 +267,11 @@ estatePropertyDetail.LinkCategoryIdSelector = {
                             estatePropertyDetail.categorybusyIndicator.isActive = false;
 
                         });
-                    }).error(function (data, errCode, c, d) {
-                        rashaErManage.checkAction(data, errCode);
-                        estatePropertyDetail.categorybusyIndicator.isActive = false;
+                    // }).error(function (data, errCode, c, d) {
+                    //     rashaErManage.checkAction(data, errCode);
+                    //     estatePropertyDetail.categorybusyIndicator.isActive = false;
 
-                    });
+                    // });
 
                 }
             });
@@ -284,38 +297,50 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.busyIndicator.message = "در حال بارگذاری..." + node.Title;
         estatePropertyDetail.busyIndicator.isActive = true;
         //estatePropertyDetail.gridOptions.advancedSearchData = {};
-
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
-        if (node != undefined && node.Id != undefined) {
-            var filterValue1 = {
-                PropertyName: "LinkPropertyDetailGroupId",
-                IntValue1: node.Id,
-                SearchType: 0
+        var ListItems=[];
+        angular.forEach(estatePropertyDetail.ListItems, function (item, key) {
+            if (item.Id == node.Id ) {
+                ListItems.push (item);
+                
             }
-            estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
-        }
-        var filterValue2 = {
-            PropertyName: "LinkPropertyTypeId",
-            IntValue1: estatePropertyDetail.propertyTypeId,
-            SearchType: 0
-        }
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
-        ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/getall", estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            estatePropertyDetail.busyIndicator.isActive = false;
-            estatePropertyDetail.ListItems = response.ListItems;
-            estatePropertyDetail.filterEnum(estatePropertyDetail.ListItems, estatePropertyDetail.inputTypeArray);
-            estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.ListItems, response.Access);
-            estatePropertyDetail.gridOptions.currentPageNumber = response.CurrentPageNumber;
-            estatePropertyDetail.gridOptions.totalRowCount = response.TotalRowCount;
-            estatePropertyDetail.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
-            estatePropertyDetail.gridOptions.fillData();
-            rashaErManage.checkAction(data, errCode);
-            estatePropertyDetail.busyIndicator.isActive = false;
         });
+        estatePropertyDetail.gridOptions.fillData(ListItems);
+        estatePropertyDetail.busyIndicator.isActive = false;
+
+
+
+
+        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
+        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
+        // if (node != undefined && node.Id != undefined) {
+        //     var filterValue1 = {
+        //         PropertyName: "LinkPropertyDetailGroupId",
+        //         IntValue1: node.Id,
+        //         SearchType: 0
+        //     }
+        //     estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
+        // }
+        // var filterValue2 = {
+        //     PropertyName: "LinkPropertyTypeId",
+        //     Value: estatePropertyDetail.propertyTypeId,
+        //     SearchType: 0
+        // }
+        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
+
+        // ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/getall", estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        //     rashaErManage.checkAction(response);
+        //     estatePropertyDetail.busyIndicator.isActive = false;
+        //     estatePropertyDetail.ListItems = response.ListItems;
+        //     estatePropertyDetail.filterEnum(estatePropertyDetail.ListItems, estatePropertyDetail.inputTypeArray);
+        //     estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.ListItems, response.Access);
+        //     estatePropertyDetail.gridOptions.currentPageNumber = response.CurrentPageNumber;
+        //     estatePropertyDetail.gridOptions.totalRowCount = response.TotalRowCount;
+        //     estatePropertyDetail.gridOptions.rowPerPage = response.RowPerPage;
+        // }).error(function (data, errCode, c, d) {
+        //     estatePropertyDetail.gridOptions.fillData();
+        //     rashaErManage.checkAction(data, errCode);
+        //     estatePropertyDetail.busyIndicator.isActive = false;
+        // });
     };
 
     // Open add Content Model
@@ -329,19 +354,19 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         estatePropertyDetail.FieldName = "";
         estatePropertyDetail.addRequested = false;
         estatePropertyDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/ViewModel', "", 'GET').success(function (response) {
-            rashaErManage.checkAction(response);
-            estatePropertyDetail.selectedItem = response.Item;
-            estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
-            estatePropertyDetail.onMultipleChoiceChange();
+        // ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/ViewModel', "", 'GET').success(function (response) {
+        //     rashaErManage.checkAction(response);
+        //     estatePropertyDetail.selectedItem = response.Item;
+        //     estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
+        //     estatePropertyDetail.onMultipleChoiceChange();
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleEstate/estatePropertyDetail/add.html',
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
+        // }).error(function (data, errCode, c, d) {
+        //     rashaErManage.checkAction(data, errCode);
+        // });
     };
 
     //Add New Content
@@ -351,15 +376,48 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        if (estatePropertyDetail.DefaultValue && estatePropertyDetail.DefaultValue.multipleChoice && estatePropertyDetail.attachedFields < 2) {
+        
+        if(!estatePropertyDetail.ConfigValue)
+            estatePropertyDetail.ConfigValue={};
+        if (estatePropertyDetail.ConfigValue && estatePropertyDetail.ConfigValue.multipleChoice && estatePropertyDetail.attachedFields < 2) {
             rashaErManage.showMessage("در صورت انتخاب چند گزینه ای باید حداقل دو گزینه اضافه کنید!");
             return;
         }
         estatePropertyDetail.addRequested = true;
         estatePropertyDetail.selectedItem.LinkPropertyTypeId = estatePropertyDetail.propertyTypeId;
-        estatePropertyDetail.selectedItem.DefaultValue.nameValue = estatePropertyDetail.attachedFields;
-        estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
+        estatePropertyDetail.selectedItem.ConfigValue.nameValue = estatePropertyDetail.attachedFields;
+        estatePropertyDetail.selectedItem.JsonConfigValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.ConfigValue));
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
+
+        if(!estatePropertyDetail.Item.PropertyDetails || estatePropertyDetail.Item.PropertyDetails.length==0)
+        {
+            estatePropertyDetail.Item.PropertyDetails=[];
+        }
+        
+
+        var Item= estatePropertyDetail.Item.PropertyDetails;
+        Item.PropertyDetails.push(estatePropertyDetail.selectedItem);
+
+        estatePropertyDetail.busyIndicator.isActive = true;
+        ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/', Item, "PUT").success(function (response) {
+            estatePropertyDetail.addRequested = true;
+            rashaErManage.checkAction(response);
+            estatePropertyDetail.busyIndicator.isActive = false;
+            if (response.IsSuccess) {
+                estatePropertyDetail.addRequested = false;
+                estatePropertyDetail.replaceItem(estatePropertyDetail.selectedItem.Id, response.Item);
+                estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.ListItems);
+                estatePropertyDetail.closeModal();
+            }
+        }).error(function (data, errCode, c, d) {
+            rashaErManage.checkAction(data, errCode);
+            estatePropertyDetail.addRequested = false;
+            estatePropertyDetail.busyIndicator.isActive = false;
+
+        });
+
+
+
         ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -400,7 +458,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             estatePropertyDetail.selectedItem = response1.Item;
 
             estatePropertyDetail.attachedFields = [];
-            estatePropertyDetail.attachedFields = response1.Item.DefaultValue.nameValue;
+            estatePropertyDetail.attachedFields = response1.Item.ConfigValue.nameValue;
             estatePropertyDetail.onMultipleChoiceChange();
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleEstate/estatePropertyDetail/edit.html',
@@ -418,14 +476,14 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        if (estatePropertyDetail.DefaultValue) {
-            if (estatePropertyDetail.DefaultValue.multipleChoice && estatePropertyDetail.attachedFields < 2) {
+        if (estatePropertyDetail.ConfigValue) {
+            if (estatePropertyDetail.ConfigValue.multipleChoice && estatePropertyDetail.attachedFields < 2) {
                 rashaErManage.showMessage("در صورت انتخاب چند گزینه ای باید حداقل دو گزینه اضافه کنید!");
                 return;
             }
         }
-        estatePropertyDetail.selectedItem.DefaultValue.nameValue = estatePropertyDetail.attachedFields;
-        estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
+        estatePropertyDetail.selectedItem.ConfigValue.nameValue = estatePropertyDetail.attachedFields;
+        estatePropertyDetail.selectedItem.JsonConfigValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.ConfigValue));
         estatePropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         estatePropertyDetail.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response) {
@@ -463,11 +521,11 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             if (isConfirmed) {
                 estatePropertyDetail.showbusy = true;
                 estatePropertyDetail.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/", estatePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
-                    estatePropertyDetail.showbusy = false;
-                    estatePropertyDetail.showIsBusy = false;
-                    rashaErManage.checkAction(response);
-                    estatePropertyDetail.selectedItemForDelete = response.Item;
+                // ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/", estatePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                //     estatePropertyDetail.showbusy = false;
+                //     estatePropertyDetail.showIsBusy = false;
+                //     rashaErManage.checkAction(response);
+                //     estatePropertyDetail.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/", estatePropertyDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         estatePropertyDetail.treeConfig.showbusy = false;
                         estatePropertyDetail.showIsBusy = false;
@@ -481,11 +539,11 @@ estatePropertyDetail.LinkCategoryIdSelector = {
                         estatePropertyDetail.treeConfig.showbusy = false;
                         estatePropertyDetail.showIsBusy = false;
                     });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                    estatePropertyDetail.treeConfig.showbusy = false;
-                    estatePropertyDetail.showIsBusy = false;
-                });
+                // }).error(function (data, errCode, c, d) {
+                //     rashaErManage.checkAction(data, errCode);
+                //     estatePropertyDetail.treeConfig.showbusy = false;
+                //     estatePropertyDetail.showIsBusy = false;
+                // });
             }
         });
     }
@@ -578,8 +636,8 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     estatePropertyDetail.addAttachedFieldName = function (FieldName) {
         if (estatePropertyDetail.updateMode == "edit") {
             estatePropertyDetail.attachedFields[estatePropertyDetail.selectedIndex] = FieldName;
-            estatePropertyDetail.selectedItem.DefaultValue.nameValue = estatePropertyDetail.attachedFields;
-            estatePropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.DefaultValue));
+            estatePropertyDetail.selectedItem.ConfigValue.nameValue = estatePropertyDetail.attachedFields;
+            estatePropertyDetail.selectedItem.JsonConfigValue = $.trim(angular.toJson(estatePropertyDetail.selectedItem.ConfigValue));
             ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response) {
                 rashaErManage.checkAction(response);
                 estatePropertyDetail.disableUpdate();
@@ -828,17 +886,17 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     }
 
     estatePropertyDetail.onMultipleChoiceChange = function () {
-        if (estatePropertyDetail.selectedItem.DefaultValue.multipleChoice) {
+        if (estatePropertyDetail.selectedItem.ConfigValue.multipleChoice) {
             $("#forceUseCheckbox").fadeOut(300);
-            estatePropertyDetail.selectedItem.DefaultValue.forceUse = false;
+            estatePropertyDetail.selectedItem.ConfigValue.forceUse = false;
             return;
         }
         $("#forceUseCheckbox").fadeIn(300);
     }
 
     estatePropertyDetail.onforceUserChange = function () {
-        if (estatePropertyDetail.selectedItem.DefaultValue.forceUse) {
-            estatePropertyDetail.selectedItem.DefaultValue.multipleChoice = false;
+        if (estatePropertyDetail.selectedItem.ConfigValue.forceUse) {
+            estatePropertyDetail.selectedItem.ConfigValue.multipleChoice = false;
         }
     }
 
@@ -852,7 +910,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(estatePropertyDetail.propertyTypeId),
+            Value: estatePropertyDetail.propertyTypeId,
             SearchType: 0
         }
         var engine = {};

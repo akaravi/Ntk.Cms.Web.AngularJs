@@ -73,13 +73,13 @@
                                             <div ng-if="y.InputDataType == 0 && y.DefaultValue.nameValue.length == 0">
                                                 <input class="form-control" ng-model="y.value" type="text" ng-required="y.Required" placeholder="{{y.Unit}}" />
                                             </div>
-                                            <div ng-if="y.InputDataType == 4 && y.DefaultValue.nameValue.length == 0">
+                                            <div ng-if="y.InputDataType == 5 && y.DefaultValue.nameValue.length == 0">
                                                 <textarea class="form-control" ng-model="y.value" type="text" ng-required="y.Required" placeholder="{{y.Unit}}" style="resize:vertical;height:65px;"></textarea>
                                             </div>
                                             <div ng-if="y.InputDataType == 1 && y.DefaultValue.nameValue.length == 0">
                                                 <input class="form-control" ng-model="y.value" type="number" min="0" ng-required="y.Required" placeholder="{{y.Unit}}" />
                                             </div>
-                                            <div class="checkbox" ng-if="y.InputDataType == 2">
+                                            <div ng-if="y.InputDataType == 2" class="checkbox" >
                                                 <label>
                                                     <input type="checkbox" ng-model="y.value">{{'has_It'|lowercase|translate}}
                                                 </label>
