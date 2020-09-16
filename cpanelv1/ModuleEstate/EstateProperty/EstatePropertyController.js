@@ -154,8 +154,8 @@
                         valueItem = $.extend(true, {}, response1.Item);
                         valueItem.LinkPropertyDetailId = estateProperty.propertyDetailsListItems[i].Id;
                         valueItem.LinkPropertyId = response.Item.Id;
-                        if (estateProperty.propertyDetailsListItems[i].DefaultValue != null) {
-                            if (estateProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice) {
+                        if (estateProperty.propertyDetailsListItems[i].ConfigValue != null) {
+                            if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice) {
                                 var checkboxName = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
                                 estateProperty.selectionValueNames = [];
                                 jQuery("input[name='" + checkboxName + "']").each(function () {
@@ -165,14 +165,14 @@
                                 });
                                 valueItem.Value = estateProperty.selectionValueNames;
                                 if(valueItem.Value){
-                                    valueItem.Value= JSON.stringify(valueItem.Value)
+                                    valueItem.Value= JSON.stringify(valueItem.Value);
                                 }else{
-                                    valueItem.Value=""
+                                    valueItem.Value="";
                                 }
                             }
                             else {
 
-                                if (estateProperty.propertyDetailsListItems[i].DefaultValue.forceUse && estateProperty.propertyDetailsListItems[i].DefaultValue.nameValue.length > 0) {  //ELement is a RadioButton/DropDown
+                                if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse && estateProperty.propertyDetailsListItems[i].ConfigValue.nameValue.length > 0) {  //ELement is a RadioButton/DropDown
                                     //Do not delete the following comments: Get the value if the element is a RadioButton
                                     /*var radioButton = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
                                     estateProperty.selectionValueNames = [];
@@ -328,8 +328,8 @@
                 for (var j = 0; j < estateProperty.propertyDetailValuesListItems.length; j++) {
                     if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.propertyDetailValuesListItems[j].LinkPropertyDetailId) {
                         estateProperty.propertyDetailsListItems[i].valueFound = true;
-                        if (estateProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice == false) { // Detail is not CheckBox
-                            if (estateProperty.propertyDetailsListItems[i].DefaultValue.forceUse) { // Detail is RadioButton/DropDown
+                        if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice == false) { // Detail is not CheckBox
+                            if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse) { // Detail is RadioButton/DropDown
                                 /*Do not delete the following comments: Get the value if the element is a RadioButton
                                 var radioName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
                                 var radioValue = estateProperty[radioName];
@@ -348,8 +348,8 @@
                 }
                 if (!estateProperty.propertyDetailsListItems[i].valueFound) {
                     var proeprtyDetailValue = { LinkPropertyId: 0, LinkPropertyDetailId: 0, Value: 0 };
-                    if (estateProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice == false) { // Detail is not CheckBox
-                        if (estateProperty.propertyDetailsListItems[i].DefaultValue.forceUse) { // Detail is RadioButton/DropDown
+                    if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice == false) { // Detail is not CheckBox
+                        if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse) { // Detail is RadioButton/DropDown
                             var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val() }
                           
                             
@@ -572,8 +572,8 @@
                 if (result.length <= 0)
                     estateProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
 
-                // Add DefaultValue to the object
-                item.DefaultValue = JSON.parse(item.JsonDefaultValue);
+                // Add ConfigValue to the object
+                item.ConfigValue = JSON.parse(item.JsonConfigValue);
             });
 
         }).error(function (data, errCode, c, d) {
@@ -636,29 +636,29 @@
                     if (result.length <= 0)
                         estateProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
 
-                    // Add DefaultValue to the object
-                    if (item.JsonDefaultValue == null) item.JsonDefaultValue = "{\"nameValue\":[],\"forceUse\":false,\"multipleChoice\":false}"; // جلوگیری از بروز خطا اگر مقادیر پیش فرض تهی باشد
-                    item.DefaultValue = JSON.parse(item.JsonDefaultValue);
+                    // Add ConfigValue to the object
+                    if (item.JsonConfigValue == null) item.JsonConfigValue = "{\"nameValue\":[],\"forceUse\":false,\"multipleChoice\":false}"; // جلوگیری از بروز خطا اگر مقادیر پیش فرض تهی باشد
+                    item.ConfigValue = JSON.parse(item.JsonConfigValue);
                 });
                 estateProperty.propertyDetailValuesListItems = response.ListItems;
                 for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
                     for (var j = 0; j < estateProperty.propertyDetailValuesListItems.length; j++) {
                         if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.propertyDetailValuesListItems[j].LinkPropertyDetailId) {
-                            var jsonDefaultValue = null;
+                            var jsonConfigValue = null;
                             try {
-                                jsonDefaultValue = JSON.parse(estateProperty.propertyDetailsListItems[i].JsonDefaultValue);
+                                jsonConfigValue = JSON.parse(estateProperty.propertyDetailsListItems[i].JsonConfigValue);
                             } catch (e) {
                                 console.log(e);
                             }
 
                             if (estateProperty.propertyDetailValuesListItems[j].Value != null) {
-                                if (jsonDefaultValue != undefined && jsonDefaultValue != null && jsonDefaultValue.nameValue != undefined && jsonDefaultValue.nameValue != null && 0 < jsonDefaultValue.nameValue.length) {
-                                    if (jsonDefaultValue.multipleChoice) {   // Detail is CheckBox
+                                if (jsonConfigValue != undefined && jsonConfigValue != null && jsonConfigValue.nameValue != undefined && jsonConfigValue.nameValue != null && 0 < jsonConfigValue.nameValue.length) {
+                                    if (jsonConfigValue.multipleChoice) {   // Detail is CheckBox
                                         var multipleValues = JSON.parse(estateProperty.propertyDetailValuesListItems[j].Value);//.split(',');
                                         setSelection(estateProperty.propertyDetailsListItems[i].Id, multipleValues);
 
                                     }
-                                    else if (jsonDefaultValue.forceUse && jsonDefaultValue.nameValue.length > 0) {   // Detail is RadioButton/DropDown
+                                    else if (jsonConfigValue.forceUse && jsonConfigValue.nameValue.length > 0) {   // Detail is RadioButton/DropDown
                                         /*Do not delete this line: Load the value if the elements is RadioButton
                                         var radioValues = estateProperty.propertyDetailValuesListItems[j].Value.split(',');
                                         setSelection(estateProperty.propertyDetailsListItems[i].Id, radioValues); */

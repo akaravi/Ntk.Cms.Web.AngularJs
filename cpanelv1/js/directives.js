@@ -17,8 +17,13 @@ function fullScroll($timeout) {
     };
 }
 
-
-itemRecordstatus = [];
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+    
+}
 
 /**
  * slimScroll - Directive for slimScroll with custom height
@@ -30,7 +35,8 @@ function slimScroll($timeout) {
             boxHeight: '@'
         },
         link: function (scope, element) {
-            $timeout(function () {Check
+            $timeout(function () {
+                Check
                 element.slimscroll({
                     height: scope.boxHeight,
                     railOpacity: 0.9
@@ -800,7 +806,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
             }
             config.ViewModel = {};
             config.emptyModel = {};
-            
+
             config.initValue = function () {
                 var defId = config.scope.selectedItem[config.fId];
                 if (!defId)
@@ -912,7 +918,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                         rashaErManage.checkAction(response);
                         if (response.ListItems) {
                             config.columnOptions.Access = response.Access;
-                       
+
 
                             // ----- Remove excludingIndex from Results ---------
                             if (config.scope.gridOptions != undefined) {
@@ -1151,7 +1157,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             if (config.totalcolumns > 0)
                 config.percentWidth = 100 / config.totalcolumns;
             angular.forEach(config.columns, function (item, key) {
-                item.srcThumbnail = cmsServerConfig.configRouteThumbnails+'/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+                item.srcThumbnail = cmsServerConfig.configRouteThumbnails + '/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
                 if (!item.visible)
                     item.visible = true;
                 if (!item.sortable)
@@ -1302,7 +1308,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                 });
             }
             // config.Accesschanged = function () {
-               
+
             //     for (var i = 0; i < config.columns.length; i++) {
             //         if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.AccessWatchField != undefined && config.Access.AccessWatchField.indexOf(config.columns[i].name) < 0) {
             //             config.Access.AccessWatchField.push(config.columns[i].name);
@@ -1347,9 +1353,19 @@ function rashaGrid($compile, $rootScope, ajax) {
                 ////console.log(col);
             };
 
-            config.fillData = function (response, resultAccessSet) {
+            config.fillData = function (rowResponse, resultAccessSet) {
 
-                if (resultAccessSet != undefined) config.Access = resultAccessSet;
+                if (resultAccessSet && resultAccessSet != undefined) config.Access = resultAccessSet;
+
+                var response = [];
+                if (rowResponse && rowResponse != undefined)
+                {
+                    for(var k in rowResponse) response[k]=jQuery.extend( {},rowResponse[k] );
+                }
+                   
+
+
+
                 //config.Accesschanged();
                 if (!response) {
                     var $fixedHeader = $("#" + config.getUniqueId);
@@ -1365,47 +1381,43 @@ function rashaGrid($compile, $rootScope, ajax) {
                     $fixedHeader.hide();
                 }
                 //access
-                config.CheckAccessWatch = function (fieldName) 
-                {
-                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                config.CheckAccessWatch = function (fieldName) {
+                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
-                    var retOut=false;
+                    var retOut = false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
-                        if (column.FieldName==fieldName)
-                            retOut= column.AccessWatchField;
+                        if (column.FieldName == fieldName)
+                            retOut = column.AccessWatchField;
                     });
                     return retOut;
                 }
-                config.CheckAccessSearch = function (fieldName) 
-                {
-                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                config.CheckAccessSearch = function (fieldName) {
+                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
-                    var retOut=false;
+                    var retOut = false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
-                        if (column.FieldName==fieldName)
-                            retOut= column.AccessSearchField;
+                        if (column.FieldName == fieldName)
+                            retOut = column.AccessSearchField;
                     });
                     return retOut;
                 }
-                config.CheckAccessEdit = function (fieldName) 
-                {
-                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                config.CheckAccessEdit = function (fieldName) {
+                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
-                    var retOut=false;
+                    var retOut = false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
-                        if (column.FieldName==fieldName)
-                            retOut= column.AccessEditField;
+                        if (column.FieldName == fieldName)
+                            retOut = column.AccessEditField;
                     });
                     return retOut;
                 }
-                config.CheckAccessAdd = function (fieldName) 
-                {
-                    if(!config.Access||!config.Access.FieldsInfo || config.Access.FieldsInfo.length==0)
+                config.CheckAccessAdd = function (fieldName) {
+                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
-                    var retOut=false;
+                    var retOut = false;
                     $.each(config.Access.FieldsInfo, function (index, column) {
-                        if (column.FieldName==fieldName)
-                            retOut= column.AccessAddField;
+                        if (column.FieldName == fieldName)
+                            retOut = column.AccessAddField;
                     });
                     return retOut;
                 }
@@ -1579,7 +1591,7 @@ function queryBuilder($compile) {
                 throw "تنظیمات جستجوی پیشرفته در کنترلر مربوطه را ایجاد کنید";
                 return;
             }
-          
+
             config.showAdvancedSearchPanel = function () {
                 $("#filter-btn-icon").toggleClass('fa-toggle-off fa-toggle-on');
                 $('#' + element[0].id + 'Panel').fadeToggle('fast', function () {
@@ -1591,39 +1603,35 @@ function queryBuilder($compile) {
                         config.setFields();
                 });
             }
-            config.CheckAccessWatch = function (fieldName) 
-            {
-                var retOut=false;
+            config.CheckAccessWatch = function (fieldName) {
+                var retOut = false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                    if (column.FieldName==fieldName)
-                        retOut= column.AccessWatchField;
+                    if (column.FieldName == fieldName)
+                        retOut = column.AccessWatchField;
                 });
                 return retOut;
             }
-            config.CheckAccessSearch = function (fieldName) 
-            {
-                var retOut=false;
+            config.CheckAccessSearch = function (fieldName) {
+                var retOut = false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                    if (column.FieldName==fieldName)
-                        retOut= column.AccessSearchField;
+                    if (column.FieldName == fieldName)
+                        retOut = column.AccessSearchField;
                 });
                 return retOut;
             }
-            config.CheckAccessEdit = function (fieldName) 
-            {
-                var retOut=false;
+            config.CheckAccessEdit = function (fieldName) {
+                var retOut = false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                    if (column.FieldName==fieldName)
-                        retOut= column.AccessEditField;
+                    if (column.FieldName == fieldName)
+                        retOut = column.AccessEditField;
                 });
                 return retOut;
             }
-            config.CheckAccessAdd = function (fieldName) 
-            {
-                var retOut=false;
+            config.CheckAccessAdd = function (fieldName) {
+                var retOut = false;
                 $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                    if (column.FieldName==fieldName)
-                        retOut= column.AccessAddField;
+                    if (column.FieldName == fieldName)
+                        retOut = column.AccessAddField;
                 });
                 return retOut;
             }
@@ -1631,71 +1639,70 @@ function queryBuilder($compile) {
 
                 //Dynamically generate filters for QueryBuilder, based on columns of the grid
                 var fields = [];
-                if (config.gridOptions.Access.FieldsInfo )
+                if (config.gridOptions.Access.FieldsInfo)
                     $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
-                        if (column.AccessSearchField)
-                            {
-                                ///AccessSearchField
-                        if (column.FieldType === 'System.Int32' || column.FieldType === 'System.Int64') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'integer',
-                                operators: ['equal', 'not_equal', 'less', 'greater', 'between', 'less_or_equal', 'greater_or_equal']
-                            });
-                        } else if (column.FieldType === 'System.String') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'string',
-                                operators: ['equal', 'not_equal', 'contains', 'not_contains', 'begins_with', 'ends_with']
-                            });
-                        } else if (column.FieldType === 'MongoDB.Bson.ObjectId') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'string',
-                                typeChild: 'ObjectId',
-                                operators: ['equal', 'not_equal']
-                            });
-                        } else if (column.FieldType === 'System.Boolean') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'boolean',
-                                input: 'radio',
-                                values: {
-                                    'True': 'بله',
-                                    'False': 'خیر'
-                                },
-                                operators: ['equal']
-                            });
-                        } else if (column.FieldType === 'System.DateTime') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'date',
-                                operators: ['equal', 'not_equal', 'less', 'greater', 'between', 'less_or_equal', 'greater_or_equal'],
-                                validation: {
-                                    format: 'yyyy/0m/dd'
-                                },
-                                plugin: 'persianDatepicker',
-                                plugin_config: {
-                                    formatDate: "YYYY/0M/DD",
-                                    theme: "lightorang"
-                                }
-                            });
-                        } else if (column.FieldType === 'link') {
-                            fields.push({
-                                id: column.FieldName,
-                                label: column.FieldTitle,
-                                type: 'string',
-                                operators: ['equal', 'not_equal', 'contains', 'begins_with', 'ends_with']
-                            });
-                        } else { //console.log("Error: Type is not defined for columns! Please add 'type' property for each columns in gridOptions.");
+                        if (column.AccessSearchField) {
+                            ///AccessSearchField
+                            if (column.FieldType === 'System.Int32' || column.FieldType === 'System.Int64') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'integer',
+                                    operators: ['equal', 'not_equal', 'less', 'greater', 'between', 'less_or_equal', 'greater_or_equal']
+                                });
+                            } else if (column.FieldType === 'System.String') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'string',
+                                    operators: ['equal', 'not_equal', 'contains', 'not_contains', 'begins_with', 'ends_with']
+                                });
+                            } else if (column.FieldType === 'MongoDB.Bson.ObjectId') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'string',
+                                    typeChild: 'ObjectId',
+                                    operators: ['equal', 'not_equal']
+                                });
+                            } else if (column.FieldType === 'System.Boolean') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'boolean',
+                                    input: 'radio',
+                                    values: {
+                                        'True': 'بله',
+                                        'False': 'خیر'
+                                    },
+                                    operators: ['equal']
+                                });
+                            } else if (column.FieldType === 'System.DateTime') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'date',
+                                    operators: ['equal', 'not_equal', 'less', 'greater', 'between', 'less_or_equal', 'greater_or_equal'],
+                                    validation: {
+                                        format: 'yyyy/0m/dd'
+                                    },
+                                    plugin: 'persianDatepicker',
+                                    plugin_config: {
+                                        formatDate: "YYYY/0M/DD",
+                                        theme: "lightorang"
+                                    }
+                                });
+                            } else if (column.FieldType === 'link') {
+                                fields.push({
+                                    id: column.FieldName,
+                                    label: column.FieldTitle,
+                                    type: 'string',
+                                    operators: ['equal', 'not_equal', 'contains', 'begins_with', 'ends_with']
+                                });
+                            } else { //console.log("Error: Type is not defined for columns! Please add 'type' property for each columns in gridOptions.");
+                            }
+                            ///AccessSearchField
                         }
-                        ///AccessSearchField
-                    }
                     });
                 // Options for QueryBuilder 
                 var options = {
@@ -2148,9 +2155,9 @@ var lastErroLogin = Date.now();
 function rashaErManage($state, notify, SweetAlert) {
     var template = 'cpanelv1/ModuleCore/common/notify.html';
     this.checkAction = function (response, errCode, c, d) {
-        if(response && response.token&& response.token.length>10)
+        if (response && response.token && response.token.length > 10)
             localStorage.setItem("userGlobaltoken", response.token);
-        var ErrorMessage="";
+        var ErrorMessage = "";
         if (response) {
             //#help# خطا های موجود در درخواست
             if (!response.Status && response.ErrorMessage) {
@@ -2164,17 +2171,17 @@ function rashaErManage($state, notify, SweetAlert) {
                 return;
 
                 //notify({ message: response, classes: 'alert-danger', templateUrl: template });
-            }else if (response.errors && response.errors.ErrorException) {
+            } else if (response.errors && response.errors.ErrorException) {
                 console.log(response.errors);
                 angular.forEach(response.errors.ErrorException, function (handler, event) {
                     notify({
-                        message: 'Error: '+ handler,
+                        message: 'Error: ' + handler,
                         classes: 'alert-danger',
                         templateUrl: template
                     });
                 });
 
-              
+
                 return;
 
                 //notify({ message: response, classes: 'alert-danger', templateUrl: template });
@@ -2244,7 +2251,7 @@ function rashaErManage($state, notify, SweetAlert) {
             } else if (response.Status == 402) {
                 localStorage.removeItem('userGlobaltoken');
                 $state.go('login', {});
-            }else  {
+            } else {
                 ErrorMessage = "برروز خطا ." + " errCode: " + errCode;
                 notify({
                     message: ErrorMessage,
@@ -2254,8 +2261,8 @@ function rashaErManage($state, notify, SweetAlert) {
             }
             //#help# خطا های موجود در درخواست
         } else if (errCode != undefined) {
-            var ErrorMessage="برروز خطا ";
-     
+            var ErrorMessage = "برروز خطا ";
+
             //#help# خطا های مستقیم از شبکه
             if (errCode == 401) {
                 if ((Date.now() - lastErroLogin) > 1000)
@@ -2351,24 +2358,26 @@ function rashaErManage($state, notify, SweetAlert) {
 function ajax($http, $state) {
     this.call = function (url, data, method, isasync) {
         if (!method) method = 'POST';
-        if (!data || data=="null") data = '';
+        if (!data || data == "null") data = '';
         if (isasync == undefined) isasync = true;
         else {
             if (isasync == 'true') isasync = true;
             else isasync = false;
         }
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
-        if(url.lastIndexOf("/") != url.length-1)
-        {
+        if (url.lastIndexOf("/") != url.length - 1) {
             url = url + '/';
         }
 
         if (method.toUpperCase() == 'GET' || method.toUpperCase() == 'DELETE') {
-            if(!data) data='';
-            url = url +  data;
+            if (!data) data = '';
+            url = url + data;
             data = '';
         }
-        
+        if (method.toUpperCase() == 'POST' || method.toUpperCase() == 'PUT') {
+            if (data) data = data;
+
+        }
         //x-www-form-urlencoded
         return $http({
             'method': method,
@@ -2379,7 +2388,7 @@ function ajax($http, $state) {
                 'Content-Type': 'application/json',
                 'Authorization': userglobaltoken
             }
-            
+
             //'transformRequest': function (obj) {
             //    //return $.param(obj);
             //    return JSON.stringify(obj);
@@ -2571,7 +2580,7 @@ function dropzone() {
                 uploadMultiple: true
             };
 
-           
+
             var eventHandlers = {
                 'addedfile': function (file) {
                     scope.file = file;
@@ -5642,12 +5651,12 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     temp = "Video";
                 }
                 if (file.isText || file.isHtml) {
-                    config.fileSrc = cmsServerConfig.configPathFileByIdAndName+ file.Id + '/' + file.Title;
+                    config.fileSrc = cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
                     config.fileTitle = file.Title;
                     temp = "Text";
                 }
                 if (file.isVoice) {
-                    config.fileSrc =cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
+                    config.fileSrc = cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
                     config.fileTitle = file.Title;
                     temp = "Voice";
                 }
