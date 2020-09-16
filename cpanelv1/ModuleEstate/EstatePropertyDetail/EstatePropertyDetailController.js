@@ -7,7 +7,7 @@
     estatePropertyDetail.gridOptions = {};
     estatePropertyDetail.selectedItem = {};
     estatePropertyDetail.attachedFiles = [];
-    
+
     estatePropertyDetail.propertyTypeListItems = [];
     estatePropertyDetail.attachedFile = "";
 
@@ -49,47 +49,31 @@
                 type: 'integer'
             },
             {
-                name: 'LinkSiteId',
-                displayName: 'کد سیستمی سایت',
-                sortable: true,
-                type: 'integer',
-                visible: true
-            },
-            {
-                name: 'CreatedDate',
-                displayName: 'ساخت',
-                sortable: true,
-                isDate: true,
-                type: 'date',
-                visible: 'true'
-            },
-            {
-                name: 'UpdatedDate',
-                displayName: 'ویرایش',
-                sortable: true,
-                isDate: true,
-                type: 'date',
-                visible: 'true'
-            },
-            {
                 name: 'Title',
                 displayName: 'عنوان',
                 sortable: true,
                 type: 'string'
             },
             {
-                name: 'TypeDescription',
+                name: 'InputDataType',
                 displayForce: true,
                 displayName: 'نوع ورودی',
                 sortable: true,
                 type: 'string'
             },
             {
-                name: 'virtual_PropertyType.Title',
-                displayName: 'نوع ملک',
+                name: 'InvisibleForEndUser',
+                displayName: 'Invisible For EndUser',
                 sortable: true,
                 displayForce: true,
-                type: 'string'
+                type: 'boolean'
+            },
+            {
+                name: 'InvisibleForSubmiter',
+                displayName: 'Invisible For Submiter',
+                sortable: true,
+                displayForce: true,
+                type: 'boolean'
             },
             {
                 name: 'Required',
@@ -309,44 +293,52 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_category_to_remove'));
             return;
         }
-        if (estatePropertyDetail.PropertyType.PropertyDetails.length == 0) {
-            rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
-                if (isConfirmed) {
-                    estatePropertyDetail.categorybusyIndicator.isActive = true;
-                    // ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', node.Id, 'GET').success(function (response) {
-                    //     rashaErManage.checkAction(response);
-                    //     estatePropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetailGroup/', estatePropertyDetail.selectedItemForDelete.Id, 'DELETE').success(function (res) {
 
-                        if (res.IsSuccess) {
-                            estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
-                            estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
-                            estatePropertyDetail.gridOptions.fillData();
-                            estatePropertyDetail.categorybusyIndicator.isActive = false;
-                            estatePropertyDetail.gridOptions.reGetAll();
-                            estatePropertyDetail.treeConfig.currentNode = null;
-                        }
+        angular.forEach(estatePropertyDetail.PropertyType.PropertyDetails, function (item, key) {
+            if (item.LinkPropertyDetailGroupId == estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId) {
+                rashaErManage.showMessage("این دسته دارای محتوا است برای حذف دسته ابتدا محتوای آن را حذف نمایید!");
+                return;
+            }
+        });
 
-                    }).error(function (data2, errCode2, c2, d2) {
-                        rashaErManage.checkAction(data2);
+
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+            if (isConfirmed) {
+                estatePropertyDetail.categorybusyIndicator.isActive = true;
+                // ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/', node.Id, 'GET').success(function (response) {
+                //     rashaErManage.checkAction(response);
+                //     estatePropertyDetail.selectedItemForDelete = response.Item;
+                ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetailGroup/', estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId, 'DELETE').success(function (res) {
+
+                    if (res.IsSuccess) {
+                        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
+                        estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
+                        estatePropertyDetail.gridOptions.fillData();
                         estatePropertyDetail.categorybusyIndicator.isActive = false;
+                        estatePropertyDetail.gridOptions.reGetAll();
+                        estatePropertyDetail.treeConfig.currentNode = null;
+                    }
 
-                    });
-                    // }).error(function (data, errCode, c, d) {
-                    //     rashaErManage.checkAction(data, errCode);
-                    //     estatePropertyDetail.categorybusyIndicator.isActive = false;
+                }).error(function (data2, errCode2, c2, d2) {
+                    rashaErManage.checkAction(data2);
+                    estatePropertyDetail.categorybusyIndicator.isActive = false;
 
-                    // });
+                });
+                // }).error(function (data, errCode, c, d) {
+                //     rashaErManage.checkAction(data, errCode);
+                //     estatePropertyDetail.categorybusyIndicator.isActive = false;
 
-                }
-            });
-        } else
-            rashaErManage.showMessage("این دسته دارای محتوا است برای حذف دسته ابتدا محتوای آن را حذف نمایید!");
+                // });
+
+            }
+        });
+
     }
 
     //Tree On Node Select Options
     estatePropertyDetail.treeConfig.onNodeSelect = function () {
         var node = estatePropertyDetail.treeConfig.currentNode;
+        estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId = null;
         if (node != undefined && node != null)
             estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
         estatePropertyDetail.selectContent(node);
@@ -365,7 +357,7 @@
         var ListItems = [];
         if (estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId) {
             angular.forEach(estatePropertyDetail.PropertyType.PropertyDetails, function (item, key) {
-                if (item.LinkPropertyDetailGroupId == node.Id) {
+                if (item.LinkPropertyDetailGroupId == estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId) {
                     ListItems.push(item);
 
                 }
@@ -557,9 +549,9 @@
         //     rashaErManage.checkAction(response1);
         //     estatePropertyDetail.selectedItem = response1.Item;
 
-        //     estatePropertyDetail.attachedFields = [];
-        //     estatePropertyDetail.attachedFields = response1.Item.ConfigValue.nameValue;
-        //     estatePropertyDetail.onMultipleChoiceChange();
+        estatePropertyDetail.attachedFields = [];
+        estatePropertyDetail.attachedFields = estatePropertyDetail.selectedItem.ConfigValue.nameValue;
+        estatePropertyDetail.onMultipleChoiceChange();
         $modal.open({
             templateUrl: 'cpanelv1/ModuleEstate/estatePropertyDetail/edit.html',
             scope: $scope
@@ -838,40 +830,7 @@
             rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Bottom_Of_The_List'));
             return;
         }
-        estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', item.Id, 'GET').success(function (response1) {
-            rashaErManage.checkAction(response1);
-            estatePropertyDetail.selectedItem = response1.Item;
-            var temp = response1.Item.ShowInFormOrder;
-            estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.PropertyType.PropertyDetails[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
-                rashaErManage.checkAction(response2);
-                if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.PropertyType.PropertyDetails[index + 1].Id, 'GET').success(function (response3) {
-                        rashaErManage.checkAction(response3);
-                        estatePropertyDetail.selectedItem = response3.Item;
-                        estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
-                            rashaErManage.checkAction(response4);
-                            if (response4.IsSuccess) {
-                                // Swap two item in the grid list without requesting a GetAll
-                                estatePropertyDetail.PropertyType.PropertyDetails[index] = estatePropertyDetail.PropertyType.PropertyDetails.splice(index + 1, 1, estatePropertyDetail.PropertyType.PropertyDetails[index])[0];
-                                estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.PropertyType.PropertyDetails, estatePropertyDetail.Access);
-                            }
-                        }).error(function (data, errCode, c, d) {
-                            rashaErManage.checkAction(data, errCode);
-                        });
-                    }).error(function (data, errCode, c, d) {
-                        rashaErManage.checkAction(data, errCode);
-                    });
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-        estatePropertyDetail.busyIndicator.isActive = false;
+       
     }
 
     // go up detail
@@ -880,143 +839,110 @@
             rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Top_Of_The_List'));
             return;
         }
-        estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', item.Id, 'GET').success(function (response1) {
-            rashaErManage.checkAction(response1);
-            estatePropertyDetail.selectedItem = response1.Item;
-            var temp = response1.Item.ShowInFormOrder;
-            estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.PropertyType.PropertyDetails[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
-                rashaErManage.checkAction(response2);
-                if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.PropertyType.PropertyDetails[index - 1].Id, 'GET').success(function (response3) {
-                        rashaErManage.checkAction(response3);
-                        estatePropertyDetail.selectedItem = response3.Item;
-                        estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath + 'EstatePropertyDetail/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
-                            rashaErManage.checkAction(response4);
-                            if (response4.IsSuccess) {
-                                // جابجا کردن مکان دو آیتم در آرایه
-                                estatePropertyDetail.PropertyType.PropertyDetails[index] = estatePropertyDetail.PropertyType.PropertyDetails.splice(index - 1, 1, estatePropertyDetail.PropertyType.PropertyDetails[index])[0];
-                                estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.PropertyType.PropertyDetails, estatePropertyDetail.Access);
-                            }
-                        }).error(function (data, errCode, c, d) {
-                            rashaErManage.checkAction(data, errCode);
-                        });
-                    }).error(function (data, errCode, c, d) {
-                        rashaErManage.checkAction(data, errCode);
-                    });
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-        estatePropertyDetail.busyIndicator.isActive = false;
+       
     }
 
-    // Move a group one step down
-    estatePropertyDetail.editStepGoDownGroup = function (item) {
-        if (item.Id === undefined || item.Id === null) {
-            rashaErManage.showMessage("برای جابجایی لطفاً یک مورد را انتخاب کنید!");
-            return;
-        }
-        var index = null;
-        for (var i = 0; i < estatePropertyDetail.treeConfig.Items.length; i++) {
-            if (item.Id === estatePropertyDetail.treeConfig.Items[i].Id)
-                index = i;
-        }
+    // // Move a group one step down
+    // estatePropertyDetail.editStepGoDownGroup = function (item) {
+    //     if (item.Id === undefined || item.Id === null) {
+    //         rashaErManage.showMessage("برای جابجایی لطفاً یک مورد را انتخاب کنید!");
+    //         return;
+    //     }
+    //     var index = null;
+    //     for (var i = 0; i < estatePropertyDetail.treeConfig.Items.length; i++) {
+    //         if (item.Id === estatePropertyDetail.treeConfig.Items[i].Id)
+    //             index = i;
+    //     }
 
-        if (index === estatePropertyDetail.treeConfig.Items.length - 1) {
-            rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Bottom_Of_The_List'));
-            return;
-        }
-        estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', item.Id, 'GET').success(function (response1) {
-            rashaErManage.checkAction(response1);
-            estatePropertyDetail.selectedItem = response1.Item;
-            var temp = response1.Item.ShowInFormOrder;
-            estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
-                rashaErManage.checkAction(response2);
-                if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
-                        rashaErManage.checkAction(response3);
-                        estatePropertyDetail.selectedItem = response3.Item;
-                        estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
-                            rashaErManage.checkAction(response4);
-                            if (response4.IsSuccess) {
-                                estatePropertyDetail.treeConfig.Items[index + 1] = response4.Item;
-                                estatePropertyDetail.treeConfig.Items[index] = estatePropertyDetail.treeConfig.Items.splice(index + 1, 1, estatePropertyDetail.treeConfig.Items[index])[0];
-                            }
-                        }).error(function (data, errCode, c, d) {
-                            rashaErManage.checkAction(data, errCode);
-                        });
-                    }).error(function (data, errCode, c, d) {
-                        rashaErManage.checkAction(data, errCode);
-                    });
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-        estatePropertyDetail.busyIndicator.isActive = false;
-    }
+    //     if (index === estatePropertyDetail.treeConfig.Items.length - 1) {
+    //         rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Bottom_Of_The_List'));
+    //         return;
+    //     }
+    //     estatePropertyDetail.busyIndicator.isActive = true;
+    //     ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', item.Id, 'GET').success(function (response1) {
+    //         rashaErManage.checkAction(response1);
+    //         estatePropertyDetail.selectedItem = response1.Item;
+    //         var temp = response1.Item.ShowInFormOrder;
+    //         estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
+    //         ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
+    //             rashaErManage.checkAction(response2);
+    //             if (response2.IsSuccess) {
+    //                 ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
+    //                     rashaErManage.checkAction(response3);
+    //                     estatePropertyDetail.selectedItem = response3.Item;
+    //                     estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
+    //                     ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
+    //                         rashaErManage.checkAction(response4);
+    //                         if (response4.IsSuccess) {
+    //                             estatePropertyDetail.treeConfig.Items[index + 1] = response4.Item;
+    //                             estatePropertyDetail.treeConfig.Items[index] = estatePropertyDetail.treeConfig.Items.splice(index + 1, 1, estatePropertyDetail.treeConfig.Items[index])[0];
+    //                         }
+    //                     }).error(function (data, errCode, c, d) {
+    //                         rashaErManage.checkAction(data, errCode);
+    //                     });
+    //                 }).error(function (data, errCode, c, d) {
+    //                     rashaErManage.checkAction(data, errCode);
+    //                 });
+    //             }
+    //         }).error(function (data, errCode, c, d) {
+    //             rashaErManage.checkAction(data, errCode);
+    //         });
+    //     }).error(function (data, errCode, c, d) {
+    //         rashaErManage.checkAction(data, errCode);
+    //     });
+    //     estatePropertyDetail.busyIndicator.isActive = false;
+    // }
 
-    // Move a group one step up
-    estatePropertyDetail.editStepGoUpGroup = function (item) {
-        if (item.Id === undefined || item.Id === null) {
-            rashaErManage.showMessage("برای جابجایی لطفاً یک مورد را انتخاب کنید!");
-            return;
-        }
-        var index = null;
-        for (var i = 0; i < estatePropertyDetail.treeConfig.Items.length; i++) {
-            if (item.Id === estatePropertyDetail.treeConfig.Items[i].Id)
-                index = i;
-        }
-        if (index === 0) {
-            rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Top_Of_The_List'));
-            return;
-        }
-        estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', item.Id, 'GET').success(function (response1) {
-            rashaErManage.checkAction(response1);
-            estatePropertyDetail.selectedItem = response1.Item;
-            var temp = response1.Item.ShowInFormOrder;
-            estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
-                rashaErManage.checkAction(response2);
-                if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
-                        rashaErManage.checkAction(response3);
-                        estatePropertyDetail.selectedItem = response3.Item;
-                        estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
-                            rashaErManage.checkAction(response4);
-                            if (response4.IsSuccess) {
-                                estatePropertyDetail.treeConfig.Items[index - 1] = response4.Item;
-                                // جابجا کردن دو آیتم در آرایه
-                                estatePropertyDetail.treeConfig.Items[index] = estatePropertyDetail.treeConfig.Items.splice(index - 1, 1, estatePropertyDetail.treeConfig.Items[index])[0];
-                            }
-                        }).error(function (data, errCode, c, d) {
-                            rashaErManage.checkAction(data, errCode);
-                        });
-                    }).error(function (data, errCode, c, d) {
-                        rashaErManage.checkAction(data, errCode);
-                    });
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-        estatePropertyDetail.busyIndicator.isActive = false;
-    }
+    // // Move a group one step up
+    // estatePropertyDetail.editStepGoUpGroup = function (item) {
+    //     if (item.Id === undefined || item.Id === null) {
+    //         rashaErManage.showMessage("برای جابجایی لطفاً یک مورد را انتخاب کنید!");
+    //         return;
+    //     }
+    //     var index = null;
+    //     for (var i = 0; i < estatePropertyDetail.treeConfig.Items.length; i++) {
+    //         if (item.Id === estatePropertyDetail.treeConfig.Items[i].Id)
+    //             index = i;
+    //     }
+    //     if (index === 0) {
+    //         rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Top_Of_The_List'));
+    //         return;
+    //     }
+    //     estatePropertyDetail.busyIndicator.isActive = true;
+    //     ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', item.Id, 'GET').success(function (response1) {
+    //         rashaErManage.checkAction(response1);
+    //         estatePropertyDetail.selectedItem = response1.Item;
+    //         var temp = response1.Item.ShowInFormOrder;
+    //         estatePropertyDetail.selectedItem.ShowInFormOrder = estatePropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
+    //         ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response2) {
+    //             rashaErManage.checkAction(response2);
+    //             if (response2.IsSuccess) {
+    //                 ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
+    //                     rashaErManage.checkAction(response3);
+    //                     estatePropertyDetail.selectedItem = response3.Item;
+    //                     estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
+    //                     ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetailGroup/', estatePropertyDetail.selectedItem, "PUT").success(function (response4) {
+    //                         rashaErManage.checkAction(response4);
+    //                         if (response4.IsSuccess) {
+    //                             estatePropertyDetail.treeConfig.Items[index - 1] = response4.Item;
+    //                             // جابجا کردن دو آیتم در آرایه
+    //                             estatePropertyDetail.treeConfig.Items[index] = estatePropertyDetail.treeConfig.Items.splice(index - 1, 1, estatePropertyDetail.treeConfig.Items[index])[0];
+    //                         }
+    //                     }).error(function (data, errCode, c, d) {
+    //                         rashaErManage.checkAction(data, errCode);
+    //                     });
+    //                 }).error(function (data, errCode, c, d) {
+    //                     rashaErManage.checkAction(data, errCode);
+    //                 });
+    //             }
+    //         }).error(function (data, errCode, c, d) {
+    //             rashaErManage.checkAction(data, errCode);
+    //         });
+    //     }).error(function (data, errCode, c, d) {
+    //         rashaErManage.checkAction(data, errCode);
+    //     });
+    //     estatePropertyDetail.busyIndicator.isActive = false;
+    // }
 
     function compare(a, b) {
         if (a.ShowInFormOrder < b.ShowInFormOrder)
@@ -1027,6 +953,8 @@
     }
 
     estatePropertyDetail.onMultipleChoiceChange = function () {
+        if (!estatePropertyDetail.selectedItem.ConfigValue)
+            estatePropertyDetail.selectedItem.ConfigValue = {};
         if (estatePropertyDetail.selectedItem.ConfigValue.multipleChoice) {
             $("#forceUseCheckbox").fadeOut(300);
             estatePropertyDetail.selectedItem.ConfigValue.forceUse = false;

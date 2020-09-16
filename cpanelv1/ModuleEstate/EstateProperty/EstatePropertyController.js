@@ -59,7 +59,7 @@
 
     estateProperty.init = function () {
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAllwithalias", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAll", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.ListItems = response.ListItems;
             estateProperty.gridOptions.fillData(estateProperty.ListItems, response.Access);
@@ -147,7 +147,6 @@
         ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                
                 ajax.call(cmsServerConfig.configApiServerPath+"estatepropertydetailvalue/ViewModel", "", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
@@ -549,36 +548,66 @@
         estateProperty.gridOptions.columnCheckbox = !estateProperty.gridOptions.columnCheckbox;
     }
 
-    estateProperty.onPropertyTypeChange = function (propertyTypeId) {
+    estateProperty.onPropertyTypeChange = function (LinkPropertyTypeId) {
+      
+        
+
+
+
+
         estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
         estateProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
-        if (!angular.isDefined(propertyTypeId)) return;
+        if (!angular.isDefined(LinkPropertyTypeId)) return;
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: LinkPropertyTypeId,
             SearchType: 0
         }
-        var engine = {
-        };
+        var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetAll", engine, 'POST').success(function (response) {
-            estateProperty.propertyDetailsListItems = response.ListItems;
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function (response) {
+            if (response.IsSuccess)
+            {
+                estateProperty.propertyDetailGroupListItems=response.ListItems;
+                    angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
+                    if (item.Id == LinkPropertyTypeId) {
+                        estateProperty.propertyDetailsListItems = item.PropertyDetails;
+
+                    }
+                });
+
+
 
             $.each(estateProperty.propertyDetailsListItems, function (index, item) {
                 item.value = null;
                 // Add groups to its list
-                var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
+                var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) {
+                    return e.Id == item.LinkPropertyDetailGroupId;
+                });
                 if (result.length <= 0)
-                    estateProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
+                    estateProperty.propertyDetailGroupListItems.push(item);
 
                 // Add ConfigValue to the object
                 item.ConfigValue = JSON.parse(item.JsonConfigValue);
             });
-
+        }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     estateProperty.selectedPropertyDetailsListItems = [];
@@ -632,9 +661,9 @@
                 $.each(estateProperty.propertyDetailsListItems, function (index, item) {
                     item.value = null;
                     // Add groups to its list
-                    var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
+                    var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.LinkPropertyDetailGroupId; });
                     if (result.length <= 0)
-                        estateProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
+                        estateProperty.propertyDetailGroupListItems.push(item);
 
                     // Add ConfigValue to the object
                     if (item.JsonConfigValue == null) item.JsonConfigValue = "{\"nameValue\":[],\"forceUse\":false,\"multipleChoice\":false}"; // جلوگیری از بروز خطا اگر مقادیر پیش فرض تهی باشد
