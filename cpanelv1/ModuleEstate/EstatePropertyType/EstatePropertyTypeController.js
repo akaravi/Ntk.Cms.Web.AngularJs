@@ -168,11 +168,11 @@
             if (isConfirmed) {
                 estatePropertyType.busyIndicator.isActive = true;
               
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/', estatePropertyType.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/',estatePropertyType.gridOptions.selectedRow.item.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estatePropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
-                            estatePropertyType.replaceItem(estatePropertyType.selectedItemForDelete.Id);
+                            estatePropertyType.replaceItem(estatePropertyType.gridOptions.selectedRow.item.Id);
                             estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems);
                         }
                     }).error(function (data2, errCode2, c2, d2) {

@@ -24,20 +24,22 @@
         fileId: 0,
         multiSelect: false,
     }
-    estateProperty.locationChanged=function(lat,lang)
-    {
-        console.log("ok "+lat+" "+lang);
+    estateProperty.locationChanged = function (lat, lang) {
+        console.log("ok " + lat + " " + lang);
     }
 
-    estateProperty.GeolocationConfig={
+    estateProperty.GeolocationConfig = {
         latitude: 'Geolocationlatitude',
         longitude: 'Geolocationlongitude',
-        onlocationChanged:estateProperty.locationChanged,
-        useCurrentLocation:true,
-        center:{lat: 32.658066, lng: 51.6693815},
-        zoom:4,
-        scope:estateProperty,
-        useCurrentLocationZoom:12,
+        onlocationChanged: estateProperty.locationChanged,
+        useCurrentLocation: true,
+        center: {
+            lat: 32.658066,
+            lng: 51.6693815
+        },
+        zoom: 4,
+        scope: estateProperty,
+        useCurrentLocationZoom: 12,
     }
     estateProperty.filePickerMainImage.clear = function () {
         estateProperty.filePickerMainImage.fileId = 0;
@@ -56,12 +58,14 @@
     estateProperty.propertyDetailsListItems = [];
     estateProperty.cmsUsersListItems = [];
     estateProperty.contractTypeListItems = [];
-
+    estateProperty.inputTypeArray = [];
+    estateProperty.Access = [];
     estateProperty.init = function () {
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAll", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "estateproperty/getAll", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.ListItems = response.ListItems;
+            estateProperty.Access = response.Access;
             estateProperty.gridOptions.fillData(estateProperty.ListItems, response.Access);
             estateProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
             estateProperty.gridOptions.totalRowCount = response.TotalRowCount;
@@ -73,22 +77,46 @@
             estateProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/getAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "estatepropertytype/getAll", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "estatecontracttype/GetAll", {}, 'POST').success(function (response) {
+            if (response.IsSuccess) {
+                estateProperty.contractTypeListItems = response.ListItems;
+
+            }
+        }).error(function (data, errCode, c, d) {
+            rashaErManage.checkAction(data, errCode);
+        });
+
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyType/EnumInputDataType", "", 'GET').success(function (response) {
+            estateProperty.inputTypeArray = response.ListItems;
+        }).error(function (data, errCode, c, d) {
+            console.log(data);
+        });
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.provinceCmsLocatinoListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-    }
 
+    }
+    estateProperty.inputTypeArrayCheck = function (numberEnum) {
+        var retOut = "";
+        angular.forEach(estateProperty.inputTypeArray, function (item, key) {
+            if (item.Value == numberEnum) {
+                retOut = item.Key;
+                return;
+            }
+        });
+        return retOut;
+    }
     estateProperty.busyIndicator.isActive = true;
     estateProperty.addRequested = false;
     $(".back1").hide();
@@ -99,6 +127,7 @@
     estateProperty.filePickerMainImage.fileId = null;
     estateProperty.filePickerFiles.filename = "";
     estateProperty.filePickerFiles.fileId = null;
+    estateProperty.contractsList = [];
 
     // Open Add Modal
     estateProperty.openAddModal = function () {
@@ -113,7 +142,7 @@
         estateProperty.filePickerFiles.filename = "";
         estateProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -131,8 +160,7 @@
 
     // Add New Content
     estateProperty.addNewRow = function (frm) {
-        if (frm.$invalid)
-        {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
@@ -142,76 +170,66 @@
         }
         estateProperty.busyIndicator.isActive = true;
         estateProperty.addRequested = true;
-        var valueItem = {};
-        estateProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
+
+
+        for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
+
+
+            let valueItem = "";
+            if (estateProperty.propertyDetailsListItems[i].ConfigValueMultipleChoice) {
+                var checkboxName = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
+                estateProperty.selectionValueNames = [];
+                jQuery("input[name='" + checkboxName + "']").each(function () {
+                    if (this.checked) {
+                        estateProperty.selectionValueNames.push(this.value);
+                    }
+                });
+                valueItem = estateProperty.selectionValueNames;
+                if (valueItem) {
+                    valueItem = JSON.stringify(valueItem);
+                } else {
+                    valueItem = "";
+                }
+            } else {
+
+                if (estateProperty.propertyDetailsListItems[i].ConfigValueForceUseDefaultValue && estateProperty.propertyDetailsListItems[i].ConfigValueDefaultValue.length > 0) { //ELement is a RadioButton/DropDown
+                    //Do not delete the following comments: Get the value if the element is a RadioButton
+                    /*var radioButton = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
+                    estateProperty.selectionValueNames = [];
+                    if ($("input[name='" + radioButton + "']").is(':checked')) {
+                        valueItem = $("input[name='" + radioButton + "']:checked").val(); 
+                    }*/
+                    valueItem = $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val(); //Get the value if the element is a DropDown
+
+                } else
+                    valueItem = estateProperty.propertyDetailsListItems[i].value;
+            }
+
+
+            if (!estateProperty.selectedItem.PropertyDetailValues)
+                estateProperty.selectedItem.PropertyDetailValues = [];
+            estateProperty.selectedItem.PropertyDetailValues.push({
+                Value: valueItem,
+                LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id
+            });
+        }
+
+
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+"estatepropertydetailvalue/ViewModel", "", 'GET').success(function (response1) {
-                    rashaErManage.checkAction(response1);
-                    for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
-                        valueItem = $.extend(true, {}, response1.Item);
-                        valueItem.LinkPropertyDetailId = estateProperty.propertyDetailsListItems[i].Id;
-                        valueItem.LinkPropertyId = response.Item.Id;
-                        if (estateProperty.propertyDetailsListItems[i].ConfigValue != null) {
-                            if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice) {
-                                var checkboxName = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
-                                estateProperty.selectionValueNames = [];
-                                jQuery("input[name='" + checkboxName + "']").each(function () {
-                                    if (this.checked) {
-                                        estateProperty.selectionValueNames.push(this.value);
-                                    }
-                                });
-                                valueItem.Value = estateProperty.selectionValueNames;
-                                if(valueItem.Value){
-                                    valueItem.Value= JSON.stringify(valueItem.Value);
-                                }else{
-                                    valueItem.Value="";
-                                }
-                            }
-                            else {
 
-                                if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse && estateProperty.propertyDetailsListItems[i].ConfigValue.nameValue.length > 0) {  //ELement is a RadioButton/DropDown
-                                    //Do not delete the following comments: Get the value if the element is a RadioButton
-                                    /*var radioButton = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
-                                    estateProperty.selectionValueNames = [];
-                                    if ($("input[name='" + radioButton + "']").is(':checked')) {
-                                        valueItem.Value = $("input[name='" + radioButton + "']:checked").val(); 
-                                    }*/
-                                    valueItem.Value = $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val(); //Get the value if the element is a DropDown
-
-                                } else
-                                    valueItem.Value = estateProperty.propertyDetailsListItems[i].value;
-                            }
-                        } else
-                            valueItem.Value = estateProperty.propertyDetailsListItems[i].value;
-                       
-                        estateProperty.valueItems.push(valueItem);
-                    }
-                    estateProperty.closeModal();
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.valueItems, 'POST').success(function (response2) {
-                        rashaErManage.checkAction(response2);
-                        if (response2.IsSuccess) {
-                            estateProperty.ListItems.unshift(response.Item);
-                            estateProperty.gridOptions.fillData(estateProperty.ListItems);
-                            estateProperty.gridOptions.myfilterText(estateProperty.ListItems, "LinkCmsUserId", estateProperty.cmsUsersListItems, "Username", "LinkCmsUserUsername");
-                            estateProperty.gridOptions.myfilterText(estateProperty.ListItems, "LinkPropertyTypeId", estateProperty.propertyTypeListItems, "Title", "LinkPropertyTypeTitle");
-                            estateProperty.addRequested = false;
-                            estateProperty.busyIndicator.isActive = false;
-                            //ملک و مقادیر ثبت شده است از کاربر می خواهیم که نوع فروش را مشخص کند
-                            estateProperty.openAddContractModal(response.Item.Id, response.Item.Title);
-                        }
-                    }).error(function (data, errCode, c, d) {
-                        console.log(data);
-                        rashaErManage.checkAction(data, errCode);
-                    });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                });
-                
+                if (!estateProperty.ListItems)
+                    estateProperty.ListItems = [];
+                estateProperty.ListItems.push(response.Item);
+                estateProperty.gridOptions.fillData(estateProperty.ListItems);
+                estateProperty.closeModal();
             }
+            estateProperty.busyIndicator.isActive = false;
+            estateProperty.addRequested = false;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
+            estateProperty.busyIndicator.isActive = false;
             estateProperty.addRequested = false;
         });
     }
@@ -232,13 +250,21 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
+
+
+
+
+
+
+
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', parseInt(estateProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.selectedItem = response.Item;
             estateProperty.oldLinkPropertyTypeId = estateProperty.selectedItem.LinkPropertyTypeId;
-            estateProperty.loadDetailValues(estateProperty.selectedItem.LinkPropertyTypeId, estateProperty.selectedItem.Id);
+            estateProperty.loadDetailValues(estateProperty.selectedItem.LinkPropertyTypeId, estateProperty.selectedItem);
+            estateProperty.onPropertyTypeChange(estateProperty.selectedItem.LinkPropertyTypeId);
             //---- Set Province City Location
             //estateProperty.onProvinceChange(estateProperty.selectedItem.LinkProvinceId);
             //estateProperty.onCitiesChange(estateProperty.selectedItem.LinkLocationId);
@@ -246,7 +272,7 @@
             estateProperty.filePickerMainImage.filename = null;
             estateProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         estateProperty.filePickerMainImage.filename = response2.Item.FileName;
                         estateProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -269,15 +295,95 @@
 
     // Edit a Content
     estateProperty.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
+
+
+
+
+        // ------------------------- Check if Property Type (LinkPropertyTypeId) has changed ---------------------------
+
+        // -------------------------************* Set Values to Edit ************------------------------------
+        for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
+            estateProperty.propertyDetailsListItems[i].valueFound = false;
+            for (var j = 0; j < estateProperty.PropertyDetailValuesListItems.length; j++) {
+                if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.PropertyDetailValuesListItems[j].LinkPropertyDetailId) {
+                    estateProperty.propertyDetailsListItems[i].valueFound = true;
+                    if (estateProperty.propertyDetailsListItems[i].ConfigValueMultipleChoice == false) { // Detail is not CheckBox
+                        if (estateProperty.propertyDetailsListItems[i].ConfigValueForceUseDefaultValue) { // Detail is RadioButton/DropDown
+                            /*Do not delete the following comments: Get the value if the element is a RadioButton
+                            var radioName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
+                            var radioValue = estateProperty[radioName];
+                            estateProperty.propertyDetailsListItems[i].value = radioValue; */
+                            estateProperty.PropertyDetailValuesListItems[j].Value = $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val(); //Get the value if the element is a DropDown
+                        } else
+                            // Detail is not a CheckBox, nor a RadioButton
+                            estateProperty.PropertyDetailValuesListItems[j].Value = String(estateProperty.propertyDetailsListItems[i].value);
+                    } else { // Detail is CheckBox
+                        var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
+                        estateProperty.PropertyDetailValuesListItems[j].Value = JSON.stringify(estateProperty[checkboxName]);
+                    }
+
+                }
+            }
+            if (!estateProperty.propertyDetailsListItems[i].valueFound) {
+                var proeprtyDetailValue = {
+                    LinkPropertyId: 0,
+                    LinkPropertyDetailId: 0,
+                    Value: 0
+                };
+                if (estateProperty.propertyDetailsListItems[i].ConfigValueMultipleChoice == false) { // Detail is not CheckBox
+                    if (estateProperty.propertyDetailsListItems[i].ConfigValueForceUseDefaultValue) { // Detail is RadioButton/DropDown
+                        var newValue = {
+                            Id: 0,
+                            LinkPropertyId: estateProperty.selectedItem.Id,
+                            LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id,
+                            Value: $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val()
+                        }
+
+
+                        estateProperty.PropertyDetailValuesListItems.push(newValue); //Get the value if the element is a DropDown
+                    } else {
+                        var newValue = {
+                            Id: 0,
+                            LinkPropertyId: estateProperty.selectedItem.Id,
+                            LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id,
+                            Value: String(estateProperty.propertyDetailsListItems[i].value)
+                        }
+
+
+                        // Detail is not a CheckBox, nor a RadioButton
+                        estateProperty.PropertyDetailValuesListItems.push(newValue);
+                    }
+                } else { // Detail is CheckBox
+                    var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
+                    var newValue = {
+                        Id: 0,
+                        LinkPropertyId: estateProperty.selectedItem.Id,
+                        LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id,
+                        Value: estateProperty[checkboxName]
+                    }
+                    if (newValue.Value) {
+                        newValue.Value = JSON.stringify(newValue.Value)
+                    } else {
+                        newValue.Value = ""
+                    }
+                    estateProperty.PropertyDetailValuesListItems.push(newValue);
+
+                }
+            }
+        }
+        // ---------------------------------- End of Set Values to Edit --------------------------------------
+
         // Edit Property: Title, Description, LinkPropertyTypeId
         estateProperty.busyIndicator.isActive = true;
         estateProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(estateProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItem, "PUT").success(function (response) {
+        estateProperty.selectedItem.PropertyDetailValues = estateProperty.PropertyDetailValuesListItems;
+
+
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, "PUT").success(function (response) {
             estateProperty.addRequested = true;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -295,123 +401,7 @@
             estateProperty.busyIndicator.isActive = false;
         });
 
-        // ------------------------- Check if Property Type (LinkPropertyTypeId) has changed ---------------------------
-        if (estateProperty.oldLinkPropertyTypeId != estateProperty.selectedItem.LinkPropertyTypeId) {
-            var filterValue = {
-                PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(estateProperty.selectedItem.Id),
-                SearchType: 0
-            }
-            var engine = {};
-            engine.Filters = [];
-            engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/deleteList', engine, 'POST').success(function (response) {
-                rashaErManage.checkAction(response);
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-                estateProperty.busyIndicator.isActive = false;
 
-            });
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
-                rashaErManage.checkAction(response);
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-                estateProperty.busyIndicator.isActive = false;
-
-            });
-        }
-        else {
-            // -------------------------************* Set Values to Edit ************------------------------------
-            for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
-                estateProperty.propertyDetailsListItems[i].valueFound = false;
-                for (var j = 0; j < estateProperty.propertyDetailValuesListItems.length; j++) {
-                    if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.propertyDetailValuesListItems[j].LinkPropertyDetailId) {
-                        estateProperty.propertyDetailsListItems[i].valueFound = true;
-                        if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice == false) { // Detail is not CheckBox
-                            if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse) { // Detail is RadioButton/DropDown
-                                /*Do not delete the following comments: Get the value if the element is a RadioButton
-                                var radioName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
-                                var radioValue = estateProperty[radioName];
-                                estateProperty.propertyDetailsListItems[i].value = radioValue; */
-                                estateProperty.propertyDetailValuesListItems[j].Value = $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val(); //Get the value if the element is a DropDown
-                            }
-                            else
-                                // Detail is not a CheckBox, nor a RadioButton
-                                estateProperty.propertyDetailValuesListItems[j].Value = String(estateProperty.propertyDetailsListItems[i].value);
-                        } else { // Detail is CheckBox
-                            var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
-                            estateProperty.propertyDetailValuesListItems[j].Value = JSON.stringify(estateProperty[checkboxName]);
-                        }
-                    
-                    }
-                }
-                if (!estateProperty.propertyDetailsListItems[i].valueFound) {
-                    var proeprtyDetailValue = { LinkPropertyId: 0, LinkPropertyDetailId: 0, Value: 0 };
-                    if (estateProperty.propertyDetailsListItems[i].ConfigValue.multipleChoice == false) { // Detail is not CheckBox
-                        if (estateProperty.propertyDetailsListItems[i].ConfigValue.forceUse) { // Detail is RadioButton/DropDown
-                            var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: $('#dropDown' + estateProperty.propertyDetailsListItems[i].Id).find(":selected").val() }
-                          
-                            
-                            estateProperty.propertyDetailValuesListItems.push(newValue); //Get the value if the element is a DropDown
-                        }
-                        else{
-                            var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: String(estateProperty.propertyDetailsListItems[i].value) }
-                            
-                            
-                            // Detail is not a CheckBox, nor a RadioButton
-                            estateProperty.propertyDetailValuesListItems.push(newValue);
-                        }
-                    } else { // Detail is CheckBox
-                        var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
-                        var newValue={ Id: 0, LinkPropertyId: estateProperty.selectedItem.Id, LinkPropertyDetailId: estateProperty.propertyDetailsListItems[i].Id, Value: estateProperty[checkboxName] }
-                        if(newValue.Value){
-                            newValue.Value= JSON.stringify(newValue.Value)
-                        }else{
-                            newValue.Value=""
-                        }
-                        estateProperty.propertyDetailValuesListItems.push(newValue);
-                        
-                    }
-                }
-            }
-            // ---------------------------------- End of Set Values to Edit --------------------------------------
-                var itemAddList=[];
-                var itemEditList=[];
-            angular.forEach(estateProperty.propertyDetailValuesListItems, function (item, key) {
-                if (item.Id &&item.Id>0) {
-                    itemEditList.push(item)
-                }
-                else
-                {
-                    itemAddList.push(item)
-                }
-            });
-            estateProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch',itemEditList, "PUT").success(function (response) {
-                rashaErManage.checkAction(response);
-                estateProperty.busyIndicator.isActive = false;
-                if (response.IsSuccess) {
-                    estateProperty.addRequested = false;
-                    estateProperty.closeModal();
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-                estateProperty.addRequested = false;
-                estateProperty.busyIndicator.isActive = false;
-            });
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch',itemAddList, "POST").success(function (response) {
-                rashaErManage.checkAction(response);
-                estateProperty.busyIndicator.isActive = false;
-                if (response.IsSuccess) {
-                    estateProperty.addRequested = false;
-                    estateProperty.closeModal();
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-                estateProperty.addRequested = false;
-                estateProperty.busyIndicator.isActive = false;
-            });
-        }
     }
 
     estateProperty.closeModal = function () {
@@ -440,25 +430,19 @@
             if (isConfirmed) {
                 estateProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
-                    buttonIsPressed = false;
-                    rashaErManage.checkAction(response);
-                    estateProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/', estateProperty.selectedItemForDelete.Id, 'DELETE').success(function (res) {
-                        rashaErManage.checkAction(res);
-                        estateProperty.busyIndicator.isActive = false;
-                        if (res.IsSuccess) {
-                            estateProperty.replaceItem(estateProperty.selectedItemForDelete.Id);
-                            estateProperty.gridOptions.fillData(estateProperty.ListItems);
-                        }
-                    }).error(function (data2, errCode2, c2, d2) {
-                        rashaErManage.checkAction(data2);
-                        estateProperty.busyIndicator.isActive = false;
-                    });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
+
+                ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'DELETE').success(function (res) {
+                    rashaErManage.checkAction(res);
+                    estateProperty.busyIndicator.isActive = false;
+                    if (res.IsSuccess) {
+                        estateProperty.replaceItem(estateProperty.selectedItemForDelete.Id);
+                        estateProperty.gridOptions.fillData(estateProperty.ListItems);
+                    }
+                }).error(function (data2, errCode2, c2, d2) {
+                    rashaErManage.checkAction(data2);
                     estateProperty.busyIndicator.isActive = false;
                 });
+
             }
         });
     }
@@ -478,26 +462,109 @@
         action: 'GetAllCities',
         scope: estateProperty,
         columnOptions: {
-            columns: [
-                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer', visible: true },
-                { name: 'virtual_Parent.Title', displayName: 'Title', sortable: true, type: 'string', visible: true },
-                { name: 'Title', displayName: 'Title', sortable: true, type: 'string', visible: true },
+            columns: [{
+                    name: 'Id',
+                    displayName: 'کد سیستمی',
+                    sortable: true,
+                    type: 'string',
+                    visible: true
+                },
+                {
+                    name: 'virtual_Parent.Title',
+                    displayName: 'Title',
+                    sortable: true,
+                    type: 'string',
+                    visible: true
+                },
+                {
+                    name: 'Title',
+                    displayName: 'Title',
+                    sortable: true,
+                    type: 'string',
+                    visible: true
+                },
             ]
         }
     }
     estateProperty.gridOptions = {
-        columns: [
-            { name: 'LinkMainImageId', displayName: 'عکس', sortable: true, visible: true, isThumbnailByFild: true, imageWidth: '80', imageHeight: '80' },
-            { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer', visible: true },
-            { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
-            { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
-            { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
-            { name: 'Title', displayName: 'نام', sortable: true, type: 'string', visible: true },
-            { name: 'Description', displayName: 'توضیح', sortable: true, type: 'string', visible: true, excerpt: true, excerptLength: 30 },
-            { name: 'LinkCmsUserId', displayName: 'کد سیستمی کاربر', sortable: true, type: 'string', visible: true, displayForce: true },
-            { name: 'virtual_PropertyType.Title', displayName: 'نوع ملک', sortable: true, type: 'string', visible: true, displayForce: true },
-            { name: 'ViewCount', displayName: 'تعداد بازدید', sortable: true, visible: true,type:'integer' },
-            { name: 'ActionButtons', displayName: 'خصوصیات ملک', sortable: true, type: 'string', visible: true, displayForce: true, template: '<button type="button" class="btn btn-primary" ng-click="estateProperty.openAddContractModal(x.Id,x.Title)"  class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;سپردن نوع معامله</button>' }
+        columns: [{
+                name: 'LinkMainImageId',
+                displayName: 'عکس',
+                sortable: true,
+                visible: true,
+                isThumbnailByFild: true,
+                imageWidth: '80',
+                imageHeight: '80'
+            },
+            {
+                name: 'Id',
+                displayName: 'کد سیستمی',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'LinkSiteId',
+                displayName: 'کد سیستمی سایت',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'CreatedDate',
+                displayName: 'ساخت',
+                sortable: true,
+                isDate: true,
+                type: 'date',
+                visible: 'true'
+            },
+            {
+                name: 'UpdatedDate',
+                displayName: 'ویرایش',
+                sortable: true,
+                isDate: true,
+                type: 'date',
+                visible: 'true'
+            },
+            {
+                name: 'Title',
+                displayName: 'نام',
+                sortable: true,
+                type: 'string',
+                visible: true
+            },
+            {
+                name: 'Description',
+                displayName: 'توضیح',
+                sortable: true,
+                type: 'string',
+                visible: true,
+                excerpt: true,
+                excerptLength: 30
+            },
+            {
+                name: 'LinkCmsUserId',
+                displayName: 'کد سیستمی کاربر',
+                sortable: true,
+                type: 'string',
+                visible: true,
+                displayForce: true
+            },
+            {
+                name: 'PropertyType.Title',
+                displayName: 'نوع ملک',
+                sortable: true,
+                type: 'string',
+                visible: true,
+                displayForce: true
+            },
+            {
+                name: 'ViewCount',
+                displayName: 'تعداد بازدید',
+                sortable: true,
+                visible: true,
+                type: 'integer'
+            }
         ],
         data: {},
         multiSelect: false,
@@ -520,7 +587,7 @@
         estateProperty.init();
     }
 
-    estateProperty.gridOptions.onRowSelected = function () { }
+    estateProperty.gridOptions.onRowSelected = function () {}
 
     estateProperty.columnCheckbox = false;
 
@@ -533,8 +600,7 @@
                 //var temp = element[0].checked;
                 estateProperty.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = estateProperty.gridOptions.columns;
             for (var i = 0; i < estateProperty.gridOptions.columns.length; i++) {
                 estateProperty.gridOptions.columns[i].visible = true;
@@ -549,10 +615,6 @@
     }
 
     estateProperty.onPropertyTypeChange = function (LinkPropertyTypeId) {
-      
-        
-
-
 
 
         estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
@@ -567,31 +629,15 @@
         engine.Filters = [];
         engine.Filters.push(filterValue);
         ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function (response) {
-            if (response.IsSuccess)
-            {
-                estateProperty.propertyDetailGroupListItems=response.ListItems;
-                    angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
+            if (response.IsSuccess) {
+                estateProperty.propertyDetailGroupListItems = response.ListItems;
+                angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
                     if (item.Id == LinkPropertyTypeId) {
                         estateProperty.propertyDetailsListItems = item.PropertyDetails;
 
                     }
                 });
-
-
-
-            $.each(estateProperty.propertyDetailsListItems, function (index, item) {
-                item.value = null;
-                // Add groups to its list
-                var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) {
-                    return e.Id == item.LinkPropertyDetailGroupId;
-                });
-                if (result.length <= 0)
-                    estateProperty.propertyDetailGroupListItems.push(item);
-
-                // Add ConfigValue to the object
-                item.ConfigValue = JSON.parse(item.JsonConfigValue);
-            });
-        }
+            }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
@@ -600,34 +646,26 @@
 
 
 
-
-
-
-
-
-
-
-
     }
 
-    estateProperty.selectedPropertyDetailsListItems = [];
-    estateProperty.onPropertyDetailGroupChange = function (propertyDetailGroupId) {
-        estateProperty.selectedPropertyDetailsListItems = [];
-        if (0 < estateProperty.propertyDetailsListItems.length) {
-            $.each(estateProperty.propertyDetailsListItems, function (index, propertyDetail) {
-                if (propertyDetail.LinkPropertyDetailGroupId == propertyDetailGroupId) {
-                    estateProperty.selectedPropertyDetailsListItems.push(propertyDetail);
-                }
-            });
-        }
-    }
+    estateProperty.selectedpropertyDetailsListItems = [];
+    // estateProperty.onPropertyDetailGroupChange = function (propertyDetailGroupId) {
+    //     estateProperty.selectedpropertyDetailsListItems = [];
+    //     if (0 < estateProperty.propertyDetailsListItems.length) {
+    //         $.each(estateProperty.propertyDetailsListItems, function (index, propertyDetail) {
+    //             if (propertyDetail.LinkPropertyDetailGroupId == propertyDetailGroupId) {
+    //                 estateProperty.selectedpropertyDetailsListItems.push(propertyDetail);
+    //             }
+    //         });
+    //     }
+    // }
 
     // Filter Texts for CmsUser
     estateProperty.gridOptions.myfilterText = function (gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
         var ilength = gridListItems.length;
         var jlength = childListItems.length;
         for (var i = 0; i < ilength; i++) {
-            gridListItems[i][childItemColumnName] = "";  // Make a new field for title of the foreighn key
+            gridListItems[i][childItemColumnName] = ""; // Make a new field for title of the foreighn key
             for (var j = 0; j < jlength; j++) {
                 if (gridListItems[i][foreignKeyName] == childListItems[j].Id) {
                     gridListItems[i][childItemColumnName] = childListItems[j][childDesiredPropertyName];
@@ -637,74 +675,66 @@
     }
 
     //-----------------*** Load Values in Edit Modal ***----------------------
-    estateProperty.loadDetailValues = function (propertyTypeId, propertyId) {
-        var filterValue1 = {
+    estateProperty.loadDetailValues = function (LinkPropertyTypeId, propertyItem) {
+        estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
+        estateProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
+        if (!angular.isDefined(LinkPropertyTypeId)) return;
+        var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: LinkPropertyTypeId,
             SearchType: 0
         }
-        var engine1 = {
-        };
-        engine1.Filters = [];
-        engine1.Filters.push(filterValue1);
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
-            estateProperty.propertyDetailsListItems = response1.ListItems;
-            //---------- Load Values ---------------------------------------
-            var filterValue2 = {
-                PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(propertyId),
-                SearchType: 0
-            }
-            var engine2 = { Filters: [] };
-            engine2.Filters.push(filterValue2);
-            ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
-                $.each(estateProperty.propertyDetailsListItems, function (index, item) {
-                    item.value = null;
-                    // Add groups to its list
-                    var result = $.grep(estateProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.LinkPropertyDetailGroupId; });
-                    if (result.length <= 0)
-                        estateProperty.propertyDetailGroupListItems.push(item);
+        var engine = {};
+        engine.Filters = [];
+        engine.Filters.push(filterValue);
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function (response) {
+            if (response.IsSuccess) {
+                estateProperty.propertyDetailGroupListItems = response.ListItems;
+                angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
+                    if (item.Id == LinkPropertyTypeId) {
+                        estateProperty.propertyDetailsListItems = item.PropertyDetails;
 
-                    // Add ConfigValue to the object
-                    if (item.JsonConfigValue == null) item.JsonConfigValue = "{\"nameValue\":[],\"forceUse\":false,\"multipleChoice\":false}"; // جلوگیری از بروز خطا اگر مقادیر پیش فرض تهی باشد
-                    item.ConfigValue = JSON.parse(item.JsonConfigValue);
+                    }
                 });
-                estateProperty.propertyDetailValuesListItems = response.ListItems;
+
+
+                if (!propertyItem.PropertyDetailValues || propertyItem.PropertyDetailValues.length == 0)
+                    return;
+
+                estateProperty.PropertyDetailValuesListItems = propertyItem.PropertyDetailValues;
                 for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
-                    for (var j = 0; j < estateProperty.propertyDetailValuesListItems.length; j++) {
-                        if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.propertyDetailValuesListItems[j].LinkPropertyDetailId) {
-                            var jsonConfigValue = null;
-                            try {
-                                jsonConfigValue = JSON.parse(estateProperty.propertyDetailsListItems[i].JsonConfigValue);
-                            } catch (e) {
-                                console.log(e);
-                            }
+                    for (var j = 0; j < estateProperty.PropertyDetailValuesListItems.length; j++) {
+                        if (estateProperty.propertyDetailsListItems[i].Id == estateProperty.PropertyDetailValuesListItems[j].LinkPropertyDetailId) {
 
-                            if (estateProperty.propertyDetailValuesListItems[j].Value != null) {
-                                if (jsonConfigValue != undefined && jsonConfigValue != null && jsonConfigValue.nameValue != undefined && jsonConfigValue.nameValue != null && 0 < jsonConfigValue.nameValue.length) {
-                                    if (jsonConfigValue.multipleChoice) {   // Detail is CheckBox
-                                        var multipleValues = JSON.parse(estateProperty.propertyDetailValuesListItems[j].Value);//.split(',');
-                                        setSelection(estateProperty.propertyDetailsListItems[i].Id, multipleValues);
 
-                                    }
-                                    else if (jsonConfigValue.forceUse && jsonConfigValue.nameValue.length > 0) {   // Detail is RadioButton/DropDown
-                                        /*Do not delete this line: Load the value if the elements is RadioButton
-                                        var radioValues = estateProperty.propertyDetailValuesListItems[j].Value.split(',');
-                                        setSelection(estateProperty.propertyDetailsListItems[i].Id, radioValues); */
-                                        estateProperty.propertyDetailsListItems[i].value = estateProperty.propertyDetailValuesListItems[j].Value;
-                                    } else {     // Detail is InputDataList
-                                        estateProperty.propertyDetailsListItems[i].value = estateProperty.propertyDetailValuesListItems[j].Value;
+                            if (estateProperty.PropertyDetailValuesListItems[j].Value != null) {
+                                if (estateProperty.propertyDetailsListItems[i].ConfigValueDefaultValue && estateProperty.propertyDetailsListItems[i].ConfigValueDefaultValue != null && estateProperty.propertyDetailsListItems[i].ConfigValueDefaultValue.length > 0) {
+                                    if (estateProperty.propertyDetailsListItems[i].ConfigValueMultipleChoice) { // Detail is CheckBox
+                                        try {
+                                            var multipleValues = JSON.parse(estateProperty.PropertyDetailValuesListItems[j].Value); //.split(',');
+                                            var checkboxName = "selection" + estateProperty.propertyDetailsListItems[i].Id;
+                                            estateProperty[checkboxName] = multipleValues;
+                                        } catch (err) {
+                                            console.log(err);
+                                        }
+
+
+                                    } else if (estateProperty.propertyDetailsListItems[i].ConfigValueForceUseDefaultValue && estateProperty.propertyDetailsListItems[i].ConfigValueDefaultValue.length > 0) { // Detail is RadioButton/DropDown
+
+                                        estateProperty.propertyDetailsListItems[i].value = estateProperty.PropertyDetailValuesListItems[j].Value;
+                                    } else { // Detail is InputDataList
+                                        estateProperty.propertyDetailsListItems[i].value = estateProperty.PropertyDetailValuesListItems[j].Value;
                                     }
                                 } else {
                                     switch (estateProperty.propertyDetailsListItems[i].InputDataType) {
-                                        case 0:                              // Detail is String
-                                            estateProperty.propertyDetailsListItems[i].value = estateProperty.propertyDetailValuesListItems[j].Value;
+                                        case 0: // Detail is String
+                                            estateProperty.propertyDetailsListItems[i].value = estateProperty.PropertyDetailValuesListItems[j].Value;
                                             break;
-                                        case 1:                              // Detail is Number
-                                            estateProperty.propertyDetailsListItems[i].value = parseInt(estateProperty.propertyDetailValuesListItems[j].Value);
+                                        case 1: // Detail is Number
+                                            estateProperty.propertyDetailsListItems[i].value = parseInt(estateProperty.PropertyDetailValuesListItems[j].Value);
                                             break;
-                                        case 2:                              // Detail is Boolean
-                                            estateProperty.propertyDetailsListItems[i].value = (estateProperty.propertyDetailValuesListItems[j].Value === "true");
+                                        case 2: // Detail is Boolean
+                                            estateProperty.propertyDetailsListItems[i].value = (estateProperty.PropertyDetailValuesListItems[j].Value === "true");
                                             break;
                                     }
                                 }
@@ -713,19 +743,12 @@
                     }
                 }
                 //--------------------------------
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
-            //***************************************************************
+            }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    function setSelection(detailId, values) {
-        var checkboxName = "selection" + detailId;
-        estateProperty[checkboxName] = values;
-    }
 
     // toggle selection for a given fruit by name
     estateProperty.toggleSelection = function (detailId, fruitName) {
@@ -739,7 +762,7 @@
             estateProperty[checkboxName].splice(idx, 1);
         }
 
-            // is newly selected
+        // is newly selected
         else {
             estateProperty[checkboxName].push(fruitName);
         }
@@ -754,7 +777,7 @@
         if (idx > -1) {
 
         }
-            // is newly selected
+        // is newly selected
         else {
             estateProperty[radioName] = [];
             estateProperty[radioName].push(fruitName);
@@ -771,96 +794,68 @@
     }
 
     estateProperty.onContractTypeChange = function (contractTypeId) {
-        var contractType = {
-        };
+        var contractType = {};
         for (var i = 0; i < estateProperty.contractTypeListItems.length; i++) {
-            if (parseInt(contractTypeId) == estateProperty.contractTypeListItems[i].Id) {
-                estateProperty.selectedItem.HasSalePrice = estateProperty.contractTypeListItems[i].HasSalePrice;
-                estateProperty.selectedItem.UnitSalePrice = estateProperty.contractTypeListItems[i].UnitSalePrice;
-                estateProperty.selectedItem.HasPresalePrice = estateProperty.contractTypeListItems[i].HasPresalePrice;
-                estateProperty.selectedItem.UnitPresalePrice = estateProperty.contractTypeListItems[i].UnitPresalePrice;
-                estateProperty.selectedItem.HasRentPrice = estateProperty.contractTypeListItems[i].HasRentPrice;
-                estateProperty.selectedItem.UnitRentPrice = estateProperty.contractTypeListItems[i].UnitRentPrice;
-                estateProperty.selectedItem.HasDepositPrice = estateProperty.contractTypeListItems[i].HasDepositPrice;
-                estateProperty.selectedItem.UnitDepositPrice = estateProperty.contractTypeListItems[i].UnitDepositPrice;
+            if (contractTypeId == estateProperty.contractTypeListItems[i].Id) {
+                estateProperty.contract.HasSalePrice = estateProperty.contractTypeListItems[i].HasSalePrice;
+                estateProperty.contract.UnitSalePrice = estateProperty.contractTypeListItems[i].UnitSalePrice;
+
+                estateProperty.contract.HasRentPrice = estateProperty.contractTypeListItems[i].HasRentPrice;
+                estateProperty.contract.UnitRentPrice = estateProperty.contractTypeListItems[i].UnitRentPrice;
+                estateProperty.contract.HasDepositPrice = estateProperty.contractTypeListItems[i].HasDepositPrice;
+                estateProperty.contract.UnitDepositPrice = estateProperty.contractTypeListItems[i].UnitDepositPrice;
             }
         }
     }
-   
 
-    estateProperty.contractsList = [];
-    estateProperty.openAddContractModal = function (propertyId, propertyTitle) {
-        ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", {}, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            estateProperty.busyIndicator.isActive = false;
-            estateProperty.contractTypeListItems = response.ListItems;
-            estateProperty.selectedItem.LinkPropertyTypeId = null;
-        }).error(function (data, errCode, c, d) {
-            estateProperty.busyIndicator.isActive = false;
-            rashaErManage.checkAction(data, errCode);
-        });
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/ViewModel', "", 'GET').success(function (response) {
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                estateProperty.selectedItem = response.Item;
-                estateProperty.selectedItem.LinkPropertyId = parseInt(propertyId);  // Set LinkPropertyId for new Contract
-                estateProperty.selectedItem.LinkPropertyTitle = propertyTitle;  // Set LinkPropertyId for new Contract
-                var model = {
-                };
-                model.Filters = [];
-                model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
-                ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/getall', model, 'POST').success(function (response) {
-                    rashaErManage.checkAction(response);
-                    estateProperty.contractsList = response.ListItems;
-                    estateProperty.contractsListresultAccess = response.Access;
-                    $modal.open({
-                        templateUrl: 'cpanelv1/ModuleEstate/EstateProperty/addContract.html',
-                        scope: $scope
-                    });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                });
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }
 
+    // estateProperty.contractsList = [];
+    // estateProperty.openAddContractModal = function (propertyId, propertyTitle) {
+    //     ajax.call(cmsServerConfig.configApiServerPath + "estatecontracttype/getall", {}, 'POST').success(function (response) {
+    //         rashaErManage.checkAction(response);
+    //         estateProperty.busyIndicator.isActive = false;
+    //         estateProperty.contractTypeListItems = response.ListItems;
+    //         estateProperty.selectedItem.LinkPropertyTypeId = null;
+    //     }).error(function (data, errCode, c, d) {
+    //         estateProperty.busyIndicator.isActive = false;
+    //         rashaErManage.checkAction(data, errCode);
+    //     });
+    //     ajax.call(cmsServerConfig.configApiServerPath + 'EstateContract/ViewModel', "", 'GET').success(function (response) {
+    //         rashaErManage.checkAction(response);
+    //         if (response.IsSuccess) {
+    //             estateProperty.selectedItem = response.Item;
+    //             estateProperty.selectedItem.LinkPropertyId = propertyId; // Set LinkPropertyId for new Contract
+    //             estateProperty.selectedItem.LinkPropertyTitle = propertyTitle; // Set LinkPropertyId for new Contract
+    //             var model = {};
+    //             model.Filters = [];
+    //             model.Filters.push({
+    //                 PropertyName: "LinkPropertyId",
+    //                 IntValue1: propertyId,
+    //                 SearchType: 0
+    //             });
+    //             ajax.call(cmsServerConfig.configApiServerPath + 'EstateContract/getall', model, 'POST').success(function (response) {
+    //                 rashaErManage.checkAction(response);
+    //                 estateProperty.contractsList = response.ListItems;
+    //                 estateProperty.contractsListresultAccess = response.Access;
+    //                 $modal.open({
+    //                     templateUrl: 'cpanelv1/ModuleEstate/EstateProperty/addContract.html',
+    //                     scope: $scope
+    //                 });
+    //             }).error(function (data, errCode, c, d) {
+    //                 rashaErManage.checkAction(data, errCode);
+    //             });
+    //         }
+    //     }).error(function (data, errCode, c, d) {
+    //         rashaErManage.checkAction(data, errCode);
+    //     });
+    // }
+    estateProperty.contract = {};
     estateProperty.addContract = function () {
-        var duplicateContract = false;
-        var erMessage = "";
-        if (estateProperty.selectedItem.LinkEstateContractTypeId == null || estateProperty.selectedItem.LinkEstateContractTypeId < 0)
-            return;
-        $.each(estateProperty.contractsList, function (index, item) {
-            if (item.LinkEstateContractTypeId == parseInt(estateProperty.selectedItem.LinkEstateContractTypeId)) {
-                erMessage = "آگهی" + ' ' + item.virtual_ContractType.Title + ' ' + "قبلاً برای این ملک ثبت شده است!";
-                duplicateContract = true;
-                return;
-            }
-        });
-        if (duplicateContract) {
-            rashaErManage.showMessage(erMessage);
-            return;
-        }
-        estateProperty.addRequested = true;
-        estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.selectedItem, 'POST').success(function (response) {
-            estateProperty.addRequested = false;
-            estateProperty.busyIndicator.isActive = false;
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                estateProperty.contractsList.push(response.Item);
-                estateProperty.selectedItem.SalePrice = null;
-                estateProperty.selectedItem.PresalePrice = null;
-                estateProperty.selectedItem.DepositPrice = null;
-                estateProperty.selectedItem.RentPrice = null;
-                estateProperty.selectedItem.Description = "";
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-            estateProperty.addRequested = false;
-        });
 
+        if (!estateProperty.selectedItem.Contracts)
+            estateProperty.selectedItem.Contracts = [];
+        estateProperty.selectedItem.Contracts.push(angular.extend({}, estateProperty.contract));
+        estateProperty.contract = {};
     }
 
     estateProperty.showUpload = function () {
@@ -877,7 +872,8 @@
         if (id != null && id != undefined && !estateProperty.alreadyExist(id, estateProperty.attachedFiles)) {
             var fId = id;
             var file = {
-                fileId: fId, filename: fname
+                fileId: fId,
+                filename: fname
             };
             estateProperty.attachedFiles.push(file);
             estateProperty.clearfilePickers();
@@ -896,33 +892,11 @@
         return false;
     }
 
-    estateProperty.editContract = function (index) {
-        estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.contractsList[index], "PUT").success(function (res) {
-            estateProperty.addRequested = false;
-            rashaErManage.checkAction(res);
-            if (res.IsSuccess) {
-                estateProperty.contractsList.splice(index, 1);
-                estateProperty.contractsList.push(res.Item)
-                rashaErManage.showMessage("ویرایش با موفقیت انجام شد!");
-            }
-        }).error(function (data2, errCode2, c2, d2) {
-            rashaErManage.checkAction(data2);
-        });
-    }
 
     estateProperty.deleteContract = function (index) {
-        estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/', estateProperty.contractsList[index].Id, 'DELETE').success(function (res) {
-            estateProperty.addRequested = false;
-            rashaErManage.checkAction(res);
-            if (res.IsSuccess) {
-                estateProperty.contractsList.splice(index, 1);
-                rashaErManage.showMessage($filter('translatentk')('Removed_Successfully'));
-            }
-        }).error(function (data2, errCode2, c2, d2) {
-            rashaErManage.checkAction(data2);
-        });
+
+        estateProperty.selectedItem.Contracts.splice(index, 1);
+
     }
 
     estateProperty.parseFileIds = function (stringOfIds) {
@@ -930,10 +904,13 @@
         var fileIds = stringOfIds.split(",");
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
-                if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
+                if (item == parseInt(item, 10)) { // Check if item is an integer
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
-                            estateProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
+                            estateProperty.attachedFiles.push({
+                                fileId: response.Item.Id,
+                                filename: response.Item.FileName
+                            });
                         }
                     }).error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
@@ -970,7 +947,7 @@
 
         estateProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
             estateProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1009,48 +986,41 @@
         estateProperty.fileIdToDelete = estateProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.fileIdToDelete, 'GET').success(function (response1) {
-            if (response1.IsSuccess == true) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
-                    estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
-                    if (response2.IsSuccess == true) {
-                        // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
-                            if (response3.IsSuccess == true) {
-                                estateProperty.FileItem = response3.Item;
-                                estateProperty.FileItem.FileName = name;
-                                estateProperty.FileItem.Extension = name.split('.').pop();
-                                estateProperty.FileItem.FileSrc = name;
-                                estateProperty.FileItem.LinkCategoryId = estateProperty.thisCategory;
-                                estateProperty.saveNewFile();
-                            }
-                            else {
-                                console.log("getting the model was not successfully returned!");
-                            }
-                        }).error(function (data) {
-                            console.log(data);
-                        });
+
+        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', estateProperty.fileIdToDelete, 'DELETE').success(function (response2) {
+            estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
+            if (response2.IsSuccess == true) {
+                // Save New file
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {
+                    if (response3.IsSuccess == true) {
+                        estateProperty.FileItem = response3.Item;
+                        estateProperty.FileItem.FileName = name;
+                        estateProperty.FileItem.Extension = name.split('.').pop();
+                        estateProperty.FileItem.FileSrc = name;
+                        estateProperty.FileItem.LinkCategoryId = estateProperty.thisCategory;
+                        estateProperty.saveNewFile();
+                    } else {
+                        console.log("getting the model was not successfully returned!");
                     }
-                    else {
-                        console.log("Request to api/CmsFileContent/delete was not successfully returned!");
-                    }
-                }).error(function (data, errCode, c, d) {
+                }).error(function (data) {
                     console.log(data);
                 });
+            } else {
+                console.log("Request to api/CmsFileContent/delete was not successfully returned!");
             }
-        }).error(function (data) {
+        }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+
     }
     //save new file
     estateProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 estateProperty.FileItem = response.Item;
                 estateProperty.showSuccessIcon();
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
 
             }
@@ -1060,8 +1030,7 @@
         });
     }
 
-    estateProperty.showSuccessIcon = function () {
-    }
+    estateProperty.showSuccessIcon = function () {}
 
     estateProperty.showErrorIcon = function () {
 
@@ -1092,8 +1061,7 @@
             estateProperty.fileTypes = 1;
             estateProperty.selectedFileId = estateProperty.getFileItem(index).Id;
             estateProperty.selectedFileName = estateProperty.getFileItem(index).FileName;
-        }
-        else {
+        } else {
             estateProperty.fileTypes = 2;
             estateProperty.selectedCategoryId = estateProperty.getCategoryName(index).Id;
             estateProperty.selectedCategoryTitle = estateProperty.getCategoryName(index).Title;
@@ -1116,88 +1084,86 @@
                     estateProperty.fileTypes = 1;
                     estateProperty.fileIdToDelete = estateProperty.selectedIndex;
                     // replace the file
-            ajax
-              .call(
-                cmsServerConfig.configApiServerPath+"FileContent/",
-                estateProperty.fileIdToDelete,
-                "GET"
-              )
-              .success(function(response1) {
-                if (response1.IsSuccess == true) {
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                    .success(function(response2) {
-                      if (response2.IsSuccess == true) {
-                        estateProperty.FileItem = response2.Item;
-                        estateProperty.showSuccessIcon();
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-check");
-                        estateProperty.filePickerMainImage.filename =
-                          estateProperty.FileItem.FileName;
-                        estateProperty.filePickerMainImage.fileId =
-                          response2.Item.Id;
-                        estateProperty.selectedItem.LinkMainImageId =
-                          estateProperty.filePickerMainImage.fileId;
-                      } else {
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-remove");
-                      }
-                    })
-                    .error(function(data) {
-                      estateProperty.showErrorIcon();
-                      $("#save-icon" + index).removeClass("fa-save");
-                      $("#save-button" + index).removeClass("flashing-button");
-                      $("#save-icon" + index).addClass("fa-remove");
-                    });
-                  //-----------------------------------
-                }
-              })
-              .error(function(data) {
-                console.log(data);
-              });
-            //--------------------------------
+                    ajax
+                        .call(
+                            cmsServerConfig.configApiServerPath + "FileContent/",
+                            estateProperty.fileIdToDelete,
+                            "GET"
+                        )
+                        .success(function (response1) {
+                            if (response1.IsSuccess == true) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function (response2) {
+                                        if (response2.IsSuccess == true) {
+                                            estateProperty.FileItem = response2.Item;
+                                            estateProperty.showSuccessIcon();
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-check");
+                                            estateProperty.filePickerMainImage.filename =
+                                                estateProperty.FileItem.FileName;
+                                            estateProperty.filePickerMainImage.fileId =
+                                                response2.Item.Id;
+                                            estateProperty.selectedItem.LinkMainImageId =
+                                                estateProperty.filePickerMainImage.fileId;
+                                        } else {
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-remove");
+                                        }
+                                    })
+                                    .error(function (data) {
+                                        estateProperty.showErrorIcon();
+                                        $("#save-icon" + index).removeClass("fa-save");
+                                        $("#save-button" + index).removeClass("flashing-button");
+                                        $("#save-icon" + index).addClass("fa-remove");
+                                    });
+                                //-----------------------------------
+                            }
+                        })
+                        .error(function (data) {
+                            console.log(data);
+                        });
+                    //--------------------------------
                 } else {
                     return;
                 }
-            }
-            else { // File does not exists
+            } else { // File does not exists
                 // Save New file
                 // ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                 //     estateProperty.FileItem = response.Item;
-                    estateProperty.FileItem = {};
-                    estateProperty.FileItem.FileName = uploadFile.name;
-                    estateProperty.FileItem.uploadName = uploadFile.uploadName;
-                    estateProperty.FileItem.ModuleName = "Estate";
-                    estateProperty.FileItem.ModuleEntityName = "";
-                    estateProperty.FileItem.ModuleEntityId = estateProperty.selectedItem.Id;
-                    estateProperty.FileItem.Extension = uploadFile.name.split('.').pop();
-                    estateProperty.FileItem.FileSrc = uploadFile.name;
-                    estateProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
-                    // ------- estateProperty.saveNewFile()  ----------------------
-                    var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
-                        if (response.IsSuccess) {
-                            estateProperty.FileItem = response.Item;
-                            estateProperty.showSuccessIcon();
-                            $("#save-icon" + index).removeClass("fa-save");
-                            $("#save-button" + index).removeClass("flashing-button");
-                            $("#save-icon" + index).addClass("fa-check");
-                            estateProperty.filePickerMainImage.filename = estateProperty.FileItem.FileName;
-                            estateProperty.filePickerMainImage.fileId = response.Item.Id;
-                            estateProperty.selectedItem.LinkMainImageId = response.Item.Id;
-                            estateProperty.selectedItem.LinkMainImageId = estateProperty.filePickerMainImage.fileId
+                estateProperty.FileItem = {};
+                estateProperty.FileItem.FileName = uploadFile.name;
+                estateProperty.FileItem.uploadName = uploadFile.uploadName;
+                estateProperty.FileItem.ModuleName = "Estate";
+                estateProperty.FileItem.ModuleEntityName = "";
+                estateProperty.FileItem.ModuleEntityId = estateProperty.selectedItem.Id;
+                estateProperty.FileItem.Extension = uploadFile.name.split('.').pop();
+                estateProperty.FileItem.FileSrc = uploadFile.name;
+                estateProperty.FileItem.LinkCategoryId = null; //Save the new file in the root
+                // ------- estateProperty.saveNewFile()  ----------------------
+                var result = 0;
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
+                    if (response.IsSuccess) {
+                        estateProperty.FileItem = response.Item;
+                        estateProperty.showSuccessIcon();
+                        $("#save-icon" + index).removeClass("fa-save");
+                        $("#save-button" + index).removeClass("flashing-button");
+                        $("#save-icon" + index).addClass("fa-check");
+                        estateProperty.filePickerMainImage.filename = estateProperty.FileItem.FileName;
+                        estateProperty.filePickerMainImage.fileId = response.Item.Id;
+                        estateProperty.selectedItem.LinkMainImageId = response.Item.Id;
+                        estateProperty.selectedItem.LinkMainImageId = estateProperty.filePickerMainImage.fileId
 
-                        }
-                        else {
-                            $("#save-icon" + index).removeClass("fa-save");
-                            $("#save-button" + index).removeClass("flashing-button");
-                            $("#save-icon" + index).addClass("fa-remove");
-                        }
+                    } else {
+                        $("#save-icon" + index).removeClass("fa-save");
+                        $("#save-button" + index).removeClass("flashing-button");
+                        $("#save-icon" + index).addClass("fa-remove");
+                    }
                     // }).error(function (data) {
                     //     estateProperty.showErrorIcon();
                     //     $("#save-icon" + index).removeClass("fa-save");
@@ -1219,7 +1185,7 @@
     estateProperty.exportFile = function () {
         estateProperty.addRequested = true;
         estateProperty.gridOptions.advancedSearchData.engine.ExportFile = estateProperty.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1233,22 +1199,50 @@
     }
     //Open Export Report Modal
     estateProperty.toggleExportForm = function () {
-        estateProperty.SortType = [
-            { key: 'نزولی', value: 0 },
-            { key: 'صعودی', value: 1 },
-            { key: 'تصادفی', value: 3 }
+        estateProperty.SortType = [{
+                key: 'نزولی',
+                value: 0
+            },
+            {
+                key: 'صعودی',
+                value: 1
+            },
+            {
+                key: 'تصادفی',
+                value: 3
+            }
         ];
-        estateProperty.EnumExportFileType = [
-            { key: 'Excel', value: 1 },
-            { key: 'PDF', value: 2 },
-            { key: 'Text', value: 3 }
+        estateProperty.EnumExportFileType = [{
+                key: 'Excel',
+                value: 1
+            },
+            {
+                key: 'PDF',
+                value: 2
+            },
+            {
+                key: 'Text',
+                value: 3
+            }
         ];
-        estateProperty.EnumExportReceiveMethod = [
-            { key: 'دانلود', value: 0 },
-            { key: 'ایمیل', value: 1 },
-            { key: 'فایل منیجر', value: 3 }
+        estateProperty.EnumExportReceiveMethod = [{
+                key: 'دانلود',
+                value: 0
+            },
+            {
+                key: 'ایمیل',
+                value: 1
+            },
+            {
+                key: 'فایل منیجر',
+                value: 3
+            }
         ];
-        estateProperty.ExportFileClass = { FileType: 1, RecieveMethod: 0, RowCount: 100 };
+        estateProperty.ExportFileClass = {
+            FileType: 1,
+            RecieveMethod: 0,
+            RowCount: 100
+        };
         estateProperty.exportDownloadLink = null;
         $modal.open({
             templateUrl: 'cpanelv1/ModuleEstate/EstateProperty/report.html',
@@ -1262,7 +1256,7 @@
     }
     //Get TotalRowCount
     estateProperty.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             estateProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1296,4 +1290,3 @@
         //});
     }
 }]);
-

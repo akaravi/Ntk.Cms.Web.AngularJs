@@ -19,12 +19,7 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="estatePropertyDetail.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Edit_Attribute'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmestatePropertyDetailEdit" novalidate ng-submit="estatePropertyDetail.editContent(frmestatePropertyDetailEdit)">
-                <div class='hr-line-dashed'></div>
-                <div class="form-group" 
-                     ng-class="{'has-error' : frmestatePropertyDetailEdit.RecordStatus.$invalid && !frmestatePropertyDetailEdit.RecordStatus.$pristine,'has-success' : frmestatePropertyDetailEdit.RecordStatus.$valid}">
-                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
-                    <div class="col-sm-10" rasha-record-status="estatePropertyDetail"></div>
-                </div>
+             
                 <div class='hr-line-dashed'></div>
                 <div class="form-group" ng-show="estatePropertyDetail.CheckAccessAdd('LinkCategoryId')">
                     <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
@@ -76,22 +71,7 @@
                         <input class="form-control" ng-required="false" name="Unit" ng-model="estatePropertyDetail.selectedItem.Unit" />
                     </div>
                 </div>
-                <div class='hr-line-dashed'></div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">UiDesignType</label>
-                    <div class="col-sm-10">
-                        <div class="col-sm-10">
-                            <select class='form-control' name="UiDesignType" ng-model="estatePropertyDetail.selectedItem.UiDesignType" ng-options="x.Value as x.Description for x in estatePropertyDetail.UiDesignType"></select>
-                        </div>
-                    </div>
-                </div>
-                <div class='hr-line-dashed'></div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">UiDesignColor</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" ng-required="true" name="UiDesignColor" ng-model="estatePropertyDetail.selectedItem.UiDesignColor" />
-                    </div>
-                </div>
+             
                 <div class='hr-line-dashed'></div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"> {{'SHOW_ORDER_IN_MENU'|lowercase|translate}} </label>
@@ -138,26 +118,56 @@
                         </div>
                     </div>
                 </div>
+     <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="ConfigValueMultipleChoice" ng-model="estatePropertyDetail.selectedItem.ConfigValueMultipleChoice">{{'Select_Multiple_Options'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="ConfigValueForceUseDefaultValue" ng-model="estatePropertyDetail.selectedItem.ConfigValueForceUseDefaultValue">{{'Only_Use_The_Default_Ones'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="number" name="ConfigValueIntValueMin" ng-model="estatePropertyDetail.selectedItem.ConfigValueIntValueMin">{{'Min'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="number" name="ConfigValueIntValueMax" ng-model="estatePropertyDetail.selectedItem.ConfigValueIntValueMax">{{'Max'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="back1">
                     <br />
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="multipleChoice" ng-model="estatePropertyDetail.selectedItem.DefaultValue.multipleChoice" ng-change="estatePropertyDetail.onMultipleChoiceChange()"><h5>{{'Select_Multiple_Options'|lowercase|translate}}</h5>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" id="forceUseCheckbox">
-                        <div class="col-sm-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="forceUse" ng-model="estatePropertyDetail.selectedItem.DefaultValue.forceUse" ng-change="estatePropertyDetail.onforceUserChange()"><h5>{{'Only_Use_The_Default_Ones'|lowercase|translate}}</h5>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                
                     <div class='hr-line-dashed'></div>
                     <div class="form-group">
                         <div class="form-group col-sm-12">

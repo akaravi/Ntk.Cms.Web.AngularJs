@@ -210,9 +210,9 @@
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'Title', displayName: 'نوع معامله', sortable: true, type: 'string', visible: true },
             { name: 'HasSalePrice', displayName: 'قیمت فروش دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
-            { name: 'HasPresalePrice', displayName: 'قیمت پیش فروش دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
-            { name: 'HasRentPrice', displayName: 'اجاره/اقساط دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
-            { name: 'HasDepositPrice', displayName: 'قیمت رهن دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true }
+
+            { name: 'HasRentPrice', displayName: 'مبلغ اقساط/اجاره دارد ', sortable: true, type: 'Boolean', isCheckBox: true, visible: true },
+            { name: 'HasDepositPrice', displayName: 'قیمت پیش پرداخت دارد', sortable: true, type: 'Boolean', isCheckBox: true, visible: true }
         ],
         data: {},
         multiSelect: false,
