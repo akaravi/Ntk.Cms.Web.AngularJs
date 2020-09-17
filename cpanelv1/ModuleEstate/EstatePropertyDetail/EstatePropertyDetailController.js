@@ -406,7 +406,7 @@
             rashaErManage.showMessage("در صورت انتخاب چند گزینه ای باید حداقل دو گزینه اضافه کنید!");
             return;
         }
-
+        estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId =estatePropertyDetail.treeConfig.currentNode.Id;
         if (!estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId|| estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId=="") {
             rashaErManage.showMessage("گروهی استفاده نشده است!");
             return;
@@ -425,7 +425,7 @@
         if (!estatePropertyDetail.PropertyType.PropertyDetails || estatePropertyDetail.PropertyType.PropertyDetails.length == 0) {
             estatePropertyDetail.PropertyType.PropertyDetails = [];
         }
-        estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId =estatePropertyDetail.treeConfig.currentNode.Id;
+        
         estatePropertyDetail.PropertyType.PropertyDetails.push( Object.assign({}, estatePropertyDetail.selectedItem));
 
         
