@@ -369,39 +369,6 @@
         estatePropertyDetail.busyIndicator.isActive = false;
 
 
-
-
-        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
-        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
-        // if (node != undefined && node.Id != undefined) {
-        //     var filterValue1 = {
-        //         PropertyName: "LinkPropertyDetailGroupId",
-        //         IntValue1: node.Id,
-        //         SearchType: 0
-        //     }
-        //     estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
-        // }
-        // var filterValue2 = {
-        //     PropertyName: "LinkPropertyTypeId",
-        //     Value: estatePropertyDetail.propertyTypeId,
-        //     SearchType: 0
-        // }
-        // estatePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
-        // ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/getall", estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-        //     rashaErManage.checkAction(response);
-        //     estatePropertyDetail.busyIndicator.isActive = false;
-        //     estatePropertyDetail.PropertyType.PropertyDetails = response.ListItems;
-        //     estatePropertyDetail.filterEnum(estatePropertyDetail.PropertyType.PropertyDetails, estatePropertyDetail.inputTypeArray);
-        //     estatePropertyDetail.gridOptions.fillData(estatePropertyDetail.PropertyType.PropertyDetails, response.Access);
-        //     estatePropertyDetail.gridOptions.currentPageNumber = response.CurrentPageNumber;
-        //     estatePropertyDetail.gridOptions.totalRowCount = response.TotalRowCount;
-        //     estatePropertyDetail.gridOptions.rowPerPage = response.RowPerPage;
-        // }).error(function (data, errCode, c, d) {
-        //     estatePropertyDetail.gridOptions.fillData();
-        //     rashaErManage.checkAction(data, errCode);
-        //     estatePropertyDetail.busyIndicator.isActive = false;
-        // });
     };
 
     // Open add Content Model
@@ -458,6 +425,7 @@
         if (!estatePropertyDetail.PropertyType.PropertyDetails || estatePropertyDetail.PropertyType.PropertyDetails.length == 0) {
             estatePropertyDetail.PropertyType.PropertyDetails = [];
         }
+        estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId =estatePropertyDetail.treeConfig.currentNode.Id;
         estatePropertyDetail.PropertyType.PropertyDetails.push( Object.assign({}, estatePropertyDetail.selectedItem));
 
         
