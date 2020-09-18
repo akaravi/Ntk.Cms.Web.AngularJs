@@ -3,146 +3,113 @@
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="appSource.closeModal()"></i>
             <h3 class="m-t-none m-b"> {{ appSource.modalTitle }}</h3>
-            <form method="get" class="form-horizontal" name="frmappSourceEdit" novalidate
-                ng-submit="appSource.editRow(frmappSourceEdit)">
+            <form method="get" class="form-horizontal" name="frmappSourceEdit" novalidate ng-submit="appSource.editRow(frmappSourceEdit)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('RecordStatus')"
-                                ng-class="{'has-error' : frmappSourceEdit.RecordStatus.$invalid && !frmappSourceEdit.RecordStatus.$pristine,'has-success' : frmappSourceEdit.RecordStatus.$valid}">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('RecordStatus')" ng-class="{'has-error' : frmappSourceEdit.RecordStatus.$invalid && !frmappSourceEdit.RecordStatus.$pristine,'has-success' : frmappSourceEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appSource"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('Title')"
-                                ng-class="{'has-error' : frmappSourceEdit.Title.$invalid && !frmappSourceEdit.Title.$pristine,'has-success' : frmappSourceEdit.Title.$valid}">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('Title')" ng-class="{'has-error' : frmappSourceEdit.Title.$invalid && !frmappSourceEdit.Title.$pristine,'has-success' : frmappSourceEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" ng-required="true" name="Title"
-                                        ng-model="appSource.selectedItem.Title" />
+                                    <input class="form-control" ng-required="true" name="Title" ng-model="appSource.selectedItem.Title" />
                                     <div class="m-t-xs" ng-show="frmappSourceEdit.Title.$invalid">
-                                        <small class="text-danger" ng-show="frmappSourceEdit.Title.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                        <small class="text-danger" ng-show="frmappSourceEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappSourceEdit.Title.$valid && frmappSourceEdit.Title.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappSourceEdit.Title.$invalid && !frmappSourceEdit.Title.$pristine) || frmappSourceEdit.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.Title.$valid && frmappSourceEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.Title.$invalid && !frmappSourceEdit.Title.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('ClassName')"
-                                ng-class="{'has-error' : frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine,'has-success' : frmappSourceEdit.ClassName.$valid}">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('ClassName')" ng-class="{'has-error' : frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine,'has-success' : frmappSourceEdit.ClassName.$valid}">
                                 <label class="col-sm-2 control-label"> {{'CLASS_NAME_EN'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control ltr-support" ng-required="true" name="ClassName"
-                                        ng-model="appSource.selectedItem.ClassName" />
+                                    <input class="form-control ltr-support" ng-required="true" name="ClassName" ng-model="appSource.selectedItem.ClassName" />
                                     <div class="m-t-xs" ng-show="frmappSourceEdit.ClassName.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappSourceEdit.ClassName.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                        <small class="text-danger" ng-show="frmappSourceEdit.ClassName.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappSourceEdit.ClassName.$valid && frmappSourceEdit.ClassName.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine) || frmappSourceEdit.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.ClassName.$valid && frmappSourceEdit.ClassName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('SourceNameGit')"
-                                ng-class="{'has-error' : frmappSourceEdit.SourceNameGit.$invalid && !frmappSourceEdit.SourceNameGit.$pristine,'has-success' : frmappSourceEdit.SourceNameGit.$valid}">
+
+
+
+                            
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('ModulesName')" ng-class="{'has-error' : frmappSourceEdit.ModulesName.$invalid && !frmappSourceEdit.ModulesName.$pristine,'has-success' : frmappSourceEdit.ModulesName.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Modules_name_en'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control ltr-support" ng-required="true" name="ModulesName" ng-model="appSource.selectedItem.ModulesName" />
+                                    <div class="m-t-xs" ng-show="frmappSourceEdit.ModulesName.$invalid">
+                                        <small class="text-danger" ng-show="frmappSourceEdit.ModulesName.$error.required"><i class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.ModulesName.$valid && frmappSourceEdit.ModulesName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.ModulesName.$invalid && !frmappSourceEdit.ModulesName.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                                Split Name By Char ,
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('SourceNameGit')" ng-class="{'has-error' : frmappSourceEdit.SourceNameGit.$invalid && !frmappSourceEdit.SourceNameGit.$pristine,'has-success' : frmappSourceEdit.SourceNameGit.$valid}">
                                 <label class="col-sm-2 control-label"> {{'SourceNameGit'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control ltr-support" ng-required="true" name="SourceNameGit"
-                                        ng-model="appSource.selectedItem.SourceNameGit" />
+                                    <input class="form-control ltr-support" ng-required="true" name="SourceNameGit" ng-model="appSource.selectedItem.SourceNameGit" />
                                     <div class="m-t-xs" ng-show="frmappSourceEdit.SourceNameGit.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappSourceEdit.SourceNameGit.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                        <small class="text-danger" ng-show="frmappSourceEdit.SourceNameGit.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappSourceEdit.SourceNameGit.$valid && frmappSourceEdit.SourceNameGit.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappSourceEdit.SourceNameGit.$invalid && !frmappSourceEdit.SourceNameGit.$pristine) || frmappSourceEdit.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.SourceNameGit.$valid && frmappSourceEdit.SourceNameGit.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.SourceNameGit.$invalid && !frmappSourceEdit.SourceNameGit.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('PackageName')"
-                                ng-class="{'has-error' : frmappSourceEdit.PackageName.$invalid && !frmappSourceEdit.PackageName.$pristine,'has-success' : frmappSourceEdit.PackageName.$valid}">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('PackageName')" ng-class="{'has-error' : frmappSourceEdit.PackageName.$invalid && !frmappSourceEdit.PackageName.$pristine,'has-success' : frmappSourceEdit.PackageName.$valid}">
                                 <label class="col-sm-2 control-label"> {{'PackageName'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control ltr-support" ng-required="true" name="PackageName"
-                                        ng-model="appSource.selectedItem.PackageName" />
+                                    <input class="form-control ltr-support" ng-required="true" name="PackageName" ng-model="appSource.selectedItem.PackageName" />
                                     <div class="m-t-xs" ng-show="frmappSourceEdit.PackageName.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappSourceEdit.PackageName.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                        <small class="text-danger" ng-show="frmappSourceEdit.PackageName.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappSourceEdit.PackageName.$valid && frmappSourceEdit.PackageName.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappSourceEdit.PackageName.$invalid && !frmappSourceEdit.PackageName.$pristine) || frmappSourceEdit.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.PackageName.$valid && frmappSourceEdit.PackageName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.PackageName.$invalid && !frmappSourceEdit.PackageName.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('IsPublish')">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('IsPublish')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="Required"
-                                                ng-model="appSource.selectedItem.IsPublish">{{'IS_PUBLIC'|lowercase|translate}}
+                                            <input type="checkbox" name="Required" ng-model="appSource.selectedItem.IsPublish">{{'IS_PUBLIC'|lowercase|translate}}
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('ForceUpdate')">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('ForceUpdate')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="Required"
-                                                ng-model="appSource.selectedItem.ForceUpdate">ملزم به آپدیت
+                                            <input type="checkbox" name="Required" ng-model="appSource.selectedItem.ForceUpdate">ملزم به آپدیت
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('UpdateSourceByGit')">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('UpdateSourceByGit')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="Required"
-                                                ng-model="appSource.selectedItem.UpdateSourceByGit">{{'UpdateSourceByGit'|lowercase|translate}}
+                                            <input type="checkbox" name="Required" ng-model="appSource.selectedItem.UpdateSourceByGit">{{'UpdateSourceByGit'|lowercase|translate}}
                                         </label>
                                     </div>
                                 </div>
@@ -150,37 +117,24 @@
 
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('FireBaseServerKey')">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('FireBaseServerKey')">
                                 <label class="col-sm-2 control-label">FireBase Server Key </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control ltr-support" name="FireBaseServerKey"
-                                        ng-model="appSource.selectedItem.FireBaseServerKey" />
+                                    <input class="form-control ltr-support" name="FireBaseServerKey" ng-model="appSource.selectedItem.FireBaseServerKey" />
                                 </div>
                             </div>
 
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appSource.CheckAccessEdit('DefaultAppId')"
-                                ng-class="{'has-error' : frmappSourceEdit.DefaultAppId.$invalid && !frmappSourceEdit.DefaultAppId.$pristine,'has-success' : frmappSourceEdit.DefaultAppId.$valid}">
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('DefaultAppId')" ng-class="{'has-error' : frmappSourceEdit.DefaultAppId.$invalid && !frmappSourceEdit.DefaultAppId.$pristine,'has-success' : frmappSourceEdit.DefaultAppId.$valid}">
                                 <label class="col-sm-2 control-label"> {{'DEFAULT_APP_ID'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control ltr-support" ng-required="true" name="DefaultAppId"
-                                        type="number" ng-model="appSource.selectedItem.DefaultAppId" />
+                                    <input class="form-control ltr-support" ng-required="true" name="DefaultAppId" type="number" ng-model="appSource.selectedItem.DefaultAppId" />
                                     <div class="m-t-xs" ng-show="frmappSourceEdit.DefaultAppId.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappSourceEdit.DefaultAppId.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                        <small class="text-danger" ng-show="frmappSourceEdit.DefaultAppId.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappSourceEdit.DefaultAppId.$valid && frmappSourceEdit.DefaultAppId.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappSourceEdit.DefaultAppId.$invalid && !frmappSourceEdit.DefaultAppId.$pristine) || frmappSourceEdit.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.DefaultAppId.$valid && frmappSourceEdit.DefaultAppId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.DefaultAppId.$invalid && !frmappSourceEdit.DefaultAppId.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </div>
@@ -190,14 +144,12 @@
                             <div class='hr-line-dashed'></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
-                                <a class="btn btn-primary uoload-file-m" href="" ng-click="appSource.openUploadModal()"
-                                    aria-label="Delete">
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="appSource.openUploadModal()" aria-label="Delete">
                                     {{'UPLOAD'|lowercase|translate}}
                                     <i class="fa fa-upload" aria-hidden="true"></i>
                                 </a>
                                 <div class="col-sm-8 smallFileManager">
-                                    <div rasha-file-picker-b="appSource.filePickerMainImage"
-                                        ng-model="appSource.selectedItem.LinkMainImageId">
+                                    <div rasha-file-picker-b="appSource.filePickerMainImage" ng-model="appSource.selectedItem.LinkMainImageId">
                                     </div>
                                 </div>
                             </div>
@@ -206,8 +158,7 @@
                     <tab heading="{{'تنظیمات پیش فرض مدیریت کل در ساخت ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appSource.includeHtmlBuilderAdmin"
-                                include-replace="ThemeFinderConfig|appSource.ConfigBuilderAdmin">
+                            <div class="form-group" ng-include="appSource.includeHtmlBuilderAdmin" include-replace="ThemeFinderConfig|appSource.ConfigBuilderAdmin">
 
                             </div>
 
@@ -216,8 +167,7 @@
                     <tab heading="{{'تنظیمات  پیش فرض مدیریت کل در اجرا ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appSource.includeHtmlRuntimeAdmin"
-                                include-replace="ThemeFinderConfig|appSource.ConfigRuntimeAdmin">
+                            <div class="form-group" ng-include="appSource.includeHtmlRuntimeAdmin" include-replace="ThemeFinderConfig|appSource.ConfigRuntimeAdmin">
 
                             </div>
 
@@ -226,8 +176,7 @@
                     <tab heading="{{'تنظیمات  پیش فرض مدیریت سایت در ساخت ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appSource.includeHtmlBuilderSite"
-                                include-replace="ThemeFinderConfig|appSource.ConfigBuilderSite">
+                            <div class="form-group" ng-include="appSource.includeHtmlBuilderSite" include-replace="ThemeFinderConfig|appSource.ConfigBuilderSite">
 
                             </div>
                         </div>
@@ -235,8 +184,7 @@
                     <tab heading="{{'تنظیمات پیش فرض مدیریت سایت در اجرا ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appSource.includeHtmlRuntimeSite"
-                                include-replace="ThemeFinderConfig|appSource.ConfigRuntimeSite">
+                            <div class="form-group" ng-include="appSource.includeHtmlRuntimeSite" include-replace="ThemeFinderConfig|appSource.ConfigRuntimeSite">
 
                             </div>
 
@@ -249,12 +197,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 1'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey1String"
-                                        ng-model="appSource.selectedItem.BuildKey1String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey1String" ng-model="appSource.selectedItem.BuildKey1String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey1Value"
-                                        ng-model="appSource.selectedItem.BuildKey1Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey1Value" ng-model="appSource.selectedItem.BuildKey1Value" placeholder="Value" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
@@ -262,12 +208,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 2'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey2String"
-                                        ng-model="appSource.selectedItem.BuildKey2String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey2String" ng-model="appSource.selectedItem.BuildKey2String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey2Value"
-                                        ng-model="appSource.selectedItem.BuildKey2Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey2Value" ng-model="appSource.selectedItem.BuildKey2Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -276,12 +220,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 3'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey3String"
-                                        ng-model="appSource.selectedItem.BuildKey3String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey3String" ng-model="appSource.selectedItem.BuildKey3String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey3Value"
-                                        ng-model="appSource.selectedItem.BuildKey3Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey3Value" ng-model="appSource.selectedItem.BuildKey3Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -290,12 +232,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 4'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey4String"
-                                        ng-model="appSource.selectedItem.BuildKey4String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey4String" ng-model="appSource.selectedItem.BuildKey4String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey4Value"
-                                        ng-model="appSource.selectedItem.BuildKey4Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey4Value" ng-model="appSource.selectedItem.BuildKey4Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -304,12 +244,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 5'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey5String"
-                                        ng-model="appSource.selectedItem.BuildKey5String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey5String" ng-model="appSource.selectedItem.BuildKey5String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey5Value"
-                                        ng-model="appSource.selectedItem.BuildKey5Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey5Value" ng-model="appSource.selectedItem.BuildKey5Value" placeholder="Value" />
                                 </div>
                             </div>
                         </div>
@@ -320,8 +258,7 @@
                 <div class="form-group">
                     <button class="btn btn-primary" ng-disabled="appSource.addRequested" type="submit">
                         {{'save'|lowercase|translate}} </button>
-                    <button class="btn btn-default" type="button"
-                        ng-click="appSource.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="appSource.closeModal()">{{'cancel'|lowercase|translate}}</button>
                 </div>
             </form>
         </div>

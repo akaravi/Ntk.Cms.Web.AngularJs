@@ -127,11 +127,11 @@
         }
         estatePropertyType.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/', estatePropertyType.selectedItem, "PUT").success(function (response) {
-            estatePropertyType.addRequested = true;
-            rashaErManage.checkAction(response);
             estatePropertyType.busyIndicator.isActive = false;
+            estatePropertyType.addRequested = false;
+            rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                estatePropertyType.addRequested = false;
+                
                 estatePropertyType.replaceItem(estatePropertyType.selectedItem.Id, response.Item);
                 estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems);
                 estatePropertyType.closeModal();

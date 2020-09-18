@@ -608,7 +608,8 @@
   "year": "سال ساخت",
   "titlepartition": "عنوان بخش بندی",
   "titlecreatedyaer": "عنوان سال ساخت شمسی",
-  
+  "modules_name_en":"نام ماژول های مرتبط",
+  "module_name_en":"نام ماژول  مرتبط",
   "you_dont_have_any_site": "شما هیچگونه سایتی ندارید",
   "you_dont_have_any_site_create_new_site": "شما هیچگونه سایتی ندارید یک سایت جدید ایجاد کنید",
   "your_access": "نوع دسترسی شما",
