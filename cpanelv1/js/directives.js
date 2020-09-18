@@ -5,8 +5,8 @@
 function fullScroll($timeout) {
     return {
         restrict: 'A',
-        link: function (scope, element) {
-            $timeout(function () {
+        link: function(scope, element) {
+            $timeout(function() {
                 element.slimscroll({
                     height: '100%',
                     railOpacity: 0.9
@@ -19,10 +19,11 @@ function fullScroll($timeout) {
 
 function guid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
-    
+
 }
 
 /**
@@ -34,8 +35,8 @@ function slimScroll($timeout) {
         scope: {
             boxHeight: '@'
         },
-        link: function (scope, element) {
-            $timeout(function () {
+        link: function(scope, element) {
+            $timeout(function() {
                 Check
                 element.slimscroll({
                     height: scope.boxHeight,
@@ -53,7 +54,7 @@ function slimScroll($timeout) {
 function landingScrollspy() {
     return {
         restrict: 'A',
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             element.scrollspy({
                 target: '.navbar-fixed-top',
                 offset: 80
@@ -70,8 +71,8 @@ function includeReplace($compile) {
         require: 'ngInclude',
         restrict: 'A',
         /* optional */
-        link: function (scope, element, attrs) {
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+        link: function(scope, element, attrs) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
             atr = attrs.includeReplace;
@@ -101,13 +102,13 @@ function includeReplace($compile) {
  */
 function pageTitle($rootScope, $timeout) {
     return {
-        link: function (scope, element) {
-            var listener = function (event, toState, toParams, fromState, fromParams) {
+        link: function(scope, element) {
+            var listener = function(event, toState, toParams, fromState, fromParams) {
                 // Default title - load on Dashboard 1
                 var title = 'NTK Admin | Cms Admin';
                 // Create your own title pattern
                 if (toState.data && toState.data.pageTitle) title = 'NTK Admin | ' + toState.data.pageTitle;
-                $timeout(function () {
+                $timeout(function() {
                     element.text(title);
                 });
             };
@@ -120,8 +121,8 @@ function lowerThanDate() {
     return {
         require: 'ngModel',
 
-        link: function (scope, element, attrs, ngModel) {
-            element.bind("focusout", function () {
+        link: function(scope, element, attrs, ngModel) {
+            element.bind("focusout", function() {
                 console.log(scope.$apply(attrs.date));
                 console.log(scope.$apply(attrs.comparsionDate));
             });
@@ -135,8 +136,8 @@ function resizable($compile) {
         //    scope: {
         //        rangeOptions: '='
         //    },
-        link: function (scope, element, attrs) {
-            scope.offset = function () {
+        link: function(scope, element, attrs) {
+            scope.offset = function() {
                 var rec = document.getElementById(config.mainDrag).getBoundingClientRect(),
                     bodyElt = document.body;
                 return {
@@ -197,35 +198,35 @@ function resizable($compile) {
             element.resizable({
                 handles: " n, e, s, w, ne, se, sw, nw"
             });
-            element.on('resizestop', function (evt, ui) {
+            element.on('resizestop', function(evt, ui) {
                 //if (scope.callback) { scope.callback(); }
                 console.log('resize stop');
 
                 //console.log(myconfig.name);
                 //console.log(myValue.vname);
             });
-            element.on('resizestart', function (evt, ui) {
+            element.on('resizestart', function(evt, ui) {
                 console.log('resize start');
             });
-            element.on('resizecreate', function (evt, ui) {
+            element.on('resizecreate', function(evt, ui) {
                 console.log('resize create');
             });
-            element.on('resize', function (evt, ui) {
+            element.on('resize', function(evt, ui) {
                 console.log('reisze');
             });
-            element.on('mouseover', function () {
+            element.on('mouseover', function() {
                 console.log('mouseover');
                 element.addClass('enter');
             });
-            element.on('mouseleave', function () {
+            element.on('mouseleave', function() {
                 console.log('mouseleft');
                 element.removeClass('enter');
             });
 
-            element.on('dblclick', function (el) {
+            element.on('dblclick', function(el) {
                 console.log(el);
             });
-            element.on('dragstop', function (event, ui) {
+            element.on('dragstop', function(event, ui) {
                 console.log('####DRAG stop####');
                 console.log(ui.position);
                 console.log(ui.offset);
@@ -243,7 +244,7 @@ function resizable($compile) {
                 containment: "#" + config.mainDrag
             });
             //@help@ function 
-            scope.valueSet = function (setValue, remove) {
+            scope.valueSet = function(setValue, remove) {
                 var idKey = elementLast.id;
                 //ntkDragg.valueSet( {  top: top, left: left, height: height, width: width, rotate: rotate });
                 for (var i = 0; i < config.values.length; i++) {
@@ -335,7 +336,7 @@ function resizableAAAAAAAAAAAAAAAA() {
             rangeOptions: '='
         },
         link: function postLink(scope, elem, attrs) {
-            scope.offset = function () {
+            scope.offset = function() {
                 var rec = document.getElementById('mainDrag').getBoundingClientRect(),
                     bodyElt = document.body;
                 return {
@@ -346,36 +347,36 @@ function resizableAAAAAAAAAAAAAAAA() {
             elem.resizable({
                 handles: " n, e, s, w, ne, se, sw, nw"
             });
-            elem.on('resizestop', function (evt, ui) {
+            elem.on('resizestop', function(evt, ui) {
                 //if (scope.callback) { scope.callback(); }
                 console.log('resize stop');
 
                 //console.log(myconfig.name);
                 //console.log(myValue.vname);
             });
-            elem.on('resizestart', function (evt, ui) {
+            elem.on('resizestart', function(evt, ui) {
                 console.log('resize start');
             });
-            elem.on('resizecreate', function (evt, ui) {
+            elem.on('resizecreate', function(evt, ui) {
                 console.log('resize create');
             });
-            elem.on('resize', function (evt, ui) {
+            elem.on('resize', function(evt, ui) {
                 console.log('reisze');
             });
-            elem.on('mouseover', function () {
+            elem.on('mouseover', function() {
                 console.log('mouseover');
                 elem.addClass('enter');
             });
-            elem.on('mouseleave', function () {
+            elem.on('mouseleave', function() {
                 console.log('mouseleft');
                 elem.removeClass('enter');
             });
 
-            elem.on('dblclick', function (el) {
+            elem.on('dblclick', function(el) {
                 console.log(el);
             });
 
-            elem.on('dragstop', function (event, ui) {
+            elem.on('dragstop', function(event, ui) {
                 console.log('####DRAG stop####');
                 console.log(ui.position);
                 console.log(ui.offset);
@@ -402,10 +403,10 @@ function resizableAAAAAAAAAAAAAAAA() {
 function sideNavigation($timeout) {
     return {
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
 
             // Call the metsiMenu plugin and plug it to sidebar navigation
-            $timeout(function () {
+            $timeout(function() {
                 element.metisMenu();
             });
 
@@ -424,10 +425,10 @@ $.ajax({
     async: false,
     url: cmsServerConfig.configApiServerPath + "CoreEnum/EnumRecordStatus",
     contentType: "application/json",
-    success: function (response) {
+    success: function(response) {
         itemRecordStatus = response.ListItems;
     },
-    error: function (data) {
+    error: function(data) {
         console.log(data);
     }
 });
@@ -440,9 +441,9 @@ function iboxTools($timeout) {
         restrict: 'A',
         scope: true,
         templateUrl: 'cpanelv1/ModuleCore/common/ibox_tools.html',
-        controller: function ($scope, $element) {
+        controller: function($scope, $element) {
             // Function for collapse ibox
-            $scope.showhide = function () {
+            $scope.showhide = function() {
                     var ibox = $element.closest('div.ibox');
                     var icon = $element.find('i:first');
                     var content = ibox.find('div.ibox-content');
@@ -450,13 +451,13 @@ function iboxTools($timeout) {
                     // Toggle icon from up to down
                     icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
                     ibox.toggleClass('').toggleClass('border-bottom');
-                    $timeout(function () {
+                    $timeout(function() {
                         ibox.resize();
                         ibox.find('[id^=map-]').resize();
                     }, 50);
                 },
                 // Function for close ibox
-                $scope.closebox = function () {
+                $scope.closebox = function() {
                     var ibox = $element.closest('div.ibox');
                     ibox.remove();
                 }
@@ -470,21 +471,21 @@ function minimalizaSidebar($timeout) {
     return {
         restrict: 'A',
         template: '<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="minimalize()"><i class="fa fa-bars"></i></a>',
-        controller: function ($scope, $element) {
-            $scope.minimalize = function () {
+        controller: function($scope, $element) {
+            $scope.minimalize = function() {
                 $("body").toggleClass("mini-navbar");
                 if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
                     // Hide menu in order to smoothly turn on when maximize menu
                     $('#side-menu').hide();
                     // For smoothly turn on menu
                     setTimeout(
-                        function () {
+                        function() {
                             $('#side-menu').fadeIn(500);
                         }, 100);
                 } else if ($('body').hasClass('fixed-sidebar')) {
                     $('#side-menu').hide();
                     setTimeout(
-                        function () {
+                        function() {
                             $('#side-menu').fadeIn(500);
                         }, 300);
                 } else {
@@ -502,22 +503,22 @@ function bindValidity($parse) {
         scope: false,
         controller: [
             '$scope', '$attrs',
-            function ($scope, $attrs) {
+            function($scope, $attrs) {
                 var assign = $parse($attrs.bindValidity).assign;
 
                 if (!angular.isFunction(assign)) {
                     throw new Error('the expression of bindValidity is not settable: ' + $attrs.bindValidity);
                 }
 
-                this.setFormController = function (formCtrl) {
+                this.setFormController = function(formCtrl) {
                     if (!formCtrl) {
                         throw new Error('bindValidity requires one of <form> or ng-form');
                     }
                     $scope.$watch(
-                        function () {
+                        function() {
                             return formCtrl.$invalid;
                         },
-                        function (newval) {
+                        function(newval) {
                             assign($scope, newval);
                         }
                     );
@@ -525,7 +526,7 @@ function bindValidity($parse) {
             }
         ],
         require: ['?form', '?ngForm', 'bindValidity'],
-        link: function (scope, elem, attrs, ctrls) {
+        link: function(scope, elem, attrs, ctrls) {
             var formCtrl, bindValidity;
             formCtrl = ctrls[0] || ctrls[1];
             bindValidity = ctrls[2];
@@ -540,7 +541,7 @@ function ionRangeSlider() {
         scope: {
             rangeOptions: '='
         },
-        link: function (scope, elem, attrs) {
+        link: function(scope, elem, attrs) {
             elem.ionRangeSlider(scope.rangeOptions);
         }
     }
@@ -549,7 +550,7 @@ function ionRangeSlider() {
 function numbersOnly() {
     return {
         require: 'ngModel',
-        link: function (scope, element, attr, ngModelCtrl) {
+        link: function(scope, element, attr, ngModelCtrl) {
             function fromUser(text) {
                 if (text) {
                     var transformedInput = text.replace(/[^0-9]/g, '');
@@ -570,14 +571,14 @@ function numbersOnly() {
 function currencyInput($filter, $browser) {
     return {
         require: 'ngModel',
-        link: function ($scope, $element, $attrs, ngModelCtrl) {
+        link: function($scope, $element, $attrs, ngModelCtrl) {
             $element.addClass('numberInput');
             var separators = {
                 'thousands': $filter('number')(1000).substr(1, 1),
                 'decimal': $filter('number')(1.1).substr(1, 1)
             }
             var decimalEntered = false;
-            var listener = function () {
+            var listener = function() {
                 var value = $element.val().split(separators.thousands).join('').split(separators.decimal).join('.');
                 if (decimalEntered) {
                     decimalEntered = false;
@@ -591,17 +592,17 @@ function currencyInput($filter, $browser) {
             }
 
             // This runs when we update the text field
-            ngModelCtrl.$parsers.push(function (viewValue) {
+            ngModelCtrl.$parsers.push(function(viewValue) {
                 return viewValue.split(separators.thousands).join('').split(separators.decimal).join('.');
             })
 
             // This runs when the model gets updated on the scope directly and keeps our view in sync
-            ngModelCtrl.$render = function () {
+            ngModelCtrl.$render = function() {
                 $element.val($filter('number')(ngModelCtrl.$viewValue, false));
             }
 
             $element.bind('change', listener)
-            $element.bind('keypress', function (event) {
+            $element.bind('keypress', function(event) {
                 var key = event.which;
                 // If the keys include the CTRL, SHIFT, ALT, or META keys, or the arrow keys, do nothing.
                 // This lets us support copy and paste too
@@ -622,7 +623,7 @@ function currencyInput($filter, $browser) {
                 $browser.defer(listener) // Have to do this or changes don't get picked up properly
             })
 
-            $element.bind('paste cut', function () {
+            $element.bind('paste cut', function() {
                 $browser.defer(listener)
             })
         }
@@ -632,7 +633,7 @@ function currencyInput($filter, $browser) {
 function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             atr = $(element).attr('rasha-autocomplete');
             if (!atr) {
@@ -700,7 +701,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
             //$(element).remove();//.html(el.innerHTML);
             pr.prepend(el);
 
-            $(".configzindex").each(function (key, item) {
+            $(".configzindex").each(function(key, item) {
                 var context = $(this);
                 context.css('z-index', maxIndex - curIndex);
                 curIndex = curIndex + 1;
@@ -708,7 +709,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
 
 
             config.filterText = '';
-            config.openClosePopup = function () {
+            config.openClosePopup = function() {
                 if (config.openAddNewDialogClicked == true) {
                     config.openAddNewDialogClicked = false;
                     return;
@@ -721,19 +722,19 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                 }
             }
 
-            config.getSelectedRow = function () {
+            config.getSelectedRow = function() {
                 return config.selectedItem;
             }
 
 
 
 
-            config.onScriptLoaded = function () {
+            config.onScriptLoaded = function() {
                 var deferred = $q.defer();
                 scope.$apply(deferred.resolve());
             }
             config.openAddNewDialogClicked = false;
-            config.openAddNewDialog = function () {
+            config.openAddNewDialog = function() {
                 config.openAddNewDialogClicked = true;
                 var currentState = $state.current.name;
                 var obj = $state.get('index.' + config.url.toLowerCase());
@@ -756,7 +757,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                 request.controller = obj.controller;
                 var t = new Date();
                 request.expireDate = t.getSeconds() + 10;
-                request.idChangedOrCanceled = function (id) {
+                request.idChangedOrCanceled = function(id) {
                     $modal.close();
                     if (id != undefined && id != null) {
                         config.scope.selectedItem[config.fId] = id;
@@ -769,7 +770,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                 $modal.open({
                     template: '<div class="modal-content"><div class="modal-body"><div class="row"><div class="col-sm-12 b-r"><iframe src="' + document.location.origin + '/admin.html#' + obj.name.replace('.', '/') + '" class="col-sm-12" style="min-height:600px" /></div></div></div></div>',
                     scope: config.rootScop
-                }).result.then(function (result) {
+                }).result.then(function(result) {
                     var id = localStorage.getItem('AddRequestID');
                     alert(id);
                 });
@@ -778,13 +779,13 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
 
 
             }
-            config.columnOptions.selectionChanged = function () {
+            config.columnOptions.selectionChanged = function() {
                 if (config.columnOptions.selectedRow.item) {
                     config.getDataFromSelection(config.columnOptions.selectedRow.item);
                 }
             }
 
-            config.getDataFromSelection = function (item) {
+            config.getDataFromSelection = function(item) {
                 config.closePopup();
                 config.selectedItem = item;
                 if (config.displayMember.indexOf(',') > 0) {
@@ -807,7 +808,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
             config.ViewModel = {};
             config.emptyModel = {};
 
-            config.initValue = function () {
+            config.initValue = function() {
                 var defId = config.scope.selectedItem[config.fId];
                 if (!defId)
                     return;
@@ -820,7 +821,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                 };
 
                 ajax.call(cmsServerConfig.configApiServerPath + config.url + '/', defId, 'GET')
-                    .success(function (response) {
+                    .success(function(response) {
                         // Create a ViewModel with null values
                         config.ViewModel = response.Item;
                         config.emptyModel = jQuery.extend({}, config.ViewModel);
@@ -833,13 +834,13 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                         if (response.Item) {
                             config.getDataFromSelection(response.Item);
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                         config.isDisabledSearch = false;
                     });
             }
 
-            config.keypress = function (event) {
+            config.keypress = function(event) {
                 if (event.keyCode == 13) {
                     event.preventDefault();
                     config.openPopup();
@@ -851,13 +852,13 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
 
                 //console.log(event);
             }
-            config.textChanged = function () {
+            config.textChanged = function() {
                 config.columnOptions.filterText = config.filterText;
                 if (config.dropDownOpened) {
                     //#help/ اضافه کردن ردیف جدید اطلاعات
                     var findItem = false;
                     if (config.columnOptions.data && config.columnOptions.data.length > 0)
-                        $.each(config.columnOptions.data, function (key, item) {
+                        $.each(config.columnOptions.data, function(key, item) {
                             if (config.columnOptions.filterSearch(item))
                                 findItem = true;
                         });
@@ -865,10 +866,10 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                         config.openPopup();
                 }
             }
-            config.closePopup = function () {
+            config.closePopup = function() {
                 config.dropDownOpened = false;
             }
-            config.openPopup = function () {
+            config.openPopup = function() {
                 var ctxData = config.filterText;
                 if (!ctxData)
                     ctxData = '';
@@ -898,7 +899,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                                 data.Filters.push({
                                     PropertyName: config.columnOptions.columns[i].name,
                                     SearchType: 10,
-                                    IntValue1: config.filterText,
+                                    value: config.filterText,
                                     ClauseType: 1
                                 });
                         }
@@ -906,14 +907,14 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                             data.Filters.push({
                                 PropertyName: config.columnOptions.columns[i].name,
                                 SearchType: 5,
-                                StringValue: config.filterText,
+                                value: config.filterText,
                                 ClauseType: 1
                             });
                     }
                 }
 
                 ajax.call(cmsServerConfig.configApiServerPath + config.url + '/' + data.Action, data, 'POST')
-                    .success(function (response) {
+                    .success(function(response) {
                         config.isDisabledSearch = false;
                         rashaErManage.checkAction(response);
                         if (response.ListItems) {
@@ -941,7 +942,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                             config.columnOptions.fillData(response.ListItems, response.Access);
                             //}
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                         config.isDisabledSearch = false;
                     });
@@ -957,7 +958,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
 function rashaGrid($compile, $rootScope, ajax) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             atr = $(element).attr('rasha-grid');
             if (!atr) {
@@ -1118,14 +1119,14 @@ function rashaGrid($compile, $rootScope, ajax) {
             }
             if (!config.multiSelect)
                 config.multiSelect = false;
-            config.textChanged = function () {
+            config.textChanged = function() {
                 if (config.selectedRow.rowData) {
                     config.selectedRow.rowData.isSelected = false;
                     config.selectedRow = {};
                 }
             }
 
-            config.pageChanged = function (page) {
+            config.pageChanged = function(page) {
                 config.advancedSearchData.engine.CurrentPageNumber = config.currentPageNumber;
                 config.reGetAll();
             };
@@ -1145,7 +1146,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             var template = '';
             config.rowTemplates = '';
             config.totalcolumns = 0;
-            angular.forEach(config.columns, function (item, key) {
+            angular.forEach(config.columns, function(item, key) {
                 if (!item.width) {
                     config.totalcolumns = config.totalcolumns + 1;
                 }
@@ -1156,7 +1157,7 @@ function rashaGrid($compile, $rootScope, ajax) {
 
             if (config.totalcolumns > 0)
                 config.percentWidth = 100 / config.totalcolumns;
-            angular.forEach(config.columns, function (item, key) {
+            angular.forEach(config.columns, function(item, key) {
                 item.srcThumbnail = cmsServerConfig.configRouteThumbnails + '/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
                 if (!item.visible)
                     item.visible = true;
@@ -1186,34 +1187,70 @@ function rashaGrid($compile, $rootScope, ajax) {
                                 template = template.replace("??cur??", "");
                             }
                         } else {
-                            if (item.isCheckBox) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
-                            } else if (item.isDateTime) {
-                                var dateFormat = item.dateTimeFormat;
-                                if (!dateFormat)
-                                    dateFormat = 'HH:mm jYY/jMM/jDD';
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
-                            } else if (item.isDate) {
-                                var dateFormat = item.dateTimeFormat;
-                                if (!dateFormat)
-                                    dateFormat = 'jYY/jMM/jDD';
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
-                            } else if (item.excerpt) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
-                            } else if (item.isRecordStatus) {
-                                template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
-                            } else if (item.isThumbnail) {
-                                template = '<td style="{{x.style}}"><div  ng-show="{{' + item.visible + '}}">' +
-                                    '<span custom-popover popover-id="{{x.' + item.name + '}}" popover-title="{{x.' + item.name + '}}" popover-placement="top" popover-iconsrc="/CmsFiles/img/default-grid-img.png" data-width="' + item.widthImg + '" data-height="' + item.heightImg + '"></span>' + '</div></td>';
-                            } else if (item.isThumbnailByFild) {
-                                template = '<td style="{{x.style}}" ><div rasha-thumbnail="' + item.name + ':' + item.imageWidth + ':' + item.imageHeight + '" ng-model="x.' + item.name + '" ></div></td>';
-                            } else {
-                                if (item.filter != undefined) {
-                                    template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + ' | ' + item.filter + '}}</div></td>';
+                            if (item.displayForce) {
+                                //displayForce
+                                if (item.isCheckBox) {
+                                    template = '<td style="{{x.style}}"><div  ><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
+                                } else if (item.isDateTime) {
+                                    var dateFormat = item.dateTimeFormat;
+                                    if (!dateFormat)
+                                        dateFormat = 'HH:mm jYY/jMM/jDD';
+                                    template = '<td style="{{x.style}}"><div  >{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                } else if (item.isDate) {
+                                    var dateFormat = item.dateTimeFormat;
+                                    if (!dateFormat)
+                                        dateFormat = 'jYY/jMM/jDD';
+                                    template = '<td style="{{x.style}}"><div  >{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                } else if (item.excerpt) {
+                                    template = '<td style="{{x.style}}"><div >{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
+                                } else if (item.isRecordStatus) {
+                                    template = '<td style="{{x.style}}"><div  ><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
+                                } else if (item.isThumbnail) {
+                                    template = '<td style="{{x.style}}"><div  ng-show="{{' + item.visible + '}}">' +
+                                        '<span custom-popover popover-id="{{x.' + item.name + '}}" popover-title="{{x.' + item.name + '}}" popover-placement="top" popover-iconsrc="/CmsFiles/img/default-grid-img.png" data-width="' + item.widthImg + '" data-height="' + item.heightImg + '"></span>' + '</div></td>';
+                                } else if (item.isThumbnailByFild) {
+                                    template = '<td style="{{x.style}}" ><div rasha-thumbnail="' + item.name + ':' + item.imageWidth + ':' + item.imageHeight + '" ng-model="x.' + item.name + '" ></div></td>';
                                 } else {
-                                    template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + '}}</div></td>';
-                                }
+                                    if (item.filter != undefined) {
+                                        template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + ' | ' + item.filter + '}}</div></td>';
+                                    } else {
+                                        template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + '}}</div></td>';
+                                    }
 
+                                }
+                                //displayForce
+                            } else {
+                                //No displayForce
+                                if (item.isCheckBox) {
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
+                                } else if (item.isDateTime) {
+                                    var dateFormat = item.dateTimeFormat;
+                                    if (!dateFormat)
+                                        dateFormat = 'HH:mm jYY/jMM/jDD';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                } else if (item.isDate) {
+                                    var dateFormat = item.dateTimeFormat;
+                                    if (!dateFormat)
+                                        dateFormat = 'jYY/jMM/jDD';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                } else if (item.excerpt) {
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
+                                } else if (item.isRecordStatus) {
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
+                                } else if (item.isThumbnail) {
+                                    template = '<td style="{{x.style}}"><div  ng-show="{{' + item.visible + '}}">' +
+                                        '<span custom-popover popover-id="{{x.' + item.name + '}}" popover-title="{{x.' + item.name + '}}" popover-placement="top" popover-iconsrc="/CmsFiles/img/default-grid-img.png" data-width="' + item.widthImg + '" data-height="' + item.heightImg + '"></span>' + '</div></td>';
+                                } else if (item.isThumbnailByFild) {
+                                    template = '<td style="{{x.style}}" ><div rasha-thumbnail="' + item.name + ':' + item.imageWidth + ':' + item.imageHeight + '" ng-model="x.' + item.name + '" ></div></td>';
+                                } else {
+                                    if (item.filter != undefined) {
+                                        template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + ' | ' + item.filter + '}}</div></td>';
+                                    } else {
+                                        template = '<td style="{{x.style}}" ng-show="{{' + item.visible + '}}"><div>{{x.' + item.name + '}}</div></td>';
+                                    }
+
+                                }
+                                //No displayForce
                             }
                         }
                     } else {
@@ -1233,20 +1270,20 @@ function rashaGrid($compile, $rootScope, ajax) {
 
             if (config.detailGrid) {
                 config.totalcolumns = 0;
-                angular.forEach(config.columns, function (item, key) {
+                angular.forEach(config.columns, function(item, key) {
                     config.totalcolumns = config.totalcolumns + 1;
                 });
                 config.rowTemplates += "</tr><tr ng-show='x.rowOption.showDetails'><td colspan='" + config.totalcolumns + "'><div class='animated fadeInRight' id='{{x.rowOption.Id}}'>" + "</div></td>";
 
-                config.detailGrid.loadTemplate = function (row) {
+                config.detailGrid.loadTemplate = function(row) {
                     $('#' + row.rowOption.Id).empty();
                     $.ajax({
                         url: config.detailGrid.templatePath,
                         context: document.body,
-                        success: function (response) {
+                        success: function(response) {
                             var content = response;
                             var eldata = $compile(content)(scope);
-                            angular.forEach(config.data, function (item, key) {
+                            angular.forEach(config.data, function(item, key) {
                                 if (item != row) {
                                     if (item.rowOption.showDetails) {
                                         $('#' + item.rowOption.Id).empty();
@@ -1280,7 +1317,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             var el = $compile(config.customTemplate.replace("??rowTemplates??", config.rowTemplates))(scope);
             element.append(el);
             if (!config.showInSelector) {
-                $(window).bind("scroll", function () {
+                $(window).bind("scroll", function() {
                     var $fixedHeader = $("#" + config.getUniqueId);
                     var tableOffset = 0;
                     if ($("#" + config.firstuniqueId).offset() != undefined && $("#" + config.firstuniqueId).offset().top != undefined)
@@ -1307,22 +1344,15 @@ function rashaGrid($compile, $rootScope, ajax) {
                     }
                 });
             }
-            // config.Accesschanged = function () {
 
-            //     for (var i = 0; i < config.columns.length; i++) {
-            //         if (config.columns[i].displayForce == true && config.Access != undefined && config.Access.AccessWatchField != undefined && config.Access.AccessWatchField.indexOf(config.columns[i].name) < 0) {
-            //             config.Access.AccessWatchField.push(config.columns[i].name);
-            //         }
-            //     }
-            // };
-            config.selectNextRow = function () {
+            config.selectNextRow = function() {
 
             };
-            config.selectPrevRow = function () {
+            config.selectPrevRow = function() {
 
             };
-            config.changeSortStyle = function (col) {
-                angular.foeEach(config.columns, function (key, item) {
+            config.changeSortStyle = function(col) {
+                angular.foeEach(config.columns, function(key, item) {
                     if (item.name !== col.name) {
                         item.sortState = 0;
                         item.sortDescVisible = false;
@@ -1353,16 +1383,15 @@ function rashaGrid($compile, $rootScope, ajax) {
                 ////console.log(col);
             };
 
-            config.fillData = function (rowResponse, resultAccessSet) {
+            config.fillData = function(rowResponse, resultAccessSet) {
 
                 if (resultAccessSet && resultAccessSet != undefined) config.Access = resultAccessSet;
 
                 var response = [];
-                if (rowResponse && rowResponse != undefined)
-                {
-                    for(var k in rowResponse) response[k]=jQuery.extend( {},rowResponse[k] );
+                if (rowResponse && rowResponse != undefined) {
+                    for (var k in rowResponse) response[k] = jQuery.extend({}, rowResponse[k]);
                 }
-                   
+
 
 
 
@@ -1381,41 +1410,41 @@ function rashaGrid($compile, $rootScope, ajax) {
                     $fixedHeader.hide();
                 }
                 //access
-                config.CheckAccessWatch = function (fieldName) {
+                config.CheckAccessWatch = function(fieldName) {
                     if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
                     var retOut = false;
-                    $.each(config.Access.FieldsInfo, function (index, column) {
+                    $.each(config.Access.FieldsInfo, function(index, column) {
                         if (column.FieldName == fieldName)
                             retOut = column.AccessWatchField;
                     });
                     return retOut;
                 }
-                config.CheckAccessSearch = function (fieldName) {
+                config.CheckAccessSearch = function(fieldName) {
                     if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
                     var retOut = false;
-                    $.each(config.Access.FieldsInfo, function (index, column) {
+                    $.each(config.Access.FieldsInfo, function(index, column) {
                         if (column.FieldName == fieldName)
                             retOut = column.AccessSearchField;
                     });
                     return retOut;
                 }
-                config.CheckAccessEdit = function (fieldName) {
+                config.CheckAccessEdit = function(fieldName) {
                     if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
                     var retOut = false;
-                    $.each(config.Access.FieldsInfo, function (index, column) {
+                    $.each(config.Access.FieldsInfo, function(index, column) {
                         if (column.FieldName == fieldName)
                             retOut = column.AccessEditField;
                     });
                     return retOut;
                 }
-                config.CheckAccessAdd = function (fieldName) {
+                config.CheckAccessAdd = function(fieldName) {
                     if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
                     var retOut = false;
-                    $.each(config.Access.FieldsInfo, function (index, column) {
+                    $.each(config.Access.FieldsInfo, function(index, column) {
                         if (column.FieldName == fieldName)
                             retOut = column.AccessAddField;
                     });
@@ -1424,7 +1453,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                 //access
 
 
-                angular.forEach(response, function (item, key) {
+                angular.forEach(response, function(item, key) {
                     //for (var key in item) {
                     //    var value = item[key];
                     //    if (typeof value === 'string' && value.length > 50)
@@ -1450,11 +1479,11 @@ function rashaGrid($compile, $rootScope, ajax) {
             };
 
             config.selectedRow = {}
-            config.selectionChanged = function () {
+            config.selectionChanged = function() {
                 if (config.onRowSelected) config.onRowSelected();
             }
-            config.selectRow = function (opt) {
-                $.each(config.data, function (key, item) {
+            config.selectRow = function(opt) {
+                $.each(config.data, function(key, item) {
                     if (!item.rowOption) {
                         item.rowOption = {
                             isSelected: false,
@@ -1493,18 +1522,18 @@ function rashaGrid($compile, $rootScope, ajax) {
 
             }
             var columnstoFilter = '';
-            $.each(config.columns, function (key, item) {
+            $.each(config.columns, function(key, item) {
                 columnstoFilter += item.name + ",";
             });
 
-            config.filterSearch = function (row) {
+            config.filterSearch = function(row) {
                 if (!config.filterText)
                     return row;
                 var str = '';
 
                 var seen = [];
 
-                str = JSON.stringify(row, function (key, val) {
+                str = JSON.stringify(row, function(key, val) {
                     if (columnstoFilter.indexOf(key) < 0)
                         return;
                     if (val != null && typeof val == "object") {
@@ -1527,9 +1556,9 @@ function rashaGrid($compile, $rootScope, ajax) {
 function rashaRecordStatus($compile) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
 
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
             var atr = '';
@@ -1567,7 +1596,7 @@ function rashaRecordStatus($compile) {
 function queryBuilder($compile) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             atr = $(element).attr('query-builder');
             if (!atr) {
@@ -1592,9 +1621,9 @@ function queryBuilder($compile) {
                 return;
             }
 
-            config.showAdvancedSearchPanel = function () {
+            config.showAdvancedSearchPanel = function() {
                 $("#filter-btn-icon").toggleClass('fa-toggle-off fa-toggle-on');
-                $('#' + element[0].id + 'Panel').fadeToggle('fast', function () {
+                $('#' + element[0].id + 'Panel').fadeToggle('fast', function() {
                     if (!$('#' + element[0].id + 'Panel').is(":visible")) {
                         config.gridOptions.advancedSearchData.engine.Filters = null;
                         config.gridOptions.advancedSearchData.engine.Filters = [];
@@ -1603,44 +1632,44 @@ function queryBuilder($compile) {
                         config.setFields();
                 });
             }
-            config.CheckAccessWatch = function (fieldName) {
+            config.CheckAccessWatch = function(fieldName) {
                 var retOut = false;
-                $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
+                $.each(config.gridOptions.Access.FieldsInfo, function(index, column) {
                     if (column.FieldName == fieldName)
                         retOut = column.AccessWatchField;
                 });
                 return retOut;
             }
-            config.CheckAccessSearch = function (fieldName) {
+            config.CheckAccessSearch = function(fieldName) {
                 var retOut = false;
-                $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
+                $.each(config.gridOptions.Access.FieldsInfo, function(index, column) {
                     if (column.FieldName == fieldName)
                         retOut = column.AccessSearchField;
                 });
                 return retOut;
             }
-            config.CheckAccessEdit = function (fieldName) {
+            config.CheckAccessEdit = function(fieldName) {
                 var retOut = false;
-                $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
+                $.each(config.gridOptions.Access.FieldsInfo, function(index, column) {
                     if (column.FieldName == fieldName)
                         retOut = column.AccessEditField;
                 });
                 return retOut;
             }
-            config.CheckAccessAdd = function (fieldName) {
+            config.CheckAccessAdd = function(fieldName) {
                 var retOut = false;
-                $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
+                $.each(config.gridOptions.Access.FieldsInfo, function(index, column) {
                     if (column.FieldName == fieldName)
                         retOut = column.AccessAddField;
                 });
                 return retOut;
             }
-            config.setFields = function () {
+            config.setFields = function() {
 
                 //Dynamically generate filters for QueryBuilder, based on columns of the grid
                 var fields = [];
                 if (config.gridOptions.Access.FieldsInfo)
-                    $.each(config.gridOptions.Access.FieldsInfo, function (index, column) {
+                    $.each(config.gridOptions.Access.FieldsInfo, function(index, column) {
                         if (column.AccessSearchField) {
                             ///AccessSearchField
                             if (column.FieldType === 'System.Int32' || column.FieldType === 'System.Int64') {
@@ -1719,7 +1748,7 @@ function queryBuilder($compile) {
             // Call queryBuilder() with options for QueryBuilder plugin
 
             // Get rules in a Json format and send it to the server side
-            config.getRules = function () {
+            config.getRules = function() {
                 var result = $(element).queryBuilder("getRules");
                 Filters = [];
                 var count = $("#count-check").is(':checked'); // Get count نمایش آمار
@@ -1741,7 +1770,7 @@ function queryBuilder($compile) {
                             };
                             else Filter = {
                                 PropertyName: propertyName,
-                                IntValue1: value,
+                                value: value,
                                 SearchType: searchType,
                                 ClauseType: clauseType
                             };
@@ -1750,21 +1779,20 @@ function queryBuilder($compile) {
                             if (result.rules[i].typeChild == "ObjectId") {
                                 Filter = {
                                     PropertyName: propertyName,
-                                    ObjectIdValue: value,
+                                    value: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
                             } else {
                                 if (searchType == 4) Filter = {
                                     PropertyName: propertyName,
-                                    StringValue: value,
-                                    StringValue2: value,
+                                    value: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
                                 else Filter = {
                                     PropertyName: propertyName,
-                                    StringValue: value,
+                                    value: value,
                                     SearchType: searchType,
                                     ClauseType: clauseType
                                 };
@@ -1773,14 +1801,13 @@ function queryBuilder($compile) {
                         } else if (result.rules[i].type == "boolean") { // Type is boolean
                             if (searchType == 4) Filter = {
                                 PropertyName: propertyName,
-                                BooleanValue: value[0],
-                                BooleanValue2: value[1],
+                                value: value[0],
                                 SearchType: searchType,
                                 ClauseType: clauseType
                             };
                             else Filter = {
                                 PropertyName: propertyName,
-                                BooleanValue: value,
+                                value: value,
                                 SearchType: searchType,
                                 ClauseType: clauseType
                             };
@@ -1840,7 +1867,7 @@ function queryBuilder($compile) {
             }
 
             // Get rules in a Json format and send it to the server side
-            config.setRules = function () {
+            config.setRules = function() {
                 if (user_rules != null) {
                     //console.log("setRules called!");
                     $(element).queryBuilder("setRules", user_rules);
@@ -1848,7 +1875,7 @@ function queryBuilder($compile) {
             }
 
             // Get rules in a Json format and send it to the server side
-            config.saveRules = function () {
+            config.saveRules = function() {
                 //console.log("saveRules called!");
                 var result = $(element).queryBuilder("getRules");
                 if (!$.isEmptyObject(result)) {
@@ -1857,11 +1884,11 @@ function queryBuilder($compile) {
             }
 
             // Reset the queryBuilder to its initial condition (All the conditions will be removed)
-            config.reset = function () {
+            config.reset = function() {
                 var result = $(element).queryBuilder("reset");
             }
             // Establishing an event for QueryBuilder before generating the Json file
-            $(element).on("getRules.queryBuilder.filter", function (e, level) {
+            $(element).on("getRules.queryBuilder.filter", function(e, level) {
                 for (var i = 0; i < e.value.rules.length; i++) {
                     if (e.value.rules[i].type === "date") {
                         var m = moment(e.value.rules[i].value, 'jYYYY/jM/jD HH:mm:ss');
@@ -1880,10 +1907,10 @@ function rashaMenuRight($compile) {
     return {
 
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
             scope.rashaMenuRun = '';
             //scope.fillItem = function ()
-            scope.$watch("rashaMenuRun", function (newValue, oldValue) {
+            scope.$watch("rashaMenuRun", function(newValue, oldValue) {
                 if (scope.rashaMenuRun == '') return;
                 scope.customTemplate = '<ul side-navigation class="nav " id="side-menu" style="background-color: rgba(0,0,0,.125);">' +
                     '<li class="nav-header">' +
@@ -1915,7 +1942,7 @@ function rashaMenuRight($compile) {
                     '<li>' +
                     '<a ui-sref="index.main" href="#/index/main" > <span class="nav-label" style="margin-left: 5px; margin-right: 0px; color: #fff !important; "><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;داشبورد</span> <span class="fa arrow"></span></a>' +
                     '</li>';
-                angular.forEach(scope.MenuRightListItems, function (item, key) {
+                angular.forEach(scope.MenuRightListItems, function(item, key) {
                     if (item.TitleML)
                         item.Title = item.TitleML;
 
@@ -1923,7 +1950,7 @@ function rashaMenuRight($compile) {
                     scope.customTemplate = scope.customTemplate + '<li ng-class="{active: $state.includes(' + "'" + item.AddressLink + "'" + ')}" >' +
                         '<a href="" ng-click="navCtrl.OnHeaderMenuClick(' + item.Id + ')"> <span class="nav-label" style="margin-left: 5px; margin-right: 0px; color: #fff !important; "><i class="' + item.Icon + '" aria-hidden="true" style="color:' + item.Color + '"></i>&nbsp;&nbsp;' + item.Title + '</span> <span class="fa arrow"></span></a>' +
                         '<ul class="nav nav-second-level" ng-class="{in: $state.includes(' + "'" + item.AddressLink + "'" + ')}">';
-                    angular.forEach(item.Children, function (item2, key2) {
+                    angular.forEach(item.Children, function(item2, key2) {
                         if (item2 != null && (item2.MenuPlaceType == 3 || item2.MenuPlaceType == 0)) {
                             if (item2.Children && item2.Children.length > 0) {
                                 if (item2.TitleML)
@@ -1958,10 +1985,10 @@ function rashaMenuLeft($compile) {
     return {
 
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
             scope.rashaMenuRun = '';
             //scope.fillItem = function ()
-            scope.$watch("rashaMenuRun", function (newValue, oldValue) {
+            scope.$watch("rashaMenuRun", function(newValue, oldValue) {
                 if (scope.rashaMenuRun == '') return;
                 scope.customTemplate = '<ul side-navigation class="nav metismenu" id="side-menu">' +
                     '<li class="nav-header">' +
@@ -1990,11 +2017,11 @@ function rashaMenuLeft($compile) {
                     '<i class="fa fa-circle"></i>' +
                     '</div>' +
                     '</li>';
-                angular.forEach(scope.MenuLeftListItems, function (item, key) {
+                angular.forEach(scope.MenuLeftListItems, function(item, key) {
                     scope.customTemplate = scope.customTemplate + '<li ng-class="{active: $state.includes(' + "'" + item.AddressLink + "'" + ')}" >' +
                         '<a href=""> <span class="nav-label" style="margin-left: 5px; margin-right: 0px; color: #fff !important; "><i class="' + item.Icon + '" aria-hidden="true"></i>&nbsp;&nbsp;' + item.Title + '</span> <span class="fa arrow"></span></a>' +
                         '<ul class="nav nav-second-level" ng-class="{in: $state.includes(' + "'" + item.AddressLink + "'" + ')}">';
-                    angular.forEach(item.Children, function (item2, key2) {
+                    angular.forEach(item.Children, function(item2, key2) {
 
                         if (item2.Children && item2.Children.length > 0) {
 
@@ -2027,10 +2054,10 @@ function rashaMenuUp($compile) {
     return {
 
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
             scope.rashaMenuRun = '';
             //scope.fillItem = function ()
-            scope.$watch("rashaMenuRun", function (newValue, oldValue) {
+            scope.$watch("rashaMenuRun", function(newValue, oldValue) {
                 if (scope.rashaMenuRun == '') return;
                 scope.customTemplate = '<ul side-navigation class="nav navbar-nav" id="side-menu" style="background: #273b4b;">' +
                     '<li>' +
@@ -2050,11 +2077,11 @@ function rashaMenuUp($compile) {
                     '</li>';
 
 
-                angular.forEach(scope.MenuUpListItems, function (item, key) {
+                angular.forEach(scope.MenuUpListItems, function(item, key) {
                     scope.customTemplate = scope.customTemplate + '<li class="dropdown" style="color: #fff" ng-class="{active: $state.includes(' + "'" + item.AddressLink + "'" + ')}" >' +
                         '<a class="dropdown-toggle" data-toggle="dropdown" style="color: #fff"  href=""> <span class="nav-label" style=" color: #fff !important; "><i class="' + item.Icon + '" aria-hidden="true"></i>&nbsp;&nbsp;' + item.Title + '</span> <span class="fa arrow"></span></a>' +
                         '<ul class="dropdown-menu" style="background: #273b4b;" ng-class="{in: $state.includes(' + "'" + item.AddressLink + "'" + ')}">';
-                    angular.forEach(item.Children, function (item2, key2) {
+                    angular.forEach(item.Children, function(item2, key2) {
 
                         if (item2.Children && item2.Children.length > 0) {
 
@@ -2087,10 +2114,10 @@ function rashaMenuDown($compile) {
     return {
 
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
             scope.rashaMenuRun = '';
             //scope.fillItem = function ()
-            scope.$watch("rashaMenuRun", function (newValue, oldValue) {
+            scope.$watch("rashaMenuRun", function(newValue, oldValue) {
                 if (scope.rashaMenuRun == '') return;
                 scope.customTemplate = '<ul side-navigation class="nav navbar-nav" id="side-menu" style="background: #273b4b;">' +
                     '<li>' +
@@ -2110,11 +2137,11 @@ function rashaMenuDown($compile) {
                     '</li>';
 
 
-                angular.forEach(scope.MenuDownListItems, function (item, key) {
+                angular.forEach(scope.MenuDownListItems, function(item, key) {
                     scope.customTemplate = scope.customTemplate + '<li class="dropdown" style="" ng-class="{active: $state.includes(' + "'" + item.AddressLink + "'" + ')}" >' +
                         '<a class="dropdown-toggle" style="color: #fff" data-toggle="dropdown"  href=""> <span class="nav-label" style=" color: #fff !important; "><i class="' + item.Icon + '" aria-hidden="true"></i>&nbsp;&nbsp;' + item.Title + '</span> <span class="fa arrow"></span></a>' +
                         '<ul class="dropdown-menu" style="background: #273b4b;style="color: #fff"" ng-class="{in: $state.includes(' + "'" + item.AddressLink + "'" + ')}">';
-                    angular.forEach(item.Children, function (item2, key2) {
+                    angular.forEach(item.Children, function(item2, key2) {
 
                         if (item2.Children && item2.Children.length > 0) {
 
@@ -2141,9 +2168,9 @@ function rashaMenuDown($compile) {
     }
 }
 //
-chlidmaker = function (obj) {
+chlidmaker = function(obj) {
     var temp = "";
-    $.each(obj, function (key, value) {
+    $.each(obj, function(key, value) {
         //if (value.Title != null && value.Title != undefined) value.Title = value.Title.toLowerCase();
         if (value.AddressLink != null && value.AddressLink != undefined) value.AddressLink = value.AddressLink.toLowerCase();
         temp = temp + ' <li ng-show="' + value.ShowInMenu + '"><a  ui-sref="index.' + value.AddressLink + '">' + value.Title + '</a></li>';
@@ -2154,7 +2181,7 @@ var lastErroLogin = Date.now();
 
 function rashaErManage($state, notify, SweetAlert) {
     var template = 'cpanelv1/ModuleCore/common/notify.html';
-    this.checkAction = function (response, errCode, c, d) {
+    this.checkAction = function(response, errCode, c, d) {
         if (response && response.token && response.token.length > 10)
             localStorage.setItem("userGlobaltoken", response.token);
         var ErrorMessage = "";
@@ -2173,7 +2200,7 @@ function rashaErManage($state, notify, SweetAlert) {
                 //notify({ message: response, classes: 'alert-danger', templateUrl: template });
             } else if (response.errors && response.errors.ErrorException) {
                 console.log(response.errors);
-                angular.forEach(response.errors.ErrorException, function (handler, event) {
+                angular.forEach(response.errors.ErrorException, function(handler, event) {
                     notify({
                         message: 'Error: ' + handler,
                         classes: 'alert-danger',
@@ -2331,14 +2358,14 @@ function rashaErManage($state, notify, SweetAlert) {
         }
     }
 
-    this.showMessage = function (message) {
+    this.showMessage = function(message) {
         notify({
             message: message,
             classes: 'alert-warning',
             templateUrl: template
         });
     }
-    this.showYesNo = function (title, message, onConfirmed) {
+    this.showYesNo = function(title, message, onConfirmed) {
         SweetAlert.swal({
             title: title,
             text: message,
@@ -2356,7 +2383,7 @@ function rashaErManage($state, notify, SweetAlert) {
 }
 
 function ajax($http, $state) {
-    this.call = function (url, data, method, isasync) {
+    this.call = function(url, data, method, isasync) {
         if (!method) method = 'POST';
         if (!data || data == "null") data = '';
         if (isasync == undefined) isasync = true;
@@ -2395,7 +2422,7 @@ function ajax($http, $state) {
             //}
         });
     }
-    this.logOut = function () {
+    this.logOut = function() {
         var data = {};
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
         data.userToken = userglobaltoken;
@@ -2405,14 +2432,14 @@ function ajax($http, $state) {
             url: cmsServerConfig.configApiServerPath + "CoreUser/UserClearToken",
             contentType: "application/json; charset=utf-8",
             //Send header authorization in request
-            beforeSend: function (request) {
+            beforeSend: function(request) {
                 request.setRequestHeader("Authorization", userglobaltoken);
             },
-            success: function (response) {
+            success: function(response) {
                 localStorage.setItem('userGlobaltoken', '');
                 $state.go('login', {})
             },
-            error: function (data) {
+            error: function(data) {
                 $state.go('login', {});
                 localStorage.setItem('userGlobaltoken', '');
                 console.log(data);
@@ -2425,8 +2452,8 @@ function ajax($http, $state) {
 function treeNode($compile) {
     return {
         restrict: 'A',
-        link: function (scope, element) {
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+        link: function(scope, element) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
 
@@ -2460,9 +2487,9 @@ function treeNode($compile) {
 function treeOptions($compile) {
     return {
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
 
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
 
@@ -2489,7 +2516,7 @@ function treeOptions($compile) {
                 throw "Configuration Not Found";
             }
 
-            config.collapse = function (item, ele) {
+            config.collapse = function(item, ele) {
                 if ($(ele.currentTarget).hasClass('fa-folder-open')) {
                     $(ele.currentTarget).removeClass('fa-folder-open').addClass('fa-folder');
                     $(ele.currentTarget).next().next().slideToggle();
@@ -2500,7 +2527,7 @@ function treeOptions($compile) {
 
             }
 
-            config.select = function (item) {
+            config.select = function(item) {
                 if (!item) {
                     //console.log("Root selected");
                     config.currentNode = null;
@@ -2511,10 +2538,10 @@ function treeOptions($compile) {
                 }
             }
 
-            config.removeNode = function (item) {}
+            config.removeNode = function(item) {}
 
 
-            config.isEqual = function (item1, item2) {
+            config.isEqual = function(item1, item2) {
                 if (item1 != undefined && item1 != null && item2 != undefined && item2 != null)
                     return (item1.Id == item2.Id);
                 return false;
@@ -2547,7 +2574,7 @@ function progressbar() {
             var progressBar = new ProgressBar.Path(element[0], {
                 strokeWidth: 2
             });
-            scope.$watch('model', function () {
+            scope.$watch('model', function() {
                 progressBar.animate(scope.model / 100, {
                     duration: 1000
                 });
@@ -2568,7 +2595,7 @@ function dropzone() {
         scope: {
             currentFolder: "="
         },
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
 
             var config = {
                 url: '/cmsfilecategory/upload',
@@ -2582,19 +2609,19 @@ function dropzone() {
 
 
             var eventHandlers = {
-                'addedfile': function (file) {
+                'addedfile': function(file) {
                     scope.file = file;
                     if (this.files[1] != null) {
                         this.removeFile(this.files[0]);
                     }
-                    scope.$apply(function () {
+                    scope.$apply(function() {
                         scope.fileAdded = true;
                     });
                 },
 
-                'success': function (file, response) {},
+                'success': function(file, response) {},
 
-                'sending': function (file, xhr, formData) {
+                'sending': function(file, xhr, formData) {
                     var userglobaltoken = localStorage.getItem('userGlobaltoken');
                     formData.append("userToken", userglobaltoken);
                     formData.append("model", currentFolder.selectedNode);
@@ -2604,15 +2631,15 @@ function dropzone() {
 
             dropzone = new Dropzone(element[0], config);
 
-            angular.forEach(eventHandlers, function (handler, event) {
+            angular.forEach(eventHandlers, function(handler, event) {
                 dropzone.on(event, handler);
             });
 
-            scope.processDropzone = function () {
+            scope.processDropzone = function() {
                 dropzone.processQueue();
             };
 
-            scope.resetDropzone = function () {
+            scope.resetDropzone = function() {
                 dropzone.removeAllFiles();
             }
 
@@ -2642,11 +2669,11 @@ function xsWizard() {
             hasSave: '='
         },
 
-        controller: function ($scope) {
+        controller: function($scope) {
             $scope.pages = [];
 
             // underlying page turner
-            var changePage = function (nextIndex) {
+            var changePage = function(nextIndex) {
                 // #TODO: Validation callback to check and allow page change
                 $scope.state = {
                     state: {
@@ -2659,45 +2686,45 @@ function xsWizard() {
                 if ($scope.onPageChange) $scope.onPageChange($scope.state);
             };
             // pass save to outside controller
-            $scope.save = function () {
+            $scope.save = function() {
                 if ($scope.onSave) $scope.onSave();
             };
-            $scope.cancel = function () {
+            $scope.cancel = function() {
                 if ($scope.onCancel) $scope.onCancel();
             };
-            var setCurrentPage = function (index) {
+            var setCurrentPage = function(index) {
                 $scope.curPageIdx = index;
                 $scope.pages[$scope.curPageIdx].activePage = true;
             };
             // **************************************
             // controller interface
             //
-            this.addPage = function (page) {
+            this.addPage = function(page) {
                 $scope.pages.push(page);
                 if ($scope.pages.length === 1) setCurrentPage(0);
             };
             // **************************************
             // $scope interface
             //
-            $scope.goToPage = function (index) {
+            $scope.goToPage = function(index) {
                 changePage(index);
             };
-            $scope.nextPage = function () {
+            $scope.nextPage = function() {
                 changePage($scope.curPageIdx + 1);
             };
-            $scope.prevPage = function () {
+            $scope.prevPage = function() {
                 changePage($scope.curPageIdx - 1);
             };
-            $scope.isLast = function () {
+            $scope.isLast = function() {
                 return $scope.curPageIdx === ($scope.pages.length - 1);
             };
-            $scope.isFirst = function () {
+            $scope.isFirst = function() {
                 return $scope.curPageIdx === 0;
             };
-            $scope.hasNext = function () {
+            $scope.hasNext = function() {
                 return !$scope.isLast();
             };
-            $scope.hasPrev = function () {
+            $scope.hasPrev = function() {
                 return !$scope.isFirst();
             };
         } // end controller
@@ -2718,7 +2745,7 @@ function xsWizardPage() {
         },
 
         require: '^xsWizard',
-        link: function (scope, element, attr, xsWizard) {
+        link: function(scope, element, attr, xsWizard) {
             xsWizard.addPage(scope);
         }
     }; // end return
@@ -2738,8 +2765,8 @@ function customTextInput($compile, $position) {
     return {
         restrict: "EA",
         replace: true,
-        link: function (scope, element) {
-            var getValue = function (key) {
+        link: function(scope, element) {
+            var getValue = function(key) {
                 if (!key)
                     return "";
                 else {
@@ -2748,7 +2775,7 @@ function customTextInput($compile, $position) {
             }
 
             // Begin functions 
-            var getGlyphIconColor = function () {
+            var getGlyphIconColor = function() {
 
                 var type = $(element).attr("glyph-type");
                 switch (type) {
@@ -2775,7 +2802,7 @@ function customTextInput($compile, $position) {
 
                 }
             }
-            var getGlyphIconFloat = function () {
+            var getGlyphIconFloat = function() {
                 var attrValue = $(element).attr("icon-float");
                 if (attrValue && attrValue === "right") {
                     return "right";
@@ -2784,36 +2811,36 @@ function customTextInput($compile, $position) {
                     return "left";
                 }
             }
-            var getTooltipInfo = function () {
+            var getTooltipInfo = function() {
                 var attrVal = $(element).attr("tooltip-info");
                 return getValue(attrVal);
             }
-            var getPlaceholder = function () {
+            var getPlaceholder = function() {
                 var attrValue = $(element).attr("placeholder");
                 return getValue(attrValue);
             }
-            var getDirection = function () {
+            var getDirection = function() {
                 var attrValue = $(element).attr("dir");
                 var tempDirection = getValue(attrValue);
                 if (tempDirection.length === 0 || tempDirection === "rtl")
                     return "rtl";
                 return "ltr";
             }
-            var getTooltipValue = function () {
+            var getTooltipValue = function() {
                 var attrVal = $(element).attr("show-tooltip");
                 return getValue(attrVal);
             }
-            var getGlyphIconName = function () {
+            var getGlyphIconName = function() {
                 var attrVal = $(element).attr("glyph-name");
                 return getValue(attrVal);
             }
-            var setMarginArray = function (right, left) {
+            var setMarginArray = function(right, left) {
                 var margin = new Object();
                 margin["right"] = right;
                 margin["left"] = left;
                 return margin;
             }
-            var getInputMargin = function () {
+            var getInputMargin = function() {
                 var dir = getDirection();
                 var iconFloat = getGlyphIconFloat();
                 if (dir === "rtl" && iconFloat === "right") {
@@ -2831,7 +2858,7 @@ function customTextInput($compile, $position) {
                 return setMarginArray("5px", "5px");
 
             }
-            var getModelVal = function () {
+            var getModelVal = function() {
                 var attrVal = $(element).attr("ng-model");
                 return getValue(attrVal);
             }
@@ -2925,9 +2952,9 @@ function rashaErrorLog($log, $injector) {
 function rashaLoading($compile) {
     return {
         restrict: 'A',
-        link: function (scope, element) {
+        link: function(scope, element) {
 
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
 
@@ -2963,8 +2990,8 @@ function rashaLoading($compile) {
 function ngHtmlCompile($compile) {
     return {
         restrict: 'A',
-        link: function (scope, element, attrs) {
-            scope.$watch(attrs.ngHtmlCompile, function (newValue, oldValue) {
+        link: function(scope, element, attrs) {
+            scope.$watch(attrs.ngHtmlCompile, function(newValue, oldValue) {
                 element.html(newValue);
                 $compile(element.contents())(scope);
             });
@@ -2976,10 +3003,10 @@ function customPopover(ajax, $timeout, $parse) {
     return {
         restrict: 'A',
         template: '<img src="{{src}}" width="50" height="50"/>',
-        link: function (scope, el, attrs) {
+        link: function(scope, el, attrs) {
             scope.src = attrs.popoverIconsrc;
             //#help# برای بستن
-            var _hide = function () {
+            var _hide = function() {
                 if (scope.$hide) {
                     scope.$hide();
                     scope.$apply();
@@ -2987,24 +3014,24 @@ function customPopover(ajax, $timeout, $parse) {
             };
 
             // Stop propagation when clicking inside popover.
-            el.on("click", function (event) {
+            el.on("click", function(event) {
                 event.stopPropagation();
             });
 
             // Hide when clicking outside.
-            $timeout(function () {
+            $timeout(function() {
                 angular.element("body").one("click", _hide);
             }, 0);
 
             // Safe remove.
-            scope.$on("$destroy", function () {
+            scope.$on("$destroy", function() {
                 angular.element("body").off("click", _hide);
             });
             //#help# برای بستن
-            scope.content = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', attrs.popoverId, 'GET').success(function (response) {
+            scope.content = function() {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', attrs.popoverId, 'GET').success(function(response) {
                     $("#image" + attrs.popoverId).attr("src", cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName);
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
                 return '<img id="image' + attrs.popoverId + '" src=cmsServerConfig.configCpanelImages+"loader.gif"  width="' + attrs.width + '" height="' + attrs.height + '"/>';
@@ -3037,14 +3064,14 @@ function rashaDatePicker($compile, $filter) {
         restrict: 'A',
         require: "ngModel",
         ngModel: '=',
-        link: function (scope, element, attrs, ngModel) {
+        link: function(scope, element, attrs, ngModel) {
             //Function For Replace
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
             //Function For Convert English Number to Farsi
-            String.prototype.toFaDigit = function () {
-                return this.toString().replace(/\d+/g, function (digit) {
+            String.prototype.toFaDigit = function() {
+                return this.toString().replace(/\d+/g, function(digit) {
                     var ret = '';
                     for (var i = 0, len = digit.length; i < len; i++) {
                         ret += String.fromCharCode(digit.charCodeAt(i) + 1728);
@@ -3087,7 +3114,7 @@ function rashaDatePicker($compile, $filter) {
             //     );
 
             //calcute First Time
-            config.calcuteFirstDay = function () {
+            config.calcuteFirstDay = function() {
                 var m = moment(config.year + " / " + config.monthNumber + " / " + 01, 'jYYYY/jM/jD');
                 m.format('jYYYY/jM/jD [is] YYYY/M/D');
                 config.weekday = $filter('jalaliDate')(m, 'dddd');
@@ -3188,7 +3215,7 @@ function rashaDatePicker($compile, $filter) {
                 config.year = 1394;
             }
             //Select Date By User
-            config.select = function (colRow) {
+            config.select = function(colRow) {
                 config.day = colRow;
                 config.currentDate = config.day + " / " + config.monthNumber + " / " + config.year;
                 config.show = false;
@@ -3215,7 +3242,7 @@ function rashaDatePicker($compile, $filter) {
             };
 
             //Hide & Show DatePicker
-            config.toggle = function () {
+            config.toggle = function() {
                 var disabled = false;
                 if (accessEdit == "false")
                     disabled = true;
@@ -3225,7 +3252,7 @@ function rashaDatePicker($compile, $filter) {
 
 
             //Next Month Functions
-            config.prev = function () {
+            config.prev = function() {
                 if (config.monthNumber == 12) {
                     config.monthNumber = 1;
                     config.year++;
@@ -3252,7 +3279,7 @@ function rashaDatePicker($compile, $filter) {
 
             };
             //prev Month Functions
-            config.next = function () {
+            config.next = function() {
                 if (config.monthNumber == 1) {
                     config.monthNumber = 12;
                     config.year--;
@@ -3272,7 +3299,7 @@ function rashaDatePicker($compile, $filter) {
             };
 
             //Show Date Picker
-            config.init = function () {
+            config.init = function() {
                 element.empty();
                 colRow = 1;
                 first = true;
@@ -3350,8 +3377,8 @@ function rashaDatePicker($compile, $filter) {
 function contextMenu($compile) {
     contextMenu = {};
     contextMenu.restrict = "AE";
-    contextMenu.link = function (scope, element, attrs) {
-        element.on("contextmenu", function (e) {
+    contextMenu.link = function(scope, element, attrs) {
+        element.on("contextmenu", function(e) {
             e.preventDefault(); // default context menu is disabled
             //  The customized context menu is defined in the main controller. To function the ng-click functions the, contextmenu HTML should be compiled.
             element.append($compile(scope[attrs.contextMenu])(scope));
@@ -3360,7 +3387,7 @@ function contextMenu($compile) {
             $("#contextmenu").css("top", e.clientY - 200);
             element.addClass("webix_selected");
         });
-        element.on("mouseleave", function (e) {
+        element.on("mouseleave", function(e) {
             //console.log("Leaved the div");
             // on mouse leave, the context menu is removed.
             if ($("#contextmenu")) {
@@ -3376,9 +3403,9 @@ function rashaFilePickerB($compile, ajax, $http) {
     return {
         restrict: 'AE',
         require: "ngModel",
-        link: function (scope, element, attrs, ngModel) {
+        link: function(scope, element, attrs, ngModel) {
             //Replace All ProtoType
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
             //Get Config
@@ -3421,34 +3448,34 @@ function rashaFilePickerB($compile, ajax, $http) {
             config.fileTypes = 0;
 
             //Get ngModel Value
-            ngModel.$render = function () {
+            ngModel.$render = function() {
                 var newValue = ngModel.$viewValue;
             };
             //getCategory For Picture
-            config.init = function () {
+            config.init = function() {
                 ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", {
                     RowPerPage: 150
-                }, 'POST').success(function (response) {
+                }, 'POST').success(function(response) {
                     config.categoryList = response.ListItems;
                     config.categoryList.sort(compareCategory);
                     config.OnCategoryChange(null, false);
                     config.topCategory[config.topCategoryIndex] = 0;
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
 
             //get list of file from category id
-            config.getCategoryFiles = function (id) {
+            config.getCategoryFiles = function(id) {
                 var extensions = [];
                 if (angular.isDefined(config.extension) && config.extension != "") {
                     extensions = config.extension.split(",");
                 }
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", id, 'GET').success(function(response) {
                     config.FileList = [];
-                    angular.forEach(response.ListItems, function (value1, key1) {
+                    angular.forEach(response.ListItems, function(value1, key1) {
                         if (extensions.length > 0)
-                            angular.forEach(extensions, function (value2, key2) {
+                            angular.forEach(extensions, function(value2, key2) {
                                 if (value1.Extension.toLowerCase() == value2)
                                     config.FileList.push(value1);
                             });
@@ -3457,7 +3484,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                     });
                     //config.FileList = response.ListItems;
                     config.FileList.sort(compare);
-                }).error(function (data) {
+                }).error(function(data) {
                     config.msgText = "An error occrued!";
                     config.msgColor = "#ff0000";
 
@@ -3471,7 +3498,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             }
 
             //go to up folder
-            config.goToUp = function () {
+            config.goToUp = function() {
                 config.topCategoryIndex--;
                 var cid = config.topCategory[config.topCategoryIndex];
                 config.pathCross[config.pathCross.length++] = cid;
@@ -3485,7 +3512,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                     config.Path.pop();
                 }
             }
-            config.itemClicked = function ($event, index, type) {
+            config.itemClicked = function($event, index, type) {
                 if (type == 'file' || type == 1) {
                     config.fileTypes = 1;
                     ngModel.$setViewValue(index);
@@ -3518,7 +3545,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             }
 
             //On Select Listener
-            config.selectFile = function (item) {
+            config.selectFile = function(item) {
                 ngModel.$setViewValue(item);
                 if (!config.multiSelect) {
                     $('#fileSelectorModal').modal('hide');
@@ -3529,7 +3556,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             config.pictureList = {};
             //On Node Select
 
-            config.OnCategoryChange = function (categoryid, top) {
+            config.OnCategoryChange = function(categoryid, top) {
                 config.CurrentCategoryList = [];
                 config.count = 0;
                 config.thisCategory = categoryid;
@@ -3564,7 +3591,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 config.getCategoryFiles(categoryid);
             }
 
-            config.setFileViewByType = function (filename) {
+            config.setFileViewByType = function(filename) {
                 var ext = filename.split('.').pop();
                 var classCss = "";
                 switch (ext) {
@@ -3665,7 +3692,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 return classCss;
             };
             config.number = 10;
-            config.initViews = function (backElement) {
+            config.initViews = function(backElement) {
                 element.empty();
                 var category = '<div><div class="col-md-3">' +
                     '<ul class="tree" tree-options="??config??.treeConfig"></ul>' +
@@ -3813,7 +3840,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             }
 
             //for breadcrums
-            getCategoryName = function (id) {
+            getCategoryName = function(id) {
                 for (var i = 0; i < config.categoryList.length; i++) {
                     if (config.categoryList[i].Id == id) {
                         return config.categoryList[i];
@@ -3821,7 +3848,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 }
             }
 
-            getFileName = function (list, id) {
+            getFileName = function(list, id) {
                 for (var i = 0; i < list.length; i++) {
                     if (list[i].Id == id) {
                         return list[i].FileName;
@@ -3829,7 +3856,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 }
             }
 
-            whatcolor = function (progress) {
+            whatcolor = function(progress) {
                 wdth = Math.floor(progress * 100);
                 if (wdth >= 0 && wdth < 30) {
                     return 'danger';
@@ -3842,19 +3869,19 @@ function rashaFilePickerB($compile, ajax, $http) {
                 }
             }
 
-            calcuteProgress = function (progress) {
+            calcuteProgress = function(progress) {
                 wdth = Math.floor(progress * 100);
                 return wdth;
             }
 
-            canShow = function (pr) {
+            canShow = function(pr) {
                 if (pr == 1) {
                     return true;
                 }
                 return false;
             }
 
-            uploadFile = function (index, name) {
+            uploadFile = function(index, name) {
                 if ($("#save-icon" + index).hasClass("fa-save")) {
                     if (fileIsExist(name)) { // File already exists
                         if (confirm('File "' + name + '" already exists! Do you want to replace the new file?')) {
@@ -3863,14 +3890,14 @@ function rashaFilePickerB($compile, ajax, $http) {
                             config.fileTypes = 1;
                             fileIdToDelete = config.selectedIndex;
                             // Delete the file
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", fileIdToDelete, 'GET').success(function (response1) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", fileIdToDelete, 'GET').success(function(response1) {
                                 if (response1.IsSuccess == true) {
                                     //console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                                         remove(config.FileList, fileIdToDelete);
                                         if (response2.IsSuccess == true) {
                                             // Save New file
-                                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {
+                                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                                                 if (response3.IsSuccess == true) {
                                                     FileItem = response3.Item;
                                                     FileItem.FileName = name;
@@ -3879,7 +3906,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                                     FileItem.LinkCategoryId = config.thisCategory;
                                                     // ------- fdm.saveNewFile()  ----------------------
                                                     var result = 0;
-                                                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function (response) {
+                                                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function(response) {
                                                         if (response.IsSuccess) {
                                                             FileItem = response.Item;
                                                             showSuccessIcon();
@@ -3896,7 +3923,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                                             $("#save-icon" + index).addClass("fa-remove");
 
                                                         }
-                                                    }).error(function (data) {
+                                                    }).error(function(data) {
                                                         msgText = "An error occured during saving process!";
                                                         msgColor = "#ff0000";
                                                         $("#save-icon" + index).removeClass("fa-save");
@@ -3908,7 +3935,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                                 } else {
                                                     console.log("getting the model was not successfully returned!");
                                                 }
-                                            }).error(function (data) {
+                                            }).error(function(data) {
                                                 console.log(data);
                                                 msgText = "An error occrued during getting the new file!";
                                                 msgColor = "#ff0000";
@@ -3917,14 +3944,14 @@ function rashaFilePickerB($compile, ajax, $http) {
                                         } else {
                                             console.log("Request to CmsFileContent/delete was not successfully returned!");
                                         }
-                                    }).error(function (data, errCode, c, d) {
+                                    }).error(function(data, errCode, c, d) {
                                         console.log(data);
                                         msgText = "An error occrued during deleting the old file!";
                                         msgColor = "#ff0000";
 
                                     });
                                 }
-                            }).error(function (data) {
+                            }).error(function(data) {
                                 console.log(data);
                                 msgText = "An error occrued during getting the old file!";
                                 msgColor = "#ff0000";
@@ -3938,7 +3965,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                             FileItem = response.Item;
                             FileItem.FileName = name;
                             FileItem.Extension = name.split('.').pop();
@@ -3946,7 +3973,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             FileItem.LinkCategoryId = config.thisCategory;
                             // ------- fdm.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function (response) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", FileItem, 'POST').success(function(response) {
 
                                 if (response.IsSuccess) {
                                     FileItem = response.Item;
@@ -3962,7 +3989,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                     $("#save-icon" + index).addClass("fa-remove");
 
                                 }
-                            }).error(function (data) {
+                            }).error(function(data) {
                                 msgText = "An error occured during saving process!";
                                 msgColor = "#ff0000";
                                 $("#save-icon" + index).removeClass("fa-save");
@@ -3971,7 +3998,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             });
                             //-----------------------------------
 
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                             msgText = "An error occrued during getviewmodel!";
                             msgColor = "#ff0000";
@@ -3983,7 +4010,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 }
             }
 
-            fileIsExist = function (fileName) {
+            fileIsExist = function(fileName) {
                 for (var i = 0; i < config.FileList.length; i++) {
                     if (config.FileList[i].FileName == fileName) {
                         fileIdToDelete = config.FileList[i].Id;
@@ -3994,7 +4021,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 return false;
             }
 
-            config.itemClickedForUpload = function ($event, index, type) {
+            config.itemClickedForUpload = function($event, index, type) {
                 if (type == 'file' || type == 1) {
                     config.fileTypes = 1;
                     selectedFileId = getFileItem(index).Id;
@@ -4013,7 +4040,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 config.selectedIndex = index;
             }
 
-            getFileItem = function (id) {
+            getFileItem = function(id) {
                 for (var i = 0; i < config.FileList.length; i++) {
                     if (config.FileList[i].Id == id) {
                         return config.FileList[i];
@@ -4021,11 +4048,11 @@ function rashaFilePickerB($compile, ajax, $http) {
                 }
             }
 
-            showSuccessIcon = function () {
+            showSuccessIcon = function() {
                 $().toggle
             }
 
-            refreshFolder = function () {
+            refreshFolder = function() {
                 config.OnCategoryChange(config.thisCategory, true);
             }
 
@@ -4039,9 +4066,9 @@ function rashaUpload($compile, ajax, $http) {
     return {
         restrict: 'AE',
         require: "ngModel",
-        link: function (scope, element, attrs, ngModel) {
+        link: function(scope, element, attrs, ngModel) {
             //Replace All ProtoType
-            String.prototype.replaceAll = function (toReplace, replaceWith) {
+            String.prototype.replaceAll = function(toReplace, replaceWith) {
                 return this.toString().split(toReplace).join(replaceWith);
             }
             //Get Config
@@ -4083,7 +4110,7 @@ function rashaUpload($compile, ajax, $http) {
             config.fileTypes = 0;
 
             //Get ngModel Value
-            ngModel.$render = function () {
+            ngModel.$render = function() {
                 var newValue = ngModel.$viewValue;
                 console.log(newValue);
             };
@@ -4093,7 +4120,7 @@ function rashaUpload($compile, ajax, $http) {
             //On Node Select
 
             config.number = 10;
-            config.initViews = function (backElement) {
+            config.initViews = function(backElement) {
                 element.empty();
                 var template =
                     '<div class="panel panel-primary" style="margin-right: 5px; margin-left: 5px;">' +
@@ -4137,7 +4164,7 @@ function rashaUpload($compile, ajax, $http) {
             }
 
             // sort compare
-            vehicleProperty.openUploadModal = function () {
+            vehicleProperty.openUploadModal = function() {
                 $modal.open({
                     templateUrl: 'cpanelv1/ModuleVehicle/VehicleProperty/upload_modal.html',
                     size: 'lg',
@@ -4146,20 +4173,20 @@ function rashaUpload($compile, ajax, $http) {
 
                 vehicleProperty.FileList = [];
                 //get list of file from category id
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", '', 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", '', 'GET').success(function(response) {
                     vehicleProperty.FileList = response.ListItems;
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                 });
 
             }
 
-            vehicleProperty.calcuteProgress = function (progress) {
+            vehicleProperty.calcuteProgress = function(progress) {
                 wdth = Math.floor(progress * 100);
                 return wdth;
             }
 
-            vehicleProperty.whatcolor = function (progress) {
+            vehicleProperty.whatcolor = function(progress) {
                 wdth = Math.floor(progress * 100);
                 if (wdth >= 0 && wdth < 30) {
                     return 'danger';
@@ -4172,27 +4199,27 @@ function rashaUpload($compile, ajax, $http) {
                 }
             }
 
-            config.canShow = function (pr) {
+            config.canShow = function(pr) {
                 if (pr == 1) {
                     return true;
                 }
                 return false;
             }
             // File Manager actions
-            config.replaceFile = function (name) {
+            config.replaceFile = function(name) {
                 config.itemClicked(null, config.fileIdToDelete, "file");
                 config.fileTypes = 1;
                 config.fileIdToDelete = config.selectedIndex;
 
                 // Delete the file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.fileIdToDelete, 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.fileIdToDelete, 'GET').success(function(response1) {
                     if (response1.IsSuccess == true) {
                         //console.log(response1.Item);
-                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                             config.remove(config.FileList, config.fileIdToDelete);
                             if (response2.IsSuccess == true) {
                                 // Save New file
-                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                                     if (response3.IsSuccess == true) {
                                         config.FileItem = response3.Item;
                                         config.FileItem.FileName = name;
@@ -4203,23 +4230,23 @@ function rashaUpload($compile, ajax, $http) {
                                     } else {
                                         console.log("getting the model was not successfully returned!");
                                     }
-                                }).error(function (data) {
+                                }).error(function(data) {
                                     console.log(data);
                                 });
                             } else {
                                 console.log("Request to CmsFileContent/delete was not successfully returned!");
                             }
-                        }).error(function (data, errCode, c, d) {
+                        }).error(function(data, errCode, c, d) {
                             console.log(data);
                         });
                     }
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                 });
             }
             //save new file
-            config.saveNewFile = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function (response) {
+            config.saveNewFile = function() {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function(response) {
                     if (response.IsSuccess) {
                         config.FileItem = response.Item;
                         config.showSuccessIcon();
@@ -4228,19 +4255,19 @@ function rashaUpload($compile, ajax, $http) {
                         return 0;
 
                     }
-                }).error(function (data) {
+                }).error(function(data) {
                     config.showErrorIcon();
                     return -1;
                 });
             }
 
-            config.showSuccessIcon = function () {}
+            config.showSuccessIcon = function() {}
 
-            config.showErrorIcon = function () {
+            config.showErrorIcon = function() {
 
             }
             //file is exist
-            config.fileIsExist = function (fileName) {
+            config.fileIsExist = function(fileName) {
                 for (var i = 0; i < config.FileList.length; i++) {
                     if (config.FileList[i].FileName == fileName) {
                         config.fileIdToDelete = config.FileList[i].Id;
@@ -4251,7 +4278,7 @@ function rashaUpload($compile, ajax, $http) {
                 return false;
             }
 
-            config.getFileItem = function (id) {
+            config.getFileItem = function(id) {
                 for (var i = 0; i < config.FileList.length; i++) {
                     if (config.FileList[i].Id == id) {
                         return config.FileList[i];
@@ -4260,7 +4287,7 @@ function rashaUpload($compile, ajax, $http) {
             }
 
             //select file or folder
-            config.itemClicked = function ($event, index, type) {
+            config.itemClicked = function($event, index, type) {
                 if (type == 'file' || type == 1) {
                     config.fileTypes = 1;
                     config.selectedFileId = config.getFileItem(index).Id;
@@ -4275,11 +4302,11 @@ function rashaUpload($compile, ajax, $http) {
 
             }
 
-            config.showContractDetails = function (contract) {
+            config.showContractDetails = function(contract) {
                 config.selectedContract = contract;
             }
             //upload file
-            config.uploadFile = function (index, name) {
+            config.uploadFile = function(index, name) {
                 if ($("#save-icon" + index).hasClass("fa-save")) {
                     if (config.fileIsExist(name)) { // File already exists
                         if (confirm('File "' + name + '" already exists! Do you want to replace the new file?')) {
@@ -4294,11 +4321,11 @@ function rashaUpload($compile, ajax, $http) {
                                     config.fileIdToDelete,
                                     "GET"
                                 )
-                                .success(function (response1) {
+                                .success(function(response1) {
                                     if (response1.IsSuccess == true) {
                                         //console.log(response1.Item);
                                         ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
-                                            .success(function (response2) {
+                                            .success(function(response2) {
                                                 if (response2.IsSuccess == true) {
                                                     config.FileItem = response2.Item;
                                                     config.showSuccessIcon();
@@ -4321,7 +4348,7 @@ function rashaUpload($compile, ajax, $http) {
                                                     $("#save-icon" + index).addClass("fa-remove");
                                                 }
                                             })
-                                            .error(function (data) {
+                                            .error(function(data) {
                                                 config.showErrorIcon();
                                                 $("#save-icon" + index).removeClass("fa-save");
                                                 $("#save-button" + index).removeClass("flashing-button");
@@ -4330,7 +4357,7 @@ function rashaUpload($compile, ajax, $http) {
                                         //-----------------------------------
                                     }
                                 })
-                                .error(function (data) {
+                                .error(function(data) {
                                     console.log(data);
                                 });
                             //--------------------------------
@@ -4339,7 +4366,7 @@ function rashaUpload($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                             config.FileItem = response.Item;
                             config.FileItem.FileName = name;
                             config.FileItem.Extension = name.split('.').pop();
@@ -4347,7 +4374,7 @@ function rashaUpload($compile, ajax, $http) {
                             config.FileItem.LinkCategoryId = null; //Save the new file in the root
                             // ------- config.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function (response) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", config.FileItem, 'POST').success(function(response) {
                                 if (response.IsSuccess) {
                                     config.FileItem = response.Item;
                                     config.showSuccessIcon();
@@ -4363,14 +4390,14 @@ function rashaUpload($compile, ajax, $http) {
                                     $("#save-button" + index).removeClass("flashing-button");
                                     $("#save-icon" + index).addClass("fa-remove");
                                 }
-                            }).error(function (data) {
+                            }).error(function(data) {
                                 config.showErrorIcon();
                                 $("#save-icon" + index).removeClass("fa-save");
                                 $("#save-button" + index).removeClass("flashing-button");
                                 $("#save-icon" + index).addClass("fa-remove");
                             });
                             //-----------------------------------
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                             $("#save-icon" + index).removeClass("fa-save");
                             $("#save-button" + index).removeClass("flashing-button");
@@ -4394,18 +4421,18 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
             config: "=config",
             setting: "@setting"
         },
-        link: function (scope, element) {
+        link: function(scope, element) {
 
             var listItems = {};
             scope.menuItem = "x";
-            ajax.call(cmsServerConfig.configApiServerPath + "WebDesignerMainMenu/getall", "", 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "WebDesignerMainMenu/getall", "", 'POST').success(function(response) {
                 scope.menuDrop = response.ListItems;
                 listItems = scope.menuDrop;
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
             var objectId = "";
-            scope.$watch('menuItem', function () {
+            scope.$watch('menuItem', function() {
                 scope.successMsg = "";
                 scope.showDesign = "x";
                 if ((scope.menuItem == "x")) {
@@ -4422,7 +4449,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
                 }
             });
-            scope.addToMenu = function () {
+            scope.addToMenu = function() {
                 if (scope.menuItem == "x") {
                     scope.successMsg = "لطفا ابتدا منو را انتخاب نمایید";
                 } else {
@@ -4440,7 +4467,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
                     scope.showSubmit = "x";
                 }
             }
-            scope.submitMenu = function () {
+            scope.submitMenu = function() {
                 if (scope.menuItem == "x") {
                     scope.successMsg = "";
                     scope.successMsg = "منو انتخاب نشده است";
@@ -4448,14 +4475,14 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
                     scope.menuDrop[objectId].JsonValues = JSON.stringify(scope.data);
 
-                    ajax.call(cmsServerConfig.configApiServerPath + 'WebDesignerMainMenu/', scope.menuDrop[objectId], "PUT").success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'WebDesignerMainMenu/', scope.menuDrop[objectId], "PUT").success(function(response) {
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
                             //console.log("Add Succseeded!");
                             scope.successMsg = "";
                             scope.successMsg = "تنظیمات با موفقیت ذخیره گردید";
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                         scope.successMsg = "";
                         scope.successMsg = "خطایی در ذخیره منو رخ داده است";
@@ -4506,7 +4533,7 @@ function rashaPositionCustomer($compile, ajax, rashaErManage) {
     return {
         restrict: 'AE',
         //scope: { content: "=content" },
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var tableId = "tbl" + Math.random();
             tableId = tableId.replace(".", "");
         }
@@ -4518,7 +4545,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
     return {
         restrict: 'AE',
         //scope: { content: "=content" },
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var tableId = "tbl" + Math.random();
             tableId = tableId.replace(".", "");
             var template = '<table class="table table-striped table-bordered table-responsive" style="margin-bottom:2px" id="' + tableId + '">' +
@@ -4623,29 +4650,29 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
                 throw "تنظیمات ستونها در کنترلر مربوطه را ایجاد کنید";
                 return;
             }
-            allowDrop = function (ev) {
+            allowDrop = function(ev) {
                 ev.preventDefault();
             }
 
-            drag = function (ev) {
+            drag = function(ev) {
                 ev.dataTransfer.setData("text", ev.target.id);
             }
 
-            drop = function (ev) {
+            drop = function(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
                 ev.target.appendChild(document.getElementById(data));
             }
             config.ItemsLocal = [];
-            config.contentMouseEnter = function (e, item) {
+            config.contentMouseEnter = function(e, item) {
                 item.isMouseEnter = true;
                 item.overflowShow = 'auto';
             }
-            config.contentMouseLeave = function (e, item) {
+            config.contentMouseLeave = function(e, item) {
                 item.isMouseEnter = false;
                 item.overflowShow = 'hidden';
             }
-            config.changePositionView = function (item) {
+            config.changePositionView = function(item) {
                 if (item.buttonPreview) {
                     item.changePositionViewData = 'fa-bars';
                     item.buttonPreview = false;
@@ -4654,7 +4681,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
                     item.buttonPreview = true;
                 }
             }
-            config.apply = function () {
+            config.apply = function() {
                 config.fillData();
             }
 
@@ -4667,7 +4694,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
                          });     
                  
              }*/
-            config.maximizeMinimize = function (item) {
+            config.maximizeMinimize = function(item) {
                 if (item.ismiximized == undefined)
                     item.ismiximized = false;
 
@@ -4729,7 +4756,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
                 item.ismiximized = !item.ismiximized;
             }
 
-            config.fillData = function () {
+            config.fillData = function() {
                 config.ItemsLocal = [];
                 for (var i = 0; i < config.items.length; i++) {
                     config.items[i].maximizeminimizeData = 'fa-toggle-off';
@@ -4765,7 +4792,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
                 }
             }
 
-            config.replaceString = function (str, tag, replacement) {
+            config.replaceString = function(str, tag, replacement) {
                 var temp = str;
                 while (temp.includes(tag))
                     temp = temp.replace(tag, replacement);
@@ -4787,7 +4814,7 @@ function rashaRandomBoxes($compile, ajax, rashaErManage) {
     return {
         restrict: 'AE',
         //scope: { content: "=content" },
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var frameId = "dataMove" + Math.random();
             frameId = frameId.replace(".", "");
             var template = '<div style="position:absolute;left:0;top:0;right:0;bottom:0;opacity:{{' + frameId + '.option.maxOpacity}};overflow:hidden"></div>';
@@ -4801,7 +4828,7 @@ function rashaRandomBoxes($compile, ajax, rashaErManage) {
             scope[frameId] = {};
             scope[frameId].option = atr;
             scope[frameId].drawingItems = [];
-            scope[frameId].draw = function (elem) {
+            scope[frameId].draw = function(elem) {
                 var bodywidth = document.body.scrollWidth;
                 var itemHeight = elem.height();
                 var spliceWidth = bodywidth / scope[frameId].option.maxCount;
@@ -4849,7 +4876,7 @@ function rashaRandomBoxes($compile, ajax, rashaErManage) {
                 }
             }
 
-            scope[frameId].moveItems = function () {
+            scope[frameId].moveItems = function() {
                 var elemwidth = scope[frameId].element.width();
                 var elemheight = scope[frameId].element.height();
                 for (var i = 0; i < scope[frameId].drawingItems.length; i++) {
@@ -4881,7 +4908,7 @@ function rashaRandomBoxes($compile, ajax, rashaErManage) {
 function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             var id = 'file' + Math.random();
             id = id.replace('.', '');
@@ -4908,26 +4935,26 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
                 config.uploader_cssStyle = 'opacity:0.4;'
             if (config.files_selectedToUpload == undefined)
                 config.files_selectedToUpload = []
-            config.uploader_dragenter = function (event) {
+            config.uploader_dragenter = function(event) {
                 //console.log(event)
                 config.uploader_cssStyle = 'opacity:1;'
                 scope.$apply()
             }
-            config.uploader_dragleave = function (event) {
+            config.uploader_dragleave = function(event) {
                 //console.log(event)
                 config.uploader_cssStyle = 'opacity:0.4;'
                 scope.$apply()
             }
 
 
-            config.uploader_dragend = function (event) {
+            config.uploader_dragend = function(event) {
                 //console.log('dragend') 
                 //console.log(event)
                 //event.stopPropagation()
                 //event.preventDefault();
             }
 
-            config.uploader_drop = function (event) {
+            config.uploader_drop = function(event) {
                 event.stopPropagation()
                 event.preventDefault();
                 files = []
@@ -4950,7 +4977,7 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
                 if (files.length > 0)
                     config.uploader_filesSelected(files);
             }
-            config.uploader_filesSelected = function (files) {
+            config.uploader_filesSelected = function(files) {
                 for (var i = 0; i < files.length; i++) {
                     config.files_selectedToUpload.push({
                         file: files[i],
@@ -4964,7 +4991,7 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
             }
 
 
-            config.whatcolor = function (wdth) {
+            config.whatcolor = function(wdth) {
                 if (wdth >= 0 && wdth < 30) {
                     return 'danger';
                 } else if (wdth >= 30 && wdth < 50) {
@@ -4975,12 +5002,12 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
                     return 'success';
                 }
             }
-            config.uploadFiles = function () {
+            config.uploadFiles = function() {
                 console.log('uploadFileStart1');
             }
-            config.loadTheme = function () {
+            config.loadTheme = function() {
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerUploaderDragableTheme.html")
-                    .then(function (response) {
+                    .then(function(response) {
                         if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
@@ -5007,7 +5034,7 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
 function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
     return {
         restrict: 'AE',
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             var id = 'file' + Math.random();
             id = id.replace('.', '');
@@ -5085,11 +5112,11 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             config.selectedFilesToCopyCut = [];
 
-            config.onTextChanged = function () {
+            config.onTextChanged = function() {
                 config.selectCompleted();
             }
 
-            config.deleteFileFolder = function () {
+            config.deleteFileFolder = function() {
                 var isFolder = false;
                 if (config.folderFileSelected.length == 0)
                     return;
@@ -5103,19 +5130,19 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/';
                     urlDelete = cmsServerConfig.configApiServerPath + 'FileCategory/';
                 }
-                rashaErManage.showYesNo("اخطار!!!", prompMessage, function (isConfirmed) {
+                rashaErManage.showYesNo("اخطار!!!", prompMessage, function(isConfirmed) {
                     if (isConfirmed) {
                         ajax.call(urlViewModel, config.folderFileSelected[0].Id, 'GET')
-                            .success(function (response) {
+                            .success(function(response) {
                                 ajax.call(urlDelete, response.Item.Id, 'DELETE')
-                                    .success(function (response) {
+                                    .success(function(response) {
                                         rashaErManage.checkAction(response);
                                         if (response.IsSuccess)
                                             config.refresh();
-                                    }).error(function (data, errCode, c, d) {
+                                    }).error(function(data, errCode, c, d) {
                                         console.log(data);
                                     });
-                            }).error(function (data, errCode, c, d) {
+                            }).error(function(data, errCode, c, d) {
                                 console.log(data);
                             });
                     }
@@ -5123,7 +5150,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             }
 
-            config.getCategoryList = function (filterModel, id) {
+            config.getCategoryList = function(filterModel, id) {
                 config.canCopyCut = false;
                 config.folderFileSelected = [];
                 if (filterModel == undefined)
@@ -5146,7 +5173,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     filterModel.Filters.push({
                         PropertyName: 'LinkParentId',
                         SearchType: 0,
-                        IntValue1: id
+                        value: id
                     });
                 } else {
                     if (filterModel.Filters == undefined && filterModel != undefined)
@@ -5179,7 +5206,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
 
                 config.BusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", filterModel, 'Post').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", filterModel, 'Post').success(function(response) {
                     config.categoryList = [];
                     config.FileList = []
                     if (id != undefined) {
@@ -5197,7 +5224,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
                     config.getFileList(id);
 
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     config.currentPosition = [];
                     config.currentPosition.push({
@@ -5210,7 +5237,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
             }
 
             config.Token = encodeURIComponent(localStorage.getItem('userGlobaltoken'));
-            config.selectCompleted = function () {
+            config.selectCompleted = function() {
                 var listOfFiles = [];
                 var listOfFolders = [];
                 for (var i = 0; i < config.categoryList.length; i++) {
@@ -5275,7 +5302,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 config.fileListLocal = listOfFiles;
                 config.categoryListLocal = listOfFolders;
             }
-            config.getFileList = function (categoryid) {
+            config.getFileList = function(categoryid) {
                 config.BusyIndicator.isActive = true;
                 var engine = {};
                 engine.Filters = [];
@@ -5287,10 +5314,10 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 else
                     engine.Filters.push({
                         PropertyName: 'LinkCategoryId',
-                        IntValue1: categoryid
+                        value: categoryid
                     });
 
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetAll", engine, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetAll", engine, 'POST').success(function(response) {
                     if (categoryid == null || categoryid == undefined)
                         config.FileList = response.ListItems;
                     else {
@@ -5305,7 +5332,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     }
                     config.selectCompleted();
                     config.BusyIndicator.isActive = false;
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     config.currentPosition = [];
                     config.currentPosition.push({
@@ -5317,7 +5344,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 });
             };
 
-            config.addNecessaryObjectsToFolder = function (folder) {
+            config.addNecessaryObjectsToFolder = function(folder) {
                 folder.cssStyle = '';
                 folder.errorMessage = '';
                 folder.isSelected = false;
@@ -5330,7 +5357,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 };
             }
 
-            config.addNecessaryObjectsToFile = function (file) {
+            config.addNecessaryObjectsToFile = function(file) {
                 file.busyIndicator = {
                     isActive: false
                 };
@@ -5342,7 +5369,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 file.extension = config.checkFileExtension(file);
             }
 
-            config.downloadFile = function () {
+            config.downloadFile = function() {
 
                 var model = {
                     FileIds: [],
@@ -5358,19 +5385,19 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
 
                 config.BusyIndicator.isActive = true;
-                ajax.call("mvc/FileContent/DownloadAllFiles", model, 'POST').success(function (response) {
+                ajax.call("mvc/FileContent/DownloadAllFiles", model, 'POST').success(function(response) {
                     //console.log(response);      
                     window.open('/mvc/FileContent/WhenDownloadCompleted?fileName=' + response.FileName + "&ticket=" + config.Token, '_blank', '');
 
                     config.BusyIndicator.isActive = false;
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     config.BusyIndicator.isActive = false;
                 });
 
             }
 
-            config.deSelectFolder = function () {
+            config.deSelectFolder = function() {
                 config.canCopyCut = false;
                 config.selectedFilesToCopyCut = [];
                 for (var i = 0; i < config.folderFileSelected.length; i++) {
@@ -5387,7 +5414,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             }
 
-            config.selectFolder = function (folder) {
+            config.selectFolder = function(folder) {
                 folder.isSelected = !folder.isSelected;
                 if (folder.isSelected) {
                     if (config.selectMultipleFolder == false) {
@@ -5453,7 +5480,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 }
             }
 
-            config.pasteFile = function () {
+            config.pasteFile = function() {
                 var model = {
                     FileIds: [],
                     IsCut: false,
@@ -5474,12 +5501,12 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     model.FileIds.push(config.selectedFilesToCopyCut[i].file.Id);
                 }
                 config.BusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/CopyCutFile", model, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/CopyCutFile", model, 'POST').success(function(response) {
                     if (!response.IsSuccess)
                         rashaErManage.showMessage(response.ErrorMessage);
                     config.BusyIndicator.isActive = false;
                     config.refresh();
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     config.BusyIndicator.isActive = false;
                 });
@@ -5487,7 +5514,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             }
 
-            config.selectFilesToCopy = function (isCut) {
+            config.selectFilesToCopy = function(isCut) {
                 if (config.selectedFilesToCopyCut == undefined)
                     config.selectedFilesToCopyCut = [];
                 config.selectedFilesToCopyCut = [];
@@ -5501,7 +5528,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 }
             }
 
-            config.whenSelectionChanged = function () {
+            config.whenSelectionChanged = function() {
                 var folders = [];
                 var files = [];
                 for (var i = 0; i < config.folderFileSelected.length; i++) {
@@ -5514,7 +5541,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 if (config.selectionChanged != null && config.selectionChanged != undefined)
                     config.selectionChanged(files, folders);
             }
-            config.fileExstsWithName = function (name) {
+            config.fileExstsWithName = function(name) {
                 var n = name.toLowerCase();
                 for (var i = 0; i < config.FileList.length; i++)
                     if (config.FileList[i].Title.toLowerCase() == n)
@@ -5525,31 +5552,31 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                             return true;
                 return false;
             }
-            config.gotoToHome = function () {
+            config.gotoToHome = function() {
                 config.getCategoryList();
 
             }
 
-            config.gotoToFolder = function (cat) {
+            config.gotoToFolder = function(cat) {
                 config.getCategoryList(null, cat.Id);
             }
 
-            config.refresh = function () {
+            config.refresh = function() {
 
                 config.getCategoryList(null, config.lastCategoryId);
             }
 
-            config.closeModal = function () {
+            config.closeModal = function() {
                 config.modalStack.close();
             }
             //config.uploadFiles = function () {
             //    console.log('uploadFileStart');
             //}
-            config.changeViewType = function () {
+            config.changeViewType = function() {
                 config.isInIconView = !config.isInIconView;
             }
 
-            config.renameCompleted = function (fileFolder) {
+            config.renameCompleted = function(fileFolder) {
                 fileFolder.errorMessage = '';
                 if (fileFolder.isInRenameMode == false)
                     return;
@@ -5574,37 +5601,37 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     return;
                 }
                 fileFolder.busyIndicator.isActive = true;
-                ajax.call(urlViewModel, fileFolder.Id, 'GET').success(function (response) {
+                ajax.call(urlViewModel, fileFolder.Id, 'GET').success(function(response) {
                     if (response.IsSuccess == true) {
                         if (fileFolder.isFolder)
                             response.Item.Title = newName;
                         else
                             response.Item.FileName = newName;
-                        ajax.call(urlEdit, response.Item, "PUT").success(function (response2) {
+                        ajax.call(urlEdit, response.Item, "PUT").success(function(response2) {
                             if (response2.IsSuccess == true)
                                 config.refresh();
                             else
                                 fileFolder.errorMessage = response2.ErrorMessage;
                             fileFolder.busyIndicator.isActive = false;
-                        }).error(function (data, errCode, c, d) {
+                        }).error(function(data, errCode, c, d) {
                             fileFolder.busyIndicator.isActive = false;
                         });
                     } else {
                         fileFolder.busyIndicator.isActive = false;
                         fileFolder.errorMessage = response.ErrorMessage;
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     fileFolder.busyIndicator.isActive = false;
                 });
                 fileFolder.isInRenameMode = false;
             }
 
-            config.renameKeyPress = function (fileFolder, event) {
+            config.renameKeyPress = function(fileFolder, event) {
                 if (event.charCode == 13)
                     config.renameCompleted(fileFolder);
             }
 
-            config.startRename = function (scroll) {
+            config.startRename = function(scroll) {
                 if (!config.canRename)
                     return;
                 var selected = config.folderFileSelected[0];
@@ -5626,7 +5653,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     else
                         id = 'txtListF' + selected.Id;
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     $("#" + id).focus();
                     $("#" + id).select();
                 }, 300);
@@ -5634,7 +5661,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 //isInRenameMode
             }
 
-            config.openFile = function (file) {
+            config.openFile = function(file) {
                 if (!(file.isImage || file.isVideo || file.isText || file.isHtml || file.isVoice))
                     return;
 
@@ -5662,7 +5689,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 }
 
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerView" + temp + ".html")
-                    .then(function (response) {
+                    .then(function(response) {
                         if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
@@ -5672,7 +5699,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                             str = str.replace('??atr??', atr);
 
                         if (file.isText || file.isHtml) {
-                            $http.get(cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title).then(function (responseText) {
+                            $http.get(cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title).then(function(responseText) {
                                 if (responseText.Status == 200) {
                                     config.fileText = responseText.data;
                                     config.modalStack = $modal.open({
@@ -5694,9 +5721,9 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             }
 
-            config.openUploaderDialog = function () {
+            config.openUploaderDialog = function() {
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerUploaderDialog.html")
-                    .then(function (response) {
+                    .then(function(response) {
                         if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
@@ -5715,7 +5742,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
             }
 
 
-            config.getNextFolderName = function () {
+            config.getNextFolderName = function() {
                 var count = 0;
                 var notFound = true;
                 while (notFound) {
@@ -5732,18 +5759,18 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 return "New Folder (" + count + ")";
             }
 
-            config.makeNewFolder = function () {
+            config.makeNewFolder = function() {
                 var folderName = config.getNextFolderName();
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/ViewModel", "", 'GET').success(function(response) {
                     if (response.IsSuccess) {
                         //config.BusyIndicator.isActive=true;
                         response.Item.Title = folderName;
                         response.Item.LinkParentId = config.lastCategoryId;
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/", response.Item, 'Post').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/", response.Item, 'Post').success(function(response2) {
                             if (response2.IsSuccess == true) {
                                 //config.BusyIndicator.isActive=false;
                                 config.lastnewFolderInserted = response2.Item;
-                                setTimeout(function () {
+                                setTimeout(function() {
                                     config.addNecessaryObjectsToFolder(config.lastnewFolderInserted);
                                     var f = config.lastnewFolderInserted;
                                     var indexInsert = 0;
@@ -5752,13 +5779,13 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                                     config.categoryList.push(f);
                                     config.categoryListLocal.splice(indexInsert, 0, f);
                                     scope.$apply();
-                                    setTimeout(function () {
+                                    setTimeout(function() {
                                         config.deSelectFolder();
                                         scope.$apply();
-                                        setTimeout(function () {
+                                        setTimeout(function() {
                                             config.selectFolder(config.lastnewFolderInserted);
                                             scope.$apply();
-                                            setTimeout(function () {
+                                            setTimeout(function() {
                                                 config.startRename(false);
                                                 scope.$apply();
                                             }, 200);
@@ -5766,18 +5793,18 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                                     }, 200);
                                 }, 200);
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             config.BusyIndicator.isActive = false;
                         });
 
                     }
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                 });
                 config.lastCategoryId
             }
 
-            config.getFileNameWithoutExtenssion = function (title) {
+            config.getFileNameWithoutExtenssion = function(title) {
                 if (title == undefined)
                     return '';
                 var ext = title.split('.').pop();
@@ -5787,7 +5814,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 }
                 return temp;
             }
-            config.checkFileExtension = function (file) {
+            config.checkFileExtension = function(file) {
                 var ext = file.FileName.split('.').pop();
                 ext = ext.toLowerCase();
                 file.isFile = true;
@@ -5891,7 +5918,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             };
 
-            config.compareFile = function (a, b) {
+            config.compareFile = function(a, b) {
                 if (config.sortMode == 'ByName') {
                     if (a.FileName < b.FileName)
                         return -1;
@@ -5918,7 +5945,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
             }
 
 
-            config.compareCategory = function (a, b) {
+            config.compareCategory = function(a, b) {
                 if (config.sortMode == 'ByName') {
                     if (a.Title < b.Title)
                         return -1;
@@ -5947,7 +5974,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
 
             $http.get("cpanelv1/js/directiveTemplate/rashaFileManager.html")
-                .then(function (response) {
+                .then(function(response) {
                     var str = response.data;
                     while (str.indexOf('??atr') > 0)
                         str = str.replace('??atr??', atr);
@@ -5965,7 +5992,7 @@ function rashaMap($compile, ajax, rashaErManage) {
     return {
         restrict: 'AE',
         //scope: { content: "=content" },
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             atr = $(element).attr("rasha-map");
             var mapId = 'map' + Math.random();
@@ -6071,7 +6098,7 @@ function rashaMap($compile, ajax, rashaErManage) {
             if (window['mapEvent' + mapId] == undefined)
                 window['mapEvent' + mapId] = {};
             if (window['mapEvent' + mapId].positionChanged == undefined)
-                window['mapEvent' + mapId].positionChanged = function (latlang, lat, lng) {
+                window['mapEvent' + mapId].positionChanged = function(latlang, lat, lng) {
                     if (config.scope.selectedItem != undefined && config.latitude != undefined && config.longitude != undefined) {
                         config.scope.selectedItem[config.latitude] = lat;
                         config.scope.selectedItem[config.longitude] = lng;
@@ -6080,12 +6107,12 @@ function rashaMap($compile, ajax, rashaErManage) {
                         config.onlocationChanged(lat, lng);
                 };
             if (window['map' + mapId + 'loaded'] == undefined)
-                window['map' + mapId + 'loaded'] = function () {
+                window['map' + mapId + 'loaded'] = function() {
                     config.busyIndicator.isActive = false;
                 }
 
             if (window['mapEvent' + mapId].getPosition == undefined)
-                window['mapEvent' + mapId].getPosition = function () {
+                window['mapEvent' + mapId].getPosition = function() {
                     if (config.scope.selectedItem != undefined && config.latitude != undefined && config.longitude != undefined) {
                         if (config.scope.selectedItem[config.latitude] == undefined || config.scope.selectedItem[config.latitude] == "")
                             config.scope.selectedItem[config.latitude] = config.center.lat;
@@ -6127,7 +6154,7 @@ function rashaThumbnail($compile, rashaErManage) {
         restrict: 'AE',
         //require: 'ngModel',
         //scope: {ngModel: "="},
-        link: function (scope, element, attrs, ngModel) {
+        link: function(scope, element, attrs, ngModel) {
             var atr = '';
             atr = $(element).attr("rasha-thumbnail");
             if (!atr) {
@@ -6177,7 +6204,7 @@ function rashaUiTree($compile, ajax, rashaErManage) {
     return {
         restrict: 'E',
         //scope: { content: "=content" },
-        link: function (scope, element) {
+        link: function(scope, element) {
             var atr = '';
             atr = $(element).attr("content");
             if (!atr) {
@@ -6203,24 +6230,24 @@ function rashaUiTree($compile, ajax, rashaErManage) {
                 return;
             }
             scope.treeOptions = {
-                accept: function (sourceNodeScope, destNodesScope, destIndex) {
+                accept: function(sourceNodeScope, destNodesScope, destIndex) {
                     return true;
                 },
             };
-            scope.remove = function (scope) {
+            scope.remove = function(scope) {
                 scope.remove();
             };
-            scope.toggle = function (scope) {
+            scope.toggle = function(scope) {
                 scope.toggle();
             };
-            scope.onLinkClick = function (node) {
+            scope.onLinkClick = function(node) {
                 config.onSetLink(node);
             };
-            scope.moveLastToTheBeginning = function () {
+            scope.moveLastToTheBeginning = function() {
                 var a = scope.data.pop();
                 scope.data.splice(0, 0, a);
             };
-            scope.newSubItem = function (scope) {
+            scope.newSubItem = function(scope) {
                 var nodeData = scope.$modelValue;
                 nodeData.nodes.push({
                     id: nodeData.id * 10 + nodeData.nodes.length,
@@ -6235,10 +6262,10 @@ function rashaUiTree($compile, ajax, rashaErManage) {
                     nodes: []
                 });
             };
-            scope.collapseAll = function () {
+            scope.collapseAll = function() {
                 scope.$broadcast('angular-ui-tree:collapse-all');
             };
-            scope.expandAll = function () {
+            scope.expandAll = function() {
                 scope.$broadcast('angular-ui-tree:expand-all');
             };
             //scope.data = scope.content;
@@ -6290,8 +6317,8 @@ angular.module('inspinia')
     .directive('rashaRandomBoxes', rashaRandomBoxes)
     .directive('rashaPositionCustomer', rashaPositionCustomer)
     .directive('resizable', resizable)
-    .filter('jalaliDate', function () {
-        return function (inputDate, format) {
+    .filter('jalaliDate', function() {
+        return function(inputDate, format) {
             if (inputDate == null)
                 return "";
             if (!format)
@@ -6314,8 +6341,8 @@ angular.module('inspinia')
 
         }
     })
-    .filter('isRecordStatus', function () {
-        return function (inputDate) {
+    .filter('isRecordStatus', function() {
+        return function(inputDate) {
             var ret = "";
             switch (inputDate) {
                 case 1:
@@ -6341,8 +6368,8 @@ angular.module('inspinia')
             }
         }
     })
-    .filter('excerpt', function () {
-        return function (inputDate, excerptLength) {
+    .filter('excerpt', function() {
+        return function(inputDate, excerptLength) {
             if (!angular.isDefined(excerptLength) && !$.isNumeric(excerptLength) && excerptLength == '0')
                 excerptLength = 50; //Set default excerpt length 
             if (inputDate != null && inputDate.length > parseInt(excerptLength)) {
@@ -6354,14 +6381,14 @@ angular.module('inspinia')
             return inputDate;
         }
     })
-    .filter('translatentk', ['$filter', function ($filter) {
-        return function (text) {
+    .filter('translatentk', ['$filter', function($filter) {
+        return function(text) {
             text = $filter('lowercase')(text);
             return $filter('translate')(text);
         };
     }])
-    .filter('html', ['$sce', function ($sce) {
-        return function (text) {
+    .filter('html', ['$sce', function($sce) {
+        return function(text) {
             return $sce.trustAsHtml(text);
         };
     }])
@@ -6374,13 +6401,13 @@ angular.module('inspinia')
     //         return "****";
     //     }
     // })
-    .directive("trumbowygNg", function () {
+    .directive("trumbowygNg", function() {
         "use strict";
         return {
             transclude: true,
             restrict: "EA",
             require: "?ngModel",
-            link: function (scope, element, attrs, ngModelCtrl) {
+            link: function(scope, element, attrs, ngModelCtrl) {
 
                 var options = angular.extend({
                     fullscreenable: true,
@@ -6389,13 +6416,13 @@ angular.module('inspinia')
                     btns: []
                 }, scope.$eval(attrs.editorConfig));
 
-                ngModelCtrl.$render = function () {
+                ngModelCtrl.$render = function() {
                     angular.element(element).trumbowyg("html", ngModelCtrl.$viewValue);
                 };
 
-                angular.element(element).trumbowyg(options).on("tbwchange", function () {
+                angular.element(element).trumbowyg(options).on("tbwchange", function() {
                     ngModelCtrl.$setViewValue(angular.element(element).trumbowyg("html"));
-                }).on("tbwpaste", function () {
+                }).on("tbwpaste", function() {
                     ngModelCtrl.$setViewValue(angular.element(element).trumbowyg("html"));
                 });
             }

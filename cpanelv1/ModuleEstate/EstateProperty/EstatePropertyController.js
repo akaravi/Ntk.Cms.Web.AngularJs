@@ -56,6 +56,7 @@
     estateProperty.propertyTypeListItems = [];
     estateProperty.propertyDetailGroupListItems = [];
     estateProperty.propertyDetailsListItems = [];
+    estateProperty.propertyTypeItemSelect={};
     estateProperty.cmsUsersListItems = [];
     estateProperty.contractTypeListItems = [];
     estateProperty.inputTypeArray = [];
@@ -618,6 +619,7 @@
 
 
         estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
+        estateProperty.propertyTypeItemSelect={};
         estateProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
         if (!angular.isDefined(LinkPropertyTypeId)) return;
         var filterValue = {
@@ -634,7 +636,7 @@
                 angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
                     if (item.Id == LinkPropertyTypeId) {
                         estateProperty.propertyDetailsListItems = item.PropertyDetails;
-
+                        estateProperty.propertyTypeItemSelect=item;
                     }
                 });
             }

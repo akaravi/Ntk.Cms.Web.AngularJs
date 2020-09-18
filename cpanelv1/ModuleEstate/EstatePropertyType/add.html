@@ -32,6 +32,31 @@
                             </div>
 
 
+
+
+                            
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="estatePropertyType.CheckAccessAdd('TitleCreatedYaer')" >
+                                <label class="col-sm-2 control-label"> {{'TitleCreatedYaer'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                    name="TitleCreatedYaer"
+                                    ng-model="estatePropertyType.selectedItem.TitleCreatedYaer" />
+                                </div>
+                            </div>
+                         
+  
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="estatePropertyType.CheckAccessAdd('TitlePartition')" >
+                                <label class="col-sm-2 control-label"> {{'TitlePartition'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                    name="TitlePartition"
+                                    ng-model="estatePropertyType.selectedItem.TitlePartition" />
+                                </div>
+                            </div>
+
+
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="estatePropertyType.CheckAccessAdd('Description')" ng-class="{'has-error' : frmestatePropertyTypeAdd.Description.$invalid && !frmestatePropertyTypeAdd.Description.$pristine,'has-success' : frmestatePropertyTypeAdd.Description.$valid}">
                                 <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>

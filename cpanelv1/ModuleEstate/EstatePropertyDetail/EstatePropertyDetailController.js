@@ -51,6 +51,7 @@
             {
                 name: 'Title',
                 displayName: 'عنوان',
+                displayForce: true,
                 sortable: true,
                 type: 'string'
             },
@@ -66,6 +67,7 @@
                 displayName: 'Invisible For EndUser',
                 sortable: true,
                 displayForce: true,
+                isCheckBox: true,
                 type: 'boolean'
             },
             {
@@ -73,6 +75,7 @@
                 displayName: 'Invisible For Submiter',
                 sortable: true,
                 displayForce: true,
+                isCheckBox: true,
                 type: 'boolean'
             },
             {
@@ -80,12 +83,14 @@
                 displayName: 'الزامی است؟',
                 sortable: true,
                 isCheckBox: true,
+                displayForce: true,
                 type: 'boolean'
             },
             {
                 name: 'ShowInFormOrder',
                 displayName: 'عدد ترتیب نمایش',
                 sortable: true,
+                displayForce: true,
                 type: 'integer'
             },
             {
@@ -669,27 +674,7 @@
 
     estatePropertyDetail.columnCheckbox = false;
 
-    estatePropertyDetail.openGridConfigModal = function () {
-        $("#gridView-btn").toggleClass("active");
-        var prechangeColumns = estatePropertyDetail.gridOptions.columns;
-        if (estatePropertyDetail.gridOptions.columnCheckbox) {
-            for (var i = 0; i < estatePropertyDetail.gridOptions.columns.length; i++) {
-                var element = $("#" + estatePropertyDetail.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
-                var temp = element[0].checked;
-                estatePropertyDetail.gridOptions.columns[i].visible = temp;
-            }
-        } else {
-
-            for (var i = 0; i < estatePropertyDetail.gridOptions.columns.length; i++) {
-                var element = $("#" + estatePropertyDetail.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
-                $("#" + estatePropertyDetail.gridOptions.columns[i].name + "Checkbox").checked = prechangeColumns[i].visible;
-            }
-        }
-        for (var i = 0; i < estatePropertyDetail.gridOptions.columns.length; i++) {
-            console.log(estatePropertyDetail.gridOptions.columns[i].name.concat(".visible: "), estatePropertyDetail.gridOptions.columns[i].visible);
-        }
-        estatePropertyDetail.gridOptions.columnCheckbox = !estatePropertyDetail.gridOptions.columnCheckbox;
-    }
+    
 
     estatePropertyDetail.deleteAttachedFieldName = function (index) {
         estatePropertyDetail.attachedFields.splice(index, 1);
@@ -833,74 +818,7 @@
         else
             $('#icons').fadeOut();
     }
-    //Export Report 
-    estatePropertyDetail.exportFile = function () {
-        estatePropertyDetail.addRequested = true;
-        estatePropertyDetail.gridOptions.advancedSearchData.engine.ExportFile = estatePropertyDetail.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath + 'estatePropertyDetail/exportfile', estatePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            estatePropertyDetail.addRequested = false;
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                estatePropertyDetail.exportDownloadLink = window.location.origin + response.LinkFile;
-                $window.open(response.LinkFile, '_blank');
-                //estatePropertyDetail.closeModal();
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }
-    //Open Export Report Modal
-    estatePropertyDetail.toggleExportForm = function () {
-        estatePropertyDetail.SortType = [{
-                key: 'نزولی',
-                value: 0
-            },
-            {
-                key: 'صعودی',
-                value: 1
-            },
-            {
-                key: 'تصادفی',
-                value: 3
-            }
-        ];
-        estatePropertyDetail.EnumExportFileType = [{
-                key: 'Excel',
-                value: 1
-            },
-            {
-                key: 'PDF',
-                value: 2
-            },
-            {
-                key: 'Text',
-                value: 3
-            }
-        ];
-        estatePropertyDetail.EnumExportReceiveMethod = [{
-                key: 'دانلود',
-                value: 0
-            },
-            {
-                key: 'ایمیل',
-                value: 1
-            },
-            {
-                key: 'فایل منیجر',
-                value: 3
-            }
-        ];
-        estatePropertyDetail.ExportFileClass = {
-            FileType: 1,
-            RecieveMethod: 0,
-            RowCount: 100
-        };
-        estatePropertyDetail.exportDownloadLink = null;
-        $modal.open({
-            templateUrl: 'cpanelv1/ModuleEstate/EstatePropertyDetail/report.html',
-            scope: $scope
-        });
-    }
+   
     //Row Count Export Input Change
     estatePropertyDetail.rowCountChanged = function () {
         if (!angular.isDefined(estatePropertyDetail.ExportFileClass.RowCount) || estatePropertyDetail.ExportFileClass.RowCount > 5000)
