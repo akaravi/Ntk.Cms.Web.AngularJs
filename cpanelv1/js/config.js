@@ -1,12 +1,11 @@
 
 var cmsServerConfig = {
-    //configApiServerPath: "https://apicms.ir/api/v1/",
-    configApiServerPath: "http://localhost:2390/api/v1/",
+    configApiServerPath: "https://apicms.ir/api/v1/",
+    //configApiServerPath: "http://localhost:2390/api/v1/",
     configMvcServerPath: "https://oco.ir",
     configCpanelImages: "/images/",
     configPathFileByIdAndName:"https://oco.ir/files/",
     configRouteThumbnails:"https://oco.ir/imageThumbnails/",
-    nnnnnnnnnnn:"https://apicms.ir/api/files/",
     //configRouteUploadFileContent:"http://localhost:2390/api/v1/FileContent/upload/",
     configRouteUploadFileContent:"https://apicms.ir/api/v1/FileContent/upload/",
 };
