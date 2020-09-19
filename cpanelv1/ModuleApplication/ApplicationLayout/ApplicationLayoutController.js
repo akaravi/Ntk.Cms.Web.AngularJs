@@ -282,13 +282,12 @@
                 visible: true
             },
             {
-                name: "virtual_Source.Title",
-                displayName: "قالب",
+                name: "ModuleName",
+                displayName: "ClassName",
                 sortable: true,
                 type: "string",
-                displayForce: true,
                 visible: true
-            },
+            }
         ],
         data: {},
         multiSelect: false,

@@ -436,7 +436,7 @@
                     rashaErManage.checkAction(res);
                     estateProperty.busyIndicator.isActive = false;
                     if (res.IsSuccess) {
-                        estateProperty.replaceItem(estateProperty.selectedItemForDelete.Id);
+                        estateProperty.replaceItem(estateProperty.gridOptions.selectedRow.item.Id);
                         estateProperty.gridOptions.fillData(estateProperty.ListItems);
                     }
                 }).error(function (data2, errCode2, c2, d2) {
