@@ -70,12 +70,16 @@
             var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue: "CoreMainTemplateWithEmbeddedChild" }] };
             ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
+                if(response.IsSuccess && response.ListItems.length>0)
+                {
                 cmsPageDesign.mastePageDependencyId = response.ListItems[0].Id;
                 if (!cmsPageDesign.dependencyId  || (cmsPageDesign.classActioName && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0)) {
                     cmsPageDesign.dependencyId=cmsPageDesign.mastePageDependencyId
                 } 
                 
-                cmsPageDesign.onloadmydata();
+                
+            }
+            cmsPageDesign.onloadmydata();
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
