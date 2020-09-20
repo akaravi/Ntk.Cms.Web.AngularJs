@@ -4102,16 +4102,16 @@
                     }
                 })
                 //-----Estate Module-----
-                .state('index.estatecontract', {
-                    url: "/estatecontract",
-                    templateUrl: "cpanelv1/ModuleEstate/EstateContract/grid.html",
-                    controller: "estateContractController",
-                    controllerAs: "estateContract",
+                .state('index.estateaccountagency', {
+                    url: "/estateaccountagency",
+                    templateUrl: "cpanelv1/ModuleEstate/EstateAccountAgency/grid.html",
+                    controller: "estateAccountAgencyController",
+                    controllerAs: "estateAccountAgency",
                     data: {
-                        pageTitle: 'ماژول املاک | آگهی ها'
+                        pageTitle: 'ماژول املاک | آزانس ها'
                     },
                     ncyBreadcrumb: {
-                        label: 'آگهی ها'
+                        label: 'آزانس های املاک'
                     },
                     resolve: {
                         deps: [
@@ -4121,7 +4121,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstateContract/EstateContractController.js'
+                                            'cpanelv1/ModuleEstate/EstateAccountAgency/EstateAccountAgencyController.js'
                                         ]
                                     }
                                 ]);
@@ -4129,6 +4129,33 @@
                         ]
                     }
                 })
+                .state('index.estatecontract', {
+                                    url: "/estatecontract",
+                                    templateUrl: "cpanelv1/ModuleEstate/EstateContract/grid.html",
+                                    controller: "estateContractController",
+                                    controllerAs: "estateContract",
+                                    data: {
+                                        pageTitle: 'ماژول املاک | آگهی ها'
+                                    },
+                                    ncyBreadcrumb: {
+                                        label: 'آگهی ها'
+                                    },
+                                    resolve: {
+                                        deps: [
+                                            '$ocLazyLoad',
+                                            function ($ocLazyLoad) {
+                                                return $ocLazyLoad.load([
+                                                    'nouislider', 'minicolors', {
+                                                        serie: false,
+                                                        files: [
+                                                            'cpanelv1/ModuleEstate/EstateContract/EstateContractController.js'
+                                                        ]
+                                                    }
+                                                ]);
+                                            }
+                                        ]
+                                    }
+                                })
                 .state('index.estatecontracttype', {
                     url: "/estatecontracttype",
                     templateUrl: "cpanelv1/ModuleEstate/EstateContractType/grid.html",
