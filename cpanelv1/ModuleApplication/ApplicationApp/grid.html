@@ -5,6 +5,7 @@
             <button class="btn btn-warning" rasha-userrole="appApplication.Edit" ng-click="appApplication.openEditModal()" type="button" ng-show="appApplication.gridOptions.Access.AccessEditRow">{{'edit'|lowercase|translate}} </button>
             <button class="btn btn-danger" rasha-userrole="appApplication.Delete" ng-click="appApplication.deleteRow()" type="button" ng-show="appApplication.gridOptions.Access.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="appApplication.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" type="button" ng-click="appApplication.openUploadModal()" ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">{{'uploadapp'|lowercase|translate}}</button>
             <button class="btn btn-warning" type="button" ng-click="appApplication.openGridConfigModal()" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="appApplication.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
             <button class="btn btn-success" ng-click="appApplication.getCount()">{{'number'|lowercase|translate}}&nbsp;{{appApplication.ListItemsTotalRowCount}}</button>

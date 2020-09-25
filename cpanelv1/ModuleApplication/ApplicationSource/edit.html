@@ -27,6 +27,22 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('OSType')" ng-class="{'has-error' : frmappSourceEdit.OSType.$invalid && !frmappSourceEdit.OSType.$pristine,'has-success' : frmappSourceEdit.OSType.$valid}">
+                                <label class="col-sm-2 control-label"> {{'ostype'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="OSType"
+                                    ng-options="x.Value as x.Description for x in appSource.OSTypeListItems"
+                                    ng-model="appSource.selectedItem.OSType"
+                                    ng-disabled="appSource.addRequested">{{x.Description}}</select>
+                                    <div class="m-t-xs" ng-show="frmappSourceEdit.OSType.$invalid">
+                                        <small class="text-danger" ng-show="frmappSourceEdit.OSType.$error.required"><i class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.OSType.$valid && frmappSourceEdit.OSType.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.OSType.$invalid && !frmappSourceEdit.OSType.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="appSource.CheckAccessEdit('ClassName')" ng-class="{'has-error' : frmappSourceEdit.ClassName.$invalid && !frmappSourceEdit.ClassName.$pristine,'has-success' : frmappSourceEdit.ClassName.$valid}">
                                 <label class="col-sm-2 control-label"> {{'CLASS_NAME_EN'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
@@ -85,11 +101,34 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('Extension')" ng-class="{'has-error' : frmappSourceEdit.Extension.$invalid && !frmappSourceEdit.PackageName.$pristine,'has-success' : frmappSourceEdit.PackageName.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Extension'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control ltr-support" ng-required="true" name="Extension" ng-model="appSource.selectedItem.Extension" />
+                                    <div class="m-t-xs" ng-show="frmappSourceEdit.Extension.$invalid">
+                                        <small class="text-danger" ng-show="frmappSourceEdit.Extension.$error.required"><i class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.Extension.$valid && frmappSourceEdit.Extension.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.Extension.$invalid && !frmappSourceEdit.Extension.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="appSource.CheckAccessEdit('IsPublish')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="Required" ng-model="appSource.selectedItem.IsPublish">{{'IS_PUBLIC'|lowercase|translate}}
+                                            <input type="checkbox" name="IsPublish" ng-model="appSource.selectedItem.IsPublish">{{'IS_PUBLIC'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('IsAbilityGradleBuild')">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="IsAbilityGradleBuild" ng-model="appSource.selectedItem.IsAbilityGradleBuild">{{'is_ability_gradle_build'|lowercase|translate}}
                                         </label>
                                     </div>
                                 </div>

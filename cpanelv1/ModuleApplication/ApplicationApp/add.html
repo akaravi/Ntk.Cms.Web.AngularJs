@@ -10,69 +10,35 @@
     <div class="row">
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="appApplication.closeModal()"></i>
-            <h3 class="m-t-none m-b">{{'Add_Application'|lowercase|translate}}</h3>
-            <form method="get" class="form-horizontal" name="frmappApplicationAdd" novalidate
-                ng-submit="appApplication.addNewRow(frmappApplicationAdd)">
+            <h3 class="m-t-none m-b">{{'Edit_Application'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmappApplicationEdit" novalidate ng-submit="appApplication.editRow(frmappApplicationEdit)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('RecordStatus')"
-                                ng-class="{'has-error' : frmappApplicationAdd.RecordStatus.$invalid && !frmappApplicationAdd.RecordStatus.$pristine,'has-success' : frmappApplicationAdd.RecordStatus.$valid}">
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('RecordStatus')" ng-class="{'has-error' : frmappApplicationEdit.RecordStatus.$invalid && !frmappApplicationEdit.RecordStatus.$pristine,'has-success' : frmappApplicationEdit.RecordStatus.$valid}">
                                 <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
                                 <div class="col-sm-10" rasha-record-status="appApplication"></div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('Title')"
-                                ng-class="{'has-error' : frmappApplicationAdd.Title.$invalid && !frmappApplicationAdd.Title.$pristine,'has-success' : frmappApplicationAdd.Title.$valid}">
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('Title')" ng-class="{'has-error' : frmappApplicationEdit.Title.$invalid && !frmappApplicationEdit.Title.$pristine,'has-success' : frmappApplicationEdit.Title.$valid}">
                                 <label class="col-sm-2 control-label"> {{'APP_TITLE'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" ng-required="true" name="Title"
-                                        ng-model="appApplication.selectedItem.Title" />
-                                    <div class="m-t-xs" ng-show="frmappApplicationAdd.Title.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappApplicationAdd.Title.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
+                                    <input class="form-control" ng-required="true" name="Title" ng-model="appApplication.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmappApplicationEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmappApplicationEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i>
                                             {{'this_information_is_required'|lowercase|translate}} </small>
                                     </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappApplicationAdd.Title.$valid && frmappApplicationAdd.Title.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappApplicationAdd.Title.$invalid && !frmappApplicationAdd.Title.$pristine) || frmappApplicationAdd.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="frmappApplicationEdit.Title.$valid && frmappApplicationEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappApplicationEdit.Title.$invalid && !frmappApplicationEdit.Title.$pristine) || frmappApplicationEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('LinkSourceId')"
-                                ng-class="{'has-error' : frmappApplicationAdd.LinkSourceId.$invalid && !frmappApplicationAdd.LinkSourceId.$pristine,'has-success' : frmappApplicationAdd.LinkSourceId.$valid}">
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('LinkSourceId')">
                                 <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <select class='form-control' name="LinkSourceId"
-                                        ng-model="appApplication.selectedItem.LinkSourceId"
-                                        ng-options="x.Id as x.Title for x in appApplication.sourceListItems"
-                                        ng-change="appApplication.onSourceChange(appApplication.selectedItem.LinkSourceId)"
-                                        ng-disabled="appApplication.addRequested" required></select>
-                                    <div class="m-t-xs" ng-show="frmappApplicationAdd.LinkSourceId.$invalid">
-                                        <small class="text-danger"
-                                            ng-show="frmappApplicationAdd.LinkSourceId.$error.required"><i
-                                                class="fa fa-exclamation-triangle"></i>
-                                            {{'this_information_is_required'|lowercase|translate}} </small>
-                                    </div>
-                                    <span style="left: 10px !important;"
-                                        ng-show="frmappApplicationAdd.LinkSourceId.$valid && frmappApplicationAdd.LinkSourceId.$dirty"
-                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
-                                    <span style="left: 10px !important;"
-                                        ng-show="(frmappApplicationAdd.LinkSourceId.$invalid && !frmappApplicationAdd.LinkSourceId.$pristine) || frmappApplicationAdd.submitted"
-                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
-                                        aria-hidden="true"></span>
+                                    <input class='form-control' name="LinkSourceId" ng-model="appApplication.selectedItem.virtual_Source.Title" readonly />
                                 </div>
                             </div>
                             <!--tabEnd-->
@@ -81,102 +47,107 @@
                     <tab heading="{{'SETTING' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
+
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('UserConfigJsonValues')">
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('CheckUpdate')">
                                 <div class="col-sm-12">
-                                    <div ng-model="appApplication.submitValue" fb-form="default"
-                                        fb-default="appApplication.defaultValue"></div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="Required" ng-model="appApplication.selectedItem.CheckUpdate">بررسی آپدیت
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('LinkThemeConfigId')">
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('ForceUpdate')">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="Required" ng-model="appApplication.selectedItem.ForceUpdate">ملزم به آپدیت
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('IsPublic')">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="Required" ng-model="appApplication.selectedItem.IsPublic"> اشتراک گزاری برنامه
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('DownloadLinkSrcCustomize')">
+                                <label class="col-sm-2 control-label">آدرس خاص برای دانلود آپدیت </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="DownloadLinkSrcCustomize" ng-model="appApplication.selectedItem.DownloadLinkSrcCustomize" />
+                                </div>
+                            </div>
+                     
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('LinkThemeConfigId')">
                                 <label class="col-sm-2 control-label">{{'THEME'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <select class='form-control' name="LinkThemeConfigId"
-                                        ng-options="x.Id as x.Title for x in appApplication.themeConfigListItems"
-                                        ng-model="appApplication.selectedItem.LinkThemeConfigId"
-                                        ng-disabled="appApplication.addRequested"></select>
+                                    <select class='form-control' name="LinkThemeConfigId" ng-options="x.Id as x.Title for x in appApplication.themeConfigListItems" ng-model="appApplication.selectedItem.LinkThemeConfigId" ng-disabled="appApplication.addRequested"></select>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="appApplication.selectedItem.previewImageSrc != null">
                                 <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
-                                <img src="{{appApplication.selectedItem.previewImageSrc}}" width="300" height="300"
-                                    class="img-rounded col-sm-3 col-md-3 col-lg-3"
-                                    alt="{{appApplication.selectedItem.Title}}" />
+                                <img src="{{appApplication.selectedItem.previewImageSrc}}" width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{appApplication.selectedItem.Title}}" />
                             </div>
-                            <div id="treecontrol" class="form-group"
-                                ng-show="appApplication.CheckAccessAdd('LinkModulesFilesIdIcon')">
-                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
-                                <div class="col-sm-10">
-                                    <div treecontrol class="tree-boot" style="color:black"
-                                        tree-model="appApplication.dataForTheTree" options="appApplication.treeOptions"
-                                        selected-node="appApplication.selectedNode"
-                                        on-selection="appApplication.onSelection(node, selected)"
-                                        on-node-toggle="appApplication.onNodeToggle(node,expanded)">
-                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control"
-                                            style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                           
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'Icon'|lowercase|translate}} </label>
+
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="appApplication.FileIdIcon" ng-model="appApplication.selectedItem.LinkFileIdIcon">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'Logo'|lowercase|translate}} </label>
+
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="appApplication.FileIdLogo" ng-model="appApplication.selectedItem.LinkFileIdLogo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SplashScreen'|lowercase|translate}} </label>
+
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="appApplication.FileIdSplashScreen" ng-model="appApplication.selectedItem.LinkFileIdSplashScreen">
                                     </div>
                                 </div>
                             </div>
                             <!--tabEnd-->
                         </div>
                     </tab>
-                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
-                        <div class="panel-body">
-                           <!--tabStart-->
-                           <div class='hr-line-dashed'></div>
-                           <div class="form-group">
-                               <label class="col-sm-2 control-label"> {{'Icon'|lowercase|translate}} </label>
-                               <!-- <a class="btn btn-primary uoload-file-m" href=""
-                                   ng-click="appApplication.openUploadModal()" aria-label="Delete">
-                                   {{'UPLOAD'|lowercase|translate}}
-                                   <i class="fa fa-upload" aria-hidden="true"></i>
-                               </a> -->
-                               <div class="col-sm-8 smallFileManager">
-                                   <div rasha-file-picker-b="appApplication.FileIdIcon"
-                                       ng-model="appApplication.selectedItem.LinkFileIdIcon">
-                                   </div>
-                               </div>
-                           </div>
-                           <div class='hr-line-dashed'></div>
-                           <div class="form-group">
-                               <label class="col-sm-2 control-label"> {{'Logo'|lowercase|translate}} </label>
-   
-                               <div class="col-sm-8 smallFileManager">
-                                   <div rasha-file-picker-b="appApplication.FileIdLogo"
-                                       ng-model="appApplication.selectedItem.LinkFileIdLogo">
-                                   </div>
-                               </div>
-                           </div>
-                           <div class='hr-line-dashed'></div>
-                           <div class="form-group">
-                               <label class="col-sm-2 control-label"> {{'SplashScreen'|lowercase|translate}} </label>
-   
-                               <div class="col-sm-8 smallFileManager">
-                                   <div rasha-file-picker-b="appApplication.FileIdSplashScreen"
-                                       ng-model="appApplication.selectedItem.LinkFileIdSplashScreen">
-                                   </div>
-                               </div>
-                           </div>
-                           <!--tabEnd-->
-                        </div>
-                    </tab>
                     <tab heading="{{'تنظیمات قالب ها' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class='hr-line-dashed'></div>
-                            
-                            <div class="form-group" >
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">{{'ThemeConfigJsonValues'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control"  name="ThemeConfigJsonValues" ng-model="appApplication.selectedItem.ThemeConfigJsonValues" style="resize: vertical;height: 100px;"></textarea>
-                                    
+                                    <textarea class="form-control" name="ThemeConfigJsonValues" ng-model="appApplication.selectedItem.ThemeConfigJsonValues" style="resize: vertical;height: 100px;"></textarea>
+
                                     <p>
                                         محتوای جی سان تنظیمات به قالب خود را وارد کنید
-                                    </p>  
+                                    </p>
                                 </div>
                             </div>
                             <!--tabEnd-->
@@ -185,8 +156,7 @@
                     <tab heading="{{'تنظیمات  مدیریت کل در ساخت ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appApplication.includeHtmlBuilderAdmin"
-                                include-replace="ThemeFinderConfig|appApplication.ConfigBuilderAdmin">
+                            <div class="form-group" ng-include="appApplication.includeHtmlBuilderAdmin" include-replace="ThemeFinderConfig|appApplication.ConfigBuilderAdmin">
 
                             </div>
 
@@ -195,8 +165,7 @@
                     <tab heading="{{'تنظیمات   مدیریت کل در اجرا ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appApplication.includeHtmlRuntimeAdmin"
-                                include-replace="ThemeFinderConfig|appApplication.ConfigRuntimeAdmin">
+                            <div class="form-group" ng-include="appApplication.includeHtmlRuntimeAdmin" include-replace="ThemeFinderConfig|appApplication.ConfigRuntimeAdmin">
 
                             </div>
 
@@ -205,8 +174,7 @@
                     <tab heading="{{'تنظیمات   مدیریت سایت در ساخت ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appApplication.includeHtmlBuilderSite"
-                                include-replace="ThemeFinderConfig|appApplication.ConfigBuilderSite">
+                            <div class="form-group" ng-include="appApplication.includeHtmlBuilderSite" include-replace="ThemeFinderConfig|appApplication.ConfigBuilderSite">
 
                             </div>
                         </div>
@@ -214,8 +182,7 @@
                     <tab heading="{{'تنظیمات  مدیریت سایت در اجرا ' |lowercase|translate}}">
                         <div class="panel-body">
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-include="appApplication.includeHtmlRuntimeSite"
-                                include-replace="ThemeFinderConfig|appApplication.ConfigRuntimeSite">
+                            <div class="form-group" ng-include="appApplication.includeHtmlRuntimeSite" include-replace="ThemeFinderConfig|appApplication.ConfigRuntimeSite">
 
                             </div>
 
@@ -228,12 +195,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 1'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey1String"
-                                        ng-model="appApplication.selectedItem.BuildKey1String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey1String" ng-model="appApplication.selectedItem.BuildKey1String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey1Value"
-                                        ng-model="appApplication.selectedItem.BuildKey1Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey1Value" ng-model="appApplication.selectedItem.BuildKey1Value" placeholder="Value" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
@@ -241,12 +206,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 2'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey2String"
-                                        ng-model="appApplication.selectedItem.BuildKey2String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey2String" ng-model="appApplication.selectedItem.BuildKey2String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey2Value"
-                                        ng-model="appApplication.selectedItem.BuildKey2Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey2Value" ng-model="appApplication.selectedItem.BuildKey2Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -255,12 +218,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 3'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey3String"
-                                        ng-model="appApplication.selectedItem.BuildKey3String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey3String" ng-model="appApplication.selectedItem.BuildKey3String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey3Value"
-                                        ng-model="appApplication.selectedItem.BuildKey3Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey3Value" ng-model="appApplication.selectedItem.BuildKey3Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -269,12 +230,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 4'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey4String"
-                                        ng-model="appApplication.selectedItem.BuildKey4String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey4String" ng-model="appApplication.selectedItem.BuildKey4String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey4Value"
-                                        ng-model="appApplication.selectedItem.BuildKey4Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey4Value" ng-model="appApplication.selectedItem.BuildKey4Value" placeholder="Value" />
                                 </div>
                             </div>
 
@@ -283,12 +242,10 @@
                                 <label class="col-sm-2 control-label"> {{'Key 5'|lowercase|translate}} </label>
 
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey5String"
-                                        ng-model="appApplication.selectedItem.BuildKey5String" placeholder="Key" />
+                                    <input class='form-control' name="BuildKey5String" ng-model="appApplication.selectedItem.BuildKey5String" placeholder="Key" />
                                 </div>
                                 <div class="col-sm-4 ">
-                                    <input class='form-control' name="BuildKey5Value"
-                                        ng-model="appApplication.selectedItem.BuildKey5Value" placeholder="Value" />
+                                    <input class='form-control' name="BuildKey5Value" ng-model="appApplication.selectedItem.BuildKey5Value" placeholder="Value" />
                                 </div>
                             </div>
                         </div>
@@ -298,8 +255,7 @@
                 <div class="form-group">
                     <button class="btn btn-primary" ng-disabled="appApplication.addRequested" type="submit">
                         {{'save'|lowercase|translate}} </button>
-                    <button class="btn btn-default" type="button"
-                        ng-click="appApplication.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="appApplication.closeModal()">{{'cancel'|lowercase|translate}}</button>
                 </div>
             </form>
         </div>

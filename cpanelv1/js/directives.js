@@ -1022,7 +1022,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         "<table id='firstuniqueId' class='table table-striped table-bordered floatThead-table'  >" +
                         '<thead>' +
                         '<tr>' +
-                        '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.CheckAccessWatch(\'{{x.name}}\')"  style="width:{{x.width}}" >' +
+                        '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.GridCheckAccessWatch(\'{{x.name}}\')"  style="width:{{x.width}}" >' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle(x)" >' +
                         '{{x.displayName}}' +
                         '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1041,7 +1041,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         '<table id="uniqueId" class="table table-striped table-bordered floatThead-table" style="position:fixed;top:0px;width:0px !important;display:none" >' +
                         '<thead>' +
                         '<tr style="width:100%">' +
-                        '<th ng-repeat="x in systemColumnOptions.columns"  ng-show="systemColumnOptions.CheckAccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
+                        '<th ng-repeat="x in systemColumnOptions.columns"  ng-show="systemColumnOptions.GridCheckAccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle(x)">' +
                         '{{x.displayName}}' +
                         '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1067,7 +1067,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         "<table id='firstuniqueId' class='table table-striped table-bordered floatThead-table'  >" +
                         '<thead>' +
                         '<tr>' +
-                        '<th style="width:50px;" ng-show="systemColumnOptions.CheckAccessWatch(\'RecordStatus\')">' +
+                        '<th style="width:50px;" ng-show="systemColumnOptions.GridCheckAccessWatch(\'RecordStatus\')">' +
                         '<div style="cursor:pointer;" ng-click="changeSortStyle()" >' +
                         'وضعیت' +
                         '</div>' +
@@ -1083,7 +1083,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                         '</thead>' +
                         '<tbody>' +
                         "<tr ng-repeat='x in systemColumnOptions.data| filter:systemColumnOptions.filterSearch' ng-click='systemColumnOptions.selectRow(x.rowOption,$this,$index);' ng-class='{true:infoclass}[(x.rowOption.isSelected)]' style='cursor:pointer'>" +
-                        '<td ng-show="systemColumnOptions.CheckAccessWatch(\'RecordStatus\')" ><i class="{{x.RecordStatus|isRecordStatus}}" /></td>' +
+                        '<td ng-show="systemColumnOptions.GridCheckAccessWatch(\'RecordStatus\')" ><i class="{{x.RecordStatus|isRecordStatus}}" /></td>' +
                         '<rowTemplates />' +
                         '</tr>' +
                         '</tbody>' +
@@ -1100,7 +1100,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                     "<table class='table table-striped table-bordered table-responsive floatThead-table' style='display: table;table-layout: fixed;' >" +
                     '<thead>' +
                     '<tr>' +
-                    '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.CheckAccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
+                    '<th ng-repeat="x in systemColumnOptions.columns" ng-show="systemColumnOptions.GridCheckAccessWatch(\'{{x.name}}\')" style="width:{{x.width}}" >' +
                     '<div style="cursor:pointer;"  ng-click="changeSortStyle(x)">' +
                     '{{x.displayName}}' +
                     '<i class="fa fa-sort-desc pull-right" ng-show="x.sortDescVisible"></i>' +
@@ -1222,21 +1222,21 @@ function rashaGrid($compile, $rootScope, ajax) {
                             } else {
                                 //No displayForce
                                 if (item.isCheckBox) {
-                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.GridCheckAccessWatch(\'' + item.name + '\')"><i class="fa fa-check" ng-show="x.' + item.name + '"></i><i class="fa fa-times" ng-show="!x.' + item.name + '"></i></div></td>';
                                 } else if (item.isDateTime) {
                                     var dateFormat = item.dateTimeFormat;
                                     if (!dateFormat)
                                         dateFormat = 'HH:mm jYY/jMM/jDD';
-                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.GridCheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
                                 } else if (item.isDate) {
                                     var dateFormat = item.dateTimeFormat;
                                     if (!dateFormat)
                                         dateFormat = 'jYY/jMM/jDD';
-                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.GridCheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|jalaliDate:"' + dateFormat + '"}}</div></td>';
                                 } else if (item.excerpt) {
-                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.GridCheckAccessWatch(\'' + item.name + '\')">{{x.' + item.name + '|excerpt:"' + item.excerptLength + '"}}</div></td>';
                                 } else if (item.isRecordStatus) {
-                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.CheckAccessWatch(\'' + item.name + '\')"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
+                                    template = '<td style="{{x.style}}"><div  ng-show="systemColumnOptions.GridCheckAccessWatch(\'' + item.name + '\')"><i class="{{x.' + item.name + '|isRecordStatus}}"></i></div></td>';
                                 } else if (item.isThumbnail) {
                                     template = '<td style="{{x.style}}"><div  ng-show="{{' + item.visible + '}}">' +
                                         '<span custom-popover popover-id="{{x.' + item.name + '}}" popover-title="{{x.' + item.name + '}}" popover-placement="top" popover-iconsrc="/CmsFiles/img/default-grid-img.png" data-width="' + item.widthImg + '" data-height="' + item.heightImg + '"></span>' + '</div></td>';
@@ -1384,18 +1384,11 @@ function rashaGrid($compile, $rootScope, ajax) {
             };
 
             config.fillData = function(rowResponse, resultAccessSet) {
-
                 if (resultAccessSet && resultAccessSet != undefined) config.Access = resultAccessSet;
-
                 var response = [];
                 if (rowResponse && rowResponse != undefined) {
                     for (var k in rowResponse) response[k] = jQuery.extend({}, rowResponse[k]);
                 }
-
-
-
-
-                //config.Accesschanged();
                 if (!response) {
                     var $fixedHeader = $("#" + config.getUniqueId);
                     $fixedHeader.hide();
@@ -1404,13 +1397,14 @@ function rashaGrid($compile, $rootScope, ajax) {
                 if (!config.showInSelector) {
                     var $fixedHeader = $("#" + config.getUniqueId);
                     var tableOffset = $(element).offset().top;
-                    //var tableWidth = $(element).width();
-                    ////console.log(tableWidth);
-                    //$fixedHeader.css('width', tableWidth + "px !important;");
                     $fixedHeader.hide();
                 }
                 //access
-                config.CheckAccessWatch = function(fieldName) {
+                config.CheckEntity = function(model) {
+                    
+                    return true;
+                }
+                config.GridCheckAccessWatch = function(fieldName) {
                     if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
                         return false;
                     var retOut = false;
@@ -1420,45 +1414,11 @@ function rashaGrid($compile, $rootScope, ajax) {
                     });
                     return retOut;
                 }
-                config.CheckAccessSearch = function(fieldName) {
-                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
-                        return false;
-                    var retOut = false;
-                    $.each(config.Access.FieldsInfo, function(index, column) {
-                        if (column.FieldName == fieldName)
-                            retOut = column.AccessSearchField;
-                    });
-                    return retOut;
-                }
-                config.CheckAccessEdit = function(fieldName) {
-                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
-                        return false;
-                    var retOut = false;
-                    $.each(config.Access.FieldsInfo, function(index, column) {
-                        if (column.FieldName == fieldName)
-                            retOut = column.AccessEditField;
-                    });
-                    return retOut;
-                }
-                config.CheckAccessAdd = function(fieldName) {
-                    if (!config.Access || !config.Access.FieldsInfo || config.Access.FieldsInfo.length == 0)
-                        return false;
-                    var retOut = false;
-                    $.each(config.Access.FieldsInfo, function(index, column) {
-                        if (column.FieldName == fieldName)
-                            retOut = column.AccessAddField;
-                    });
-                    return retOut;
-                }
+              
                 //access
 
 
                 angular.forEach(response, function(item, key) {
-                    //for (var key in item) {
-                    //    var value = item[key];
-                    //    if (typeof value === 'string' && value.length > 50)
-                    //        item[key] = config.excerpt(value);
-                    //}
                     if (!item.rowOption) {
                         item.rowOption = {
                             isSelected: false,
@@ -1510,14 +1470,6 @@ function rashaGrid($compile, $rootScope, ajax) {
                         rowData: opt
                     };
                     config.selectionChanged();
-
-                    //if ($('a[rel=popoverThumbnail]').length > 0) {
-                    //    var this_ = $('a[rel=popoverThumbnail]')[opt.rowIndex];
-                    //    var imgImg = this_.attributes["data-img"].value;
-                    //    var imgWidth = this_.attributes["data-width"].value;
-                    //    var imgHeight = this_.attributes["data-height"].value;
-                    //    config.previewImage(this_, imgImg, imgWidth, imgHeight);
-                    //}
                 }
 
             }
