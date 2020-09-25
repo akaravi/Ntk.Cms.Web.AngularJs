@@ -380,7 +380,7 @@
                 var model = {
                     LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
                     AppVersion: 0,
-                    GuidId: uploadFile.uploadName
+                    UploadFileKey: uploadFile.uploadName
 
                 };
                 ajax
