@@ -154,17 +154,17 @@
         //console.log(item);
         var currentSite = item.Id;
         if (currentSite == undefined || currentSite == 'undefined')
-            currentSite = $rootScope.tokenInfo.Item.SiteId;
+            currentSite = $rootScope.tokenInfo.SiteId;
         //rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید...");
         ajax.call(cmsServerConfig.configApiServerPath+"Auth/RenewToken/", { SiteId: currentSite }, "POST").success(function (response) {
-            localStorage.setItem("userGlobaltoken", response.token);
+            localStorage.setItem("userGlobaltoken", response.Item.token);
             //rashaErManage.showMessage("دسترسی جدید اعمال گردید");
-            $rootScope.tokenInfo = response;
+            $rootScope.tokenInfo = response.Item;
 
 
-            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
-            if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
-                $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.SubDomain + "." + $rootScope.tokenInfo.Item.Domain + "/";
+            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
+            if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
+                $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
             navCtrl.showSiteSelector = false;
             $state.go("index.main", {});

@@ -25,9 +25,9 @@
     }
     botConfigCtrl.SetAllWebhookUpdateShow=false;
     botConfigCtrl.init = function () {
-        if ($rootScope.tokenInfo &&  $rootScope.tokenInfo.Item) {
+        if ($rootScope.tokenInfo ) {
 
-            if($rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData&& $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData)
+            if($rootScope.tokenInfo.UserAccessAdminAllowToAllData&& $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData)
             {botConfigCtrl.SetAllWebhookUpdateShow=true;
             }
         }

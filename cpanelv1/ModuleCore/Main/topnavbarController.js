@@ -48,15 +48,15 @@
                     topNavBar.busyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {}, "POST").success(function (response) {
                         rashaErManage.checkAction(response);
-                        $rootScope.tokenInfo = response;
+                        $rootScope.tokenInfo = response.Item;
 
 
-                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
-                        if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
-                            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.SubDomain + "." + $rootScope.tokenInfo.Item.Domain + "/";
+                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
+                        if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
+                            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.token);
+                        localStorage.setItem("userGlobaltoken", response.Item.token);
                         topNavBar.setDiskSpaceInfo();
                         //SET
                         topNavBar.busyIndicator.isActive = false;
@@ -96,21 +96,21 @@
                     ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {
                             Userid: NewUserid,
                             SiteId: NewSiteid,
-                            UserAccessAdminAllowToAllData: $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData,
-                            UserAccessAdminAllowToProfessionalData: $rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData,
+                            UserAccessAdminAllowToAllData: $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData,
+                            UserAccessAdminAllowToProfessionalData: $rootScope.tokenInfo.UserAccessAdminAllowToAllData,
                             lang: $rootScope.tokenInfo.UserLanguage
                         },
                         "POST").success(function (response) {
                         rashaErManage.checkAction(response);
-                        $rootScope.tokenInfo = response;
+                        $rootScope.tokenInfo = response.Item;
 
 
-                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
-                        if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
-                            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.SubDomain + "." + $rootScope.tokenInfo.Item.Domain + "/";
+                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
+                        if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
+                            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.token);
+                        localStorage.setItem("userGlobaltoken", response.Item.token);
                         rashaErManage.showMessage("دسترسی جدید اعمال شد");
                         $state.reload();
                         topNavBar.busyIndicator.isActive = false;
@@ -136,9 +136,9 @@
                 var oderShowAllDataStatus = false;
                 var oderShowProfessionalDataStatus = false;
                 if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
-                    SelectedCurrentSiteId = $rootScope.tokenInfo.Item.SiteId;
-                    oderShowAllDataStatus = $rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData;
-                    oderShowProfessionalDataStatus = $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData;
+                    SelectedCurrentSiteId = $rootScope.tokenInfo.SiteId;
+                    oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
+                    oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
                 }
                 //#help# تغییر سایت انتخاب شده
                 if (topNavBar.selectedItem.LinkCmsSiteId != undefined &&
@@ -165,12 +165,12 @@
                     if(response.IsSuccess)
                     {
                     rashaErManage.checkAction(response);
-                    $rootScope.tokenInfo = response;
-                    localStorage.setItem("userGlobaltoken", response.token);
+                    $rootScope.tokenInfo = response.Item;
+                    localStorage.setItem("userGlobaltoken", response.Item.token);
 
-                    $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
-                    if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
-                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.SubDomain + "." + $rootScope.tokenInfo.Item.Domain + "/";
+                    $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
+                    if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
+                        $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
 
 
@@ -263,9 +263,9 @@
             }
 
             topNavBar.setDiskSpaceInfo = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.SiteId, "", "GET").success(function (responseSiteAccess) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.SiteId, "", "GET").success(function (responseSiteAccess) {
                     rashaErManage.checkAction(responseSiteAccess);
-                    ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.SiteId, "", "GET").success(function (responseSiteStorage) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.SiteId, "", "GET").success(function (responseSiteStorage) {
                         try {
                             rashaErManage.checkAction(responseSiteStorage);
                             $rootScope.totalSite = responseSiteAccess.Item.AllCateSizeUploadMB;

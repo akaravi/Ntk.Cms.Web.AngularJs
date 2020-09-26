@@ -144,9 +144,9 @@
 
 if($rootScope.tokenInfo)
 {
-        ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.SiteId, "", "GET").success(function (responseSiteAccess) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.SiteId, "", "GET").success(function (responseSiteAccess) {
             rashaErManage.checkAction(responseSiteAccess);
-            ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.SiteId, "", "GET").success(function (responseSiteStorage) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.SiteId, "", "GET").success(function (responseSiteStorage) {
                 try {
                     rashaErManage.checkAction(responseSiteStorage);
                     dashb.totalSite = responseSiteAccess.Item.AllCateSizeUploadMB;
@@ -250,7 +250,7 @@ if($rootScope.tokenInfo)
             var filterModelTicket = {
                 Filters: [{
                     PropertyName: "LinkSiteId",
-                    IntValue1: $rootScope.tokenInfo.Item.SiteId,
+                    IntValue1: $rootScope.tokenInfo.SiteId,
                     SearchType: 0,
                 }],
                 rowPerPage: 10

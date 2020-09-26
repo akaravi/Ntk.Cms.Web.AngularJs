@@ -1094,7 +1094,7 @@
         rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
         return;
       }
-      if (blogContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.SiteId && !$rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData) {
+      if (blogContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.SiteId && !$rootScope.tokenInfo.UserAccessAdminAllowToAllData) {
         rashaErManage.showMessage($filter('translatentk')('This_Blog_Is_Shared'));
         return;
       }

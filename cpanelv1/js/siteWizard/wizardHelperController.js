@@ -14,7 +14,7 @@
             rashaErManage.checkAction(response);
             wizHelperController.loginRequest = false;
             if (response.IsSuccess && response.Item) {
-                localStorage.setItem('userGlobaltoken', response.token);
+                localStorage.setItem('userGlobaltoken', response.Item.token);
                 wizardService.callNextPage = true;
             }
 

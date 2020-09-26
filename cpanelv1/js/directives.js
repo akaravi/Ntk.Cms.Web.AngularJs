@@ -1871,9 +1871,9 @@ function rashaMenuRight($compile) {
                     '<span class="clear">' +
                     '<span class="block m-t-xs">' +
                     //'<span class="font-noraml">{{main.userName}} خوش آمدید</span>' +
-                    '<span class="font-noraml">{{tokenInfo.Item.Name}} خوش آمدید</span>' +
+                    '<span class="font-noraml">{{tokenInfo.Name}} خوش آمدید</span>' +
                     '<span class="clear">' +
-                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
+                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Username}})</span>' +
                     '</span>' +
                     //'<span class="text-muted text-xs block" >{{navigationText}}<b class="caret"></b></span>' +
                     //'</span>' +
@@ -1949,9 +1949,9 @@ function rashaMenuLeft($compile) {
                     '<span class="clear">' +
                     '<span class="block m-t-xs">' +
                     //'<span class="font-noraml">{{main.userName}} خوش آمدید</span>' +
-                    '<span class="font-noraml">{{tokenInfo.Item.Name}} خوش آمدید</span>' +
+                    '<span class="font-noraml">{{tokenInfo.Name}} خوش آمدید</span>' +
                     '<span class="clear">' +
-                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
+                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Username}})</span>' +
                     '</span>' +
                     //'<span class="text-muted text-xs block" >{{navigationText}}<b class="caret"></b></span>' +
                     //'</span>' +
@@ -2017,9 +2017,9 @@ function rashaMenuUp($compile) {
                     //'<a class="dropdown-toggle" dropdown-toggle href>' +
                     //'<span class="clear">' +
                     //'<span class="block m-t-xs">' +
-                    //'<span class="font-noraml">{{tokenInfo.Item.Name}} upupupupupup</span>' +
+                    //'<span class="font-noraml">{{tokenInfo.Name}} upupupupupup</span>' +
                     //'<span class="clear">' +
-                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
+                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Username}})</span>' +
                     //'</span>' +
                     //'</a>' +
                     //'</div>' +
@@ -2077,9 +2077,9 @@ function rashaMenuDown($compile) {
                     //'<a class="dropdown-toggle" dropdown-toggle href>' +
                     //'<span class="clear">' +
                     //'<span class="block m-t-xs">' +
-                    //'<span class="font-noraml">{{tokenInfo.Item.Name}} upupupupupup</span>' +
+                    //'<span class="font-noraml">{{tokenInfo.Name}} upupupupupup</span>' +
                     //'<span class="clear">' +
-                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
+                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Username}})</span>' +
                     //'</span>' +
                     //'</a>' +
                     //'</div>' +
@@ -2134,8 +2134,8 @@ var lastErroLogin = Date.now();
 function rashaErManage($state, notify, SweetAlert) {
     var template = 'cpanelv1/ModuleCore/common/notify.html';
     this.checkAction = function(response, errCode, c, d) {
-        if (response && response.token && response.token.length > 10)
-            localStorage.setItem("userGlobaltoken", response.token);
+        // if (response && response.token && response.token.length > 10)
+        //     localStorage.setItem("userGlobaltoken", response.token);
         var ErrorMessage = "";
         if (response) {
             //#help# خطا های موجود در درخواست
@@ -2175,9 +2175,9 @@ function rashaErManage($state, notify, SweetAlert) {
                 return;
             }
             if (response.Status == 200) {
-                if (response.UserTicket) {
-                    localStorage.setItem('userGlobaltoken', response.UserTicket);
-                }
+                // if (response.UserTicket) {
+                //     localStorage.setItem('userGlobaltoken', response.UserTicket);
+                // }
                 if (response.IsSuccess != undefined && response.IsSuccess == false) {
                     var myMessage = "متاسفانه ثبت با خطا مواجه شد! " + response.ErrorMessage;
                     notify({

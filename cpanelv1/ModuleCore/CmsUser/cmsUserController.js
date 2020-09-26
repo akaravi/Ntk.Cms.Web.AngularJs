@@ -278,9 +278,9 @@
         var oderShowProfessionalDataStatus = false;
 
         if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.token==undefined) {
-            oldSelectedUserId = $rootScope.tokenInfo.Item.LinkUserId;
-            oderShowAllDataStatus = $rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData;
-            oderShowProfessionalDataStatus = $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData;
+            oldSelectedUserId = $rootScope.tokenInfo.LinkUserId;
+            oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
+            oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
         }
         if (oldSelectedUserId == SelectedUserId) {
             rashaErManage.showMessage($filter('translatentk')('You_Are_Currently_Working_On_This_User'));
@@ -292,13 +292,13 @@
         //    rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید..");
         ajax.call(cmsServerConfig.configApiServerPath+"Auth/RenewToken/", { Userid: SelectedUserId, UserAccessAdminAllowToAllData: oderShowAllDataStatus, UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus, lang: $rootScope.tokenInfo.UserLanguage }, "POST").success(function (response) {
             rashaErManage.checkAction(response);
-            $rootScope.tokenInfo = response;
+            $rootScope.tokenInfo = response.Item;
 
-            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.Domain + "/";
-            if ($rootScope.tokenInfo.Item.SubDomain && $rootScope.tokenInfo.Item.SubDomain.length > 0)
-                $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.SubDomain + "." + $rootScope.tokenInfo.Item.Domain + "/";
+            $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
+            if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
+                $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
-            localStorage.setItem("userGlobaltoken", response.token);
+            localStorage.setItem("userGlobaltoken", response.Item.token);
             
             $state.reload();
 

@@ -213,7 +213,7 @@
             cmsSitegrd.AccountingFormCreatedDateDatePickerConfig.defaultDate = date;
             cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig.defaultDate = date;
             cmsSitegrd.selectedItem.mode = 1;
-            cmsSitegrd.selectedItem.LinkCreatedBySiteId = $scope.tokenInfo.Item.SiteId;
+            cmsSitegrd.selectedItem.LinkCreatedBySiteId = $scope.tokenInfo.SiteId;
             cmsSitegrd.selectedItem.IsActivated = 1;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleCore/cmsSite/add.html',
@@ -572,7 +572,7 @@
                 type: 'string',
                 visible: true,
                 displayForce: true,
-                template: '<a type="button" ng-show="tokenInfo.Item.UserAccessAllowToChildSite" class="btn btn-info" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.showChildren(x.Id)">نمایش&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>'
+                template: '<a type="button" ng-show="tokenInfo.UserAccessAllowToChildSite" class="btn btn-info" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.showChildren(x.Id)">نمایش&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>'
             }
         ],
         data: {},
@@ -1360,7 +1360,7 @@
     //     cmsSitegrd.ModuleConfigSelected = module;
     //     cmsSitegrd.ModuleConfigSelectedSiteId = cmsSitegrd.gridOptions.selectedRow.item.Id;
 
-    //     if ($rootScope.tokenInfo && $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData) {
+    //     if ($rootScope.tokenInfo && $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData) {
     //         cmsSitegrd.AdminMainLoad();
     //         cmsSitegrd.SiteDefaultLoad();
     //         cmsSitegrd.SiteAccessDefaultLoad();
@@ -1557,8 +1557,8 @@
             cmsSitegrd.addRequested = false;
             cmsSitegrd.busyIndicator.isActive = false;
             rashaErManage.showMessage("ورود به سایت موردنظر انجام شد!");
-            $rootScope.tokenInfo = response;
-            localStorage.setItem("userGlobaltoken", response.token);
+            $rootScope.tokenInfo = response.Item;
+            localStorage.setItem("userGlobaltoken", response.Item.token);
             $state.reload();
             rashaErManage.checkAction(response);
         }).error(function (data, errCode, c, d) {

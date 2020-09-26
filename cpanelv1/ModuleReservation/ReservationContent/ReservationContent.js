@@ -954,7 +954,7 @@
                 rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
                 return;
             }
-            if (reservationContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.SiteId && !$rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData) {
+            if (reservationContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.SiteId && !$rootScope.tokenInfo.UserAccessAdminAllowToAllData) {
                 rashaErManage.showMessage($filter('translatentk')('This_reservation_Is_Shared'));
                 return;
             }

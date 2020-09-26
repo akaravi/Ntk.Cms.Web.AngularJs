@@ -244,7 +244,7 @@
         cmsModulegrd.Item.Site = {};
         cmsModulegrd.Item.SiteAccessDefault = {};
         cmsModulegrd.ModuleConfigSelected = module;
-        if ($rootScope.tokenInfo && $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData) {
+        if ($rootScope.tokenInfo && $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData) {
             cmsModulegrd.AdminMainLoad();
             cmsModulegrd.SiteDefaultLoad();
             cmsModulegrd.SiteAccessDefaultLoad();
