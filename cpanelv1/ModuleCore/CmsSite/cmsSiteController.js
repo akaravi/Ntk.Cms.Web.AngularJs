@@ -1,9 +1,10 @@
-﻿app.controller("cmsSiteGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$builder', '$rootScope', '$window', '$state', '$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $builder, $rootScope, $window, $state, $stateParams, $filter) {
+﻿app.controller("cmsSiteGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$builder', '$rootScope', '$window', '$state', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $builder, $rootScope, $window, $state, $stateParams, $filter) {
 
     var cmsSitegrd = this;
     cmsSitegrd.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     //#formBuilder: define array for values
     cmsSitegrd.defaultValue = [];
+    cmsSitegrd.Group = {};
     cmsSitegrd.configType = null;
     if (itemRecordStatus != undefined) cmsSitegrd.itemRecordStatus = itemRecordStatus;
 
@@ -69,29 +70,29 @@
         }
     }
 
-  
+
     cmsSitegrd.AccountingFormCreatedDateDatePickerConfig = {
         defaultDate: date,
-        setTime: function (date) {
+        setTime: function(date) {
             this.defaultDate = date;
         }
     }
 
     cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig = {
         defaultDate: date,
-        setTime: function (date) {
+        setTime: function(date) {
             this.defaultDate = date;
         }
     }
     var date = moment().format();
-    
+
 
     //#tagsInput -----
-    cmsSitegrd.onTagAdded = function (tag) {
+    cmsSitegrd.onTagAdded = function(tag) {
         if (!angular.isDefined(tag.id)) { //Check if this a new or a existing tag (existing tags comprise with an id)
             var tagObject = jQuery.extend({}, cmsSitegrd.ModuleTag); //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/cmsSiteTag/', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/cmsSiteTag/', tagObject, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     cmsSitegrd.tags[cmsSitegrd.tags.length - 1] = {
@@ -99,12 +100,12 @@
                         text: response.Item.Title
                     }; //Replace the newly added tag (last in the array) with a new object including its Id
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
         }
     }
-    cmsSitegrd.onTagRemoved = function (tag) {}
+    cmsSitegrd.onTagRemoved = function(tag) {}
     //End of #tagsInput
 
     cmsSitegrd.OwnerSiteSetStatusListItems = [{
@@ -121,7 +122,7 @@
         Title: "محدود به کاربر"
     }];
 
-    cmsSitegrd.init = function () {
+    cmsSitegrd.init = function() {
 
         var action = "getallwithalias";
         if ($stateParams.selectedId != null && $stateParams.selectedId > 0) {
@@ -134,7 +135,7 @@
 
         }
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/" + action, cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/" + action, cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.ListItems = response.ListItems;
             if (response.ListItems.length > 0 && $stateParams.selectedId != null)
@@ -147,23 +148,23 @@
             cmsSitegrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSitegrd.gridOptions.rowPerPage = response.RowPerPage;
             cmsSitegrd.gridOptions.maxSize = 5;
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreEnum/EnumSiteLanguage", "", 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreEnum/EnumSiteLanguage", "", 'GET').success(function(response) {
                 cmsSitegrd.UserLanguage = response.ListItems;
                 cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsSitegrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.busyIndicator.isActive = false;
         });
 
         if (!angular.isDefined(cmsSitegrd.CategoryListItems))
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteCategory/getall", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteCategory/getall", {}, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 cmsSitegrd.CategoryListItems = response.ListItems;
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
 
@@ -178,9 +179,9 @@
             Title: "دموی مدیریت سایت"
         }]
     }
-    cmsSitegrd.setUserLanguageEnum = function (listItems, enumList) {
-        angular.forEach(listItems, function (item, property) {
-            angular.forEach(enumList, function (value, key) {
+    cmsSitegrd.setUserLanguageEnum = function(listItems, enumList) {
+        angular.forEach(listItems, function(item, property) {
+            angular.forEach(enumList, function(value, key) {
                 if (item.UserLanguage == value.Value)
                     item.UserLanguageTitle = value.Description;
             });
@@ -189,20 +190,20 @@
     // Open Add New Content Modal
     cmsSitegrd.addRequested = false;
     cmsSitegrd.CoreConfig = {};
-    cmsSitegrd.openAddModal = function () {
+    cmsSitegrd.openAddModal = function() {
         cmsSitegrd.modalTitle = 'اضافه';
         cmsSitegrd.kwords = [];
         //Get Available Domains
-        ajax.call(cmsServerConfig.configApiServerPath + "coreconfiguration/adminmain", "", "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "coreconfiguration/adminmain", "", "GET").success(function(response) {
             cmsSitegrd.CoreConfig = response.Item;
             console.log("response.DomainsList", cmsSitegrd.CoreConfig.DomainsList);
             cmsSitegrd.domainsList = ['oco.ir'];
             if (cmsSitegrd.CoreConfig.DomainsList)
                 cmsSitegrd.domainsList = cmsSitegrd.CoreConfig.DomainsList.replace(/\n/g, ",").split(',');
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedItem = response.Item;
             if (cmsSitegrd.CategoryListItems.length > 0)
@@ -219,48 +220,48 @@
                 templateUrl: 'cpanelv1/ModuleCore/cmsSite/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     // Add New Content
-    cmsSitegrd.addNewRow = function (frm) {
+    cmsSitegrd.addNewRow = function(frm) {
         if (frm.$invalid)
             return;
         cmsSitegrd.busyIndicator.isActive = true;
         cmsSitegrd.addRequested = true;
         //Save Keywords
-        $.each(cmsSitegrd.kwords, function (index, item) {
+        $.each(cmsSitegrd.kwords, function(index, item) {
             if (index == 0)
                 cmsSitegrd.selectedItem.Keyword = item.text;
             else
                 cmsSitegrd.selectedItem.Keyword += ',' + item.text;
         });
         if (cmsSitegrd.selectedItem.mode == 1)
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function(response) {
                 cmsSitegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
                     cmsSitegrd.filterEnumSiteCategory(response.Item);
                     cmsSitegrd.filterEnumOwnerSiteSetStatus(response.Item);
                     cmsSitegrd.ListItems.unshift(response.Item);
-                    cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems,cmsSitegrd.gridOptions.Access);
-                    
+                    cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, cmsSitegrd.gridOptions.Access);
+
                     cmsSitegrd.busyIndicator.isActive = false;
                     cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
                     cmsSitegrd.closeModal();
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 cmsSitegrd.addRequested = false;
             });
         if (cmsSitegrd.selectedItem.mode == 2) //ساخت سایت با کاربر جدید
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsSitegrd.selectedItem, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsSitegrd.selectedItem, 'POST').success(function(response1) {
                 cmsSitegrd.addRequested = false;
                 rashaErManage.checkAction(response1);
                 cmsSitegrd.selectedUser = response1.Item;
                 if (response1.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function(response2) {
                         cmsSitegrd.addRequested = false;
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
@@ -274,32 +275,32 @@
                                 LinkSiteId: response2.Item.Id,
                                 LinkUserId: cmsSitegrd.selectedUser.Id,
                                 LinkUserGroupId: cmsSitegrd.selectedItem.LinkUserGroupId
-                            }, 'POST').success(function (response3) {
+                            }, 'POST').success(function(response3) {
                                 cmsSitegrd.addRequested = false;
                                 rashaErManage.checkAction(response3);
                                 if (response3.IsSuccess) {
 
                                 }
-                            }).error(function (data, errCode, c, d) {
+                            }).error(function(data, errCode, c, d) {
                                 rashaErManage.checkAction(data, errCode);
                                 cmsSitegrd.addRequested = false;
                             });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                         cmsSitegrd.addRequested = false;
                     });
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 cmsSitegrd.addRequested = false;
             });
         if (cmsSitegrd.selectedItem.mode == 3) //ساخت سایت با کاربر کنونی
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsSitegrd.selectedItem.LinkUserId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsSitegrd.selectedItem.LinkUserId, 'GET').success(function(response) {
                 rashaErManage.checkAction(response);
                 cmsSitegrd.selectedUser = response.Item;
                 if (cmsSitegrd.selectedUser.Id > 0)
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, 'POST').success(function(response) {
                         cmsSitegrd.addRequested = false;
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
@@ -314,16 +315,16 @@
                                 LinkUserId: cmsSitegrd.selectedUser.Id,
                                 LinkUserGroupId: cmsSitegrd.selectedItem.LinkUserGroupId,
                                 RecordStatus: 1
-                            }, 'POST').success(function (response) {
+                            }, 'POST').success(function(response) {
                                 cmsSitegrd.addRequested = false;
                                 rashaErManage.checkAction(response);
                                 if (response.IsSuccess) {}
-                            }).error(function (data, errCode, c, d) {
+                            }).error(function(data, errCode, c, d) {
                                 rashaErManage.checkAction(data, errCode);
                                 cmsSitegrd.addRequested = false;
                             });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                         cmsSitegrd.addRequested = false;
                     });
@@ -331,24 +332,24 @@
                     rashaErManage.showMessage("کد سیستمی کاربر اشتباه است");
                     return;
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 cmsSitegrd.addRequested = false;
             });
     }
 
     // Open Edit Content Modal
-    cmsSitegrd.openEditModal = function () {
+    cmsSitegrd.openEditModal = function() {
         cmsSitegrd.modalTitle = 'ویرایش';
         if (!cmsSitegrd.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedItem = response.Item;
-            if(!cmsSitegrd.selectedItem.ExpireDate)
-                cmsSitegrd.selectedItem.ExpireDate=moment().add(1, "months").format();
+            if (!cmsSitegrd.selectedItem.ExpireDate)
+                cmsSitegrd.selectedItem.ExpireDate = moment().add(1, "months").format();
             //Clear FavIcon file picker
             cmsSitegrd.filePickerFavIcon.filename = null;
             cmsSitegrd.filePickerFavIcon.fileId = null;
@@ -357,10 +358,10 @@
             cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig.defaultDate = cmsSitegrd.selectedItem.AccountingFormUpdatedDate;
             //Set FavIcon
             if (response.Item.LinkFavIconId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkFavIconId, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkFavIconId, 'GET').success(function(response) {
                     cmsSitegrd.filePickerFavIcon.filename = response.Item.FileName;
                     cmsSitegrd.filePickerFavIcon.fileId = response.Item.Id
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -369,7 +370,7 @@
             var arraykwords = [];
             if (cmsSitegrd.selectedItem.Keyword != null && cmsSitegrd.selectedItem.Keyword != "")
                 arraykwords = cmsSitegrd.selectedItem.Keyword.split(',');
-            $.each(arraykwords, function (index, item) {
+            $.each(arraykwords, function(index, item) {
                 if (item != null)
                     cmsSitegrd.kwords.push({
                         text: item
@@ -381,16 +382,16 @@
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSitegrd.editRow = function (frm) {
+    cmsSitegrd.editRow = function(frm) {
         if (frm.$invalid)
             return;
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItem, "PUT").success(function(response) {
             cmsSitegrd.addRequested = true;
             rashaErManage.checkAction(response);
             cmsSitegrd.addRequested = false;
@@ -403,20 +404,20 @@
                 cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
                 cmsSitegrd.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.addRequested = false;
             cmsSitegrd.busyIndicator.isActive = false;
         });
     }
 
-    cmsSitegrd.closeModal = function () {
+    cmsSitegrd.closeModal = function() {
 
         $modalStack.dismissAll();
     };
 
-    cmsSitegrd.replaceItem = function (oldId, newItem) {
-        angular.forEach(cmsSitegrd.ListItems, function (item, key) {
+    cmsSitegrd.replaceItem = function(oldId, newItem) {
+        angular.forEach(cmsSitegrd.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = cmsSitegrd.ListItems.indexOf(item);
                 cmsSitegrd.ListItems.splice(index, 1);
@@ -426,33 +427,33 @@
             cmsSitegrd.ListItems.unshift(newItem);
     }
 
-    cmsSitegrd.deleteRow = function () {
+    cmsSitegrd.deleteRow = function() {
         if (!cmsSitegrd.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsSitegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', cmsSitegrd.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSitegrd.replaceItem(cmsSitegrd.selectedItemForDelete.Id);
                             cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
         });
     }
 
-    cmsSitegrd.searchData = function () {
+    cmsSitegrd.searchData = function() {
         cmsSitegrd.gridOptions.serachData();
     }
 
@@ -591,17 +592,17 @@
             }
         }
     }
-    cmsSitegrd.MainImageSrc = function (ImageSite) {
+    cmsSitegrd.MainImageSrc = function(ImageSite) {
         ImageUrl = ImageSite;
         return ImageUrl;
     }
-    cmsSitegrd.gridOptions.onRowSelected = function () {}
+    cmsSitegrd.gridOptions.onRowSelected = function() {}
 
-    cmsSitegrd.gridOptions.reGetAll = function () {
+    cmsSitegrd.gridOptions.reGetAll = function() {
         cmsSitegrd.init();
     }
 
-    cmsSitegrd.filterEnumSiteCategory = function (item) {
+    cmsSitegrd.filterEnumSiteCategory = function(item) {
         for (var j = 0; j < cmsSitegrd.CategoryListItems.length; j++) {
             if (item.LinkSiteCategoryId == cmsSitegrd.CategoryListItems[j].Id) {
                 item.virtual_CmsSiteCategory = {};
@@ -611,7 +612,7 @@
         }
     }
 
-    cmsSitegrd.filterEnumOwnerSiteSetStatus = function (ListItemsOrItem) {
+    cmsSitegrd.filterEnumOwnerSiteSetStatus = function(ListItemsOrItem) {
         if (!ListItemsOrItem.length) { // It's an Item
             for (var j = 0; j < cmsSitegrd.OwnerSiteSetStatusListItems.length; j++) {
                 if (ListItemsOrItem.OwnerSiteSetStatus == cmsSitegrd.OwnerSiteSetStatusListItems[j].Id) {
@@ -630,9 +631,9 @@
     }
 
     //Add alias
-    cmsSitegrd.openAliasesModal = function (siteId) {
+    cmsSitegrd.openAliasesModal = function(siteId) {
         cmsSitegrd.modalTitle = "دامنه ها";
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.selectedItem = response.Item;
@@ -642,7 +643,7 @@
                 });
                 cmsSitegrd.selectedItem.LinkCmsSiteId = siteId;
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         var filterModel = {
@@ -652,21 +653,21 @@
                 IntValue1: siteId
             }]
         };
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/getall', filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/getall', filterModel, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.aliasesList = response.ListItems;
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSitegrd.addNewAlias = function (frm) {
+    cmsSitegrd.addNewAlias = function(frm) {
         if (frm.$invalid)
             return;
         cmsSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.selectedItem, 'POST').success(function(response) {
             cmsSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -676,21 +677,21 @@
                 cmsSitegrd.selectedItem.Domain = "";
                 cmsSitegrd.selectedItem.SubDomain = "";
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.addRequested = false;
         });
 
     }
 
-    cmsSitegrd.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.aliasesList[index].Id, 'DELETE').success(function (res) {
+    cmsSitegrd.deleteAttachedfieldName = function(index) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/', cmsSitegrd.aliasesList[index].Id, 'DELETE').success(function(res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 cmsSitegrd.aliasesList.splice(index, 1);
                 rashaErManage.showMessage($filter('translatentk')('Removed_Successfully'));
             }
-        }).error(function (data2, errCode2, c2, d2) {
+        }).error(function(data2, errCode2, c2, d2) {
             rashaErManage.checkAction(data2);
         });
     }
@@ -702,17 +703,17 @@
     cmsSitegrd.CmsModuleSiteEdited = [];
 
     //Open ModuleSites Modal
-    cmsSitegrd.openModulesModal = function (siteId) {
+    cmsSitegrd.openModulesModal = function(siteId) {
         cmsSitegrd.selectedSiteId = siteId;
         cmsSitegrd.newModuleSiteListItems = []; // List of ModuleSites
         cmsSitegrd.modalTitle = "ماژول ها";
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreModule/GetAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModule/GetAll", {}, 'POST').success(function(response) {
             cmsSitegrd.cmsModulesListItems = response.ListItems;
             cmsSitegrd.cmsModulesListItemsresultAccess = response.Access;
             //Set DatePicker = Now  به ازای هر ماژول یک دیت پیکر ساخته می شود
 
-            $.each(cmsSitegrd.cmsModulesListItems, function (index, item) {
+            $.each(cmsSitegrd.cmsModulesListItems, function(index, item) {
 
                 var modulConfig = angular.fromJson(item.ModuleConfigAdminMainJson);
                 if (modulConfig && modulConfig.AccessBuyMonth) {
@@ -720,7 +721,7 @@
                 } else {
                     item.AccessBuyMonth = 2;
                 }
-                
+
                 item.ModuleSiteExpireDate = moment().add(item.AccessBuyMonth, "months").format();
             });
             cmsSitegrd.selectedItem = {};
@@ -732,9 +733,9 @@
             //     IntValue1: siteId,
             //     SearchType: 0
             // });
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/GetAll/" + siteId, engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/GetAll/" + siteId, engine, 'POST').success(function(response) {
                 cmsSitegrd.busyIndicator.isActive = false;
-              
+
                 cmsSitegrd.CmsModuleSite = angular.extend(cmsSitegrd.CmsModuleSite, response.ListItems);
                 cmsSitegrd.CmsModuleSiteDb = angular.extend(cmsSitegrd.CmsModuleSiteDb, response.ListItems);
                 cmsSitegrd.cmsModulesSiteresultAccess = response.Access;
@@ -748,12 +749,12 @@
                             cmsSitegrd.cmsModulesListItems[i].CmsModuleSiteRecordStatus = cmsSitegrd.CmsModuleSiteDb[j].RecordStatus;
                             cmsSitegrd.cmsModulesListItems[i].RenewDate = cmsSitegrd.CmsModuleSiteDb[j].RenewDate;
                             if (cmsSitegrd.CmsModuleSiteDb[j].ExpireDate) {
-                                cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate=cmsSitegrd.CmsModuleSiteDb[j].ExpireDate;
+                                cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate = cmsSitegrd.CmsModuleSiteDb[j].ExpireDate;
                             } else {
                                 cmsSitegrd.CmsModuleSiteDb[j].ExpireDate = moment().add(cmsSitegrd.cmsModulesListItems[i].AccessBuyMonth, "months").format()
                                 cmsSitegrd.CmsModuleSiteDb[j].Edited = true;
                             }
-                         
+
                             if (cmsSitegrd.cmsModulesListItems[i].CmsModuleSiteRecordStatus == 1 && !cmsSitegrd.cmsModulesListItems[i].hasExpired) //if CmsModuleSite RecordSatus is Available
                                 cmsSitegrd.cmsModulesListItems[i].Checked = true;
                         }
@@ -763,15 +764,15 @@
                     templateUrl: 'cpanelv1/ModuleCore/CmsSite/EditModules.html',
                     scope: $scope
                 });
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }
 
-    cmsSitegrd.onModuleCkeckedChange = function (module) {
+    cmsSitegrd.onModuleCkeckedChange = function(module) {
         var retFind = findWithAttr(cmsSitegrd.CmsModuleSite, "LinkModuleId", module.Id);
         if (retFind >= 0) {
             cmsSitegrd.CmsModuleSite[retFind].Edited = true;
@@ -786,13 +787,21 @@
                 RecordStatus: 1,
                 LinkModuleId: module.Id,
                 LinkSiteId: cmsSitegrd.selectedSiteId,
-                ExpireDate : module.ModuleSiteExpireDate
+                ExpireDate: module.ModuleSiteExpireDate
             });
         }
     }
+    cmsSitegrd.onModuleCkeckedChangeGroup = function(model) {
+        if (model && model.ModuleSiteExpireDate)
+            for (var i = 0; i < cmsSitegrd.CmsModuleSite.length; i++) {
+                cmsSitegrd.CmsModuleSite[i].Edited = true;
+                cmsSitegrd.CmsModuleSite[i].ModuleSiteExpireDate = model.ModuleSiteExpireDate;
+                cmsSitegrd.CmsModuleSite[i].ExpireDate = model.ModuleSiteExpireDate;
+            }
+    }
 
     // Add a new ModuleSite
-    cmsSitegrd.EditModuleSites = function () {
+    cmsSitegrd.EditModuleSites = function() {
         cmsSitegrd.addRequested = true;
         cmsSitegrd.busyIndicator.isActive = true;
 
@@ -800,50 +809,49 @@
         cmsSitegrd.CmsModuleSiteRemoved = differenceInFirstArray(cmsSitegrd.CmsModuleSiteDb, cmsSitegrd.CmsModuleSite, 'Id');
         cmsSitegrd.CmsModuleSiteAdded = differenceInFirstArray(cmsSitegrd.CmsModuleSite, cmsSitegrd.CmsModuleSiteDb, 'Id');
         cmsSitegrd.CmsModuleSiteEdit = [];
-        $.each(cmsSitegrd.CmsModuleSite, function (index, item) {
+        $.each(cmsSitegrd.CmsModuleSite, function(index, item) {
             if (item.Edited && item.Id && item.Id > 0)
                 cmsSitegrd.CmsModuleSiteEdit.push(item);
         });
 
-        var changedAny=false;
+        var changedAny = false;
         //remove
         if (cmsSitegrd.CmsModuleSiteRemoved && cmsSitegrd.CmsModuleSiteRemoved.length > 0) {
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/DeleteList", cmsSitegrd.CmsModuleSiteRemoved, "POST").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/DeleteList", cmsSitegrd.CmsModuleSiteRemoved, "POST").success(function(response) {
                     rashaErManage.checkAction(response);
                     rashaErManage.showMessage("ماژول های اضافه حذف شد");
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     rashaErManage.showMessage("خطا در حذف ماژول های اضافه");
                 });
-                changedAny=true;
+            changedAny = true;
         }
         //Add
         if (cmsSitegrd.CmsModuleSiteAdded && cmsSitegrd.CmsModuleSiteAdded.length > 0) {
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/addbatch", cmsSitegrd.CmsModuleSiteAdded, "POST").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/addbatch", cmsSitegrd.CmsModuleSiteAdded, "POST").success(function(response) {
                     rashaErManage.checkAction(response);
                     rashaErManage.showMessage("ماژول های جدید اضافه شد");
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     rashaErManage.showMessage("خطا در اضاف کردن ماژول های جدید");
                 });
-                changedAny=true;
+            changedAny = true;
         }
         //edit
         if (cmsSitegrd.CmsModuleSiteEdit && cmsSitegrd.CmsModuleSiteEdit.length > 0) {
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/editbatch", cmsSitegrd.CmsModuleSiteEdit, "PUT").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/editbatch", cmsSitegrd.CmsModuleSiteEdit, "PUT").success(function(response) {
                     rashaErManage.checkAction(response);
                     rashaErManage.showMessage("ماژول های قبلی ویرایش شد");
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     rashaErManage.showMessage("خطا در ویرایش کردن ماژول ها");
                 });
-                changedAny=true;
+            changedAny = true;
         }
-        if(!changedAny)
-        {
+        if (!changedAny) {
             rashaErManage.showMessage("تغییراتی جهت ثبت یافت نشد");
         }
         //edit
@@ -859,7 +867,7 @@
     }
 
     //#fastUpload
-    cmsSitegrd.openUploadModal = function () {
+    cmsSitegrd.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/ModuleCore/CmsSite/upload.html',
             size: 'lg',
@@ -868,20 +876,20 @@
 
         cmsSitegrd.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function(response) {
             cmsSitegrd.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
 
-    cmsSitegrd.calcuteProgress = function (progress) {
+    cmsSitegrd.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    cmsSitegrd.whatcolor = function (progress) {
+    cmsSitegrd.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -894,7 +902,7 @@
         }
     }
 
-    cmsSitegrd.canShow = function (pr) {
+    cmsSitegrd.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
@@ -902,19 +910,19 @@
     }
 
     // File Manager actions
-    cmsSitegrd.replaceFile = function (name) {
+    cmsSitegrd.replaceFile = function(name) {
         cmsSitegrd.itemClicked(null, cmsSitegrd.fileIdToDelete, "file");
         cmsSitegrd.fileTypes = 1;
         cmsSitegrd.fileIdToDelete = cmsSitegrd.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.fileIdToDelete, 'GET').success(function(response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                             if (response3.IsSuccess == true) {
                                 cmsSitegrd.FileItem = response3.Item;
                                 cmsSitegrd.FileItem.FileName = name;
@@ -925,38 +933,38 @@
                             } else {
                                 console.log("getting the model was not successfully returned!");
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                         });
                     } else {
                         console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
     }
 
     //save new file
-    cmsSitegrd.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function (response) {
+    cmsSitegrd.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 cmsSitegrd.FileItem = response.Item;
                 return 1;
             } else {
                 return 0;
             }
-        }).error(function (data) {
+        }).error(function(data) {
             cmsSitegrd.showErrorIcon();
             return -1;
         });
     }
 
     //file is exist
-    cmsSitegrd.fileIsExist = function (fileName) {
+    cmsSitegrd.fileIsExist = function(fileName) {
         for (var i = 0; i < cmsSitegrd.FileList.length; i++) {
             if (cmsSitegrd.FileList[i].FileName == fileName) {
                 cmsSitegrd.fileIdToDelete = cmsSitegrd.FileList[i].Id;
@@ -967,7 +975,7 @@
         return false;
     }
 
-    cmsSitegrd.getFileItem = function (id) {
+    cmsSitegrd.getFileItem = function(id) {
         for (var i = 0; i < cmsSitegrd.FileList.length; i++) {
             if (cmsSitegrd.FileList[i].Id == id) {
                 return cmsSitegrd.FileList[i];
@@ -976,7 +984,7 @@
     }
 
     //select file or folder
-    cmsSitegrd.itemClicked = function ($event, index, type) {
+    cmsSitegrd.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             cmsSitegrd.fileTypes = 1;
             cmsSitegrd.selectedFileId = cmsSitegrd.getFileItem(index).Id;
@@ -990,7 +998,7 @@
     }
 
     //upload file
-    cmsSitegrd.uploadFile = function (index, uploadFile) {
+    cmsSitegrd.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (cmsSitegrd.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1005,11 +1013,11 @@
                             cmsSitegrd.fileIdToDelete,
                             "GET"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
                                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
+                                    .success(function(response2) {
                                         if (response2.IsSuccess == true) {
                                             cmsSitegrd.FileItem = response2.Item;
                                             cmsSitegrd.showSuccessIcon();
@@ -1032,7 +1040,7 @@
                                             $("#save-icon" + index).addClass("fa-remove");
                                         }
                                     })
-                                    .error(function (data) {
+                                    .error(function(data) {
                                         cmsSitegrd.showErrorIcon();
                                         $("#save-icon" + index).removeClass("fa-save");
                                         $("#save-button" + index).removeClass("flashing-button");
@@ -1041,7 +1049,7 @@
                                 //-----------------------------------
                             }
                         })
-                        .error(function (data) {
+                        .error(function(data) {
                             console.log(data);
                         });
                     //--------------------------------
@@ -1050,7 +1058,7 @@
                 }
             } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     cmsSitegrd.FileItem = response.Item;
                     cmsSitegrd.FileItem.FileName = uploadFile.name;
                     cmsSitegrd.FileItem.uploadName = uploadFile.uploadName;
@@ -1059,7 +1067,7 @@
                     cmsSitegrd.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- cmsSitegrd.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsSitegrd.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             cmsSitegrd.FileItem = response.Item;
                             $("#save-icon" + index).removeClass("fa-save");
@@ -1073,14 +1081,14 @@
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         cmsSitegrd.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1100,22 +1108,22 @@
     };
 
 
-    cmsSitegrd.SiteStorageLoad = function () {
+    cmsSitegrd.SiteStorageLoad = function() {
 
         cmsSitegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteStorage/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteStorage/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function(response) {
             if (response.IsSuccess) {
                 cmsSitegrd.Item.SiteStorage = response.Item;
             } else {
                 rashaErManage.showMessage(response.ErrorMessage);
             }
             cmsSitegrd.contentBusyConfig.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.contentBusyConfig.isActive = false;
         });
     }
-    cmsSitegrd.SiteStorageSave = function (frm) {
+    cmsSitegrd.SiteStorageSave = function(frm) {
         if (buttonIsPressed) {
             return;
         }
@@ -1125,12 +1133,12 @@
         }
         cmsSitegrd.contentBusyConfig.isActive = true;
         cmsSitegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteStorage/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.SiteStorage, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteStorage/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.SiteStorage, 'POST').success(function(response) {
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
@@ -1212,21 +1220,21 @@
     //     });
     // }
 
-    cmsSitegrd.SiteLoad = function () {
+    cmsSitegrd.SiteLoad = function() {
         cmsSitegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function(response) {
             if (response.IsSuccess) {
                 cmsSitegrd.Item.Site = response.Item;
             } else {
                 rashaErManage.showMessage(response.ErrorMessage);
             }
             cmsSitegrd.contentBusyConfig.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.contentBusyConfig.isActive = false;
         });
     }
-    cmsSitegrd.SiteSave = function (frm) {
+    cmsSitegrd.SiteSave = function(frm) {
         if (buttonIsPressed) {
             return;
         }
@@ -1236,12 +1244,12 @@
         }
         cmsSitegrd.contentBusyConfig.isActive = true;
         cmsSitegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.Site, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.Site, 'POST').success(function(response) {
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
@@ -1284,21 +1292,21 @@
     //     });
     // }
 
-    cmsSitegrd.SiteAccessLoad = function () {
+    cmsSitegrd.SiteAccessLoad = function() {
         cmsSitegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccess/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccess/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function(response) {
             if (response.IsSuccess) {
                 cmsSitegrd.Item.SiteAccess = response.Item;
             } else {
                 rashaErManage.showMessage(response.ErrorMessage);
             }
             cmsSitegrd.contentBusyConfig.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.contentBusyConfig.isActive = false;
         });
     }
-    cmsSitegrd.SiteAccessSave = function (frm) {
+    cmsSitegrd.SiteAccessSave = function(frm) {
         if (buttonIsPressed) {
             return;
         }
@@ -1308,12 +1316,12 @@
         }
         cmsSitegrd.contentBusyConfig.isActive = true;
         cmsSitegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccess/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.SiteAccess, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccess/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.SiteAccess, 'POST').success(function(response) {
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
@@ -1325,7 +1333,7 @@
     //End #fastUpload
     cmsSitegrd.ModuleConfigSelected = {};
     cmsSitegrd.ModuleConfigSelectedSiteId = 0;
-    cmsSitegrd.openModuleConfigModal = function (module) {
+    cmsSitegrd.openModuleConfigModal = function(module) {
         if (module == undefined || cmsSitegrd.gridOptions.selectedRow == undefined || cmsSitegrd.gridOptions.selectedRow.item == undefined) {
 
             return;
@@ -1462,11 +1470,11 @@
     //End of formBuilder
 
     //Export Report 
-    cmsSitegrd.exportFile = function () {
+    cmsSitegrd.exportFile = function() {
 
         cmsSitegrd.addRequested = true;
         cmsSitegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsSitegrd.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -1474,12 +1482,12 @@
                 //cmsSitegrd.closeModal();
             }
             cmsSitegrd.addRequested = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    cmsSitegrd.toggleExportForm = function () {
+    cmsSitegrd.toggleExportForm = function() {
         cmsSitegrd.SortType = [{
                 key: 'نزولی',
                 value: 0
@@ -1531,29 +1539,29 @@
         });
     }
     //Row Count Export Input Change
-    cmsSitegrd.rowCountChanged = function () {
+    cmsSitegrd.rowCountChanged = function() {
         if (!angular.isDefined(cmsSitegrd.ExportFileClass.RowCount) || cmsSitegrd.ExportFileClass.RowCount > 5000)
             cmsSitegrd.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    cmsSitegrd.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    cmsSitegrd.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsSitegrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSitegrd.loginToSite = function (selectedId) {
+    cmsSitegrd.loginToSite = function(selectedId) {
         cmsSitegrd.addRequested = true;
         cmsSitegrd.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {
             SiteId: selectedId,
             lang: $rootScope.tokenInfo.Language
-        }, 'POST').success(function (response) {
-           
+        }, 'POST').success(function(response) {
+
             cmsSitegrd.addRequested = false;
             cmsSitegrd.busyIndicator.isActive = false;
             rashaErManage.showMessage("ورود به سایت موردنظر انجام شد!");
@@ -1561,17 +1569,17 @@
             localStorage.setItem("userGlobaltoken", response.Item.token);
             $state.reload();
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSitegrd.showChildren = function (selectedId) {
+    cmsSitegrd.showChildren = function(selectedId) {
         $state.go("index.cmssite", {
             selectedId: selectedId
         });
     }
-    cmsSitegrd.goToParent = function () {
+    cmsSitegrd.goToParent = function() {
         if (LinkCreatedBySiteId == $stateParams.selectedId)
             LinkCreatedBySiteId = 0;
         $state.go("index.cmssite", {
@@ -1579,11 +1587,11 @@
         });
     }
 
-    cmsSitegrd.getUser = function (userId) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', userId, 'GET').success(function (response) {
+    cmsSitegrd.getUser = function(userId) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', userId, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedUser = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }

@@ -11,7 +11,7 @@
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="appApplication.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Edit_Application'|lowercase|translate}}</h3>
-            <form method="get" class="form-horizontal" name="frmappApplicationEdit" novalidate ng-submit="appApplication.editRow(frmappApplicationEdit)">
+            <form method="get" class="form-horizontal" name="frmappApplicationEdit" novalidate ng-submit="appApplication.addNewRow(frmappApplicationEdit)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
@@ -38,9 +38,40 @@
                             <div class="form-group" ng-show="appApplication.CheckAccessAdd('LinkSourceId')">
                                 <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
-                                    <input class='form-control' name="LinkSourceId" ng-model="appApplication.selectedItem.virtual_Source.Title" readonly />
+                                    <select class='form-control' name="LinkSourceId"
+                                    ng-model="appApplication.selectedItem.LinkSourceId"
+                                    ng-options="x.Id as x.Title for x in appApplication.sourceListItems"
+                                    ng-change="appApplication.onSourceChange(appApplication.selectedItem.LinkSourceId)"
+                                    ng-disabled="appApplication.addRequested" required></select>
+                                <div class="m-t-xs" ng-show="frmappApplicationAdd.LinkSourceId.$invalid">
+                                    <small class="text-danger"
+                                        ng-show="frmappApplicationAdd.LinkSourceId.$error.required"><i
+                                            class="fa fa-exclamation-triangle"></i>
+                                        {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;"
+                                    ng-show="frmappApplicationAdd.LinkSourceId.$valid && frmappApplicationAdd.LinkSourceId.$dirty"
+                                    class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                    aria-hidden="true"></span>
+                                <span style="left: 10px !important;"
+                                    ng-show="(frmappApplicationAdd.LinkSourceId.$invalid && !frmappApplicationAdd.LinkSourceId.$pristine) || frmappApplicationAdd.submitted"
+                                    class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                    aria-hidden="true"></span>
                                 </div>
                             </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('LinkThemeConfigId')">
+                                <label class="col-sm-2 control-label">{{'THEME'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="LinkThemeConfigId" ng-options="x.Id as x.Title for x in appApplication.themeConfigListItems" ng-model="appApplication.selectedItem.LinkThemeConfigId" ng-disabled="appApplication.addRequested"></select>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appApplication.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{appApplication.selectedItem.previewImageSrc}}" width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{appApplication.selectedItem.Title}}" />
+                            </div>
+                           
                             <!--tabEnd-->
                         </div>
                     </tab>
@@ -86,19 +117,7 @@
                                 </div>
                             </div>
                      
-                            <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appApplication.CheckAccessAdd('LinkThemeConfigId')">
-                                <label class="col-sm-2 control-label">{{'THEME'|lowercase|translate}}</label>
-                                <div class="col-sm-10">
-                                    <select class='form-control' name="LinkThemeConfigId" ng-options="x.Id as x.Title for x in appApplication.themeConfigListItems" ng-model="appApplication.selectedItem.LinkThemeConfigId" ng-disabled="appApplication.addRequested"></select>
-                                </div>
-                            </div>
-                            <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="appApplication.selectedItem.previewImageSrc != null">
-                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
-                                <img src="{{appApplication.selectedItem.previewImageSrc}}" width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{appApplication.selectedItem.Title}}" />
-                            </div>
-                           
+                          
                             <!--tabEnd-->
                         </div>
                     </tab>

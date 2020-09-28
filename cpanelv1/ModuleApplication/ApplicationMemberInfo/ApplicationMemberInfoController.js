@@ -109,7 +109,17 @@
     memberInfo.busyIndicator.isActive = true;
 
     memberInfo.addRequested = false;
-
+    memberInfo.openViewModal= function () {
+        memberInfo.modalTitle = 'مشاهده';
+        if (!memberInfo.gridOptions.selectedRow.item) {
+            rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
+            return;
+        }
+        $modal.open({
+            templateUrl: 'cpanelv1/ModuleApplication/ApplicationMemberInfo/view.html',
+            scope: $scope
+        });
+    }
     memberInfo.openAddModal = function () {
         if (buttonIsPressed) return;
 
@@ -296,6 +306,16 @@
                 type: 'date',
                 visible: 'true'
             },
+
+            
+            {
+                name: 'DeviceBrand',
+                displayName: 'Device Brand',
+                sortable: true,
+                type: 'string',
+                visible: true
+            },
+
             {
                 name: 'AppSourceVer',
                 displayName: 'Source Ver',
@@ -303,6 +323,9 @@
                 type: 'integer',
                 visible: true
             },
+
+
+
             {
                 name: 'AppBuildVer',
                 displayName: 'Build Ver',

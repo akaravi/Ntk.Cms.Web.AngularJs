@@ -225,6 +225,10 @@
                 appApplication.gridOptions.fillData(appApplication.ListItems);
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
                 appApplication.closeModal();
+            }else
+            {
+
+
             }
             appApplication.closeModal();
         }).error(function(data, errCode, c, d) {
@@ -660,12 +664,12 @@
                 visible: 'true'
             },
             {
-                name: 'LastBuildStatusTitle',
+                name: 'LastBuildErrorMessage',
                 displayName: 'آخرین وضعیت',
                 sortable: true,
                 type: 'string',
                 visible: true,
-                template: "<p id=\"LastBuildStatusID\">{{x.LastBuildStatusTitle}}</p>"
+                template: "<p id=\"LastBuildStatusID\">{{x.LastBuildErrorMessage}}</p>"
             },
             {
                 name: 'LastSuccessfullyBuildDate',
