@@ -50,6 +50,8 @@
 <body class="rtls fixed-sidebar {{$state.current.data.specialClass}}">
 
 
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
     <script type="text/javascript" src="cpanelv1/js/jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="cpanelv1/js/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Main view  -->
@@ -136,5 +138,22 @@
 
 
  
+
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBDt5VJADSRcS2xB7jRAqd3CI0cY2GvsWQ",
+    authDomain: "ntk-cms.firebaseapp.com",
+    databaseURL: "https://ntk-cms.firebaseio.com",
+    projectId: "ntk-cms",
+    storageBucket: "ntk-cms.appspot.com",
+    messagingSenderId: "893852902485",
+    appId: "1:893852902485:web:8727aac245cbc50fd2e0dc"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
 </body>
 </html>
