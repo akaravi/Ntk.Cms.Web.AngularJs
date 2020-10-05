@@ -5,8 +5,17 @@
             <h3 class="m-t-none m-b">{{'Add_Question'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmticketingFaqAdd" novalidate ng-submit="ticketingFaq.addNew(frmticketingFaqAdd)">
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('Question')"
-                     ng-class="{'has-error' : frmticketingFaqAdd.Question.$invalid && !frmticketingFaqAdd.Question.$pristine,'has-success' : frmticketingFaqAdd.Question.$valid}">
+
+                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('LinkTicketingDepartemenId')">
+                    <label class="col-sm-2 control-label">{{'QUESTION_TYPE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-required="true" ng-model="ticketingFaq.selectedItem.LinkTicketingDepartemenId">
+                            <option ng-repeat="type in ticketingFaq.ticketTypeListItems" value="{{type.Id}}">{{type.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('Question')" ng-class="{'has-error' : frmticketingFaqAdd.Question.$invalid && !frmticketingFaqAdd.Question.$pristine,'has-success' : frmticketingFaqAdd.Question.$valid}">
                     <label class="col-sm-2 control-label"> {{'QUESTION'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <input class="form-control" ng-required="true" name="Question" ng-model="ticketingFaq.selectedItem.Question" />
@@ -18,8 +27,7 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('Answer')"
-                     ng-class="{'has-error' : frmticketingFaqAdd.Answer.$invalid && !frmticketingFaqAdd.Answer.$pristine,'has-success' : frmticketingFaqAdd.Answer.$valid}">
+                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('Answer')" ng-class="{'has-error' : frmticketingFaqAdd.Answer.$invalid && !frmticketingFaqAdd.Answer.$pristine,'has-success' : frmticketingFaqAdd.Answer.$valid}">
                     <label class="col-sm-2 control-label">{{'RESPONSE'|lowercase|translate}} </label>
                     <div class="col-sm-10">
                         <div summernote class="summernote" config="ticketingFaq.summernoteOptions" ng-model="ticketingFaq.selectedItem.Answer"></div>
@@ -29,15 +37,8 @@
                         <span style="left: 10px !important;" ng-show="frmticketingFaqAdd.Answer.$valid && frmticketingFaqAdd.Answer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                         <span style="left: 10px !important;" ng-show="(frmticketingFaqAdd.Answer.$invalid && !frmticketingFaqAdd.Answer.$pristine) || frmticketingFaqAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                     </div>
-                </div><div class='hr-line-dashed'></div>
-                <div class="form-group" ng-show="ticketingFaq.CheckAccessAdd('LinkTicketingDepartemenId')">
-                    <label class="col-sm-2 control-label">{{'QUESTION_TYPE'|lowercase|translate}}</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" ng-required="true" ng-model="ticketingFaq.selectedItem.LinkTicketingDepartemenId">
-                            <option ng-repeat="type in ticketingFaq.ticketTypeListItems" value="{{type.Id}}">{{type.Title}}</option>
-                        </select>
-                    </div>
                 </div>
+
                 <div class="form-group">
                     <button class="btn btn-primary" ng-disabled="ticketingFaq.addRequested" type="submit">{{'save'|lowercase|translate}} </button>
                     <button class="btn btn-default" type="button" ng-click="ticketingFaq.closeModal()">{{'cancel'|lowercase|translate}}</button>

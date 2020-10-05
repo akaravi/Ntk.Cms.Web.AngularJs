@@ -5,19 +5,19 @@
             <h3 class="m-t-none m-b">{{'Edit_Section'|lowercase|translate}}</h3>
             <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate ng-submit="ticketingDepartemen.editRow(frmnewsContentAdd)">
                 <div class='hr-line-dashed'></div>
-                <!-- Title -->
-                <div class="form-group" ng-show="ticketingDepartemen.AccessEdit('Title')"
-                     ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
-                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-required="true" name="Title" ng-model="ticketingDepartemen.selectedItem.Title" />
-                        <div class="m-t-xs" ng-show="frmnewsContentAdd.Title.$invalid">
-                            <small class="text-danger" ng-show="frmnewsContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
-                        </div>
-                        <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Title.$valid && frmnewsContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                        <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                 <!-- Title -->
+                 <div class="form-group" ng-show="ticketingDepartemen.CheckAccessEdit('Title')"
+                 ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
+                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-required="true" name="Title" ng-model="ticketingDepartemen.selectedItem.Title" />
+                    <div class="m-t-xs" ng-show="frmnewsContentAdd.Title.$invalid">
+                        <small class="text-danger" ng-show="frmnewsContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
                     </div>
+                    <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Title.$valid && frmnewsContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                 </div>
+            </div>
                 <div class='hr-line-dashed'></div>
                 <!-- Priority -->
                 <div class="form-group">
@@ -27,13 +27,13 @@
                     </div>
                 </div>
                 <div class='hr-line-dashed'></div>
-                <!-- Default Answer Body -->
-                <div class="form-group" ng-show="ticketingDepartemen.AccessEdit('DefaultAnswerBody')">
-                    <label class="col-sm-2 control-label">{{'DEFAULT_ANSWER'|lowercase|translate}}</label>
-                    <div class="col-sm-10">
-                        <div summernote class="summernote" config="ticketingDepartemen.summernoteOptions" ng-model="ticketingDepartemen.selectedItem.DefaultAnswerBody" ></div>
+                    <!-- Default Answer Body -->
+                    <div class="form-group" ng-show="ticketingDepartemen.CheckAccessEdit('DefaultAnswerBody')">
+                        <label class="col-sm-2 control-label">{{'DEFAULT_ANSWER'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <div summernote class="summernote" config="ticketingDepartemen.summernoteOptions" ng-model="ticketingDepartemen.selectedItem.DefaultAnswerBody" ></div>
+                        </div>
                     </div>
-                </div>
                 <div class="form-group">
                     <button class="btn btn-primary" ng-disabled="ticketingDepartemen.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
                     <button class="btn btn-default" type="button" ng-click="ticketingDepartemen.closeModal()">{{'cancel'|lowercase|translate}}</button>
