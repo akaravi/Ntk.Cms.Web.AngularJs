@@ -78,7 +78,7 @@
 
     //Tree Config
     coreCpMainMenugrd.treeConfig = {
-        displayMember: 'TitleML',
+        displayMember: 'Title',
         displayId: 'Id',
         displayChild: 'Children'
     };
