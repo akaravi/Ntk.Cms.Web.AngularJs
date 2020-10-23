@@ -303,6 +303,8 @@
         if (frm.$invalid)
             return;
         coreCpMainMenugrd.addRequested = true;
+           if (coreCpMainMenugrd.selectedItem.isDependencyModule == false || coreCpMainMenugrd.selectedItem.isDependencyModule == undefined)
+               coreCpMainMenugrd.selectedItem.LinkModuleId = null;
         ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response) {
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
