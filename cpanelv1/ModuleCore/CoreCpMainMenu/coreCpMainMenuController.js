@@ -28,14 +28,9 @@
     coreCpMainMenugrd.menueGroups = []; //لیست جدول دیگر
     var otherTabaleFieldKey = 'Id';
     var many2ManythisOtherTabaleFieldKey = 'CmsUserGroup_Id';
-    var thisTableFieldICollection = 'CoreCpMainMenuCmsUserGroup';
+    var thisTableFieldICollection = 'CmsCpMainMenuCmsUserGroup';
 
 
-    ajax.call(cmsServerConfig.configApiServerPath + "CoreUserGroup/getall", {}, 'POST').success(function(response) {
-        coreCpMainMenugrd.menueGroups = response.ListItems;
-    }).error(function(data, errCode, c, d) {
-        console.log(data);
-    });
     coreCpMainMenugrd.hasInMany2Many = function(OtherTable) {
         if (coreCpMainMenugrd.selectedItem[thisTableFieldICollection] == undefined) return false;
         return objectFindByKey(coreCpMainMenugrd.selectedItem[thisTableFieldICollection], many2ManythisOtherTabaleFieldKey, OtherTable[otherTabaleFieldKey]);
@@ -153,6 +148,11 @@
             coreCpMainMenugrd.gridOptions.fillData();
             console.log(data);
             rashaErManage.checkAction(data, errCode);
+        });
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUserGroup/getall", {}, 'POST').success(function(response) {
+            coreCpMainMenugrd.menueGroups = response.ListItems;
+        }).error(function(data, errCode, c, d) {
+            console.log(data);
         });
     }
 
@@ -303,8 +303,8 @@
         if (frm.$invalid)
             return;
         coreCpMainMenugrd.addRequested = true;
-           if (coreCpMainMenugrd.selectedItem.isDependencyModule == false || coreCpMainMenugrd.selectedItem.isDependencyModule == undefined)
-               coreCpMainMenugrd.selectedItem.LinkModuleId = null;
+        if (coreCpMainMenugrd.selectedItem.isDependencyModule == false || coreCpMainMenugrd.selectedItem.isDependencyModule == undefined)
+            coreCpMainMenugrd.selectedItem.LinkModuleId = null;
         ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response) {
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
