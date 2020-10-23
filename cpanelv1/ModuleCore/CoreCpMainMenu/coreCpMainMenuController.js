@@ -90,9 +90,9 @@
     coreCpMainMenugrd.gridOptions = {
         columns: [
             { name: 'Id', displayName: 'کد سیستمی', sortable: true, width: '85px', type: 'integer' },
-            { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
+            { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'TitleML', displayName: 'عنوان', sortable: true, type: 'string' },
             { name: 'virtual_Parent.Title', displayName: 'صفحه والد', sortable: true, type: 'link', displayForce: true },
             { name: 'ShowInMenuOrder', displayName: 'ترتیب نمایش', sortable: true, type: 'integer' },

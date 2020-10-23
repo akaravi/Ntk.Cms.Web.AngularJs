@@ -1,46 +1,46 @@
-﻿app.controller("apiPathCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$rootScope', '$state', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $rootScope, $state, $filter) {
+﻿app.controller("apiPathCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$rootScope', '$state', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $rootScope, $state, $filter) {
     var api = this;
 
     api.init = function() {
-        ajax.call(cmsServerConfig.configApiServerPath+"apipath/getall", api.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "SmsMainApiPath/getall", api.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             api.ListItems = response.ListItems;
             api.gridOptions.fillData(api.ListItems);
             api.gridOptions.currentPageNumber = response.CurrentPageNumber;
             api.gridOptions.totalRowCount = response.TotalRowCount;
             api.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
 
 
-    api.addNew = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/ViewModel', "", 'GET').success(function (response) {
+    api.addNew = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainApiPath/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "add";
             $state.go("index.cmspathconfig");
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
 
 
-    api.editRow = function () {
+    api.editRow = function() {
         if (!api.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         };
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/', api.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainApiPath/', api.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "edit";
             $state.go("index.cmspathconfig");
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-    
+
     };
 
 
@@ -52,11 +52,11 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'apipath/', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainApiPath/', node.Id, 'GET').success(function(response) {
                     rashaErManage.checkAction(response);
                     api.selectedItemForDelete = response.Item;
                     console.log(api.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'apipath/', api.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainApiPath/', api.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         console.log(res);
                         if (res.IsSuccess) {
                             console.log("Deleted Succesfully !");

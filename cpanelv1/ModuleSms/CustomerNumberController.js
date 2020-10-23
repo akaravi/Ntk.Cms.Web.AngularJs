@@ -12,7 +12,7 @@
     }
 
     customerNumber.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CustomerNumber/getall", customerNumber.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "SmsMainCustomerNumber/getall", customerNumber.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             customerNumber.ListItems = response.ListItems;
             customerNumber.gridOptions.fillData(customerNumber.ListItems);
@@ -26,7 +26,7 @@
     customerNumber.addNewModel = function () {
         customerNumber.addRequested = false;
         customerNumber.modalTitle = "ایجاد کمپانی جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             customerNumber.selectedItem = response.Item;
             $modal.open({
@@ -44,7 +44,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/', customerNumber.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             customerNumber.selectedItem = response.Item;
             $modal.open({
@@ -60,7 +60,7 @@
 
     customerNumber.editRow = function () {
         customerNumber.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/', customerNumber.selectedItem, "PUT").success(function(response) {
             customerNumber.addRequested = false;
             rashaErManage.checkAction(response);
             customerNumber.closeModal();
@@ -71,7 +71,7 @@
         });
     };
     customerNumber.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/', customerNumber.selectedItem, 'POST').success(function(response) {
             customerNumber.addRequested = false;
             customerNumber.closeModal();
             customerNumber.init();
@@ -93,11 +93,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/', node.Id, 'GET').success(function(response) {
                     rashaErManage.checkAction(response);
                     customerNumber.selectedItemForDelete = response.Item;
                     console.log(customerNumber.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CustomerNumber/', customerNumber.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'SmsMainCustomerNumber/', customerNumber.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         console.log(res);
                         if (res.IsSuccess) {
                             console.log("Deleted Succesfully !");
