@@ -1,4 +1,4 @@
-﻿app.controller("coreCpMainMenuGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
+﻿app.controller("coreCpMainMenuGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
 
     var coreCpMainMenugrd = this;
 
@@ -25,23 +25,23 @@
     //MenuItemProcesses  جدول واسط
     //ProcessesId   فیلد جدول دیگر در جدول واسط
     //MenuId  فیلد ما در جدول واسط
-    coreCpMainMenugrd.menueGroups = [];//لیست جدول دیگر
+    coreCpMainMenugrd.menueGroups = []; //لیست جدول دیگر
     var otherTabaleFieldKey = 'Id';
     var many2ManythisOtherTabaleFieldKey = 'CmsUserGroup_Id';
     var thisTableFieldICollection = 'CoreCpMainMenuCmsUserGroup';
 
 
-    ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath + "CoreUserGroup/getall", {}, 'POST').success(function(response) {
         coreCpMainMenugrd.menueGroups = response.ListItems;
-    }).error(function (data, errCode, c, d) {
+    }).error(function(data, errCode, c, d) {
         console.log(data);
     });
-    coreCpMainMenugrd.hasInMany2Many = function (OtherTable) {
+    coreCpMainMenugrd.hasInMany2Many = function(OtherTable) {
         if (coreCpMainMenugrd.selectedItem[thisTableFieldICollection] == undefined) return false;
         return objectFindByKey(coreCpMainMenugrd.selectedItem[thisTableFieldICollection], many2ManythisOtherTabaleFieldKey, OtherTable[otherTabaleFieldKey]);
 
     };
-    coreCpMainMenugrd.toggleMany2Many = function (role, OtherTable) {
+    coreCpMainMenugrd.toggleMany2Many = function(role, OtherTable) {
         var obj = {};
         obj[many2ManythisOtherTabaleFieldKey] = OtherTable[otherTabaleFieldKey];
         if (coreCpMainMenugrd.hasInMany2Many(OtherTable)) {
@@ -88,7 +88,7 @@
 
 
     coreCpMainMenugrd.moduleList = {};
-    ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getall', {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath + 'CoreModule/getall', {}, 'POST').success(function(response) {
         coreCpMainMenugrd.moduleList = response.ListItems;
     });
 
@@ -112,35 +112,44 @@
                 SortType: 0,
                 NeedToRunFakePagination: false,
                 TotalRowData: 200,
-                RowPerPage: 200,
+                RowPerPage: 300,
                 ContentFullSearch: null,
                 Filters: []
             }
         }
     }
 
-    coreCpMainMenugrd.init = function () {
+    coreCpMainMenugrd.init = function() {
         coreCpMainMenugrd.addRequested = true;
         coreCpMainMenugrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumMenuPlaceType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreEnum/EnumMenuPlaceType", "", 'GET').success(function(response) {
             coreCpMainMenugrd.MenuPlaceType = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAllMenu", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        var engine = {
+            CurrentPageNumber: 1,
+            SortColumn: "ShowInMenuOrder",
+            SortType: 0,
+            NeedToRunFakePagination: false,
+            RowPerPage: 300,
+            ContentFullSearch: null,
+            Filters: []
+        };
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreCpMainMenu/getAllMenu", engine, 'POST').success(function(response) {
             coreCpMainMenugrd.treeConfig.Items = response.ListItems;
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.ListItems = response.ListItems;
             coreCpMainMenugrd.ListParentItems = coreCpMainMenugrd.selectParents();
             coreCpMainMenugrd.gridOptions.fillData(coreCpMainMenugrd.ListParentItems, response.Access);
-            coreCpMainMenugrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
+            coreCpMainMenugrd.gridOptions.Access = response.Access; //دسترسی ها نمایش
             coreCpMainMenugrd.gridOptions.currentPageNumber = response.CurrentPageNumber;
             coreCpMainMenugrd.gridOptions.totalRowCount = response.TotalRowCount;
             coreCpMainMenugrd.gridOptions.rowPerPage = response.RowPerPage;
             coreCpMainMenugrd.gridOptions.maxSize = 5;
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             coreCpMainMenugrd.gridOptions.fillData();
             console.log(data);
             rashaErManage.checkAction(data, errCode);
@@ -148,7 +157,7 @@
     }
 
     //Tree On Node Select Options
-    coreCpMainMenugrd.treeConfig.onNodeSelect = function () {
+    coreCpMainMenugrd.treeConfig.onNodeSelect = function() {
         var node = coreCpMainMenugrd.treeConfig.currentNode;
         coreCpMainMenugrd.gridOptions.selectedRow.item = coreCpMainMenugrd.treeConfig.currentNode;
         // coreCpMainMenugrd.LinkParentIdMemo remembers the real LinkParentId of the selectedRow in order it later when loading open or edit modal
@@ -156,25 +165,25 @@
         if (node != null) { // Root is selected
             coreCpMainMenugrd.selectedItem.LinkParentId = node.Id;
             coreCpMainMenugrd.selectContent(node);
-        }
-        else {
+        } else {
             coreCpMainMenugrd.selectRoots();
         }
     }
 
     //Show Content with Category Id
-    coreCpMainMenugrd.selectContent = function (node) {
+    coreCpMainMenugrd.selectContent = function(node) {
         coreCpMainMenugrd.busyIndicator.message = "در حال بارگذاری... " + node.Title;
         coreCpMainMenugrd.busyIndicator.isActive = true;
         coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters = null;
         coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters = [];
-        var s = {
-            PropertyName: "LinkParentId",
-            IntValue1: node.Id,
-            SearchType: 0
-        }
+        if (node.Id && node.Id > 0)
+            var s = {
+                PropertyName: "LinkParentId",
+                IntValue1: node.Id,
+                SearchType: 0
+            }
         coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters.push(s);
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/GetAll", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreCpMainMenu/GetAll", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.busyIndicator.isActive = false;
             coreCpMainMenugrd.ListItems = response.ListItems;
@@ -184,7 +193,7 @@
             coreCpMainMenugrd.gridOptions.rowPerPage = response.RowPerPage;
             coreCpMainMenugrd.gridOptions.maxSize = 5;
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             coreCpMainMenugrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
             coreCpMainMenugrd.busyIndicator.isActive = false;
@@ -193,25 +202,23 @@
 
     // Open Add New Content Modal
     coreCpMainMenugrd.addRequested = false;
-    coreCpMainMenugrd.openAddContentModal = function () {
+    coreCpMainMenugrd.openAddContentModal = function() {
         coreCpMainMenugrd.modalTitle = 'اضافه';
-         var node = coreCpMainMenugrd.treeConfig.currentNode;
-         
-            
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getall', {}, 'POST').success(function (response) {
+        var node = coreCpMainMenugrd.treeConfig.currentNode;
+
+
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/getall', {}, 'POST').success(function(response) {
             // To define an array otherwise coreCpMainMenugrd.selectedItem[thisTableFieldICollection] will be detected as an object
             coreCpMainMenugrd.selectedItem[thisTableFieldICollection] = [];
             coreCpMainMenugrd.ListParentItems = response.ListItems;
             coreCpMainMenugrd.busyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/ViewModel', '', 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.selectedItem = response.Item;
-            if (node != null) 
-            {
-                if(node.Id != 0 || node.Id ) 
-                {
-                    coreCpMainMenugrd.selectedItem.LinkParentId=node.Id;
+            if (node != null) {
+                if (node.Id != 0 || node.Id) {
+                    coreCpMainMenugrd.selectedItem.LinkParentId = node.Id;
                 }
             }
             coreCpMainMenugrd.selectedItem.isDependencyModule = false;
@@ -219,20 +226,20 @@
                 templateUrl: 'cpanelv1/ModuleCore/coreCpMainMenu/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
 
     // Add a Content
-    coreCpMainMenugrd.addNewRow = function (frm) {
+    coreCpMainMenugrd.addNewRow = function(frm) {
         if (frm.$invalid)
             return;
         coreCpMainMenugrd.busyIndicator.isActive = true;
         coreCpMainMenugrd.addRequested = true;
         if (coreCpMainMenugrd.selectedItem.isDependencyModule == false || coreCpMainMenugrd.selectedItem.isDependencyModule == undefined)
             coreCpMainMenugrd.selectedItem.LinkModuleId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, 'POST').success(function(response) {
             coreCpMainMenugrd.busyIndicator.isActive = false;
             coreCpMainMenugrd.addRequested = false;
             rashaErManage.checkAction(response);
@@ -240,14 +247,13 @@
                 coreCpMainMenugrd.ListItems.push(response.Item);
                 if (response.Item.LinkParentId == null) {
                     // Do nothing یک روت اضافه شده است
-                }
-                else
+                } else
                     for (var i = 0; i < coreCpMainMenugrd.treeConfig.Items.length; i++) {
                         searchAndAddToTree(response.Item, coreCpMainMenugrd.treeConfig.Items[i]);
                     }
                 coreCpMainMenugrd.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
@@ -270,7 +276,7 @@
     }
 
     // Open Edit Content Modal
-    coreCpMainMenugrd.openEditContentModal = function () {
+    coreCpMainMenugrd.openEditContentModal = function() {
         if (buttonIsPressed) { return };
         coreCpMainMenugrd.modalTitle = 'ویرایش';
         if (!coreCpMainMenugrd.gridOptions.selectedRow.item) {
@@ -279,7 +285,7 @@
         }
         coreCpMainMenugrd.CmsUserGroup_Id = [];
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.selectedItem = response.Item;
@@ -287,22 +293,22 @@
                 templateUrl: 'cpanelv1/ModuleCore/coreCpMainMenu/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     //Edit a Content
-    coreCpMainMenugrd.editRow = function (frm) {
+    coreCpMainMenugrd.editRow = function(frm) {
         if (frm.$invalid)
             return;
         coreCpMainMenugrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response) {
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                $.each(coreCpMainMenugrd.ListItems, function (index, item) {
+                $.each(coreCpMainMenugrd.ListItems, function(index, item) {
                     if (item.Id == response.Item.Id) {
                         var index = coreCpMainMenugrd.ListItems.indexOf(item);
                         coreCpMainMenugrd.ListItems[index] = response.Item;
@@ -313,18 +319,18 @@
                 }
                 coreCpMainMenugrd.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             coreCpMainMenugrd.addRequested = false;
         });
     }
 
-    coreCpMainMenugrd.closeModal = function () {
+    coreCpMainMenugrd.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    coreCpMainMenugrd.replaceItem = function (oldId, newItem) {
-        angular.forEach(coreCpMainMenugrd.ListItems, function (item, key) {
+    coreCpMainMenugrd.replaceItem = function(oldId, newItem) {
+        angular.forEach(coreCpMainMenugrd.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = coreCpMainMenugrd.ListItems.indexOf(item);
                 coreCpMainMenugrd.ListItems.splice(index, 1);
@@ -335,39 +341,39 @@
     }
 
     // Delete a Content
-    coreCpMainMenugrd.deleteContent = function () {
+    coreCpMainMenugrd.deleteContent = function() {
         if (buttonIsPressed) { return };
         if (!coreCpMainMenugrd.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 //console.log(coreCpMainMenugrd.gridOptions.selectedRow.item);
                 coreCpMainMenugrd.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     coreCpMainMenugrd.selectedItemForDelete = response.Item;
-                   // console.log(coreCpMainMenugrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    // console.log(coreCpMainMenugrd.selectedItemForDelete);
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             coreCpMainMenugrd.replaceItem(coreCpMainMenugrd.selectedItemForDelete.Id);
                             coreCpMainMenugrd.gridOptions.fillData(coreCpMainMenugrd.ListItems);
                             if (coreCpMainMenugrd.selectedItemForDelete.LinkParentId == null) {
-                                var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function (x) { return x.Id; }).indexOf(coreCpMainMenugrd.selectedItemForDelete.Id); // find the index of an item in an array
+                                var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function(x) { return x.Id; }).indexOf(coreCpMainMenugrd.selectedItemForDelete.Id); // find the index of an item in an array
                                 coreCpMainMenugrd.treeConfig.Items.splice(elementPos, 1);
                             } else
                                 for (var i = 0; i < coreCpMainMenugrd.treeConfig.Items.length; i++) {
                                     searchAndDeleteFromTree(coreCpMainMenugrd.selectedItemForDelete, coreCpMainMenugrd.treeConfig.Items[i]);
                                 }
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
                 coreCpMainMenugrd.busyIndicator.isActive = false;
@@ -375,10 +381,10 @@
         });
     }
 
-    coreCpMainMenugrd.searchData = function () {
+    coreCpMainMenugrd.searchData = function() {
         coreCpMainMenugrd.addRequested = true;
         coreCpMainMenugrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAll", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreCpMainMenu/getAll", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.responseListItems = response.ListItems;
             coreCpMainMenugrd.gridOptions.fillData(coreCpMainMenugrd.responseListItems);
@@ -388,7 +394,7 @@
             coreCpMainMenugrd.gridOptions.maxSize = 5;
             coreCpMainMenugrd.addRequested = false;
             coreCpMainMenugrd.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             coreCpMainMenugrd.gridOptions.fillData();
             //console.log(data);
             rashaErManage.checkAction(data, errCode);
@@ -407,32 +413,31 @@
         scope: coreCpMainMenugrd,
         columnOptions: {
             columns: [
-                { name: 'Id', displayName: 'کد سیستمی', sortable: true,type:'integer' },
-                { name: 'Title', displayName: 'عنوان', sortable: true,type:'string' }
+                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
+                { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string' }
             ]
         }
     }
 
-    coreCpMainMenugrd.gridOptions.reGetAll = function () {
+    coreCpMainMenugrd.gridOptions.reGetAll = function() {
         if (coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters.length == 0)
             coreCpMainMenugrd.init();
         else
             coreCpMainMenugrd.searchData();
     }
 
-    coreCpMainMenugrd.gridOptions.onRowSelected = function () { }
+    coreCpMainMenugrd.gridOptions.onRowSelected = function() {}
 
     coreCpMainMenugrd.columnCheckbox = false;
 
-    coreCpMainMenugrd.openGridConfigModal = function () {
+    coreCpMainMenugrd.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         if (coreCpMainMenugrd.gridOptions.columnCheckbox) {
             for (var i = 0; i < coreCpMainMenugrd.gridOptions.columns.length; i++) {
                 var element = $("#" + coreCpMainMenugrd.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
                 coreCpMainMenugrd.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = coreCpMainMenugrd.gridOptions.columns;
             for (var i = 0; i < coreCpMainMenugrd.gridOptions.columns.length; i++) {
                 coreCpMainMenugrd.gridOptions.columns[i].visible = true;
@@ -446,7 +451,7 @@
         coreCpMainMenugrd.gridOptions.columnCheckbox = !coreCpMainMenugrd.gridOptions.columnCheckbox;
     }
 
-    coreCpMainMenugrd.selectParents = function () {
+    coreCpMainMenugrd.selectParents = function() {
         var length = coreCpMainMenugrd.ListItems.length;
         var prenetListItems = [];
         for (var i = 0; i < length; i++) {
@@ -456,25 +461,25 @@
         return prenetListItems;
     }
 
-    coreCpMainMenugrd.editStepGoUp = function (item, index) {
+    coreCpMainMenugrd.editStepGoUp = function(item, index) {
         if (index == 0) {
             rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Top_Of_The_List'));
             return;
         }
         coreCpMainMenugrd.gridBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', item.Id, 'GET').success(function(response1) {
             rashaErManage.checkAction(response1);
             coreCpMainMenugrd.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             coreCpMainMenugrd.selectedItem.ShowInMenuOrder = coreCpMainMenugrd.gridOptions.data[index - 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.data[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.data[index - 1].Id, 'GET').success(function(response3) {
                         rashaErManage.checkAction(response3);
                         coreCpMainMenugrd.selectedItem = response3.Item;
                         coreCpMainMenugrd.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response4) {
                             coreCpMainMenugrd.gridBusyIndicator.isActive = false;
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
@@ -493,46 +498,45 @@
 
                                 // Swap two items in the grid ListItems
                                 if (item.LinkParentId == null) {
-                                    var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function (x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
+                                    var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function(x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
                                     coreCpMainMenugrd.treeConfig.Items[elementPos] = coreCpMainMenugrd.treeConfig.Items.splice(elementPos - 1, 1, coreCpMainMenugrd.treeConfig.Items[elementPos])[0];
-                                }
-                                else
-                                    var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function (x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
+                                } else
+                                    var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function(x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
                             }
-                        }).error(function (data, errCode, c, d) {
+                        }).error(function(data, errCode, c, d) {
                             rashaErManage.checkAction(data, errCode);
                         });
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    coreCpMainMenugrd.editStepGoDown = function (item, index) {
+    coreCpMainMenugrd.editStepGoDown = function(item, index) {
         if (index == coreCpMainMenugrd.gridOptions.data.length - 1) {
             rashaErManage.showMessage($filter('translatentk')('The_Menu_Is_At_The_Bottom_Of_The_List'));
             return;
         }
         coreCpMainMenugrd.gridBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', item.Id, 'GET').success(function(response1) {
             rashaErManage.checkAction(response1);
             coreCpMainMenugrd.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             coreCpMainMenugrd.selectedItem.ShowInMenuOrder = coreCpMainMenugrd.gridOptions.data[index + 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.data[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.gridOptions.data[index + 1].Id, 'GET').success(function(response3) {
                         rashaErManage.checkAction(response3);
                         coreCpMainMenugrd.selectedItem = response3.Item;
                         coreCpMainMenugrd.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function (response4) {
+                        ajax.call(cmsServerConfig.configApiServerPath + 'CoreCpMainMenu/', coreCpMainMenugrd.selectedItem, "PUT").success(function(response4) {
                             rashaErManage.checkAction(response4);
                             coreCpMainMenugrd.gridBusyIndicator.isActive = false;
                             if (response4.IsSuccess) {
@@ -548,26 +552,26 @@
                                 // Swap two items in the grid ListItems
                                 coreCpMainMenugrd.gridOptions.data[index] = coreCpMainMenugrd.gridOptions.data.splice(index + 1, 1, coreCpMainMenugrd.gridOptions.data[index])[0];
                                 coreCpMainMenugrd.gridOptions.fillData(coreCpMainMenugrd.gridOptions.data);
-                                var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function (x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
+                                var elementPos = coreCpMainMenugrd.treeConfig.Items.map(function(x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
                                 // Swap two items in the grid ListItems
                                 coreCpMainMenugrd.treeConfig.Items[elementPos] = coreCpMainMenugrd.treeConfig.Items.splice(elementPos + 1, 1, coreCpMainMenugrd.treeConfig.Items[elementPos])[0];
                             }
-                        }).error(function (data, errCode, c, d) {
+                        }).error(function(data, errCode, c, d) {
                             rashaErManage.checkAction(data, errCode);
                         });
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    coreCpMainMenugrd.selectRoots = function () {
+    coreCpMainMenugrd.selectRoots = function() {
         coreCpMainMenugrd.gridOptions.fillData(coreCpMainMenugrd.ListParentItems, null);
     }
 
@@ -592,7 +596,7 @@
             result;
 
         if (deletedItem.LinkParentId == currentNode.Id) {
-            var elementPos = currentNode.Children.map(function (x) { return x.Id; }).indexOf(deletedItem.Id); // find the index of an item in an array
+            var elementPos = currentNode.Children.map(function(x) { return x.Id; }).indexOf(deletedItem.Id); // find the index of an item in an array
             if (elementPos > -1)
                 currentNode.Children.splice(elementPos, 1);
             return true;
@@ -651,7 +655,7 @@
 
         if (selectedItem.LinkParentId == currentNode.Id) {
             //currentNode.Title = selectedItem.Title;
-            var elementPos = menuItemCtrl.treeConfig.currentNode.Children.map(function (x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
+            var elementPos = menuItemCtrl.treeConfig.currentNode.Children.map(function(x) { return x.Id; }).indexOf(item.Id); // find the index of an item in an array
             // Swap two items in the grid ListItems
             if (dir = "down")
                 currentNode.Children[elementPos] = currentNode.Children.splice(elementPos + 1, 1, currentNode.Children[elementPos])[0];

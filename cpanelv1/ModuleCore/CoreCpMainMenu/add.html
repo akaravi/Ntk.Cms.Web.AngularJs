@@ -3,52 +3,79 @@
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="coreCpMainMenugrd.closeModal()"></i>
             <h3 class="m-t-none m-b">{{'Add_Menu' |lowercase|translate}}</h3>
-            <form method="get" class="form-horizontal" name="frmCoreCpMainMenuAdd" novalidate ng-submit="coreCpMainMenugrd.addNewRow(frmCoreCpMainMenuAdd)">
+            <form method="get" class="form-horizontal" name="frmCoreCpMainMenuAdd" novalidate
+                ng-submit="coreCpMainMenugrd.addNewRow(frmCoreCpMainMenuAdd)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->
                             <div class="form-group" ng-show="coreCpMainMenugrd.CheckAccessAdd('Title')"
-                                 ng-class="{'has-error' : frmCoreCpMainMenuAdd.Title.$invalid && !frmCoreCpMainMenuAdd.Title.$pristine,'has-success' : frmCoreCpMainMenuAdd.Title.$valid}">
+                                ng-class="{'has-error' : frmCoreCpMainMenuAdd.Title.$invalid && !frmCoreCpMainMenuAdd.Title.$pristine,'has-success' : frmCoreCpMainMenuAdd.Title.$valid}">
                                 <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control"
-                                           ng-required="true"
-                                           name="Title"
-                                           ng-model="coreCpMainMenugrd.selectedItem.Title" />
+                                    <input class="form-control" ng-required="true" name="Title"
+                                        ng-model="coreCpMainMenugrd.selectedItem.Title" />
                                     <div class="m-t-xs" ng-show="frmCoreCpMainMenuAdd.Title.$invalid">
-                                        <small class="text-danger" ng-show="frmCoreCpMainMenuAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
+                                        <small class="text-danger"
+                                            ng-show="frmCoreCpMainMenuAdd.Title.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
                                     </div>
-                                    <span style="left: 10px !important;" ng-show="frmCoreCpMainMenuAdd.Title.$valid && frmCoreCpMainMenuAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                    <span style="left: 10px !important;" ng-show="(frmCoreCpMainMenuAdd.Title.$invalid && !frmCoreCpMainMenuAdd.Title.$pristine) || frmCoreCpMainMenuAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="frmCoreCpMainMenuAdd.Title.$valid && frmCoreCpMainMenuAdd.Title.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(frmCoreCpMainMenuAdd.Title.$invalid && !frmCoreCpMainMenuAdd.Title.$pristine) || frmCoreCpMainMenuAdd.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class="form-group" ng-show="coreCpMainMenugrd.CheckAccessAdd('TitleResourceLanguage')"
-                                 ng-class="{'has-error' : frmCoreCpMainMenuAdd.TitleResourceLanguage.$invalid && !frmCoreCpMainMenuAdd.TitleResourceLanguage.$pristine,'has-success' : frmCoreCpMainMenuAdd.TitleResourceLanguage.$valid}">
-                                <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
+                                ng-class="{'has-error' : frmCoreCpMainMenuAdd.TitleResourceLanguage.$invalid && !frmCoreCpMainMenuAdd.TitleResourceLanguage.$pristine,'has-success' : frmCoreCpMainMenuAdd.TitleResourceLanguage.$valid}">
+                                <label
+                                    class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control"
-                                           ng-required="true"
-                                           name="TitleResourceLanguage"
-                                           ng-model="coreCpMainMenugrd.selectedItem.TitleResourceLanguage" />
+                                    <input class="form-control" ng-required="true" name="TitleResourceLanguage"
+                                        ng-model="coreCpMainMenugrd.selectedItem.TitleResourceLanguage" />
                                     <div class="m-t-xs" ng-show="frmCoreCpMainMenuAdd.TitleResourceLanguage.$invalid">
-                                        <small class="text-danger" ng-show="frmCoreCpMainMenuAdd.TitleResourceLanguage.$error.required"><i class="fa fa-exclamation-triangle"></i> {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
+                                        <small class="text-danger"
+                                            ng-show="frmCoreCpMainMenuAdd.TitleResourceLanguage.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
                                     </div>
-                                    <span style="left: 10px !important;" ng-show="frmCoreCpMainMenuAdd.TitleResourceLanguage.$valid && frmCoreCpMainMenuAdd.TitleResourceLanguage.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                    <span style="left: 10px !important;" ng-show="(frmCoreCpMainMenuAdd.TitleResourceLanguage.$invalid && !frmCoreCpMainMenuAdd.TitleResourceLanguage.$pristine) || frmCoreCpMainMenuAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="frmCoreCpMainMenuAdd.TitleResourceLanguage.$valid && frmCoreCpMainMenuAdd.TitleResourceLanguage.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(frmCoreCpMainMenuAdd.TitleResourceLanguage.$invalid && !frmCoreCpMainMenuAdd.TitleResourceLanguage.$pristine) || frmCoreCpMainMenuAdd.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class='form-group' ng-show="coreCpMainMenugrd.CheckAccessAdd('Description')"
-                                 ng-class="{'has-error' : frmCoreCpMainMenuAdd.Description.$invalid && !frmCoreCpMainMenuAdd.Description.$pristine,'has-success' : frmCoreCpMainMenuAdd.Description.$valid}">
+                                ng-class="{'has-error' : frmCoreCpMainMenuAdd.Description.$invalid && !frmCoreCpMainMenuAdd.Description.$pristine,'has-success' : frmCoreCpMainMenuAdd.Description.$valid}">
                                 <label class='col-sm-2 control-label'>{{ 'DESCRIPTION'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
-                                    <textarea type='text' ng-required="true" ng-model='coreCpMainMenugrd.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                                    <textarea type='text' ng-required="true"
+                                        ng-model='coreCpMainMenugrd.selectedItem.Description' class='form-control'
+                                        style="resize: vertical;height: 100px;"></textarea>
                                     <div class="m-t-xs" ng-show="frmCoreCpMainMenuAdd.Description.$invalid">
-                                        <small class="text-danger" ng-show="frmCoreCpMainMenuAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
+                                        <small class="text-danger"
+                                            ng-show="frmCoreCpMainMenuAdd.Description.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
                                     </div>
-                                    <span style="left: 10px !important;" ng-show="frmCoreCpMainMenuAdd.Description.$valid && frmCoreCpMainMenuAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                    <span style="left: 10px !important;" ng-show="(frmCoreCpMainMenuAdd.Description.$invalid && !frmCoreCpMainMenuAdd.Description.$pristine) || frmCoreCpMainMenuAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="frmCoreCpMainMenuAdd.Description.$valid && frmCoreCpMainMenuAdd.Description.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(frmCoreCpMainMenuAdd.Description.$invalid && !frmCoreCpMainMenuAdd.Description.$pristine) || frmCoreCpMainMenuAdd.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
                                 </div>
                             </div>
                             <!--tabEnd-->
@@ -61,39 +88,59 @@
                             <div class='form-group' ng-show="coreCpMainMenugrd.CheckAccessAdd('Icon')">
                                 <label class='col-sm-2 control-label'>{{'icon'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
-                                    <input type="text" class="form-control" ng-model="coreCpMainMenugrd.selectedItem.Icon">
+                                    <input type="text" class="form-control"
+                                        ng-model="coreCpMainMenugrd.selectedItem.Icon">
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class='form-group' ng-show="coreCpMainMenugrd.CheckAccessAdd('Color')">
                                 <label class='col-sm-2 control-label'>{{'Color'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
-                                    <input type="text" class="form-control" ng-model="coreCpMainMenugrd.selectedItem.Color">
+                                    <input type="text" class="form-control"
+                                        ng-model="coreCpMainMenugrd.selectedItem.Color">
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class='form-group' ng-show="coreCpMainMenugrd.CheckAccessAdd('AddressLink')">
                                 <label class='col-sm-2 control-label'>{{'LINK_ADDRESS'|lowercase|translate}}</label>
                                 <div class='col-sm-10'>
-                                    <input type='text' style="direction:ltr" ng-model='coreCpMainMenugrd.selectedItem.AddressLink' class='form-control ltr-support'>
+                                    <input type='text' style="direction:ltr"
+                                        ng-model='coreCpMainMenugrd.selectedItem.AddressLink'
+                                        class='form-control ltr-support'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreCpMainMenugrd.CheckAccessAdd('RouteAddressLink')">
+                                <label class='col-sm-2 control-label'>{{'LINK_ADDRESS'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' style="direction:ltr" placeholder="news/content"
+                                        ng-model='coreCpMainMenugrd.selectedItem.RouteAddressLink'
+                                        class='form-control ltr-support'>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="coreCpMainMenugrd.CheckAccessAdd('LinkParentId')">
-                                <label class="col-sm-2 control-label">{{ 'SELECT_THE_PARENT_PAGE'|lowercase|translate}}</label>
+                                <label
+                                    class="col-sm-2 control-label">{{ 'SELECT_THE_PARENT_PAGE'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="LinkParentId" rasha-autocomplete="coreCpMainMenugrd.LinkParentIdSelector" ng-model="coreCpMainMenugrd.selectedItem.LinkParentId" />
+                                    <input class="form-control" name="LinkParentId"
+                                        rasha-autocomplete="coreCpMainMenugrd.LinkParentIdSelector"
+                                        ng-model="coreCpMainMenugrd.selectedItem.LinkParentId" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="coreCpMainMenugrd.CheckAccessAdd('MenuPlaceType')">
                                 <label class="col-sm-2 control-label">{{ 'Menu_Location'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <select class='form-control' name="MenuPlaceType" ng-model="coreCpMainMenugrd.selectedItem.MenuPlaceType" ng-options="x.Value as x.Description for x in coreCpMainMenugrd.MenuPlaceType" required></select>
-                                    <span ng-show="frmcoreCpMainMenugrdAdd.MenuPlaceType.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                                    <select class='form-control' name="MenuPlaceType"
+                                        ng-model="coreCpMainMenugrd.selectedItem.MenuPlaceType"
+                                        ng-options="x.Value as x.Description for x in coreCpMainMenugrd.MenuPlaceType"
+                                        required></select>
+                                    <span
+                                        ng-show="frmcoreCpMainMenugrdAdd.MenuPlaceType.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
                                 </div>
                             </div>
-                           
+
                             <!--tabEnd-->
                         </div>
                     </tab>
@@ -104,21 +151,26 @@
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label class="checkbox-inline">
-                                        <input icheck type="checkbox" value="option1" id="ShowInMenu" ng-model="coreCpMainMenugrd.selectedItem.ShowInMenu" /> {{ 'IS_SHOWNN_IN_MENU'|lowercase|translate}}
+                                        <input icheck type="checkbox" value="option1" id="ShowInMenu"
+                                            ng-model="coreCpMainMenugrd.selectedItem.ShowInMenu" />
+                                        {{ 'IS_SHOWNN_IN_MENU'|lowercase|translate}}
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class='col-sm-2 control-label'>{{'SHOW_ORDER_IN_MENU'|lowercase|translate}}</label>
+                                <label
+                                    class='col-sm-2 control-label'>{{'SHOW_ORDER_IN_MENU'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" min="1" class="form-control" name="ShowInMenuOrder" ng-model="coreCpMainMenugrd.selectedItem.ShowInMenuOrder" />
+                                    <input type="number" min="1" class="form-control" name="ShowInMenuOrder"
+                                        ng-model="coreCpMainMenugrd.selectedItem.ShowInMenuOrder" />
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label class="checkbox-inline">
-                                        <input icheck type="checkbox" value="option1" id="AdministratorIsDependency" ng-model="coreCpMainMenugrd.selectedItem.isDependencyModule" />{{ 'IS_DEPENDENT_TO_A_MODULE'|lowercase|translate}}
+                                        <input icheck type="checkbox" value="option1" id="AdministratorIsDependency"
+                                            ng-model="coreCpMainMenugrd.selectedItem.isDependencyModule" />{{ 'IS_DEPENDENT_TO_A_MODULE'|lowercase|translate}}
                                     </label>
                                 </div>
                             </div>
@@ -126,31 +178,40 @@
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label class="checkbox-inline">
-                                        <input icheck type="checkbox" value="option1" id="ShowInAccessAdminAllowToProfessionalData" ng-model="coreCpMainMenugrd.selectedItem.ShowInAccessAdminAllowToProfessionalData" />نمایش با اطلاعات تخصصی؟
+                                        <input icheck type="checkbox" value="option1"
+                                            id="ShowInAccessAdminAllowToProfessionalData"
+                                            ng-model="coreCpMainMenugrd.selectedItem.ShowInAccessAdminAllowToProfessionalData" />نمایش
+                                        با اطلاعات تخصصی؟
                                     </label>
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="coreCpMainMenugrd.CheckAccessAdd('CoreCpMainMenuCmsUserGroup')">
+                            <div class="form-group"
+                                ng-show="coreCpMainMenugrd.CheckAccessAdd('CoreCpMainMenuCmsUserGroup')">
                                 <label class="col-sm-2 control-label" style="text-align: right;">
                                     {{ 'SELECT_CATEGORY'|lowercase|translate}}</label>
                                 <br />
                                 <br />
-                                    <div class="col-sm-8 checkBoxList" style="overflow-y: auto">
-                                        <div ng-repeat="permission in coreCpMainMenugrd.menueGroups">
-                                            <label class="checkbox-inline" style="margin-bottom: 7px; margin-right: 141px;">
-                                                <input type="checkbox" style="margin-right: -16px;" value="{{permission.Id}}" ng-checked="coreCpMainMenugrd.hasInMany2Many(permission)" ng-click="coreCpMainMenugrd.toggleMany2Many(role,permission)">
-                                                {{permission.Title}}
-                                            </label>
-                                        </div>
+                                <div class="col-sm-8 checkBoxList" style="overflow-y: auto">
+                                    <div ng-repeat="permission in coreCpMainMenugrd.menueGroups">
+                                        <label class="checkbox-inline" style="margin-bottom: 7px; margin-right: 141px;">
+                                            <input type="checkbox" style="margin-right: -16px;"
+                                                value="{{permission.Id}}"
+                                                ng-checked="coreCpMainMenugrd.hasInMany2Many(permission)"
+                                                ng-click="coreCpMainMenugrd.toggleMany2Many(role,permission)">
+                                            {{permission.Title}}
+                                        </label>
                                     </div>
-</div>
-                            <div class="form-group" ng-show="coreCpMainMenugrd.selectedItem.isDependencyModule && coreCpMainMenugrd.CheckAccessAdd('LinkModuleId')">
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                ng-show="coreCpMainMenugrd.selectedItem.isDependencyModule && coreCpMainMenugrd.CheckAccessAdd('LinkModuleId')">
                                 <label class="col-sm-2 control-label">{{ 'SELECT_MODULE'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" ng-model="coreCpMainMenugrd.selectedItem.LinkModuleId">
                                         <!--<option value="0"> {{'SELECT'|lowercase|translate}} </option>-->
-                                        <option ng-repeat="module in coreCpMainMenugrd.moduleList" value="{{module.Id}}">{{module.Title}}</option>
+                                        <option ng-repeat="module in coreCpMainMenugrd.moduleList"
+                                            value="{{module.Id}}">{{module.Title}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -160,8 +221,10 @@
                 </tabset>
                 <div class='hr-line-dashed'></div>
                 <div class="form-group">
-                    <button class="btn btn-primary" ng-disabled="coreCpMainMenugrd.addRequested" type="submit">{{ 'save'|lowercase|translate}}</button>
-                    <button class="btn btn-default" type="button" ng-click="coreCpMainMenugrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-disabled="coreCpMainMenugrd.addRequested"
+                        type="submit">{{ 'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button"
+                        ng-click="coreCpMainMenugrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
                 </div>
             </form>
         </div>
