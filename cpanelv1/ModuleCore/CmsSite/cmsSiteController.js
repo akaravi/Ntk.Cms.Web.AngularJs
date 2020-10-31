@@ -1566,7 +1566,7 @@
             cmsSitegrd.busyIndicator.isActive = false;
             rashaErManage.showMessage("ورود به سایت موردنظر انجام شد!");
             $rootScope.tokenInfo = response.Item;
-            localStorage.setItem("userGlobaltoken", response.Item.token);
+            localStorage.setItem("userToken", response.Item.Token);
             $state.reload();
             rashaErManage.checkAction(response);
         }).error(function(data, errCode, c, d) {

@@ -277,7 +277,7 @@
         var oderShowAllDataStatus = false;
         var oderShowProfessionalDataStatus = false;
 
-        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.token==undefined) {
+        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.Token==undefined) {
             oldSelectedUserId = $rootScope.tokenInfo.LinkUserId;
             oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
             oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
@@ -298,7 +298,7 @@
             if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)
                 $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
-            localStorage.setItem("userGlobaltoken", response.Item.token);
+            localStorage.setItem("userToken", response.Item.Token);
             
             $state.reload();
 

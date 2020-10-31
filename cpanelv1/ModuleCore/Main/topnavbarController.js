@@ -43,7 +43,7 @@
                 if ($rootScope.tokenInfo)
                     $rootScope.tokenInfo.UserLanguage = topNavBar.language;
                 //End of set language
-                if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
+                if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.Token == undefined) {
                     //#help# فقط توکن داریم و از سرور درخواست دریاف اطلاعات می کنیم
                     topNavBar.busyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {}, "POST").success(function (response) {
@@ -56,7 +56,7 @@
                             $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.Item.token);
+                        localStorage.setItem("userToken", response.Item.Token);
                         topNavBar.setDiskSpaceInfo();
                         //SET
                         topNavBar.busyIndicator.isActive = false;
@@ -87,7 +87,7 @@
             topNavBar.appLoginById = function (NewSiteid, NewUserid) {
                 topNavBar.closeModal();
                 if ((NewSiteid != undefined && NewSiteid > 0) || (NewUserid != undefined && NewUserid > 0)) {
-                    if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
+                    if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.Token == undefined) {
                         rashaErManage.showMessage("حساب کاربری شما این دسترسی را ندارد");
                         return;
                     };
@@ -110,7 +110,7 @@
                             $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.Item.token);
+                        localStorage.setItem("userToken", response.Item.Token);
                         rashaErManage.showMessage("دسترسی جدید اعمال شد");
                         $state.reload();
                         topNavBar.busyIndicator.isActive = false;
@@ -135,7 +135,7 @@
                 var SelectedCurrentSiteId = 0;
                 var oderShowAllDataStatus = false;
                 var oderShowProfessionalDataStatus = false;
-                if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
+                if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.Token == undefined) {
                     SelectedCurrentSiteId = $rootScope.tokenInfo.SiteId;
                     oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
                     oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
@@ -166,7 +166,7 @@
                     {
                     rashaErManage.checkAction(response);
                     $rootScope.tokenInfo = response.Item;
-                    localStorage.setItem("userGlobaltoken", response.Item.token);
+                    localStorage.setItem("userToken", response.Item.Token);
 
                     $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Domain + "/";
                     if ($rootScope.tokenInfo.SubDomain && $rootScope.tokenInfo.SubDomain.length > 0)

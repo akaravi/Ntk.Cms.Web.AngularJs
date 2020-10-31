@@ -144,7 +144,7 @@
     }
   
     cmsPageDesign.goTohtmlbuilder = function (item) {
-        var token=localStorage.getItem("userGlobaltoken");
+        var token=localStorage.getItem("userToken");
         item.rowOption = null;
         item.virtual_CmsModulePageDependency = null;
         item.virtual_CmsSite = null;

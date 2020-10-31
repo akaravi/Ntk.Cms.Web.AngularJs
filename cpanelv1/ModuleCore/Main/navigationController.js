@@ -157,7 +157,7 @@
             currentSite = $rootScope.tokenInfo.SiteId;
         //rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید...");
         ajax.call(cmsServerConfig.configApiServerPath+"Auth/RenewToken/", { SiteId: currentSite }, "POST").success(function (response) {
-            localStorage.setItem("userGlobaltoken", response.Item.token);
+            localStorage.setItem("userToken", response.Item.Token);
             //rashaErManage.showMessage("دسترسی جدید اعمال گردید");
             $rootScope.tokenInfo = response.Item;
 

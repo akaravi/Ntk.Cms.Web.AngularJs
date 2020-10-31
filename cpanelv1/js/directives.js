@@ -1158,7 +1158,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             if (config.totalcolumns > 0)
                 config.percentWidth = 100 / config.totalcolumns;
             angular.forEach(config.columns, function(item, key) {
-                item.srcThumbnail = cmsServerConfig.configRouteThumbnails + '/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+                item.srcThumbnail = cmsServerConfig.configRouteThumbnails + '/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userToken'));
                 if (!item.visible)
                     item.visible = true;
                 if (!item.sortable)
@@ -2134,8 +2134,7 @@ var lastErroLogin = Date.now();
 function rashaErManage($state, notify, SweetAlert) {
     var template = 'cpanelv1/ModuleCore/common/notify.html';
     this.checkAction = function(response, errCode, c, d) {
-        // if (response && response.token && response.token.length > 10)
-        //     localStorage.setItem("userGlobaltoken", response.token);
+
         var ErrorMessage = "";
         if (response) {
             //#help# خطا های موجود در درخواست
@@ -2176,7 +2175,7 @@ function rashaErManage($state, notify, SweetAlert) {
             }
             if (response.Status == 200) {
                 // if (response.UserTicket) {
-                //     localStorage.setItem('userGlobaltoken', response.UserTicket);
+                //     localStorage.setItem('userToken', response.UserTicket);
                 // }
                 if (response.IsSuccess != undefined && response.IsSuccess == false) {
                     var myMessage = "متاسفانه ثبت با خطا مواجه شد! " + response.ErrorMessage;
@@ -2189,7 +2188,7 @@ function rashaErManage($state, notify, SweetAlert) {
                 }
                 return;
             } else if (response.Status == 401) {
-                localStorage.removeItem('userGlobaltoken');
+                localStorage.removeItem('userToken');
                 if ((Date.now() - lastErroLogin) > 1000)
                     notify({
                         message: 'لطفاَ ابتدا وارد سایت شوید',
@@ -2228,7 +2227,7 @@ function rashaErManage($state, notify, SweetAlert) {
                     });
                 //#help# ارسال برای سرور
             } else if (response.Status == 402) {
-                localStorage.removeItem('userGlobaltoken');
+                localStorage.removeItem('userToken');
                 $state.go('login', {});
             } else {
                 ErrorMessage = "برروز خطا ." + " errCode: " + errCode;
@@ -2282,7 +2281,7 @@ function rashaErManage($state, notify, SweetAlert) {
                 console.log(response);
                 //#help# ارسال برای سرور
             } else if (errCode == 402) {
-                localStorage.removeItem('userGlobaltoken');
+                localStorage.removeItem('userToken');
                 $state.go('login', {});
             } else if (errCode == 302) {
                 notify({
@@ -2343,7 +2342,7 @@ function ajax($http, $state) {
             if (isasync == 'true') isasync = true;
             else isasync = false;
         }
-        var userglobaltoken = localStorage.getItem('userGlobaltoken');
+        var userglobaltoken = localStorage.getItem('userToken');
         if (url.lastIndexOf("/") != url.length - 1) {
             url = url + '/';
         }
@@ -2376,7 +2375,7 @@ function ajax($http, $state) {
     }
     this.logOut = function() {
         var data = {};
-        var userglobaltoken = localStorage.getItem('userGlobaltoken');
+        var userglobaltoken = localStorage.getItem('userToken');
         data.userToken = userglobaltoken;
         $.ajax({
             type: "POST",
@@ -2388,12 +2387,12 @@ function ajax($http, $state) {
                 request.setRequestHeader("Authorization", userglobaltoken);
             },
             success: function(response) {
-                localStorage.setItem('userGlobaltoken', '');
+                localStorage.setItem('userToken', '');
                 $state.go('login', {})
             },
             error: function(data) {
                 $state.go('login', {});
-                localStorage.setItem('userGlobaltoken', '');
+                localStorage.setItem('userToken', '');
                 console.log(data);
             }
         });
@@ -2574,7 +2573,7 @@ function dropzone() {
                 'success': function(file, response) {},
 
                 'sending': function(file, xhr, formData) {
-                    var userglobaltoken = localStorage.getItem('userGlobaltoken');
+                    var userglobaltoken = localStorage.getItem('userToken');
                     formData.append("userToken", userglobaltoken);
                     formData.append("model", currentFolder.selectedNode);
                 }
@@ -5188,7 +5187,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 });
             }
 
-            config.Token = encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+            config.Token = encodeURIComponent(localStorage.getItem('userToken'));
             config.selectCompleted = function() {
                 var listOfFiles = [];
                 var listOfFolders = [];
@@ -6140,7 +6139,7 @@ function rashaThumbnail($compile, rashaErManage) {
             if (!imageId || imageId.length == 0)
                 return;
 
-            var srcThumbnail = cmsServerConfig.configRouteThumbnails + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+            var srcThumbnail = cmsServerConfig.configRouteThumbnails + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userToken'));
 
             var template = '<img style="width:' + config.width + 'px;height:' + config.height + 'px" src="' + srcThumbnail + '" >';
 

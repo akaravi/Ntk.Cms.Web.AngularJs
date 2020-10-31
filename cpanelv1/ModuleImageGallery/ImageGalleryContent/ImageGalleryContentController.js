@@ -128,7 +128,7 @@
     $scope.$on('$dropletReady', function whenDropletReady() {
         imgGallery.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif', 'svg', 'torrent']);
         imgGallery.interface.setRequestUrl('/cmsImageGallery/upload');
-        var userglobaltoken = $rootScope.tokenInfo.token;
+        var userglobaltoken = $rootScope.tokenInfo.Token;
         var data = {};
         data.userToken = userglobaltoken;
         data.LinkImageGalleryCategoryId = imgGallery.treeConfig.currentNode.Id;

@@ -629,7 +629,7 @@
                             data: JSON.stringify({ text: query }),
                             url: cmsServerConfig.configApiServerPath + options.module + '/searchtag',   //فرستاده می شود attr با option نام ماژول مورد جستجو به صورت یک
                             contentType: 'application/json',
-                            headers: { 'Authorization': localStorage.getItem('userGlobaltoken') },
+                            headers: { 'Authorization': localStorage.getItem('userToken') },
                             success: function (response) {
                                 var data = [];
                                 $.each(response.ListItems, function (index, element) {

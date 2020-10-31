@@ -44,7 +44,7 @@
     }
 
     cmsPagegrd.goTohtmlbuilder = function (item) {
-        var token=localStorage.getItem("userGlobaltoken");
+        var token=localStorage.getItem("userToken");
         
         var urlTemplate = 'HtmlBuilder2/token/?id=' + item.Id+ '&token=' + token;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));

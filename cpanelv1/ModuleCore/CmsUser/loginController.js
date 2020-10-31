@@ -58,7 +58,7 @@ login.Captcha=function(){
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;
             if (response.IsSuccess && response.Item) {
-                localStorage.setItem("userGlobaltoken", response.Item.token);
+                localStorage.setItem("userToken", response.Item.Token);
                 $state.go("siteSelector", {});
             }
             else
