@@ -806,11 +806,11 @@
         cmsSitegrd.busyIndicator.isActive = true;
 
         ///Save CmsModuleSite
-        cmsSitegrd.CmsModuleSiteRemoved = differenceInFirstArray(cmsSitegrd.CmsModuleSiteDb, cmsSitegrd.CmsModuleSite, 'Id');
-        cmsSitegrd.CmsModuleSiteAdded = differenceInFirstArray(cmsSitegrd.CmsModuleSite, cmsSitegrd.CmsModuleSiteDb, 'Id');
+        cmsSitegrd.CmsModuleSiteRemoved = differenceInFirstArray(cmsSitegrd.CmsModuleSiteDb, cmsSitegrd.CmsModuleSite, 'LinkSiteId','LinkModuleId');
+        cmsSitegrd.CmsModuleSiteAdded = differenceInFirstArray(cmsSitegrd.CmsModuleSite, cmsSitegrd.CmsModuleSiteDb, 'LinkSiteId','LinkModuleId');
         cmsSitegrd.CmsModuleSiteEdit = [];
         $.each(cmsSitegrd.CmsModuleSite, function(index, item) {
-            if (item.Edited && item.Id && item.Id > 0)
+            if (item.Edited )
                 cmsSitegrd.CmsModuleSiteEdit.push(item);
         });
 
