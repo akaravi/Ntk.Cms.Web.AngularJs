@@ -1401,7 +1401,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                 }
                 //access
                 config.CheckEntity = function(model) {
-                    
+
                     return true;
                 }
                 config.GridCheckAccessWatch = function(fieldName) {
@@ -1414,7 +1414,7 @@ function rashaGrid($compile, $rootScope, ajax) {
                     });
                     return retOut;
                 }
-              
+
                 //access
 
 
@@ -2374,13 +2374,10 @@ function ajax($http, $state) {
         });
     }
     this.logOut = function() {
-        var data = {};
         var userglobaltoken = localStorage.getItem('userToken');
-        data.userToken = userglobaltoken;
         $.ajax({
-            type: "POST",
-            data: data,
-            url: cmsServerConfig.configApiServerPath + "CoreUser/UserClearToken",
+            type: "GET",
+            url: cmsServerConfig.configApiServerPath + "Auth/signOut",
             contentType: "application/json; charset=utf-8",
             //Send header authorization in request
             beforeSend: function(request) {
