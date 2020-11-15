@@ -114,10 +114,57 @@
                                             aria-hidden="true"></span>
                                     </div>
                                 </div>
-
-                               
-
                                 <div class='hr-line-dashed'></div>
+                                <div class="form-group"
+                                ng-class="{'has-error' : fAdminMain.DefaultSourceApplicationId.$invalid && !fAdminMain.DefaultSourceApplicationId.$pristine,'has-success' : fAdminMain.AccessBuyPrice.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Default Source Application Id'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="DefaultSourceApplicationId"
+                                        ng-model="cmsModulegrd.Item.AdminMain.DefaultSourceApplicationId" />
+                                    <div class="m-t-xs" ng-show="fAdminMain.DefaultSourceApplicationId.$invalid">
+                                        <small class="text-danger"
+                                            ng-show="fAdminMain.DefaultSourceApplicationId.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;"
+                                        ng-show="fAdminMain.DefaultSourceApplicationId.$valid && fAdminMain.DefaultSourceApplicationId.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(fAdminMain.DefaultSourceApplicationId.$invalid && !fAdminMain.DefaultSourceApplicationId.$pristine) || fAdminMain.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                                <div class='hr-line-dashed'></div>
+
+
+                                <div class="form-group"
+                                ng-class="{'has-error' : fAdminMain.DefaultCategorySiteId.$invalid && !fAdminMain.DefaultCategorySiteId.$pristine,'has-success' : fAdminMain.AccessBuyPrice.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Default Category Site Id'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="DefaultCategorySiteId"
+                                        ng-model="cmsModulegrd.Item.AdminMain.DefaultCategorySiteId" />
+                                    <div class="m-t-xs" ng-show="fAdminMain.DefaultCategorySiteId.$invalid">
+                                        <small class="text-danger"
+                                            ng-show="fAdminMain.DefaultCategorySiteId.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;"
+                                        ng-show="fAdminMain.DefaultCategorySiteId.$valid && fAdminMain.DefaultCategorySiteId.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(fAdminMain.DefaultCategorySiteId.$invalid && !fAdminMain.DefaultCategorySiteId.$pristine) || fAdminMain.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
                                 <div class="form-group">
                                     <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed"
                                         type="submit">
@@ -215,6 +262,78 @@
                                 </div>
                                 <div class='hr-line-dashed'></div>
 
+
+
+
+
+                                
+                                <div class="form-group"
+                                ng-class="{'has-error' : fSiteAccessDefault.HyperShopConnectionType.$invalid && !fSiteAccessDefault.HyperShopConnectionType.$pristine,'has-success' : fSiteAccessDefault.HyperShopConnectionType.$valid}">
+                                <label class="col-sm-2 control-label">
+                                    {{'تعداد دسترسی ایجاد ردیف'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="HyperShopConnectionType"
+                                        ng-model="cmsModulegrd.Item.SiteDefault.HyperShopConnectionType" />
+                                    <div class="m-t-xs"
+                                        ng-show="fSiteAccessDefault.HyperShopConnectionType.$invalid">
+                                        <small class="text-danger"
+                                            ng-show="fSiteAccessDefault.HyperShopConnectionType.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;"
+                                        ng-show="fSiteAccessDefault.HyperShopConnectionType.$valid && fSiteAccessDefault.HyperShopConnectionType.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(fSiteAccessDefault.HyperShopConnectionType.$invalid && !fSiteAccessDefault.HyperShopConnectionType.$pristine) || fSiteAccessDefault.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                                <div class='hr-line-dashed'></div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{' پرداخت در محل فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="InPlacePaymentMethodIsEnabled" ng-model="cmsModulegrd.Item.SiteDefault.InPlacePaymentMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'درگاه اشتراکی فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="BankSharingMethodIsEnabled" ng-model="cmsModulegrd.Item.SiteDefault.BankSharingMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'درگاه بانکی کاربر فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="UserPaymentMethodIsEnabled" ng-model="cmsModulegrd.Item.SiteDefault.UserPaymentMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'HyperShopApiUrl'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="HyperShopApiUrl" ng-model="cmsModulegrd.Item.SiteDefault.HyperShopApiUrl" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
                                 <div class="form-group">
                                     <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed"
                                         type="submit">

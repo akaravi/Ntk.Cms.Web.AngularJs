@@ -46,7 +46,7 @@
                 if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.Token == undefined) {
                     //#help# فقط توکن داریم و از سرور درخواست دریاف اطلاعات می کنیم
                     topNavBar.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {}, "POST").success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "Auth/CorrectToken", "", "GET").success(function (response) {
                         rashaErManage.checkAction(response);
                         $rootScope.tokenInfo = response.Item;
 

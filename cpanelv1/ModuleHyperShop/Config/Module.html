@@ -40,6 +40,34 @@
                                                 </div>
 
                                             <div class='hr-line-dashed'></div>
+
+
+
+
+
+
+                                            <div class="form-group" ng-class="{'has-error' : fSiteStorage.BankSharingMethodClaimIsApproved.$invalid && !fSiteStorage.BankSharingMethodClaimIsApproved.$pristine,'has-success' : fSiteStorage.BankSharingMethodClaimIsApproved.$valid}">
+                                                <label class="col-sm-2 control-label"> {{'تمام مدارک درگاه اشتراکی تایید شده است'|lowercase|translate}} </label>
+                                                <div class="col-sm-10">
+                                                    <input type="checkbox" class="form-control" name="AccessBuy"
+                                                    ng-model="cmsSitegrd.Item.SiteStorage.BankSharingMethodClaimIsApproved" />
+                                                </div>
+                                            </div>
+
+                                        <div class='hr-line-dashed'></div>
+
+                                        <div class="form-group" ng-class="{'has-error' : fSiteStorage.UserPaymentMethodIsApproved.$invalid && !fSiteStorage.UserPaymentMethodIsApproved.$pristine,'has-success' : fSiteStorage.UserPaymentMethodIsApproved.$valid}">
+                                            <label class="col-sm-2 control-label"> {{'تمام مدارک درگاه بانکی کاربر تایید شده است'|lowercase|translate}} </label>
+                                            <div class="col-sm-10">
+                                                <input type="checkbox" class="form-control" name="AccessBuy"
+                                                ng-model="cmsSitegrd.Item.SiteStorage.UserPaymentMethodIsApproved" />
+                                            </div>
+                                        </div>
+
+                                    <div class='hr-line-dashed'></div>
+
+
+                                        <div class='hr-line-dashed'></div>
                                             <div class="form-group" >
                                                     <label class="col-sm-2 control-label"> {{'last_update'|lowercase|translate}} </label>
                                                     <div class="col-sm-10">
@@ -77,8 +105,7 @@
                             <div class="panel-body">
 
                                 <div class="form-group" ng-class="{'has-error' : fSiteAccess.MainDataContentRowCount.$invalid && !fSiteAccess.MainDataContentRowCount.$pristine,'has-success' : fSiteAccess.MainDataContentRowCount.$valid}">
-                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
-                                        ردیف'|lowercase|translate}} </label>
+                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد ردیف'|lowercase|translate}} </label>
                                     <div class="col-sm-10">
                                         <input class="form-control" ng-required="true" name="MainDataContentRowCount"
                                             ng-model="cmsSitegrd.Item.SiteAccess.MainDataContentRowCount" />
@@ -128,8 +155,7 @@
                             <div class="panel-body">
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"> {{'اجرا برای
-                                        کاربر'|lowercase|translate}}
+                                    <label class="col-sm-2 control-label"> {{'اجرا برای کاربر'|lowercase|translate}}
                                     </label>
                                     <div class="col-sm-10">
                                         <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsSitegrd.Item.Site.StatusRenderUser" />
@@ -137,6 +163,76 @@
                                 </div>
                                 <div class='hr-line-dashed'></div>
 
+
+                                <div class="form-group"
+                                ng-class="{'has-error' : fSite.HyperShopConnectionType.$invalid && !fSite.HyperShopConnectionType.$pristine,'has-success' : fSite.HyperShopConnectionType.$valid}">
+                                <label class="col-sm-2 control-label">
+                                    {{'تعداد دسترسی ایجاد ردیف'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="HyperShopConnectionType"
+                                        ng-model="cmsSitegrd.Item.Site.HyperShopConnectionType" />
+                                    <div class="m-t-xs"
+                                        ng-show="fSite.HyperShopConnectionType.$invalid">
+                                        <small class="text-danger"
+                                            ng-show="fSite.HyperShopConnectionType.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;"
+                                        ng-show="fSite.HyperShopConnectionType.$valid && fSite.HyperShopConnectionType.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;"
+                                        ng-show="(fSite.HyperShopConnectionType.$invalid && !fSite.HyperShopConnectionType.$pristine) || fSite.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                                <div class='hr-line-dashed'></div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{' پرداخت در محل فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="InPlacePaymentMethodIsEnabled" ng-model="cmsSitegrd.Item.Site.InPlacePaymentMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'درگاه اشتراکی فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="BankSharingMethodIsEnabled" ng-model="cmsSitegrd.Item.Site.BankSharingMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'درگاه بانکی کاربر فعال است'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="UserPaymentMethodIsEnabled" ng-model="cmsSitegrd.Item.Site.UserPaymentMethodIsEnabled" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'HyperShopApiUrl'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="HyperShopApiUrl" ng-model="cmsSitegrd.Item.Site.HyperShopApiUrl" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                
                                 <div class="form-group">
                                     <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed"
                                         type="submit">
