@@ -440,7 +440,7 @@ function iboxTools($timeout) {
     return {
         restrict: 'A',
         scope: true,
-        templateUrl: 'cpanelv1/ModuleCore/common/ibox_tools.html',
+        templateUrl: 'cpanelv1/CmsModules/Core/common/ibox_tools.html',
         controller: function($scope, $element) {
             // Function for collapse ibox
             $scope.showhide = function() {
@@ -2132,7 +2132,7 @@ chlidmaker = function(obj) {
 var lastErroLogin = Date.now();
 
 function rashaErManage($state, notify, SweetAlert) {
-    var template = 'cpanelv1/ModuleCore/common/notify.html';
+    var template = 'cpanelv1/CmsModules/Core/common/notify.html';
     this.checkAction = function(response, errCode, c, d) {
 
         var ErrorMessage = "";
@@ -2602,7 +2602,7 @@ function xsWizard() {
         restrict: 'E',
         transclude: true,
         replace: true,
-        templateUrl: 'cpanelv1/ModuleCore/siteWizard/xs-wizard-main.html',
+        templateUrl: 'cpanelv1/CmsModules/Core/siteWizard/xs-wizard-main.html',
 
         scope: {
             subTitle: '@',
@@ -2685,7 +2685,7 @@ function xsWizardPage() {
         restrict: 'E',
         transclude: true,
         replace: true,
-        templateUrl: 'cpanelv1/ModuleCore/siteWizard/xs-wizard-page.html',
+        templateUrl: 'cpanelv1/CmsModules/Core/siteWizard/xs-wizard-page.html',
 
         scope: {
             pageTitle: '@',
@@ -2704,7 +2704,7 @@ function xsWizardControls() {
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'cpanelv1/ModuleCore/siteWizard/xs-wizard-controls.html'
+        templateUrl: 'cpanelv1/CmsModules/Core/siteWizard/xs-wizard-controls.html'
     }; // end return
 
 }
@@ -4114,7 +4114,7 @@ function rashaUpload($compile, ajax, $http) {
             // sort compare
             vehicleProperty.openUploadModal = function() {
                 $modal.open({
-                    templateUrl: 'cpanelv1/ModuleVehicle/VehicleProperty/upload_modal.html',
+                    templateUrl: 'cpanelv1/CmsModules/Vehicle/VehicleProperty/upload_modal.html',
                     size: 'lg',
                     scope: $scope
                 });
@@ -4454,7 +4454,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
                 '!frmnewsContentAdd.Description.$pristine,\'has-success\' : frmnewsContentAdd.Description.$valid}">' +
                 '<label class="col-sm-2 control-label" ng-show=" showDesign ==\'x\' && menuItem !==\'x\'">چیدمان </label><div class="col-sm-10">' +
                 '<div ui-tree id="tree-root" ><ol ui-tree-nodes ng-model="data"><li ng-repeat="node in data" ' +
-                ' ui-tree-node ng-include="\'cpanelv1/ModuleCore/common/templateMenu.html\'"></li></ol></div></div></div>' +
+                ' ui-tree-node ng-include="\'cpanelv1/CmsModules/Core/common/templateMenu.html\'"></li></ol></div></div></div>' +
                 '{{setting}}<div class="form-group">' +
                 '<button class="btn btn-default pull-right  " type="button" ng-click="config.closeModal()" >{{\'CANCEL\'|lowercase|translate}}</button>' +
                 '<button class="btn btn-primary pull-right m-l-sm"  type="submit" ng-click="submitMenu()" ng-disabled=" showSubmit !==\'x\' ">{{\'SAVE\'|lowercase|translate}}</button>' +
@@ -4637,7 +4637,7 @@ function rashaPosition($compile, ajax, rashaErManage, $stateParams) {
              {
                  
                         $modal.open({
-                             templateUrl: 'cpanelv1/ModuleMarketing/MarketingCustomerSettingPosition/SettingPosition.html',
+                             templateUrl: 'cpanelv1/CmsModules/Marketing/MarketingCustomerSettingPosition/SettingPosition.html',
                              scope: $scope
                          });     
                  
@@ -6221,7 +6221,7 @@ function rashaUiTree($compile, ajax, rashaErManage) {
             scope.content = config.treeMenuContent;
             // scope.content = "111";
             template = '<div ui-tree id="tree-root" class="angular-ui-tree"><ol ui-tree-nodes ng-model="content" class="ng-pristine ng-untouched ng-valid angular-ui-tree-nodes"><li ng-repeat="node in content" ' +
-                ' ui-tree-node ng-include="\'cpanelv1/ModuleCore/common/directiveTemplateMenu.html\'" class="angular-ui-tree-node" colllapsed="false"></li></ol></div>';
+                ' ui-tree-node ng-include="\'cpanelv1/CmsModules/Core/common/directiveTemplateMenu.html\'" class="angular-ui-tree-node" colllapsed="false"></li></ol></div>';
             var el = $compile(template)(scope);
             element.append(el);
         }

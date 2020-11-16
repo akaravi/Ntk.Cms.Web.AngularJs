@@ -1,7 +1,7 @@
 ﻿app.controller("registerUserCtrl", ["$scope", "ajax", "rashaErManage", "$state", "$element", "$rootScope", "notify", function ($scope, ajax, rashaErManage, $state, $element, $rootScope, notify) {
 
     var register = this;
-    var template = 'cpanelv1/ModuleCore/common/notify.html';
+    var template = 'cpanelv1/CmsModules/Core/common/notify.html';
     register.selectedItem = {};
 
     register.sendSmsActivationCodeBusyIndicator = {

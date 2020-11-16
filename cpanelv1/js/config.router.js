@@ -14,7 +14,7 @@
             $stateProvider
                 .state('login', {
                     url: "/login",
-                    templateUrl: "cpanelv1/ModuleCore/CmsUser/login.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsUser/login.html",
                     data: {
                         pageTitle: 'Login',
                         specialClass: 'gray-bg'
@@ -26,7 +26,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsUser/loginController.js'
+                                        'cpanelv1/CmsModules/Core/CmsUser/loginController.js'
                                     ]
                                 });
                             }
@@ -35,7 +35,7 @@
                 })
                 .state("siteSelector", {
                     url: "/siteSelector",
-                    templateUrl: "cpanelv1/ModuleCore/main/siteSelector.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/main/siteSelector.html",
                     data: {
                         pageTitle: "انتخاب سایت"
                     },
@@ -46,7 +46,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        "cpanelv1/ModuleCore/main/navigationController.js"
+                                        "cpanelv1/CmsModules/Core/main/navigationController.js"
                                     ]
                                 });
                             }
@@ -56,7 +56,7 @@
 
                 .state('index.main', {
                     url: "/main",
-                    templateUrl: "cpanelv1/ModuleCore/main/dashboard.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/main/dashboard.html",
                     controller: "dashbCtrl",
                     controllerAs: "dashb",
                     data: {
@@ -73,7 +73,7 @@
                                     'summernote', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCore/Main/dashboard.js'
+                                            'cpanelv1/CmsModules/Core/Main/dashboard.js'
                                         ]
                                     }
                                 ]);
@@ -85,7 +85,7 @@
                     url: "/user_wizard",
                     controller: "registerUserCtrl",
                     controllerAs: "register",
-                    templateUrl: "cpanelv1/ModuleCore/user-wizard/form_wizard.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/user-wizard/form_wizard.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -98,7 +98,7 @@
                                     serie: true,
                                     files: [
                                         'cpanelv1/js/registerUserController.js',
-                                        'cpanelv1/ModuleCore/user-wizard/jquery.steps.css'
+                                        'cpanelv1/CmsModules/Core/user-wizard/jquery.steps.css'
                                     ]
                                 });
                             }
@@ -108,7 +108,7 @@
                 })
                 .state("user_wizard.step_one", {
                     url: "/step_one",
-                    templateUrl: "cpanelv1/ModuleCore/user-wizard/step_one.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/user-wizard/step_one.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -116,7 +116,7 @@
                 })
                 .state("user_wizard.step_two", {
                     url: "/step_two",
-                    templateUrl: "cpanelv1/ModuleCore/user-wizard/step_two.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/user-wizard/step_two.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -124,7 +124,7 @@
                 })
                 .state("user_wizard.step_three", {
                     url: "/step_three",
-                    templateUrl: "cpanelv1/ModuleCore/user-wizard/step_three.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/user-wizard/step_three.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -132,16 +132,47 @@
                 })
                 .state("user_wizard.step_four", {
                     url: "/step_four",
-                    templateUrl: "cpanelv1/ModuleCore/user-wizard/step_four.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/user-wizard/step_four.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
                     }
                 })
+                //-----Core Module-----
+                .state("index.coremoduletag", {
+                    url: "/coremoduletag",
+                    templateUrl: "cpanelv1/CmsModules/CoreModule/Tag/grid.html",
+                    controller: "coreTagController",
+                    controllerAs: "coreTag",
+                    data: {
+                        pageTitle: "تگ سیستم"
+                    },
+                    ncyBreadcrumb: {
+                        label: 'تگ سیستم'
+                    },
+                    resolve: {
+                        deps: [
+                            '$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'angucomplete-alt',
+                                    {
+                                        serie: false,
+                                        files: [
+                                            'cpanelv1/CmsModules/CoreModule/Tag/TagController.js'
+                                        ]
+                                    }
+                                ]);
+                            }
+                        ]
+                    }
+                })
+                
+                //-----Core Module-----
                 //-----Core-----
                 .state("index.cmsuser", {
                     url: "/cmsuser",
-                    templateUrl: "cpanelv1/ModuleCore/CmsUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsUser/grid.html",
                     controller: "cmsUserController",
                     controllerAs: "cmsUser",
                     data: {
@@ -157,7 +188,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsUser/cmsUserController.js'
+                                        'cpanelv1/CmsModules/Core/CmsUser/cmsUserController.js'
                                     ]
                                 });
                             }
@@ -167,7 +198,7 @@
                 })
                 .state("index.corecpmainmenu", {
                     url: "/orecpmainmenu",
-                    templateUrl: "cpanelv1/ModuleCore/coreCpMainMenu/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/coreCpMainMenu/grid.html",
                     controller: "coreCpMainMenuGridCtrl",
                     controllerAs: "coreCpMainMenugrd",
                     data: {
@@ -183,7 +214,7 @@
                                 return $ocLazyLoad.load(['minicolors', {
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CoreCpMainMenu/coreCpMainMenuController.js'
+                                        'cpanelv1/CmsModules/Core/CoreCpMainMenu/coreCpMainMenuController.js'
                                     ]
                                 }]);
                             }
@@ -193,7 +224,7 @@
                 })
                 .state("index.cmslocation", {
                     url: "/cmslocation",
-                    templateUrl: "cpanelv1/ModuleCore/CmsLocation/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsLocation/grid.html",
                     controller: "cmsLocationController",
                     controllerAs: "cmsLocation",
                     data: {
@@ -209,7 +240,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsLocation/cmsLocationController.js'
+                                        'cpanelv1/CmsModules/Core/CmsLocation/cmsLocationController.js'
                                     ]
                                 });
                             }
@@ -219,7 +250,7 @@
                 })
                 .state("index.cmsuserbadlogingrd", {
                     url: "/cmsuserbadlogingrd",
-                    templateUrl: "cpanelv1/ModuleCore/cmsUserBadLogin/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsUserBadLogin/grid.html",
                     controller: "cmsUserBadLoginGridCtrl",
                     controllerAs: "cmsUserBadLogingrd",
                     data: {
@@ -235,7 +266,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsUserBadLogin/cmsUserBadLoginController.js'
+                                        'cpanelv1/CmsModules/Core/CmsUserBadLogin/cmsUserBadLoginController.js'
                                     ]
                                 });
                             }
@@ -245,7 +276,7 @@
                 })
                 .state("index.cmsusergroup", {
                     url: "/cmsusergroup",
-                    templateUrl: "cpanelv1/ModuleCore/cmsUserGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsUserGroup/grid.html",
                     controller: "cmsUserGroupGridCtrl",
                     controllerAs: "cmsUserGroupgrd",
                     data: {
@@ -261,7 +292,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsUserGroup/cmsUserGroupController.js'
+                                        'cpanelv1/CmsModules/Core/CmsUserGroup/cmsUserGroupController.js'
                                     ]
                                 });
                             }
@@ -272,7 +303,7 @@
                 .state("index.cmssiteuser", {
                     url: "/cmssiteuser",
 
-                    templateUrl: "cpanelv1/ModuleCore/cmsSiteUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsSiteUser/grid.html",
                     controller: "cmsSiteUserGridCtrl",
                     controllerAs: "cmsSiteUser",
                     data: {
@@ -289,7 +320,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsSiteUser/CmsSiteUserController.js'
+                                            'cpanelv1/CmsModules/Core/CmsSiteUser/CmsSiteUserController.js'
                                         ]
                                     }
                                 ]);
@@ -300,7 +331,7 @@
                 })
                 .state("index.cmspagetemplate", {
                     url: "/cmspagetemplate",
-                    templateUrl: "cpanelv1/ModuleCore/CmsPageTemplate/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsPageTemplate/grid.html",
                     controller: "cmsPageTemplateGridCtrl",
                     controllerAs: "cmsPageTemplategrd",
                     data: {
@@ -316,7 +347,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsPageTemplate/CmsPageTemplateController.js'
+                                        'cpanelv1/CmsModules/Core/CmsPageTemplate/CmsPageTemplateController.js'
                                     ]
                                 });
                             }
@@ -326,7 +357,7 @@
                 })
                 .state("index.cmssite", {
                     url: "/cmssite",
-                    templateUrl: "cpanelv1/ModuleCore/cmsSite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsSite/grid.html",
                     params: {
                         selectedId: null
                     },
@@ -346,7 +377,7 @@
                                     "ngTagsInput", "summernote", 'ADM-dateTimePicker', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsSite/cmsSiteController.js'
+                                            'cpanelv1/CmsModules/Core/CmsSite/cmsSiteController.js'
                                         ]
                                     }
                                 ]);
@@ -356,7 +387,7 @@
                 })
                 .state("index.domainaliases", {
                     url: "/domainaliases",
-                    templateUrl: "cpanelv1/ModuleCore/CmsDomainAlias/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsDomainAlias/grid.html",
                     controller: "domainAliasController",
                     controllerAs: "domainAlias",
                     data: {
@@ -372,7 +403,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsDomainAlias/domainAliasController.js'
+                                        'cpanelv1/CmsModules/Core/CmsDomainAlias/domainAliasController.js'
                                     ]
                                 }]);
                             }
@@ -381,7 +412,7 @@
                 })
                 .state("index.cmssitecategories", {
                     url: "/cmssitecategories",
-                    templateUrl: "cpanelv1/ModuleCore/cmsSiteCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsSiteCategory/grid.html",
                     controller: "cmsSiteCategoryGridCtrl",
                     controllerAs: "cmsSiteCategorygrd",
                     data: {
@@ -397,7 +428,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsSiteCategory/cmsSiteCategoryController.js'
+                                        'cpanelv1/CmsModules/Core/CmsSiteCategory/cmsSiteCategoryController.js'
                                     ]
                                 });
                             }
@@ -406,7 +437,7 @@
                 })
                 .state("index.cmssitecategorycmsmodule", {
                     url: "/cmssitecategorycmsmodule",
-                    templateUrl: "cpanelv1/ModuleCore/CmsSiteCategoryCmsModule/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsSiteCategoryCmsModule/grid.html",
                     controller: "cmsSiteCategoryCmsModuleCtrl",
                     controllerAs: "cmsSiteCategoryCmsModule",
                     data: {
@@ -422,7 +453,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsSiteCategoryCmsModule/cmsSiteCategoryCmsModuleController.js'
+                                        'cpanelv1/CmsModules/Core/CmsSiteCategoryCmsModule/cmsSiteCategoryCmsModuleController.js'
                                     ]
                                 });
                             }
@@ -431,7 +462,7 @@
                 })
                 .state("index.cmspages", {
                     url: "/cmspages",
-                    templateUrl: "cpanelv1/ModuleCore/CmsPage/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsPage/grid.html",
                     controller: "cmsPageGridCtrl",
                     controllerAs: "cmsPagegrd",
                     data: {
@@ -447,7 +478,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsPage/cmsPageController.js'
+                                        'cpanelv1/CmsModules/Core/CmsPage/cmsPageController.js'
                                     ]
                                 });
                             }
@@ -456,7 +487,7 @@
                 })
                 .state("index.cmspagesdesign", {
                     url: "/cmspagesdesign",
-                    templateUrl: "cpanelv1/ModuleCore/CmsPage/boxes.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsPage/boxes.html",
                     params: {
                         dependencyId: null,
                         dependencyTitle: null,
@@ -480,7 +511,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsPage/cmsPageDesignController.js'
+                                            'cpanelv1/CmsModules/Core/CmsPage/cmsPageDesignController.js'
                                         ]
                                     }
                                 ]);
@@ -491,7 +522,7 @@
            
                 .state("index.modulesaleprice", {
                     url: "/modulesaleprice",
-                    templateUrl: "cpanelv1/ModuleCore/cmsModuleSalePrice/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsModuleSalePrice/grid.html",
                     controller: "cmsModuleSalePriceGridCtrl",
                     controllerAs: "cmsModulePricegrd",
                     data: {
@@ -507,7 +538,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSalePrice/cmsModuleSalePriceController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSalePrice/cmsModuleSalePriceController.js'
                                     ]
                                 });
                             }
@@ -517,7 +548,7 @@
                 })
                 .state("index.cmsmoduleprocess", {
                     url: "/cmsmoduleprocess",
-                    templateUrl: "cpanelv1/ModuleCore/cmsModuleProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsModuleProcess/grid.html",
                     controller: "cmsModuleProcessGridCtrl",
                     controllerAs: "cmsModulePrc",
                     data: {
@@ -533,7 +564,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleProcess/cmsModuleProcessController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleProcess/cmsModuleProcessController.js'
                                     ]
                                 });
                             }
@@ -542,7 +573,7 @@
                 })
                 .state("index.cmsmoduleprocesscustomize", {
                     url: "/cmsmoduleprocesscustomize",
-                    templateUrl: "cpanelv1/ModuleCore/cmsModuleProcessCustomize/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsModuleProcessCustomize/grid.html",
                     params: {
                         cmsModulePrcId: null
                     },
@@ -562,7 +593,7 @@
                                     'treeControl', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsModuleProcessCustomize/cmsModuleProcessCustomizeController.js'
+                                            'cpanelv1/CmsModules/Core/CmsModuleProcessCustomize/cmsModuleProcessCustomizeController.js'
                                         ]
                                     }
                                 ]);
@@ -572,7 +603,7 @@
                 })
                 .state("index.cmsmodulesite", {
                     url: "/cmsmodulesite",
-                    templateUrl: "cpanelv1/ModuleCore/cmsModuleSite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsModuleSite/grid.html",
                     controller: "cmsModuleSiteGridCtrl",
                     controllerAs: "cmsModuleSitegrd",
                     data: {
@@ -588,7 +619,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSite/CmsModuleSiteController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSite/CmsModuleSiteController.js'
                                     ]
                                 });
                             }
@@ -598,7 +629,7 @@
                 })
                 .state("index.cmsmodules", {
                     url: "/cmsmodules",
-                    templateUrl: "cpanelv1/ModuleCore/cmsModule/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsModule/grid.html",
                     controller: "cmsModuleGridCtrl",
                     controllerAs: "cmsModulegrd",
                     data: {
@@ -614,7 +645,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModule/cmsModuleController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModule/cmsModuleController.js'
                                     ]
                                 });
                             }
@@ -625,7 +656,7 @@
                 //.state("index.cmsmoduleoptimizer",
                 //    {
                 //        url: "/cmsmoduleoptimizer",
-                //        templateUrl: "cpanelv1/ModuleCore/CmsModuleOptimizer/grid.html",
+                //        templateUrl: "cpanelv1/CmsModules/Core/CmsModuleOptimizer/grid.html",
                 //        controller: "cmsModuleOptimizerGridController",
                 //        controllerAs: "cmsModuleOptimizer",
                 //        data: { pageTitle: "ماژول ها" },
@@ -639,7 +670,7 @@
                 //                    return $ocLazyLoad.load({
                 //                        serie: true,
                 //                        files: [
-                //                            'cpanelv1/ModuleCore/CmsModuleOptimizer/cmsModuleOptimizerController.js'
+                //                            'cpanelv1/CmsModules/Core/CmsModuleOptimizer/cmsModuleOptimizerController.js'
                 //                        ]
                 //                    });
                 //                }
@@ -649,7 +680,7 @@
                 //    })
                 .state("index.cmsmodulepagedependency", {
                     url: "/cmsModulepagedependency",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModulePageDependency/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModulePageDependency/grid.html",
                     controller: "cmsModulePageDependencyGridCtrl",
                     controllerAs: "cmsModulePageDependencygrd",
                     data: {
@@ -665,7 +696,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModulePageDependency/CmsModulePageDependencyController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModulePageDependency/CmsModulePageDependencyController.js'
                                     ]
                                 });
                             }
@@ -675,7 +706,7 @@
                 //-----cmsmodulescheduleprocess-----
                 .state("index.cmsmodulescheduleprocess", {
                     url: "/cmsmodulescheduleprocess",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleScheduleProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleScheduleProcess/grid.html",
                     controller: "cmsModuleScheduleProcessCtrl",
                     controllerAs: "cmsMdlPayPrc",
                     data: {
@@ -691,7 +722,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleScheduleProcess/cmsModuleScheduleProcessController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleScheduleProcess/cmsModuleScheduleProcessController.js'
                                     ]
                                 });
                             }
@@ -700,7 +731,7 @@
                 })
                 .state("index.cmsmodulescheduleprocesscustomize", {
                     url: "/cmsmodulescheduleprocesscustomize",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleScheduleProcessCustomize/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleScheduleProcessCustomize/grid.html",
                     controller: "cmsModuleScheduleProcessCustomizeCtrl",
                     controllerAs: "cmsMdlPayPrcCust",
                     data: {
@@ -716,7 +747,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleScheduleProcessCustomize/cmsModuleScheduleProcessCustomizeController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleScheduleProcessCustomize/cmsModuleScheduleProcessCustomizeController.js'
                                     ]
                                 });
                             }
@@ -726,7 +757,7 @@
                 //-----cmsmodulepaymentprocess-----
                 .state("index.cmsmodulepaymentprocess", {
                     url: "/cmsmodulepaymentprocess",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModulePaymentProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModulePaymentProcess/grid.html",
                     controller: "cmsModulePaymentProcessCtrl",
                     controllerAs: "cmsMdlPayPrc",
                     data: {
@@ -742,7 +773,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModulePaymentProcess/cmsModulePaymentProcessController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModulePaymentProcess/cmsModulePaymentProcessController.js'
                                     ]
                                 });
                             }
@@ -751,7 +782,7 @@
                 })
                 .state("index.cmsmodulepaymentprocesscustomize", {
                     url: "/cmsmodulepaymentprocesscustomize",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModulePaymentProcessCustomize/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModulePaymentProcessCustomize/grid.html",
                     params: {
                         cmsMdlPayPrcId: null
                     },
@@ -770,7 +801,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModulePaymentProcessCustomize/cmsModulePaymentProcessCustomizeController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModulePaymentProcessCustomize/cmsModulePaymentProcessCustomizeController.js'
                                     ]
                                 });
                             }
@@ -780,7 +811,7 @@
                 //-----Monitoring-----
                 .state("index.usertickets", {
                     url: "/usertickets",
-                    templateUrl: "cpanelv1/ModuleCore/cmsUserTicket/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsUserTicket/grid.html",
                     controller: "cmsUserTicketGridCtrl",
                     controllerAs: "cmsUserTicketgrd",
                     data: {
@@ -796,7 +827,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsUserTicket/cmsUserTicketController.js'
+                                        'cpanelv1/CmsModules/Core/CmsUserTicket/cmsUserTicketController.js'
                                     ]
                                 });
                             }
@@ -807,7 +838,7 @@
                 //-----Module File-----
                 .state("index.filemanager", {
                     url: "/filemanager",
-                    templateUrl: "cpanelv1/ModuleFile/main.html",
+                    templateUrl: "cpanelv1/CmsModules/File/main.html",
                     controller: "FileManager",
                     controllerAs: "fdm",
                     data: {
@@ -823,7 +854,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleFile/FileManagerController.js'
+                                        'cpanelv1/CmsModules/File/FileManagerController.js'
                                     ]
                                 });
                             }
@@ -832,7 +863,7 @@
                 })
                 .state("index.filemanagernew", {
                     url: "/filemanagernew",
-                    templateUrl: "cpanelv1/ModuleFile/FileManager/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/File/FileManager/grid.html",
                     controller: "FileManager",
                     controllerAs: "fdm",
                     data: {
@@ -848,7 +879,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleFile/FileManager/FileManagerController.js'
+                                        'cpanelv1/CmsModules/File/FileManager/FileManagerController.js'
                                     ]
                                 });
                             }
@@ -857,7 +888,7 @@
                 })
                 .state("index.fileslist", {
                     url: "/fileslist",
-                    templateUrl: "cpanelv1/ModuleFile/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/File/grid.html",
                     controller: "filesListCtrl",
                     controllerAs: "filesList",
                     data: {
@@ -873,7 +904,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleFile/fileListController.js'
+                                        'cpanelv1/CmsModules/File/fileListController.js'
                                     ]
                                 });
                             }
@@ -882,7 +913,7 @@
                 })
                 .state("index.filespropertytype", {
                     url: "/filespropertytype",
-                    templateUrl: "cpanelv1/ModuleFile/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/File/grid.html",
                     controller: "filesListCtrl",
                     controllerAs: "filesList",
                     data: {
@@ -898,7 +929,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleFile/fileListController.js'
+                                        'cpanelv1/CmsModules/File/fileListController.js'
                                     ]
                                 });
                             }
@@ -916,7 +947,7 @@
                     //data: { pageTitle: 'صفحه اصلی' },
                     views: {
                         '': {
-                            templateUrl: "cpanelv1/ModuleCore/main/content.html",
+                            templateUrl: "cpanelv1/CmsModules/Core/main/content.html",
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -924,7 +955,7 @@
                                         return $ocLazyLoad.load({
                                             serie: true,
                                             files: [
-                                                'cpanelv1/ModuleCore/main/controllers.js'
+                                                'cpanelv1/CmsModules/Core/main/controllers.js'
                                             ]
                                         });
                                     }
@@ -934,7 +965,7 @@
                         'navigation@index': {
                             url: "",
                             controller: 'navigationCtrl',
-                            templateUrl: 'cpanelv1/ModuleCore/main/navigation.html',
+                            templateUrl: 'cpanelv1/CmsModules/Core/main/navigation.html',
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -942,7 +973,7 @@
                                         return $ocLazyLoad.load({
                                             serie: true,
                                             files: [
-                                                'cpanelv1/ModuleCore/main/navigationController.js'
+                                                'cpanelv1/CmsModules/Core/main/navigationController.js'
                                             ]
                                         });
                                     }
@@ -952,7 +983,7 @@
                         'navigationup@index': {
                             url: "",
                             controller: 'navigationCtrl',
-                            templateUrl: 'cpanelv1/ModuleCore/main/navigationup.html',
+                            templateUrl: 'cpanelv1/CmsModules/Core/main/navigationup.html',
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -960,7 +991,7 @@
                                         return $ocLazyLoad.load({
                                             serie: true,
                                             files: [
-                                                'cpanelv1/ModuleCore/main/navigationController.js'
+                                                'cpanelv1/CmsModules/Core/main/navigationController.js'
                                             ]
                                         });
                                     }
@@ -970,7 +1001,7 @@
                         'navigationdown@index': {
                             url: "",
                             controller: 'navigationCtrl',
-                            templateUrl: 'cpanelv1/ModuleCore/main/navigationdown.html',
+                            templateUrl: 'cpanelv1/CmsModules/Core/main/navigationdown.html',
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -978,7 +1009,7 @@
                                         return $ocLazyLoad.load({
                                             serie: true,
                                             files: [
-                                                'cpanelv1/ModuleCore/main/navigationController.js'
+                                                'cpanelv1/CmsModules/Core/main/navigationController.js'
                                             ]
                                         });
                                     }
@@ -990,7 +1021,7 @@
                             url: '',
                             controller: 'topNavBarCtrl',
                             controllerAs: 'topNavBar',
-                            templateUrl: 'cpanelv1/ModuleCore/main/topnavbar.html',
+                            templateUrl: 'cpanelv1/CmsModules/Core/main/topnavbar.html',
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -999,7 +1030,7 @@
                                             'angucomplete-alt', {
                                                 serie: true,
                                                 files: [
-                                                    'cpanelv1/ModuleCore/main/topnavbarController.js',
+                                                    'cpanelv1/CmsModules/Core/main/topnavbarController.js',
                                                     'cpanelv1/css/guide/introjs.css',
                                                     'cpanelv1/css/guide/introjs-rtl.css',
                                                     'cpanelv1/js/guide/intro.js',
@@ -1014,7 +1045,7 @@
                         'footer@index': {
                             url: '',
                             controller: 'footerCtrl',
-                            templateUrl: 'cpanelv1/ModuleCore/main/footer.html',
+                            templateUrl: 'cpanelv1/CmsModules/Core/main/footer.html',
                             resolve: {
                                 deps: [
                                     '$ocLazyLoad',
@@ -1022,7 +1053,7 @@
                                         return $ocLazyLoad.load({
                                             serie: true,
                                             files: [
-                                                'cpanelv1/ModuleCore/main/footerController.js'
+                                                'cpanelv1/CmsModules/Core/main/footerController.js'
                                             ]
                                         });
                                     }
@@ -1034,7 +1065,7 @@
 
                 .state('index.buy_module', {
                     url: "/buy_module",
-                    templateUrl: "cpanelv1/ModuleCore/common/buy_module.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/common/buy_module.html",
                     controller: "buyModuleCtrl",
                     controllerAs: "buyModule",
                     data: {
@@ -1051,8 +1082,8 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/common/buyModuleController.js',
-                                        'cpanelv1/ModuleCore/user-wizard/jquery.steps.css'
+                                        'cpanelv1/CmsModules/Core/common/buyModuleController.js',
+                                        'cpanelv1/CmsModules/Core/user-wizard/jquery.steps.css'
                                     ]
                                 }]);
                             }
@@ -1061,7 +1092,7 @@
                 })
                 .state("index.buy_module.step_one", {
                     url: "/step_one",
-                    templateUrl: "cpanelv1/ModuleCore/common/buy_module_step_one.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/common/buy_module_step_one.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -1072,7 +1103,7 @@
                 })
                 .state("index.buy_module.step_two", {
                     url: "/step_two",
-                    templateUrl: "cpanelv1/ModuleCore/common/buy_module_step_two.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/common/buy_module_step_two.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -1083,7 +1114,7 @@
                 })
                 .state("index.buy_module.step_three", {
                     url: "/step_three",
-                    templateUrl: "cpanelv1/ModuleCore/common/buy_module_step_three.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/common/buy_module_step_three.html",
                     data: {
                         pagetTitle: "New User",
                         specialClass: "gray-bg"
@@ -1094,7 +1125,7 @@
                 })
                 .state('index.minor', {
                     url: "/minor",
-                    templateUrl: "cpanelv1/ModuleCore/minor.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/minor.html",
                     controller: "formCtrl",
                     controllerAs: "frm",
                     data: {
@@ -1121,7 +1152,7 @@
                 })
                 .state('index.NewsManage', {
                     url: "/NewsManage",
-                    templateUrl: "cpanelv1/ModuleNews/NewsManage.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsManage.html",
                     controller: "newsManageCtrl",
                     controllerAs: "newsManageCtrl",
                     data: {
@@ -1137,7 +1168,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleNews/NewManage.js'
+                                        'cpanelv1/CmsModules/News/NewManage.js'
                                     ]
                                 }]);
                             }
@@ -1146,7 +1177,7 @@
                 })
                 .state('index.grid', {
                     url: "/grid",
-                    templateUrl: "cpanelv1/ModuleCore/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/grid.html",
                     controller: "gridCtrl",
                     controllerAs: "grd",
                     data: {
@@ -1172,7 +1203,7 @@
                 })
                 .state('index.designer', {
                     url: "/designer",
-                    templateUrl: "cpanelv1/ModuleCore/common/designer.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/common/designer.html",
                     controller: "designerCtrl",
                     controllerAs: "designerct",
                     data: {
@@ -1197,7 +1228,7 @@
                 })
                 .state('index.cmsapipath', {
                     url: "/cmsapipath",
-                    templateUrl: "cpanelv1/ModuleSms/ApiPath/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/ApiPath/main.html",
                     controller: "apiPathCtrl",
                     controllerAs: "api",
                     data: {
@@ -1213,7 +1244,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/ApiPathController.js'
+                                        'cpanelv1/CmsModules/Sms/ApiPathController.js'
                                     ]
                                 }]);
                             }
@@ -1222,7 +1253,7 @@
                 })
                 .state('index.cmspathconfig', {
                     url: "/cmspathconfig",
-                    templateUrl: "cpanelv1/ModuleSms/ApiPathSettingsTabs/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/ApiPathSettingsTabs/main.html",
                     controller: "apiPathSettingsCtrl",
                     controllerAs: "apiSetting",
                     data: {
@@ -1238,7 +1269,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/ApiPathSettingsController.js'
+                                        'cpanelv1/CmsModules/Sms/ApiPathSettingsController.js'
                                     ]
                                 }]);
                             }
@@ -1247,7 +1278,7 @@
                 })
                 .state('index.cmscustomernumber', {
                     url: "/cmscustomernumber",
-                    templateUrl: "cpanelv1/ModuleSms/CustomerNumber/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/CustomerNumber/main.html",
                     controller: "customerNumberCtrl",
                     controllerAs: "customerNumber",
                     data: {
@@ -1263,7 +1294,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/CustomerNumberController.js'
+                                        'cpanelv1/CmsModules/Sms/CustomerNumberController.js'
                                     ]
                                 }]);
                             }
@@ -1272,7 +1303,7 @@
                 })
                 .state('index.smsinbox', {
                     url: "/smsinbox",
-                    templateUrl: "cpanelv1/ModuleSms/Inbox/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/Inbox/main.html",
                     controller: "inboxCtrl",
                     controllerAs: "inbox",
                     data: {
@@ -1288,7 +1319,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/InboxController.js'
+                                        'cpanelv1/CmsModules/Sms/InboxController.js'
                                     ]
                                 }]);
                             }
@@ -1297,7 +1328,7 @@
                 })
                 .state('index.smsoutbox', {
                     url: "/smsoutbox",
-                    templateUrl: "cpanelv1/ModuleSms/OutBox/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/OutBox/main.html",
                     controller: "outBoxCtrl",
                     controllerAs: "outBox",
                     data: {
@@ -1313,7 +1344,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/OutBoxController.js'
+                                        'cpanelv1/CmsModules/Sms/OutBoxController.js'
                                     ]
                                 }]);
                             }
@@ -1322,7 +1353,7 @@
                 })
                 .state('index.smsinboxlock', {
                     url: "/smsinboxlock",
-                    templateUrl: "cpanelv1/ModuleSms/InboxLock/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/InboxLock/main.html",
                     controller: "inboxLockCtrl",
                     controllerAs: "inboxLock",
                     data: {
@@ -1338,7 +1369,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/InboxLockController.js'
+                                        'cpanelv1/CmsModules/Sms/InboxLockController.js'
                                         //  
                                         //  
                                     ]
@@ -1349,7 +1380,7 @@
                 })
                 .state('index.cmsapicompany', {
                     url: "/cmsapicompany",
-                    templateUrl: "cpanelv1/ModuleSms/ApiPathCompany/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/ApiPathCompany/main.html",
                     controller: "apiPathCompanyCtrl",
                     controllerAs: "apiCompany",
                     data: {
@@ -1365,7 +1396,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/ApiPathCompanyController.js'
+                                        'cpanelv1/CmsModules/Sms/ApiPathCompanyController.js'
                                     ]
                                 }]);
                             }
@@ -1374,7 +1405,7 @@
                 })
                 .state('index.apipathcustomer', {
                     url: "/apipathcustomer",
-                    templateUrl: "cpanelv1/ModuleSms/ApiPathAndCustomerNumber/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/ApiPathAndCustomerNumber/main.html",
                     controller: "apiPathCustomerCtrl",
                     controllerAs: "apiPathCustomer",
                     data: {
@@ -1390,7 +1421,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/ApiPathAndCustomerNumberController.js'
+                                        'cpanelv1/CmsModules/Sms/ApiPathAndCustomerNumberController.js'
                                     ]
                                 }]);
                             }
@@ -1399,7 +1430,7 @@
                 })
                 .state('index.smsoutboxdetail', {
                     url: "/smsoutboxdetail",
-                    templateUrl: "cpanelv1/ModuleSms/OutBoxDetail/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/OutBoxDetail/main.html",
                     controller: "outBoxDetailCtrl",
                     controllerAs: "outBoxDetail",
                     data: {
@@ -1415,7 +1446,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/OutBoxDetailController.js'
+                                        'cpanelv1/CmsModules/Sms/OutBoxDetailController.js'
                                         //   
                                         //   
                                     ]
@@ -1426,7 +1457,7 @@
                 })
                 .state('index.inbox', {
                     url: "/inbox",
-                    templateUrl: "cpanelv1/ModuleSms/Inbox/main.html",
+                    templateUrl: "cpanelv1/CmsModules/Sms/Inbox/main.html",
                     controller: "inboxCtrl",
                     controllerAs: "inbox",
                     data: {
@@ -1442,7 +1473,7 @@
                                 return $ocLazyLoad.load([{
                                     //serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSms/InboxController.js'
+                                        'cpanelv1/CmsModules/Sms/InboxController.js'
                                     ]
                                 }]);
                             }
@@ -1456,7 +1487,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleCoreIdentity/CoreIdentityUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/CoreIdentity/CoreIdentityUser/grid.html",
                     controller: "coreIdentityUserController",
                     controllerAs: "coreIdentityUser",
                     data: {
@@ -1473,7 +1504,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCoreIdentity/CoreIdentityUser/Controller.js'
+                                            'cpanelv1/CmsModules/CoreIdentity/CoreIdentityUser/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1487,7 +1518,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleCoreIdentity/CoreIdentityUserLogin/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/CoreIdentity/CoreIdentityUserLogin/grid.html",
                     controller: "coreIdentityUserLoginController",
                     controllerAs: "coreIdentityUserLogin",
                     data: {
@@ -1504,7 +1535,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCoreIdentity/CoreIdentityUserLogin/Controller.js'
+                                            'cpanelv1/CmsModules/CoreIdentity/CoreIdentityUserLogin/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1518,7 +1549,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleCoreIdentity/CoreIdentityUserToken/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/CoreIdentity/CoreIdentityUserToken/grid.html",
                     controller: "coreIdentityUserTokenController",
                     controllerAs: "coreIdentityUserToken",
                     data: {
@@ -1535,7 +1566,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCoreIdentity/CoreIdentityUserToken/Controller.js'
+                                            'cpanelv1/CmsModules/CoreIdentity/CoreIdentityUserToken/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1549,7 +1580,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleCoreIdentity/CoreIdentityRole/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/CoreIdentity/CoreIdentityRole/grid.html",
                     controller: "coreIdentityRoleController",
                     controllerAs: "coreIdentityRole",
                     data: {
@@ -1566,7 +1597,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCoreIdentity/CoreIdentityRole/Controller.js'
+                                            'cpanelv1/CmsModules/CoreIdentity/CoreIdentityRole/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1582,7 +1613,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleNews/NewsContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsContent/grid.html",
                     controller: "newsContentController",
                     controllerAs: "newsContent",
                     data: {
@@ -1599,7 +1630,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleNews/NewsContent/Controller.js'
+                                            'cpanelv1/CmsModules/News/NewsContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1609,7 +1640,7 @@
                 })
                 .state('index.newscomment', {
                     url: "/newscomment",
-                    templateUrl: "cpanelv1/ModuleNews/NewsComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsComment/grid.html",
                     controller: "newsCommentCtrl",
                     controllerAs: "newsComment",
                     data: {
@@ -1625,7 +1656,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleNews/NewsComment/NewsComment.js'
+                                        'cpanelv1/CmsModules/News/NewsComment/NewsComment.js'
                                     ]
                                 }]);
                             }
@@ -1634,7 +1665,7 @@
                 })
                 .state('index.newstag', {
                     url: "/newstag",
-                    templateUrl: "cpanelv1/ModuleNews/NewsTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsTag/grid.html",
                     controller: "newsTagCtrl",
                     controllerAs: "newsTag",
                     data: {
@@ -1652,7 +1683,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleNews/NewsTag/NewsTag.js'
+                                            'cpanelv1/CmsModules/News/NewsTag/NewsTag.js'
                                         ]
                                     }
                                 ]);
@@ -1662,7 +1693,7 @@
                 })
                 .state('index.mscgallerytag', {
                     url: "/mscgallerytag",
-                    templateUrl: "cpanelv1/ModuleMusicGallery/MusicGalleryTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MusicGallery/MusicGalleryTag/grid.html",
                     controller: "mscGalleryTagCtrl",
                     controllerAs: "mscGalleryTag",
                     data: {
@@ -1680,7 +1711,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMusicGallery/MusicGalleryTag/MusicGalleryTag.js'
+                                            'cpanelv1/CmsModules/MusicGallery/MusicGalleryTag/MusicGalleryTag.js'
                                         ]
                                     }
                                 ]);
@@ -1690,7 +1721,7 @@
                 })
                 .state('index.imggallerytag', {
                     url: "/imggallerytag",
-                    templateUrl: "cpanelv1/ModuleImageGallery/ImageGalleryTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ImageGallery/ImageGalleryTag/grid.html",
                     controller: "imgGalleryTagCtrl",
                     controllerAs: "imgGalleryTag",
                     data: {
@@ -1708,7 +1739,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleImageGallery/ImageGalleryTag/ImageGalleryTag.js'
+                                            'cpanelv1/CmsModules/ImageGallery/ImageGalleryTag/ImageGalleryTag.js'
                                         ]
                                     }
                                 ]);
@@ -1718,7 +1749,7 @@
                 })
                 .state('index.mvgallerytag', {
                     url: "/mvgallerytag",
-                    templateUrl: "cpanelv1/ModuleMovieGallery/MovieGalleryTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MovieGallery/MovieGalleryTag/grid.html",
                     controller: "mvGalleryTagCtrl",
                     controllerAs: "mvGalleryTag",
                     data: {
@@ -1736,7 +1767,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMovieGallery/MovieGalleryTag/MovieGalleryTag.js'
+                                            'cpanelv1/CmsModules/MovieGallery/MovieGalleryTag/MovieGalleryTag.js'
                                         ]
                                     }
                                 ]);
@@ -1746,7 +1777,7 @@
                 })
                 .state('index.charttag', {
                     url: "/charttag",
-                    templateUrl: "cpanelv1/ModuleChart/ChartTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartTag/grid.html",
                     controller: "chartTagCtrl",
                     controllerAs: "chartTag",
                     data: {
@@ -1764,7 +1795,7 @@
                                     "treeControl", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartTag/ChartTag.js'
+                                            'cpanelv1/CmsModules/Chart/ChartTag/ChartTag.js'
                                         ]
                                     }
                                 ]);
@@ -1775,7 +1806,7 @@
                 //-----Article Module-----
                 .state('index.articletag', {
                     url: "/articletag",
-                    templateUrl: "cpanelv1/ModuleArticle/ArticleTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Article/ArticleTag/grid.html",
                     controller: "articleTagCtrl",
                     controllerAs: "articleTag",
                     data: {
@@ -1793,7 +1824,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleArticle/ArticleTag/ArticleTag.js'
+                                            'cpanelv1/CmsModules/Article/ArticleTag/ArticleTag.js'
                                         ]
                                     }
                                 ]);
@@ -1803,7 +1834,7 @@
                 })
                 .state('index.articlecomment', {
                     url: "/articlecomment",
-                    templateUrl: "cpanelv1/ModuleArticle/ArticleComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Article/ArticleComment/grid.html",
                     controller: "articleCommentCtrl",
                     controllerAs: "articleComment",
                     data: {
@@ -1819,7 +1850,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleArticle/ArticleComment/ArticleComment.js'
+                                        'cpanelv1/CmsModules/Article/ArticleComment/ArticleComment.js'
                                         //  
                                         // 
                                     ]
@@ -1834,7 +1865,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleArticle/ArticleContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Article/ArticleContent/grid.html",
                     controller: "articleContentController",
                     controllerAs: "articleContent",
                     data: {
@@ -1851,7 +1882,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleArticle/ArticleContent/Controller.js'
+                                            'cpanelv1/CmsModules/Article/ArticleContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -1863,7 +1894,7 @@
                 //-----Delivery Module-----
                 .state('index.deliveryinvoice', {
                     url: "/deliveryinvoice",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryInvoice/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryInvoice/grid.html",
                     controller: "deliveryInvoiceController",
                     controllerAs: "deliveryInvoice",
                     data: {
@@ -1881,7 +1912,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryInvoice/DeliveryInvoiceController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryInvoice/DeliveryInvoiceController.js'
                                         ]
                                     }
                                 ]);
@@ -1891,7 +1922,7 @@
                 })
                 .state('index.deliverymember', {
                     url: "/deliverymember",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryMember/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryMember/grid.html",
                     controller: "deliveryMemberController",
                     controllerAs: "deliveryMember",
                     data: {
@@ -1909,7 +1940,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryMember/DeliveryMemberController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryMember/DeliveryMemberController.js'
                                         ]
                                     }
                                 ]);
@@ -1919,7 +1950,7 @@
                 })
                 .state('index.deliverymemberabsent', {
                     url: "/deliverymemberabsent",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryMemberAbsent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryMemberAbsent/grid.html",
                     controller: "deliveryMemberAbsentController",
                     controllerAs: "deliveryMemberAbsent",
                     data: {
@@ -1937,7 +1968,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryMemberAbsent/DeliveryMemberAbsentController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryMemberAbsent/DeliveryMemberAbsentController.js'
                                         ]
                                     }
                                 ]);
@@ -1947,7 +1978,7 @@
                 })
                 .state('index.deliverymembersetting', {
                     url: "/deliverymembersetting",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryMemberSetting/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryMemberSetting/grid.html",
                     controller: "deliveryMemberSettingController",
                     controllerAs: "deliveryMemberSetting",
                     data: {
@@ -1965,7 +1996,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryMemberSetting/DeliveryMemberSettingController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryMemberSetting/DeliveryMemberSettingController.js'
                                         ]
                                     }
                                 ]);
@@ -1975,7 +2006,7 @@
                 })
                 .state('index.deliverymethod', {
                     url: "/deliverymethod",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryMethod/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryMethod/grid.html",
                     controller: "deliveryMethodController",
                     controllerAs: "deliveryMethod",
                     data: {
@@ -1993,7 +2024,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryMethod/DeliveryMethodController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryMethod/DeliveryMethodController.js'
                                         ]
                                     }
                                 ]);
@@ -2003,7 +2034,7 @@
                 })
                 .state('index.deliverymethoddetail', {
                     url: "/deliverymethoddetail",
-                    templateUrl: "cpanelv1/ModuleDelivery/DeliveryMethodDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Delivery/DeliveryMethodDetail/grid.html",
                     controller: "deliveryMethodDetailController",
                     controllerAs: "deliveryMethodDetail",
                     data: {
@@ -2021,7 +2052,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDelivery/DeliveryMethodDetail/DeliveryMethodDetailController.js'
+                                            'cpanelv1/CmsModules/Delivery/DeliveryMethodDetail/DeliveryMethodDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -2032,7 +2063,7 @@
                 //-----Biography Module-----
                 .state('index.biographytag', {
                     url: "/biographytag",
-                    templateUrl: "cpanelv1/ModuleBiography/BiographyTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Biography/BiographyTag/grid.html",
                     controller: "biographyTagCtrl",
                     controllerAs: "biographyTag",
                     data: {
@@ -2050,7 +2081,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBiography/BiographyTag/BiographyTag.js'
+                                            'cpanelv1/CmsModules/Biography/BiographyTag/BiographyTag.js'
                                         ]
                                     }
                                 ]);
@@ -2060,7 +2091,7 @@
                 })
                 .state('index.biographycomment', {
                     url: "/biographycomment",
-                    templateUrl: "cpanelv1/ModuleBiography/BiographyComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Biography/BiographyComment/grid.html",
                     controller: "biographyCommentCtrl",
                     controllerAs: "biographyComment",
                     data: {
@@ -2078,7 +2109,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBiography/BiographyComment/BiographyComment.js'
+                                            'cpanelv1/CmsModules/Biography/BiographyComment/BiographyComment.js'
                                             //  
                                             // 
                                         ]
@@ -2090,7 +2121,7 @@
                 })
                 .state('index.servicecomment', {
                     url: "/servicecomment",
-                    templateUrl: "cpanelv1/ModuleService/ServiceComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Service/ServiceComment/grid.html",
                     controller: "ServiceCommentCtrl",
                     controllerAs: "ServiceComment",
                     data: {
@@ -2108,7 +2139,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleService/ServiceComment/serviceComment.js'
+                                            'cpanelv1/CmsModules/Service/ServiceComment/serviceComment.js'
                                             //  
                                             // 
                                         ]
@@ -2120,7 +2151,7 @@
                 })
                 .state('index.productcomment', {
                     url: "/productcomment",
-                    templateUrl: "cpanelv1/Moduleproduct/productComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/product/productComment/grid.html",
                     controller: "productContentController",
                     controllerAs: "productContent",
                     data: {
@@ -2138,7 +2169,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/Moduleproduct/productComment/productComment.js'
+                                            'cpanelv1/CmsModules/product/productComment/productComment.js'
                                             //  
                                             // 
                                         ]
@@ -2150,7 +2181,7 @@
                 })
                 .state('index.chartcomment', {
                     url: "/chartcomment",
-                    templateUrl: "cpanelv1/ModuleChart/ChartComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartComment/grid.html",
                     controller: "chartCommentCtrl",
                     controllerAs: "chartComment",
                     data: {
@@ -2168,7 +2199,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartComment/chartComment.js'
+                                            'cpanelv1/CmsModules/Chart/ChartComment/chartComment.js'
                                             //  
                                             // 
                                         ]
@@ -2180,7 +2211,7 @@
                 })
                 .state('index.imagegallerycomment', {
                     url: "/imagegallerycomment",
-                    templateUrl: "cpanelv1/ModuleImageGallery/ImageGalleryComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ImageGallery/ImageGalleryComment/grid.html",
                     controller: "imgGalleryCommentCtrl",
                     controllerAs: "imgGalleryComment",
                     data: {
@@ -2198,7 +2229,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleImageGallery/ImageGalleryComment/ImageGalleryComment.js'
+                                            'cpanelv1/CmsModules/ImageGallery/ImageGalleryComment/ImageGalleryComment.js'
                                             //  
                                             // 
                                         ]
@@ -2210,7 +2241,7 @@
                 })
                 .state('index.musicgallerycomment', {
                     url: "/musicgallerycomment",
-                    templateUrl: "cpanelv1/ModuleMusicGallery/MusicGalleryComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MusicGallery/MusicGalleryComment/grid.html",
                     controller: "mscGalleryCommentCtrl",
                     controllerAs: "mscGalleryComment",
                     data: {
@@ -2228,7 +2259,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMusicGallery/MusicGalleryComment/MusicGalleryComment.js'
+                                            'cpanelv1/CmsModules/MusicGallery/MusicGalleryComment/MusicGalleryComment.js'
                                             //  
                                             // 
                                         ]
@@ -2240,7 +2271,7 @@
                 })
                 .state('index.moviegallerycomment', {
                     url: "/moviegallerycomment",
-                    templateUrl: "cpanelv1/ModuleMovieGallery/MovieGalleryComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MovieGallery/MovieGalleryComment/grid.html",
                     controller: "mvGalleryCommentCtrl",
                     controllerAs: "mvGalleryComment",
                     data: {
@@ -2258,7 +2289,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMovieGallery/MovieGalleryComment/MovieGalleryComment.js'
+                                            'cpanelv1/CmsModules/MovieGallery/MovieGalleryComment/MovieGalleryComment.js'
                                             //  
                                             // 
                                         ]
@@ -2274,7 +2305,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleBiography/BiographyContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Biography/BiographyContent/grid.html",
                     controller: "biographyContentController",
                     controllerAs: "biographyContent",
                     data: {
@@ -2291,7 +2322,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBiography/BiographyContent/Controller.js'
+                                            'cpanelv1/CmsModules/Biography/BiographyContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -2302,7 +2333,7 @@
                 //-----CmsSiteMenu-----
                 .state('index.cmssitemenu', {
                     url: "/CmsSiteMenu",
-                    templateUrl: "cpanelv1/ModuleCore/CmsSiteMenu/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsSiteMenu/grid.html",
                     controller: "cmsSiteMenuCtrl",
                     controllerAs: "cmsSiteMenu",
                     data: {
@@ -2320,7 +2351,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsSiteMenu/CmsSiteMenuController.js'
+                                            'cpanelv1/CmsModules/Core/CmsSiteMenu/CmsSiteMenuController.js'
                                             //  
                                             // 
                                         ]
@@ -2333,7 +2364,7 @@
                 //-----Polling Module-----
                 .state('index.pollingoption', {
                     url: "/pollingoption",
-                    templateUrl: "cpanelv1/ModulePolling/PollingOption/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Polling/PollingOption/grid.html",
                     controller: "pollingOptionCtrl",
                     controllerAs: "pollingOption",
                     data: {
@@ -2351,7 +2382,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModulePolling/PollingOption/PollingOption.js'
+                                            'cpanelv1/CmsModules/Polling/PollingOption/PollingOption.js'
                                             //  
                                             // 
                                         ]
@@ -2363,7 +2394,7 @@
                 })
                 .state('index.pollingcontent', {
                     url: "/PollingContent",
-                    templateUrl: "cpanelv1/ModulePolling/PollingContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Polling/PollingContent/grid.html",
                     controller: "pollingContentCtrl",
                     controllerAs: "pollingContent",
                     data: {
@@ -2380,7 +2411,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModulePolling/PollingContent/PollingContents.js'
+                                            'cpanelv1/CmsModules/Polling/PollingContent/PollingContents.js'
                                         ]
                                     }
                                 ]);
@@ -2394,7 +2425,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "summernote", {
                     //                //serie: true,
                     //                files: [
-                    //                    'cpanelv1/ModulePolling/PollingContent/PollingContents.js'
+                    //                    'cpanelv1/CmsModules/Polling/PollingContent/PollingContents.js'
 
                     //                ]
                     //            }
@@ -2405,7 +2436,7 @@
                 })
                 .state('index.pollinglog', {
                     url: "/pollinglog",
-                    templateUrl: "cpanelv1/ModulePolling/PollingLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Polling/PollingLog/grid.html",
                     controller: "pollingLogCtrl",
                     controllerAs: "pollingLog",
                     data: {
@@ -2422,7 +2453,7 @@
                                     "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePolling/PollingLog/pollingLog.js'
+                                            'cpanelv1/CmsModules/Polling/PollingLog/pollingLog.js'
                                         ]
                                     }
                                 ]);
@@ -2437,7 +2468,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleImageGallery/ImageGalleryContent/browser.html",
+                    templateUrl: "cpanelv1/CmsModules/ImageGallery/ImageGalleryContent/browser.html",
                     controller: "imageGalleryCtrl",
                     controllerAs: "imgGallery",
                     data: {
@@ -2454,7 +2485,7 @@
                                     "ngTagsInput", "summernote", "treeControl", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleImageGallery/ImageGalleryContent/ImageGalleryContentController.js'
+                                            'cpanelv1/CmsModules/ImageGallery/ImageGalleryContent/ImageGalleryContentController.js'
                                         ]
                                     }
                                 ]);
@@ -2468,7 +2499,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "treeControl", {
                     //                serie: false,
                     //                files: [
-                    //                    'cpanelv1/ModuleImageGallery/ImageGalleryContent/ImageGalleryContentController.js'
+                    //                    'cpanelv1/CmsModules/ImageGallery/ImageGalleryContent/ImageGalleryContentController.js'
                     //                ]
                     //            }
                     //            ]);
@@ -2483,7 +2514,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleMovieGallery/MovieGalleryContent/browser.html",
+                    templateUrl: "cpanelv1/CmsModules/MovieGallery/MovieGalleryContent/browser.html",
                     controller: "movieGalleryCtrl",
                     controllerAs: "mvGallery",
                     data: {
@@ -2500,7 +2531,7 @@
                                     "ngTagsInput", "summernote", "treeControl", "ADM-dateTimePicker", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMovieGallery/MovieGalleryContent/MovieGalleryContentController.js'
+                                            'cpanelv1/CmsModules/MovieGallery/MovieGalleryContent/MovieGalleryContentController.js'
                                         ]
                                     }
                                 ]);
@@ -2514,7 +2545,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "treeControl", {
                     //                serie: false,
                     //                files: [
-                    //                    'cpanelv1/ModuleMovieGallery/MovieGalleryContent/MovieGalleryContentController.js'
+                    //                    'cpanelv1/CmsModules/MovieGallery/MovieGalleryContent/MovieGalleryContentController.js'
                     //                ]
                     //            }
                     //            ]);
@@ -2529,7 +2560,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleMusicGallery/MusicGalleryContent/browser.html",
+                    templateUrl: "cpanelv1/CmsModules/MusicGallery/MusicGalleryContent/browser.html",
                     controller: "musicGalleryCtrl",
                     controllerAs: "mscGallery",
                     data: {
@@ -2546,7 +2577,7 @@
                                     "ngTagsInput", "summernote", "treeControl", "ADM-dateTimePicker", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMusicGallery/MusicGalleryContent/MusicGalleryContentController.js'
+                                            'cpanelv1/CmsModules/MusicGallery/MusicGalleryContent/MusicGalleryContentController.js'
                                         ]
                                     }
                                 ]);
@@ -2560,7 +2591,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "treeControl", {
                     //                serie: false,
                     //                files: [
-                    //                    'cpanelv1/ModuleMusicGallery/MusicGalleryContent/MusicGalleryContentController.js'
+                    //                    'cpanelv1/CmsModules/MusicGallery/MusicGalleryContent/MusicGalleryContentController.js'
                     //                ]
                     //            }
                     //            ]);
@@ -2572,7 +2603,7 @@
                 //-----FormBuilder Module-----
                 .state('index.formbuilderform', {
                     url: "/formbuilderform",
-                    templateUrl: "cpanelv1/ModuleFormBuilder/FormBuilderForm/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/FormBuilder/FormBuilderForm/grid.html",
                     controller: "formController",
                     controllerAs: "form",
                     data: {
@@ -2589,7 +2620,7 @@
                                     'treeControl', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleFormBuilder/FormBuilderForm/formBuilderFormController.js'
+                                            'cpanelv1/CmsModules/FormBuilder/FormBuilderForm/formBuilderFormController.js'
                                             //  
                                             // 
                                         ]
@@ -2604,7 +2635,7 @@
                     params: {
                         FormBuilderId: null
                     },
-                    templateUrl: "cpanelv1/ModuleFormBuilder/FormBuilderFormSubmit/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/FormBuilder/FormBuilderFormSubmit/grid.html",
                     controller: "formBuilderFormSubmitController",
                     controllerAs: "value",
                     data: {
@@ -2620,7 +2651,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleFormBuilder/FormBuilderFormSubmit/formBuilderFormSubmitController.js'
+                                        'cpanelv1/CmsModules/FormBuilder/FormBuilderFormSubmit/formBuilderFormSubmitController.js'
                                     ]
                                 }]);
                             }
@@ -2632,7 +2663,7 @@
                 //-----Module LinkManagement-----
                 .state('index.linkmanagementdashboard', {
                     url: "/linkmanagementdashboard",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementdashboard/dashboard.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementdashboard/dashboard.html",
                     controller: "linkManagementdashboardController",
                     controllerAs: "linkManagementdashboard",
                     data: {
@@ -2649,7 +2680,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementdashboard/LinkManagementdashboardController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementdashboard/LinkManagementdashboardController.js'
                                         ]
                                     }
                                 ]);
@@ -2659,7 +2690,7 @@
                 })
                 .state('index.linkmanagementcreatecampaign', {
                     url: "/linkmanagementcreatecampaign",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementCerateCampaign/CreateCampaign1.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementCerateCampaign/CreateCampaign1.html",
                     controller: "linkManagementCreateCampaignController",
                     controllerAs: "linkManagementCreateCampaign",
                     data: {
@@ -2676,7 +2707,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementCerateCampaign/LinkManagementCreateCampaignController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementCerateCampaign/LinkManagementCreateCampaignController.js'
                                         ]
                                     }
                                 ]);
@@ -2686,7 +2717,7 @@
                 })
                 /* .state('index.sharinglink', {
                      url: "/sharinglink",
-                     templateUrl: "cpanelv1/ModuleLinkManagement/SharingLink/grid.html",
+                     templateUrl: "cpanelv1/CmsModules/LinkManagement/SharingLink/grid.html",
                      controller: "sharingLinkController",
                      controllerAs: "sharingLink",
                      data: { pageTitle: 'مدیریت تبادل لینک' },
@@ -2701,7 +2732,7 @@
                                      'ngJsTree', 'summernote', {
                                          serie: false,
                                          files: [
-                                             'cpanelv1/ModuleLinkManagement/SharingLink/sharingLink.js'
+                                             'cpanelv1/CmsModules/LinkManagement/SharingLink/sharingLink.js'
                                          ]
                                      }
                                  ]);
@@ -2711,7 +2742,7 @@
                  })
                  .state('index.sharinglinkusing', {
                      url: "/sharinglinkusing",
-                     templateUrl: "cpanelv1/ModuleLinkManagement/SharingUsing/grid.html",
+                     templateUrl: "cpanelv1/CmsModules/LinkManagement/SharingUsing/grid.html",
                      controller: "sharingUsingController",
                      controllerAs: "sharingUsing",
                      data: { pageTitle: 'مدیریت تبادل لینک' },
@@ -2725,7 +2756,7 @@
                                  return $ocLazyLoad.load({
                                      serie: false,
                                      files: [
-                                         'cpanelv1/ModuleLinkManagement/SharingUsing/sharingUsing.js'
+                                         'cpanelv1/CmsModules/LinkManagement/SharingUsing/sharingUsing.js'
                                      ]
                                  });
                              }
@@ -2734,7 +2765,7 @@
                  })
                  .state('index.sharinglinklog', {
                      url: "/sharinglinklog",
-                     templateUrl: "cpanelv1/ModuleLinkManagement/SharingLog/grid.html",
+                     templateUrl: "cpanelv1/CmsModules/LinkManagement/SharingLog/grid.html",
                      controller: "sharingLogController",
                      controllerAs: "sharingLog",
                      data: { pageTitle: 'مدیریت تبادل لینک' },
@@ -2749,7 +2780,7 @@
                                      'ngJsTree', 'summernote', {
                                          serie: false,
                                          files: [
-                                             'cpanelv1/ModuleLinkManagement/SharingLog/sharingLog.js'
+                                             'cpanelv1/CmsModules/LinkManagement/SharingLog/sharingLog.js'
                                          ]
                                      }
                                  ]);
@@ -2763,7 +2794,7 @@
                     params: {
                         Unreadticket: false
                     },
-                    templateUrl: "cpanelv1/ModuleTicketing/TicketingTask/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Ticketing/TicketingTask/grid.html",
                     controller: "ticketingTaskController",
                     controllerAs: "ticketingTask",
                     data: {
@@ -2780,7 +2811,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTicketing/TicketingTask/TicketingTask.js'
+                                            'cpanelv1/CmsModules/Ticketing/TicketingTask/TicketingTask.js'
                                         ]
                                     }
                                 ]);
@@ -2790,7 +2821,7 @@
                 })
                 .state('index.ticketinganswer', {
                     url: "/ticketinganswer",
-                    templateUrl: "cpanelv1/ModuleTicketing/TicketingAnswer/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Ticketing/TicketingAnswer/grid.html",
                     controller: "ticketingAnswerController",
                     controllerAs: "ticketingAnswer",
                     data: {
@@ -2807,7 +2838,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTicketing/TicketingAnswer.js'
+                                            'cpanelv1/CmsModules/Ticketing/TicketingAnswer.js'
                                         ]
                                     }
                                 ]);
@@ -2817,7 +2848,7 @@
                 })
                 .state('index.ticketingdepartemen', {
                     url: "/ticketingdepartemen",
-                    templateUrl: "cpanelv1/ModuleTicketing/TicketingDepartemen/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Ticketing/TicketingDepartemen/grid.html",
                     controller: "ticketingDepartemenController",
                     controllerAs: "ticketingDepartemen",
                     data: {
@@ -2834,7 +2865,7 @@
                                     'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTicketing/TicketingDepartemen/TicketingDepartemen.js'
+                                            'cpanelv1/CmsModules/Ticketing/TicketingDepartemen/TicketingDepartemen.js'
                                         ]
                                     }
                                 ]);
@@ -2844,7 +2875,7 @@
                 })
                 .state('index.ticketingfaq', {
                     url: "/ticketingfaq",
-                    templateUrl: "cpanelv1/ModuleTicketing/TicketingFaq/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Ticketing/TicketingFaq/grid.html",
                     controller: "ticketingFaqController",
                     controllerAs: "ticketingFaq",
                     data: {
@@ -2861,7 +2892,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTicketing/TicketingFaq/TicketingFaq.js'
+                                            'cpanelv1/CmsModules/Ticketing/TicketingFaq/TicketingFaq.js'
                                         ]
                                     }
                                 ]);
@@ -2872,7 +2903,7 @@
                 //-----UniversalMenu Module-----
                 .state('index.universalmenuplatform', {
                     url: "/universalmenuplatform",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuPlatform/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuPlatform/grid.html",
                     controller: "platformGridController",
                     controllerAs: "platformCtrl",
                     data: {
@@ -2889,7 +2920,7 @@
                                     'ngJsTree', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuPlatform/UniversalMenuPlatformController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuPlatform/UniversalMenuPlatformController.js'
                                         ]
                                     }
                                 ]);
@@ -2899,7 +2930,7 @@
                 })
                 .state('index.universalmenuprocesses', {
                     url: "/universalmenuprocesses",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuProcesses/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuProcesses/grid.html",
                     controller: "processGridController",
                     controllerAs: "processCtrl",
                     data: {
@@ -2916,7 +2947,7 @@
                                     'ngJsTree', 'treeControl', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuProcesses/UniversalMenuProcessesController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuProcesses/UniversalMenuProcessesController.js'
                                         ]
                                     }
                                 ]);
@@ -2926,7 +2957,7 @@
                 })
                 .state('index.universalmenumenuitem', {
                     url: "/universalmenumenuitem",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuMenuItem/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuMenuItem/grid.html",
                     controller: "menuItemGridController",
                     controllerAs: "menuItemCtrl",
                     data: {
@@ -2943,7 +2974,7 @@
                                     'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'treeControl', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuMenuItem/UniversalMenuMenuItemController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuMenuItem/UniversalMenuMenuItemController.js'
                                         ]
                                     }
                                 ]);
@@ -2953,7 +2984,7 @@
                 })
                 .state('index.universalmenusession', {
                     url: "/universalmenusession",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuSession/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuSession/grid.html",
                     controller: "sessionGridController",
                     controllerAs: "sessionCtrl",
                     data: {
@@ -2970,7 +3001,7 @@
                                     'ngJsTree', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuSession/UniversalMenuSessionController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuSession/UniversalMenuSessionController.js'
                                         ]
                                     }
                                 ]);
@@ -2980,7 +3011,7 @@
                 })
                 .state('index.universalmenuinputlog', {
                     url: "/universalmenuinputlog",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuInputLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuInputLog/grid.html",
                     controller: "inputLogGridController",
                     controllerAs: "inputLogCtrl",
                     data: {
@@ -2997,7 +3028,7 @@
                                     'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuInputLog/UniversalMenuInputLogController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuInputLog/UniversalMenuInputLogController.js'
                                         ]
                                     }
                                 ]);
@@ -3007,7 +3038,7 @@
                 })
                 .state('index.universalmenuoutputlog', {
                     url: "/universalmenuoutputlog",
-                    templateUrl: "cpanelv1/ModuleUniversalMenu/UniversalMenuOutpluLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/UniversalMenu/UniversalMenuOutpluLog/grid.html",
                     controller: "outputLogGridController",
                     controllerAs: "outputLogCtrl",
                     data: {
@@ -3024,7 +3055,7 @@
                                     'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleUniversalMenu/UniversalMenuOutpluLog/UniversalMenuOutpluLogController.js'
+                                            'cpanelv1/CmsModules/UniversalMenu/UniversalMenuOutpluLog/UniversalMenuOutpluLogController.js'
                                         ]
                                     }
                                 ]);
@@ -3035,7 +3066,7 @@
                 //-----ApiTelegram Module-----
                 .state('index.apitelegrambotconfig', {
                     url: "/apitelegrambotconfig",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramBotConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotConfig/grid.html",
                     controller: "botConfigGridController",
                     controllerAs: "botConfigCtrl",
                     data: {
@@ -3052,7 +3083,7 @@
                                     'treeControl', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramBotConfig/ApiTelegramBotConfigController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotConfig/ApiTelegramBotConfigController.js'
                                         ]
                                     }
                                 ]);
@@ -3062,7 +3093,7 @@
                 })
                 .state('index.apitelegramloginput', {
                     url: "/loginput",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramLogInput/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramLogInput/grid.html",
                     controller: "logInputGridController",
                     controllerAs: "logInputCtrl",
                     data: {
@@ -3080,7 +3111,7 @@
                                     'treeControl', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramLogInput/ApiTelegramLogInputController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramLogInput/ApiTelegramLogInputController.js'
                                         ]
                                     }
                                 ]);
@@ -3090,7 +3121,7 @@
                 })
                 .state('index.apitelegramlogoutput', {
                     url: "/logoutput",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramLogOutput/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramLogOutput/grid.html",
                     controller: "logOutputGridController",
                     controllerAs: "logOutputCtrl",
                     data: {
@@ -3107,7 +3138,7 @@
                                     'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramLogOutput/ApiTelegramLogOutputController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramLogOutput/ApiTelegramLogOutputController.js'
                                         ]
                                     }
                                 ]);
@@ -3117,7 +3148,7 @@
                 })
                 .state('index.apitelegramuploadedfiles', {
                     url: "/apitelegramuploadedfiles",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramUploadedFiles/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramUploadedFiles/grid.html",
                     controller: "UploadedFilesController",
                     controllerAs: "uploadedFiles",
                     data: {
@@ -3134,7 +3165,7 @@
                                     'ngJsTree', 'summernote', 'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramUploadedFiles/ApiTelegramUploadedFilesController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramUploadedFiles/ApiTelegramUploadedFilesController.js'
                                         ]
                                     }
                                 ]);
@@ -3144,7 +3175,7 @@
                 })
                 .state('index.apitelegramreceivedfiles', {
                     url: "/apitelegramuploadedfiles",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramReceivedFiles/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramReceivedFiles/grid.html",
                     controller: "ReceivedFilesController",
                     controllerAs: "ReceivedFiles",
                     data: {
@@ -3160,7 +3191,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleApiTelegram/ApiTelegramReceivedFiles/ApiTelegramReceivedFilesController.js'
+                                        'cpanelv1/CmsModules/ApiTelegram/ApiTelegramReceivedFiles/ApiTelegramReceivedFilesController.js'
                                     ]
                                 }]);
                             }
@@ -3169,7 +3200,7 @@
                 })
                 .state('index.apitelegrambotusertype', {
                     url: "/apitelegrambotusertype",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramBotUserType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotUserType/grid.html",
                     controller: "botUserTypeController",
                     controllerAs: "botUserType",
                     data: {
@@ -3186,7 +3217,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramBotUserType/ApiTelegramBotUserTypeController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotUserType/ApiTelegramBotUserTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -3196,7 +3227,7 @@
                 })
                 .state('index.apitelegrambotuser', {
                     url: "/apitelegrambotuser",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramBotUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotUser/grid.html",
                     controller: "botUserController",
                     controllerAs: "botUser",
                     data: {
@@ -3213,7 +3244,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramBotUser/ApiTelegramBotUserController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramBotUser/ApiTelegramBotUserController.js'
                                         ]
                                     }
                                 ]);
@@ -3223,7 +3254,7 @@
                 })
                 .state('index.apitelegrammemberinfo', {
                     url: "/apitelegrammemberinfo",
-                    templateUrl: "cpanelv1/ModuleApiTelegram/ApiTelegramMemberInfo/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ApiTelegram/ApiTelegramMemberInfo/grid.html",
                     controller: "memberInfoController",
                     controllerAs: "memberInfo",
                     data: {
@@ -3240,7 +3271,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApiTelegram/ApiTelegramMemberInfo/ApiTelegramMemberInfoController.js'
+                                            'cpanelv1/CmsModules/ApiTelegram/ApiTelegramMemberInfo/ApiTelegramMemberInfoController.js'
                                         ]
                                     }
                                 ]);
@@ -3256,7 +3287,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/Modulereservation/reservationContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/reservation/reservationContent/grid.html",
                     controller: "reservationContentController",
                     controllerAs: "reservationContent",
                     data: {
@@ -3273,7 +3304,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/Modulereservation/reservationContent/reservationContent.js'
+                                            'cpanelv1/CmsModules/reservation/reservationContent/reservationContent.js'
                                         ]
                                     }
                                 ]);
@@ -3283,7 +3314,7 @@
                 })
                 .state('index.reservationcomment', {
                     url: "/reservationcomment",
-                    templateUrl: "cpanelv1/Modulereservation/reservationComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/reservation/reservationComment/grid.html",
                     controller: "reservationCommentCtrl",
                     controllerAs: "reservationComment",
                     data: {
@@ -3299,7 +3330,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/Modulereservation/reservationComment/reservationComment.js'
+                                        'cpanelv1/CmsModules/reservation/reservationComment/reservationComment.js'
                                     ]
                                 }]);
                             }
@@ -3311,7 +3342,7 @@
                     params: {
                         ContentId: null
                     },
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationAppointmentDate/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationAppointmentDate/grid.html",
                     controller: "reservationAppDateController",
                     controllerAs: "appDate",
                     data: {
@@ -3328,7 +3359,7 @@
                                     'angucomplete-alt', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationAppointmentDate/ReservationAppointmentDateController.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationAppointmentDate/ReservationAppointmentDateController.js'
                                         ]
                                     }
                                 ]);
@@ -3338,7 +3369,7 @@
                 })
                 .state('index.reservationappointmentdatedetail', {
                     url: "/reservationappointmentdatedetail",
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationAppointmentDateDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationAppointmentDateDetail/grid.html",
                     controller: "reservationAppointmentDateDetailController",
                     controllerAs: "appDateDetail",
                     data: {
@@ -3355,7 +3386,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationAppointmentDateDetail/ReservationAppointmentDateDetailController.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationAppointmentDateDetail/ReservationAppointmentDateDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -3370,7 +3401,7 @@
                         AppointmentDateId: null,
                         ServiceId: null
                     },
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationOrder/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationOrder/grid.html",
                     controller: "reservationOrderController",
                     controllerAs: "order",
                     data: {
@@ -3387,7 +3418,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationOrder/ReservationOrderController.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationOrder/ReservationOrderController.js'
                                         ]
                                     }
                                 ]);
@@ -3402,7 +3433,7 @@
                         AppointmentDateId: null,
                         ServiceId: null
                     },
-                    templateUrl: "cpanelv1/ModuleReservation/Reservationplace/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/Reservationplace/grid.html",
                     controller: "reservationplaceController",
                     controllerAs: "place",
                     data: {
@@ -3419,8 +3450,8 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', 'angular.drag.resize', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/Reservationplace/ReservationplaceController.js',
-                                            //'cpanelv1/ModuleReservation/Reservationplace/ReservationplaceNtkDragg.js'
+                                            'cpanelv1/CmsModules/Reservation/Reservationplace/ReservationplaceController.js',
+                                            //'cpanelv1/CmsModules/Reservation/Reservationplace/ReservationplaceNtkDragg.js'
                                         ]
                                     }
                                 ]);
@@ -3435,7 +3466,7 @@
                         AppointmentDateId: null,
                         ServiceId: null
                     },
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationOrderAdd/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationOrderAdd/grid.html",
                     controller: "orderAddCtrl",
                     controllerAs: "orderAdd",
                     data: {
@@ -3452,7 +3483,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationOrderAdd/ReservationOrderAdd.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationOrderAdd/ReservationOrderAdd.js'
                                         ]
                                     }
                                 ]);
@@ -3462,7 +3493,7 @@
                 })
                 .state('index.reservationservice', {
                     url: "/reservationservice",
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationService/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationService/grid.html",
                     controller: "reservationServiceController",
                     controllerAs: "reservationService",
                     data: {
@@ -3479,7 +3510,7 @@
                                     'nouislider', 'minicolors', 'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationService/ReservationServiceController.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationService/ReservationServiceController.js'
                                         ]
                                     }
                                 ]);
@@ -3489,7 +3520,7 @@
                 })
                 .state('index.reservationtag', {
                     url: "/reservationtag",
-                    templateUrl: "cpanelv1/ModuleReservation/ReservationTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Reservation/ReservationTag/grid.html",
                     controller: "reservationTagCtrl",
                     controllerAs: "reservationTag",
                     data: {
@@ -3507,7 +3538,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleReservation/ReservationTag/ReservationTag.js'
+                                            'cpanelv1/CmsModules/Reservation/ReservationTag/ReservationTag.js'
                                         ]
                                     }
                                 ]);
@@ -3518,7 +3549,7 @@
                 //-----Application Module-----
                 .state('index.applicationapp', {
                     url: "/applicationapp",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationApp/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationApp/grid.html",
                     controller: "applicationAppController",
                     controllerAs: "themeConfig",
                     data: {
@@ -3535,7 +3566,7 @@
                                     'monospaced.qrcode', 'treeControl', 'minicolors', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleApplication/ApplicationApp/ApplicationAppController.js'
+                                            'cpanelv1/CmsModules/Application/ApplicationApp/ApplicationAppController.js'
                                         ]
                                     }
                                 ]);
@@ -3545,7 +3576,7 @@
                 })
                 .state('index.applicationsource', {
                     url: "/applicationsource",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationSource/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationSource/grid.html",
                     controller: "applicationSourceController",
                     controllerAs: "appSource",
                     data: {
@@ -3562,7 +3593,7 @@
                                     'angucomplete-alt', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApplication/ApplicationSource/ApplicationSourceController.js'
+                                            'cpanelv1/CmsModules/Application/ApplicationSource/ApplicationSourceController.js'
                                         ]
                                     }
                                 ]);
@@ -3572,7 +3603,7 @@
                 })
                 .state('index.applicationlayout', {
                     url: "/applicationlayout",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationLayout/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationLayout/grid.html",
                     params: {
                         sourceid: null
                     },
@@ -3592,7 +3623,7 @@
                                     'treeControl', 'minicolors', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleApplication/ApplicationLayout/ApplicationLayoutController.js'
+                                            'cpanelv1/CmsModules/Application/ApplicationLayout/ApplicationLayoutController.js'
                                         ]
                                     }
                                 ]);
@@ -3602,7 +3633,7 @@
                 })
                 .state('index.applicationlayoutvalue', {
                     url: "/applicationlayoutvalue",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationLayoutValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationLayoutValue/grid.html",
                     params: {
                         sourceid: null,
                         appid: null,
@@ -3624,7 +3655,7 @@
                                     'angucomplete-alt', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApplication/ApplicationLayoutValue/ApplicationLayoutValueController.js'
+                                            'cpanelv1/CmsModules/Application/ApplicationLayoutValue/ApplicationLayoutValueController.js'
                                         ]
                                     }
                                 ]);
@@ -3634,7 +3665,7 @@
                 })
                 .state('index.applicationthemeconfig', {
                     url: "/applicationthemeconfig",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationThemeConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationThemeConfig/grid.html",
                     controller: "themeConfigController",
                     controllerAs: "themeConfig",
                     data: {
@@ -3651,7 +3682,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleApplication/ApplicationThemeConfig/ApplicationThemeConfigController.js'
+                                            'cpanelv1/CmsModules/Application/ApplicationThemeConfig/ApplicationThemeConfigController.js'
                                         ]
                                     }
                                 ]);
@@ -3661,7 +3692,7 @@
                 })
                 .state('index.applicationmemberinfo', {
                     url: "/applicationmemberinfo",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationMemberInfo/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationMemberInfo/grid.html",
                     controller: "memberInfoController",
                     controllerAs: "memberInfo",
                     data: {
@@ -3677,7 +3708,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleApplication/ApplicationMemberInfo/ApplicationMemberInfoController.js'
+                                        'cpanelv1/CmsModules/Application/ApplicationMemberInfo/ApplicationMemberInfoController.js'
                                     ]
                                 }]);
                             }
@@ -3686,7 +3717,7 @@
                 })
                 .state('index.applicationintro', {
                     url: "/applicationintro",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationIntro/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationIntro/grid.html",
                     controller: "applicationIntroController",
                     controllerAs: "applicationIntro",
                     data: {
@@ -3702,7 +3733,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleApplication/ApplicationIntro/ApplicationIntroController.js'
+                                        'cpanelv1/CmsModules/Application/ApplicationIntro/ApplicationIntroController.js'
                                     ]
                                 }]);
                             }
@@ -3711,7 +3742,7 @@
                 })
                 .state('index.applicationlognotification', {
                     url: "/applicationlogNotification",
-                    templateUrl: "cpanelv1/ModuleApplication/ApplicationlogNotification/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Application/ApplicationlogNotification/grid.html",
                     controller: "logNotificationController",
                     controllerAs: "logNotification",
                     data: {
@@ -3727,7 +3758,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleApplication/ApplicationlogNotification/applicationlogNotificationController.js'
+                                        'cpanelv1/CmsModules/Application/ApplicationlogNotification/applicationlogNotificationController.js'
                                     ]
                                 }]);
                             }
@@ -3741,7 +3772,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleBlog/BlogContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Blog/BlogContent/grid.html",
                     controller: "blogContentController",
                     controllerAs: "blogContent",
                     data: {
@@ -3758,7 +3789,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBlog/BlogContent/Controller.js'
+                                            'cpanelv1/CmsModules/Blog/BlogContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -3769,7 +3800,7 @@
                 })
                 .state('index.blogtag', {
                     url: "/blogtag",
-                    templateUrl: "cpanelv1/ModuleBlog/BlogTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Blog/BlogTag/grid.html",
                     controller: "blogTagCtrl",
                     controllerAs: "blogTag",
                     data: {
@@ -3787,7 +3818,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBlog/BlogTag/BlogTag.js'
+                                            'cpanelv1/CmsModules/Blog/BlogTag/BlogTag.js'
                                         ]
                                     }
                                 ]);
@@ -3797,7 +3828,7 @@
                 })
                 .state('index.blogcomment', {
                     url: "/blogcomment",
-                    templateUrl: "cpanelv1/ModuleBlog/BlogComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Blog/BlogComment/grid.html",
                     controller: "blogCommentCtrl",
                     controllerAs: "blogComment",
                     data: {
@@ -3815,7 +3846,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBlog/BlogComment/BlogComment.js'
+                                            'cpanelv1/CmsModules/Blog/BlogComment/BlogComment.js'
                                             //  
                                             // 
                                         ]
@@ -3828,7 +3859,7 @@
                 //-----Advertisement Module-----
                 .state('index.advertisementcontract', {
                     url: "/advertisementcontract",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementContract/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementContract/grid.html",
                     controller: "advertisementContractController",
                     controllerAs: "advertisementContract",
                     data: {
@@ -3845,7 +3876,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementContract/AdvertisementContractController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementContract/AdvertisementContractController.js'
                                         ]
                                     }
                                 ]);
@@ -3855,7 +3886,7 @@
                 })
                 .state('index.advertisementcontracttype', {
                     url: "/advertisementcontracttype",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementContractType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementContractType/grid.html",
                     controller: "advertisementContractTypeController",
                     controllerAs: "advertisementContractType",
                     data: {
@@ -3873,7 +3904,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementContractType/AdvertisementContractTypeController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementContractType/AdvertisementContractTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -3883,7 +3914,7 @@
                 })
                 .state('index.advertisementproperty', {
                     url: "/advertisementproperty",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementProperty/grid.html",
                     controller: "advertisementPropertyController",
                     controllerAs: "advertisementProperty",
                     data: {
@@ -3900,7 +3931,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementProperty/AdvertisementPropertyController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementProperty/AdvertisementPropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -3915,7 +3946,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementPropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementPropertyDetail/grid.html",
                     controller: "advertisementPropertyDetailController",
                     controllerAs: "advertisementPropertyDetail",
                     data: {
@@ -3932,7 +3963,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementPropertyDetail/AdvertisementPropertyDetailController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementPropertyDetail/AdvertisementPropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -3942,7 +3973,7 @@
                 })
                 .state('index.advertisementpropertydetailgroup', {
                     url: "/advertisementpropertydetailgroup",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/advertisementPropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/advertisementPropertyDetailGroup/grid.html",
                     controller: "advertisementPropertyDetailGroupController",
                     controllerAs: "advertisementPropertyDetailGroup",
                     data: {
@@ -3959,7 +3990,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/advertisementPropertyDetailGroup/advertisementPropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/Advertisement/advertisementPropertyDetailGroup/advertisementPropertyDetailGroupController.js'
                                             //  
                                             // 
                                         ]
@@ -3971,7 +4002,7 @@
                 })
                 .state('index.advertisementpropertytype', {
                     url: "/advertisementpropertytype",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementPropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementPropertyType/grid.html",
                     controller: "advertisementPropertyTypeController",
                     controllerAs: "advertisementPropertyType",
                     data: {
@@ -3988,7 +4019,7 @@
                                     "ngTagsInput", "summernote", "treeControl", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementPropertyType/AdvertisementPropertyTypeController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementPropertyType/AdvertisementPropertyTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -4003,7 +4034,7 @@
                     //                'angucomplete-alt',  {
                     //                    serie: false,
                     //                    files: [
-                    //                        'cpanelv1/ModuleAdvertisement/AdvertisementPropertyType/AdvertisementPropertyTypeController.js'
+                    //                        'cpanelv1/CmsModules/Advertisement/AdvertisementPropertyType/AdvertisementPropertyTypeController.js'
                     //                      //  
                     //                       // 
                     //                    ]
@@ -4015,7 +4046,7 @@
                 })
                 .state('index.advertisementpropertyfavorite', {
                     url: "/advertisementpropertyfavorite",
-                    templateUrl: "cpanelv1/ModuleAdvertisement/AdvertisementPropertyFavorite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Advertisement/AdvertisementPropertyFavorite/grid.html",
                     controller: "advertisementPropertyFavoriteController",
                     controllerAs: "advertisementPropertyFavorite",
                     data: {
@@ -4032,7 +4063,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleAdvertisement/AdvertisementPropertyFavorite/AdvertisementPropertyFavoriteController.js'
+                                            'cpanelv1/CmsModules/Advertisement/AdvertisementPropertyFavorite/AdvertisementPropertyFavoriteController.js'
                                             //  
                                             // 
                                         ]
@@ -4049,7 +4080,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleChart/ChartContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartContent/grid.html",
                     controller: "chartContentCtrl",
                     controllerAs: "chartContent",
                     data: {
@@ -4066,7 +4097,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartContent/chartContent.js'
+                                            'cpanelv1/CmsModules/Chart/ChartContent/chartContent.js'
                                         ]
                                     }
                                 ]);
@@ -4076,7 +4107,7 @@
                 })
                 .state('index.chartcontentevent', {
                     url: "/chartcontentevent",
-                    templateUrl: "cpanelv1/ModuleChart/ChartContentEvent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartContentEvent/grid.html",
                     controller: "chartContentEventController",
                     controllerAs: "chartContentEvent",
                     data: {
@@ -4093,7 +4124,7 @@
                                     'ngTagsInput', 'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartContentEvent/ChartContentEvent.js'
+                                            'cpanelv1/CmsModules/Chart/ChartContentEvent/ChartContentEvent.js'
                                         ]
                                     }
                                 ]);
@@ -4104,7 +4135,7 @@
                 //-----Estate Module-----
                 .state('index.estateaccountagency', {
                     url: "/estateaccountagency",
-                    templateUrl: "cpanelv1/ModuleEstate/EstateAccountAgency/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstateAccountAgency/grid.html",
                     controller: "estateAccountAgencyController",
                     controllerAs: "estateAccountAgency",
                     data: {
@@ -4121,7 +4152,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstateAccountAgency/EstateAccountAgencyController.js'
+                                            'cpanelv1/CmsModules/Estate/EstateAccountAgency/EstateAccountAgencyController.js'
                                         ]
                                     }
                                 ]);
@@ -4131,7 +4162,7 @@
                 })
                 .state('index.estatecontract', {
                                     url: "/estatecontract",
-                                    templateUrl: "cpanelv1/ModuleEstate/EstateContract/grid.html",
+                                    templateUrl: "cpanelv1/CmsModules/Estate/EstateContract/grid.html",
                                     controller: "estateContractController",
                                     controllerAs: "estateContract",
                                     data: {
@@ -4148,7 +4179,7 @@
                                                     'nouislider', 'minicolors', {
                                                         serie: false,
                                                         files: [
-                                                            'cpanelv1/ModuleEstate/EstateContract/EstateContractController.js'
+                                                            'cpanelv1/CmsModules/Estate/EstateContract/EstateContractController.js'
                                                         ]
                                                     }
                                                 ]);
@@ -4158,7 +4189,7 @@
                                 })
                 .state('index.estatecontracttype', {
                     url: "/estatecontracttype",
-                    templateUrl: "cpanelv1/ModuleEstate/EstateContractType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstateContractType/grid.html",
                     controller: "estateContractTypeController",
                     controllerAs: "estateContractType",
                     data: {
@@ -4176,7 +4207,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstateContractType/EstateContractTypeController.js'
+                                            'cpanelv1/CmsModules/Estate/EstateContractType/EstateContractTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -4186,7 +4217,7 @@
                 })
                 .state('index.estateproperty', {
                     url: "/estateproperty",
-                    templateUrl: "cpanelv1/ModuleEstate/EstateProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstateProperty/grid.html",
                     controller: "estatePropertyController",
                     controllerAs: "estateProperty",
                     data: {
@@ -4203,7 +4234,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstateProperty/EstatePropertyController.js'
+                                            'cpanelv1/CmsModules/Estate/EstateProperty/EstatePropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -4218,7 +4249,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/ModuleEstate/EstatePropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstatePropertyDetail/grid.html",
                     controller: "estatePropertyDetailController",
                     controllerAs: "estatePropertyDetail",
                     data: {
@@ -4235,7 +4266,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstatePropertyDetail/EstatePropertyDetailController.js'
+                                            'cpanelv1/CmsModules/Estate/EstatePropertyDetail/EstatePropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -4245,7 +4276,7 @@
                 })
                 .state('index.estatepropertydetailgroup', {
                     url: "/estatepropertydetailgroup",
-                    templateUrl: "cpanelv1/ModuleEstate/estatePropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/estatePropertyDetailGroup/grid.html",
                     controller: "estatePropertyDetailGroupController",
                     controllerAs: "estatePropertyDetailGroup",
                     data: {
@@ -4262,7 +4293,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/estatePropertyDetailGroup/estatePropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/Estate/estatePropertyDetailGroup/estatePropertyDetailGroupController.js'
                                             //  
                                             // 
                                         ]
@@ -4274,7 +4305,7 @@
                 })
                 .state('index.estatepropertytype', {
                     url: "/estatepropertytype",
-                    templateUrl: "cpanelv1/ModuleEstate/EstatePropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstatePropertyType/grid.html",
                     controller: "estatePropertyTypeController",
                     controllerAs: "estatePropertyType",
                     data: {
@@ -4291,7 +4322,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstatePropertyType/EstatePropertyTypeController.js'
+                                            'cpanelv1/CmsModules/Estate/EstatePropertyType/EstatePropertyTypeController.js'
                                             //  
                                             // 
                                         ]
@@ -4303,7 +4334,7 @@
                 })
                 .state('index.estatepropertyfavorite', {
                     url: "/estatepropertyfavorite",
-                    templateUrl: "cpanelv1/ModuleEstate/EstatePropertyFavorite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Estate/EstatePropertyFavorite/grid.html",
                     controller: "estatePropertyFavoriteController",
                     controllerAs: "estatePropertyFavorite",
                     data: {
@@ -4320,7 +4351,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleEstate/EstatePropertyFavorite/EstatePropertyFavoriteController.js'
+                                            'cpanelv1/CmsModules/Estate/EstatePropertyFavorite/EstatePropertyFavoriteController.js'
                                             //  
                                             // 
                                         ]
@@ -4333,7 +4364,7 @@
                 //-----Vehicle Module-----
                 .state('index.vehiclecontract', {
                     url: "/vehiclecontract",
-                    templateUrl: "cpanelv1/ModuleVehicle/VehicleContract/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehicleContract/grid.html",
                     controller: "vehicleContractController",
                     controllerAs: "vehicleContract",
                     data: {
@@ -4350,7 +4381,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehicleContract/VehicleContractController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehicleContract/VehicleContractController.js'
                                         ]
                                     }
                                 ]);
@@ -4360,7 +4391,7 @@
                 })
                 .state('index.vehiclecontracttype', {
                     url: "/vehiclecontracttype",
-                    templateUrl: "cpanelv1/ModuleVehicle/VehicleContractType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehicleContractType/grid.html",
                     controller: "vehicleContractTypeController",
                     controllerAs: "vehicleContractType",
                     data: {
@@ -4378,7 +4409,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehicleContractType/VehicleContractTypeController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehicleContractType/VehicleContractTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -4388,7 +4419,7 @@
                 })
                 .state('index.vehicleproperty', {
                     url: "/vehicleproperty",
-                    templateUrl: "cpanelv1/ModuleVehicle/VehicleProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehicleProperty/grid.html",
                     controller: "vehiclePropertyController",
                     controllerAs: "vehicleProperty",
                     data: {
@@ -4405,7 +4436,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehicleProperty/VehiclePropertyController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehicleProperty/VehiclePropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -4420,7 +4451,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/ModuleVehicle/VehiclePropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehiclePropertyDetail/grid.html",
                     controller: "vehiclePropertyDetailController",
                     controllerAs: "vehiclePropertyDetail",
                     data: {
@@ -4437,7 +4468,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehiclePropertyDetail/VehiclePropertyDetailController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehiclePropertyDetail/VehiclePropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -4447,7 +4478,7 @@
                 })
                 .state('index.vehiclepropertydetailgroup', {
                     url: "/vehiclepropertydetailgroup",
-                    templateUrl: "cpanelv1/ModuleVehicle/vehiclePropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/vehiclePropertyDetailGroup/grid.html",
                     controller: "vehiclePropertyDetailGroupController",
                     controllerAs: "vehiclePropertyDetailGroup",
                     data: {
@@ -4464,7 +4495,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/vehiclePropertyDetailGroup/vehiclePropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/Vehicle/vehiclePropertyDetailGroup/vehiclePropertyDetailGroupController.js'
                                             //  
                                             // 
                                         ]
@@ -4476,7 +4507,7 @@
                 })
                 .state('index.vehiclepropertytype', {
                     url: "/vehiclepropertytype",
-                    templateUrl: "cpanelv1/ModuleVehicle/VehiclePropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehiclePropertyType/grid.html",
                     controller: "vehiclePropertyTypeController",
                     controllerAs: "vehiclePropertyType",
                     data: {
@@ -4493,7 +4524,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehiclePropertyType/VehiclePropertyTypeController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehiclePropertyType/VehiclePropertyTypeController.js'
                                             //  
                                             // 
                                         ]
@@ -4505,7 +4536,7 @@
                 })
                 .state('index.vehiclepropertyfavorite', {
                     url: "/vehiclepropertyfavorite",
-                    templateUrl: "cpanelv1/ModuleVehicle/VehiclePropertyFavorite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Vehicle/VehiclePropertyFavorite/grid.html",
                     controller: "vehiclePropertyFavoriteController",
                     controllerAs: "vehiclePropertyFavorite",
                     data: {
@@ -4522,7 +4553,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleVehicle/VehiclePropertyFavorite/VehiclePropertyFavoriteController.js'
+                                            'cpanelv1/CmsModules/Vehicle/VehiclePropertyFavorite/VehiclePropertyFavoriteController.js'
                                             //  
                                             // 
                                         ]
@@ -4535,7 +4566,7 @@
                 //-----Job Module-----
                 .state('index.jobcontract', {
                     url: "/jobcontract",
-                    templateUrl: "cpanelv1/ModuleJob/JobContract/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobContract/grid.html",
                     controller: "jobContractController",
                     controllerAs: "jobContract",
                     data: {
@@ -4552,7 +4583,7 @@
                                     'nouislider', 'minicolors', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleJob/JobContract/JobContractController.js'
+                                            'cpanelv1/CmsModules/Job/JobContract/JobContractController.js'
                                         ]
                                     }
                                 ]);
@@ -4562,7 +4593,7 @@
                 })
                 .state('index.jobcontracttype', {
                     url: "/jobcontracttype",
-                    templateUrl: "cpanelv1/ModuleJob/JobContractType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobContractType/grid.html",
                     controller: "jobContractTypeController",
                     controllerAs: "jobContractType",
                     data: {
@@ -4579,7 +4610,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleJob/JobContractType/JobContractTypeController.js'
+                                            'cpanelv1/CmsModules/Job/JobContractType/JobContractTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -4589,7 +4620,7 @@
                 })
                 .state('index.jobproperty', {
                     url: "/jobproperty",
-                    templateUrl: "cpanelv1/ModuleJob/JobProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobProperty/grid.html",
                     controller: "jobPropertyController",
                     controllerAs: "jobProperty",
                     data: {
@@ -4607,7 +4638,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleJob/JobProperty/JobPropertyController.js'
+                                            'cpanelv1/CmsModules/Job/JobProperty/JobPropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -4622,7 +4653,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/ModuleJob/JobPropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobPropertyDetail/grid.html",
                     controller: "jobPropertyDetailController",
                     controllerAs: "jobPropertyDetail",
                     data: {
@@ -4639,7 +4670,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleJob/JobPropertyDetail/JobPropertyDetailController.js'
+                                            'cpanelv1/CmsModules/Job/JobPropertyDetail/JobPropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -4649,7 +4680,7 @@
                 })
                 .state('index.jobpropertydetailgroup', {
                     url: "/jobpropertydetailgroup",
-                    templateUrl: "cpanelv1/ModuleJob/jobPropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/jobPropertyDetailGroup/grid.html",
                     controller: "jobPropertyDetailGroupController",
                     controllerAs: "jobPropertyDetailGroup",
                     data: {
@@ -4667,7 +4698,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleJob/jobPropertyDetailGroup/jobPropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/Job/jobPropertyDetailGroup/jobPropertyDetailGroupController.js'
                                         ]
                                     }
                                 ]);
@@ -4677,7 +4708,7 @@
                 })
                 .state('index.jobpropertytype', {
                     url: "/jobpropertytype",
-                    templateUrl: "cpanelv1/ModuleJob/JobPropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobPropertyType/grid.html",
                     controller: "jobPropertyTypeController",
                     controllerAs: "jobPropertyType",
                     data: {
@@ -4694,7 +4725,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleJob/JobPropertyType/JobPropertyTypeController.js'
+                                            'cpanelv1/CmsModules/Job/JobPropertyType/JobPropertyTypeController.js'
                                             //  
                                             // 
                                         ]
@@ -4706,7 +4737,7 @@
                 })
                 .state('index.jobposition', {
                     url: "/jobposition",
-                    templateUrl: "cpanelv1/ModuleJob/JobPosition/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobPosition/grid.html",
                     controller: "jobPositionController",
                     controllerAs: "jobPosition",
                     data: {
@@ -4722,7 +4753,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleJob/JobPosition/JobPositionController.js'
+                                        'cpanelv1/CmsModules/Job/JobPosition/JobPositionController.js'
                                     ]
                                 }]);
                             }
@@ -4731,7 +4762,7 @@
                 })
                 .state('index.jobcertificate', {
                     url: "/jobcertificate",
-                    templateUrl: "cpanelv1/ModuleJob/JobCertificate/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Job/JobCertificate/grid.html",
                     controller: "jobCertificateController",
                     controllerAs: "jobCertificate",
                     data: {
@@ -4747,7 +4778,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleJob/JobCertificate/JobCertificateController.js'
+                                        'cpanelv1/CmsModules/Job/JobCertificate/JobCertificateController.js'
                                     ]
                                 }]);
                             }
@@ -4757,7 +4788,7 @@
                 //-----Database Module-----
                 .state('index.dbcontent', {
                     url: "/dbcontent",
-                    templateUrl: "cpanelv1/ModuleDatabase/DatabaseContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Database/DatabaseContent/grid.html",
                     controller: "dbContentCtrl",
                     controllerAs: "dbContent",
                     data: {
@@ -4775,7 +4806,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleDatabase/DatabaseContent/DatabaseContents.js'
+                                            'cpanelv1/CmsModules/Database/DatabaseContent/DatabaseContents.js'
                                             //  
                                             // 
                                         ]
@@ -4792,7 +4823,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleProduct/ProductContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductContent/grid.html",
                     controller: "productContentController",
                     controllerAs: "productContent",
                     data: {
@@ -4809,7 +4840,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductContent/Controller.js'
+                                            'cpanelv1/CmsModules/Product/ProductContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -4823,7 +4854,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "summernote", {
                     //                //serie: true,
                     //                files: [
-                    //                    'cpanelv1/ModuleProduct/ProductContent/ProductContents.js'
+                    //                    'cpanelv1/CmsModules/Product/ProductContent/ProductContents.js'
 
                     //                ]
                     //            }
@@ -4834,7 +4865,7 @@
                 })
                 .state('index.productcontentother', {
                     url: "/productcontentother",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductContentOther/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductContentOther/grid.html",
                     controller: "ProductContentOtherCtrl",
                     controllerAs: "ProductContentOther",
                     data: {
@@ -4852,7 +4883,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductContentOther/ProductContentOther.js'
+                                            'cpanelv1/CmsModules/Product/ProductContentOther/ProductContentOther.js'
                                         ]
                                     }
                                 ]);
@@ -4862,7 +4893,7 @@
                 })
                 .state('index.productcontenttag', {
                     url: "/productcontenttag",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductContentTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductContentTag/grid.html",
                     controller: "ProductContentTagCtrl",
                     controllerAs: "ProductContentTag",
                     data: {
@@ -4880,7 +4911,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductContentTag/ProductContentTag.js'
+                                            'cpanelv1/CmsModules/Product/ProductContentTag/ProductContentTag.js'
                                         ]
                                     }
                                 ]);
@@ -4890,7 +4921,7 @@
                 })
                 .state('index.productsharesettingcat', {
                     url: "/productsharesettingcat",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductShareSettingCat/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductShareSettingCat/grid.html",
                     controller: "ProducthareSettingcatCtrl",
                     controllerAs: "ProducthareSettingcat",
                     data: {
@@ -4908,7 +4939,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductShareSettingCat/ProducthareSettingCat.js'
+                                            'cpanelv1/CmsModules/Product/ProductShareSettingCat/ProducthareSettingCat.js'
                                         ]
                                     }
                                 ]);
@@ -4918,7 +4949,7 @@
                 })
                 .state('index.productssharesetting', {
                     url: "/productssharesetting",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductShareSetting/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductShareSetting/grid.html",
                     controller: "productshareSettingCtrl",
                     controllerAs: "productshareSetting",
                     data: {
@@ -4936,7 +4967,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductShareSetting/ProducthareSetting.js'
+                                            'cpanelv1/CmsModules/Product/ProductShareSetting/ProducthareSetting.js'
                                         ]
                                     }
                                 ]);
@@ -4946,7 +4977,7 @@
                 })
                 .state('index.productsharing', {
                     url: "/productsharing",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductSharing/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductSharing/grid.html",
                     controller: "productSharingCtrl",
                     controllerAs: "productSharing",
                     data: {
@@ -4964,7 +4995,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductSharing/ProductSharing.js'
+                                            'cpanelv1/CmsModules/Product/ProductSharing/ProductSharing.js'
                                             //  
                                             //  
                                         ]
@@ -4976,7 +5007,7 @@
                 })
                 .state('index.producttag', {
                     url: "/producttag",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductTag/grid.html",
                     controller: "productContentController",
                     controllerAs: "productContent",
                     data: {
@@ -4994,7 +5025,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductTag/ProductTag.js'
+                                            'cpanelv1/CmsModules/Product/ProductTag/ProductTag.js'
                                             //  
                                             // 
                                         ]
@@ -5007,7 +5038,7 @@
                 //-----Quote Module-----
                 .state('index.quotecontent', {
                     url: "/quotecontent",
-                    templateUrl: "cpanelv1/ModuleQuote/QuoteContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Quote/QuoteContent/grid.html",
                     controller: "quoteContentCtrl",
                     controllerAs: "quoteContent",
                     data: {
@@ -5024,7 +5055,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleQuote/QuoteContent/quoteContents.js'
+                                            'cpanelv1/CmsModules/Quote/QuoteContent/quoteContents.js'
                                         ]
                                     }
                                 ]);
@@ -5035,7 +5066,7 @@
                 //-----Service Module-----
                 .state('index.servicetag', {
                     url: "/servicetag",
-                    templateUrl: "cpanelv1/ModuleService/ServiceTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Service/ServiceTag/grid.html",
                     controller: "serviceContentController",
                     controllerAs: "serviceContent",
                     data: {
@@ -5052,7 +5083,7 @@
                                     'ngJsTree', 'summernote', 'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleService/ServiceTag/serviceTag.js'
+                                            'cpanelv1/CmsModules/Service/ServiceTag/serviceTag.js'
                                         ]
                                     }
                                 ]);
@@ -5066,7 +5097,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleService/ServiceContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Service/ServiceContent/grid.html",
                     controller: "serviceContentController",
                     controllerAs: "serviceContent",
                     data: {
@@ -5083,7 +5114,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleService/ServiceContent/Controller.js'
+                                            'cpanelv1/CmsModules/Service/ServiceContent/Controller.js'
                                         ]
                                     }
                                 ]);
@@ -5097,7 +5128,7 @@
                     //            return $ocLazyLoad.load(["ngTagsInput", "summernote", {
                     //                //serie: true,
                     //                files: [
-                    //                    'cpanelv1/ModuleService/ServiceContent/serviceContents.js'
+                    //                    'cpanelv1/CmsModules/Service/ServiceContent/serviceContents.js'
                     //                ]
                     //            }
                     //            ]);
@@ -5108,7 +5139,7 @@
                 //-----Module Member-----
                 .state('index.memberuser', {
                     url: "/memberuser",
-                    templateUrl: "cpanelv1/ModuleMember/MemberUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberUser/grid.html",
                     controller: "memberUserController",
                     controllerAs: "memberUser",
                     data: {
@@ -5125,7 +5156,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberUser/memberUserController.js'
+                                            'cpanelv1/CmsModules/Member/MemberUser/memberUserController.js'
                                         ]
                                     }
                                 ]);
@@ -5136,7 +5167,7 @@
 
                 .state('index.membergroup', {
                     url: "/membergroup",
-                    templateUrl: "cpanelv1/ModuleMember/MemberGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberGroup/grid.html",
                     controller: "memberGroupController",
                     controllerAs: "memberGroup",
                     data: {
@@ -5153,7 +5184,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberGroup/memberGroupController.js'
+                                            'cpanelv1/CmsModules/Member/MemberGroup/memberGroupController.js'
                                         ]
                                     }
                                 ]);
@@ -5164,7 +5195,7 @@
                 /*.state('index.memberuser',
                     {
                         url: "/memberuser",
-                        templateUrl: "cpanelv1/ModuleMember/MemberUser/grid.html",
+                        templateUrl: "cpanelv1/CmsModules/Member/MemberUser/grid.html",
                         controller: "memberUserController",
                         controllerAs: "memberUser",
                         data: { pageTitle: 'اعضا' },
@@ -5180,7 +5211,7 @@
                                          {
                                             serie: false,
                                             files: [
-                                                'cpanelv1/ModuleMember/MemberUser/memberUserController.js'
+                                                'cpanelv1/CmsModules/Member/MemberUser/memberUserController.js'
                                             ]
                                         }
                                     ]);
@@ -5191,7 +5222,7 @@
                 .state('index.memberusergroup',
                     {
                         url: "/memberusergroup",
-                        templateUrl: "cpanelv1/ModuleMember/MemberUserGroup/grid.html",
+                        templateUrl: "cpanelv1/CmsModules/Member/MemberUserGroup/grid.html",
                         controller: "memberUserGroupController",
                         controllerAs: "memberUserGroup",
                         data: { pageTitle: 'اعضا در گروه' },
@@ -5206,7 +5237,7 @@
                                         {
                                             serie: false,
                                             files: [
-                                                'cpanelv1/ModuleMember/MemberUserGroup/memberUserGroupController.js'
+                                                'cpanelv1/CmsModules/Member/MemberUserGroup/memberUserGroupController.js'
                                             ]
                                         }
                                     ]);
@@ -5216,7 +5247,7 @@
                     })*/
                 .state('index.memberproperty', {
                     url: "/memberproperty",
-                    templateUrl: "cpanelv1/ModuleMember/MemberProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberProperty/grid.html",
                     params: {
                         memberuserId: null
                     },
@@ -5236,7 +5267,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberProperty/MemberPropertyController.js'
+                                            'cpanelv1/CmsModules/Member/MemberProperty/MemberPropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -5251,7 +5282,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/ModuleMember/MemberPropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberPropertyDetail/grid.html",
                     controller: "memberPropertyDetailController",
                     controllerAs: "memberPropertyDetail",
                     data: {
@@ -5268,7 +5299,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberPropertyDetail/MemberPropertyDetailController.js'
+                                            'cpanelv1/CmsModules/Member/MemberPropertyDetail/MemberPropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -5278,7 +5309,7 @@
                 })
                 .state('index.memberpropertydetailgroup', {
                     url: "/memberpropertydetailgroup",
-                    templateUrl: "cpanelv1/ModuleMember/memberPropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/memberPropertyDetailGroup/grid.html",
                     controller: "memberPropertyDetailGroupController",
                     controllerAs: "memberPropertyDetailGroup",
                     data: {
@@ -5295,7 +5326,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMember/memberPropertyDetailGroup/memberPropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/Member/memberPropertyDetailGroup/memberPropertyDetailGroupController.js'
                                             //  
                                             // 
                                         ]
@@ -5307,7 +5338,7 @@
                 })
                 .state('index.memberpropertytype', {
                     url: "/memberpropertytype",
-                    templateUrl: "cpanelv1/ModuleMember/MemberPropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberPropertyType/grid.html",
                     controller: "memberPropertyTypeController",
                     controllerAs: "memberPropertyType",
                     data: {
@@ -5324,7 +5355,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberPropertyType/MemberPropertyTypeController.js'
+                                            'cpanelv1/CmsModules/Member/MemberPropertyType/MemberPropertyTypeController.js'
                                             //  
                                             // 
                                         ]
@@ -5336,7 +5367,7 @@
                 })
                 .state('index.memberpropertytypesite', {
                     url: "/memberpropertytypesite",
-                    templateUrl: "cpanelv1/ModuleMember/MemberPropertyTypeSite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Member/MemberPropertyTypeSite/grid.html",
                     controller: "memberPropertyTypeSiteController",
                     controllerAs: "memberPropertyTypeSite",
                     data: {
@@ -5353,7 +5384,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMember/MemberPropertyTypeSite/MemberPropertyTypeSiteController.js'
+                                            'cpanelv1/CmsModules/Member/MemberPropertyTypeSite/MemberPropertyTypeSiteController.js'
                                             //  
                                             // 
                                         ]
@@ -5366,7 +5397,7 @@
                 //-----Module object-----
                 .state('index.objectuser', {
                     url: "/objectuser",
-                    templateUrl: "cpanelv1/Moduleobject/objectUser/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectUser/grid.html",
                     controller: "objectUserController",
                     controllerAs: "objectUser",
                     data: {
@@ -5383,7 +5414,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectUser/objectUserController.js'
+                                            'cpanelv1/CmsModules/object/objectUser/objectUserController.js'
                                         ]
                                     }
                                 ]);
@@ -5393,7 +5424,7 @@
                 })
                 .state('index.objectgroup', {
                     url: "/objectgroup",
-                    templateUrl: "cpanelv1/Moduleobject/objectGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectGroup/grid.html",
                     controller: "objectGroupController",
                     controllerAs: "objectGroup",
                     data: {
@@ -5410,7 +5441,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectGroup/objectGroupController.js'
+                                            'cpanelv1/CmsModules/object/objectGroup/objectGroupController.js'
                                         ]
                                     }
                                 ]);
@@ -5420,7 +5451,7 @@
                 })
                 .state('index.objectproperty', {
                     url: "/objectproperty",
-                    templateUrl: "cpanelv1/Moduleobject/objectProperty/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectProperty/grid.html",
                     params: {
                         objectuserId: null
                     },
@@ -5440,7 +5471,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectProperty/objectPropertyController.js'
+                                            'cpanelv1/CmsModules/object/objectProperty/objectPropertyController.js'
                                             //  
                                             // 
                                         ]
@@ -5455,7 +5486,7 @@
                     params: {
                         propertyParam: null
                     },
-                    templateUrl: "cpanelv1/Moduleobject/objectPropertyDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectPropertyDetail/grid.html",
                     controller: "objectPropertyDetailController",
                     controllerAs: "objectPropertyDetail",
                     data: {
@@ -5472,7 +5503,7 @@
                                     'angucomplete-alt', {
                                         //serie: false,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectPropertyDetail/objectPropertyDetailController.js'
+                                            'cpanelv1/CmsModules/object/objectPropertyDetail/objectPropertyDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -5482,7 +5513,7 @@
                 })
                 .state('index.objectpropertydetailgroup', {
                     url: "/objectpropertydetailgroup",
-                    templateUrl: "cpanelv1/Moduleobject/objectPropertyDetailGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectPropertyDetailGroup/grid.html",
                     controller: "objectPropertyDetailGroupController",
                     controllerAs: "objectPropertyDetailGroup",
                     data: {
@@ -5499,7 +5530,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectPropertyDetailGroup/objectPropertyDetailGroupController.js'
+                                            'cpanelv1/CmsModules/object/objectPropertyDetailGroup/objectPropertyDetailGroupController.js'
                                             //  
                                             // 
                                         ]
@@ -5511,7 +5542,7 @@
                 })
                 .state('index.objectpropertytype', {
                     url: "/objectpropertytype",
-                    templateUrl: "cpanelv1/Moduleobject/objectPropertyType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/object/objectPropertyType/grid.html",
                     controller: "objectPropertyTypeController",
                     controllerAs: "objectPropertyType",
                     data: {
@@ -5528,7 +5559,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/Moduleobject/objectPropertyType/objectPropertyTypeController.js'
+                                            'cpanelv1/CmsModules/object/objectPropertyType/objectPropertyTypeController.js'
                                             //  
                                             // 
                                         ]
@@ -5541,7 +5572,7 @@
                 //-----Shop Module-----
                 .state('index.shoptag', {
                     url: "/shoptag",
-                    templateUrl: "cpanelv1/ModuleShop/ShopTag/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopTag/grid.html",
                     controller: "shopTagCtrl",
                     controllerAs: "shopTag",
                     data: {
@@ -5559,7 +5590,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopTag/ShopTag.js'
+                                            'cpanelv1/CmsModules/Shop/ShopTag/ShopTag.js'
                                         ]
                                     }
                                 ]);
@@ -5573,7 +5604,7 @@
                         ContentId: null,
                         TitleTag: null
                     },
-                    templateUrl: "cpanelv1/ModuleShop/ShopContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopContent/grid.html",
                     controller: "shopContentController",
                     controllerAs: "shopContent",
                     data: {
@@ -5590,7 +5621,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopContent/shopContentController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopContent/shopContentController.js'
                                         ]
                                     }
                                 ]);
@@ -5603,7 +5634,7 @@
                     params: {
                         PaymentInvoseSale: true
                     },
-                    templateUrl: "cpanelv1/ModuleShop/ShopInvoiceSale/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopInvoiceSale/grid.html",
                     controller: "shopInvoiceSaleController",
                     controllerAs: "shopInvoiceSale",
                     data: {
@@ -5620,7 +5651,7 @@
                                     'angucomplete-alt', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopInvoiceSale/shopInvoiceSaleController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopInvoiceSale/shopInvoiceSaleController.js'
                                         ]
                                     }
                                 ]);
@@ -5633,7 +5664,7 @@
                     params: {
                         PaymentInvoseSale: true
                     },
-                    templateUrl: "cpanelv1/ModuleShop/shopCart/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/shopCart/grid.html",
                     controller: "shopCartController",
                     controllerAs: "shopCart",
                     data: {
@@ -5650,7 +5681,7 @@
                                     'angucomplete-alt', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/shopCart/shopCartController.js'
+                                            'cpanelv1/CmsModules/Shop/shopCart/shopCartController.js'
                                         ]
                                     }
                                 ]);
@@ -5663,7 +5694,7 @@
                     params: {
                         invoiceId: 0
                     },
-                    templateUrl: "cpanelv1/ModuleShop/ShopInvoiceSaleDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopInvoiceSaleDetail/grid.html",
                     controller: "shopInvoiceSaleDetailController",
                     controllerAs: "shopInvoiceSaleDetail",
                     data: {
@@ -5680,7 +5711,7 @@
                                     'angucomplete-alt', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopInvoiceSaleDetail/shopInvoiceSaleDetailController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopInvoiceSaleDetail/shopInvoiceSaleDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -5693,7 +5724,7 @@
                     params: {
                         invoiceId: 0
                     },
-                    templateUrl: "cpanelv1/ModuleShop/ShopInvoiceSaleDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopInvoiceSaleDetail/grid.html",
                     controller: "shopInvoiceSaleDetailController",
                     controllerAs: "shopInvoiceSaleDetail",
                     data: {
@@ -5710,7 +5741,7 @@
                                     'angucomplete-alt', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopInvoiceSaleDetail/shopInvoiceSaleDetailController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopInvoiceSaleDetail/shopInvoiceSaleDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -5720,7 +5751,7 @@
                 })
                 .state("index.shopproductcombine", {
                     url: "/shopproductcombine",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProductCombine/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProductCombine/grid.html",
                     controller: "shopProductCombineController",
                     controllerAs: "shopCombine",
                     data: {
@@ -5737,7 +5768,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopProductCombine/shopProductCombineController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopProductCombine/shopProductCombineController.js'
                                         ]
                                     }
                                 ]);
@@ -5747,7 +5778,7 @@
                 })
                 .state("index.shopproductitem", {
                     url: "/shopproductitem",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProductItem/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProductItem/grid.html",
                     controller: "shopProductItemController",
                     controllerAs: "shopItem",
                     data: {
@@ -5764,7 +5795,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopProductItem/shopProductItemController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopProductItem/shopProductItemController.js'
                                         ]
                                     }
                                 ]);
@@ -5774,7 +5805,7 @@
                 })
                 .state("index.shopproductprocess", {
                     url: "/shopproductprocess",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProductProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProductProcess/grid.html",
                     controller: "shopProductProcessController",
                     controllerAs: "shopProcess",
                     data: {
@@ -5790,7 +5821,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/ShopProductProcess/shopProductProcessController.js'
+                                        'cpanelv1/CmsModules/Shop/ShopProductProcess/shopProductProcessController.js'
                                     ]
                                 });
                             }
@@ -5799,7 +5830,7 @@
                 })
                 .state("index.shopproductservice", {
                     url: "/shopproductservice",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProductService/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProductService/grid.html",
                     controller: "shopProductServiceController",
                     controllerAs: "shopService",
                     data: {
@@ -5815,7 +5846,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/ShopProductService/shopProductServiceController.js'
+                                        'cpanelv1/CmsModules/Shop/ShopProductService/shopProductServiceController.js'
                                     ]
                                 });
                             }
@@ -5824,7 +5855,7 @@
                 })
                 .state("index.shopproductsaleprice", {
                     url: "/shopproductsaleprice",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProductSalePrice/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProductSalePrice/grid.html",
                     controller: "productSalePriceController",
                     controllerAs: "shopSalePrice",
                     data: {
@@ -5840,7 +5871,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/ShopProductSalePrice/shopProductSalePriceController.js'
+                                        'cpanelv1/CmsModules/Shop/ShopProductSalePrice/shopProductSalePriceController.js'
                                     ]
                                 });
                             }
@@ -5849,7 +5880,7 @@
                 })
                 .state("index.shopinvoicesaleworkflow", {
                     url: "/shopinvoicesaleworkflow",
-                    templateUrl: "cpanelv1/ModuleShop/shopInvoiceSaleWorkFlow/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/shopInvoiceSaleWorkFlow/grid.html",
                     controller: "shopInvoiceSaleWorkFlowController",
                     controllerAs: "shopInvoiceSaleWorkFlow",
                     data: {
@@ -5865,7 +5896,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/shopInvoiceSaleWorkFlow/shopInvoiceSaleWorkFlowController.js'
+                                        'cpanelv1/CmsModules/Shop/shopInvoiceSaleWorkFlow/shopInvoiceSaleWorkFlowController.js'
                                     ]
                                 });
                             }
@@ -5874,7 +5905,7 @@
                 })
                 .state("index.shopproductfileserial", {
                     url: "/shopproductfileserial",
-                    templateUrl: "cpanelv1/ModuleShop/shopProductFileSerial/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/shopProductFileSerial/grid.html",
                     controller: "shopProductFileSerialController",
                     controllerAs: "shopProductFileSerial",
                     data: {
@@ -5890,7 +5921,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/shopProductFileSerial/shopProductFileSerialController.js'
+                                        'cpanelv1/CmsModules/Shop/shopProductFileSerial/shopProductFileSerialController.js'
                                     ]
                                 });
                             }
@@ -5899,7 +5930,7 @@
                 })
                 .state("index.shopprocesscategory", {
                     url: "/shopprocesscategory",
-                    templateUrl: "cpanelv1/ModuleShop/shopProcessCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/shopProcessCategory/grid.html",
                     controller: "shopProcessCategoryController",
                     controllerAs: "shopProcessCategory",
                     data: {
@@ -5915,7 +5946,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleShop/shopProcessCategory/shopProcessCategoryController.js'
+                                        'cpanelv1/CmsModules/Shop/shopProcessCategory/shopProcessCategoryController.js'
                                     ]
                                 });
                             }
@@ -5924,7 +5955,7 @@
                 })
                 .state('index.shopprocess', {
                     url: "/shopprocess",
-                    templateUrl: "cpanelv1/ModuleShop/shopProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/shopProcess/grid.html",
                     params: {
                         sourceid: null
                     },
@@ -5944,7 +5975,7 @@
                                     'treeControl', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopProcess/shopProcessController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopProcess/shopProcessController.js'
                                         ]
                                     }
                                 ]);
@@ -5954,7 +5985,7 @@
                 })
                 .state('index.shopprocessvalue', {
                     url: "/shopprocessvalue",
-                    templateUrl: "cpanelv1/ModuleShop/ShopProcessValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopProcessValue/grid.html",
                     params: {
                         sourceid: null,
                         appid: null,
@@ -5976,7 +6007,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopProcessValue/ShopProcessValueController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopProcessValue/ShopProcessValueController.js'
                                         ]
                                     }
                                 ]);
@@ -5987,7 +6018,7 @@
                 //---------Parameter--------
                 .state("index.articlecontentparametertype", {
                     url: "/articlecontentparametertype",
-                    templateUrl: "cpanelv1/Modulearticle/articleContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/article/articleContentParameterType/grid.html",
                     controller: "articleContentParameterTypeController",
                     controllerAs: "articleContentParameterType",
                     data: {
@@ -6003,7 +6034,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulearticle/articleContentParameterType/articleContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/article/articleContentParameterType/articleContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6012,7 +6043,7 @@
                 })
                 .state("index.articlecontentparameter", {
                     url: "/articlecontentparameter",
-                    templateUrl: "cpanelv1/Modulearticle/articleContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/article/articleContentParameter/grid.html",
                     controller: "articleContentParameterController",
                     controllerAs: "articleContentParameter",
                     data: {
@@ -6028,7 +6059,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulearticle/articleContentParameter/articleContentParameterController.js'
+                                        'cpanelv1/CmsModules/article/articleContentParameter/articleContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6037,7 +6068,7 @@
                 })
                 .state("index.articlecontentandparametervalue", {
                     url: "/articlecontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulearticle/articleContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/article/articleContentAndParameterValue/grid.html",
                     controller: "articleContentAndParameterValueController",
                     controllerAs: "articleContentAndParameterValue",
                     data: {
@@ -6053,7 +6084,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulearticle/articleContentAndParameterValue/articleContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/article/articleContentAndParameterValue/articleContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6062,7 +6093,7 @@
                 })
                 .state("index.blogcontentparametertype", {
                     url: "/blogcontentparametertype",
-                    templateUrl: "cpanelv1/Moduleblog/blogContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/blog/blogContentParameterType/grid.html",
                     controller: "blogContentParameterTypeController",
                     controllerAs: "blogContentParameterType",
                     data: {
@@ -6078,7 +6109,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleblog/blogContentParameterType/blogContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/blog/blogContentParameterType/blogContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6087,7 +6118,7 @@
                 })
                 .state("index.blogcontentparameter", {
                     url: "/blogcontentparameter",
-                    templateUrl: "cpanelv1/Moduleblog/blogContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/blog/blogContentParameter/grid.html",
                     controller: "blogContentParameterController",
                     controllerAs: "blogContentParameter",
                     data: {
@@ -6103,7 +6134,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleblog/blogContentParameter/blogContentParameterController.js'
+                                        'cpanelv1/CmsModules/blog/blogContentParameter/blogContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6112,7 +6143,7 @@
                 })
                 .state("index.blogcontentandparametervalue", {
                     url: "/blogcontentandparametervalue",
-                    templateUrl: "cpanelv1/Moduleblog/blogContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/blog/blogContentAndParameterValue/grid.html",
                     controller: "blogContentAndParameterValueController",
                     controllerAs: "blogContentAndParameterValue",
                     data: {
@@ -6128,7 +6159,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleblog/blogContentAndParameterValue/blogContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/blog/blogContentAndParameterValue/blogContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6137,7 +6168,7 @@
                 })
                 .state("index.biographycontentparametertype", {
                     url: "/biographycontentparametertype",
-                    templateUrl: "cpanelv1/Modulebiography/biographyContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/biography/biographyContentParameterType/grid.html",
                     controller: "biographyContentParameterTypeController",
                     controllerAs: "biographyContentParameterType",
                     data: {
@@ -6153,7 +6184,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulebiography/biographyContentParameterType/biographyContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/biography/biographyContentParameterType/biographyContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6162,7 +6193,7 @@
                 })
                 .state("index.biographycontentparameter", {
                     url: "/biographycontentparameter",
-                    templateUrl: "cpanelv1/Modulebiography/biographyContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/biography/biographyContentParameter/grid.html",
                     controller: "biographyContentParameterController",
                     controllerAs: "biographyContentParameter",
                     data: {
@@ -6178,7 +6209,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulebiography/biographyContentParameter/biographyContentParameterController.js'
+                                        'cpanelv1/CmsModules/biography/biographyContentParameter/biographyContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6187,7 +6218,7 @@
                 })
                 .state("index.biographycontentandparametervalue", {
                     url: "/biographycontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulebiography/biographyContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/biography/biographyContentAndParameterValue/grid.html",
                     controller: "biographyContentAndParameterValueController",
                     controllerAs: "biographyContentAndParameterValue",
                     data: {
@@ -6203,7 +6234,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulebiography/biographyContentAndParameterValue/biographyContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/biography/biographyContentAndParameterValue/biographyContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6212,7 +6243,7 @@
                 })
                 .state("index.chartcontentparametertype", {
                     url: "/chartcontentparametertype",
-                    templateUrl: "cpanelv1/Modulechart/chartContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/chart/chartContentParameterType/grid.html",
                     controller: "chartContentParameterTypeController",
                     controllerAs: "chartContentParameterType",
                     data: {
@@ -6228,7 +6259,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulechart/chartContentParameterType/chartContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/chart/chartContentParameterType/chartContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6237,7 +6268,7 @@
                 })
                 .state("index.chartcontentparameter", {
                     url: "/chartcontentparameter",
-                    templateUrl: "cpanelv1/Modulechart/chartContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/chart/chartContentParameter/grid.html",
                     controller: "chartContentParameterController",
                     controllerAs: "chartContentParameter",
                     data: {
@@ -6253,7 +6284,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulechart/chartContentParameter/chartContentParameterController.js'
+                                        'cpanelv1/CmsModules/chart/chartContentParameter/chartContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6262,7 +6293,7 @@
                 })
                 .state("index.chartcontentandparametervalue", {
                     url: "/chartcontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulechart/chartContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/chart/chartContentAndParameterValue/grid.html",
                     controller: "chartContentAndParameterValueController",
                     controllerAs: "chartContentAndParameterValue",
                     data: {
@@ -6278,7 +6309,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulechart/chartContentAndParameterValue/chartContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/chart/chartContentAndParameterValue/chartContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6287,7 +6318,7 @@
                 })
                 .state("index.campaigncontentparametertype", {
                     url: "/campaigncontentparametertype",
-                    templateUrl: "cpanelv1/Modulecampaign/campaignContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/campaign/campaignContentParameterType/grid.html",
                     controller: "campaignContentParameterTypeController",
                     controllerAs: "campaignContentParameterType",
                     data: {
@@ -6303,7 +6334,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulecampaign/campaignContentParameterType/campaignContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/campaign/campaignContentParameterType/campaignContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6312,7 +6343,7 @@
                 })
                 .state("index.campaigncontentparameter", {
                     url: "/campaigncontentparameter",
-                    templateUrl: "cpanelv1/Modulecampaign/campaignContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/campaign/campaignContentParameter/grid.html",
                     controller: "campaignContentParameterController",
                     controllerAs: "campaignContentParameter",
                     data: {
@@ -6328,7 +6359,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulecampaign/campaignContentParameter/campaignContentParameterController.js'
+                                        'cpanelv1/CmsModules/campaign/campaignContentParameter/campaignContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6337,7 +6368,7 @@
                 })
                 .state("index.campaigncontentandparametervalue", {
                     url: "/campaigncontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulecampaign/campaignContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/campaign/campaignContentAndParameterValue/grid.html",
                     controller: "campaignContentAndParameterValueController",
                     controllerAs: "campaignContentAndParameterValue",
                     data: {
@@ -6353,7 +6384,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulecampaign/campaignContentAndParameterValue/campaignContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/campaign/campaignContentAndParameterValue/campaignContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6362,7 +6393,7 @@
                 })
                 .state("index.newscontentparametertype", {
                     url: "/newscontentparametertype",
-                    templateUrl: "cpanelv1/Modulenews/newsContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/news/newsContentParameterType/grid.html",
                     controller: "newsContentParameterTypeController",
                     controllerAs: "newsContentParameterType",
                     data: {
@@ -6378,7 +6409,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulenews/newsContentParameterType/newsContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/news/newsContentParameterType/newsContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6387,7 +6418,7 @@
                 })
                 .state("index.newscontentparameter", {
                     url: "/newscontentparameter",
-                    templateUrl: "cpanelv1/Modulenews/newsContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/news/newsContentParameter/grid.html",
                     controller: "newsContentParameterController",
                     controllerAs: "newsContentParameter",
                     data: {
@@ -6403,7 +6434,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulenews/newsContentParameter/newsContentParameterController.js'
+                                        'cpanelv1/CmsModules/news/newsContentParameter/newsContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6412,7 +6443,7 @@
                 })
                 .state("index.newscontentandparametervalue", {
                     url: "/newscontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulenews/newsContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/news/newsContentAndParameterValue/grid.html",
                     controller: "newsContentAndParameterValueController",
                     controllerAs: "newsContentAndParameterValue",
                     data: {
@@ -6428,7 +6459,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulenews/newsContentAndParameterValue/newsContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/news/newsContentAndParameterValue/newsContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6437,7 +6468,7 @@
                 })
                 .state("index.pollingcontentparametertype", {
                     url: "/pollingcontentparametertype",
-                    templateUrl: "cpanelv1/Modulepolling/pollingContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/polling/pollingContentParameterType/grid.html",
                     controller: "pollingContentParameterTypeController",
                     controllerAs: "pollingContentParameterType",
                     data: {
@@ -6453,7 +6484,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulepolling/pollingContentParameterType/pollingContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/polling/pollingContentParameterType/pollingContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6462,7 +6493,7 @@
                 })
                 .state("index.pollingcontentparameter", {
                     url: "/pollingcontentparameter",
-                    templateUrl: "cpanelv1/Modulepolling/pollingContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/polling/pollingContentParameter/grid.html",
                     controller: "pollingContentParameterController",
                     controllerAs: "pollingContentParameter",
                     data: {
@@ -6478,7 +6509,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulepolling/pollingContentParameter/pollingContentParameterController.js'
+                                        'cpanelv1/CmsModules/polling/pollingContentParameter/pollingContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6487,7 +6518,7 @@
                 })
                 .state("index.pollingcontentandparametervalue", {
                     url: "/pollingcontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulepolling/pollingContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/polling/pollingContentAndParameterValue/grid.html",
                     controller: "pollingContentAndParameterValueController",
                     controllerAs: "pollingContentAndParameterValue",
                     data: {
@@ -6503,7 +6534,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulepolling/pollingContentAndParameterValue/pollingContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/polling/pollingContentAndParameterValue/pollingContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6512,7 +6543,7 @@
                 })
                 .state("index.productcontentparametertype", {
                     url: "/productcontentparametertype",
-                    templateUrl: "cpanelv1/Moduleproduct/productContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/product/productContentParameterType/grid.html",
                     controller: "productContentParameterTypeController",
                     controllerAs: "productContentParameterType",
                     data: {
@@ -6528,7 +6559,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleproduct/productContentParameterType/productContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/product/productContentParameterType/productContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6537,7 +6568,7 @@
                 })
                 .state("index.productcontentparameter", {
                     url: "/productcontentparameter",
-                    templateUrl: "cpanelv1/Moduleproduct/productContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/product/productContentParameter/grid.html",
                     controller: "productContentParameterController",
                     controllerAs: "productContentParameter",
                     data: {
@@ -6553,7 +6584,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleproduct/productContentParameter/productContentParameterController.js'
+                                        'cpanelv1/CmsModules/product/productContentParameter/productContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6562,7 +6593,7 @@
                 })
                 .state("index.productcontentandparametervalue", {
                     url: "/productcontentandparametervalue",
-                    templateUrl: "cpanelv1/Moduleproduct/productContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/product/productContentAndParameterValue/grid.html",
                     controller: "productContentAndParameterValueController",
                     controllerAs: "productContentAndParameterValue",
                     data: {
@@ -6578,7 +6609,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleproduct/productContentAndParameterValue/productContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/product/productContentAndParameterValue/productContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6587,7 +6618,7 @@
                 })
                 .state("index.quotecontentparametertype", {
                     url: "/quotecontentparametertype",
-                    templateUrl: "cpanelv1/Modulequote/quoteContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/quote/quoteContentParameterType/grid.html",
                     controller: "quoteContentParameterTypeController",
                     controllerAs: "quoteContentParameterType",
                     data: {
@@ -6603,7 +6634,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulequote/quoteContentParameterType/quoteContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/quote/quoteContentParameterType/quoteContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6612,7 +6643,7 @@
                 })
                 .state("index.quotecontentparameter", {
                     url: "/quotecontentparameter",
-                    templateUrl: "cpanelv1/Modulequote/quoteContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/quote/quoteContentParameter/grid.html",
                     controller: "quoteContentParameterController",
                     controllerAs: "quoteContentParameter",
                     data: {
@@ -6628,7 +6659,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulequote/quoteContentParameter/quoteContentParameterController.js'
+                                        'cpanelv1/CmsModules/quote/quoteContentParameter/quoteContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6637,7 +6668,7 @@
                 })
                 .state("index.quotecontentandparametervalue", {
                     url: "/quotecontentandparametervalue",
-                    templateUrl: "cpanelv1/Modulequote/quoteContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/quote/quoteContentAndParameterValue/grid.html",
                     controller: "quoteContentAndParameterValueController",
                     controllerAs: "quoteContentAndParameterValue",
                     data: {
@@ -6653,7 +6684,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Modulequote/quoteContentAndParameterValue/quoteContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/quote/quoteContentAndParameterValue/quoteContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6662,7 +6693,7 @@
                 })
                 .state("index.servicecontentparametertype", {
                     url: "/servicecontentparametertype",
-                    templateUrl: "cpanelv1/Moduleservice/serviceContentParameterType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/service/serviceContentParameterType/grid.html",
                     controller: "serviceContentParameterTypeController",
                     controllerAs: "serviceContentParameterType",
                     data: {
@@ -6678,7 +6709,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleservice/serviceContentParameterType/serviceContentParameterTypeController.js'
+                                        'cpanelv1/CmsModules/service/serviceContentParameterType/serviceContentParameterTypeController.js'
                                     ]
                                 });
                             }
@@ -6687,7 +6718,7 @@
                 })
                 .state("index.servicecontentparameter", {
                     url: "/servicecontentparameter",
-                    templateUrl: "cpanelv1/Moduleservice/serviceContentParameter/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/service/serviceContentParameter/grid.html",
                     controller: "serviceContentParameterController",
                     controllerAs: "serviceContentParameter",
                     data: {
@@ -6703,7 +6734,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleservice/serviceContentParameter/serviceContentParameterController.js'
+                                        'cpanelv1/CmsModules/service/serviceContentParameter/serviceContentParameterController.js'
                                     ]
                                 });
                             }
@@ -6712,7 +6743,7 @@
                 })
                 .state("index. ", {
                     url: "/servicecontentandparametervalue",
-                    templateUrl: "cpanelv1/Moduleservice/serviceContentAndParameterValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/service/serviceContentAndParameterValue/grid.html",
                     controller: "serviceContentAndParameterValueController",
                     controllerAs: "serviceContentAndParameterValue",
                     data: {
@@ -6728,7 +6759,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/Moduleservice/serviceContentAndParameterValue/serviceContentAndParameterValueController.js'
+                                        'cpanelv1/CmsModules/service/serviceContentAndParameterValue/serviceContentAndParameterValueController.js'
                                     ]
                                 });
                             }
@@ -6738,7 +6769,7 @@
                 //-----SiteAccounting Module-----
                 .state("index.siteaccountingdocument", {
                     url: "/siteaccountingdocument",
-                    templateUrl: "cpanelv1/ModuleSiteAccounting/SiteAccountingDocument/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocument/grid.html",
                     controller: "siteSccountingDocumentController",
                     controllerAs: "siteAccDocument",
                     data: {
@@ -6754,7 +6785,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSiteAccounting/SiteAccountingDocument/siteAccountingDocumentController.js'
+                                        'cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocument/siteAccountingDocumentController.js'
                                     ]
                                 });
                             }
@@ -6763,7 +6794,7 @@
                 })
                 .state("index.siteaccountingdocumentdetail", {
                     url: "/siteaccountingdocumentdetail",
-                    templateUrl: "cpanelv1/ModuleSiteAccounting/SiteAccountingDocumentDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocumentDetail/grid.html",
                     controller: "siteAccountingDocumentDetailController",
                     controllerAs: "siteAccDocumentDetail",
                     data: {
@@ -6779,7 +6810,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSiteAccounting/SiteAccountingDocumentDetail/siteAccountingDocumentDetailController.js'
+                                        'cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocumentDetail/siteAccountingDocumentDetailController.js'
                                     ]
                                 }]);
                             }
@@ -6791,7 +6822,7 @@
                     params: {
                         invoiceId: 0
                     },
-                    templateUrl: "cpanelv1/ModuleSiteAccounting/SiteAccountingDocumentDetailType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocumentDetailType/grid.html",
                     controller: "siteAccountingDocumentDetailTypeController",
                     controllerAs: "siteAccDocumentDetailType",
                     data: {
@@ -6807,7 +6838,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleSiteAccounting/SiteAccountingDocumentDetailType/siteAccountingDocumentDetailTypeController.js'
+                                        'cpanelv1/CmsModules/SiteAccounting/SiteAccountingDocumentDetailType/siteAccountingDocumentDetailTypeController.js'
                                     ]
                                 }]);
                             }
@@ -6817,7 +6848,7 @@
                 //-----BankPayment Module-----
                 .state("index.bankpaymentprivatesiteconfig", {
                     url: "/bankpaymentprivatesiteconfig",
-                    templateUrl: "cpanelv1/ModuleBankPayment/BankPaymentPrivateSiteConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/BankPayment/BankPaymentPrivateSiteConfig/grid.html",
                     params: {
                         publicConfigId: null
                     },
@@ -6838,7 +6869,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBankPayment/BankPaymentPrivateSiteConfig/bankPaymentPrivateSiteConfig.js'
+                                            'cpanelv1/CmsModules/BankPayment/BankPaymentPrivateSiteConfig/bankPaymentPrivateSiteConfig.js'
                                         ]
                                     }
                                 ]);
@@ -6848,7 +6879,7 @@
                 })
                 .state("index.bankpaymentpublicconfig", {
                     url: "/bankpaymentpublicconfig",
-                    templateUrl: "cpanelv1/ModuleBankPayment/BankPaymentPublicConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/BankPayment/BankPaymentPublicConfig/grid.html",
                     controller: "bankPaymentPublicConfigController",
                     controllerAs: "publicConfig",
                     data: {
@@ -6865,7 +6896,7 @@
                                     'treeControl', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBankPayment/BankPaymentPublicConfig/bankPaymentPublicConfig.js'
+                                            'cpanelv1/CmsModules/BankPayment/BankPaymentPublicConfig/bankPaymentPublicConfig.js'
                                         ]
                                     }
                                 ]);
@@ -6875,7 +6906,7 @@
                 })
                 .state("index.bankpaymenttransc", {
                     url: "/bankpaymenttransc",
-                    templateUrl: "cpanelv1/ModuleBankPayment/BankPaymentTransaction/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/BankPayment/BankPaymentTransaction/grid.html",
                     controller: "bankPaymentTranscController",
                     controllerAs: "transc",
                     params: {
@@ -6896,7 +6927,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBankPayment/BankPaymentTransaction/bankPaymentTransaction.js'
+                                            'cpanelv1/CmsModules/BankPayment/BankPaymentTransaction/bankPaymentTransaction.js'
                                         ]
                                     }
                                 ]);
@@ -6906,7 +6937,7 @@
                 })
                 .state("index.bankpaymenttransclog", {
                     url: "/bankpaymenttransclog",
-                    templateUrl: "cpanelv1/ModuleBankPayment/BankPaymentTransactionLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/BankPayment/BankPaymentTransactionLog/grid.html",
                     controller: "bankPaymentTranscLogController",
                     controllerAs: "trancsLog",
                     data: {
@@ -6923,7 +6954,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleBankPayment/BankPaymentTransactionLog/bankPaymentTransactionLog.js'
+                                            'cpanelv1/CmsModules/BankPayment/BankPaymentTransactionLog/bankPaymentTransactionLog.js'
                                         ]
                                     }
                                 ]);
@@ -6934,7 +6965,7 @@
                 //-----Email Module-----
                 .state("index.emailoutboxcontent", {
                     url: "/emailoutboxcontent",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailOutBoxContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailOutBoxContent/grid.html",
                     controller: "emailOutBoxContentCtrl",
                     controllerAs: "emailOutBoxContent",
                     data: {
@@ -6952,7 +6983,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailOutBoxContent/emailOutBoxContent.js'
+                                            'cpanelv1/CmsModules/Email/EmailOutBoxContent/emailOutBoxContent.js'
                                         ]
                                     }
                                 ]);
@@ -6962,7 +6993,7 @@
                 })
                 .state("index.emailapipathcompany", {
                     url: "/emailapipathcompany",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailApiPathCompany/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailApiPathCompany/grid.html",
                     controller: "emailapipathcompanyCtrl",
                     controllerAs: "emailapipathcompany",
                     data: {
@@ -6980,7 +7011,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailApiPathCompany/EmailApiPathCompany.js'
+                                            'cpanelv1/CmsModules/Email/EmailApiPathCompany/EmailApiPathCompany.js'
                                         ]
                                     }
                                 ]);
@@ -6990,7 +7021,7 @@
                 })
                 .state("index.emailapipathpriceservice", {
                     url: "/emailapipathpriceservice",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailApiPathPriceService/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailApiPathPriceService/grid.html",
                     params: {
                         PrivateSiteConfigId: null
                     },
@@ -7011,7 +7042,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailApiPathPriceService/EmailApiPathPriceService.js'
+                                            'cpanelv1/CmsModules/Email/EmailApiPathPriceService/EmailApiPathPriceService.js'
                                         ]
                                     }
                                 ]);
@@ -7021,7 +7052,7 @@
                 })
                 .state("index.emailoutboxreciver", {
                     url: "/emailoutboxreciver",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailOutBoxReciver/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailOutBoxReciver/grid.html",
                     params: {
                         OutBoxContentId: null
                     },
@@ -7042,7 +7073,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailOutBoxReciver/emailOutBoxReciver.js'
+                                            'cpanelv1/CmsModules/Email/EmailOutBoxReciver/emailOutBoxReciver.js'
                                         ]
                                     }
                                 ]);
@@ -7052,7 +7083,7 @@
                 })
                 .state("index.emailoutboxreciverlock", {
                     url: "/emailoutboxreciverlock",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailOutBoxReciverLock/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailOutBoxReciverLock/grid.html",
                     controller: "emailOutBoxReciverLockController",
                     controllerAs: "emailOutBoxReciverLock",
                     data: {
@@ -7070,7 +7101,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailOutBoxReciverLock/EmailOutBoxReciverLock.js'
+                                            'cpanelv1/CmsModules/Email/EmailOutBoxReciverLock/EmailOutBoxReciverLock.js'
                                         ]
                                     }
                                 ]);
@@ -7080,7 +7111,7 @@
                 })
                 .state("index.emailprivatesiteconfig", {
                     url: "/emailprivatesiteconfig",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailPrivateSiteConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailPrivateSiteConfig/grid.html",
                     params: {
                         publicConfigId: null
                     },
@@ -7102,7 +7133,7 @@
                                     {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailPrivateSiteConfig/emailPrivateSiteConfig.js'
+                                            'cpanelv1/CmsModules/Email/EmailPrivateSiteConfig/emailPrivateSiteConfig.js'
                                         ]
                                     }
                                 ]);
@@ -7112,7 +7143,7 @@
                 })
                 .state("index.emailpublicconfig", {
                     url: "/emailpublicconfig",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailPublicConfig/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailPublicConfig/grid.html",
                     controller: "emailPublicConfigCtrl",
                     controllerAs: "emailPublicConfig",
                     data: {
@@ -7129,7 +7160,7 @@
                                     'treeControl', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailPublicConfig/emailPublicConfig.js'
+                                            'cpanelv1/CmsModules/Email/EmailPublicConfig/emailPublicConfig.js'
                                         ]
                                     }
                                 ]);
@@ -7139,7 +7170,7 @@
                 })
                 .state("index.emailprocesstask", {
                     url: "/emailprocesstask",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailProcessTask/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailProcessTask/grid.html",
                     controller: "emailProcessTaskCtrl",
                     controllerAs: "emailProcessTask",
                     params: {
@@ -7159,7 +7190,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailProcessTask/emailProcessTask.js'
+                                            'cpanelv1/CmsModules/Email/EmailProcessTask/emailProcessTask.js'
                                         ]
                                     }
                                 ]);
@@ -7169,7 +7200,7 @@
                 })
                 .state("index.emailprocesstasklog", {
                     url: "/emailprocesstasklog",
-                    templateUrl: "cpanelv1/ModuleEmail/EmailProcessTaskLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Email/EmailProcessTaskLog/grid.html",
                     controller: "emailProcessTaskLogCtrl",
                     controllerAs: "emailProcessTaskLog",
                     data: {
@@ -7186,7 +7217,7 @@
                                     'angucomplete-alt', {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleEmail/EmailProcessTaskLog/emailProcessTaskLog.js'
+                                            'cpanelv1/CmsModules/Email/EmailProcessTaskLog/emailProcessTaskLog.js'
                                         ]
                                     }
                                 ]);
@@ -7197,7 +7228,7 @@
                 //-----Module TaskScheduler-----
                 .state('index.taskschedulerprocesscategory', {
                     url: "/taskschedulerprocesscategory",
-                    templateUrl: "cpanelv1/ModuleTaskScheduler/TaskSchedulerProcessCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcessCategory/grid.html",
                     controller: "taskSchedulerProcessCategoryController",
                     controllerAs: "taskSchedulerProcessCategory",
                     data: {
@@ -7214,7 +7245,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTaskScheduler/TaskSchedulerProcessCategory/TaskSchedulerProcessCategoryController.js'
+                                            'cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcessCategory/TaskSchedulerProcessCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -7224,7 +7255,7 @@
                 })
                 .state('index.taskschedulerprocess', {
                     url: "/taskschedulerprocess",
-                    templateUrl: "cpanelv1/ModuleTaskScheduler/TaskSchedulerProcess/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcess/grid.html",
                     params: {
                         sourceid: null
                     },
@@ -7244,7 +7275,7 @@
                                     'treeControl', {
                                         serie: true,
                                         files: [
-                                            'cpanelv1/ModuleTaskScheduler/TaskSchedulerProcess/TaskSchedulerProcessController.js'
+                                            'cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcess/TaskSchedulerProcessController.js'
                                         ]
                                     }
                                 ]);
@@ -7254,7 +7285,7 @@
                 })
                 .state('index.taskschedulerprocessvalue', {
                     url: "/taskschedulerprocessvalue",
-                    templateUrl: "cpanelv1/ModuleTaskScheduler/TaskSchedulerProcessValue/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcessValue/grid.html",
                     params: {
                         sourceid: null,
                         appid: null,
@@ -7276,7 +7307,7 @@
                                     'angucomplete-alt', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleTaskScheduler/TaskSchedulerProcessValue/TaskSchedulerProcessValueController.js'
+                                            'cpanelv1/CmsModules/TaskScheduler/TaskSchedulerProcessValue/TaskSchedulerProcessValueController.js'
                                         ]
                                     }
                                 ]);
@@ -7286,7 +7317,7 @@
                 })
                 .state("index.taskscheduleschedule", {
                     url: "/taskscheduleschedule",
-                    templateUrl: "cpanelv1/ModuleTaskScheduler/TaskSchedulerSchedule/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/TaskScheduler/TaskSchedulerSchedule/grid.html",
                     controller: "scheduleController",
                     controllerAs: "schedule",
                     data: {
@@ -7302,7 +7333,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleTaskScheduler/TaskSchedulerSchedule/taskSchedulerScheduleController.js'
+                                        'cpanelv1/CmsModules/TaskScheduler/TaskSchedulerSchedule/taskSchedulerScheduleController.js'
                                     ]
                                 });
                             }
@@ -7311,7 +7342,7 @@
                 })
                 .state("index.taskscheduletask", {
                     url: "/taskscheduletask",
-                    templateUrl: "cpanelv1/ModuleTaskScheduler/TaskSchedulerTask/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/TaskScheduler/TaskSchedulerTask/grid.html",
                     controller: "taskscheduleTaskController",
                     controllerAs: "task",
                     data: {
@@ -7327,7 +7358,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleTaskScheduler/TaskSchedulerTask/taskSchedulerTaskController.js'
+                                        'cpanelv1/CmsModules/TaskScheduler/TaskSchedulerTask/taskSchedulerTaskController.js'
                                     ]
                                 });
                             }
@@ -7337,7 +7368,7 @@
                 //-----Module Phonebook-----
                 .state('index.phonebookcountry', {
                     url: "/phonebookcountry",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBookCountry/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBookCountry/grid.html",
                     controller: "phoneBookCountryCtrl",
                     controllerAs: "phoneBookCountry",
                     data: {
@@ -7355,7 +7386,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBookCountry/phoneBookCountryController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBookCountry/phoneBookCountryController.js'
                                             // 
                                             //
                                         ]
@@ -7367,7 +7398,7 @@
                 })
                 .state('index.phonebookstate', {
                     url: "/phonebookstate",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBookState/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBookState/grid.html",
                     controller: "phoneBookStateCtrl",
                     controllerAs: "phoneBookState",
                     data: {
@@ -7385,7 +7416,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBookState/phoneBookStateController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBookState/phoneBookStateController.js'
                                             //  
                                             //  
                                         ]
@@ -7397,7 +7428,7 @@
                 })
                 .state('index.phonebookcity', {
                     url: "/phonebookcity",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBookCity/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBookCity/grid.html",
                     controller: "phoneBookCityCtrl",
                     controllerAs: "phoneBookCity",
                     data: {
@@ -7415,7 +7446,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBookCity/phoneBookCityController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBookCity/phoneBookCityController.js'
                                             // 
                                             // 
                                         ]
@@ -7427,7 +7458,7 @@
                 })
                 .state('index.phonebookzone', {
                     url: "/phonebookzone",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBookZone/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBookZone/grid.html",
                     controller: "phoneBookZoneCtrl",
                     controllerAs: "phoneBookZone",
                     data: {
@@ -7445,7 +7476,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBookZone/phoneBookZoneController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBookZone/phoneBookZoneController.js'
                                             //  
                                             //  
                                         ]
@@ -7457,7 +7488,7 @@
                 })
                 .state('index.phonebooktype', {
                     url: "/phonebooktype",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBookType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBookType/grid.html",
                     controller: "phoneBookTypeCtrl",
                     controllerAs: "phoneBookType",
                     data: {
@@ -7475,7 +7506,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBookType/phoneBookTypeController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBookType/phoneBookTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -7485,7 +7516,7 @@
                 })
                 .state('index.phonebook', {
                     url: "/phonebook",
-                    templateUrl: "cpanelv1/ModulePhoneBook/phoneBook/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/phoneBook/grid.html",
                     controller: "phoneBookCtrl",
                     controllerAs: "phoneBook",
                     data: {
@@ -7503,7 +7534,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/phoneBook/phoneBookController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/phoneBook/phoneBookController.js'
                                         ]
                                     }
                                 ]);
@@ -7513,7 +7544,7 @@
                 })
                 .state('index.tellnumbertype', {
                     url: "/tellnumbertype",
-                    templateUrl: "cpanelv1/ModulePhoneBook/tellNumberType/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/tellNumberType/grid.html",
                     controller: "tellNumberTypeCtrl",
                     controllerAs: "tellNumberType",
                     data: {
@@ -7531,7 +7562,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/tellNumberType/tellNumberTypeController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/tellNumberType/tellNumberTypeController.js'
                                         ]
                                     }
                                 ]);
@@ -7541,7 +7572,7 @@
                 })
                 .state('index.tellnumber', {
                     url: "/tellnumber",
-                    templateUrl: "cpanelv1/ModulePhoneBook/tellNumber/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/PhoneBook/tellNumber/grid.html",
                     controller: "tellNumberCtrl",
                     controllerAs: "tellNumber",
                     data: {
@@ -7559,7 +7590,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModulePhoneBook/tellNumber/tellNumberController.js'
+                                            'cpanelv1/CmsModules/PhoneBook/tellNumber/tellNumberController.js'
                                         ]
                                     }
                                 ]);
@@ -7569,7 +7600,7 @@
                 })
                 .state('index.discountgroup', {
                     url: "/discountgroup",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountGroup/grid.html",
                     controller: "discountGroupController",
                     controllerAs: "discountGroup",
                     data: {
@@ -7587,7 +7618,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountGroup/DiscountGroupController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountGroup/DiscountGroupController.js'
                                         ]
                                     }
                                 ]);
@@ -7597,7 +7628,7 @@
                 })
                 .state('index.discountserialcardflowgroup', {
                     url: "/discountserialcardflowgroup",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountSerialCardFlowGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountSerialCardFlowGroup/grid.html",
                     controller: "discountSerialCardFlowGroupController",
                     controllerAs: "discountSerialCardFlowGroup",
                     data: {
@@ -7615,7 +7646,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountSerialCardFlowGroup/discountSerialCardFlowGroupController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountSerialCardFlowGroup/discountSerialCardFlowGroupController.js'
                                         ]
                                     }
                                 ]);
@@ -7625,7 +7656,7 @@
                 })
                 .state('index.discountsellerpricesetting', {
                     url: "/discountSellerPriceSetting",
-                    templateUrl: "cpanelv1/ModuleDiscount/discountSellerPriceSetting/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/discountSellerPriceSetting/grid.html",
                     controller: "discountSellerPriceSettingController",
                     controllerAs: "discountSellerPriceSetting",
                     data: {
@@ -7643,7 +7674,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/discountSellerPriceSetting/discountSellerPriceSettingController.js'
+                                            'cpanelv1/CmsModules/Discount/discountSellerPriceSetting/discountSellerPriceSettingController.js'
                                         ]
                                     }
                                 ]);
@@ -7653,7 +7684,7 @@
                 })
                 .state('index.discountseller', {
                     url: "/discountseller",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountSeller/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountSeller/grid.html",
                     controller: "discountSellerController",
                     controllerAs: "discountSeller",
                     data: {
@@ -7671,7 +7702,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountSeller/DiscountSellerController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountSeller/DiscountSellerController.js'
                                         ]
                                     }
                                 ]);
@@ -7681,7 +7712,7 @@
                 })
                 .state('index.discountserialcard', {
                     url: "/discountserialcard",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountSerialCard/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountSerialCard/grid.html",
                     controller: "discountSerialCardController",
                     controllerAs: "discountSerialCard",
                     data: {
@@ -7699,7 +7730,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountSerialCard/DiscountSerialCardController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountSerialCard/DiscountSerialCardController.js'
                                         ]
                                     }
                                 ]);
@@ -7709,7 +7740,7 @@
                 })
                 .state('index.discountoffer', {
                     url: "/discountoffer",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountOffer/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountOffer/grid.html",
                     controller: "discountOfferController",
                     controllerAs: "discountOffer",
                     data: {
@@ -7727,7 +7758,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountOffer/DiscountOfferController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountOffer/DiscountOfferController.js'
                                         ]
                                     }
                                 ]);
@@ -7737,7 +7768,7 @@
                 })
                 .state('index.discountofferdetail', {
                     url: "/discountofferdetail",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountOfferDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountOfferDetail/grid.html",
                     controller: "discountOfferDetailController",
                     controllerAs: "discountOfferDetail",
                     data: {
@@ -7755,7 +7786,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountOfferDetail/DiscountOfferDetailController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountOfferDetail/DiscountOfferDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -7765,7 +7796,7 @@
                 })
                 .state('index.campaigndetaillog', {
                     url: "/campaigndetaillog",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetailLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetailLog/grid.html",
                     controller: "campaignDetailLogController",
                     controllerAs: "campaignDetailLog",
                     data: {
@@ -7783,7 +7814,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetailLog/CampaignDetailLogController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetailLog/CampaignDetailLogController.js'
                                         ]
                                     }
                                 ]);
@@ -7793,7 +7824,7 @@
                 })
                 .state('index.campaignadmin', {
                     url: "/campaignadmin",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignAdmin/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignAdmin/grid.html",
                     controller: "campaignAdminController",
                     controllerAs: "campaignAdmin",
                     data: {
@@ -7811,7 +7842,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignAdmin/CampaignAdminController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignAdmin/CampaignAdminController.js'
                                         ]
                                     }
                                 ]);
@@ -7821,7 +7852,7 @@
                 })
                 .state('index.campaigndetail', {
                     url: "/campaigndetail",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetail/grid.html",
                     controller: "campaignDetailController",
                     controllerAs: "campaignDetail",
                     data: {
@@ -7839,7 +7870,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetail/CampaignDetailController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetail/CampaignDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -7849,7 +7880,7 @@
                 })
                 .state('index.campaigndetailitem', {
                     url: "/campaigndetailitem",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetailItem/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetailItem/grid.html",
                     controller: "campaignDetailItemController",
                     controllerAs: "campaignDetailItem",
                     data: {
@@ -7867,7 +7898,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetailItem/CampaignDetailItemController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetailItem/CampaignDetailItemController.js'
                                         ]
                                     }
                                 ]);
@@ -7877,7 +7908,7 @@
                 })
                 .state('index.campaigndetailprogram', {
                     url: "/campaigndetailprogram",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetailProgram/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetailProgram/grid.html",
                     controller: "campaignDetailProgramController",
                     controllerAs: "campaignDetailProgram",
                     data: {
@@ -7895,7 +7926,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetailProgram/CampaignDetailProgramController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetailProgram/CampaignDetailProgramController.js'
                                         ]
                                     }
                                 ]);
@@ -7905,7 +7936,7 @@
                 })
                 .state('index.campaigndetailproduct', {
                     url: "/campaigndetailproduct",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetailProduct/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetailProduct/grid.html",
                     controller: "campaignDetailProductController",
                     controllerAs: "CampaignDetailProduct",
                     data: {
@@ -7923,7 +7954,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetailProduct/CampaignDetailProductController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetailProduct/CampaignDetailProductController.js'
                                         ]
                                     }
                                 ]);
@@ -7933,7 +7964,7 @@
                 })
                 .state('index.campaigndetailmember', {
                     url: "/campaigndetailmember",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignDetailMember/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignDetailMember/grid.html",
                     controller: "campaignDetailMemberController",
                     controllerAs: "campaignDetailMember",
                     data: {
@@ -7951,7 +7982,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignDetailMember/CampaignDetailMemberController.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignDetailMember/CampaignDetailMemberController.js'
                                         ]
                                     }
                                 ]);
@@ -7961,7 +7992,7 @@
                 })
                 .state('index.campaigncontent', {
                     url: "/campaigncontent",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignContent/grid.html",
                     controller: "campaignContentController",
                     controllerAs: "CampaignContent",
                     data: {
@@ -7978,7 +8009,7 @@
                                     "ngTagsInput", "summernote", "treeControl", 'ADM-dateTimePicker', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignContent/CampaignContent.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignContent/CampaignContent.js'
                                         ]
                                     }
                                 ]);
@@ -7988,7 +8019,7 @@
                 })
                 .state('index.campaignitem', {
                     url: "/campaignitem",
-                    templateUrl: "cpanelv1/ModuleCampaign/CampaignItem/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Campaign/CampaignItem/grid.html",
                     controller: "campaignItemController",
                     controllerAs: "campaignItem",
                     data: {
@@ -8005,7 +8036,7 @@
                                     "ngTagsInput", "summernote", "treeControl", {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCampaign/CampaignItem/CampaignItem.js'
+                                            'cpanelv1/CmsModules/Campaign/CampaignItem/CampaignItem.js'
                                         ]
                                     }
                                 ]);
@@ -8016,7 +8047,7 @@
                 //-----Module LinkManagement-----
                 .state('index.linkmanagementmember', {
                     url: "/linkmanagementmember",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementMember/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementMember/grid.html",
                     controller: "linkManagementMemberController",
                     controllerAs: "linkManagementMember",
                     data: {
@@ -8034,7 +8065,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementMember/linkManagementMemberController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementMember/linkManagementMemberController.js'
                                         ]
                                     }
                                 ]);
@@ -8044,7 +8075,7 @@
                 })
                 .state('index.linkmanagementmembercontent', {
                     url: "/linkmanagementmembercontent",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementMemberContent/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementMemberContent/grid.html",
                     controller: "linkManagementMemberContentController",
                     controllerAs: "linkManagementMemberContent",
                     data: {
@@ -8062,7 +8093,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementMemberContent/LinkManagementMemberContentController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementMemberContent/LinkManagementMemberContentController.js'
                                         ]
                                     }
                                 ]);
@@ -8072,7 +8103,7 @@
                 })
                 .state('index.linkmanagementbillboardpattern', {
                     url: "/linkmanagementbillboardpattern",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementBillboardPattern/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementBillboardPattern/grid.html",
                     controller: "linkManagementBillboardPatternController",
                     controllerAs: "linkManagementBillboardPattern",
                     data: {
@@ -8090,7 +8121,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementBillboardPattern/LinkManagementBillboardPatternController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementBillboardPattern/LinkManagementBillboardPatternController.js'
                                         ]
                                     }
                                 ]);
@@ -8100,7 +8131,7 @@
                 })
                 .state('index.linkmanagementtargetbillboardlog', {
                     url: "/linkmanagementtargetbillboardlog",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementTargetBillboardLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementTargetBillboardLog/grid.html",
                     params: {
                         TargetId: null,
                         BillboardId: null,
@@ -8123,7 +8154,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementTargetBillboardLog/LinkManagementTargetBillboardLogController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementTargetBillboardLog/LinkManagementTargetBillboardLogController.js'
                                         ]
                                     }
                                 ]);
@@ -8133,7 +8164,7 @@
                 })
                 .state('index.linkmanagementtarget', {
                     url: "/linkmanagementtarget",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementTarget/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementTarget/grid.html",
                     params: {
                         MemberId: null,
                         BillBoardPatternId: null
@@ -8155,7 +8186,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementTarget/LinkManagementTargetController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementTarget/LinkManagementTargetController.js'
                                         ]
                                     }
                                 ]);
@@ -8165,7 +8196,7 @@
                 })
                 .state('index.linkmanagementbillboard', {
                     url: "/linkmanagementbillboard",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementBillboard/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/grid.html",
                     params: {
                         MemberId: null,
                         BillBoardPatternId: null
@@ -8187,7 +8218,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementBillboard/LinkManagementBillboardController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/LinkManagementBillboardController.js'
                                         ]
                                     }
                                 ]);
@@ -8197,7 +8228,7 @@
                 })
                 .state('index.linkmanagementcomment', {
                     url: "/linkmanagementcomment",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementComment/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementComment/grid.html",
                     controller: "linkManagementCommentController",
                     controllerAs: "linkManagementComment",
                     data: {
@@ -8215,7 +8246,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementComment/LinkManagementCommentController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementComment/LinkManagementCommentController.js'
                                         ]
                                     }
                                 ]);
@@ -8225,7 +8256,7 @@
                 })
                 .state('index.linkmanagementaccounting', {
                     url: "/linkmanagementaccounting",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementAccounting/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementAccounting/grid.html",
                     params: {
                         MemberId: null
                     },
@@ -8246,7 +8277,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementAccounting/LinkManagementAccountingController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementAccounting/LinkManagementAccountingController.js'
                                         ]
                                     }
                                 ]);
@@ -8256,7 +8287,7 @@
                 })
                 .state('index.linkmanagementaccountingdetail', {
                     url: "/linkmanagementaccountingdetail",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementAccountingDetail/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementAccountingDetail/grid.html",
                     controller: "linkManagementAccountingDetailController",
                     controllerAs: "linkManagementAccountingDetail",
                     data: {
@@ -8274,7 +8305,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementAccountingDetail/LinkManagementAccountingDetailController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementAccountingDetail/LinkManagementAccountingDetailController.js'
                                         ]
                                     }
                                 ]);
@@ -8284,7 +8315,7 @@
                 })
                 .state('index.linkmanagementcontentcategoryfavorite', {
                     url: "/linkmanagementcontentcategoryfavorite",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementContentCategoryFavorite/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementContentCategoryFavorite/grid.html",
                     controller: "linkManagementContentCategoryFavoriteController",
                     controllerAs: "linkManagementContentCategoryFavorite",
                     data: {
@@ -8302,7 +8333,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementContentCategoryFavorite/LinkManagementContentCategoryFavoriteController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementContentCategoryFavorite/LinkManagementContentCategoryFavoriteController.js'
                                         ]
                                     }
                                 ]);
@@ -8312,7 +8343,7 @@
                 })
                 .state('index.linkmanagementcontentcategoryotherinfo', {
                     url: "/linkmanagementcontentcategoryotherinfo",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementContentCategoryOtherInfo/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementContentCategoryOtherInfo/grid.html",
                     controller: "linkManagementContentCategoryOtherInfoController",
                     controllerAs: "linkManagementContentCategoryOtherInfo",
                     data: {
@@ -8330,7 +8361,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementContentCategoryOtherInfo/LinkManagementContentCategoryOtherInfoController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementContentCategoryOtherInfo/LinkManagementContentCategoryOtherInfoController.js'
                                         ]
                                     }
                                 ]);
@@ -8340,7 +8371,7 @@
                 })
                 .state('index.linkmanagementcategorysimilar', {
                     url: "/linkmanagementcategorysimilar",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementCategorySimilar/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementCategorySimilar/grid.html",
                     controller: "linkManagementCategorySimilarController",
                     controllerAs: "linkManagementCategorySimilar",
                     data: {
@@ -8358,7 +8389,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementCategorySimilar/LinkManagementCategorySimilarController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementCategorySimilar/LinkManagementCategorySimilarController.js'
                                         ]
                                     }
                                 ]);
@@ -8368,7 +8399,7 @@
                 })
                 .state('index.linkmanagementcontentsimilar', {
                     url: "/linkmanagementcontentsimilar",
-                    templateUrl: "cpanelv1/ModuleLinkManagement/LinkManagementContentSimilar/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementContentSimilar/grid.html",
                     controller: "linkManagementContentSimilarController",
                     controllerAs: "linkManagementContentSimilar",
                     data: {
@@ -8386,7 +8417,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleLinkManagement/LinkManagementContentSimilar/LinkManagementContentSimilarController.js'
+                                            'cpanelv1/CmsModules/LinkManagement/LinkManagementContentSimilar/LinkManagementContentSimilarController.js'
                                         ]
                                     }
                                 ]);
@@ -8397,7 +8428,7 @@
                 /////////////////
                 .state('index.cmsuserbadlogin', {
                     url: "/cmsuserbadlogin",
-                    templateUrl: "cpanelv1/ModuleCore/CmsUserBadLogin/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsUserBadLogin/grid.html",
                     controller: "cmsUserBadLoginController",
                     controllerAs: "cmsUserBadLogin",
                     data: {
@@ -8415,7 +8446,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleCore/CmsUserBadLogin/cmsUserBadLoginController.js'
+                                            'cpanelv1/CmsModules/Core/CmsUserBadLogin/cmsUserBadLoginController.js'
                                         ]
                                     }
                                 ]);
@@ -8425,7 +8456,7 @@
                 })
                 .state("index.cmsuserticketlog", {
                     url: "/cmsuserticketlog",
-                    templateUrl: "cpanelv1/ModuleCore/cmsUserTicketLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsUserTicketLog/grid.html",
                     controller: "cmsUserTicketLogController",
                     controllerAs: "cmsUserTicketLog",
                     data: {
@@ -8441,7 +8472,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/ModuleCore/cmsUserTicketLog/cmsUserTicketLogController.js'
+                                        'cpanelv1/CmsModules/Core/cmsUserTicketLog/cmsUserTicketLogController.js'
                                     ]
                                 });
                             }
@@ -8451,7 +8482,7 @@
                 })
                 .state('index.newsshareservercategory', {
                     url: "/newsshareservercategory",
-                    templateUrl: "cpanelv1/ModuleNews/NewsShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsShareServerCategory/grid.html",
                     controller: "newsShareServerCategoryController",
                     controllerAs: "newsShareServerCategory",
                     data: {
@@ -8469,7 +8500,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleNews/NewsShareServerCategory/NewsShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/News/NewsShareServerCategory/NewsShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8479,7 +8510,7 @@
                 })
                 .state('index.newssharerecivercategory', {
                     url: "/newssharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleNews/NewsShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/News/NewsShareReciverCategory/grid.html",
                     controller: "newsShareReciverCategoryController",
                     controllerAs: "newsShareReciverCategory",
                     data: {
@@ -8497,7 +8528,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleNews/NewsShareReciverCategory/NewsShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/News/NewsShareReciverCategory/NewsShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8507,7 +8538,7 @@
                 })
                 .state('index.fileshareservercategory', {
                     url: "/fileshareservercategory",
-                    templateUrl: "cpanelv1/ModuleFile/FileShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/File/FileShareServerCategory/grid.html",
                     controller: "fileShareServerCategoryController",
                     controllerAs: "fileShareServerCategory",
                     data: {
@@ -8525,7 +8556,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleFile/FileShareServerCategory/FileShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/File/FileShareServerCategory/FileShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8535,7 +8566,7 @@
                 })
                 .state('index.filesharerecivercategory', {
                     url: "/filesharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleFile/FileShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/File/FileShareReciverCategory/grid.html",
                     controller: "fileShareReciverCategoryController",
                     controllerAs: "fileShareReciverCategory",
                     data: {
@@ -8553,7 +8584,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleFile/FileShareReciverCategory/FileShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/File/FileShareReciverCategory/FileShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8563,7 +8594,7 @@
                 })
                 .state('index.quoteshareservercategory', {
                     url: "/quoteshareservercategory",
-                    templateUrl: "cpanelv1/ModuleQuote/QuoteShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Quote/QuoteShareServerCategory/grid.html",
                     controller: "quoteShareServerCategoryController",
                     controllerAs: "quoteShareServerCategory",
                     data: {
@@ -8581,7 +8612,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleQuote/QuoteShareServerCategory/QuoteShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Quote/QuoteShareServerCategory/QuoteShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8591,7 +8622,7 @@
                 })
                 .state('index.quotesharerecivercategory', {
                     url: "/quotesharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleQuote/QuoteShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Quote/QuoteShareReciverCategory/grid.html",
                     controller: "quoteShareReciverCategoryController",
                     controllerAs: "quoteShareReciverCategory",
                     data: {
@@ -8609,7 +8640,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleQuote/QuoteShareReciverCategory/QuoteShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Quote/QuoteShareReciverCategory/QuoteShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8619,7 +8650,7 @@
                 })
                 .state('index.shopshareservercategory', {
                     url: "/shopshareservercategory",
-                    templateUrl: "cpanelv1/ModuleShop/ShopShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopShareServerCategory/grid.html",
                     controller: "shopShareServerCategoryController",
                     controllerAs: "shopShareServerCategory",
                     data: {
@@ -8637,7 +8668,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopShareServerCategory/ShopShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopShareServerCategory/ShopShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8647,7 +8678,7 @@
                 })
                 .state('index.shopsharerecivercategory', {
                     url: "/shopsharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleShop/ShopShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Shop/ShopShareReciverCategory/grid.html",
                     controller: "shopShareReciverCategoryController",
                     controllerAs: "shopShareReciverCategory",
                     data: {
@@ -8665,7 +8696,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleShop/ShopShareReciverCategory/ShopShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Shop/ShopShareReciverCategory/ShopShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8675,7 +8706,7 @@
                 })
                 .state('index.chartshareservercategory', {
                     url: "/chartshareservercategory",
-                    templateUrl: "cpanelv1/ModuleChart/ChartShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartShareServerCategory/grid.html",
                     controller: "chartShareServerCategoryController",
                     controllerAs: "chartShareServerCategory",
                     data: {
@@ -8693,7 +8724,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartShareServerCategory/ChartShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Chart/ChartShareServerCategory/ChartShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8703,7 +8734,7 @@
                 })
                 .state('index.chartsharerecivercategory', {
                     url: "/chartsharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleChart/ChartShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Chart/ChartShareReciverCategory/grid.html",
                     controller: "chartShareReciverCategoryController",
                     controllerAs: "chartShareReciverCategory",
                     data: {
@@ -8721,7 +8752,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleChart/ChartShareReciverCategory/ChartShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Chart/ChartShareReciverCategory/ChartShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8731,7 +8762,7 @@
                 })
                 .state('index.imagegalleryshareservercategory', {
                     url: "/imageGalleryshareservercategory",
-                    templateUrl: "cpanelv1/ModuleImageGallery/ImageGalleryShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ImageGallery/ImageGalleryShareServerCategory/grid.html",
                     controller: "imageGalleryShareServerCategoryController",
                     controllerAs: "imageGalleryShareServerCategory",
                     data: {
@@ -8749,7 +8780,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleImageGallery/ImageGalleryShareServerCategory/ImageGalleryShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/ImageGallery/ImageGalleryShareServerCategory/ImageGalleryShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8759,7 +8790,7 @@
                 })
                 .state('index.imagegallerysharerecivercategory', {
                     url: "/imageGallerysharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleImageGallery/ImageGalleryShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/ImageGallery/ImageGalleryShareReciverCategory/grid.html",
                     controller: "imageGalleryShareReciverCategoryController",
                     controllerAs: "imageGalleryShareReciverCategory",
                     data: {
@@ -8777,7 +8808,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleImageGallery/ImageGalleryShareReciverCategory/ImageGalleryShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/ImageGallery/ImageGalleryShareReciverCategory/ImageGalleryShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8787,7 +8818,7 @@
                 })
                 .state('index.moviegalleryshareservercategory', {
                     url: "/moviegalleryshareservercategory",
-                    templateUrl: "cpanelv1/ModuleMovieGallery/MovieGalleryShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MovieGallery/MovieGalleryShareServerCategory/grid.html",
                     controller: "movieGalleryShareServerCategoryController",
                     controllerAs: "movieGalleryShareServerCategory",
                     data: {
@@ -8805,7 +8836,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMovieGallery/MovieGalleryShareServerCategory/MovieGalleryShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/MovieGallery/MovieGalleryShareServerCategory/MovieGalleryShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8815,7 +8846,7 @@
                 })
                 .state('index.moviegallerysharerecivercategory', {
                     url: "/moviegallerysharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleMovieGallery/MovieGalleryShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MovieGallery/MovieGalleryShareReciverCategory/grid.html",
                     controller: "movieGalleryShareReciverCategoryController",
                     controllerAs: "movieGalleryShareReciverCategory",
                     data: {
@@ -8833,7 +8864,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMovieGallery/MovieGalleryShareReciverCategory/MovieGalleryShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/MovieGallery/MovieGalleryShareReciverCategory/MovieGalleryShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8843,7 +8874,7 @@
                 })
                 .state('index.musicgalleryshareservercategory', {
                     url: "/musicgalleryshareservercategory",
-                    templateUrl: "cpanelv1/ModuleMusicGallery/MusicGalleryShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MusicGallery/MusicGalleryShareServerCategory/grid.html",
                     controller: "musicGalleryShareServerCategoryController",
                     controllerAs: "musicGalleryShareServerCategory",
                     data: {
@@ -8861,7 +8892,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMusicGallery/MusicGalleryShareServerCategory/MusicGalleryShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/MusicGallery/MusicGalleryShareServerCategory/MusicGalleryShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8871,7 +8902,7 @@
                 })
                 .state('index.musicgallerysharerecivercategory', {
                     url: "/musicgallerysharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleMusicGallery/MusicGalleryShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/MusicGallery/MusicGalleryShareReciverCategory/grid.html",
                     controller: "musicGalleryShareReciverCategoryController",
                     controllerAs: "musicGalleryShareReciverCategory",
                     data: {
@@ -8889,7 +8920,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleMusicGallery/MusicGalleryShareReciverCategory/MusicGalleryShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/MusicGallery/MusicGalleryShareReciverCategory/MusicGalleryShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8899,7 +8930,7 @@
                 })
                 .state('index.serviceshareservercategory', {
                     url: "/serviceshareservercategory",
-                    templateUrl: "cpanelv1/ModuleService/ServiceShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Service/ServiceShareServerCategory/grid.html",
                     controller: "serviceShareServerCategoryController",
                     controllerAs: "serviceShareServerCategory",
                     data: {
@@ -8917,7 +8948,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleService/ServiceShareServerCategory/ServiceShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Service/ServiceShareServerCategory/ServiceShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8927,7 +8958,7 @@
                 })
                 .state('index.servicesharerecivercategory', {
                     url: "/servicesharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleService/ServiceShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Service/ServiceShareReciverCategory/grid.html",
                     controller: "serviceShareReciverCategoryController",
                     controllerAs: "serviceShareReciverCategory",
                     data: {
@@ -8945,7 +8976,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleService/ServiceShareReciverCategory/ServiceShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Service/ServiceShareReciverCategory/ServiceShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8955,7 +8986,7 @@
                 })
                 .state('index.productshareservercategory', {
                     url: "/productshareservercategory",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductShareServerCategory/grid.html",
                     controller: "productShareServerCategoryController",
                     controllerAs: "productShareServerCategory",
                     data: {
@@ -8973,7 +9004,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductShareServerCategory/ProductShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Product/ProductShareServerCategory/ProductShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -8983,7 +9014,7 @@
                 })
                 .state('index.productsharerecivercategory', {
                     url: "/productsharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleProduct/ProductShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Product/ProductShareReciverCategory/grid.html",
                     controller: "productShareReciverCategoryController",
                     controllerAs: "productShareReciverCategory",
                     data: {
@@ -9001,7 +9032,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleProduct/ProductShareReciverCategory/ProductShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Product/ProductShareReciverCategory/ProductShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9011,7 +9042,7 @@
                 })
                 .state('index.blogshareservercategory', {
                     url: "/blogshareservercategory",
-                    templateUrl: "cpanelv1/ModuleBlog/BlogShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Blog/BlogShareServerCategory/grid.html",
                     controller: "blogShareServerCategoryController",
                     controllerAs: "blogShareServerCategory",
                     data: {
@@ -9029,7 +9060,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBlog/BlogShareServerCategory/BlogShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Blog/BlogShareServerCategory/BlogShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9039,7 +9070,7 @@
                 })
                 .state('index.blogsharerecivercategory', {
                     url: "/blogsharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleBlog/BlogShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Blog/BlogShareReciverCategory/grid.html",
                     controller: "blogShareReciverCategoryController",
                     controllerAs: "blogShareReciverCategory",
                     data: {
@@ -9057,7 +9088,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBlog/BlogShareReciverCategory/BlogShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Blog/BlogShareReciverCategory/BlogShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9067,7 +9098,7 @@
                 })
                 .state('index.articleshareservercategory', {
                     url: "/articleshareservercategory",
-                    templateUrl: "cpanelv1/ModuleArticle/ArticleShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Article/ArticleShareServerCategory/grid.html",
                     controller: "articleShareServerCategoryController",
                     controllerAs: "articleShareServerCategory",
                     data: {
@@ -9085,7 +9116,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleArticle/ArticleShareServerCategory/ArticleShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Article/ArticleShareServerCategory/ArticleShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9095,7 +9126,7 @@
                 })
                 .state('index.articlesharerecivercategory', {
                     url: "/articlesharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleArticle/ArticleShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Article/ArticleShareReciverCategory/grid.html",
                     controller: "articleShareReciverCategoryController",
                     controllerAs: "articleShareReciverCategory",
                     data: {
@@ -9113,7 +9144,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleArticle/ArticleShareReciverCategory/articleShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Article/ArticleShareReciverCategory/articleShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9123,7 +9154,7 @@
                 })
                 .state('index.biographyshareservercategory', {
                     url: "/biographyshareservercategory",
-                    templateUrl: "cpanelv1/ModuleBiography/BiographyShareServerCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Biography/BiographyShareServerCategory/grid.html",
                     controller: "biographyShareServerCategoryController",
                     controllerAs: "biographyShareServerCategory",
                     data: {
@@ -9141,7 +9172,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBiography/BiographyShareServerCategory/BiographyShareServerCategoryController.js'
+                                            'cpanelv1/CmsModules/Biography/BiographyShareServerCategory/BiographyShareServerCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9151,7 +9182,7 @@
                 })
                 .state('index.biographysharerecivercategory', {
                     url: "/biographysharerecivercategory",
-                    templateUrl: "cpanelv1/ModuleBiography/BiographyShareReciverCategory/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Biography/BiographyShareReciverCategory/grid.html",
                     controller: "biographyShareReciverCategoryController",
                     controllerAs: "biographyShareReciverCategory",
                     data: {
@@ -9169,7 +9200,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleBiography/BiographyShareReciverCategory/BiographyShareReciverCategoryController.js'
+                                            'cpanelv1/CmsModules/Biography/BiographyShareReciverCategory/BiographyShareReciverCategoryController.js'
                                         ]
                                     }
                                 ]);
@@ -9179,7 +9210,7 @@
                 })
                 .state('index.discountoffertransaction', {
                     url: "/discountoffertransaction",
-                    templateUrl: "cpanelv1/ModuleDiscount/DiscountOfferTransaction/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Discount/DiscountOfferTransaction/grid.html",
                     controller: "discountOfferTransactionController",
                     controllerAs: "discountOfferTransaction",
                     data: {
@@ -9197,7 +9228,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleDiscount/DiscountOfferTransaction/DiscountOfferTransactionController.js'
+                                            'cpanelv1/CmsModules/Discount/DiscountOfferTransaction/DiscountOfferTransactionController.js'
                                         ]
                                     }
                                 ]);
@@ -9208,7 +9239,7 @@
                 /**********/
                 .state('index.cmsmoduleheadergroup', {
                     url: "/cmsmoduleheadergroup",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleSaleHeaderGroup/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleHeaderGroup/grid.html",
                     controller: "CmsModuleSaleHeaderGroupController",
                     controllerAs: "CmsModuleHeaderG",
                     data: {
@@ -9224,7 +9255,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSaleHeaderGroup/CmsModuleSaleHeaderGroupController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSaleHeaderGroup/CmsModuleSaleHeaderGroupController.js'
                                     ]
                                 }]);
                             }
@@ -9233,7 +9264,7 @@
                 })
                 .state('index.cmsmodulesaleitem', {
                     url: "/cmsmodulesaleitem",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleSaleItem/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleItem/grid.html",
                     controller: "cmsModuleSaleItemController",
                     controllerAs: "cmsModuleSaleItem",
                     data: {
@@ -9249,7 +9280,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSaleItem/CmsModuleSaleItemController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSaleItem/CmsModuleSaleItemController.js'
                                     ]
                                 }]);
                             }
@@ -9258,7 +9289,7 @@
                 })
                 .state('index.cmsmodulesaleserial', {
                     url: "/cmsmodulesaleserial",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleSaleSerial/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleSerial/grid.html",
                     controller: "cmsModuleSaleSerialController",
                     controllerAs: "cmsModuleSaleSerial",
                     data: {
@@ -9274,7 +9305,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSaleSerial/CmsModuleSaleSerialController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSaleSerial/CmsModuleSaleSerialController.js'
                                     ]
                                 }]);
                             }
@@ -9283,7 +9314,7 @@
                 })
                 .state('index.cmsmodulesaleinvoice', {
                     url: "/cmsmodulesaleinvoice",
-                    templateUrl: "cpanelv1/ModuleCore/CmsModuleSaleInvoice/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleInvoice/grid.html",
                     controller: "cmsModuleSaleInvoiceController",
                     controllerAs: "cmsModuleSaleInvoice",
                     data: {
@@ -9299,7 +9330,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/CmsModuleSaleInvoice/CmsModuleSaleInvoiceController.js'
+                                        'cpanelv1/CmsModules/Core/CmsModuleSaleInvoice/CmsModuleSaleInvoiceController.js'
                                     ]
                                 }]);
                             }
@@ -9308,7 +9339,7 @@
                 })
                 .state('index.cmsguide', {
                     url: "/cmsguide",
-                    templateUrl: "cpanelv1/ModuleCore/cmsguide/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsguide/grid.html",
                     controller: "cmsGuideController",
                     controllerAs: "cmsGuide",
                     data: {
@@ -9325,7 +9356,7 @@
                                     'summernote', {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/ModuleCore/cmsguide/cmsguideController.js'
+                                            'cpanelv1/CmsModules/Core/cmsguide/cmsguideController.js'
                                         ]
                                     }
                                 ]);
@@ -9335,7 +9366,7 @@
                 })
                 .state('index.cmslog', {
                     url: "/cmslog",
-                    templateUrl: "cpanelv1/ModuleCore/cmsLog/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Core/cmsLog/grid.html",
                     controller: "cmsLogController",
                     controllerAs: "cmsLog",
                     data: {
@@ -9351,7 +9382,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModuleCore/cmsLog/cmsLogController.js'
+                                        'cpanelv1/CmsModules/Core/cmsLog/cmsLogController.js'
                                     ]
                                 }]);
                             }
@@ -9361,7 +9392,7 @@
                 /***********************/
                 .state('index.modulesrelationship', {
                     url: "/modulesrelationship",
-                    templateUrl: "cpanelv1/ModulesRelationship/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/sRelationship/grid.html",
                     controller: "modulesRelationshipContentController",
                     controllerAs: "modulesRelationship",
                     data: {
@@ -9377,7 +9408,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/ModulesRelationship/ModulesRelationshipController.js'
+                                        'cpanelv1/CmsModules/sRelationship/ModulesRelationshipController.js'
                                     ]
                                 }]);
                             }
@@ -9387,7 +9418,7 @@
                 /**********/
                 .state('index.marketingdashboard', {
                     url: "/marketingdashboard",
-                    templateUrl: "cpanelv1/ModuleMarketing/MarketingDashboard/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Marketing/MarketingDashboard/grid.html",
                     controller: "marketingDashboardController",
                     controllerAs: "dashboard",
                     data: {
@@ -9405,7 +9436,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleMarketing/MarketingDashboard/marketingDashboardController.js'
+                                            'cpanelv1/CmsModules/Marketing/MarketingDashboard/marketingDashboardController.js'
                                         ]
                                     }
                                 ]);
@@ -9419,7 +9450,7 @@
                     params: {
                         id: -3
                     },
-                    templateUrl: "cpanelv1/ModuleMarketing/MarketingCustomerSettingPosition/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/Marketing/MarketingCustomerSettingPosition/grid.html",
                     controller: "marketingCustomerSettingPositionController",
                     controllerAs: "marketingPosition",
                     data: {
@@ -9437,7 +9468,7 @@
                                     {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/ModuleMarketing/MarketingCustomerSettingPosition/marketingCustomerSettingPositionController.js'
+                                            'cpanelv1/CmsModules/Marketing/MarketingCustomerSettingPosition/marketingCustomerSettingPositionController.js'
                                         ]
                                     }
                                 ]);
