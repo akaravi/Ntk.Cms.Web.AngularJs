@@ -9390,16 +9390,16 @@
                     }
                 })
                 /***********************/
-                .state('index.modulesrelationship', {
-                    url: "/modulesrelationship",
-                    templateUrl: "cpanelv1/CmsModules/sRelationship/grid.html",
-                    controller: "modulesRelationshipContentController",
-                    controllerAs: "modulesRelationship",
+                .state('index.coremodulesrelationship', {
+                    url: "/coremodulesrelationship",
+                    templateUrl: "cpanelv1/CmsModules/coremoduleRelationship/grid.html",
+                    controller: "coreModuleRelationshipContentController",
+                    controllerAs: "coreModuleRelationship",
                     data: {
-                        pageTitle: 'ModulesRelationship'
+                        pageTitle: 'CoreModuleRelationship'
                     },
                     ncyBreadcrumb: {
-                        label: 'ModulesRelationship'
+                        label: 'CoreModuleRelationship'
                     },
                     resolve: {
                         deps: [
@@ -9408,7 +9408,7 @@
                                 return $ocLazyLoad.load([{
                                     serie: false,
                                     files: [
-                                        'cpanelv1/CmsModules/sRelationship/ModulesRelationshipController.js'
+                                        'cpanelv1/CmsModules/ModuleRelationship/CoreModuleRelationshipController.js'
                                     ]
                                 }]);
                             }

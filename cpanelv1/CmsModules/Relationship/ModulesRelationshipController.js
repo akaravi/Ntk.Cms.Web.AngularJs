@@ -1,65 +1,65 @@
-﻿app.controller("modulesRelationshipContentController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
-    var modulesRelationship = this;
+﻿app.controller("coreModuleRelationshipContentController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
+    var coreModuleRelationship = this;
     var listforDel=[];
-    modulesRelationship.init = function () {
-        //modulesRelationship.LoadingBusyIndicator.isActive = true;
+    coreModuleRelationship.init = function () {
+        //coreModuleRelationship.LoadingBusyIndicator.isActive = true;
         var engine = {};
         try {
-            engine = modulesRelationship.gridOptions.advancedSearchData.engine;
+            engine = coreModuleRelationship.gridOptions.advancedSearchData.engine;
         } catch (error) {
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ModulesRelationshipContent/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleRelationshipContent/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
         angular.forEach( response.ListItems, function (item, key) {
                 item.isChecked=false
             });    
-        modulesRelationship.ListItems = response.ListItems;
+        coreModuleRelationship.ListItems = response.ListItems;
     
-            modulesRelationship.gridOptions.fillData(modulesRelationship.ListItems , response.Access);
-            modulesRelationship.gridOptions.currentPageNumber = response.CurrentPageNumber;
-            modulesRelationship.gridOptions.totalRowCount = response.TotalRowCount;
-            modulesRelationship.gridOptions.rowPerPage = response.RowPerPage;
+            coreModuleRelationship.gridOptions.fillData(coreModuleRelationship.ListItems , response.Access);
+            coreModuleRelationship.gridOptions.currentPageNumber = response.CurrentPageNumber;
+            coreModuleRelationship.gridOptions.totalRowCount = response.TotalRowCount;
+            coreModuleRelationship.gridOptions.rowPerPage = response.RowPerPage;
         }).error(function (data, errCode, c, d) {
-            modulesRelationship.gridOptions.fillData();
+            coreModuleRelationship.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    modulesRelationship.closeModal = function () {
+    coreModuleRelationship.closeModal = function () {
         $modalStack.dismissAll();
     };
 
-    modulesRelationship.replaceItem = function (oldId, newItem) {
-        angular.forEach(modulesRelationship.ListItems, function (item, key) {
+    coreModuleRelationship.replaceItem = function (oldId, newItem) {
+        angular.forEach(coreModuleRelationship.ListItems, function (item, key) {
             if (item.Id == oldId) {
-                var index = modulesRelationship.ListItems.indexOf(item);
-                modulesRelationship.ListItems.splice(index, 1);
+                var index = coreModuleRelationship.ListItems.indexOf(item);
+                coreModuleRelationship.ListItems.splice(index, 1);
             }
         });
         if (newItem)
-            modulesRelationship.ListItems.unshift(newItem);
+            coreModuleRelationship.ListItems.unshift(newItem);
     }
 
 
-    modulesRelationship.deleteRow = function () {
-        if (!modulesRelationship.gridOptions.selectedRow.item) {
+    coreModuleRelationship.deleteRow = function () {
+        if (!coreModuleRelationship.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                console.log(modulesRelationship.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/', modulesRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                console.log(coreModuleRelationship.gridOptions.selectedRow.item);
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleRelationshipContent/', coreModuleRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
-                    modulesRelationship.selectedItemForDelete = response.Item;
-                    console.log(modulesRelationship.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/', modulesRelationship.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    coreModuleRelationship.selectedItemForDelete = response.Item;
+                    console.log(coreModuleRelationship.selectedItemForDelete);
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleRelationshipContent/', coreModuleRelationship.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
-                            modulesRelationship.replaceItem(modulesRelationship.selectedItemForDelete.Id);
-                            modulesRelationship.gridOptions.fillData(modulesRelationship.ListItems);
+                            coreModuleRelationship.replaceItem(coreModuleRelationship.selectedItemForDelete.Id);
+                            coreModuleRelationship.gridOptions.fillData(coreModuleRelationship.ListItems);
                         }
 
                     }).error(function (data2, errCode2, c2, d2) {
@@ -74,11 +74,11 @@
 
     }
 
-    modulesRelationship.searchData = function () {
-        modulesRelationship.gridOptions.serachData();
+    coreModuleRelationship.searchData = function () {
+        coreModuleRelationship.gridOptions.serachData();
     }
 
-    modulesRelationship.gridOptions = {
+    coreModuleRelationship.gridOptions = {
         columns: [
             { name: 'Id', displayName: 'کد سیستمی', sortable: true },
             { name: 'CurrentSiteId', displayName: 'کد سیستمی سایت', sortable: true },
@@ -94,83 +94,83 @@
         }
     }
 
-    modulesRelationship.gridOptions.advancedSearchData = {};
-    modulesRelationship.gridOptions.advancedSearchData.engine = {};
-    modulesRelationship.gridOptions.advancedSearchData.engine.CurrentPageNumber = 1;
-    modulesRelationship.gridOptions.advancedSearchData.engine.SortColumn = "Id";
-    modulesRelationship.gridOptions.advancedSearchData.engine.SortType = 1;
-    modulesRelationship.gridOptions.advancedSearchData.engine.NeedToRunFakePagination = false;
-    modulesRelationship.gridOptions.advancedSearchData.engine.TotalRowData = 2000;
-    modulesRelationship.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-    modulesRelationship.gridOptions.advancedSearchData.engine.ContentFullSearch = null;
-    modulesRelationship.gridOptions.advancedSearchData.engine.Filters = [];
+    coreModuleRelationship.gridOptions.advancedSearchData = {};
+    coreModuleRelationship.gridOptions.advancedSearchData.engine = {};
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.CurrentPageNumber = 1;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.SortColumn = "Id";
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.SortType = 1;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.NeedToRunFakePagination = false;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.TotalRowData = 2000;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.ContentFullSearch = null;
+    coreModuleRelationship.gridOptions.advancedSearchData.engine.Filters = [];
 
     
-    modulesRelationship.openDateRequestDate = function ($event) {
+    coreModuleRelationship.openDateRequestDate = function ($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
         $timeout(function () {
-            modulesRelationship.focusRequestDate = true;
+            coreModuleRelationship.focusRequestDate = true;
         });
     };
 
-    modulesRelationship.gridOptions.reGetAll = function () {
-        modulesRelationship.init();
+    coreModuleRelationship.gridOptions.reGetAll = function () {
+        coreModuleRelationship.init();
     }
     //Export Report 
-    modulesRelationship.exportFile = function () {
-        modulesRelationship.addRequested = true;
-        modulesRelationship.gridOptions.advancedSearchData.engine.ExportFile = modulesRelationship.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/exportfile', modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            modulesRelationship.addRequested = false;
+    coreModuleRelationship.exportFile = function () {
+        coreModuleRelationship.addRequested = true;
+        coreModuleRelationship.gridOptions.advancedSearchData.engine.ExportFile = coreModuleRelationship.ExportFileClass;
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleRelationshipContent/exportfile', coreModuleRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            coreModuleRelationship.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
-                modulesRelationship.exportDownloadLink = window.location.origin + response.LinkFile;
+                coreModuleRelationship.exportDownloadLink = window.location.origin + response.LinkFile;
                 $window.open(response.LinkFile, '_blank');
-                //modulesRelationship.closeModal();
+                //coreModuleRelationship.closeModal();
             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    modulesRelationship.toggleExportForm = function () {
-        modulesRelationship.SortType = [
+    coreModuleRelationship.toggleExportForm = function () {
+        coreModuleRelationship.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
             { key: 'تصادفی', value: 3 }
         ];
-        modulesRelationship.EnumExportFileType = [
+        coreModuleRelationship.EnumExportFileType = [
             { key: 'Excel', value: 1 },
             { key: 'PDF', value: 2 },
             { key: 'Text', value: 3 }
         ];
-        modulesRelationship.EnumExportReceiveMethod = [
+        coreModuleRelationship.EnumExportReceiveMethod = [
             { key: 'دانلود', value: 0 },
             { key: 'ایمیل', value: 1 },
             { key: 'فایل منیجر', value: 3 }
         ];
-        modulesRelationship.ExportFileClass = { FileType: 1, RecieveMethod: 0, RowCount: 100 };
-        modulesRelationship.exportDownloadLink = null;
+        coreModuleRelationship.ExportFileClass = { FileType: 1, RecieveMethod: 0, RowCount: 100 };
+        coreModuleRelationship.exportDownloadLink = null;
         $modal.open({
-            templateUrl: 'cpanelv1/CmsModules/Core/ModulesRelationship/report.html',
+            templateUrl: 'cpanelv1/CmsModules/Core/CoreModuleRelationship/report.html',
             scope: $scope
         });
     }
     //Row Count Export Input Change
-    modulesRelationship.rowCountChanged = function () {
-        if (!angular.isDefined(modulesRelationship.ExportFileClass.RowCount) || modulesRelationship.ExportFileClass.RowCount > 5000)
-            modulesRelationship.ExportFileClass.RowCount = 5000;
+    coreModuleRelationship.rowCountChanged = function () {
+        if (!angular.isDefined(coreModuleRelationship.ExportFileClass.RowCount) || coreModuleRelationship.ExportFileClass.RowCount > 5000)
+            coreModuleRelationship.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    modulesRelationship.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ModulesRelationshipContent/count", modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-            modulesRelationship.addRequested = false;
+    coreModuleRelationship.getCount = function () {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleRelationshipContent/count", coreModuleRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            coreModuleRelationship.addRequested = false;
             rashaErManage.checkAction(response);
-            modulesRelationship.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
+            coreModuleRelationship.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {
-            modulesRelationship.gridOptions.fillData();
+            coreModuleRelationship.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }

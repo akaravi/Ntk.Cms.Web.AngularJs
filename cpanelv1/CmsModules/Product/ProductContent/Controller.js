@@ -492,7 +492,7 @@
       } catch (error) {
         //console.log(error);
       }
-      ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/EnumModuleRelationshipName", "", 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleRelationshipContent/EnumModuleRelationshipName", "", 'GET').success(function (response) {
         rashaErManage.checkAction(response);
         productContent.EnumModuleRelationshipName = response.ListItems;
         if (productContent.EnumModuleRelationshipName && productContent.EnumModuleRelationshipName.length) {
@@ -1176,7 +1176,7 @@
             Id: productContent.gridOptions.selectedRow.item.Id,
             enumValue: ModuleRelationShipModuleNameMain
           };
-          ajax.call(cmsServerConfig.configApiServerPath + 'ModulesRelationshipContent/GetAllByContentId', RelationshipModel, 'POST')
+          ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleRelationshipContent/GetAllByContentId', RelationshipModel, 'POST')
             .success(function (responseModuleRelationShip) {
               productContent.ModuleRelationShipDb = responseModuleRelationShip.ListItems;
               productContent.ModuleRelationShip = angular.extend(productContent.ModuleRelationShip, responseModuleRelationShip.ListItems);
@@ -1430,13 +1430,13 @@
       }
       ///Save Similars
 
-      ///Save ModulesRelationship
+      ///Save CoreModuleRelationship
       productContent.ContentModuleRelationShipRemoved = differenceInFirstArray(productContent.ModuleRelationShipDb, productContent.ModuleRelationShip, '');
       productContent.ContentModuleRelationShipAdded = differenceInFirstArray(productContent.ModuleRelationShip, productContent.ModuleRelationShipDb, '');
       //remove
       if (productContent.ContentModuleRelationShipRemoved && productContent.ContentModuleRelationShipRemoved.length > 0) {
 
-        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/DeleteList", productContent.ContentModuleRelationShipRemoved, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleRelationshipContent/DeleteList", productContent.ContentModuleRelationShipRemoved, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
@@ -1446,14 +1446,14 @@
       //Add
       if (productContent.ContentModuleRelationShipAdded && productContent.ContentModuleRelationShipAdded.length > 0) {
 
-        ajax.call(cmsServerConfig.configApiServerPath + "ModulesRelationshipContent/addbatch", productContent.ContentModuleRelationShipAdded, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleRelationshipContent/addbatch", productContent.ContentModuleRelationShipAdded, "POST").success(function (response) {
             rashaErManage.checkAction(response);
           })
           .error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
           });
       }
-      ///Save ModulesRelationship
+      ///Save CoreModuleRelationship
       if (
         productContent.selectedItem.LinkCategoryId == null ||
         productContent.selectedItem.LinkCategoryId == 0

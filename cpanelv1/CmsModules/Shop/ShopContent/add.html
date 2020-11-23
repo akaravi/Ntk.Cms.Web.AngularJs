@@ -68,7 +68,7 @@
                                 <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
                                 <div class="col-sm-10">
                                     <tags-input ng-model="shopContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
-                                        <auto-complete source="shopContent.loadTags($query)" module="coreModuleTage" style="font-family: 'Yekan'"></auto-complete>
+                                        <auto-complete source="shopContent.loadTags($query)" module="coreModuleTag" style="font-family: 'Yekan'"></auto-complete>
                                     </tags-input>
                                     <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
                                 </div>
