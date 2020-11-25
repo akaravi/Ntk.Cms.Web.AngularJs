@@ -362,13 +362,25 @@
         });
     }
     appApplication.openUploadModal = function() {
-        appApplication.modalTitle = 'بازگزاری فایل ';
+        appApplication.modalTitle = 'بارگزاری فایل نصب برنامه ';
         if (!appApplication.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
         $modal.open({
             templateUrl: "cpanelv1/CmsModules/Application/ApplicationApp/upload_modal.html",
+            size: "lg",
+            scope: $scope
+        });
+    }
+    appApplication.openUploadUPdateModal = function() {
+        appApplication.modalTitle = 'بارگزاری فایل آپدیت برنامه ';
+        if (!appApplication.gridOptions.selectedRow.item) {
+            rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
+            return;
+        }
+        $modal.open({
+            templateUrl: "cpanelv1/CmsModules/Application/ApplicationApp/uploadUpdate_modal.html",
             size: "lg",
             scope: $scope
         });
@@ -389,6 +401,46 @@
                 };
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "Application/Upload", model, "POST")
+                    .success(function(response) {
+
+                        rashaErManage.checkAction(response);
+
+
+                        if (response.IsSuccess) {
+                            rashaErManage.showMessage($filter('translatentk')('successfully_uploaded'));
+                            appApplication.closeModal();
+                            $("#save-button" + index).removeClass("flashing-button");
+                            $("#save-icon" + index).addClass("fa-check");
+                        } else {
+                            $("#save-icon" + index).addClass("fa-save");
+                            $("#save-button" + index).removeClass("flashing-button");
+                            $("#save-icon" + index).removeClass("fa-remove");
+                        }
+                    })
+                    .error(function(data) {
+                        rashaErManage.checkAction(data, errCode);
+                        $("#save-icon" + index).addClass("fa-save");
+                        $("#save-button" + index).removeClass("flashing-button");
+                        $("#save-icon" + index).removeClass("fa-remove");
+                    });
+
+            }
+        }
+    };
+    appApplication.uploadUpdateFile = function(index, uploadFile) {
+        if ($("#save-icon" + index).hasClass("fa-save")) {
+            {
+                $("#save-button" + index).removeClass("fa-save");
+
+                // File does not exists
+                // Save New file
+                var model = {
+                    LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
+                    AppVersion: 0,
+                    UploadFileKey: uploadFile.uploadName
+                };
+                ajax
+                    .call(cmsServerConfig.configApiServerPath + "Application/UploadUpdate", model, "POST")
                     .success(function(response) {
 
                         rashaErManage.checkAction(response);
