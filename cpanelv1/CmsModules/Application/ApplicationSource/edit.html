@@ -113,6 +113,23 @@
                                     <span style="left: 10px !important;" ng-show="(frmappSourceEdit.Extension.$invalid && !frmappSourceEdit.Extension.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                                 </div>
                             </div>
+
+
+
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('ExtensionUpdateFile')" ng-class="{'has-error' : frmappSourceEdit.ExtensionUpdateFile.$invalid && !frmappSourceEdit.PackageName.$pristine,'has-success' : frmappSourceEdit.PackageName.$valid}">
+                                <label class="col-sm-2 control-label"> {{'ExtensionUpdateFile'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control ltr-support" ng-required="true" name="ExtensionUpdateFile" ng-model="appSource.selectedItem.ExtensionUpdateFile" />
+                                    <div class="m-t-xs" ng-show="frmappSourceEdit.ExtensionUpdateFile.$invalid">
+                                        <small class="text-danger" ng-show="frmappSourceEdit.ExtensionUpdateFile.$error.required"><i class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmappSourceEdit.ExtensionUpdateFile.$valid && frmappSourceEdit.ExtensionUpdateFile.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappSourceEdit.ExtensionUpdateFile.$invalid && !frmappSourceEdit.ExtensionUpdateFile.$pristine) || frmappSourceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
                             <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="appSource.CheckAccessEdit('IsPublish')">
                                 <div class="col-sm-12">
