@@ -199,7 +199,6 @@
 
     cmsSiteCategoryCmsModule.gridOptions = {
         columns: [
-            { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'LinkCmsModuleId', displayName: 'کد سیستمی ماژول', sortable: true, type: 'integer' },
