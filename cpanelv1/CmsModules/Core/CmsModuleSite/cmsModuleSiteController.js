@@ -138,7 +138,7 @@
 
         engine.Filters.push(filter1);
         engine.Filters.push(filter2);
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/GetAll', engine, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/GetAll', engine, 'POST').success(function(response) {
             cmsModuleSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             cmsModuleSitegrd.selectedItem = response.ListItems[0];
