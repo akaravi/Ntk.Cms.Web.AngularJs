@@ -128,12 +128,12 @@
             Count: false
         }
         var filter1 = {
-            PropertyName = "LinkSiteId",
-            value = cmsModuleSitegrd.gridOptions.selectedRow.item.LinkSiteId
+            PropertyName : "LinkSiteId",
+            value : cmsModuleSitegrd.gridOptions.selectedRow.item.LinkSiteId
         }
         var filter2 = {
-            PropertyName = "LinkModuleId",
-            value = cmsModuleSitegrd.gridOptions.selectedRow.item.LinkModuleId
+            PropertyName : "LinkModuleId",
+            value : cmsModuleSitegrd.gridOptions.selectedRow.item.LinkModuleId
         }
 
         engine.Filters.push(filter1);
