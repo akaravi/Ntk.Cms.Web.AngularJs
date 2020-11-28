@@ -89,9 +89,32 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+
+        var engine = {
+            CurrentPageNumber: 1,
+            SortColumn: "Id",
+            SortType: 0,
+            NeedToRunFakePagination: false,
+            TotalRowData: 2000,
+            RowPerPage: 20,
+            ContentFullSearch: null,
+            Filters: [],
+            Count: false
+        }
+        var filter1 = {
+            PropertyName : "LinkCmsSiteCategoryId",
+            value : cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.LinkCmsSiteCategoryId
+        }
+        var filter2 = {
+            PropertyName : "LinkCmsModuleId",
+            value : cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.LinkCmsModuleId
+        }
+
+        engine.Filters.push(filter1);
+        engine.Filters.push(filter2);
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/getall',engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
-            cmsSiteCategoryCmsModule.selectedItem = response.Item;
+            cmsSiteCategoryCmsModule.selectedItem = response.ListItems[0];
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/Core/CmsSiteCategoryCmsModule/edit.html',
                 scope: $scope
