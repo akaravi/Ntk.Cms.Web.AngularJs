@@ -1,4 +1,4 @@
-﻿app.controller("cmsModuleSiteGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
+﻿app.controller("cmsModuleSiteGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var cmsModuleSitegrd = this;
     cmsModuleSitegrd.ListItems = [];
     cmsModuleSitegrd.cmsModuleListItems = [];
@@ -12,7 +12,7 @@
     };
     cmsModuleSitegrd.ExpireDate = {
         defaultDate: date,
-        setTime: function (date) { this.defaultDate = date; }
+        setTime: function(date) { this.defaultDate = date; }
     }
 
     cmsModuleSitegrd.busyIndicator = {
@@ -20,38 +20,38 @@
         message: "در حال بار گذاری ..."
     }
 
-    cmsModuleSitegrd.init = function () {
+    cmsModuleSitegrd.init = function() {
         cmsModuleSitegrd.busyIndicator.isActive = true;
         // Populate CmsModules
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModule/getall", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response1) {
             rashaErManage.checkAction(response1);
             cmsModuleSitegrd.cmsModuleListItems = response1.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsModuleSitegrd.busyIndicator.isActive = false;
             console.log(data);
         });
         // Populate CmsSites
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/getallwithalias", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/getallwithalias", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response2) {
             rashaErManage.checkAction(response2);
             cmsModuleSitegrd.CmsSiteListItems = response2.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsModuleSitegrd.busyIndicator.isActive = false;
             console.log(data);
         });
         //Get all CmsModuleSite
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSite/getall", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response3) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/getall", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response3) {
             rashaErManage.checkAction(response3);
             cmsModuleSitegrd.ListItems = response3.ListItems;
             cmsModuleSitegrd.gridOptions.fillData(cmsModuleSitegrd.ListItems, response3.Access);
-            cmsModuleSitegrd.gridOptions.Access = response3.Access;//دسترسی ها نمایش
+            cmsModuleSitegrd.gridOptions.Access = response3.Access; //دسترسی ها نمایش
             cmsModuleSitegrd.gridOptions.currentPageNumber = response3.CurrentPageNumber;
             cmsModuleSitegrd.gridOptions.totalRowCount = response3.TotalRowCount;
             cmsModuleSitegrd.gridOptions.rowPerPage = response3.RowPerPage;
             cmsModuleSitegrd.gridOptions.maxSize = 5;
             cmsModuleSitegrd.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsModuleSitegrd.busyIndicator.isActive = false;
             cmsModuleSitegrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
@@ -60,9 +60,9 @@
 
     // Open Add Modal
     cmsModuleSitegrd.addRequested = false;
-    cmsModuleSitegrd.openAddModal = function () {
+    cmsModuleSitegrd.openAddModal = function() {
         cmsModuleSitegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/ViewModel', '', 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             var now = moment().add(1, "years").format();
             response.Item.ExpireDate = now;
@@ -72,12 +72,12 @@
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsModuleSite/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsModuleSitegrd.addNewRow = function (frm) {
+    cmsModuleSitegrd.addNewRow = function(frm) {
         if (frm.$invalid)
             return;
         //برای جلوگیر ی از وارد کردن اطلاعات تکراری
@@ -89,7 +89,7 @@
         }
 
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', cmsModuleSitegrd.selectedItem, 'POST').success(function(response) {
             cmsModuleSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -99,7 +99,7 @@
                 cmsModuleSitegrd.gridOptions.myfilterText(cmsModuleSitegrd.ListItems, "LinkModuleId", cmsModuleSitegrd.cmsModuleListItems, "ModlueTitle");
                 cmsModuleSitegrd.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsModuleSitegrd.addRequested = false;
         });
@@ -107,28 +107,52 @@
     }
 
     // Open Edit Content Modal
-    cmsModuleSitegrd.openEditModal = function () {
+    cmsModuleSitegrd.openEditModal = function() {
         cmsModuleSitegrd.modalTitle = 'ویرایش';
         if (!cmsModuleSitegrd.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+
+
+        var engine = {
+            CurrentPageNumber: 1,
+            SortColumn: "Id",
+            SortType: 0,
+            NeedToRunFakePagination: false,
+            TotalRowData: 2000,
+            RowPerPage: 20,
+            ContentFullSearch: null,
+            Filters: [],
+            Count: false
+        }
+        var filter1 = {
+            PropertyName = "LinkSiteId",
+            value = cmsModuleSitegrd.gridOptions.selectedRow.item.LinkSiteId
+        }
+        var filter2 = {
+            PropertyName = "LinkModuleId",
+            value = cmsModuleSitegrd.gridOptions.selectedRow.item.LinkModuleId
+        }
+
+        engine.Filters.push(filter1);
+        engine.Filters.push(filter2);
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/GetAll', engine, 'GET').success(function(response) {
             cmsModuleSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
-            cmsModuleSitegrd.selectedItem = response.Item;
-            cmsModuleSitegrd.ExpireDate.setTime(response.Item.ExpireDate);
+            cmsModuleSitegrd.selectedItem = response.ListItems[0];
+            cmsModuleSitegrd.ExpireDate.setTime(response.ListItems[0].ExpireDate);
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsModuleSite/edit.html',
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    cmsModuleSitegrd.editRow = function (frm) {
+    cmsModuleSitegrd.editRow = function(frm) {
         if (frm.$invalid)
             return;
         //برای جلوگیر ی از وارد کردن اطلاعات تکراری
@@ -141,7 +165,7 @@
             }
         }
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', cmsModuleSitegrd.selectedItem, "PUT").success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsModuleSitegrd.addRequested = false;
@@ -150,19 +174,19 @@
                 cmsModuleSitegrd.closeModal();
             }
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsModuleSitegrd.addRequested = false;
         });
 
     }
 
-    cmsModuleSitegrd.closeModal = function () {
+    cmsModuleSitegrd.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    cmsModuleSitegrd.replaceItem = function (oldId, newItem) {
-        angular.forEach(cmsModuleSitegrd.ListItems, function (item, key) {
+    cmsModuleSitegrd.replaceItem = function(oldId, newItem) {
+        angular.forEach(cmsModuleSitegrd.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = cmsModuleSitegrd.ListItems.indexOf(item);
                 cmsModuleSitegrd.ListItems.splice(index, 1);
@@ -172,28 +196,28 @@
             cmsModuleSitegrd.ListItems.unshift(newItem);
     }
 
-    cmsModuleSitegrd.deleteRow = function () {
+    cmsModuleSitegrd.deleteRow = function() {
         if (!cmsModuleSitegrd.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsModuleSitegrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSitegrd.selectedItemForDelete = response.Item;
                     console.log(cmsModuleSitegrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/', cmsModuleSitegrd.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', cmsModuleSitegrd.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModuleSitegrd.replaceItem(cmsModuleSitegrd.selectedItemForDelete.Id);
                             cmsModuleSitegrd.gridOptions.fillData(cmsModuleSitegrd.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -202,7 +226,7 @@
 
     }
 
-    cmsModuleSitegrd.searchData = function () {
+    cmsModuleSitegrd.searchData = function() {
         cmsModuleSitegrd.gridOptions.serachData();
     }
 
@@ -233,12 +257,12 @@
         }
     }
 
-    cmsModuleSitegrd.gridOptions.reGetAll = function () {
+    cmsModuleSitegrd.gridOptions.reGetAll = function() {
         cmsModuleSitegrd.init();
     }
 
     cmsModuleSitegrd.columnCheckbox = false;
-    cmsModuleSitegrd.openGridConfigModal = function () {
+    cmsModuleSitegrd.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         var prechangeColumns = cmsModuleSitegrd.gridOptions.columns;
         if (cmsModuleSitegrd.gridOptions.columnCheckbox) {
@@ -247,8 +271,7 @@
                 var temp = element[0].checked;
                 cmsModuleSitegrd.gridOptions.columns[i].visible = temp;
             }
-        }
-        else {
+        } else {
 
             for (var i = 0; i < cmsModuleSitegrd.gridOptions.columns.length; i++) {
                 var element = $("#" + cmsModuleSitegrd.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
@@ -262,22 +285,22 @@
     }
 
     //Export Report 
-    cmsModuleSitegrd.exportFile = function () {
+    cmsModuleSitegrd.exportFile = function() {
         cmsModuleSitegrd.addRequested = true;
         cmsModuleSitegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsModuleSitegrd.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/exportfile', cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/exportfile', cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 $window.open(response.LinkFile, '_blank');
                 cmsModuleSitegrd.closeModal();
             }
             cmsModuleSitegrd.addRequested = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    cmsModuleSitegrd.toggleExportForm = function () {
+    cmsModuleSitegrd.toggleExportForm = function() {
         cmsModuleSitegrd.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -301,16 +324,16 @@
         });
     }
     //Row Count Input Change
-    cmsModuleSitegrd.rowCountChanged = function () {
+    cmsModuleSitegrd.rowCountChanged = function() {
         if (!angular.isDefined(cmsModuleSitegrd.ExportFileClass.RowCount) || cmsModuleSitegrd.ExportFileClass.RowCount > 2000)
             cmsModuleSitegrd.ExportFileClass.RowCount = 2000;
     }
     //Get TotalRowCount
-    cmsModuleSitegrd.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPage/count", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    cmsModuleSitegrd.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "WebDesignerMainPage/count", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsModuleSitegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsModuleSitegrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
