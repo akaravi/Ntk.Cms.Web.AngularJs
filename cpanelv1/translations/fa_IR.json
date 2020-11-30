@@ -1221,6 +1221,7 @@
   "extensionupdatefile":"پسوند فایل برروز رسانی",
   "sourcenamegit":"نام فولدر گیت هاب",
   "is_ability_gradle_build":"امکان ساخت خودکار موجود است",
-  "uploadapp":"آپلود فایل برنامه"
+  "uploadapp":"آپلود فایل برنامه",
+  "DOWNLOAD_UPDATE_LINK":"لینک دانلود آپدیت"
 
 }
