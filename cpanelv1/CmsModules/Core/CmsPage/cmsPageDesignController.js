@@ -523,7 +523,7 @@
 
         cmsPageDesign.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
             cmsPageDesign.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);

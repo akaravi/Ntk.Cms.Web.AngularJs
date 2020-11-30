@@ -632,7 +632,7 @@
             
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/",
                   "",
                   "GET"
                 )
@@ -710,7 +710,7 @@
            
               ajax
                 .call(
-                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/",
+                  cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/",
                   "",
                   "GET"
                 )
@@ -2033,7 +2033,7 @@
       articleContent.FileList = [];
       //get list of file from category id
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", "GET")
         .success(function (response) {
           articleContent.FileList = response.ListItems;
         })
@@ -2051,7 +2051,7 @@
 
       articleContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
         articleContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2068,7 +2068,7 @@
 
       articleContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", "", 'GET').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
         articleContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2693,7 +2693,7 @@
               node.Children.push(value);
             });
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory/", node.Id, "GET")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/"+node.Id,"", "GET")
               .success(function (response2) {
                 angular.forEach(response2.ListItems, function (value, key) {
                   node.Children.push(value);
