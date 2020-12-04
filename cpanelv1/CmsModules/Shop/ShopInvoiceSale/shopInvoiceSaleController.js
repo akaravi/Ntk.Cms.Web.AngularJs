@@ -557,7 +557,7 @@ shopInvoiceSale.printDiv = function(divName) {
             if (shopInvoiceSale.selectedItem.InvoiceStatus == 1) // فاکتور باز است
             {
                 var angularUrl = $state.current.ncyBreadcrumbLink;
-                shopInvoiceSale.TransactionPaymentMakerClass = { PaymentPrivateId: 0, Price: 0, LastUrlAddressInUse: angularUrl, InvoiceId: invoiceId };
+                shopInvoiceSale.TransactionPaymentMakerClass = { BankPaymentPrivateId: 0, Amount: 0, LastUrlAddressInUse: angularUrl, ModuleEntityId: invoiceId,ModuleName:'Shop',ModuleEntityName:'Cart' };
                 shopInvoiceSale.addRequested = true;
                 shopInvoiceSale.busyIndicator.isActive = true;
                 ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/GetAllAvailable", shopInvoiceSale.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -565,7 +565,7 @@ shopInvoiceSale.printDiv = function(divName) {
                     shopInvoiceSale.privateSiteConfigListItems = response.ListItems;
                     ajax.call(cmsServerConfig.configApiServerPath+"shopinvoiceSale/", invoiceId, "GET").success(function (response) {
                         shopInvoiceSale.addRequested = false;
-                        shopInvoiceSale.TransactionPaymentMakerClass.Price = response.Item.TotalAmount;
+                        shopInvoiceSale.TransactionPaymentMakerClass.Amount = response.Item.TotalAmount;
                         angular.forEach(shopInvoiceSale.privateSiteConfigListItems, function (value, key) {
                             if (value.virtual_PublicConfig.LinkModuleFileLogoId != null)
                                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: value.virtual_PublicConfig.LinkModuleFileLogoId, name: null }, "POST").success(function (response) {
@@ -638,7 +638,7 @@ shopInvoiceSale.printDiv = function(divName) {
         });
     }
     shopInvoiceSale.onPrivateConfigChange = function (index) {
-        shopInvoiceSale.TransactionPaymentMakerClass.PaymentPrivateId = shopInvoiceSale.privateSiteConfigListItems[index].Id;
+        shopInvoiceSale.TransactionPaymentMakerClass.BankPaymentPrivateId = shopInvoiceSale.privateSiteConfigListItems[index].Id;
     }
 
 

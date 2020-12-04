@@ -518,7 +518,7 @@
             if (shopCart.selectedItem.InvoiceStatus == 1) // فاکتور باز است
             {
                 var angularUrl = $state.current.ncyBreadcrumbLink;
-                shopCart.TransactionPaymentMakerClass = { PaymentPrivateId: 0, Price: 0, LastUrlAddressInUse: angularUrl, InvoiceId: invoiceId };
+                shopCart.TransactionPaymentMakerClass = { BankPaymentPrivateId: 0, Amount: 0, LastUrlAddressInUse: angularUrl, ModuleEntityId: invoiceId,ModuleName:'Shop',ModuleEntityName:'Cart' };
                 shopCart.addRequested = true;
                 shopCart.busyIndicator.isActive = true;
                 ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/GetAllAvailable", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -526,7 +526,7 @@
                     shopCart.privateSiteConfigListItems = response.ListItems;
                     ajax.call(cmsServerConfig.configApiServerPath+"shopCart/", invoiceId, "GET").success(function (response) {
                         shopCart.addRequested = false;
-                        shopCart.TransactionPaymentMakerClass.Price = response.Item.TotalAmount;
+                        shopCart.TransactionPaymentMakerClass.Amount = response.Item.TotalAmount;
                         angular.forEach(shopCart.privateSiteConfigListItems, function (value, key) {
                             if (value.virtual_PublicConfig.LinkModuleFileLogoId != null)
                                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: value.virtual_PublicConfig.LinkModuleFileLogoId, name: null }, "POST").success(function (response) {
@@ -599,7 +599,7 @@
         });
     }
     shopCart.onPrivateConfigChange = function (index) {
-        shopCart.TransactionPaymentMakerClass.PaymentPrivateId = shopCart.privateSiteConfigListItems[index].Id;
+        shopCart.TransactionPaymentMakerClass.BankPaymentPrivateId = shopCart.privateSiteConfigListItems[index].Id;
     }
 
 
