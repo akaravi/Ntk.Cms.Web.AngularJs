@@ -466,7 +466,7 @@
     privateSiteConfig.testPayValue.Item = {};
     privateSiteConfig.openTestPayModal = function (id,unit) {
         privateSiteConfig.currentunit=unit;
-        privateSiteConfig.testPayModel = { PaymentPrivateId: id, Amount: 0 };
+        privateSiteConfig.testPayModel = { bankPaymentPrivateId: id, Amount: 0 };
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/BankPayment/BankPaymentPrivateSiteConfig/testPay.html',
             scope: $scope
