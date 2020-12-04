@@ -151,6 +151,16 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appSource.CheckAccessEdit('CheckUpdate')">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="Required" ng-model="appSource.selectedItem.CheckUpdate">بررسی آپدیت
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
                             <div class="form-group" ng-show="appSource.CheckAccessEdit('ForceUpdate')">
                                 <div class="col-sm-12">
                                     <div class="checkbox">
