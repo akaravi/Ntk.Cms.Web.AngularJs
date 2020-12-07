@@ -6,6 +6,7 @@
     }
     biographyContentTag.init = function () {
         biographyContentTag.busyIndicator.isActive = true;
+        biographyContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"biographyContenttag/getall", biographyContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentTag.busyIndicator.isActive = false;

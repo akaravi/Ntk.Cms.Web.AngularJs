@@ -5,6 +5,7 @@
         message: "در حال بارگذاری ..."
     }
     productContentTag.init = function () {
+        productContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         productContentTag.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ProductContenttag/getall", productContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);

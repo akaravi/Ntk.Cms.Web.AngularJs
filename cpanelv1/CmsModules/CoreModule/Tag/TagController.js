@@ -149,13 +149,16 @@
     //init Function
     coreTag.init = function() {
         coreTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "coreModuleTagCategory/getall", { RowPerPage: 1000 }, 'POST').success(function(response) {
+        var engine ={ RowPerPage: 1000 };
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "coreModuleTagCategory/getall", engine, 'POST').success(function(response) {
             coreTag.treeConfig.Items = response.ListItems;
             coreTag.AccessTagCategory=response.Access;
             coreTag.categoryBusyIndicator.isActive = false;
         }).error(function(data, errCode, c, d) {
             console.log(data);
         });
+        coreTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "coreModuleTag/getall", coreTag.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             coreTag.ListItems = response.ListItems;
@@ -376,6 +379,7 @@
             }
             coreTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        coreTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "coreModuleTag/getall", coreTag.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             coreTag.contentBusyIndicator.isActive = false;

@@ -131,6 +131,7 @@
             ContentFullSearch: null,
             Filters: []
         };
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "CoreCpMainMenu/getAllMenu", engine, 'POST').success(function(response) {
             coreCpMainMenugrd.treeConfig.Items = response.ListItems;
             rashaErManage.checkAction(response);
@@ -183,6 +184,7 @@
                 SearchType: 0
             }
         coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters.push(s);
+        coreCpMainMenugrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "CoreCpMainMenu/GetAll", coreCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             coreCpMainMenugrd.busyIndicator.isActive = false;

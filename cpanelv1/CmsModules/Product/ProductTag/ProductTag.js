@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        productTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.ListItems = response.ListItems;
@@ -399,6 +400,7 @@
             }
             productTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        productTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.contentBusyIndicator.isActive = false;

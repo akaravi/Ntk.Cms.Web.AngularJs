@@ -12,6 +12,7 @@
     cmsModulePrc.cmsModulesListItems = [];
     cmsModulePrc.init = function () {
         cmsModulePrc.busyIndicator.isActive = true;
+        cmsModulePrc.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleProcess/getall", cmsModulePrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.ListItems = response.ListItems;

@@ -1,9 +1,9 @@
-﻿app.controller("emailProcessTaskCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
+﻿app.controller("emailProcessTaskCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
     var emailProcessTask = this;
     emailProcessTask.ManageUserAccessControllerTypes = [];
 
     emailProcessTask.selectedPrivateSiteConfig = { Id: $stateParams.privateSiteConfigId };
-//#help set default date
+    //#help set default date
     var date = moment().format();
     emailProcessTask.datePickerConfig = {
         defaultDate: date
@@ -14,7 +14,7 @@
     emailProcessTask.DateSendEnd = {
         defaultDate: date
     }
-//#help
+    //#help
     emailProcessTask.busyIndicator = {
         isActive: true,
         message: "در حال بار گذاری ..."
@@ -22,24 +22,25 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
     if (itemRecordStatus != undefined) emailProcessTask.itemRecordStatus = itemRecordStatus;
-    emailProcessTask.init = function () {
+    emailProcessTask.init = function() {
         //if (emailProcessTask.selectedPrivateSiteConfig.Id == 0 || emailProcessTask.selectedPrivateSiteConfig.Id == null) {
         //    $state.go("index.emailprivatesiteconfig");
         //    return;
         //}
         if (emailProcessTask.selectedPrivateSiteConfig.Id == null || emailProcessTask.selectedPrivateSiteConfig.Id == 0) emailProcessTask.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprivatesiteconfig/', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedPrivateSiteConfig = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         emailProcessTask.busyIndicator.isActive = true;
         var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: emailProcessTask.selectedPrivateSiteConfig.Id };
-        if (emailProcessTask.selectedPrivateSiteConfig.Id >0)
+        if (emailProcessTask.selectedPrivateSiteConfig.Id > 0)
             emailProcessTask.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstask/getall", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        emailProcessTask.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "emailprocesstask/getall", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             emailProcessTask.ListItems = response.ListItems;
             emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.Access);
@@ -51,17 +52,17 @@
             model.SortType = 0;
             model.SortColumn = "Id";
             emailProcessTask.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             emailProcessTask.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
     emailProcessTask.addRequested = false;
-    emailProcessTask.openAddModal = function () {
+    emailProcessTask.openAddModal = function() {
         if (buttonIsPressed) { return };
         emailProcessTask.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -69,39 +70,38 @@
                 templateUrl: 'cpanelv1/CmsModules/Email/EmailProcessTask/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    emailProcessTask.addNewRow = function (frm) {
-        if (frm.$invalid)
-        {
+    emailProcessTask.addNewRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        
+
         emailProcessTask.addRequested = true;
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/', emailProcessTask.selectedItem, 'POST').success(function(response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
 
-                        response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
-                        emailProcessTask.ListItems.unshift(response1.Item);
-                        emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems);
-                        emailProcessTask.addRequested = false;
-                        emailProcessTask.busyIndicator.isActive = false;
-                        emailProcessTask.closeModal();
+                response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
+                emailProcessTask.ListItems.unshift(response1.Item);
+                emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems);
+                emailProcessTask.addRequested = false;
+                emailProcessTask.busyIndicator.isActive = false;
+                emailProcessTask.closeModal();
 
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             emailProcessTask.addRequested = false;
             emailProcessTask.busyIndicator.isActive = false;
         });
     }
 
-    emailProcessTask.openEditModal = function () {
+    emailProcessTask.openEditModal = function() {
         if (buttonIsPressed) { return };
         emailProcessTask.modalTitle = 'ویرایش';
         emailProcessTask.addRequested = false;
@@ -111,7 +111,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -121,19 +121,18 @@
                 templateUrl: 'cpanelv1/CmsModules/Email/emailProcessTask/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    emailProcessTask.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+    emailProcessTask.editRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-       
+
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/', emailProcessTask.selectedItem, "PUT").success(function(response) {
             emailProcessTask.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -142,18 +141,18 @@
                 emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.Access);
                 emailProcessTask.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             emailProcessTask.addRequested = false;
             emailProcessTask.busyIndicator.isActive = false;
         });
     }
 
-    emailProcessTask.closeModal = function () {
+    emailProcessTask.closeModal = function() {
         $modalStack.dismissAll();
     };
-    emailProcessTask.replaceItem = function (oldId, newItem) {
-        angular.forEach(emailProcessTask.ListItems, function (item, key) {
+    emailProcessTask.replaceItem = function(oldId, newItem) {
+        angular.forEach(emailProcessTask.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = emailProcessTask.ListItems.indexOf(item);
                 emailProcessTask.ListItems.splice(index, 1);
@@ -162,36 +161,36 @@
         if (newItem)
             emailProcessTask.ListItems.unshift(newItem);
     }
-    emailProcessTask.deleteRow = function () {
+    emailProcessTask.deleteRow = function() {
         if (buttonIsPressed) { return };
         if (!emailProcessTask.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     emailProcessTask.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/', emailProcessTask.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/', emailProcessTask.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailProcessTask.replaceItem(emailProcessTask.selectedItemForDelete.Id);
                             emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
         });
     }
-    emailProcessTask.searchData = function () {
+    emailProcessTask.searchData = function() {
         emailProcessTask.gridOptions.serachData();
     }
     emailProcessTask.gridOptions = {
@@ -246,11 +245,11 @@
         }
     }
 
-    emailProcessTask.gridOptions.reGetAll = function () {
+    emailProcessTask.gridOptions.reGetAll = function() {
         emailProcessTask.init();
     }
 
-    emailProcessTask.gridOptions.onRowSelected = function () {
+    emailProcessTask.gridOptions.onRowSelected = function() {
         var item = emailProcessTask.gridOptions.selectedRow.item;
         //Get Options
         $("#gridLogs").fadeOut('fast');
@@ -258,7 +257,8 @@
         filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", IntValue1: item.Id, SearchType: 0 });
         emailProcessTask.addRequested = true;
         //emailProcessTask.optionsBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
+        filterModel.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "emailprocesstaskLog/getall", filterModel, "POST").success(function(response) {
             emailProcessTask.addRequested = false;
             //emailProcessTask.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -270,12 +270,12 @@
             emailProcessTask.gridLogs.RowPerPage = response.RowPerPage;
             if (emailProcessTask.processFlowLogList.length > 0)
                 $("#gridLogs").fadeIn('fast');
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }
     emailProcessTask.columnCheckbox = false;
-    emailProcessTask.openGridConfigModal = function () {
+    emailProcessTask.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         if (emailProcessTask.gridOptions.columnCheckbox) {
             for (var i = 0; i < emailProcessTask.gridOptions.columns.length; i++) {
@@ -284,8 +284,7 @@
                 //var temp = element[0].checked;
                 emailProcessTask.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = emailProcessTask.gridOptions.columns;
             for (var i = 0; i < emailProcessTask.gridOptions.columns.length; i++) {
                 emailProcessTask.gridOptions.columns[i].visible = true;
@@ -299,10 +298,10 @@
         emailProcessTask.gridOptions.columnCheckbox = !emailProcessTask.gridOptions.columnCheckbox;
     }
     //Export Report 
-    emailProcessTask.exportFile = function () {
+    emailProcessTask.exportFile = function() {
         emailProcessTask.addRequested = true;
         emailProcessTask.gridOptions.advancedSearchData.engine.ExportFile = emailProcessTask.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/exportfile', emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprivatesiteconfig/exportfile', emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.reportDownloadLink = response.LinkFile;
@@ -310,12 +309,12 @@
                 $window.open(response.LinkFile, '_blank');
                 //emailProcessTask.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    emailProcessTask.toggleExportForm = function () {
+    emailProcessTask.toggleExportForm = function() {
         emailProcessTask.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -338,17 +337,17 @@
         });
     }
     //Row Count Export Input Change
-    emailProcessTask.rowCountChanged = function () {
+    emailProcessTask.rowCountChanged = function() {
         if (!angular.isDefined(emailProcessTask.ExportFileClass.RowCount) || emailProcessTask.ExportFileClass.RowCount > 5000)
             emailProcessTask.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    emailProcessTask.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstask/count", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    emailProcessTask.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "emailprocesstask/count", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             emailProcessTask.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
@@ -358,8 +357,8 @@
     //    $state.go("index." + state);
     //}
 
-    emailProcessTask.retryTrans = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/processflowCheck', selectedId, 'GET').success(function (response) {
+    emailProcessTask.retryTrans = function(selectedId) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprocesstask/processflowCheck', selectedId, 'GET').success(function(response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.reportDownloadLink = response.LinkFile;
@@ -367,7 +366,7 @@
                 $window.open(response.LinkFile, '_blank');
                 //emailProcessTask.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }

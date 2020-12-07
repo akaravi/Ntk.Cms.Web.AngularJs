@@ -16,7 +16,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogOutput/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logOutputCtrl.busyIndicator.isActive = false;

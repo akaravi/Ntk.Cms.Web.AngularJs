@@ -32,6 +32,7 @@
         if (shopProcess.selectedSourceId != undefined || shopProcess.selectedSourceId != null) {
             shopProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, IntValue1: shopProcess.selectedSourceId });
         }
+        shopProcess.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;

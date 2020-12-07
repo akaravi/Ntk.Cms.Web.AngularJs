@@ -87,6 +87,7 @@
 
     vehicleProperty.init = function () {
         vehicleProperty.busyIndicator.isActive = true;
+        vehicleProperty.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehicleproperty/getAllwithalias", vehicleProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleProperty.ListItems = response.ListItems;

@@ -346,6 +346,7 @@
             }
             productShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        productShareServerCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"productShareServerCategory/getall", productShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productShareServerCategory.contentBusyIndicator.isActive = false;

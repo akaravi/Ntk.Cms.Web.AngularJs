@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        blogTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"blogtag/getall", blogTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogTag.ListItems = response.ListItems;
@@ -399,6 +400,7 @@
             }
             blogTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        blogTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"blogtag/getall", blogTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogTag.contentBusyIndicator.isActive = false;

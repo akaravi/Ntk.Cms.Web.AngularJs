@@ -600,7 +600,7 @@ memberProperty.PropertyID=PropertyId;
         engine.Filters = [];
         engine.Filters.push(s);
      
-       
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, "POST").success(function (response) {
             memberProperty.listComments = response.ListItems;
             rashaErManage.checkAction(response);
@@ -661,6 +661,7 @@ memberProperty.PropertyID=PropertyId;
             //#help# گرفتن دسته بندی ها
             if(engine.Filters.length>0)
             {
+                engine.AccessLoad = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyType/getall", engine, 'POST').success(function (response) {
                         memberProperty.treeConfig.Items = response.ListItems;
                         memberProperty.gridOptions.AccessGroup = response.Access;
@@ -682,7 +683,7 @@ memberProperty.PropertyID=PropertyId;
                     }
                 
         engine.Filters.push(s);
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"MemberProperty/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             angular.forEach(response.ListItems.virtual_PropertyDetailValue, function (itemV, key) {
@@ -706,7 +707,7 @@ memberProperty.PropertyID=PropertyId;
         }
         else
         {
-            ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyType/getall", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyType/getall", {AccessLoad : true}, 'POST').success(function (response) {
                 memberProperty.treeConfig.Items = response.ListItems;
                 memberProperty.gridOptions.AccessGroup = response.Access;
                 memberProperty.propertyTypeListItems = response.ListItems;
@@ -716,7 +717,7 @@ memberProperty.PropertyID=PropertyId;
             });
         memberProperty.categoryBusyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberProperty/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MemberProperty/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             angular.forEach(response.ListItems.virtual_PropertyDetailValue, function (itemV, key) {
                 if(itemV.PropertyDetail.IsHistoryable!=false)
@@ -790,6 +791,7 @@ memberProperty.PropertyID=PropertyId;
             //#help# گرفتن دسته بندی ها
             if(engine.Filters.length>0)
             {
+                engine.AccessLoad = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyType/getall", engine, 'POST').success(function (response) {
                         memberProperty.treeConfig.Items = response.ListItems;
                         memberProperty.gridOptions.AccessGroup = response.Access;

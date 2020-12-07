@@ -10,7 +10,10 @@
     if (itemRecordStatus != undefined) biographycategory.itemRecordStatus = itemRecordStatus;
     biographycategory.init = function () {
         biographycategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"biographycategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        
+        var engine = { RowPerPage:1000};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"biographycategory/getall", engine, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             biographycategory.ListItems = response.ListItems;

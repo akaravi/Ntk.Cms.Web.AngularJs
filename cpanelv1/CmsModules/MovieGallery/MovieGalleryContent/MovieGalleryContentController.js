@@ -718,7 +718,6 @@ mvGallery.LinkCategoryIdSelector = {
             rashaErManage.checkAction(response);
             mvGallery.ListItems = response.ListItems;
             mvGallery.fetchImageURLs(mvGallery.ListItems);
-            //mvGallery.gridOptions.fillData(mvGallery.ListItems, response.Access); // Sending Access as an argument
             mvGallery.gridOptions.currentPageNumber = response.CurrentPageNumber;
             mvGallery.gridOptions.totalRowCount = response.TotalRowCount;
             mvGallery.gridOptions.rowPerPage = response.RowPerPage;

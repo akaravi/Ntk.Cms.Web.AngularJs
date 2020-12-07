@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) reservationcategory.itemRecordStatus = itemRecordStatus;
     reservationcategory.init = function () {
         reservationcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"reservationcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationcategory/getall", { RowPerPage:1000,AccessLoad : true}, 'POST').success(function (response) {
 
             rashaErManage.checkAction(response);
             reservationcategory.ListItems = response.ListItems;

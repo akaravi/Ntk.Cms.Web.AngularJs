@@ -32,7 +32,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopProductFileSerial/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProductFileSerial.busyIndicator.isActive = false;

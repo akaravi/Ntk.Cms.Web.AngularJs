@@ -39,7 +39,7 @@
             jobContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-
+        jobContract.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobcontract/getall", jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContract.busyIndicator.isActive = false;

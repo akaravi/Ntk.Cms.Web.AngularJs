@@ -20,6 +20,7 @@
         } catch (error) {
             console.log(error);
         }
+        newssharingcategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"newssharingcategory/getall", newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.categoryBusyIndicator.isActive = false;

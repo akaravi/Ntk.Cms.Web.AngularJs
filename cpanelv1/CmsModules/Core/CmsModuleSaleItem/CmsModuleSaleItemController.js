@@ -9,7 +9,7 @@
     "$timeout",
     "$window",
     "$filter",
-    function (
+    function(
         $scope,
         $http,
         ajax,
@@ -28,7 +28,7 @@
         //cmsModuleSaleItem.attachedFiles = [];
         //cmsModuleSaleItem.attachedFile = "";
 
-    
+
         var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
         if (itemRecordStatus != undefined)
@@ -46,7 +46,7 @@
         //     defaultDate: date
         // };
         cmsModuleSaleItem.count = 0;
-      
+
 
         //#help/ سلکتور دسته بندی در هدر
         cmsModuleSaleItem.LinkModuleSaleHeaderGroupIdSelector = {
@@ -61,8 +61,7 @@
             rowPerPage: 200,
             scope: cmsModuleSaleItem,
             columnOptions: {
-                columns: [
-                    {
+                columns: [{
                         name: "Id",
                         displayName: "کد سیستمی",
                         sortable: true,
@@ -96,8 +95,7 @@
             rowPerPage: 200,
             scope: cmsModuleSaleItem,
             columnOptions: {
-                columns: [
-                    {
+                columns: [{
                         name: "Id",
                         displayName: "کد سیستمی",
                         sortable: true,
@@ -120,8 +118,7 @@
         };
         // Grid Options
         cmsModuleSaleItem.gridOptions = {
-            columns: [
-                {
+            columns: [{
                     name: "LinkMainImageId",
                     displayName: "عکس",
                     sortable: true,
@@ -190,7 +187,7 @@
                 engine: {}
             }
         };
-    
+
         //cmsModuleSaleItem.onTagRemoved = function(tag) {};
         //For Show Category Loading Indicator
         cmsModuleSaleItem.categoryBusyIndicator = {
@@ -210,7 +207,7 @@
             displayLinkParentId: "LinkParentId"
         };
 
-     
+
 
         cmsModuleSaleItem.treeConfig.currentNode = {};
         cmsModuleSaleItem.treeBusyIndicator = false;
@@ -221,29 +218,29 @@
         //cmsModuleSaleItem.articleTitle = "";
 
         //init Function
-        cmsModuleSaleItem.init = function () {
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/EnumCmsModuleSaleItemType", "", 'GET').success(function (response) {
+        cmsModuleSaleItem.init = function() {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/EnumCmsModuleSaleItemType", "", 'GET').success(function(response) {
                 cmsModuleSaleItem.EnumCmsModuleSaleItemType = response.ListItems;
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/getall", { RowPerPage: 1000 }, "POST")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.treeConfig.Items = response.ListItems;
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     console.log(data);
                 });
-
+            cmsModuleSaleItem.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/getall",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/getall",
                     cmsModuleSaleItem.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.ListItems = response.ListItems;
                     cmsModuleSaleItem.gridOptions.fillData(
@@ -257,16 +254,16 @@
                     cmsModuleSaleItem.gridOptions.rowPerPage = response.RowPerPage;
                     cmsModuleSaleItem.gridOptions.maxSize = 5;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     cmsModuleSaleItem.gridOptions.fillData();
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.contentBusyIndicator.isActive = false;
                 });
 
         };
-        
 
-        cmsModuleSaleItem.gridOptions.onRowSelected = function () {
+
+        cmsModuleSaleItem.gridOptions.onRowSelected = function() {
             var item = cmsModuleSaleItem.gridOptions.selectedRow.item;
             //cmsModuleSaleItem.showComment(item);
         };
@@ -274,7 +271,7 @@
         //cmsModuleSaleItem.gridContentOptions.onRowSelected = function() {};
 
         // Open Add Category Modal
-        cmsModuleSaleItem.addNewCategoryModel = function () {
+        cmsModuleSaleItem.addNewCategoryModel = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -282,55 +279,52 @@
             buttonIsPressed = true;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/ViewModel", "", "GET")
-                .success(function (response) {
+                .success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.selectedItem = response.Item;
                     //Set dataForTheTree
                     var filterModelParentRootFolders = {
-                        Filters: [
-                            {
-                                PropertyName: "LinkParentId",
-                                IntValue1: null,
-                                SearchType: 0,
-                                IntValueForceNullSearch: true
-                            }
-                        ]
+                        Filters: [{
+                            PropertyName: "LinkParentId",
+                            IntValue1: null,
+                            SearchType: 0,
+                            IntValueForceNullSearch: true
+                        }]
                     };
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileCategory/getAll",
+                            cmsServerConfig.configApiServerPath + "FileCategory/getAll",
                             filterModelParentRootFolders,
                             "POST"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             //Get root directories
                             cmsModuleSaleItem.dataForTheTree = response1.ListItems;
-                        
+
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/",
+                                    cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/",
                                     "",
                                     "GET"
                                 )
-                                .success(function (response2) {
+                                .success(function(response2) {
                                     //Get files in root
                                     Array.prototype.push.apply(
                                         cmsModuleSaleItem.dataForTheTree,
                                         response2.ListItems
                                     );
                                     $modal.open({
-                                        templateUrl:
-                                            "cpanelv1/CmsModules/Core/CmsModuleSaleHeader/add.html",
+                                        templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleHeader/add.html",
                                         scope: $scope
                                     });
                                     cmsModuleSaleItem.addRequested = false;
                                 })
-                                .error(function (data, errCode, c, d) {
+                                .error(function(data, errCode, c, d) {
                                     console.log(data);
                                 });
                         })
-                        .error(function (data, errCode, c, d) {
+                        .error(function(data, errCode, c, d) {
                             console.log(data);
                         });
                     //-----
@@ -339,12 +333,12 @@
                     //    scope: $scope
                     //});
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
         // Open Edit Category Modal
-        cmsModuleSaleItem.editCategoryModel = function () {
+        cmsModuleSaleItem.editCategoryModel = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -359,11 +353,11 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/",
                     cmsModuleSaleItem.treeConfig.currentNode.Id,
                     "GET"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     buttonIsPressed = false;
                     cmsModuleSaleItem.contentBusyIndicator.isActive = false;
                     rashaErManage.checkAction(response);
@@ -373,31 +367,29 @@
                     cmsModuleSaleItem.expandedNodes = [];
                     cmsModuleSaleItem.selectedItem = response.Item;
                     var filterModelParentRootFolders = {
-                        Filters: [
-                            {
-                                PropertyName: "LinkParentId",
-                                IntValue1: null,
-                                SearchType: 0,
-                                IntValueForceNullSearch: true
-                            }
-                        ]
+                        Filters: [{
+                            PropertyName: "LinkParentId",
+                            IntValue1: null,
+                            SearchType: 0,
+                            IntValueForceNullSearch: true
+                        }]
                     };
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileCategory/getAll",
+                            cmsServerConfig.configApiServerPath + "FileCategory/getAll",
                             filterModelParentRootFolders,
                             "POST"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             //Get root directories
                             cmsModuleSaleItem.dataForTheTree = response1.ListItems;
-                        
+
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/","",
+                                    cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "",
                                     "GET"
                                 )
-                                .success(function (response2) {
+                                .success(function(response2) {
                                     //Get files in root
                                     Array.prototype.push.apply(
                                         cmsModuleSaleItem.dataForTheTree,
@@ -405,21 +397,19 @@
                                     );
                                     //Set selected files to treeControl
                                     if (cmsModuleSaleItem.selectedItem.LinkMainImageId > 0)
-                                        cmsModuleSaleItem.onSelection(
-                                            { Id: cmsModuleSaleItem.selectedItem.LinkMainImageId },
+                                        cmsModuleSaleItem.onSelection({ Id: cmsModuleSaleItem.selectedItem.LinkMainImageId },
                                             true
                                         );
                                     $modal.open({
-                                        templateUrl:
-                                            "cpanelv1/CmsModules/Core/CmsModuleSaleHeader/edit.html",
+                                        templateUrl: "cpanelv1/CmsModules/Core/CmsModuleSaleHeader/edit.html",
                                         scope: $scope
                                     });
                                 })
-                                .error(function (data, errCode, c, d) {
+                                .error(function(data, errCode, c, d) {
                                     console.log(data);
                                 });
                         })
-                        .error(function (data, errCode, c, d) {
+                        .error(function(data, errCode, c, d) {
                             console.log(data);
                         });
                     //---
@@ -428,13 +418,13 @@
                     //    scope: $scope
                     //});
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
 
         // Add New Category
-        cmsModuleSaleItem.addNewCategory = function (frm) {
+        cmsModuleSaleItem.addNewCategory = function(frm) {
             if (frm.$invalid) {
                 rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
                 return;
@@ -444,10 +434,10 @@
             cmsModuleSaleItem.selectedItem.LinkParentId = null;
             if (cmsModuleSaleItem.treeConfig.currentNode != null)
                 cmsModuleSaleItem.selectedItem.LinkParentId =
-                    cmsModuleSaleItem.treeConfig.currentNode.Id;
+                cmsModuleSaleItem.treeConfig.currentNode.Id;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", cmsModuleSaleItem.selectedItem, "POST")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.addRequested = false;
                     rashaErManage.checkAction(response);
                     console.log(response);
@@ -459,7 +449,7 @@
                     }
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.addRequested = false;
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -467,7 +457,7 @@
         };
 
         //Edit Category REST Api
-        cmsModuleSaleItem.editCategory = function (frm) {
+        cmsModuleSaleItem.editCategory = function(frm) {
             if (frm.$invalid) {
                 rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
                 return;
@@ -476,7 +466,7 @@
             cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", cmsModuleSaleItem.selectedItem, "PUT")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.addRequested = true;
                     //cmsModuleSaleItem.showbusy = false;
                     cmsModuleSaleItem.treeConfig.showbusy = false;
@@ -489,7 +479,7 @@
                     }
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.addRequested = false;
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -497,7 +487,7 @@
         };
 
         // Delete a Category
-        cmsModuleSaleItem.deleteCategory = function () {
+        cmsModuleSaleItem.deleteCategory = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -509,25 +499,25 @@
             rashaErManage.showYesNo(
                 ($filter('translatentk')('warning')),
                 ($filter('translatentk')('do_you_want_to_delete_this_attribute')),
-                function (isConfirmed) {
+                function(isConfirmed) {
                     if (isConfirmed) {
                         cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
                         // console.log(node.gridOptions.selectedRow.item);
                         buttonIsPressed = true;
                         ajax
                             .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/", node.Id, "GET")
-                            .success(function (response) {
+                            .success(function(response) {
                                 buttonIsPressed = false;
                                 rashaErManage.checkAction(response);
                                 cmsModuleSaleItem.selectedItemForDelete = response.Item;
                                 console.log(cmsModuleSaleItem.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/",
+                                        cmsServerConfig.configApiServerPath + "CoreModuleSaleHeader/",
                                         cmsModuleSaleItem.selectedItemForDelete.Id,
                                         "DELETE"
                                     )
-                                    .success(function (res) {
+                                    .success(function(res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                                         if (res.IsSuccess) {
                                             cmsModuleSaleItem.replaceCategoryItem(cmsModuleSaleItem.treeConfig.Items, node.Id);
@@ -544,12 +534,12 @@
                                                 );
                                         }
                                     })
-                                    .error(function (data2, errCode2, c2, d2) {
+                                    .error(function(data2, errCode2, c2, d2) {
                                         rashaErManage.checkAction(data2);
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                                     });
                             })
-                            .error(function (data, errCode, c, d) {
+                            .error(function(data, errCode, c, d) {
                                 rashaErManage.checkAction(data, errCode);
                                 cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                             });
@@ -559,14 +549,14 @@
         };
 
         //Tree On Node Select Options
-        cmsModuleSaleItem.treeConfig.onNodeSelect = function () {
+        cmsModuleSaleItem.treeConfig.onNodeSelect = function() {
             var node = cmsModuleSaleItem.treeConfig.currentNode;
             cmsModuleSaleItem.showGridComment = false;
             //cmsModuleSaleItem.selectedItem.LinkCategoryId = node.Id;
             cmsModuleSaleItem.selectContent(node);
         };
         //Show Content with Category Id
-        cmsModuleSaleItem.selectContent = function (node) {
+        cmsModuleSaleItem.selectContent = function(node) {
             cmsModuleSaleItem.gridOptions.advancedSearchData.engine.Filters = null;
             cmsModuleSaleItem.gridOptions.advancedSearchData.engine.Filters = [];
             if (node != null && node != undefined) {
@@ -586,13 +576,14 @@
                 };
                 cmsModuleSaleItem.gridOptions.advancedSearchData.engine.Filters.push(s);
             }
+            cmsModuleSaleItem.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/getall",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/getall",
                     cmsModuleSaleItem.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.contentBusyIndicator.isActive = false;
                     cmsModuleSaleItem.ListItems = response.ListItems;
@@ -606,13 +597,13 @@
                     cmsModuleSaleItem.gridOptions.rowPerPage = response.RowPerPage;
                     cmsModuleSaleItem.gridOptions.maxSize = 5;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     cmsModuleSaleItem.gridOptions.fillData();
                     rashaErManage.checkAction(data, errCode);
                 });
         };
         // Open Add New Content Model
-        cmsModuleSaleItem.addNewContentModel = function () {
+        cmsModuleSaleItem.addNewContentModel = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -637,7 +628,7 @@
             buttonIsPressed = true;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/ViewModel", "", "GET")
-                .success(function (response) {
+                .success(function(response) {
                     buttonIsPressed = false;
                     addNewContentModel = false;
                     console.log(response);
@@ -657,13 +648,13 @@
                         scope: $scope
                     });
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
 
         // Open Edit Content Modal
-        cmsModuleSaleItem.openEditModel = function () {
+        cmsModuleSaleItem.openEditModel = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -676,11 +667,11 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
-                .success(function (response1) {
+                .success(function(response1) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response1);
                     cmsModuleSaleItem.selectedItem = response1.Item;
@@ -688,18 +679,18 @@
                     //     cmsModuleSaleItem.selectedItem.FromDate;
                     // cmsModuleSaleItem.endDate.defaultDate =
                     //     cmsModuleSaleItem.selectedItem.ToDate;
-                   
+
                     $modal.open({
                         templateUrl: "cpanelv1/CmsModules/Core/cmsModuleSaleItem/edit.html",
                         scope: $scope
                     });
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
         // Add New Content
-        cmsModuleSaleItem.addNewContent = function (frm) {
+        cmsModuleSaleItem.addNewContent = function(frm) {
             if (frm.$invalid) {
                 rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
                 return;
@@ -732,17 +723,17 @@
             //  });
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "POST")
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                     if (response.IsSuccess) {
                         cmsModuleSaleItem.ListItems.unshift(response.Item);
                         cmsModuleSaleItem.gridOptions.fillData(cmsModuleSaleItem.ListItems);
                         cmsModuleSaleItem.closeModal();
-                      
+
                     }
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.addRequested = false;
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -750,7 +741,7 @@
         };
 
         //Edit Content
-        cmsModuleSaleItem.editContent = function (frm) {
+        cmsModuleSaleItem.editContent = function(frm) {
             if (frm.$invalid) {
                 rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
                 return;
@@ -801,7 +792,7 @@
             //  });
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                     cmsModuleSaleItem.addRequested = false;
                     cmsModuleSaleItem.treeConfig.showbusy = false;
@@ -816,7 +807,7 @@
                         cmsModuleSaleItem.closeModal();
                     }
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.addRequested = false;
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -928,7 +919,7 @@
 
         //#help
         // Delete a  Content
-        cmsModuleSaleItem.deleteContent = function () {
+        cmsModuleSaleItem.deleteContent = function() {
             if (buttonIsPressed) {
                 return;
             }
@@ -941,7 +932,7 @@
             rashaErManage.showYesNo(
                 ($filter('translatentk')('warning')),
                 ($filter('translatentk')('do_you_want_to_delete_this_attribute')),
-                function (isConfirmed) {
+                function(isConfirmed) {
                     if (isConfirmed) {
                         cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
                         console.log(cmsModuleSaleItem.gridOptions.selectedRow.item);
@@ -950,11 +941,11 @@
                         buttonIsPressed = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                                cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/",
                                 cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
-                            .success(function (response) {
+                            .success(function(response) {
                                 buttonIsPressed = false;
                                 cmsModuleSaleItem.showbusy = false;
                                 cmsModuleSaleItem.showIsBusy = false;
@@ -963,11 +954,11 @@
                                 console.log(cmsModuleSaleItem.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                                        cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/",
                                         cmsModuleSaleItem.selectedItemForDelete.Id,
                                         "DELETE"
                                     )
-                                    .success(function (res) {
+                                    .success(function(res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                                         cmsModuleSaleItem.treeConfig.showbusy = false;
                                         cmsModuleSaleItem.showIsBusy = false;
@@ -981,14 +972,14 @@
                                             );
                                         }
                                     })
-                                    .error(function (data2, errCode2, c2, d2) {
+                                    .error(function(data2, errCode2, c2, d2) {
                                         rashaErManage.checkAction(data2);
                                         cmsModuleSaleItem.treeConfig.showbusy = false;
                                         cmsModuleSaleItem.showIsBusy = false;
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                                     });
                             })
-                            .error(function (data, errCode, c, d) {
+                            .error(function(data, errCode, c, d) {
                                 rashaErManage.checkAction(data, errCode);
                                 cmsModuleSaleItem.treeConfig.showbusy = false;
                                 cmsModuleSaleItem.showIsBusy = false;
@@ -1000,27 +991,27 @@
         };
 
         //Confirm/UnConfirm  Content
-        cmsModuleSaleItem.confirmUnConfirmcmsModuleSaleItem = function () {
+        cmsModuleSaleItem.confirmUnConfirmcmsModuleSaleItem = function() {
             if (!cmsModuleSaleItem.gridOptions.selectedRow.item) {
                 rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Content'));
                 return;
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.selectedItem = response.Item;
                     cmsModuleSaleItem.selectedItem.IsAccepted = response.Item.IsAccepted ==
-                        true
-                        ? false
-                        : true;
+                        true ?
+                        false :
+                        true;
                     ajax
                         .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
-                        .success(function (response2) {
+                        .success(function(response2) {
                             rashaErManage.checkAction(response2);
                             if (response2.IsSuccess) {
                                 var index = cmsModuleSaleItem.ListItems.indexOf(
@@ -1031,37 +1022,37 @@
                                 }
                             }
                         })
-                        .error(function (data, errCode, c, d) {
+                        .error(function(data, errCode, c, d) {
                             rashaErManage.checkAction(data, errCode);
                         });
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
 
         //Add To Archive New Content
-        cmsModuleSaleItem.enableArchive = function () {
+        cmsModuleSaleItem.enableArchive = function() {
             if (!cmsModuleSaleItem.gridOptions.selectedRow.item) {
                 rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Content'));
                 return;
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/",
                     cmsModuleSaleItem.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.selectedItem = response.Item;
                     cmsModuleSaleItem.selectedItem.IsArchive = response.Item.IsArchive ==
-                        true
-                        ? false
-                        : true;
+                        true ?
+                        false :
+                        true;
                     ajax
                         .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/", cmsModuleSaleItem.selectedItem, "PUT")
-                        .success(function (response2) {
+                        .success(function(response2) {
                             cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
                             rashaErManage.checkAction(response2);
                             if (response2.IsSuccess) {
@@ -1074,20 +1065,20 @@
                                 cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                             }
                         })
-                        .error(function (data, errCode, c, d) {
+                        .error(function(data, errCode, c, d) {
                             rashaErManage.checkAction(data, errCode);
                             cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                         });
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                 });
         };
 
         //Replace Item OnDelete/OnEdit Grid Options
-        cmsModuleSaleItem.replaceItem = function (oldId, newItem) {
-            angular.forEach(cmsModuleSaleItem.ListItems, function (item, key) {
+        cmsModuleSaleItem.replaceItem = function(oldId, newItem) {
+            angular.forEach(cmsModuleSaleItem.ListItems, function(item, key) {
                 if (item.Id == oldId) {
                     var index = cmsModuleSaleItem.ListItems.indexOf(item);
                     cmsModuleSaleItem.ListItems.splice(index, 1);
@@ -1098,15 +1089,15 @@
 
         cmsModuleSaleItem.summernoteText =
             "<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />";
-        cmsModuleSaleItem.searchData = function () {
+        cmsModuleSaleItem.searchData = function() {
             cmsModuleSaleItem.categoryBusyIndicator.isActive = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/getall",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/getall",
                     cmsModuleSaleItem.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
                     cmsModuleSaleItem.ListItems = response.ListItems;
@@ -1118,7 +1109,7 @@
                     cmsModuleSaleItem.gridOptions.maxSize = 5;
                     cmsModuleSaleItem.allowedSearch = response.AllowedSearchField;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     cmsModuleSaleItem.gridOptions.fillData();
                     rashaErManage.checkAction(data, errCode);
                 });
@@ -1126,7 +1117,7 @@
 
         //Close Model Stack
         cmsModuleSaleItem.addRequested = false;
-        cmsModuleSaleItem.closeModal = function () {
+        cmsModuleSaleItem.closeModal = function() {
             $modalStack.dismissAll();
         };
 
@@ -1185,7 +1176,7 @@
         //    }
 
         //For reInit Categories
-        cmsModuleSaleItem.gridOptions.reGetAll = function () {
+        cmsModuleSaleItem.gridOptions.reGetAll = function() {
             if (
                 cmsModuleSaleItem.gridOptions.advancedSearchData.engine.Filters.length > 0
             )
@@ -1193,44 +1184,44 @@
             else cmsModuleSaleItem.init();
         };
 
-        cmsModuleSaleItem.openDateExpireLockAccount = function ($event) {
+        cmsModuleSaleItem.openDateExpireLockAccount = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
-            $timeout(function () {
+            $timeout(function() {
                 cmsModuleSaleItem.focusExpireLockAccount = true;
             });
         };
 
-        cmsModuleSaleItem.isCurrentNodeEmpty = function () {
+        cmsModuleSaleItem.isCurrentNodeEmpty = function() {
             return !angular.equals({}, cmsModuleSaleItem.treeConfig.currentNode);
         };
 
-        cmsModuleSaleItem.loadFileAndFolder = function (item) {
+        cmsModuleSaleItem.loadFileAndFolder = function(item) {
             cmsModuleSaleItem.treeConfig.currentNode = item;
             console.log(item);
             cmsModuleSaleItem.treeConfig.onNodeSelect(item);
         };
 
-        cmsModuleSaleItem.openDate = function ($event) {
+        cmsModuleSaleItem.openDate = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
-            $timeout(function () {
+            $timeout(function() {
                 cmsModuleSaleItem.focus = true;
             });
         };
-        cmsModuleSaleItem.openDate1 = function ($event) {
+        cmsModuleSaleItem.openDate1 = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
 
-            $timeout(function () {
+            $timeout(function() {
                 cmsModuleSaleItem.focus1 = true;
             });
         };
 
         cmsModuleSaleItem.columnCheckbox = false;
-        cmsModuleSaleItem.openGridConfigModal = function () {
+        cmsModuleSaleItem.openGridConfigModal = function() {
             $("#gridView-btn").toggleClass("active");
             var prechangeColumns = cmsModuleSaleItem.gridOptions.columns;
             if (cmsModuleSaleItem.gridOptions.columnCheckbox) {
@@ -1252,8 +1243,8 @@
                         "Checkbox"
                     );
                     $(
-                        "#" + cmsModuleSaleItem.gridOptions.columns[i].name + "Checkbox"
-                    ).checked =
+                            "#" + cmsModuleSaleItem.gridOptions.columns[i].name + "Checkbox"
+                        ).checked =
                         prechangeColumns[i].visible;
                 }
             }
@@ -1267,25 +1258,25 @@
                 .columnCheckbox;
         };
 
-      
-        cmsModuleSaleItem.toggleCategoryButtons = function () {
+
+        cmsModuleSaleItem.toggleCategoryButtons = function() {
             $("#categoryButtons").fadeToggle();
         }
-      
+
         //End of Upload Modal-----------------------------------------
 
         //Export Report
-        cmsModuleSaleItem.exportFile = function () {
+        cmsModuleSaleItem.exportFile = function() {
             cmsModuleSaleItem.gridOptions.advancedSearchData.engine.ExportFile =
                 cmsModuleSaleItem.ExportFileClass;
             cmsModuleSaleItem.addRequested = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/exportfile",
+                    cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/exportfile",
                     cmsModuleSaleItem.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.addRequested = false;
                     rashaErManage.checkAction(response);
                     if (response.IsSuccess) {
@@ -1295,12 +1286,12 @@
                         //cmsModuleSaleItem.closeModal();
                     }
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
         //Open Export Report Modal
-        cmsModuleSaleItem.toggleExportForm = function () {
+        cmsModuleSaleItem.toggleExportForm = function() {
             cmsModuleSaleItem.SortType = [
                 { key: "نزولی", value: 0 },
                 { key: "صعودی", value: 1 },
@@ -1328,7 +1319,7 @@
             });
         };
         //Row Count Export Input Change
-        cmsModuleSaleItem.rowCountChanged = function () {
+        cmsModuleSaleItem.rowCountChanged = function() {
             if (
                 !angular.isDefined(cmsModuleSaleItem.ExportFileClass.RowCount) ||
                 cmsModuleSaleItem.ExportFileClass.RowCount > 5000
@@ -1336,28 +1327,28 @@
                 cmsModuleSaleItem.ExportFileClass.RowCount = 5000;
         };
         //Get TotalRowCount
-        cmsModuleSaleItem.getCount = function () {
+        cmsModuleSaleItem.getCount = function() {
             ajax
                 .call(cmsServerConfig.configApiServerPath + "CoreModuleSaleItem/count", cmsModuleSaleItem.gridOptions.advancedSearchData.engine, "POST")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.addRequested = false;
                     rashaErManage.checkAction(response);
                     cmsModuleSaleItem.ListItemsTotalRowCount = ": " + response.TotalRowCount;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     cmsModuleSaleItem.gridOptions.fillData();
                     rashaErManage.checkAction(data, errCode);
                 });
         };
 
-        cmsModuleSaleItem.showCategoryImage = function (mainImageId) {
+        cmsModuleSaleItem.showCategoryImage = function(mainImageId) {
             if (mainImageId == 0 || mainImageId == null) return;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "FileContent/PreviewImage", { id: mainImageId, name: "" }, "POST")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.selectedItem.MainImageSrc = response;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
         };
@@ -1365,11 +1356,11 @@
         cmsModuleSaleItem.treeOptions = {
             nodeChildren: "Children",
             multiSelection: false,
-            isLeaf: function (node) {
+            isLeaf: function(node) {
                 if (node.FileName == undefined || node.Filename == "") return false;
                 return true;
             },
-            isSelectable: function (node) {
+            isSelectable: function(node) {
                 if (cmsModuleSaleItem.treeOptions.dirSelectable)
                     if (angular.isDefined(node.FileName)) return false;
                 return true;
@@ -1377,7 +1368,7 @@
             dirSelectable: false
         };
 
-        cmsModuleSaleItem.onNodeToggle = function (node, expanded) {
+        cmsModuleSaleItem.onNodeToggle = function(node, expanded) {
             if (expanded) {
                 node.Children = [];
                 var filterModel = { Filters: [] };
@@ -1390,43 +1381,43 @@
                 });
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, "POST")
-                    .success(function (response1) {
-                        angular.forEach(response1.ListItems, function (value, key) {
+                    .success(function(response1) {
+                        angular.forEach(response1.ListItems, function(value, key) {
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/"+node.Id,"", "GET")
-                            .success(function (response2) {
-                                angular.forEach(response2.ListItems, function (value, key) {
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/" + node.Id, "", "GET")
+                            .success(function(response2) {
+                                angular.forEach(response2.ListItems, function(value, key) {
                                     node.Children.push(value);
                                 });
                                 node.messageText = "";
                             })
-                            .error(function (data, errCode, c, d) {
+                            .error(function(data, errCode, c, d) {
                                 console.log(data);
                             });
                     })
-                    .error(function (data, errCode, c, d) {
+                    .error(function(data, errCode, c, d) {
                         console.log(data);
                     });
             }
         };
 
-        cmsModuleSaleItem.onSelection = function (node, selected) {
+        cmsModuleSaleItem.onSelection = function(node, selected) {
             if (!selected) {
                 cmsModuleSaleItem.selectedItem.LinkMainImageId = null;
                 cmsModuleSaleItem.selectedItem.previewImageSrc = null;
                 return;
             }
             cmsModuleSaleItem.selectedItem.LinkMainImageId = node.Id;
-            cmsModuleSaleItem.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+            cmsModuleSaleItem.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
             ajax
                 .call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET")
-                .success(function (response) {
+                .success(function(response) {
                     cmsModuleSaleItem.selectedItem.previewImageSrc =
                         cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
                 })
-                .error(function (data, errCode, c, d) {
+                .error(function(data, errCode, c, d) {
                     console.log(data);
                 });
         };

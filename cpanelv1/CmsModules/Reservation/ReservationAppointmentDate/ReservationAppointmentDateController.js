@@ -208,7 +208,7 @@
         }
 
 
-
+        appDate.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/getall", appDate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
@@ -236,7 +236,7 @@
             appDate.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-
+        appDate.gridContentDateDetail.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getall", appDate.gridContentDateDetail.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appDate.busyIndicator.isActive = false;
@@ -354,11 +354,10 @@
             engine2.Filters = null;
             engine2.Filters = [];
             engine2.Filters.push(Filter_value);
-
+            engine2.AccessLoad = true;
 
             ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getall', engine2, 'POST').success(function (response) {
                 appDate.listDateDetails = response.ListItems;
-                //appDate.gridOptions.Access = response.Access; // دسترسی ها نمایش
                 appDate.gridContentDateDetail.fillData(appDate.listDateDetails, response.Access);
                 appDate.gridContentDateDetail.currentPageNumber = response.CurrentPageNumber;
                 appDate.gridContentDateDetail.totalRowCount = response.TotalRowCount;

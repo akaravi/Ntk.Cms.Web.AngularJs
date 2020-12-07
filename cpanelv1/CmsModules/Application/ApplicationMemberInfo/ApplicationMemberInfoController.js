@@ -67,6 +67,7 @@
     }
     memberInfo.init = function () {
         memberInfo.busyIndicator.isActive = true;
+        memberInfo.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "Applicationmemberinfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 

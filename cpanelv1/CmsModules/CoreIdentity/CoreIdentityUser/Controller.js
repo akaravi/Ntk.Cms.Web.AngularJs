@@ -33,7 +33,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-
+        coreIdentityUser.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreIdentityUser/getall", coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             coreIdentityUser.ListItems = response.ListItems;

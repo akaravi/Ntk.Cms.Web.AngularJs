@@ -12,6 +12,8 @@
     trancsLog.init = function () {
         trancsLog.busyIndicator.isActive = true;
         trancsLog.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        trancsLog.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymenttransactionlog/getall", trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             trancsLog.ListItems = response.ListItems;

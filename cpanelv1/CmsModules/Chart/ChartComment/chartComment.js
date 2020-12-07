@@ -30,7 +30,7 @@
         //} catch (error) {
         //    console.log(error)
         //}
-
+        chartComment.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"chartComment/getall", chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;

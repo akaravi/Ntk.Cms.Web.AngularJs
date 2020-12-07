@@ -58,6 +58,7 @@
 
     advertisementProperty.init = function () {
         advertisementProperty.busyIndicator.isActive = true;
+        advertisementProperty.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementproperty/getAllwithalias", advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementProperty.ListItems = response.ListItems;
@@ -736,6 +737,7 @@
                 };
                 model.Filters = [];
                 model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
+                model.AccessLoad = false;
                 ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementProperty.contractsList = response.ListItems;

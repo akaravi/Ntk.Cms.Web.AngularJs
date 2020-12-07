@@ -10,6 +10,7 @@
 
     vehiclePropertyFavorite.init = function () {
         vehiclePropertyFavorite.busyIndicator.isActive = true;
+        vehiclePropertyFavorite.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyFavorite/getall", vehiclePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;

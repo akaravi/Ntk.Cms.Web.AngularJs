@@ -97,6 +97,7 @@
             IntValue1: emailPrivateSiteConfig.selectedPublicConfig.Id
         };
         emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
+        emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"emailprivatesiteconfig/getall", emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailPrivateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

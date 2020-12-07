@@ -112,7 +112,7 @@
         });
 
         serviceShareServerCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceShareServerCategory.ListItems = response.ListItems;
             serviceShareServerCategory.gridOptions.fillData(serviceShareServerCategory.ListItems, response.Access); // Sending Access as an argument
@@ -348,6 +348,7 @@
             }
             serviceShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        serviceShareServerCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"serviceShareServerCategory/getall", serviceShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceShareServerCategory.contentBusyIndicator.isActive = false;

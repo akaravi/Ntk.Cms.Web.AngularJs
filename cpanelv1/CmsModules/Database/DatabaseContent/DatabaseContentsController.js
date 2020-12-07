@@ -177,7 +177,11 @@
 
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", {}, 'POST').success(function (response) {
+
+        var engine = {};
+        engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.ListItems = response.ListItems;
             dbContent.gridOptions.fillData(dbContent.ListItems, response.Access); // Sending Access as an argument
@@ -208,11 +212,10 @@
             dbContent.gridContentOptions.advancedSearchData.engine.Filters = null;
             dbContent.gridContentOptions.advancedSearchData.engine.Filters = [];
             dbContent.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
-
+            dbContent.gridContentOptions.advancedSearchData.engine.AccessLoad = true;
 
             ajax.call(cmsServerConfig.configApiServerPath+'dbComment/getall', dbContent.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 dbContent.listComments = response.ListItems;
-                //dbContent.gridOptions.Access = response.Access; // دسترسی ها نمایش
                 dbContent.gridContentOptions.fillData(dbContent.listComments, response.Access);
                 dbContent.gridContentOptions.currentPageNumber = response.CurrentPageNumber;
                 dbContent.gridContentOptions.totalRowCount = response.TotalRowCount;
@@ -393,6 +396,7 @@
             }
             dbContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        dbContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.contentBusyIndicator.isActive = false;

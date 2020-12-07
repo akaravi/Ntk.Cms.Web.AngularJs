@@ -76,6 +76,7 @@
 
     ticketingDepartemen.init = function () {
         ticketingDepartemen.busyIndicator.isActive = true;
+        ticketingDepartemen.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/getall", ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingDepartemen.ListItems = response.ListItems;
             ticketingDepartemen.gridOptions.fillData(response.ListItems, response.Access);

@@ -7,6 +7,7 @@
         } catch (error) {
             console.log(error)
         }
+        cmdUserBadLogin.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUserBadLogin/getall", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.ListItems = response.ListItems;

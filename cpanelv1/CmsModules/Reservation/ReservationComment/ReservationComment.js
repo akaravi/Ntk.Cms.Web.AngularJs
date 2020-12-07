@@ -32,7 +32,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"reservationComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;

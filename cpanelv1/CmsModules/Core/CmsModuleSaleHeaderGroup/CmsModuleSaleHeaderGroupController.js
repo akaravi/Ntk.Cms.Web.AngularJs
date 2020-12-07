@@ -32,7 +32,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleHeaderGroup/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             CmsModuleHeaderG.busyIndicator.isActive = false;

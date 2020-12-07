@@ -98,6 +98,7 @@
         } catch (error) {
             console.log(error);
         }
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"campaignDetail/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetail.busyIndicator.isActive = false;

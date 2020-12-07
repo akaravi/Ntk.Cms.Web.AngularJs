@@ -16,6 +16,7 @@
 
     cmsSiteCategoryCmsModule.init = function() {
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
+        cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteCategoryCmsModule/getall", cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.ListItems = response.ListItems;
@@ -139,9 +140,7 @@
             if (response.IsSuccess) {
                 cmsSiteCategoryCmsModule.gridOptions.reGetAll();
                 cmsSiteCategoryCmsModule.addRequested = false;
-                //cmsSiteCategoryCmsModule.replaceItem(cmsSiteCategoryCmsModule.selectedItem.Id, response.Item);
-                //cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
-                //cmsSiteCategoryCmsModule.gridOptions.fillData(cmsSiteCategoryCmsModule.ListItems, response.Access);
+
                 cmsSiteCategoryCmsModule.closeModal();
             }
 

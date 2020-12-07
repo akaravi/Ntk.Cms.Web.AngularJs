@@ -19,17 +19,13 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"estateContracttype/ViewModel", "", 'Get').success(function (response) {
-            estateContractType.Access=response.Access;
-            estateContractType.gridOptions.fillData(estateContractType.ListItems, estateContractType.Access);
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
+        estateContractType.gridOptions.advancedSearchData.engine.AccessLoad = true;
 
         ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
             estateContractType.ListItems = response.ListItems;
+            
 
             // Call Excerpt Function to shorten the length of long strings
             //excerptField(estateContractType.ListItems, "BotToken");

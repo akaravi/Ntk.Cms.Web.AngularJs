@@ -49,7 +49,7 @@
         } catch (error) {
             console.log(error);
         }
-        
+        deliveryMethodDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"DeliveryMethodDetail/getall", deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;

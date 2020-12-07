@@ -31,7 +31,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ServiceComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;

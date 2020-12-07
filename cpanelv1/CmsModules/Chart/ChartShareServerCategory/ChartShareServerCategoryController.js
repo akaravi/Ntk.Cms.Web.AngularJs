@@ -112,7 +112,9 @@
         });
 
         chartShareServerCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall", {}, 'POST').success(function (response) {
+        var engine = {};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall",engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.ListItems = response.ListItems;
             chartShareServerCategory.gridOptions.fillData(chartShareServerCategory.ListItems, response.Access); // Sending Access as an argument
@@ -347,6 +349,7 @@
             }
             chartShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        chartShareServerCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall", chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.contentBusyIndicator.isActive = false;

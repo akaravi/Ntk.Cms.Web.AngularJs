@@ -6,6 +6,7 @@
     }
     mscGalleryContentTag.init = function () {
         mscGalleryContentTag.busyIndicator.isActive = true;
+        mscGalleryContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContentTag/getall", mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryContentTag.busyIndicator.isActive = false;

@@ -524,6 +524,7 @@
             if (newsContent.selectedContentId.Id > 0)
                 newsContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
             newsContent.contentBusyIndicator.isActive = true;
+            newsContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "newsContent/getall", newsContent.gridOptions.advancedSearchData.engine, "POST")
                 .success(function(response) {
@@ -575,6 +576,7 @@
             engine.Filters = null;
             engine.Filters = [];
             engine.Filters.push(filterValue);
+            engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath + "newscomment/getall", engine, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 newsContent.ListCommentItems = response.ListItems;
@@ -897,6 +899,7 @@
                 };
                 newsContent.gridOptions.advancedSearchData.engine.Filters.push(s);
             }
+            newsContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
                     cmsServerConfig.configApiServerPath + "newsContent/getall",
@@ -2689,7 +2692,7 @@
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/"+node.Id,"", "GET")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/" + node.Id, "", "GET")
                             .success(function(response2) {
                                 angular.forEach(response2.ListItems, function(value, key) {
                                     node.Children.push(value);

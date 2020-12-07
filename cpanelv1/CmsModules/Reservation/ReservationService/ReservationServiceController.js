@@ -40,6 +40,7 @@
                 console.log(data);
             });
         //////////////////////////////////////////////////////////
+        reservationService.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/getall", reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;

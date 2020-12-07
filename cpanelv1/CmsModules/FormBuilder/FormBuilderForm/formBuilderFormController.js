@@ -18,11 +18,12 @@
     }
 
     form.init = function () {
+        form.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FormBuilderForm/getall", form.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.ListItems = response.ListItems;
-            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
+            
             form.gridOptions.fillData(form.ListItems, response.Access); // Send Access as an arguman
             form.gridOptions.currentPageNumber = response.CurrentPageNumber;
             form.gridOptions.totalRowCount = response.TotalRowCount;

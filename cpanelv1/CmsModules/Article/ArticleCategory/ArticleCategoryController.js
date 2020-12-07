@@ -7,7 +7,10 @@
     if (itemRecordStatus != undefined) articlecategory.itemRecordStatus = itemRecordStatus;
     articlecategory.init = function () {
         articlecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"articlecategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {          
+        
+        var engine = {RowPerPage:1000};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"articlecategory/getall", engine, 'POST').success(function (response) {          
             rashaErManage.checkAction(response);
             articlecategory.ListItems = response.ListItems;
             articlecategory.categoryBusyIndicator.isActive = false;

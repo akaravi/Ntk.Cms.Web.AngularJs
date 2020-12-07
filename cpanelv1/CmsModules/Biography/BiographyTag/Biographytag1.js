@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        biographyTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"biographytag/getall", biographyTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyTag.ListItems = response.ListItems;
@@ -398,6 +399,7 @@
             }
             biographyTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        biographyTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"biographytag/getall", biographyTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyTag.contentBusyIndicator.isActive = false;

@@ -1,4 +1,4 @@
-﻿app.controller("shopContentController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$stateParams', '$filter', "$rootScope", function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $stateParams, $filter, $rootScope) {
+﻿app.controller("shopContentController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$stateParams', '$filter', "$rootScope", function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $stateParams, $filter, $rootScope) {
     var shopContent = this;
     shopContent.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     var edititem = false;
@@ -8,7 +8,7 @@
     shopContent.gridOptions = {};
     shopContent.selectedItem = {};
     shopContent.attachedFiles = [];
-    
+
     shopContent.filePickerMainImage = {
         isActive: true,
         backElement: 'filePickerMainImage',
@@ -31,7 +31,7 @@
         fileId: null,
         filename: null
     }
-    shopContent.locationChanged = function (lat, lang) {
+    shopContent.locationChanged = function(lat, lang) {
         console.log("ok " + lat + " " + lang);
     }
 
@@ -86,7 +86,7 @@
             ["alignment", ["ul", "ol", "paragraph", "lineheight"]],
             ["height", ["height"]],
             ["table", ["table"]],
-            ['insert',['ltr','rtl']],
+            ['insert', ['ltr', 'rtl']],
             ["insert", ["link", "picture", "video", "hr"]],
             ["view", ["fullscreen", "codeview"]],
             ["help", ["help"]]
@@ -105,8 +105,7 @@
         rowPerPage: 200,
         scope: shopContent,
         columnOptions: {
-            columns: [
-                {
+            columns: [{
                     name: "Id",
                     displayName: "کد سیستمی",
                     sortable: true,
@@ -135,23 +134,23 @@
         scope: shopContent,
         columnOptions: {
             columns: [{
-                name: 'Id',
-                displayName: 'کد سیستمی',
-                sortable: true,
-                type: 'integer'
-            },
-            {
-                name: 'Title',
-                displayName: 'عنوان',
-                sortable: true,
-                type: 'string'
-            },
-            {
-                name: 'Description',
-                displayName: 'توضیحات',
-                sortable: true,
-                type: 'string'
-            }
+                    name: 'Id',
+                    displayName: 'کد سیستمی',
+                    sortable: true,
+                    type: 'integer'
+                },
+                {
+                    name: 'Title',
+                    displayName: 'عنوان',
+                    sortable: true,
+                    type: 'string'
+                },
+                {
+                    name: 'Description',
+                    displayName: 'توضیحات',
+                    sortable: true,
+                    type: 'string'
+                }
             ]
         }
     }
@@ -239,8 +238,7 @@
 
     //Shop Grid Options
     shopContent.gridOptions = {
-        columns: [
-            {
+        columns: [{
                 name: "LinkMainImageId",
                 displayName: "عکس",
                 sortable: true,
@@ -312,7 +310,7 @@
     }
 
     shopContent.collectionGridOption = {
-        columns: [{ name: 'Title', displayName: 'عنوان', sortable: true, type: 'string', visible: 'true' },],
+        columns: [{ name: 'Title', displayName: 'عنوان', sortable: true, type: 'string', visible: 'true' }, ],
         data: {},
         multiSelect: false,
         advancedSearchData: {
@@ -347,7 +345,7 @@
     };
 
     //open addMenu modal
-    shopContent.addMenu = function () {
+    shopContent.addMenu = function() {
         $modal.open({
             templateUrl: "cpanelv1/CmsModules/Shop/shopContent/modalMenu.html",
             scope: $scope
@@ -361,7 +359,7 @@
     shopContent.addRequested = false;
 
     //init Function
-    shopContent.init = function () {
+    shopContent.init = function() {
         shopContent.categoryBusyIndicator.isActive = true;
         var engine = {};
         try {
@@ -370,19 +368,20 @@
             console.log(error);
         }
         //shopContent.gridOptions.advancedSearchData.engine.RowPerPage=1000;
-        ajax.call(cmsServerConfig.configApiServerPath+"shopcategory/getall", {
+        ajax.call(cmsServerConfig.configApiServerPath + "shopcategory/getall", {
             RowPerPage: 1000
-        }, 'POST').success(function (response) {
+        }, 'POST').success(function(response) {
             shopContent.treeConfig.Items = response.ListItems;
             shopContent.treeConfig.Items = response.ListItems;
             shopContent.categoryBusyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
         filterModel = { PropertyName: "ContentTags", PropertyAnyName: "LinkTagId", SearchType: 0, IntValue1: shopContent.selectedContentId.Id };
         if (shopContent.selectedContentId.Id > 0)
             shopContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"shopcontent/getall", engine, 'POST').success(function (response) {
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "shopcontent/getall", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             shopContent.ListItems = response.ListItems;
             shopContent.gridOptions.fillData(shopContent.ListItems, response.Access); // Sending Access as an argument
@@ -390,19 +389,19 @@
             shopContent.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopContent.gridOptions.totalRowCount = response.TotalRowCount;
             shopContent.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             shopContent.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
             shopContent.contentBusyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopTag/ViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for shopTag
+        ajax.call(cmsServerConfig.configApiServerPath + "shopTag/ViewModel", "", 'GET').success(function(response) { //Get a ViewModel for shopTag
             shopContent.ModuleTag = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopContentTag/ViewModel", "", 'GET').success(function (response) { //Get a ViewModel for shopContentTag
+        ajax.call(cmsServerConfig.configApiServerPath + "shopContentTag/ViewModel", "", 'GET').success(function(response) { //Get a ViewModel for shopContentTag
             shopContent.ModuleContentTag = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
         //  ajax.call(cmsServerConfig.configApiServerPath+"shopproductitem/getall", {}, 'POST').success(function(response) {
@@ -426,21 +425,21 @@
         //      console.log(data);
         //  });
     };
-    shopContent.SaveSerial = function () {
+    shopContent.SaveSerial = function() {
 
     };
-    shopContent.gridOptions.onRowSelected = function () {
+    shopContent.gridOptions.onRowSelected = function() {
         var item = shopContent.gridOptions.selectedRow.item;
     }
 
     // Open Add Category Modal 
-    shopContent.openAddCategoryModal = function () {
+    shopContent.openAddCategoryModal = function() {
         if (buttonIsPressed) {
             return
         };
         shopContent.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/ViewModel', "", 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopContent.selectedItem = response.Item;
@@ -453,20 +452,20 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function(response1) { //Get root directories
                 shopContent.dataForTheTree = response1.ListItems;
-                
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/","", 'GET').success(function (response2) { //Get files in root
+
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response2) { //Get files in root
                     Array.prototype.push.apply(shopContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/CmsModules/Shop/ShopCategory/add.html',
                         scope: $scope
                     });
                     shopContent.addRequested = false;
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
             //-----
@@ -474,13 +473,13 @@
             //    templateUrl: 'cpanelv1/CmsModules/Shop/ShopCategory/add.html',
             //    scope: $scope
             //});
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Open Edit Category Modal
-    shopContent.openEditCategoryModal = function () {
+    shopContent.openEditCategoryModal = function() {
         if (buttonIsPressed) {
             return
         };
@@ -492,7 +491,7 @@
         }
         shopContent.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/', shopContent.treeConfig.currentNode.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             shopContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -509,10 +508,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function(response1) { //Get root directories
                 shopContent.dataForTheTree = response1.ListItems;
-             
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/","", 'GET').success(function (response2) { //Get files in root
+
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response2) { //Get files in root
                     Array.prototype.push.apply(shopContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (shopContent.selectedItem.LinkMainImageId > 0)
@@ -523,10 +522,10 @@
                         templateUrl: 'cpanelv1/CmsModules/Shop/ShopCategory/edit.html',
                         scope: $scope
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
             //---
@@ -534,13 +533,13 @@
             //    templateUrl: 'cpanelv1/CmsModules/Shop/ShopCategory/edit.html',
             //    scope: $scope
             //});
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Add New Category
-    shopContent.addNewCategory = function (frm) {
+    shopContent.addNewCategory = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -550,7 +549,7 @@
         shopContent.selectedItem.LinkParentId = null;
         if (shopContent.treeConfig.currentNode != null)
             shopContent.selectedItem.LinkParentId = shopContent.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/', shopContent.selectedItem, 'POST').success(function(response) {
             shopContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -560,7 +559,7 @@
                 shopContent.closeModal();
             }
             shopContent.categoryBusyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             shopContent.addRequested = false;
             shopContent.categoryBusyIndicator.isActive = false;
@@ -568,13 +567,13 @@
     }
 
     //Edit Categorys
-    shopContent.editCategory = function (frm) {
+    shopContent.editCategory = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
         shopContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/', shopContent.selectedItem, "PUT").success(function(response) {
             shopContent.addRequested = true;
             //shopContent.showbusy = false;
             shopContent.treeConfig.showbusy = false;
@@ -586,7 +585,7 @@
                 shopContent.closeModal();
             }
             shopContent.categoryBusyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             shopContent.addRequested = false;
             shopContent.categoryBusyIndicator.isActive = false;
@@ -595,7 +594,7 @@
     }
 
     // Delete a Category
-    shopContent.deleteCategory = function () {
+    shopContent.deleteCategory = function() {
         if (buttonIsPressed) {
             return
         };
@@ -604,15 +603,15 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_category_to_remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 shopContent.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/', node.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/', shopContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'shopCategory/', shopContent.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         if (res.IsSuccess) {
                             shopContent.gridOptions.advancedSearchData.engine.Filters = null;
                             shopContent.gridOptions.advancedSearchData.engine.Filters = [];
@@ -620,11 +619,11 @@
                             shopContent.categoryBusyIndicator.isActive = false;
                             shopContent.gridOptions.reGetAll();
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         shopContent.categoryBusyIndicator.isActive = false;
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     shopContent.categoryBusyIndicator.isActive = false;
                 });
@@ -633,13 +632,13 @@
     }
 
     //Tree On Node Select Options
-    shopContent.treeConfig.onNodeSelect = function () {
+    shopContent.treeConfig.onNodeSelect = function() {
         var node = shopContent.treeConfig.currentNode;
         shopContent.selectContent(node);
 
     };
     //Show Content with Category Id
-    shopContent.selectContent = function (node) {
+    shopContent.selectContent = function(node) {
         shopContent.gridOptions.advancedSearchData.engine.Filters = null;
         shopContent.gridOptions.advancedSearchData.engine.Filters = [];
         if (node != null && node != undefined) {
@@ -652,7 +651,8 @@
             }
             shopContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"shopContent/getall", shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        shopContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "shopContent/getall", shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             shopContent.contentBusyIndicator.isActive = false;
             shopContent.ListItems = response.ListItems;
@@ -660,32 +660,32 @@
             shopContent.gridOptions.currentPageNumber = response.CurrentPageNumber;
             shopContent.gridOptions.totalRowCount = response.TotalRowCount;
             shopContent.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             shopContent.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     };
 
     //open statistics
-    shopContent.Showstatistics = function () {
+    shopContent.Showstatistics = function() {
         if (!shopContent.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function(response1) {
             rashaErManage.checkAction(response1);
             shopContent.selectedItem = response1.Item;
             $modal.open({
                 templateUrl: "cpanelv1/CmsModules/Shop/ShopContent/statistics.html",
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Open Add New Content Model
-    shopContent.openAddModal = function () {
+    shopContent.openAddModal = function() {
         if (buttonIsPressed) {
             return
         };
@@ -698,7 +698,7 @@
         shopContent.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/ViewModel', "", 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopContent.attachedFiles = [];
@@ -709,7 +709,7 @@
             shopContent.filePickerFilePodcast.fileId = null;
             shopContent.filePickerFiles.filename = "";
             shopContent.filePickerFiles.fileId = null;
-            shopContent.tags = [];   //tagsInput خالی کردن آرایه تگ ها برای محتوای جدید
+            shopContent.tags = []; //tagsInput خالی کردن آرایه تگ ها برای محتوای جدید
             shopContent.selectedItem = response.Item;
             shopContent.collectionListItems = [];
             shopContent.selectedItem.ProductProductItems = [];
@@ -724,11 +724,11 @@
                 templateUrl: 'cpanelv1/CmsModules/Shop/ShopContent/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    shopContent.clearPreviousData = function () {
+    shopContent.clearPreviousData = function() {
         shopContent.selectedItem.ProductProductCombines = [];
         shopContent.selectedItem.ProductProductItems = [];
         shopContent.selectedItem.ProductProductProcesses = [];
@@ -737,7 +737,7 @@
         $("#to").empty();
     }
     // Open Edit Content Modal
-    shopContent.openEditModel = function () {
+    shopContent.openEditModel = function() {
         shopContent.modalTitle = 'ویرایش';
         if (!shopContent.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
@@ -745,7 +745,7 @@
         }
         shopContent.attachedFiles = [];
         shopContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             shopContent.addRequested = false;
             rashaErManage.checkAction(response);
             shopContent.clearPreviousData();
@@ -756,19 +756,19 @@
             shopContent.filePickerFilePodcast.fileId = null;
             if (response.Item.LinkMainImageId != null) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkMainImageId, 'GET').success(function(response2) {
                     buttonIsPressed = false;
                     shopContent.filePickerMainImage.filename = response2.Item.FileName;
                     shopContent.filePickerMainImage.fileId = response2.Item.Id
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
             if (response.Item.LinkFilePodcastId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkFilePodcastId, 'GET').success(function(response2) {
                     shopContent.filePickerFilePodcast.filename = response2.Item.FileName;
                     shopContent.filePickerFilePodcast.fileId = response2.Item.Id
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -776,12 +776,12 @@
             shopContent.filePickerFiles.filename = null;
             shopContent.filePickerFiles.fileId = null;
             //Load tagsInput
-            shopContent.tags = [];  //Clear out previous tags
+            shopContent.tags = []; //Clear out previous tags
             if (shopContent.selectedItem.ContentTags == null)
                 shopContent.selectedItem.ContentTags = [];
-            $.each(shopContent.selectedItem.ContentTags, function (index, item) {
+            $.each(shopContent.selectedItem.ContentTags, function(index, item) {
                 if (item.ModuleTag != null)
-                    shopContent.tags.push({ id: item.ModuleTag.Id, text: item.ModuleTag.Title });  //Add current content's tag to tags array with id and title
+                    shopContent.tags.push({ id: item.ModuleTag.Id, text: item.ModuleTag.Title }); //Add current content's tag to tags array with id and title
             });
             shopContent.collectionListItems = [];
             shopContent.setCollection("Item", response.Item.ProductProductItems);
@@ -792,16 +792,16 @@
                 templateUrl: 'cpanelv1/CmsModules/Shop/shopContent/edit.html',
                 scope: $scope
             })
-            instance.opened.then(function () {
+            instance.opened.then(function() {
                 // shopContent.collectionGridOption.fillData(shopContent.collectionListItems, null);
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    shopContent.saveCollection = function () {
+    shopContent.saveCollection = function() {
         shopContent.selectedItem.ProductProductItems = [];
         shopContent.selectedItem.ProductProductCombines = [];
         shopContent.selectedItem.ProductProductServices = [];
@@ -823,9 +823,9 @@
             }
 
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/SaveDetail', shopContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/SaveDetail', shopContent.selectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
@@ -833,11 +833,11 @@
     }
 
 
-    shopContent.removeFromCollection = function (x) {
+    shopContent.removeFromCollection = function(x) {
         shopContent.collectionListItems.splice(x, 1);
     }
 
-    shopContent.setCollection = function (source, arr) {
+    shopContent.setCollection = function(source, arr) {
         if (shopContent.collectionListItems == undefined)
             shopContent.collectionListItems = [];
         for (var i = 0; i < arr.length; i++) {
@@ -881,7 +881,7 @@
 
 
     // Add New Content
-    shopContent.addNewContent = function (frm) {
+    shopContent.addNewContent = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -890,10 +890,10 @@
         shopContent.addRequested = true;
         var apiSelectedItem = shopContent.selectedItem;
         if (apiSelectedItem.Similars)
-            $.each(apiSelectedItem.Similars, function (index, item) {
+            $.each(apiSelectedItem.Similars, function(index, item) {
                 item.Destination = [];
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/', apiSelectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             shopContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -904,7 +904,7 @@
                 shopContent.closeModal();
                 //Save inputTags
                 shopContent.selectedItem.ContentTags = [];
-                $.each(shopContent.tags, function (index, item) {
+                $.each(shopContent.tags, function(index, item) {
                     if (item.id > 0) {
                         var newObject = $.extend({}, shopContent.ModuleContentTag);
                         newObject.LinkTagId = item.id;
@@ -912,15 +912,15 @@
                         shopContent.selectedItem.ContentTags.push(newObject);
                     }
                 });
-                if (shopContent.selectedItem.ContentTags&& shopContent.selectedItem.ContentTags.length > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'shopContentTag/addbatch', shopContent.selectedItem.ContentTags, 'POST').success(function (response) {
-                    console.log(response);
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                });
+                if (shopContent.selectedItem.ContentTags && shopContent.selectedItem.ContentTags.length > 0) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'shopContentTag/addbatch', shopContent.selectedItem.ContentTags, 'POST').success(function(response) {
+                        console.log(response);
+                    }).error(function(data, errCode, c, d) {
+                        rashaErManage.checkAction(data, errCode);
+                    });
+                }
             }
-            }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             shopContent.addRequested = false;
             shopContent.categoryBusyIndicator.isActive = false;
@@ -928,7 +928,7 @@
     }
 
     //Edit Content
-    shopContent.editContent = function (frm) {
+    shopContent.editContent = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -937,7 +937,7 @@
         shopContent.addRequested = true;
         //Save inputTags
         shopContent.selectedItem.ContentTags = [];
-        $.each(shopContent.tags, function (index, item) {
+        $.each(shopContent.tags, function(index, item) {
             if (item.id > 0) {
                 var newObject = $.extend({}, shopContent.ModuleContentTag);
                 newObject.LinkTagId = item.id;
@@ -947,11 +947,11 @@
         });
         var apiSelectedItem = shopContent.selectedItem;
         if (apiSelectedItem.Similars)
-            $.each(apiSelectedItem.Similars, function (index, item) {
+            $.each(apiSelectedItem.Similars, function(index, item) {
                 item.Destination = [];
             });
         shopContent.saveCollection();
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/', apiSelectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/', apiSelectedItem, "PUT").success(function(response) {
             shopContent.categoryBusyIndicator.isActive = false;
             shopContent.addRequested = false;
             shopContent.treeConfig.showbusy = false;
@@ -963,7 +963,7 @@
                 shopContent.gridOptions.fillData(shopContent.ListItems);
                 shopContent.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             shopContent.addRequested = false;
             shopContent.categoryBusyIndicator.isActive = false;
@@ -971,7 +971,7 @@
     }
 
     // Delete a Shop Content 
-    shopContent.deleteContent = function () {
+    shopContent.deleteContent = function() {
         if (buttonIsPressed) return;
         if (!shopContent.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
@@ -979,19 +979,19 @@
         }
         shopContent.treeConfig.showbusy = true;
         shopContent.showIsBusy = true;
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 shopContent.categoryBusyIndicator.isActive = true;
                 shopContent.showbusy = true;
                 shopContent.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopContent/", shopContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "shopContent/", shopContent.gridOptions.selectedRow.item.Id, "GET").success(function(response) {
                     buttonIsPressed = false;
                     shopContent.showbusy = false;
                     shopContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopContent/", shopContent.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "shopContent/", shopContent.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         shopContent.categoryBusyIndicator.isActive = false;
                         shopContent.treeConfig.showbusy = false;
                         shopContent.showIsBusy = false;
@@ -1001,14 +1001,14 @@
                             shopContent.gridOptions.fillData(shopContent.ListItems);
                         }
 
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         shopContent.treeConfig.showbusy = false;
                         shopContent.showIsBusy = false;
                         shopContent.categoryBusyIndicator.isActive = false;
 
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     shopContent.treeConfig.showbusy = false;
                     shopContent.showIsBusy = false;
@@ -1021,7 +1021,7 @@
 
     //#help similar & otherinfo
 
-    shopContent.moveSelectedSimilar = function (from, to, calculatePrice) {
+    shopContent.moveSelectedSimilar = function(from, to, calculatePrice) {
         if (from == "Content") {
             //var title = shopContent.ItemListIdSelector.selectedItem.Title;
             // var optionSelectedPrice = shopContent.ItemListIdSelector.selectedItem.Price;
@@ -1051,7 +1051,7 @@
             }
         }
     };
-    shopContent.moveSelectedOtherInfo = function (from, to, y) {
+    shopContent.moveSelectedOtherInfo = function(from, to, y) {
 
 
         if (shopContent.selectedItem.OtherInfos == undefined)
@@ -1066,8 +1066,7 @@
         }
         if (shopContent.selectedItemOtherInfos.Title == "" && shopContent.selectedItemOtherInfos.Source == "" && shopContent.selectedItemOtherInfos.HtmlBody == "") {
             rashaErManage.showMessage($filter('translatentk')('fields_values_are_empty_please_enter_values'));
-        }
-        else {
+        } else {
 
             shopContent.selectedItem.OtherInfos.push({
                 Title: shopContent.selectedItemOtherInfos.Title,
@@ -1084,7 +1083,7 @@
 
     };
 
-    shopContent.removeFromCollectionSimilar = function (listsimilar, iddestination) {
+    shopContent.removeFromCollectionSimilar = function(listsimilar, iddestination) {
         for (var i = 0; i < shopContent.selectedItem.Similars.length; i++) {
             if (listsimilar[i].LinkDestinationId == iddestination) {
                 shopContent.selectedItem.Similars.splice(i, 1);
@@ -1094,7 +1093,7 @@
         }
 
     };
-    shopContent.removeFromOtherInfo = function (listOtherInfo, title, body, source) {
+    shopContent.removeFromOtherInfo = function(listOtherInfo, title, body, source) {
         for (var i = 0; i < shopContent.selectedItem.OtherInfos.length; i++) {
             if (listOtherInfo[i].Title == title && listOtherInfo[i].HtmlBody == body && listOtherInfo[i].Source == source) {
                 shopContent.selectedItem.OtherInfos.splice(i, 1);
@@ -1102,7 +1101,7 @@
             }
         }
     };
-    shopContent.editOtherInfo = function (y) {
+    shopContent.editOtherInfo = function(y) {
         edititem = true;
         shopContent.selectedItemOtherInfos.Title = y.Title;
         shopContent.selectedItemOtherInfos.HtmlBody = y.HtmlBody;
@@ -1113,8 +1112,8 @@
 
     //#help
     //Replace Item OnDelete/OnEdit Grid Options
-    shopContent.replaceItem = function (oldId, newItem) {
-        angular.forEach(shopContent.ListItems, function (item, key) {
+    shopContent.replaceItem = function(oldId, newItem) {
+        angular.forEach(shopContent.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = shopContent.ListItems.indexOf(item);
                 shopContent.ListItems.splice(index, 1);
@@ -1126,22 +1125,22 @@
 
     //Close Model Stack
     shopContent.addRequested = false;
-    shopContent.closeModal = function () {
+    shopContent.closeModal = function() {
         $modalStack.dismissAll();
     };
 
     shopContent.showIsBusy = false;
 
     //For reInit Categories
-    shopContent.gridOptions.reGetAll = function () {
+    shopContent.gridOptions.reGetAll = function() {
         shopContent.init();
     };
 
-    shopContent.isCurrentNodeEmpty = function () {
+    shopContent.isCurrentNodeEmpty = function() {
         return !angular.equals({}, shopContent.treeConfig.currentNode);
     }
 
-    shopContent.loadFileAndFolder = function (item) {
+    shopContent.loadFileAndFolder = function(item) {
         shopContent.treeConfig.currentNode = item;
         shopContent.treeConfig.onNodeSelect(item);
     }
@@ -1149,7 +1148,7 @@
 
     shopContent.columnCheckbox = false;
 
-    shopContent.openGridConfigModal = function () {
+    shopContent.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         var prechangeColumns = shopContent.gridOptions.columns;
         if (shopContent.gridOptions.columnCheckbox) {
@@ -1172,16 +1171,16 @@
         shopContent.gridOptions.columnCheckbox = !shopContent.gridOptions.columnCheckbox;
     }
 
-    shopContent.deleteAttachedFile = function (index) {
+    shopContent.deleteAttachedFile = function(index) {
         shopContent.attachedFiles.splice(index, 1);
     }
 
-    shopContent.toggleCategoryButtons = function () {
+    shopContent.toggleCategoryButtons = function() {
         $("#categoryButtons").fadeToggle();
     }
 
 
-    shopContent.calculatePrice = function () {
+    shopContent.calculatePrice = function() {
         var price = 0;
         for (var i = 0; i < shopContent.collectionListItems.length; i++)
             if (shopContent.collectionListItems[i].Price != undefined)
@@ -1189,7 +1188,7 @@
         shopContent.selectedItem.Price = price;
     }
 
-    shopContent.moveSelected = function (from, to, calculatePrice) {
+    shopContent.moveSelected = function(from, to, calculatePrice) {
         if (from == 'Item') {
 
             var title = shopContent.ItemListIdSelector.selectedItem.Title;
@@ -1294,7 +1293,7 @@
 
     }
 
-    shopContent.filePickerFilePodcast.removeSelectedfile = function (config) {
+    shopContent.filePickerFilePodcast.removeSelectedfile = function(config) {
         shopContent.filePickerFilePodcast.fileId = null;
         shopContent.filePickerFilePodcast.filename = null;
         shopContent.selectedItem.LinkFilePodcastId = null;
@@ -1305,12 +1304,12 @@
     shopContent.treeOptions = {
         nodeChildren: "Children",
         multiSelection: false,
-        isLeaf: function (node) {
+        isLeaf: function(node) {
             if (node.FileName == undefined || node.Filename == "")
                 return false;
             return true;
         },
-        isSelectable: function (node) {
+        isSelectable: function(node) {
             if (shopContent.treeOptions.dirSelectable)
                 if (angular.isDefined(node.FileName))
                     return false;
@@ -1319,7 +1318,7 @@
         dirSelectable: false
     }
 
-    shopContent.onNodeToggle = function (node, expanded) {
+    shopContent.onNodeToggle = function(node, expanded) {
         if (expanded) {
             node.Children = [];
             var filterModel = {
@@ -1332,40 +1331,40 @@
                 SearchType: 0,
                 IntValue1: node.Id
             });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
-                angular.forEach(response1.ListItems, function (value, key) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
+                angular.forEach(response1.ListItems, function(value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent//GetFilesInCategoryId/"+node.Id,"", 'GET').success(function (response2) {
-                    angular.forEach(response2.ListItems, function (value, key) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent//GetFilesInCategoryId/" + node.Id, "", 'GET').success(function(response2) {
+                    angular.forEach(response2.ListItems, function(value, key) {
                         node.Children.push(value);
                     });
                     node.messageText = "";
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
         }
     }
 
-    shopContent.onSelection = function (node, selected) {
+    shopContent.onSelection = function(node, selected) {
         if (!selected) {
             shopContent.selectedItem.LinkMainImageId = null;
             shopContent.selectedItem.previewImageSrc = null;
             return;
         }
         shopContent.selectedItem.LinkMainImageId = node.Id;
-        shopContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
+        shopContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function(response) {
             shopContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }
     //End of TreeControl
-    shopContent.addAttachedFile = function (id) {
+    shopContent.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (id != null && id != undefined && !shopContent.alreadyExist(id, shopContent.attachedFiles) && fname != null && fname != "") {
             var fId = id;
@@ -1380,7 +1379,7 @@
                 document.getElementsByName("file" + id)[0].textContent = "";
         }
     }
-    shopContent.alreadyExist = function (id, array) {
+    shopContent.alreadyExist = function(id, array) {
         for (var i = 0; i < array.length; i++) {
             if (id == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_File_Has_Already_Been_Attachment'));
@@ -1390,7 +1389,7 @@
         return false;
     }
     // ----------- FilePicker Codes --------------------------------
-    shopContent.addAttachedFile = function (id) {
+    shopContent.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (fname == "") {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_File_To_Add'));
@@ -1407,7 +1406,7 @@
         }
     }
 
-    shopContent.alreadyExist = function (fieldId, array) {
+    shopContent.alreadyExist = function(fieldId, array) {
         for (var i = 0; i < array.length; i++) {
             if (fieldId == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_Item_Has_Already_Been_Added'));
@@ -1418,20 +1417,20 @@
         return false;
     }
 
-    shopContent.parseFileIds = function (stringOfIds) {
+    shopContent.parseFileIds = function(stringOfIds) {
         if (stringOfIds == null || !stringOfIds.trim()) return;
         var fileIds = stringOfIds.split(",");
         if (fileIds.length != undefined) {
-            $.each(fileIds, function (index, item) {
+            $.each(fileIds, function(index, item) {
                 if (item == parseInt(item, 10)) { // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function(response) {
                         if (response.IsSuccess) {
                             shopContent.attachedFiles.push({
                                 fileId: response.Item.Id,
                                 filename: response.Item.FileName
                             });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
@@ -1439,13 +1438,13 @@
         }
     }
 
-    shopContent.clearfilePickers = function () {
+    shopContent.clearfilePickers = function() {
         shopContent.filePickerFiles.fileId = null;
         shopContent.filePickerFiles.filename = null;
     }
 
-    shopContent.stringfyLinkFileIds = function () {
-        $.each(shopContent.attachedFiles, function (i, item) {
+    shopContent.stringfyLinkFileIds = function() {
+        $.each(shopContent.attachedFiles, function(i, item) {
             if (shopContent.selectedItem.LinkFileIds == "")
                 shopContent.selectedItem.LinkFileIds = item.fileId;
             else
@@ -1454,7 +1453,7 @@
     }
     //--------- End FilePickers Codes -------------------------
     //---------------Upload Modal-------------------------------
-    shopContent.openUploadModal = function () {
+    shopContent.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/shop/shopContent/upload_modal.html',
             size: 'lg',
@@ -1463,15 +1462,15 @@
 
         shopContent.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             shopContent.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
     //---------------Upload Modal Podcast-------------------------------
-    shopContent.openUploadModalPodcast = function () {
+    shopContent.openUploadModalPodcast = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/shop/shopContent/upload_modalPodcast.html',
             size: 'lg',
@@ -1480,19 +1479,19 @@
 
         shopContent.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             shopContent.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
-    shopContent.calcuteProgress = function (progress) {
+    shopContent.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    shopContent.whatcolor = function (progress) {
+    shopContent.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -1505,27 +1504,27 @@
         }
     }
 
-    shopContent.canShow = function (pr) {
+    shopContent.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
         return false;
     }
     // File Manager actions
-    shopContent.replaceFile = function (name) {
+    shopContent.replaceFile = function(name) {
         shopContent.itemClicked(null, shopContent.fileIdToDelete, "file");
         shopContent.fileTypes = 1;
         shopContent.fileIdToDelete = shopContent.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", shopContent.fileIdToDelete, 'GET').success(function(response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                     shopContent.remove(shopContent.FileList, shopContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                             if (response3.IsSuccess == true) {
                                 shopContent.FileItem = response3.Item;
                                 shopContent.FileItem.FileName = name;
@@ -1536,23 +1535,23 @@
                             } else {
                                 console.log("getting the model was not successfully returned!");
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                         });
                     } else {
                         console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
     }
     //save new file
-    shopContent.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
+    shopContent.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", shopContent.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 shopContent.FileItem = response.Item;
                 shopContent.showSuccessIcon();
@@ -1561,19 +1560,19 @@
                 return 0;
 
             }
-        }).error(function (data) {
+        }).error(function(data) {
             shopContent.showErrorIcon();
             return -1;
         });
     }
 
-    shopContent.showSuccessIcon = function () { }
+    shopContent.showSuccessIcon = function() {}
 
-    shopContent.showErrorIcon = function () {
+    shopContent.showErrorIcon = function() {
 
     }
     //file is exist
-    shopContent.fileIsExist = function (fileName) {
+    shopContent.fileIsExist = function(fileName) {
         for (var i = 0; i < shopContent.FileList.length; i++) {
             if (shopContent.FileList[i].FileName == fileName) {
                 shopContent.fileIdToDelete = shopContent.FileList[i].Id;
@@ -1584,7 +1583,7 @@
         return false;
     }
 
-    shopContent.getFileItem = function (id) {
+    shopContent.getFileItem = function(id) {
         for (var i = 0; i < shopContent.FileList.length; i++) {
             if (shopContent.FileList[i].Id == id) {
                 return shopContent.FileList[i];
@@ -1593,7 +1592,7 @@
     }
 
     //select file or folder
-    shopContent.itemClicked = function ($event, index, type) {
+    shopContent.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             shopContent.fileTypes = 1;
             shopContent.selectedFileId = shopContent.getFileItem(index).Id;
@@ -1606,11 +1605,11 @@
         shopContent.selectedIndex = index;
     };
 
-    shopContent.toggleCategoryButtons = function () {
+    shopContent.toggleCategoryButtons = function() {
         $("#categoryButtons").fadeToggle();
     }
     //upload file Podcast
-    shopContent.uploadFilePodcast = function (index, uploadFile) {
+    shopContent.uploadFilePodcast = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (shopContent.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1621,15 +1620,15 @@
                     // replace the file
                     ajax
                         .call(
-                        cmsServerConfig.configApiServerPath+"FileContent/",
-                        shopContent.fileIdToDelete,
-                        "GET"
+                            cmsServerConfig.configApiServerPath + "FileContent/",
+                            shopContent.fileIdToDelete,
+                            "GET"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function(response2) {
                                         if (response2.IsSuccess == true) {
                                             shopContent.FileItem = response2.Item;
                                             shopContent.showSuccessIcon();
@@ -1652,7 +1651,7 @@
                                             $("#save-icon" + index).addClass("fa-remove");
                                         }
                                     })
-                                    .error(function (data) {
+                                    .error(function(data) {
                                         shopContent.showErrorIcon();
                                         $("#save-icon" + index).removeClass("fa-save");
                                         $("#save-button" + index).removeClass("flashing-button");
@@ -1661,26 +1660,25 @@
                                 //-----------------------------------
                             }
                         })
-                        .error(function (data) {
+                        .error(function(data) {
                             console.log(data);
                         });
                     //--------------------------------
                 } else {
                     return;
                 }
-            }
-            else { // File does not exists
+            } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
                     shopContent.FileItem.uploadName = uploadFile.uploadName;
                     shopContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     shopContent.FileItem.FileSrc = uploadFile.name;
-                    shopContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
+                    shopContent.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- shopContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", shopContent.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             shopContent.FileItem = response.Item;
                             shopContent.showSuccessIcon();
@@ -1691,20 +1689,19 @@
                             shopContent.filePickerFilePodcast.fileId = response.Item.Id;
                             shopContent.selectedItem.LinkFilePodcastId = shopContent.filePickerFilePodcast.fileId
 
-                        }
-                        else {
+                        } else {
                             $("#save-icon" + index).removeClass("fa-save");
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         shopContent.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1715,7 +1712,7 @@
     }
     //End of Upload Modal-----------------------------------------
     //upload file
-    shopContent.uploadFile = function (index, uploadFile) {
+    shopContent.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (shopContent.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1726,15 +1723,15 @@
                     // replace the file
                     ajax
                         .call(
-                        cmsServerConfig.configApiServerPath+"FileContent/",
-                        shopContent.fileIdToDelete,
-                        "GET"
+                            cmsServerConfig.configApiServerPath + "FileContent/",
+                            shopContent.fileIdToDelete,
+                            "GET"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function(response2) {
                                         if (response2.IsSuccess == true) {
                                             shopContent.FileItem = response2.Item;
                                             shopContent.showSuccessIcon();
@@ -1757,7 +1754,7 @@
                                             $("#save-icon" + index).addClass("fa-remove");
                                         }
                                     })
-                                    .error(function (data) {
+                                    .error(function(data) {
                                         shopContent.showErrorIcon();
                                         $("#save-icon" + index).removeClass("fa-save");
                                         $("#save-button" + index).removeClass("flashing-button");
@@ -1766,7 +1763,7 @@
                                 //-----------------------------------
                             }
                         })
-                        .error(function (data) {
+                        .error(function(data) {
                             console.log(data);
                         });
                     //--------------------------------
@@ -1775,7 +1772,7 @@
                 }
             } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
                     shopContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1784,7 +1781,7 @@
                     shopContent.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- shopContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", shopContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", shopContent.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             shopContent.FileItem = response.Item;
                             shopContent.showSuccessIcon();
@@ -1800,14 +1797,14 @@
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         shopContent.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1818,10 +1815,10 @@
     }
     //End of Upload Modal-----------------------------------------
     //Export Report 
-    shopContent.exportFile = function () {
+    shopContent.exportFile = function() {
         shopContent.addRequested = true;
         shopContent.gridOptions.advancedSearchData.engine.ExportFile = shopContent.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/exportfile', shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'shopContent/exportfile', shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopContent.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -1829,50 +1826,50 @@
                 //shopContent.closeModal();
             }
             shopContent.addRequested = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    shopContent.toggleExportForm = function () {
+    shopContent.toggleExportForm = function() {
         shopContent.SortType = [{
-            key: 'نزولی',
-            value: 0
-        },
-        {
-            key: 'صعودی',
-            value: 1
-        },
-        {
-            key: 'تصادفی',
-            value: 3
-        }
+                key: 'نزولی',
+                value: 0
+            },
+            {
+                key: 'صعودی',
+                value: 1
+            },
+            {
+                key: 'تصادفی',
+                value: 3
+            }
         ];
         shopContent.EnumExportFileType = [{
-            key: 'Excel',
-            value: 1
-        },
-        {
-            key: 'PDF',
-            value: 2
-        },
-        {
-            key: 'Text',
-            value: 3
-        }
+                key: 'Excel',
+                value: 1
+            },
+            {
+                key: 'PDF',
+                value: 2
+            },
+            {
+                key: 'Text',
+                value: 3
+            }
         ];
         shopContent.EnumExportReceiveMethod = [{
-            key: 'دانلود',
-            value: 0
-        },
-        {
-            key: 'ایمیل',
-            value: 1
-        },
-        {
-            key: 'فایل منیجر',
-            value: 3
-        }
+                key: 'دانلود',
+                value: 0
+            },
+            {
+                key: 'ایمیل',
+                value: 1
+            },
+            {
+                key: 'فایل منیجر',
+                value: 3
+            }
         ];
         shopContent.ExportFileClass = {
             FileType: 1,
@@ -1886,16 +1883,16 @@
         });
     }
     //Row Count Export Input Change
-    shopContent.rowCountChanged = function () {
+    shopContent.rowCountChanged = function() {
         if (!angular.isDefined(shopContent.ExportFileClass.RowCount) || shopContent.ExportFileClass.RowCount > 5000)
             shopContent.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    shopContent.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"shopContent/count", shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    shopContent.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "shopContent/count", shopContent.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             shopContent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             shopContent.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });

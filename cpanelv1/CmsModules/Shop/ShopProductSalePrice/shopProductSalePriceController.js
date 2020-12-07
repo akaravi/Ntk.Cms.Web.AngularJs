@@ -134,7 +134,7 @@
             console.log(data);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ProductContent/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ProductContent/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopSalePrice.ListItems = response.ListItems;
             shopSalePrice.gridOptions.fillData(shopSalePrice.ListItems, response.Access); // Sending Access as an argument
@@ -320,6 +320,7 @@
             }
             shopSalePrice.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        shopSalePrice.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/getall", shopSalePrice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopSalePrice.contentBusyIndicator.isActive = false;

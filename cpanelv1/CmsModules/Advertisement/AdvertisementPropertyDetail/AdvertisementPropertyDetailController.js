@@ -119,6 +119,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         advertisementPropertyDetail.groupResultAccess = null;
+        advertisementPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetailGroup/getall", advertisementPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             advertisementPropertyDetail.advertisementPropertyDetailGroupListItems = response.ListItems;
             advertisementPropertyDetail.treeConfig.Items = response.ListItems;
@@ -300,7 +301,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
             SearchType: 0
         }
         advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
+        advertisementPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyDetail/getall", advertisementPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyDetail.busyIndicator.isActive = false;

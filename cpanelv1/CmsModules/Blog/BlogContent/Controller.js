@@ -516,6 +516,7 @@
       if (blogContent.selectedContentId.Id > 0)
         blogContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
       blogContent.contentBusyIndicator.isActive = true;
+      blogContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(cmsServerConfig.configApiServerPath + "blogContent/getall", blogContent.gridOptions.advancedSearchData.engine, "POST")
         .success(function (response) {
@@ -567,6 +568,7 @@
       engine.Filters = null;
       engine.Filters = [];
       engine.Filters.push(filterValue);
+      engine.AccessLoad = true;
       ajax.call(cmsServerConfig.configApiServerPath + "blogcomment/getall", engine, 'POST').success(function (response) {
         rashaErManage.checkAction(response);
         blogContent.ListCommentItems = response.ListItems;
@@ -888,6 +890,7 @@
         };
         blogContent.gridOptions.advancedSearchData.engine.Filters.push(s);
       }
+      blogContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(
           cmsServerConfig.configApiServerPath + "blogContent/getall",

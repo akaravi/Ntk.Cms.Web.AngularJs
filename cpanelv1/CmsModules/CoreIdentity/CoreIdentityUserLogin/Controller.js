@@ -9,7 +9,7 @@
         } catch (error) {
             console.log(error);
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"coreIdentityUserLogin/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
         angular.forEach( response.ListItems, function (item, key) {

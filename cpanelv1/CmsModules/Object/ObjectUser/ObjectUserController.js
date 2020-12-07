@@ -397,7 +397,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         engine.Filters = [];
         engine.Filters.push(s);
      
-       
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, "POST").success(function (response) {
             objectUser.listComments = response.ListItems;
             rashaErManage.checkAction(response);
@@ -423,14 +423,14 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
     objectUser.init = function () {
       
         objectUser.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"objectGroup/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"objectGroup/getall", {AccessLoad : true}, 'POST').success(function (response) {
             objectUser.treeConfig.Items = response.ListItems;
             objectUser.gridOptions.AccessGroup = response.Access;
             objectUser.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"objectuser/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"objectuser/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             objectUser.ListItems = response.ListItems;
             objectUser.gridOptions.fillData(objectUser.ListItems, response.Access); // Sending Access as an argument

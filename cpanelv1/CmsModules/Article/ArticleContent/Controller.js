@@ -525,6 +525,7 @@
       if (articleContent.selectedContentId.Id > 0)
         articleContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
       articleContent.contentBusyIndicator.isActive = true;
+      articleContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(cmsServerConfig.configApiServerPath + "articleContent/getall", articleContent.gridOptions.advancedSearchData.engine, "POST")
         .success(function (response) {
@@ -900,6 +901,7 @@
         };
         articleContent.gridOptions.advancedSearchData.engine.Filters.push(s);
       }
+      articleContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(
           cmsServerConfig.configApiServerPath + "articleContent/getall",

@@ -12,6 +12,7 @@
     emailProcessTaskLog.init = function () {
         emailProcessTaskLog.busyIndicator.isActive = true;
         emailProcessTaskLog.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        emailProcessTaskLog.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymenttransactionlog/getall", emailProcessTaskLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailProcessTaskLog.ListItems = response.ListItems;

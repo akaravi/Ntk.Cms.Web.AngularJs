@@ -9,6 +9,7 @@
 
     receivedFiles.init = function () {
         receivedFiles.busyIndicator.isActive = true;
+        receivedFiles.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramreceivedFiles/getall", receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;

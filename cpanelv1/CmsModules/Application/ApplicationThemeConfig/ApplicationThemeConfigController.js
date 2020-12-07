@@ -18,6 +18,7 @@
             rashaErManage.checkAction(response);
             themeConfig.sourceListItems = response.ListItems;
             //
+            themeConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath + "applicationThemeConfig/getAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 // Populate TreeConfig with all the Menu
                 themeConfig.ListItems = response.ListItems;
@@ -147,7 +148,7 @@
             SearchType: 0
         }
         themeConfig.gridOptions.advancedSearchData.engine.Filters.push(s);
-
+        themeConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "ApplicationThemeConfig/GetAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.busyIndicator.isActive = false;

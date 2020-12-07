@@ -8,7 +8,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreTokenUser/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.ListItems = response.ListItems;

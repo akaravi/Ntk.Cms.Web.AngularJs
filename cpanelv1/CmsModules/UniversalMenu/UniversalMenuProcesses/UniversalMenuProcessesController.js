@@ -27,6 +27,7 @@
 
     processCtrl.init = function () {
         processCtrl.busyIndicator.isActive = true;
+        processCtrl.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuProcesses/getall", processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.ListItems = response.ListItems;

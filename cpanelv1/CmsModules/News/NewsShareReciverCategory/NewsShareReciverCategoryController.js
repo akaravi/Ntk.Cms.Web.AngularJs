@@ -144,7 +144,9 @@
         });
 
         newsShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        var engine = {};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsShareReciverCategory.ListItems = response.ListItems;
             newsShareReciverCategory.gridOptions.fillData(newsShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
@@ -378,6 +380,7 @@
             }
             newsShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        newsShareReciverCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"newsShareReciverCategory/getall", newsShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsShareReciverCategory.contentBusyIndicator.isActive = false;

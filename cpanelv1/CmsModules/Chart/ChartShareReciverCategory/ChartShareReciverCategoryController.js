@@ -141,7 +141,10 @@
         });
 
         chartShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        
+        var engine = {};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareReciverCategory.ListItems = response.ListItems;
             chartShareReciverCategory.gridOptions.fillData(chartShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
@@ -374,6 +377,7 @@
             }
             chartShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        chartShareReciverCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"chartShareReciverCategory/getall", chartShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareReciverCategory.contentBusyIndicator.isActive = false;

@@ -57,7 +57,7 @@
         //} catch (error) {
         //    console.log(error);
         //}
-
+        shopItem.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/getall", shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopItem.ListItems = response.ListItems;

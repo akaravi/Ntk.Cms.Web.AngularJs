@@ -1,4 +1,4 @@
-﻿app.controller("linkManagementBillboardController", ["$scope", "$rootScope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$state', '$stateParams', '$filter', function ($scope, $rootScope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $state, $stateParams, $filter) {
+﻿app.controller("linkManagementBillboardController", ["$scope", "$rootScope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$state', '$stateParams', '$filter', function($scope, $rootScope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $state, $stateParams, $filter) {
     var linkManagementBillboard = this;
     linkManagementBillboard.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     var edititem = false;
@@ -30,7 +30,7 @@
         fileId: null,
         filename: null
     }
-    linkManagementBillboard.locationChanged = function (lat, lang) {
+    linkManagementBillboard.locationChanged = function(lat, lang) {
         console.log("ok " + lat + " " + lang);
     }
 
@@ -95,7 +95,7 @@
         }
     };
     //@help  loadimage pattern
-    linkManagementBillboard.selectionChanged = function (item) {
+    linkManagementBillboard.selectionChanged = function(item) {
         linkManagementBillboard.myStyles = {
             'background-image': 'url("' + $rootScope.cmsServerConfig.configRouteThumbnails + item.LinkMainImageId + '")',
             'height': '500px',
@@ -170,19 +170,19 @@
 
 
     //open addMenu modal
-    linkManagementBillboard.Showstatistics = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboard/', selectedId, 'GET').success(function (response1) {
+    linkManagementBillboard.Showstatistics = function(selectedId) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'linkManagementBillboard/', selectedId, 'GET').success(function(response1) {
             rashaErManage.checkAction(response1);
             linkManagementBillboard.selectedItem = response1.Item;
             $modal.open({
                 templateUrl: "cpanelv1/CmsModules/linkManagement/linkManagementBillboard/statistics.html",
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    linkManagementBillboard.ShowLog = function (selectedId) {
+    linkManagementBillboard.ShowLog = function(selectedId) {
         $state.go("index.linkmanagementtargetbillboardlog", { BillboardId: selectedId });
     }
 
@@ -191,21 +191,21 @@
     linkManagementBillboard.gridOptions.advancedSearchData.engine.Filters = [];
 
     //#tagsInput -----
-    linkManagementBillboard.onTagAdded = function (tag) {
-        if (!angular.isDefined(tag.id)) {    //Check if this a new or a existing tag (existing tags comprise with an id)
-            var tagObject = jQuery.extend({}, linkManagementBillboard.ModuleTag);   //#Clone a Javascript Object
+    linkManagementBillboard.onTagAdded = function(tag) {
+        if (!angular.isDefined(tag.id)) { //Check if this a new or a existing tag (existing tags comprise with an id)
+            var tagObject = jQuery.extend({}, linkManagementBillboard.ModuleTag); //#Clone a Javascript Object
             tagObject.Title = tag.text;
-            ajax.call('/api/biographyTag/', tagObject, 'POST').success(function (response) {
+            ajax.call('/api/biographyTag/', tagObject, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
-                    linkManagementBillboard.tags[linkManagementBillboard.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title };  //Replace the newly added tag (last in the array) with a new object including its Id
+                    linkManagementBillboard.tags[linkManagementBillboard.tags.length - 1] = { id: response.Item.Id, text: response.Item.Title }; //Replace the newly added tag (last in the array) with a new object including its Id
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
         }
     }
-    linkManagementBillboard.onTagRemoved = function (tag) { }
+    linkManagementBillboard.onTagRemoved = function(tag) {}
     //End of #tagsInput
 
     //For Show Category Loading Indicator
@@ -226,7 +226,7 @@
     };
 
     //open addMenu modal
-    linkManagementBillboard.addMenu = function () {
+    linkManagementBillboard.addMenu = function() {
         $modal.open({
             templateUrl: "cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/modalMenu.html",
             scope: $scope
@@ -239,7 +239,7 @@
     //linkManagementBillboard.biographyTitle = "";
 
     //init Function
-    linkManagementBillboard.init = function () {
+    linkManagementBillboard.init = function() {
         //if (linkManagementBillboard.selectedContentId.MemberId == 0 || linkManagementBillboard.selectedContentId.MemberId == null) {
         //    $state.go("index.linkmanagementmember");
         //    return;
@@ -256,11 +256,11 @@
         }
 
         linkManagementBillboard.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTargetCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementTargetCategory/getall", { RowPerPage: 1000 }, 'POST').success(function(response) {
             linkManagementBillboard.treeConfig.Items = response.ListItems;
             linkManagementBillboard.treeConfig.Items = response.ListItems;
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
         var filterModel = {
@@ -278,8 +278,8 @@
         };
         if (linkManagementBillboard.selectedContentId.BillBoardPatternId > 0)
             engine.Filters.push(filterModel);
-
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/getall", engine, 'POST').success(function (response) {
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/getall", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.ListItems = response.ListItems;
             linkManagementBillboard.gridOptions.fillData(linkManagementBillboard.ListItems, response.Access); // Sending Access as an argument
@@ -287,7 +287,7 @@
             linkManagementBillboard.gridOptions.currentPageNumber = response.CurrentPageNumber;
             linkManagementBillboard.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementBillboard.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             linkManagementBillboard.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
             linkManagementBillboard.contentBusyIndicator.isActive = false;
@@ -296,7 +296,7 @@
     };
 
 
-    linkManagementBillboard.gridOptions.onRowSelected = function () {
+    linkManagementBillboard.gridOptions.onRowSelected = function() {
         var item = linkManagementBillboard.gridOptions.selectedRow.item;
 
     }
@@ -305,7 +305,7 @@
 
 
     //Tree On Node Select Options
-    linkManagementBillboard.treeConfig.onNodeSelect = function () {
+    linkManagementBillboard.treeConfig.onNodeSelect = function() {
         var node = linkManagementBillboard.treeConfig.currentNode;
         linkManagementBillboard.showGridComment = false;
         linkManagementBillboard.LinkTargetCategoryIdSelector.selectedItem = node;
@@ -314,7 +314,7 @@
     };
 
     //Show Content with Category Id
-    linkManagementBillboard.selectContent = function (node) {
+    linkManagementBillboard.selectContent = function(node) {
         linkManagementBillboard.gridOptions.advancedSearchData.engine.Filters = null;
         linkManagementBillboard.gridOptions.advancedSearchData.engine.Filters = [];
         if (node != null && node != undefined) {
@@ -332,7 +332,8 @@
             }
             linkManagementBillboard.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/getall", linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        linkManagementBillboard.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/getall", linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.contentBusyIndicator.isActive = false;
             linkManagementBillboard.ListItems = response.ListItems;
@@ -340,14 +341,14 @@
             linkManagementBillboard.gridOptions.currentPageNumber = response.CurrentPageNumber;
             linkManagementBillboard.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementBillboard.gridOptions.rowPerPage = response.RowPerPage;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             linkManagementBillboard.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     };
 
     // Open Add New Content Model
-    linkManagementBillboard.openAddModel = function () {
+    linkManagementBillboard.openAddModel = function() {
         var node = linkManagementBillboard.treeConfig.currentNode;
         if (node.Id == 0 || !node.Id) {
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Biography_Please_Select_The_Category'));
@@ -360,14 +361,14 @@
 
         linkManagementBillboard.filePickerFiles.filename = "";
         linkManagementBillboard.filePickerFiles.fileId = null;
-        linkManagementBillboard.tags = [];   //tagsInput خالی کردن آرایه تگ ها برای محتوای جدید
-        linkManagementBillboard.kwords = [];   //tagsInput خالی کردن آرایه کلمات کلیدی برای محتوای جدید
+        linkManagementBillboard.tags = []; //tagsInput خالی کردن آرایه تگ ها برای محتوای جدید
+        linkManagementBillboard.kwords = []; //tagsInput خالی کردن آرایه کلمات کلیدی برای محتوای جدید
         linkManagementBillboard.addRequested = false;
         linkManagementBillboard.modalTitle = 'اضافه کردن محتوای جدید';
 
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.OtherInfos = [];
@@ -383,13 +384,13 @@
                 templateUrl: 'cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Open Edit Content Modal
-    linkManagementBillboard.openEditModel = function () {
+    linkManagementBillboard.openEditModel = function() {
         if (buttonIsPressed) return;
         linkManagementBillboard.addRequested = false;
         linkManagementBillboard.modalTitle = 'ویرایش';
@@ -398,7 +399,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function(response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             linkManagementBillboard.selectedItem = response1.Item;
@@ -410,10 +411,10 @@
             linkManagementBillboard.filePickerMainImage.fileId = null;
 
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.LinkMainImageId, 'GET').success(function(response2) {
                     linkManagementBillboard.filePickerMainImage.filename = response2.Item.FileName;
                     linkManagementBillboard.filePickerMainImage.fileId = response2.Item.Id
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -422,34 +423,34 @@
             linkManagementBillboard.filePickerFiles.filename = null;
             linkManagementBillboard.filePickerFiles.fileId = null;
             //Load tagsInput
-            linkManagementBillboard.tags = [];  //Clear out previous tags
+            linkManagementBillboard.tags = []; //Clear out previous tags
             if (linkManagementBillboard.selectedItem.ContentTags == null)
                 linkManagementBillboard.selectedItem.ContentTags = [];
-            $.each(linkManagementBillboard.selectedItem.ContentTags, function (index, item) {
+            $.each(linkManagementBillboard.selectedItem.ContentTags, function(index, item) {
                 if (item.ModuleTag != null)
-                    linkManagementBillboard.tags.push({ id: item.ModuleTag.Id, text: item.ModuleTag.Title });  //Add current content's tag to tags array with id and title
+                    linkManagementBillboard.tags.push({ id: item.ModuleTag.Id, text: item.ModuleTag.Title }); //Add current content's tag to tags array with id and title
             });
             //Load Keywords tagsInput
-            linkManagementBillboard.kwords = [];  //Clear out previous tags
+            linkManagementBillboard.kwords = []; //Clear out previous tags
             var arraykwords = [];
             if (linkManagementBillboard.selectedItem.Keyword != null && linkManagementBillboard.selectedItem.Keyword != "")
                 arraykwords = linkManagementBillboard.selectedItem.Keyword.split(',');
-            $.each(arraykwords, function (index, item) {
+            $.each(arraykwords, function(index, item) {
                 if (item != null)
-                    linkManagementBillboard.kwords.push({ text: item });  //Add current content's tag to tags array with id and title
+                    linkManagementBillboard.kwords.push({ text: item }); //Add current content's tag to tags array with id and title
             });
 
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Add New Content
-    linkManagementBillboard.addNewContent = function (frm) {
+    linkManagementBillboard.addNewContent = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -461,7 +462,7 @@
         linkManagementBillboard.selectedItem.LinkFileIds = "";
         linkManagementBillboard.stringfyLinkFileIds();
         //Save Keywords
-        $.each(linkManagementBillboard.kwords, function (index, item) {
+        $.each(linkManagementBillboard.kwords, function(index, item) {
             if (index == 0)
                 linkManagementBillboard.selectedItem.Keyword = item.text;
             else
@@ -476,7 +477,7 @@
         //    $.each(apiSelectedItem.Similars, function (index, item) {
         //        item.Destination = [];
         //    });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.selectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -492,9 +493,9 @@
                 linkManagementBillboard.ListItems.unshift(response.Item);
                 linkManagementBillboard.gridOptions.fillData(linkManagementBillboard.ListItems);
                 linkManagementBillboard.closeModal();
-   
+
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             linkManagementBillboard.addRequested = false;
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
@@ -502,7 +503,7 @@
     }
 
     //Edit Content
-    linkManagementBillboard.editContent = function (frm) {
+    linkManagementBillboard.editContent = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -522,7 +523,7 @@
         //    linkManagementBillboard.selectedItem.ContentTags.push(newObject);
         //});
         //Save Keywords
-        $.each(linkManagementBillboard.kwords, function (index, item) {
+        $.each(linkManagementBillboard.kwords, function(index, item) {
             if (index == 0)
                 linkManagementBillboard.selectedItem.Keyword = item.text;
             else
@@ -539,14 +540,14 @@
         //  });
 
         if (linkManagementBillboard.selectedItem.BillboardTargetCategories)
-            $.each(linkManagementBillboard.selectedItem.BillboardTargetCategories, function (index, item) {
+            $.each(linkManagementBillboard.selectedItem.BillboardTargetCategories, function(index, item) {
                 item.Billboard = [];
                 var Title = item.TargetCategory.Title;
                 item.TargetCategory = [];
                 item.TargetCategory.Title = Title
 
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function(response) {
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
             linkManagementBillboard.addRequested = false;
             linkManagementBillboard.treeConfig.showbusy = false;
@@ -557,33 +558,33 @@
                 linkManagementBillboard.gridOptions.fillData(linkManagementBillboard.ListItems);
                 linkManagementBillboard.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             linkManagementBillboard.addRequested = false;
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
         });
     }
     // Delete a biography Content 
-    linkManagementBillboard.deleteContent = function () {
+    linkManagementBillboard.deleteContent = function() {
         if (!linkManagementBillboard.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
         linkManagementBillboard.treeConfig.showbusy = true;
         linkManagementBillboard.showIsBusy = true;
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 linkManagementBillboard.categoryBusyIndicator.isActive = true;
                 console.log(linkManagementBillboard.gridOptions.selectedRow.item);
                 linkManagementBillboard.showbusy = true;
                 linkManagementBillboard.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/", linkManagementBillboard.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/", linkManagementBillboard.gridOptions.selectedRow.item.Id, "GET").success(function(response) {
                     linkManagementBillboard.showbusy = false;
                     linkManagementBillboard.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     linkManagementBillboard.selectedItemForDelete = response.Item;
                     console.log(linkManagementBillboard.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/", linkManagementBillboard.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/", linkManagementBillboard.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         linkManagementBillboard.categoryBusyIndicator.isActive = false;
                         linkManagementBillboard.treeConfig.showbusy = false;
                         linkManagementBillboard.showIsBusy = false;
@@ -592,13 +593,13 @@
                             linkManagementBillboard.replaceItem(linkManagementBillboard.selectedItemForDelete.Id);
                             linkManagementBillboard.gridOptions.fillData(linkManagementBillboard.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         linkManagementBillboard.treeConfig.showbusy = false;
                         linkManagementBillboard.showIsBusy = false;
                         linkManagementBillboard.categoryBusyIndicator.isActive = false;
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     linkManagementBillboard.treeConfig.showbusy = false;
                     linkManagementBillboard.showIsBusy = false;
@@ -609,13 +610,13 @@
         });
     }
     //#help similar & otherinfo
-    linkManagementBillboard.clearPreviousData = function () {
+    linkManagementBillboard.clearPreviousData = function() {
         linkManagementBillboard.selectedItem.BillboardTargetCategories = [];
         $("#to").empty();
     };
 
 
-    linkManagementBillboard.moveSelected = function (from, to, calculatePrice) {
+    linkManagementBillboard.moveSelected = function(from, to, calculatePrice) {
         if (from == "Content") {
             //var title = linkManagementBillboard.ItemListIdSelector.selectedItem.Title;
             // var optionSelectedPrice = linkManagementBillboard.ItemListIdSelector.selectedItem.Price;
@@ -645,7 +646,7 @@
     };
 
 
-    linkManagementBillboard.removeFromCollection = function (listsimilar, iddestination) {
+    linkManagementBillboard.removeFromCollection = function(listsimilar, iddestination) {
         for (var i = 0; i < linkManagementBillboard.selectedItem.BillboardTargetCategories.length; i++) {
             if (listsimilar[i].LinkTargetCategoryId == iddestination) {
                 linkManagementBillboard.selectedItem.BillboardTargetCategories.splice(i, 1);
@@ -658,16 +659,16 @@
 
     //#help
     //Confirm/UnConfirm biography Content
-    linkManagementBillboard.confirmUnConfirmbiographyContent = function () {
+    linkManagementBillboard.confirmUnConfirmbiographyContent = function() {
         if (!linkManagementBillboard.gridOptions.selectedRow.item) {
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function(response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = linkManagementBillboard.ListItems.indexOf(linkManagementBillboard.gridOptions.selectedRow.item);
@@ -675,25 +676,25 @@
                         linkManagementBillboard.ListItems[index] = response2.Item;
                     }
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
 
     //Add To Archive New Content
-    linkManagementBillboard.enableArchive = function () {
+    linkManagementBillboard.enableArchive = function() {
         if (!linkManagementBillboard.gridOptions.selectedRow.item) {
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/', linkManagementBillboard.selectedItem, "PUT").success(function(response2) {
                 linkManagementBillboard.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -705,19 +706,19 @@
                     linkManagementBillboard.categoryBusyIndicator.isActive = false;
                 }
 
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 linkManagementBillboard.categoryBusyIndicator.isActive = false;
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             linkManagementBillboard.categoryBusyIndicator.isActive = false;
         });
     };
 
     //Replace Item OnDelete/OnEdit Grid Options
-    linkManagementBillboard.replaceItem = function (oldId, newItem) {
-        angular.forEach(linkManagementBillboard.ListItems, function (item, key) {
+    linkManagementBillboard.replaceItem = function(oldId, newItem) {
+        angular.forEach(linkManagementBillboard.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = linkManagementBillboard.ListItems.indexOf(item);
                 linkManagementBillboard.ListItems.splice(index, 1);
@@ -748,9 +749,9 @@
     };
 
     linkManagementBillboard.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
-    linkManagementBillboard.searchData = function () {
+    linkManagementBillboard.searchData = function() {
         linkManagementBillboard.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/getall", linkManagementBillboard.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/getall", linkManagementBillboard.gridOptions.advancedSearchData.engine, "POST").success(function(response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.contentBusyIndicator.isActive = false;
             linkManagementBillboard.ListItems = response.ListItems;
@@ -759,7 +760,7 @@
             linkManagementBillboard.gridOptions.totalRowCount = response.TotalRowCount;
             linkManagementBillboard.gridOptions.rowPerPage = response.RowPerPage;
             linkManagementBillboard.allowedSearch = response.AllowedSearchField;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             linkManagementBillboard.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
@@ -767,7 +768,7 @@
 
     //Close Model Stack
     linkManagementBillboard.addRequested = false;
-    linkManagementBillboard.closeModal = function () {
+    linkManagementBillboard.closeModal = function() {
         $modalStack.dismissAll();
     };
 
@@ -826,26 +827,26 @@
     //}
 
     //For reInit Categories
-    linkManagementBillboard.gridOptions.reGetAll = function () {
+    linkManagementBillboard.gridOptions.reGetAll = function() {
         linkManagementBillboard.init();
     };
 
-    linkManagementBillboard.isCurrentNodeEmpty = function () {
+    linkManagementBillboard.isCurrentNodeEmpty = function() {
         return !angular.equals({}, linkManagementBillboard.treeConfig.currentNode);
     }
 
-    linkManagementBillboard.loadFileAndFolder = function (item) {
+    linkManagementBillboard.loadFileAndFolder = function(item) {
         linkManagementBillboard.treeConfig.currentNode = item;
         console.log(item);
         linkManagementBillboard.treeConfig.onNodeSelect(item);
     }
 
-    linkManagementBillboard.toggleCategoryButtons = function () {
+    linkManagementBillboard.toggleCategoryButtons = function() {
         $("#categoryButtons").fadeToggle();
     }
 
     linkManagementBillboard.columnCheckbox = false;
-    linkManagementBillboard.openGridConfigModal = function () {
+    linkManagementBillboard.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         var prechangeColumns = linkManagementBillboard.gridOptions.columns;
         if (linkManagementBillboard.gridOptions.columnCheckbox) {
@@ -855,8 +856,7 @@
                 var temp = element[0].checked;
                 linkManagementBillboard.gridOptions.columns[i].visible = temp;
             }
-        }
-        else {
+        } else {
 
             for (var i = 0; i < linkManagementBillboard.gridOptions.columns.length; i++) {
                 var element = $("#" + linkManagementBillboard.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
@@ -869,16 +869,17 @@
         linkManagementBillboard.gridOptions.columnCheckbox = !linkManagementBillboard.gridOptions.columnCheckbox;
     }
 
-    linkManagementBillboard.deleteAttachedFile = function (index) {
+    linkManagementBillboard.deleteAttachedFile = function(index) {
         linkManagementBillboard.attachedFiles.splice(index, 1);
     }
 
-    linkManagementBillboard.addAttachedFile = function (id) {
+    linkManagementBillboard.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (id != null && id != undefined && !linkManagementBillboard.alreadyExist(id, linkManagementBillboard.attachedFiles) && fname != null && fname != "") {
             var fId = id;
             var file = {
-                id: fId, name: fname
+                id: fId,
+                name: fname
             };
             linkManagementBillboard.attachedFiles.push(file);
             if (document.getElementsByName("file" + id).length > 1)
@@ -888,7 +889,7 @@
         }
     }
 
-    linkManagementBillboard.alreadyExist = function (id, array) {
+    linkManagementBillboard.alreadyExist = function(id, array) {
         for (var i = 0; i < array.length; i++) {
             if (id == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_File_Has_Already_Been_Attachment'));
@@ -898,7 +899,7 @@
         return false;
     }
 
-    linkManagementBillboard.filePickerMainImage.removeSelectedfile = function (config) {
+    linkManagementBillboard.filePickerMainImage.removeSelectedfile = function(config) {
         linkManagementBillboard.filePickerMainImage.fileId = null;
         linkManagementBillboard.filePickerMainImage.filename = null;
         linkManagementBillboard.selectedItem.LinkMainImageId = null;
@@ -906,19 +907,19 @@
     }
 
 
-    linkManagementBillboard.filePickerFiles.removeSelectedfile = function (config) {
+    linkManagementBillboard.filePickerFiles.removeSelectedfile = function(config) {
         linkManagementBillboard.filePickerFiles.fileId = null;
         linkManagementBillboard.filePickerFiles.filename = null;
         linkManagementBillboard.selectedItem.LinkFileIds = null;
     }
 
 
-    linkManagementBillboard.showUpload = function () {
+    linkManagementBillboard.showUpload = function() {
         $("#fastUpload").fadeToggle();
     }
 
     // ----------- FilePicker Codes --------------------------------
-    linkManagementBillboard.addAttachedFile = function (id) {
+    linkManagementBillboard.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (fname == "") {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_File_To_Add'));
@@ -927,14 +928,15 @@
         if (id != null && id != undefined && !linkManagementBillboard.alreadyExist(id, linkManagementBillboard.attachedFiles)) {
             var fId = id;
             var file = {
-                fileId: fId, filename: fname
+                fileId: fId,
+                filename: fname
             };
             linkManagementBillboard.attachedFiles.push(file);
             linkManagementBillboard.clearfilePickers();
         }
     }
 
-    linkManagementBillboard.alreadyExist = function (fieldId, array) {
+    linkManagementBillboard.alreadyExist = function(fieldId, array) {
         for (var i = 0; i < array.length; i++) {
             if (fieldId == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_Item_Has_Already_Been_Added'));
@@ -945,17 +947,17 @@
         return false;
     }
 
-    linkManagementBillboard.parseFileIds = function (stringOfIds) {
-        if (stringOfIds == null || !stringOfIds.trim()) return;   //String is empty or whitespace then return
+    linkManagementBillboard.parseFileIds = function(stringOfIds) {
+        if (stringOfIds == null || !stringOfIds.trim()) return; //String is empty or whitespace then return
         var fileIds = stringOfIds.split(",");
         if (fileIds.length != undefined) {
-            $.each(fileIds, function (index, item) {
-                if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
+            $.each(fileIds, function(index, item) {
+                if (item == parseInt(item, 10)) { // Check if item is an integer
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function(response) {
                         if (response.IsSuccess) {
                             linkManagementBillboard.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
@@ -963,13 +965,13 @@
         }
     }
 
-    linkManagementBillboard.clearfilePickers = function () {
+    linkManagementBillboard.clearfilePickers = function() {
         linkManagementBillboard.filePickerFiles.fileId = null;
         linkManagementBillboard.filePickerFiles.filename = null;
     }
 
-    linkManagementBillboard.stringfyLinkFileIds = function () {
-        $.each(linkManagementBillboard.attachedFiles, function (i, item) {
+    linkManagementBillboard.stringfyLinkFileIds = function() {
+        $.each(linkManagementBillboard.attachedFiles, function(i, item) {
             if (linkManagementBillboard.selectedItem.LinkFileIds == "")
                 linkManagementBillboard.selectedItem.LinkFileIds = item.fileId;
             else
@@ -980,7 +982,7 @@
 
 
     //---------------Upload Modal-------------------------------
-    linkManagementBillboard.openUploadModal = function () {
+    linkManagementBillboard.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/LinkManagement/LinkManagementBillboard/upload_modal.html',
             size: 'lg',
@@ -989,21 +991,21 @@
 
         linkManagementBillboard.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             linkManagementBillboard.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
 
 
-    linkManagementBillboard.calcuteProgress = function (progress) {
+    linkManagementBillboard.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    linkManagementBillboard.whatcolor = function (progress) {
+    linkManagementBillboard.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -1016,27 +1018,27 @@
         }
     }
 
-    linkManagementBillboard.canShow = function (pr) {
+    linkManagementBillboard.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
         return false;
     }
     // File Manager actions
-    linkManagementBillboard.replaceFile = function (name) {
+    linkManagementBillboard.replaceFile = function(name) {
         linkManagementBillboard.itemClicked(null, linkManagementBillboard.fileIdToDelete, "file");
         linkManagementBillboard.fileTypes = 1;
         linkManagementBillboard.fileIdToDelete = linkManagementBillboard.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", linkManagementBillboard.fileIdToDelete, 'GET').success(function(response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                     linkManagementBillboard.remove(linkManagementBillboard.FileList, linkManagementBillboard.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                             if (response3.IsSuccess == true) {
                                 linkManagementBillboard.FileItem = response3.Item;
                                 linkManagementBillboard.FileItem.FileName = name;
@@ -1044,51 +1046,47 @@
                                 linkManagementBillboard.FileItem.FileSrc = name;
                                 linkManagementBillboard.FileItem.LinkCategoryId = linkManagementBillboard.thisCategory;
                                 linkManagementBillboard.saveNewFile();
-                            }
-                            else {
+                            } else {
                                 console.log("getting the model was not successfully returned!");
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                         });
-                    }
-                    else {
+                    } else {
                         console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
     }
     //save new file
-    linkManagementBillboard.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.FileItem, 'POST').success(function (response) {
+    linkManagementBillboard.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", linkManagementBillboard.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 linkManagementBillboard.FileItem = response.Item;
                 linkManagementBillboard.showSuccessIcon();
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
 
             }
-        }).error(function (data) {
+        }).error(function(data) {
             linkManagementBillboard.showErrorIcon();
             return -1;
         });
     }
 
-    linkManagementBillboard.showSuccessIcon = function () {
-    }
+    linkManagementBillboard.showSuccessIcon = function() {}
 
-    linkManagementBillboard.showErrorIcon = function () {
+    linkManagementBillboard.showErrorIcon = function() {
 
     }
     //file is exist
-    linkManagementBillboard.fileIsExist = function (fileName) {
+    linkManagementBillboard.fileIsExist = function(fileName) {
         for (var i = 0; i < linkManagementBillboard.FileList.length; i++) {
             if (linkManagementBillboard.FileList[i].FileName == fileName) {
                 linkManagementBillboard.fileIdToDelete = linkManagementBillboard.FileList[i].Id;
@@ -1099,7 +1097,7 @@
         return false;
     }
 
-    linkManagementBillboard.getFileItem = function (id) {
+    linkManagementBillboard.getFileItem = function(id) {
         for (var i = 0; i < linkManagementBillboard.FileList.length; i++) {
             if (linkManagementBillboard.FileList[i].Id == id) {
                 return linkManagementBillboard.FileList[i];
@@ -1108,13 +1106,12 @@
     }
 
     //select file or folder
-    linkManagementBillboard.itemClicked = function ($event, index, type) {
+    linkManagementBillboard.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             linkManagementBillboard.fileTypes = 1;
             linkManagementBillboard.selectedFileId = linkManagementBillboard.getFileItem(index).Id;
             linkManagementBillboard.selectedFileName = linkManagementBillboard.getFileItem(index).FileName;
-        }
-        else {
+        } else {
             linkManagementBillboard.fileTypes = 2;
             linkManagementBillboard.selectedCategoryId = linkManagementBillboard.getCategoryName(index).Id;
             linkManagementBillboard.selectedCategoryTitle = linkManagementBillboard.getCategoryName(index).Title;
@@ -1128,7 +1125,7 @@
     };
 
     //upload file
-    linkManagementBillboard.uploadFile = function (index, uploadFile) {
+    linkManagementBillboard.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (linkManagementBillboard.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1139,15 +1136,15 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileContent/",
+                            cmsServerConfig.configApiServerPath + "FileContent/",
                             linkManagementBillboard.fileIdToDelete,
                             "GET"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function(response2) {
                                         if (response2.IsSuccess == true) {
                                             linkManagementBillboard.FileItem = response2.Item;
                                             linkManagementBillboard.showSuccessIcon();
@@ -1170,7 +1167,7 @@
                                             $("#save-icon" + index).addClass("fa-remove");
                                         }
                                     })
-                                    .error(function (data) {
+                                    .error(function(data) {
                                         linkManagementBillboard.showErrorIcon();
                                         $("#save-icon" + index).removeClass("fa-save");
                                         $("#save-button" + index).removeClass("flashing-button");
@@ -1179,26 +1176,25 @@
                                 //-----------------------------------
                             }
                         })
-                        .error(function (data) {
+                        .error(function(data) {
                             console.log(data);
                         });
                     //--------------------------------
                 } else {
                     return;
                 }
-            }
-            else { // File does not exists
+            } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     linkManagementBillboard.FileItem = response.Item;
                     linkManagementBillboard.FileItem.FileName = uploadFile.name;
                     linkManagementBillboard.FileItem.uploadName = uploadFile.uploadName;
                     linkManagementBillboard.FileItem.Extension = uploadFile.name.split('.').pop();
                     linkManagementBillboard.FileItem.FileSrc = uploadFile.name;
-                    linkManagementBillboard.FileItem.LinkCategoryId = null;  //Save the new file in the root
+                    linkManagementBillboard.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- linkManagementBillboard.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", linkManagementBillboard.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", linkManagementBillboard.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             linkManagementBillboard.FileItem = response.Item;
                             linkManagementBillboard.showSuccessIcon();
@@ -1209,20 +1205,19 @@
                             linkManagementBillboard.filePickerMainImage.fileId = response.Item.Id;
                             linkManagementBillboard.selectedItem.LinkMainImageId = linkManagementBillboard.filePickerMainImage.fileId
 
-                        }
-                        else {
+                        } else {
                             $("#save-icon" + index).removeClass("fa-save");
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         linkManagementBillboard.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1234,10 +1229,10 @@
     //End of Upload Modal-----------------------------------------
 
     //Export Report 
-    linkManagementBillboard.exportFile = function () {
+    linkManagementBillboard.exportFile = function() {
         linkManagementBillboard.gridOptions.advancedSearchData.engine.ExportFile = linkManagementBillboard.ExportFileClass;
         linkManagementBillboard.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/exportfile', linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'LinkManagementBillboard/exportfile', linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             linkManagementBillboard.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1246,12 +1241,12 @@
                 //linkManagementBillboard.closeModal();
             }
             linkManagementBillboard.addRequested = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    linkManagementBillboard.toggleExportForm = function () {
+    linkManagementBillboard.toggleExportForm = function() {
         linkManagementBillboard.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -1275,17 +1270,17 @@
         });
     }
     //Row Count Export Input Change
-    linkManagementBillboard.rowCountChanged = function () {
+    linkManagementBillboard.rowCountChanged = function() {
         if (!angular.isDefined(linkManagementBillboard.ExportFileClass.RowCount) || linkManagementBillboard.ExportFileClass.RowCount > 5000)
             linkManagementBillboard.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    linkManagementBillboard.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/count", linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    linkManagementBillboard.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "LinkManagementBillboard/count", linkManagementBillboard.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             linkManagementBillboard.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementBillboard.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             linkManagementBillboard.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
@@ -1294,12 +1289,12 @@
     linkManagementBillboard.treeOptions = {
         nodeChildren: "Children",
         multiSelection: false,
-        isLeaf: function (node) {
+        isLeaf: function(node) {
             if (node.FileName == undefined || node.Filename == "")
                 return false;
             return true;
         },
-        isSelectable: function (node) {
+        isSelectable: function(node) {
             if (linkManagementBillboard.treeOptions.dirSelectable)
                 if (angular.isDefined(node.FileName))
                     return false;
@@ -1308,42 +1303,42 @@
         dirSelectable: false
     }
 
-    linkManagementBillboard.onNodeToggle = function (node, expanded) {
+    linkManagementBillboard.onNodeToggle = function(node, expanded) {
         if (expanded) {
             node.Children = [];
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
-                angular.forEach(response1.ListItems, function (value, key) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
+                angular.forEach(response1.ListItems, function(value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent//GetFilesInCategoryId/"+node.Id,"", 'GET').success(function (response2) {
-                    angular.forEach(response2.ListItems, function (value, key) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent//GetFilesInCategoryId/" + node.Id, "", 'GET').success(function(response2) {
+                    angular.forEach(response2.ListItems, function(value, key) {
                         node.Children.push(value);
                     });
                     node.messageText = "";
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 console.log(data);
             });
         }
     }
 
-    linkManagementBillboard.onSelection = function (node, selected) {
+    linkManagementBillboard.onSelection = function(node, selected) {
         if (!selected) {
             linkManagementBillboard.selectedItem.LinkMainImageId = null;
             linkManagementBillboard.selectedItem.previewImageSrc = null;
             return;
         }
         linkManagementBillboard.selectedItem.LinkMainImageId = node.Id;
-        linkManagementBillboard.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", node.Id, "GET").success(function (response) {
+        linkManagementBillboard.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function(response) {
             linkManagementBillboard.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }

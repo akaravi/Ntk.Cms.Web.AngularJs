@@ -23,8 +23,9 @@
     emailapipathcompany.init = function () {
        
         emailapipathcompany.busyIndicator.isActive = true;
-
-        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathcompany/getall", {}, 'POST').success(function (response) {
+        var engine = {};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathcompany/getall",engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailapipathcompany.ListItems = response.ListItems;
             emailapipathcompany.gridOptions.fillData(emailapipathcompany.ListItems, response.Access);

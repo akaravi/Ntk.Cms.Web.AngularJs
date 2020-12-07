@@ -108,6 +108,7 @@
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters=[];
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue: cmsPageDesign.dependencyId, SearchType: 0 }); 
         cmsPageDesign.busyIndicator.isActive = true;
+        cmsPageDesign.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.gridOptions.Access = response.Access;

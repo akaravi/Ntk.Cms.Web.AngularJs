@@ -57,7 +57,7 @@
             IntValue1: linkManagementAccounting.selectedMember.MemberId
         };
         engine.Filters.push(filterModel);
-
+        engine.AccessLoad = true;
 
         ajax.call(cmsServerConfig.configApiServerPath+"linkManagementAccounting/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);

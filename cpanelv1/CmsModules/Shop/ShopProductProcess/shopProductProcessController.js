@@ -48,6 +48,7 @@
 
     //init Function
     shopProcess.init = function () {
+        shopProcess.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.ListItems = response.ListItems;

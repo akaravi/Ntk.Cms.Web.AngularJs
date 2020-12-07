@@ -81,6 +81,7 @@
         //    console.log(data);
         //});
         pollingLog.categoryBusyIndicator.isActive = true;
+        pollingLog.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/getall", pollingLog.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             pollingLog.ListItems = response.ListItems;
             pollingLog.gridOptions.fillData(pollingLog.ListItems, response.Access);

@@ -36,11 +36,11 @@
             IntValue1: cmsMdlPayPrcCust.selectedModulePaymentProcess.Id
         };
         cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
+        cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcessCustomize/getall", cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.ListItems = response.ListItems;
-            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
             cmsMdlPayPrcCust.gridOptions.fillData(cmsMdlPayPrcCust.ListItems, response.Access); // Send Access as an arguman
             cmsMdlPayPrcCust.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsMdlPayPrcCust.gridOptions.totalRowCount = response.TotalRowCount;

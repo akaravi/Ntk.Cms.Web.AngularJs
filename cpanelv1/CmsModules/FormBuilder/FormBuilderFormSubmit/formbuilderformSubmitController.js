@@ -30,11 +30,12 @@
                 IntValue1: value.selectedFormBuilderSubmit.Id
             }]
         };
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FormBuilderFormSubmit/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             value.ListItems = response.ListItems;
             value.busyIndicator.isActive = false;
-            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
+            
             value.gridOptions.fillData(value.ListItems, response.Access); // دسترسی ها نمایش
             value.gridOptions.currentPageNumber = response.CurrentPageNumber;
             value.gridOptions.totalRowCount = response.TotalRowCount;

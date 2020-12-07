@@ -74,6 +74,7 @@
         } catch (error) {
             console.log(error);
         }
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"newsContentParameterType/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentParameterType.busyIndicator.isActive = false;

@@ -14,6 +14,7 @@
 
     jobCertificate.init = function () {
         jobCertificate.busyIndicator.isActive = true;
+        jobCertificate.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobcertificate/getall", jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobCertificate.busyIndicator.isActive = false;

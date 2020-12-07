@@ -160,6 +160,7 @@
         /*var engine={};
         engine.Filters = [];
         engine.Filters.push(filterModel);*/
+        filterModel.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getall", filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             schedule.ListItems = response.ListItems;
@@ -177,7 +178,7 @@
     };
  schedule.showTaskLog = function () {
         //schedule.contentBusyIndicator = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTaskLog/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTaskLog/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             schedule.ListItems = response.ListItems;
             schedule.gridOptionsTaskLog.fillData(schedule.ListItems, response.Access); // Sending Access as an argument

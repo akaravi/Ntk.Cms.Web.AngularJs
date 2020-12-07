@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        chartTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"charttag/getall", chartTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.ListItems = response.ListItems;
@@ -399,6 +400,7 @@
             }
             chartTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        chartTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"charttag/getall", chartTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartTag.contentBusyIndicator.isActive = false;

@@ -143,6 +143,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         memberPropertyDetail.groupResultAccess = null;
+        memberPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetailGroup/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberPropertyDetail.memberPropertyDetailGroupListItems = response.ListItems;
             memberPropertyDetail.treeConfig.Items = response.ListItems;
@@ -324,7 +325,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             SearchType: 0
         }
         memberPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
+        memberPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyDetail/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyDetail.busyIndicator.isActive = false;

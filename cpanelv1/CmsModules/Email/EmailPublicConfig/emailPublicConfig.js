@@ -13,6 +13,7 @@
     emailPublicConfig.init = function () {
         emailPublicConfig.busyIndicator.isActive = true;
         emailPublicConfig.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        emailPublicConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"EmailPublicConfig/getall", emailPublicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailPublicConfig.ListItems = response.ListItems;

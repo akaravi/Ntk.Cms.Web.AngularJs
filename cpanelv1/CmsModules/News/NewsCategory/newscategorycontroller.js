@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) newscategory.itemRecordStatus = itemRecordStatus;
     newscategory.init = function () {
         newscategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"newscategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"newscategory/getall", { RowPerPage:1000,AccessLoad : true}, 'POST').success(function (response) {
 
             rashaErManage.checkAction(response);
             newscategory.ListItems = response.ListItems;

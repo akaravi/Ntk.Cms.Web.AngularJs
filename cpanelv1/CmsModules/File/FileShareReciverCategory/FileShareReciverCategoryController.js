@@ -142,8 +142,10 @@
 
         });
 
+        var engine = {};
+        engine.AccessLoad = true;
         fileShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileShareReciverCategory/getall",engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             fileShareReciverCategory.ListItems = response.ListItems;
             fileShareReciverCategory.gridOptions.fillData(fileShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
@@ -377,6 +379,7 @@
             }
             fileShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        fileShareReciverCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileShareReciverCategory/getall", fileShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             fileShareReciverCategory.contentBusyIndicator.isActive = false;

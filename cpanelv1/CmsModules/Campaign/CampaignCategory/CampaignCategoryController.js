@@ -7,7 +7,10 @@
     if (itemRecordStatus != undefined) campaignCategory.itemRecordStatus = itemRecordStatus;
     campaignCategory.init = function () {
         campaignCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        var engine = { RowPerPage:1000};
+        engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignCategory/getall",engine , 'POST').success(function (response) {
 
             rashaErManage.checkAction(response);
             campaignCategory.ListItems = response.ListItems;

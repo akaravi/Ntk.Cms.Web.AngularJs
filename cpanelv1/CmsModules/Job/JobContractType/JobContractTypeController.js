@@ -19,7 +19,7 @@
         } catch (error) {
             console.log(error);
         }
-
+        jobContractType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobcontracttype/getall", jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.busyIndicator.isActive = false;

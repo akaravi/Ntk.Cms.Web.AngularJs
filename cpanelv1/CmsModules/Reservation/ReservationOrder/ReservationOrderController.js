@@ -1,11 +1,11 @@
-﻿app.controller("reservationOrderController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window','$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window,$stateParams, $filter) {
+﻿app.controller("reservationOrderController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $stateParams, $filter) {
     var order = this;
     order.busyIndicator = {
         isActive: true,
         message: "در حال بار گذاری ..."
     }
     // درخواست اضافه کردن ردیف جدید از کنترل های دیگر
-    order.checkRequestAddNewItemFromOtherControl = function (id) {
+    order.checkRequestAddNewItemFromOtherControl = function(id) {
         var item = localStorage.getItem('AddRequest');
         if (item == undefined || item == null || item == '')
             return;
@@ -15,8 +15,7 @@
         if (request.controller == "reservationOrderController") {
             localStorage.setItem('AddRequest', '');
             order.openAddModal();
-        }
-        else
+        } else
             localStorage.getItem('AddRequestID', id);
     }
     order.ViewNewUserDiv = false;
@@ -26,8 +25,8 @@
     //order.selectUniversalMenuOnUndetectableKey = true;
     if (itemRecordStatus != undefined) order.itemRecordStatus = itemRecordStatus;
 
-   order.selectedContentId = { LinkAppointmentDateDetailId: $stateParams.AppointmentDateDetailId ,LinkAppointmentDateId: $stateParams.AppointmentDateId ,LinkServiceId: $stateParams.ServiceId};
-    order.init = function () {
+    order.selectedContentId = { LinkAppointmentDateDetailId: $stateParams.AppointmentDateDetailId, LinkAppointmentDateId: $stateParams.AppointmentDateId, LinkServiceId: $stateParams.ServiceId };
+    order.init = function() {
 
         order.busyIndicator.isActive = true;
 
@@ -40,13 +39,14 @@
         filterModel = { PropertyName: "LinkAppointmentDateDetailId", SearchType: 0, IntValue1: order.selectedContentId.LinkAppointmentDateDetailId };
         if (order.selectedContentId.LinkAppointmentDateDetailId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        filterModel = { PropertyName: "AppointmentDateDetails",PropertyAnyName:"Id", SearchType: 0, IntValue1: order.selectedContentId.LinkAppointmentDateId };
+        filterModel = { PropertyName: "AppointmentDateDetails", PropertyAnyName: "Id", SearchType: 0, IntValue1: order.selectedContentId.LinkAppointmentDateId };
         if (order.selectedContentId.LinkAppointmentDateId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         filterModel = { PropertyName: "LinkServiceId", SearchType: 0, IntValue1: order.selectedContentId.LinkServiceId };
-        if (order.selectedContentId.LinkServiceId >0)
+        if (order.selectedContentId.LinkServiceId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/getall", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        order.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "ReservationOrder/getall", order.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
             order.ListItems = response.ListItems;
@@ -59,16 +59,16 @@
             order.gridOptions.rowPerPage = response.RowPerPage;
             order.allowedSearch = response.AllowedSearchField;
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             order.busyIndicator.isActive = false;
             order.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuitem/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "universalmenumenuitem/getall", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             order.UninversalMenus = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         //order.busyIndicator.isActive = true;
@@ -84,11 +84,11 @@
     // Open Add Modal
     order.busyIndicator.isActive = true;
     order.addRequested = false;
-    order.openAddModal = function () {
+    order.openAddModal = function() {
         order.ViewFindUserDiv = false;
         order.ViewNewUserDiv = false;
         order.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/ViewModel', "", 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
             order.selectedItem = response.Item;
@@ -97,7 +97,7 @@
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             order.busyIndicator.isActive = false;
 
@@ -105,12 +105,12 @@
     }
 
     // Add New Content
-    order.addNewRow = function (frm) {
+    order.addNewRow = function(frm) {
         //if (frm.$invalid)
         //    return;
         order.busyIndicator.isActive = true;
         order.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', order.selectedItem, 'POST').success(function(response) {
             order.addRequested = false;
             order.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -122,22 +122,22 @@
                 order.gridOptions.fillData(order.ListItems);
                 order.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             order.busyIndicator.isActive = false;
             order.addRequested = false;
         });
     }
 
-   
-    order.openEditModal = function () {
+
+    order.openEditModal = function() {
 
         order.modalTitle = 'ویرایش';
         if (!order.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', order.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             order.selectedItem = response.Item;
             order.ViewInfoUserDiv = false;
@@ -147,22 +147,21 @@
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Edit a Content
-    order.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+    order.editRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
         //order.busyIndicator.isActive = true;
         order.addRequested = true;
-         order.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.selectedItem, "PUT").success(function (response) {
+        order.busyIndicator.isActive = true;
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', order.selectedItem, "PUT").success(function(response) {
             order.addRequested = true;
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
@@ -172,19 +171,19 @@
                 order.gridOptions.fillData(order.ListItems);
                 order.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             order.addRequested = false;
             order.busyIndicator.isActive = false;
         });
     }
 
-    order.closeModal = function () {
+    order.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    order.replaceItem = function (oldId, newItem) {
-        angular.forEach(order.ListItems, function (item, key) {
+    order.replaceItem = function(oldId, newItem) {
+        angular.forEach(order.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = order.ListItems.indexOf(item);
                 order.ListItems.splice(index, 1);
@@ -194,21 +193,21 @@
             order.ListItems.unshift(newItem);
     }
 
-    order.deleteRow = function () {
+    order.deleteRow = function() {
         if (!order.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
 
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 order.busyIndicator.isActive = true;
                 console.log(order.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', order.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     rashaErManage.checkAction(response);
                     order.selectedItemForDelete = response.Item;
                     console.log(order.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', order.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', order.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         order.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -216,12 +215,12 @@
                             order.gridOptions.fillData(order.ListItems);
                         }
 
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         order.busyIndicator.isActive = false;
 
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     order.busyIndicator.isActive = false;
 
@@ -230,7 +229,7 @@
         });
     }
 
-    order.searchData = function () {
+    order.searchData = function() {
         order.gridOptions.searchData();
 
     }
@@ -252,7 +251,7 @@
         }
     }
 
-order.LinkExternalModuleCoreCmsUserIdSelector = {
+    order.LinkExternalModuleCoreCmsUserIdSelector = {
         displayMember: 'Name',
         id: 'Id',
         fId: 'LinkExternalModuleCoreCmsUserId',
@@ -265,7 +264,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         scope: order,
         columnOptions: {
             columns: [
-                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer'},
+                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
                 { name: 'Username', displayName: 'نام کاربری', sortable: true, type: 'string' },
                 { name: 'Name', displayName: 'نام', sortable: true, type: 'string' },
                 { name: 'LastName', displayName: 'نام خانوادگی', sortable: true, type: 'string' }
@@ -285,12 +284,12 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         scope: order,
         columnOptions: {
             columns: [
-                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer'},
-                { name: 'ServiceTimeMinute', displayName: 'واحد', sortable: true, type: 'integer'},
+                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
+                { name: 'ServiceTimeMinute', displayName: 'واحد', sortable: true, type: 'integer' },
             ]
         }
     }
-    
+
     order.LinkExternalModuleShopInvoiceDetailIdSelector = {
         displayMember: 'Id',
         id: 'Id',
@@ -304,10 +303,10 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         scope: order,
         columnOptions: {
             columns: [
-                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer'},
-                { name: 'Quantity', displayName: 'Quantity', sortable: true, type: 'string'},
-                { name: 'Fee', displayName: 'Fee', sortable: true, type: 'string'},
-                { name: 'Tax', displayName: 'Tax', sortable: true, type: 'string'},
+                { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
+                { name: 'Quantity', displayName: 'Quantity', sortable: true, type: 'string' },
+                { name: 'Fee', displayName: 'Fee', sortable: true, type: 'string' },
+                { name: 'Tax', displayName: 'Tax', sortable: true, type: 'string' },
             ]
         }
     }
@@ -326,7 +325,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
             { name: 'ModuleShopInvoiceDetail.Tax', displayName: 'Tax', sortable: true, type: 'string', visible: true },
             { name: 'ActionButtonprint', displayName: 'چاپ', sortable: true, type: 'string', visible: true, displayForce: true, template: '<button type="button" name="getInfo_btn" ng-click="order.openReport(x)" class="btn btn-primary">چاپ&nbsp;<i class="fa fa-cog" aria-hidden="true"></i></button>' },
 
-         ],
+        ],
         data: {},
         multiSelect: false,
         startDate: moment().format(),
@@ -348,45 +347,45 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
 
     order.test = 'false';
 
-    order.openDateExpireLockAccount = function ($event) {
+    order.openDateExpireLockAccount = function($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        $timeout(function () {
+        $timeout(function() {
             order.focusExpireLockAccount = true;
         });
     };
-    order.openReport = function (selected) {
+    order.openReport = function(selected) {
         var linkfilereport = 0;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/', selected.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/', selected.Id, 'GET').success(function(response) {
             rashaErManage.checkAction(response);
             linkfilereport = response.Item.virtual_AppointmentDateDetail.AppointmentDate.LinkFileReportId
             window.open('/mvc/ReservationOrder/getonereport/' + selected.Id + '?reportfile=' + linkfilereport);
-        }).error(function (data2, errCode2, c2, d2) {
+        }).error(function(data2, errCode2, c2, d2) {
             rashaErManage.checkAction(data2);
             order.busyIndicator.isActive = false;
         });
-        
+
     };
-    order.openDate = function ($event) {
+    order.openDate = function($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
-        $timeout(function () {
+        $timeout(function() {
             order.focus = true;
         });
     };
 
-    order.gridOptions.reGetAll = function () {
+    order.gridOptions.reGetAll = function() {
         order.init();
     }
 
-    order.gridOptions.onRowSelected = function () {
+    order.gridOptions.onRowSelected = function() {
 
     }
 
     order.columnCheckbox = false;
-    order.openGridConfigModal = function () {
+    order.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         if (order.gridOptions.columnCheckbox) {
             for (var i = 0; i < order.gridOptions.columns.length; i++) {
@@ -395,8 +394,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
                 //var temp = element[0].checked;
                 order.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = order.gridOptions.columns;
             for (var i = 0; i < order.gridOptions.columns.length; i++) {
                 order.gridOptions.columns[i].visible = true;
@@ -410,13 +408,13 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         order.gridOptions.columnCheckbox = !order.gridOptions.columnCheckbox;
     }
 
-    
+
 
     //Export Report 
-    order.exportFile = function () {
+    order.exportFile = function() {
         order.addRequested = true;
         order.gridOptions.advancedSearchData.engine.ExportFile = order.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/exportfile', order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ReservationOrder/exportfile', order.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             order.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -424,12 +422,12 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
                 $window.open(response.LinkFile, '_blank');
                 //order.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    order.toggleExportForm = function () {
+    order.toggleExportForm = function() {
         order.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -453,20 +451,19 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         });
     }
     //Row Count Export Input Change
-    order.rowCountChanged = function () {
+    order.rowCountChanged = function() {
         if (!angular.isDefined(order.ExportFileClass.RowCount) || order.ExportFileClass.RowCount > 5000)
             order.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    order.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/count", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    order.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "ReservationOrder/count", order.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             order.addRequested = false;
             rashaErManage.checkAction(response);
             order.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             order.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 }]);
-

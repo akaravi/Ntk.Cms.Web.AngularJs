@@ -6,6 +6,7 @@
     }
     shopContentTag.init = function () {
         shopContentTag.busyIndicator.isActive = true;
+        shopContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopContenttag/getall", shopContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.busyIndicator.isActive = false;

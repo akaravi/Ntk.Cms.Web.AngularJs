@@ -708,7 +708,10 @@
         cmsSitegrd.newModuleSiteListItems = []; // List of ModuleSites
         cmsSitegrd.modalTitle = "ماژول ها";
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreModule/GetAll", {}, 'POST').success(function(response) {
+        
+        var engine = {};
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreModule/GetAll", engine, 'POST').success(function(response) {
             cmsSitegrd.cmsModulesListItems = response.ListItems;
             cmsSitegrd.cmsModulesListItemsresultAccess = response.Access;
             //Set DatePicker = Now  به ازای هر ماژول یک دیت پیکر ساخته می شود
@@ -733,6 +736,7 @@
             //     IntValue1: siteId,
             //     SearchType: 0
             // });
+            engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath + "CoreModuleSite/GetAll/" + siteId, engine, 'POST').success(function(response) {
                 cmsSitegrd.busyIndicator.isActive = false;
 

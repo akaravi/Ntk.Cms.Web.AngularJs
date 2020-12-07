@@ -14,7 +14,7 @@
         } catch (error) {
             console.log(error);
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"inputLogCtrl/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;

@@ -505,7 +505,7 @@
                 .error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-
+                cmsModuleSaleSerial.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
                     cmsServerConfig.configApiServerPath+"CoreModuleSaleSerial/getall",
@@ -854,6 +854,7 @@
                 };
                 cmsModuleSaleSerial.gridOptions.advancedSearchData.engine.Filters.push(s);
             }
+            cmsModuleSaleSerial.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
                     cmsServerConfig.configApiServerPath+"CoreModuleSaleSerial/getall",

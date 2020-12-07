@@ -102,6 +102,7 @@
         jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         jobPropertyDetail.groupResultAccess = null;
+        jobPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetailGroup/getall", jobPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             jobPropertyDetail.jobPropertyDetailGroupListItems = response.ListItems;
             jobPropertyDetail.treeConfig.Items = response.ListItems;
@@ -283,7 +284,7 @@
             SearchType: 0
         }
         jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
+        jobPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobPropertyDetail/getall", jobPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyDetail.busyIndicator.isActive = false;

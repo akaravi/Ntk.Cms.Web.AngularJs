@@ -36,7 +36,7 @@
 
     ticketingFaq.init = function () {
         ticketingFaq.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ticketingFaq/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ticketingFaq/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.ListItems = response.ListItems;
             ticketingFaq.gridOptions.fillData(response.ListItems, response.Access);

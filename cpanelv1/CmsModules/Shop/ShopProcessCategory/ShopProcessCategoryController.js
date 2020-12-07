@@ -18,6 +18,7 @@
 
     shopProcessCategory.init = function () {
         shopProcessCategory.busyIndicator.isActive = true;
+        shopProcessCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ShopProcessCategory/getall", shopProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.busyIndicator.isActive = false;

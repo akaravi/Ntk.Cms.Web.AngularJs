@@ -11,6 +11,7 @@
 
     vehiclePropertyType.init = function () {
         vehiclePropertyType.busyIndicator.isActive = true;
+        vehiclePropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehiclepropertytype/getall", vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;

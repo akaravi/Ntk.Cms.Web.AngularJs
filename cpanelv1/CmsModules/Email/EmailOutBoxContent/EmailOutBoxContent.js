@@ -39,6 +39,7 @@
     emailOutBoxContent.init = function () {
         emailOutBoxContent.busyIndicator.isActive = true;
         emailOutBoxContent.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        emailOutBoxContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/getall", emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.ListItems = response.ListItems;

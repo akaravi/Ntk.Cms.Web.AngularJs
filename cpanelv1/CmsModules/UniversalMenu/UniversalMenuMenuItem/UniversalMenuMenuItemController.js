@@ -84,7 +84,7 @@
         menuItemCtrl.addRequested = true;
         menuItemCtrl.busyIndicator.isActive = true;
         menuItemCtrl.gridOptions.rowPerPage=1000;
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuMenuItem/GetAllMenu", {RowPerPage: 1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuMenuItem/GetAllMenu", {RowPerPage: 1000,AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             // Populate TreeConfig with all the Menu
             sortChildren(response.ListItems);
@@ -203,6 +203,7 @@
         }
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters.rowPerPage=1000;
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters.push(s);
+        menuItemCtrl.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuMenuItem/GetAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             menuItemCtrl.busyIndicator.isActive = false;
@@ -431,6 +432,7 @@
     menuItemCtrl.searchData = function () {
         menuItemCtrl.addRequested = true;
         menuItemCtrl.busyIndicator.isActive = true;
+        menuItemCtrl.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuItem/getAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             // Populate TreeConfig with all the Menu

@@ -143,6 +143,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
         objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         objectPropertyDetail.groupResultAccess = null;
+        objectPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetailGroup/getall", objectPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             objectPropertyDetail.objectPropertyDetailGroupListItems = response.ListItems;
             objectPropertyDetail.treeConfig.Items = response.ListItems;
@@ -324,7 +325,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
             SearchType: 0
         }
         objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
+        objectPropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetail/getall", objectPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             objectPropertyDetail.busyIndicator.isActive = false;

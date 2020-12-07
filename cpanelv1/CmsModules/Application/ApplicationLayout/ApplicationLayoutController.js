@@ -46,7 +46,9 @@
 
 
 
-            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
+            var engine = {};
+            engine.AccessLoad = true;
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", engine, 'POST').success(function (responseSource) {
                 rashaErManage.checkAction(responseSource);
                 appLayout.busyIndicator.isActive = false;
                 appLayout.sourceListItems = responseSource.ListItems;

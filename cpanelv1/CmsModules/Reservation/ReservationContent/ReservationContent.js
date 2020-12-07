@@ -383,6 +383,7 @@
             if (reservationContent.selectedContentId.Id > 0)
                 reservationContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
             reservationContent.contentBusyIndicator.isActive = true;
+            reservationContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(cmsServerConfig.configApiServerPath + "reservationContent/getall", reservationContent.gridOptions.advancedSearchData.engine, "POST")
                 .success(function (response) {
@@ -439,6 +440,7 @@
             engine.Filters = null;
             engine.Filters = [];
             engine.Filters.push(filterValue);
+            engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+"reservationcomment/getall", engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 reservationContent.ListCommentItems = response.ListItems;
@@ -774,6 +776,7 @@
                 };
                 reservationContent.gridOptions.advancedSearchData.engine.Filters.push(s);
             }
+            reservationContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax
                 .call(
                     cmsServerConfig.configApiServerPath+"reservationContent/getall",

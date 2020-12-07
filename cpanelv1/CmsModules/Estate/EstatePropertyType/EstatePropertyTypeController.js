@@ -18,14 +18,8 @@
 
     estatePropertyType.init = function () {
         estatePropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/ViewModel", "", 'GET').success(function (response) {
-            rashaErManage.checkAction(response);
-            estatePropertyType.Access=   response.Access;
-            estatePropertyType.gridOptions.fillData(estatePropertyType.ListItems,estatePropertyType.Access);
-        }).error(function (data, errCode, c, d) {
-            
-            rashaErManage.checkAction(data, errCode);
-        });
+ 
+        estatePropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/getall", estatePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyType.busyIndicator.isActive = false;

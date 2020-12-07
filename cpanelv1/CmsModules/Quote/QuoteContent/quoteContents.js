@@ -205,7 +205,7 @@ quoteContent.LinkCategoryIdSelector = {
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-
+        quoteContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.ListItems = response.ListItems;
@@ -471,6 +471,7 @@ quoteContent.LinkCategoryIdSelector = {
             }
             quoteContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        quoteContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.contentBusyIndicator.isActive = false;

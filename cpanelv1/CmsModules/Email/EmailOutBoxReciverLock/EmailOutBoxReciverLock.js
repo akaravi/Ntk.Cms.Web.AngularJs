@@ -13,6 +13,7 @@
     emailOutBoxReciverLock.init = function () {
         emailOutBoxReciverLock.busyIndicator.isActive = true;
         emailOutBoxReciverLock.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        emailOutBoxReciverLock.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getall", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.ListItems = response.ListItems;

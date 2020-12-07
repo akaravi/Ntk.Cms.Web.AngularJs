@@ -49,7 +49,7 @@
         } catch (error) {
             console.log(error);
         }
-        
+        deliveryInvoice.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"DeliveryInvoice/getall", deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;

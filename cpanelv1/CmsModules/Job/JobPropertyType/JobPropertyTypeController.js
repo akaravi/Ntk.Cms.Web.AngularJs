@@ -11,6 +11,7 @@
 
     jobPropertyType.init = function () {
         jobPropertyType.busyIndicator.isActive = true;
+        jobPropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobpropertytype/getall", jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;

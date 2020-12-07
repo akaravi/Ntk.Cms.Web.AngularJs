@@ -141,7 +141,7 @@
         });
 
         productShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"productShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"productShareReciverCategory/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productShareReciverCategory.ListItems = response.ListItems;
             productShareReciverCategory.gridOptions.fillData(productShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
@@ -375,6 +375,7 @@
             }
             productShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        productShareReciverCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"productShareReciverCategory/getall", productShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productShareReciverCategory.contentBusyIndicator.isActive = false;

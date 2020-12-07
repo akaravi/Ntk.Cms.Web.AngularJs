@@ -163,6 +163,8 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        articleTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
         ajax.call(cmsServerConfig.configApiServerPath+"articletag/getall", articleTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleTag.ListItems = response.ListItems;
@@ -394,6 +396,8 @@
             }
             articleTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        articleTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
         ajax.call(cmsServerConfig.configApiServerPath+"articletag/getall", articleTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleTag.contentBusyIndicator.isActive = false;

@@ -18,6 +18,7 @@
 
     taskSchedulerProcessCategory.init = function () {
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
+        taskSchedulerProcessCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerProcessCategory/getall", taskSchedulerProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.busyIndicator.isActive = false;

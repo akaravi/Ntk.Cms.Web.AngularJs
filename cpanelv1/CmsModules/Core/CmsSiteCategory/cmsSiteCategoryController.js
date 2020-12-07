@@ -5,6 +5,7 @@
     if (itemRecordStatus != undefined) cmsSiteCategorygrd.itemRecordStatus = itemRecordStatus;
 
     cmsSiteCategorygrd.init = function () {
+        cmsSiteCategorygrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteCategory/getall", cmsSiteCategorygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategorygrd.ListItems = response.ListItems;

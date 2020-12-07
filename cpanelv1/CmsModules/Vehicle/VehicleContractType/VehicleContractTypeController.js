@@ -19,7 +19,7 @@
         } catch (error) {
             console.log(error);
         }
-
+        vehicleContractType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehiclecontracttype/getall", vehicleContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContractType.busyIndicator.isActive = false;

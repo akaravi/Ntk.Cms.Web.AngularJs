@@ -84,7 +84,10 @@
             appApplication.calculatePercantage(appApplication.ListItems);
 
             //Get all Sources
-            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function(responseSource) {
+        var engine = {};
+        engine.AccessLoad = true;
+
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", engine, 'POST').success(function(responseSource) {
                 rashaErManage.checkAction(responseSource);
                 appApplication.sourceListItems = responseSource.ListItems;
                 for (var i = 0; i < appApplication.ListItems.length; i++) {

@@ -22,6 +22,7 @@
         } catch (error) {
             console.log(error);
         }
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"DiscountSeller/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSeller.busyIndicator.isActive = false;

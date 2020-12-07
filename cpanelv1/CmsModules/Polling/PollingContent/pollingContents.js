@@ -302,7 +302,7 @@
             console.log(data);
         });
         pollingContent.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/getall", {}, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/getall", {AccessLoad : true}, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.categoryBusyIndicator.isActive = false;
             pollingContent.ListItems = response.ListItems;
@@ -336,6 +336,7 @@
         });
         pollingContent.addRequested = true;
         pollingContent.optionsBusyIndicator.isActive = true;
+        filterModel.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/getall", filterModel, "POST").success(function (response) {
             pollingContent.addRequested = false;
             pollingContent.optionsBusyIndicator.isActice = false;
@@ -592,6 +593,7 @@
             }
             pollingContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        pollingContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/getall", pollingContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             pollingContent.contentBusyIndicator.isActive = false;

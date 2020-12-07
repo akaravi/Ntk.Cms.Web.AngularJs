@@ -32,6 +32,7 @@
             console.log(error)
         }
 
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"biographyComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyComment.busyIndicator.isActive = false;

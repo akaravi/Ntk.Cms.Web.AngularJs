@@ -111,7 +111,10 @@
         });
 
         biographyShareServerCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/getall", {}, 'POST').success(function (response) {
+        var engine = {};
+        engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/getall",engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareServerCategory.ListItems = response.ListItems;
             biographyShareServerCategory.gridOptions.fillData(biographyShareServerCategory.ListItems, response.Access); // Sending Access as an argument
@@ -347,7 +350,7 @@
             }
             biographyShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-
+        biographyShareServerCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/getall", biographyShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareServerCategory.contentBusyIndicator.isActive = false;

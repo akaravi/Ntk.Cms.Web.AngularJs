@@ -90,6 +90,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        task.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/getall", task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             task.ListItems = response.ListItems;
@@ -492,6 +493,7 @@ task.RunTaskNow=function(TaskId)
         task.advancedSearchData.engine.Filters = null;
         task.advancedSearchData.engine.Filters = [];
         task.advancedSearchData.engine.Filters.push(filterValue);
+        task.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTaskLog/getall", task.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             task.ListItems = response.ListItems;

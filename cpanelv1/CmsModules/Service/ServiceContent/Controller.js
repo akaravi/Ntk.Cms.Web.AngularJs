@@ -525,6 +525,8 @@
       if (serviceContent.selectedContentId.Id > 0)
         serviceContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
       serviceContent.contentBusyIndicator.isActive = true;
+      
+      serviceContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(cmsServerConfig.configApiServerPath + "serviceContent/getall", serviceContent.gridOptions.advancedSearchData.engine, "POST")
         .success(function (response) {
@@ -576,6 +578,7 @@
       engine.Filters = null;
       engine.Filters = [];
       engine.Filters.push(filterValue);
+      engine.AccessLoad = true;
       ajax.call(cmsServerConfig.configApiServerPath + "servicecomment/getall", engine, 'POST').success(function (response) {
         rashaErManage.checkAction(response);
         serviceContent.ListCommentItems = response.ListItems;
@@ -898,6 +901,7 @@
         };
         serviceContent.gridOptions.advancedSearchData.engine.Filters.push(s);
       }
+      serviceContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(
           cmsServerConfig.configApiServerPath + "serviceContent/getall",

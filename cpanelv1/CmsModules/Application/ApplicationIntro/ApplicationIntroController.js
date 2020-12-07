@@ -64,6 +64,7 @@
     // }
     applicationIntro.init = function () {
         applicationIntro.busyIndicator.isActive = true;
+        applicationIntro.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "ApplicationIntro/getall", applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 

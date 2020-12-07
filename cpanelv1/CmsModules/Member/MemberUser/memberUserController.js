@@ -594,7 +594,7 @@ memberUser.onPropertyTypeChange = function (propertyTypeId) {
         engine.Filters = [];
         engine.Filters.push(s);
      
-       
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, "POST").success(function (response) {
             memberUser.listComments = response.ListItems;
             rashaErManage.checkAction(response);
@@ -624,13 +624,14 @@ memberUser.onPropertyTypeChange = function (propertyTypeId) {
             console.log(data);
         });
         memberUser.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {AccessLoad : true}, 'POST').success(function (response) {
             memberUser.treeConfig.Items = response.ListItems;
             memberUser.gridOptions.AccessGroup = response.Access;
             memberUser.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        memberUser.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"memberuser/getall", memberUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberUser.ListItems = response.ListItems;

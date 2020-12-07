@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) linkManagementCategory.itemRecordStatus = itemRecordStatus;
     linkManagementCategory.init = function () {
         linkManagementCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {          
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementCategory/getall", { RowPerPage:1000,AccessLoad : true}, 'POST').success(function (response) {          
             rashaErManage.checkAction(response);
             linkManagementCategory.ListItems = response.ListItems;
             linkManagementCategory.categoryBusyIndicator.isActive = false;

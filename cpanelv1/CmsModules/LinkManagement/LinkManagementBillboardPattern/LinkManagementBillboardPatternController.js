@@ -67,6 +67,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.busyIndicator.isActive = false;

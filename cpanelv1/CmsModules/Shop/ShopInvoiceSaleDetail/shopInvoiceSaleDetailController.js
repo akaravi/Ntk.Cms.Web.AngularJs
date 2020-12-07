@@ -81,6 +81,7 @@
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters = [];
             var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, IntValue1: $stateParams.invoiceId };
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(filterDataModel);
+            shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.ListItems = response.ListItems;
@@ -140,6 +141,7 @@
             SearchType: 0
         }
         shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(s);
+        shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.contentBusyIndicator.isActive = false;

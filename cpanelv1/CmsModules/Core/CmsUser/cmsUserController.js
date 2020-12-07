@@ -1,4 +1,4 @@
-﻿app.controller("cmsUserController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', "$rootScope", '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $rootScope, $filter) {
+﻿app.controller("cmsUserController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', "$rootScope", '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $rootScope, $filter) {
     var cmsUser = this;
     if (itemRecordStatus != undefined) cmsUser.itemRecordStatus = itemRecordStatus;
     var date = moment().format();
@@ -26,15 +26,15 @@
     }
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
-    cmsUser.init = function () {
+    cmsUser.init = function() {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreEnum/EnumGender", "", 'GET').success(function(response) {
             cmsUser.Gender = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
-
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/getall", cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        cmsUser.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/getall", cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsUser.ListItems = response.ListItems;
             cmsUser.gridOptions.fillData(cmsUser.ListItems, response.Access);
@@ -42,13 +42,13 @@
             cmsUser.gridOptions.totalRowCount = response.TotalRowCount;
             cmsUser.gridOptions.rowPerPage = response.RowPerPage;
             cmsUser.gridOptions.maxSize = 5;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsUser.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
     cmsUser.addRequested = false;
-    cmsUser.openAddModal = function () {
+    cmsUser.openAddModal = function() {
         if (buttonIsPressed) { return };
         cmsUser.modalTitle = 'اضافه';
         cmsUser.attachedFiles = [];
@@ -58,7 +58,7 @@
         cmsUser.filePickerFiles.filename = "";
         cmsUser.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsUser.selectedItem = response.Item;
@@ -68,15 +68,15 @@
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsUser/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
-    var emailRegEx = /^\w+(?:\.\w+)*@\w+(?:\.\w+)+$/;  //Regex to validate Email e.g. info@user.oco.ir
-    cmsUser.addNewRow = function (frm) {
+    var emailRegEx = /^\w+(?:\.\w+)*@\w+(?:\.\w+)+$/; //Regex to validate Email e.g. info@user.oco.ir
+    cmsUser.addNewRow = function(frm) {
         if (frm.$invalid)
             return;
-        if (!emailRegEx.test(cmsUser.selectedItem.Username)) {   //Validate Username
+        if (!emailRegEx.test(cmsUser.selectedItem.Username)) { //Validate Username
             rashaErManage.showMessage($filter('translatentk')('Email_Format_Is_Not_Correct'));
             return;
         }
@@ -84,7 +84,7 @@
         cmsUser.selectedItem.LinkFileIds = "";
         cmsUser.stringfyLinkFileIds();
         cmsUser.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsUser.selectedItem, 'POST').success(function(response) {
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -92,14 +92,14 @@
                 cmsUser.gridOptions.fillData(cmsUser.ListItems);
                 cmsUser.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsUser.addRequested = false;
         });
     }
 
     // Open Edit Content Modal
-    cmsUser.openEditModal = function () {
+    cmsUser.openEditModal = function() {
         if (buttonIsPressed) { return };
         cmsUser.modalTitle = 'ویرایش';
         if (!cmsUser.gridOptions.selectedRow.item) {
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsUser.selectedItem = response.Item;
@@ -116,10 +116,10 @@
             cmsUser.filePickerMainImage.filename = null;
             cmsUser.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response.Item.LinkMainImageId, 'GET').success(function(response2) {
                     cmsUser.filePickerMainImage.filename = response2.Item.FileName;
                     cmsUser.filePickerMainImage.fileId = response2.Item.Id
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -130,14 +130,14 @@
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsUser/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    cmsUser.editRow = function (frm) {
+    cmsUser.editRow = function(frm) {
         if (frm.$invalid)
             return;
-        if (cmsUser.selectedItem.Username != 'admin' && !emailRegEx.test(cmsUser.selectedItem.Username)) {   //Validate Username
+        if (cmsUser.selectedItem.Username != 'admin' && !emailRegEx.test(cmsUser.selectedItem.Username)) { //Validate Username
             rashaErManage.showMessage($filter('translatentk')('Email_Format_Is_Not_Correct'));
             return;
         }
@@ -146,7 +146,7 @@
         //Save attached file ids into cmsUser.selectedItem.LinkFileIds
         cmsUser.selectedItem.LinkFileIds = "";
         cmsUser.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsUser.selectedItem, "PUT").success(function(response) {
             buttonIsPressed = false;
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
@@ -155,18 +155,18 @@
                 cmsUser.gridOptions.fillData(cmsUser.ListItems);
                 cmsUser.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsUser.addRequested = false;
         });
     }
 
-    cmsUser.closeModal = function () {
+    cmsUser.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    cmsUser.replaceItem = function (oldId, newItem) {
-        angular.forEach(cmsUser.ListItems, function (item, key) {
+    cmsUser.replaceItem = function(oldId, newItem) {
+        angular.forEach(cmsUser.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = cmsUser.ListItems.indexOf(item);
                 cmsUser.ListItems.splice(index, 1);
@@ -176,34 +176,34 @@
             cmsUser.ListItems.unshift(newItem);
     }
 
-    cmsUser.deleteRow = function () {
+    cmsUser.deleteRow = function() {
         if (buttonIsPressed) { return };
 
         if (!cmsUser.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUser.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
                 cmsUser.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsUser.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsUser.selectedItemForDelete = response.Item;
                     console.log(cmsUser.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', cmsUser.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', cmsUser.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         cmsUser.addRequested = false;
                         if (res.IsSuccess) {
                             cmsUser.replaceItem(cmsUser.selectedItemForDelete.Id);
                             cmsUser.gridOptions.fillData(cmsUser.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -260,13 +260,13 @@
         }
     }
 
-    cmsUser.gridOptions.reGetAll = function () {
+    cmsUser.gridOptions.reGetAll = function() {
         cmsUser.init();
     }
 
-    cmsUser.gridOptions.onRowSelected = function () { }
+    cmsUser.gridOptions.onRowSelected = function() {}
     //log in to Cp
-    cmsUser.logintoCp = function (SelectedUserId) {
+    cmsUser.logintoCp = function(SelectedUserId) {
 
         if (SelectedUserId == undefined || SelectedUserId == 'undefined') {
             rashaErManage.showMessage($filter('translatentk')('User_Not_Selected'));
@@ -277,7 +277,7 @@
         var oderShowAllDataStatus = false;
         var oderShowProfessionalDataStatus = false;
 
-        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.Token==undefined) {
+        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.Token == undefined) {
             oldSelectedUserId = $rootScope.tokenInfo.LinkUserId;
             oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
             oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
@@ -290,7 +290,7 @@
 
         //if (!Silent)
         //    rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید..");
-        ajax.call(cmsServerConfig.configApiServerPath+"Auth/RenewToken/", { Userid: SelectedUserId, UserAccessAdminAllowToAllData: oderShowAllDataStatus, UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus, lang: $rootScope.tokenInfo.UserLanguage }, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", { Userid: SelectedUserId, UserAccessAdminAllowToAllData: oderShowAllDataStatus, UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus, lang: $rootScope.tokenInfo.UserLanguage }, "POST").success(function(response) {
             rashaErManage.checkAction(response);
             $rootScope.tokenInfo = response.Item;
 
@@ -299,31 +299,32 @@
                 $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.SubDomain + "." + $rootScope.tokenInfo.Domain + "/";
 
             localStorage.setItem("userToken", response.Item.Token);
-            
+
             $state.reload();
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
     }
 
-//#help//
-    cmsUser.loadFileAndFolder = function (item) {
+    //#help//
+    cmsUser.loadFileAndFolder = function(item) {
         cmsUser.treeConfig.currentNode = item;
         console.log(item);
         cmsUser.treeConfig.onNodeSelect(item);
     }
-    cmsUser.deleteAttachedFile = function (index) {
+    cmsUser.deleteAttachedFile = function(index) {
         cmsUser.attachedFiles.splice(index, 1);
     }
 
-    cmsUser.addAttachedFile = function (id) {
+    cmsUser.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (id != null && id != undefined && !cmsUser.alreadyExist(id, cmsUser.attachedFiles) && fname != null && fname != "") {
             var fId = id;
             var file = {
-                id: fId, name: fname
+                id: fId,
+                name: fname
             };
             cmsUser.attachedFiles.push(file);
             if (document.getElementsByName("file" + id).length > 1)
@@ -333,7 +334,7 @@
         }
     }
 
-    cmsUser.alreadyExist = function (id, array) {
+    cmsUser.alreadyExist = function(id, array) {
         for (var i = 0; i < array.length; i++) {
             if (id == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_File_Has_Already_Been_Attachment'));
@@ -343,26 +344,26 @@
         return false;
     }
 
-    cmsUser.filePickerMainImage.removeSelectedfile = function (config) {
+    cmsUser.filePickerMainImage.removeSelectedfile = function(config) {
         cmsUser.filePickerMainImage.fileId = null;
         cmsUser.filePickerMainImage.filename = null;
         cmsUser.selectedItem.LinkMainImageId = null;
 
     }
 
-    cmsUser.filePickerFiles.removeSelectedfile = function (config) {
+    cmsUser.filePickerFiles.removeSelectedfile = function(config) {
         cmsUser.filePickerFiles.fileId = null;
         cmsUser.filePickerFiles.filename = null;
         cmsUser.selectedItem.LinkFileIds = null;
     }
 
 
-    cmsUser.showUpload = function () {
+    cmsUser.showUpload = function() {
         $("#fastUpload").fadeToggle();
     }
 
     // ----------- FilePicker Codes --------------------------------
-    cmsUser.addAttachedFile = function (id) {
+    cmsUser.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (fname == "") {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_File_To_Add'));
@@ -371,14 +372,15 @@
         if (id != null && id != undefined && !cmsUser.alreadyExist(id, cmsUser.attachedFiles)) {
             var fId = id;
             var file = {
-                fileId: fId, filename: fname
+                fileId: fId,
+                filename: fname
             };
             cmsUser.attachedFiles.push(file);
             cmsUser.clearfilePickers();
         }
     }
 
-    cmsUser.alreadyExist = function (fieldId, array) {
+    cmsUser.alreadyExist = function(fieldId, array) {
         for (var i = 0; i < array.length; i++) {
             if (fieldId == array[i].fileId) {
                 rashaErManage.showMessage($filter('translatentk')('This_Item_Has_Already_Been_Added'));
@@ -389,17 +391,17 @@
         return false;
     }
 
-    cmsUser.parseFileIds = function (stringOfIds) {
-        if (stringOfIds == null || !stringOfIds.trim()) return;   //String is empty or whitespace then return
+    cmsUser.parseFileIds = function(stringOfIds) {
+        if (stringOfIds == null || !stringOfIds.trim()) return; //String is empty or whitespace then return
         var fileIds = stringOfIds.split(",");
         if (fileIds.length != undefined) {
-            $.each(fileIds, function (index, item) {
-                if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(item), 'GET').success(function (response) {
+            $.each(fileIds, function(index, item) {
+                if (item == parseInt(item, 10)) { // Check if item is an integer
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function(response) {
                         if (response.IsSuccess) {
                             cmsUser.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
@@ -407,13 +409,13 @@
         }
     }
 
-    cmsUser.clearfilePickers = function () {
+    cmsUser.clearfilePickers = function() {
         cmsUser.filePickerFiles.fileId = null;
         cmsUser.filePickerFiles.filename = null;
     }
 
-    cmsUser.stringfyLinkFileIds = function () {
-        $.each(cmsUser.attachedFiles, function (i, item) {
+    cmsUser.stringfyLinkFileIds = function() {
+        $.each(cmsUser.attachedFiles, function(i, item) {
             if (cmsUser.selectedItem.LinkFileIds == "")
                 cmsUser.selectedItem.LinkFileIds = item.fileId;
             else
@@ -424,7 +426,7 @@
 
 
     //---------------Upload Modal-------------------------------
-    cmsUser.openUploadModal = function () {
+    cmsUser.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/Biography/cmsUser/upload_modal.html',
             size: 'lg',
@@ -433,20 +435,20 @@
 
         cmsUser.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             cmsUser.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
 
-    cmsUser.calcuteProgress = function (progress) {
+    cmsUser.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    cmsUser.whatcolor = function (progress) {
+    cmsUser.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -459,27 +461,27 @@
         }
     }
 
-    cmsUser.canShow = function (pr) {
+    cmsUser.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
         return false;
     }
     // File Manager actions
-    cmsUser.replaceFile = function (name) {
+    cmsUser.replaceFile = function(name) {
         cmsUser.itemClicked(null, cmsUser.fileIdToDelete, "file");
         cmsUser.fileTypes = 1;
         cmsUser.fileIdToDelete = cmsUser.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsUser.fileIdToDelete, 'GET').success(function(response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                     cmsUser.remove(cmsUser.FileList, cmsUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                             if (response3.IsSuccess == true) {
                                 cmsUser.FileItem = response3.Item;
                                 cmsUser.FileItem.FileName = name;
@@ -487,51 +489,47 @@
                                 cmsUser.FileItem.FileSrc = name;
                                 cmsUser.FileItem.LinkCategoryId = cmsUser.thisCategory;
                                 cmsUser.saveNewFile();
-                            }
-                            else {
+                            } else {
                                 console.log("getting the model was not successfully returned!");
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                         });
-                    }
-                    else {
+                    } else {
                         console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
     }
     //save new file
-    cmsUser.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.FileItem, 'POST').success(function (response) {
+    cmsUser.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsUser.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 cmsUser.FileItem = response.Item;
                 cmsUser.showSuccessIcon();
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
 
             }
-        }).error(function (data) {
+        }).error(function(data) {
             cmsUser.showErrorIcon();
             return -1;
         });
     }
 
-    cmsUser.showSuccessIcon = function () {
-    }
+    cmsUser.showSuccessIcon = function() {}
 
-    cmsUser.showErrorIcon = function () {
+    cmsUser.showErrorIcon = function() {
 
     }
     //file is exist
-    cmsUser.fileIsExist = function (fileName) {
+    cmsUser.fileIsExist = function(fileName) {
         for (var i = 0; i < cmsUser.FileList.length; i++) {
             if (cmsUser.FileList[i].FileName == fileName) {
                 cmsUser.fileIdToDelete = cmsUser.FileList[i].Id;
@@ -542,7 +540,7 @@
         return false;
     }
 
-    cmsUser.getFileItem = function (id) {
+    cmsUser.getFileItem = function(id) {
         for (var i = 0; i < cmsUser.FileList.length; i++) {
             if (cmsUser.FileList[i].Id == id) {
                 return cmsUser.FileList[i];
@@ -551,13 +549,12 @@
     }
 
     //select file or folder
-    cmsUser.itemClicked = function ($event, index, type) {
+    cmsUser.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             cmsUser.fileTypes = 1;
             cmsUser.selectedFileId = cmsUser.getFileItem(index).Id;
             cmsUser.selectedFileName = cmsUser.getFileItem(index).FileName;
-        }
-        else {
+        } else {
             cmsUser.fileTypes = 2;
             cmsUser.selectedCategoryId = cmsUser.getCategoryName(index).Id;
             cmsUser.selectedCategoryTitle = cmsUser.getCategoryName(index).Title;
@@ -571,7 +568,7 @@
     };
 
     //upload file
-    cmsUser.uploadFile = function (index, uploadFile) {
+    cmsUser.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (cmsUser.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -579,69 +576,68 @@
                     cmsUser.itemClicked(null, cmsUser.fileIdToDelete, "file");
                     cmsUser.fileTypes = 1;
                     cmsUser.fileIdToDelete = cmsUser.selectedIndex;
-                     // replace the file
-            ajax
-              .call(
-                cmsServerConfig.configApiServerPath+"FileContent/",
-                cmsUser.fileIdToDelete,
-                "GET"
-              )
-              .success(function(response1) {
-                if (response1.IsSuccess == true) {
-                  console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                    .success(function(response2) {
-                      if (response2.IsSuccess == true) {
-                        cmsUser.FileItem = response2.Item;
-                        cmsUser.showSuccessIcon();
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-check");
-                        cmsUser.filePickerMainImage.filename =
-                          cmsUser.FileItem.FileName;
-                        cmsUser.filePickerMainImage.fileId =
-                          response2.Item.Id;
-                        cmsUser.selectedItem.LinkMainImageId =
-                          cmsUser.filePickerMainImage.fileId;
-                      } else {
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-remove");
-                      }
-                    })
-                    .error(function(data) {
-                      cmsUser.showErrorIcon();
-                      $("#save-icon" + index).removeClass("fa-save");
-                      $("#save-button" + index).removeClass("flashing-button");
-                      $("#save-icon" + index).addClass("fa-remove");
-                    });
-                  //-----------------------------------
-                }
-              })
-              .error(function(data) {
-                console.log(data);
-              });
+                    // replace the file
+                    ajax
+                        .call(
+                            cmsServerConfig.configApiServerPath + "FileContent/",
+                            cmsUser.fileIdToDelete,
+                            "GET"
+                        )
+                        .success(function(response1) {
+                            if (response1.IsSuccess == true) {
+                                console.log(response1.Item);
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function(response2) {
+                                        if (response2.IsSuccess == true) {
+                                            cmsUser.FileItem = response2.Item;
+                                            cmsUser.showSuccessIcon();
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-check");
+                                            cmsUser.filePickerMainImage.filename =
+                                                cmsUser.FileItem.FileName;
+                                            cmsUser.filePickerMainImage.fileId =
+                                                response2.Item.Id;
+                                            cmsUser.selectedItem.LinkMainImageId =
+                                                cmsUser.filePickerMainImage.fileId;
+                                        } else {
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-remove");
+                                        }
+                                    })
+                                    .error(function(data) {
+                                        cmsUser.showErrorIcon();
+                                        $("#save-icon" + index).removeClass("fa-save");
+                                        $("#save-button" + index).removeClass("flashing-button");
+                                        $("#save-icon" + index).addClass("fa-remove");
+                                    });
+                                //-----------------------------------
+                            }
+                        })
+                        .error(function(data) {
+                            console.log(data);
+                        });
                     //--------------------------------
                 } else {
                     return;
                 }
-            }
-            else { // File does not exists
+            } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     cmsUser.FileItem = response.Item;
                     cmsUser.FileItem.FileName = uploadFile.name;
                     cmsUser.FileItem.uploadName = uploadFile.uploadName;
                     cmsUser.FileItem.Extension = uploadFilename.split('.').pop();
                     cmsUser.FileItem.FileSrc = uploadFile.name;
-                    cmsUser.FileItem.LinkCategoryId = null;  //Save the new file in the root
+                    cmsUser.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- cmsUser.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", cmsUser.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", cmsUser.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             cmsUser.FileItem = response.Item;
                             cmsUser.showSuccessIcon();
@@ -652,20 +648,19 @@
                             cmsUser.filePickerMainImage.fileId = response.Item.Id;
                             cmsUser.selectedItem.LinkMainImageId = cmsUser.filePickerMainImage.fileId
 
-                        }
-                        else {
+                        } else {
                             $("#save-icon" + index).removeClass("fa-save");
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         cmsUser.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -675,13 +670,13 @@
         }
     }
     //End of Upload Modal-----------------------------------------
-//#help//
+    //#help//
 
     //Export Report 
-    cmsUser.exportFile = function () {
+    cmsUser.exportFile = function() {
         cmsUser.addRequested = true;
         cmsUser.gridOptions.advancedSearchData.engine.ExportFile = cmsUser.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/exportfile', cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/exportfile', cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
             cmsUser.reportDownloadLink = response.LinkFile;
@@ -689,12 +684,12 @@
                 $window.open(response.LinkFile, '_blank');
                 //cmsUser.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    cmsUser.toggleExportForm = function () {
+    cmsUser.toggleExportForm = function() {
         cmsUser.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -717,17 +712,17 @@
         });
     }
     //Row Count Export Input Change
-    cmsUser.rowCountChanged = function () {
+    cmsUser.rowCountChanged = function() {
         if (!angular.isDefined(cmsUser.ExportFileClass.RowCount) || cmsUser.ExportFileClass.RowCount > 5000)
             cmsUser.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    cmsUser.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/count", cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    cmsUser.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/count", cmsUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             cmsUser.addRequested = false;
             rashaErManage.checkAction(response);
             cmsUser.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsUser.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });

@@ -18,6 +18,7 @@
     cmsModulePageDependencygrd.init = function () {
         cmsModulePageDependencygrd.addRequested = true;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
+        cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageDependency/getall", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.ListItems = response.ListItems;

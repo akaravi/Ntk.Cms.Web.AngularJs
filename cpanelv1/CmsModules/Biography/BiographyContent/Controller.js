@@ -531,6 +531,7 @@
       if (biographyContent.selectedContentId.Id > 0)
         biographyContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
       biographyContent.contentBusyIndicator.isActive = true;
+      biographyContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(cmsServerConfig.configApiServerPath + "biographyContent/getall", biographyContent.gridOptions.advancedSearchData.engine, "POST")
         .success(function (response) {
@@ -582,6 +583,7 @@
       engine.Filters = null;
       engine.Filters = [];
       engine.Filters.push(filterValue);
+      engine.AccessLoad = true;
       ajax.call(cmsServerConfig.configApiServerPath + "biographycomment/getall", engine, 'POST').success(function (response) {
         rashaErManage.checkAction(response);
         biographyContent.ListCommentItems = response.ListItems;
@@ -905,6 +907,7 @@
         };
         biographyContent.gridOptions.advancedSearchData.engine.Filters.push(s);
       }
+      biographyContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
       ajax
         .call(
           cmsServerConfig.configApiServerPath + "biographyContent/getall",

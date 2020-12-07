@@ -38,7 +38,7 @@
             advertisementContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-
+        advertisementContract.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementcontract/getall", advertisementContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContract.busyIndicator.isActive = false;

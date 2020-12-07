@@ -1,4 +1,4 @@
-﻿app.controller("estatePropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
+﻿app.controller("estatePropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
     var estateProperty = this;
     estateProperty.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     estateProperty.busyIndicator = {
@@ -24,7 +24,7 @@
         fileId: 0,
         multiSelect: false,
     }
-    estateProperty.locationChanged = function (lat, lang) {
+    estateProperty.locationChanged = function(lat, lang) {
         console.log("ok " + lat + " " + lang);
     }
 
@@ -41,12 +41,12 @@
         scope: estateProperty,
         useCurrentLocationZoom: 12,
     }
-    estateProperty.filePickerMainImage.clear = function () {
+    estateProperty.filePickerMainImage.clear = function() {
         estateProperty.filePickerMainImage.fileId = 0;
         estateProperty.filePickerMainImage.filename = "";
     }
 
-    estateProperty.filePickerFiles.clear = function () {
+    estateProperty.filePickerFiles.clear = function() {
         estateProperty.filePickerFiles.fileId = 0;
         estateProperty.filePickerFiles.filename = "";
     }
@@ -56,14 +56,15 @@
     estateProperty.propertyTypeListItems = [];
     estateProperty.propertyDetailGroupListItems = [];
     estateProperty.propertyDetailsListItems = [];
-    estateProperty.propertyTypeItemSelect={};
+    estateProperty.propertyTypeItemSelect = {};
     estateProperty.cmsUsersListItems = [];
     estateProperty.contractTypeListItems = [];
     estateProperty.inputTypeArray = [];
     estateProperty.Access = [];
-    estateProperty.init = function () {
+    estateProperty.init = function() {
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "estateproperty/getAll", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        estateProperty.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "estateproperty/getAll", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             estateProperty.ListItems = response.ListItems;
             estateProperty.Access = response.Access;
@@ -73,44 +74,44 @@
             estateProperty.gridOptions.rowPerPage = response.RowPerPage;
             estateProperty.allowedSearch = response.AllowedSearchField;
             estateProperty.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             estateProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "estatepropertytype/getAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "estatepropertytype/getAll", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             estateProperty.propertyTypeListItems = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "estatecontracttype/GetAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "estatecontracttype/GetAll", {}, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 estateProperty.contractTypeListItems = response.ListItems;
 
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyType/EnumInputDataType", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyType/EnumInputDataType", "", 'GET').success(function(response) {
             estateProperty.inputTypeArray = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreLocation/GetAllProvinces", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             estateProperty.provinceCmsLocatinoListItems = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
 
     }
-    estateProperty.inputTypeArrayCheck = function (numberEnum) {
+    estateProperty.inputTypeArrayCheck = function(numberEnum) {
         var retOut = "";
-        angular.forEach(estateProperty.inputTypeArray, function (item, key) {
+        angular.forEach(estateProperty.inputTypeArray, function(item, key) {
             if (item.Value == numberEnum) {
                 retOut = item.Key;
                 return;
@@ -131,7 +132,7 @@
     estateProperty.contractsList = [];
 
     // Open Add Modal
-    estateProperty.openAddModal = function () {
+    estateProperty.openAddModal = function() {
         if (buttonIsPressed) return;
         estateProperty.onPropertyTypeChange();
         estateProperty.modalTitle = 'اضافه';
@@ -143,7 +144,7 @@
         estateProperty.filePickerFiles.filename = "";
         estateProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/ViewModel', "", 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -153,14 +154,14 @@
                 templateUrl: 'cpanelv1/CmsModules/Estate/EstateProperty/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             estateProperty.busyIndicator.isActive = false;
         });
     }
 
     // Add New Content
-    estateProperty.addNewRow = function (frm) {
+    estateProperty.addNewRow = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -180,7 +181,7 @@
             if (estateProperty.propertyDetailsListItems[i].ConfigValueMultipleChoice) {
                 var checkboxName = "nameValue" + estateProperty.propertyDetailsListItems[i].Id;
                 estateProperty.selectionValueNames = [];
-                jQuery("input[name='" + checkboxName + "']").each(function () {
+                jQuery("input[name='" + checkboxName + "']").each(function() {
                     if (this.checked) {
                         estateProperty.selectionValueNames.push(this.value);
                     }
@@ -216,7 +217,7 @@
         }
 
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
 
@@ -228,7 +229,7 @@
             }
             estateProperty.busyIndicator.isActive = false;
             estateProperty.addRequested = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             estateProperty.busyIndicator.isActive = false;
             estateProperty.addRequested = false;
@@ -236,7 +237,7 @@
     }
 
     // Open Edit Content Modal 
-    estateProperty.openEditModal = function () {
+    estateProperty.openEditModal = function() {
         if (buttonIsPressed) return;
         estateProperty.onPropertyTypeChange();
         //Clear file pickers
@@ -259,7 +260,7 @@
 
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.selectedItem = response.Item;
@@ -273,12 +274,12 @@
             estateProperty.filePickerMainImage.filename = null;
             estateProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function(response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         estateProperty.filePickerMainImage.filename = response2.Item.FileName;
                         estateProperty.filePickerMainImage.fileId = response2.Item.Id;
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -289,13 +290,13 @@
                 templateUrl: 'cpanelv1/CmsModules/Estate/EstateProperty/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Edit a Content
-    estateProperty.editRow = function (frm) {
+    estateProperty.editRow = function(frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -384,7 +385,7 @@
         estateProperty.selectedItem.PropertyDetailValues = estateProperty.PropertyDetailValuesListItems;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.selectedItem, "PUT").success(function(response) {
             estateProperty.addRequested = true;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -396,7 +397,7 @@
                 estateProperty.gridOptions.myfilterText(estateProperty.ListItems, "LinkPropertyTypeId", estateProperty.propertyTypeListItems, "Title", "LinkPropertyTypeTitle");
                 estateProperty.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             estateProperty.addRequested = false;
             estateProperty.busyIndicator.isActive = false;
@@ -405,12 +406,12 @@
 
     }
 
-    estateProperty.closeModal = function () {
+    estateProperty.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    estateProperty.replaceItem = function (oldId, newItem) {
-        angular.forEach(estateProperty.ListItems, function (item, key) {
+    estateProperty.replaceItem = function(oldId, newItem) {
+        angular.forEach(estateProperty.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = estateProperty.ListItems.indexOf(item);
                 estateProperty.ListItems.splice(index, 1);
@@ -420,26 +421,26 @@
             estateProperty.ListItems.unshift(newItem);
     }
 
-    estateProperty.deleteRow = function () {
+    estateProperty.deleteRow = function() {
         if (buttonIsPressed) return;
 
         if (!estateProperty.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 estateProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
 
-                ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'DELETE').success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'estateproperty/', estateProperty.gridOptions.selectedRow.item.Id, 'DELETE').success(function(res) {
                     rashaErManage.checkAction(res);
                     estateProperty.busyIndicator.isActive = false;
                     if (res.IsSuccess) {
                         estateProperty.replaceItem(estateProperty.gridOptions.selectedRow.item.Id);
                         estateProperty.gridOptions.fillData(estateProperty.ListItems);
                     }
-                }).error(function (data2, errCode2, c2, d2) {
+                }).error(function(data2, errCode2, c2, d2) {
                     rashaErManage.checkAction(data2);
                     estateProperty.busyIndicator.isActive = false;
                 });
@@ -448,7 +449,7 @@
         });
     }
 
-    estateProperty.searchData = function () {
+    estateProperty.searchData = function() {
         estateProperty.gridOptions.searchData();
     }
     estateProperty.LinkLocationIdSelector = {
@@ -584,15 +585,15 @@
         }
     }
 
-    estateProperty.gridOptions.reGetAll = function () {
+    estateProperty.gridOptions.reGetAll = function() {
         estateProperty.init();
     }
 
-    estateProperty.gridOptions.onRowSelected = function () {}
+    estateProperty.gridOptions.onRowSelected = function() {}
 
     estateProperty.columnCheckbox = false;
 
-    estateProperty.openGridConfigModal = function () {
+    estateProperty.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         if (estateProperty.gridOptions.columnCheckbox) {
             for (var i = 0; i < estateProperty.gridOptions.columns.length; i++) {
@@ -615,11 +616,11 @@
         estateProperty.gridOptions.columnCheckbox = !estateProperty.gridOptions.columnCheckbox;
     }
 
-    estateProperty.onPropertyTypeChange = function (LinkPropertyTypeId) {
+    estateProperty.onPropertyTypeChange = function(LinkPropertyTypeId) {
 
 
         estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
-        estateProperty.propertyTypeItemSelect={};
+        estateProperty.propertyTypeItemSelect = {};
         estateProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
         if (!angular.isDefined(LinkPropertyTypeId)) return;
         var filterValue = {
@@ -630,17 +631,17 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 estateProperty.propertyDetailGroupListItems = response.ListItems;
-                angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
+                angular.forEach(estateProperty.propertyTypeListItems, function(item, key) {
                     if (item.Id == LinkPropertyTypeId) {
                         estateProperty.propertyDetailsListItems = item.PropertyDetails;
-                        estateProperty.propertyTypeItemSelect=item;
+                        estateProperty.propertyTypeItemSelect = item;
                     }
                 });
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
@@ -663,7 +664,7 @@
     // }
 
     // Filter Texts for CmsUser
-    estateProperty.gridOptions.myfilterText = function (gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
+    estateProperty.gridOptions.myfilterText = function(gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
         var ilength = gridListItems.length;
         var jlength = childListItems.length;
         for (var i = 0; i < ilength; i++) {
@@ -677,7 +678,7 @@
     }
 
     //-----------------*** Load Values in Edit Modal ***----------------------
-    estateProperty.loadDetailValues = function (LinkPropertyTypeId, propertyItem) {
+    estateProperty.loadDetailValues = function(LinkPropertyTypeId, propertyItem) {
         estateProperty.propertyDetailsListItems = []; //Clear out the array from previous values
         estateProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
         if (!angular.isDefined(LinkPropertyTypeId)) return;
@@ -689,10 +690,10 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "EstatePropertyDetailGroup/GetAll", engine, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 estateProperty.propertyDetailGroupListItems = response.ListItems;
-                angular.forEach(estateProperty.propertyTypeListItems, function (item, key) {
+                angular.forEach(estateProperty.propertyTypeListItems, function(item, key) {
                     if (item.Id == LinkPropertyTypeId) {
                         estateProperty.propertyDetailsListItems = item.PropertyDetails;
 
@@ -746,14 +747,14 @@
                 }
                 //--------------------------------
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
 
     // toggle selection for a given fruit by name
-    estateProperty.toggleSelection = function (detailId, fruitName) {
+    estateProperty.toggleSelection = function(detailId, fruitName) {
         var checkboxName = "selection" + detailId;
         if (estateProperty[checkboxName] == undefined)
             estateProperty[checkboxName] = [];
@@ -771,7 +772,7 @@
     }
 
     // toggle selection for a given fruit by name
-    estateProperty.toggleRadioSelection = function (detailId, fruitName) {
+    estateProperty.toggleRadioSelection = function(detailId, fruitName) {
         var radioName = "selection" + detailId;
         var idx = estateProperty[radioName].indexOf(fruitName);
 
@@ -787,15 +788,15 @@
     }
     //---------------- End of LoadValues functino ------------------------------
 
-    estateProperty.requiredPropertyIsEmpty = function (selectedItem) {
-        $.each(estateProperty.propertyDetailsListItems, function (index, item) {
+    estateProperty.requiredPropertyIsEmpty = function(selectedItem) {
+        $.each(estateProperty.propertyDetailsListItems, function(index, item) {
             if (item.Required)
                 if (item.value == null || item.value == "")
                     return true;
         });
     }
 
-    estateProperty.onContractTypeChange = function (contractTypeId) {
+    estateProperty.onContractTypeChange = function(contractTypeId) {
         var contractType = {};
         for (var i = 0; i < estateProperty.contractTypeListItems.length; i++) {
             if (contractTypeId == estateProperty.contractTypeListItems[i].Id) {
@@ -852,7 +853,7 @@
     //     });
     // }
     estateProperty.contract = {};
-    estateProperty.addContract = function () {
+    estateProperty.addContract = function() {
 
         if (!estateProperty.selectedItem.Contracts)
             estateProperty.selectedItem.Contracts = [];
@@ -860,12 +861,12 @@
         estateProperty.contract = {};
     }
 
-    estateProperty.showUpload = function () {
+    estateProperty.showUpload = function() {
         $("#fastUpload").fadeToggle();
     }
 
     // ----------- FilePicker Codes --------------------------
-    estateProperty.addAttachedFile = function (id) {
+    estateProperty.addAttachedFile = function(id) {
         var fname = $("#file" + id).text();
         if (fname == "") {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_File_To_Add'));
@@ -883,7 +884,7 @@
         }
     }
 
-    estateProperty.alreadyExist = function (fieldName, array) {
+    estateProperty.alreadyExist = function(fieldName, array) {
         for (var i = 0; i < array.length; i++) {
             if (fieldName == array[i]) {
                 rashaErManage.showMessage($filter('translatentk')('This_Item_Has_Already_Been_Added'));
@@ -895,26 +896,26 @@
     }
 
 
-    estateProperty.deleteContract = function (index) {
+    estateProperty.deleteContract = function(index) {
 
         estateProperty.selectedItem.Contracts.splice(index, 1);
 
     }
 
-    estateProperty.parseFileIds = function (stringOfIds) {
+    estateProperty.parseFileIds = function(stringOfIds) {
         if (stringOfIds == null || !stringOfIds.trim()) return;
         var fileIds = stringOfIds.split(",");
         if (fileIds.length != undefined) {
-            $.each(fileIds, function (index, item) {
+            $.each(fileIds, function(index, item) {
                 if (item == parseInt(item, 10)) { // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(item), 'GET').success(function(response) {
                         if (response.IsSuccess) {
                             estateProperty.attachedFiles.push({
                                 fileId: response.Item.Id,
                                 filename: response.Item.FileName
                             });
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
                 }
@@ -922,14 +923,14 @@
         }
     }
 
-    estateProperty.clearfilePickers = function () {
+    estateProperty.clearfilePickers = function() {
         estateProperty.filePickerFiles.filename = null;
         estateProperty.filePickerFiles.fileId = null;
     }
 
     function stringfyLinkFileIds(arrayOfFiles) {
         var ret = "";
-        $.each(arrayOfFiles, function (index, item) {
+        $.each(arrayOfFiles, function(index, item) {
             if (ret == "")
                 ret = item.fileId;
             else
@@ -940,7 +941,7 @@
     //--------- End FilePickers Codes ------------------------
 
     //---------------Upload Modal-----------------------------
-    estateProperty.openUploadModal = function () {
+    estateProperty.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/Estate/EstateProperty/upload_modal.html',
             size: 'lg',
@@ -949,20 +950,20 @@
 
         estateProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             estateProperty.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
 
-    estateProperty.calcuteProgress = function (progress) {
+    estateProperty.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    estateProperty.whatcolor = function (progress) {
+    estateProperty.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -975,25 +976,25 @@
         }
     }
 
-    estateProperty.canShow = function (pr) {
+    estateProperty.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
         return false;
     }
     // File Manager actions
-    estateProperty.replaceFile = function (name) {
+    estateProperty.replaceFile = function(name) {
         estateProperty.itemClicked(null, estateProperty.fileIdToDelete, "file");
         estateProperty.fileTypes = 1;
         estateProperty.fileIdToDelete = estateProperty.selectedIndex;
 
         // Delete the file
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', estateProperty.fileIdToDelete, 'DELETE').success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', estateProperty.fileIdToDelete, 'DELETE').success(function(response2) {
             estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
             if (response2.IsSuccess == true) {
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response3) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                     if (response3.IsSuccess == true) {
                         estateProperty.FileItem = response3.Item;
                         estateProperty.FileItem.FileName = name;
@@ -1004,20 +1005,20 @@
                     } else {
                         console.log("getting the model was not successfully returned!");
                     }
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                 });
             } else {
                 console.log("Request to api/CmsFileContent/delete was not successfully returned!");
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
 
     }
     //save new file
-    estateProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
+    estateProperty.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 estateProperty.FileItem = response.Item;
                 estateProperty.showSuccessIcon();
@@ -1026,19 +1027,19 @@
                 return 0;
 
             }
-        }).error(function (data) {
+        }).error(function(data) {
             estateProperty.showErrorIcon();
             return -1;
         });
     }
 
-    estateProperty.showSuccessIcon = function () {}
+    estateProperty.showSuccessIcon = function() {}
 
-    estateProperty.showErrorIcon = function () {
+    estateProperty.showErrorIcon = function() {
 
     }
     //file is exist
-    estateProperty.fileIsExist = function (fileName) {
+    estateProperty.fileIsExist = function(fileName) {
         for (var i = 0; i < estateProperty.FileList.length; i++) {
             if (estateProperty.FileList[i].FileName == fileName) {
                 estateProperty.fileIdToDelete = estateProperty.FileList[i].Id;
@@ -1049,7 +1050,7 @@
         return false;
     }
 
-    estateProperty.getFileItem = function (id) {
+    estateProperty.getFileItem = function(id) {
         for (var i = 0; i < estateProperty.FileList.length; i++) {
             if (estateProperty.FileList[i].Id == id) {
                 return estateProperty.FileList[i];
@@ -1058,7 +1059,7 @@
     }
 
     //select file or folder
-    estateProperty.itemClicked = function ($event, index, type) {
+    estateProperty.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             estateProperty.fileTypes = 1;
             estateProperty.selectedFileId = estateProperty.getFileItem(index).Id;
@@ -1073,11 +1074,11 @@
 
     }
 
-    estateProperty.showContractDetails = function (contract) {
+    estateProperty.showContractDetails = function(contract) {
         estateProperty.selectedContract = contract;
     }
     //upload file
-    estateProperty.uploadFile = function (index, uploadFile) {
+    estateProperty.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (estateProperty.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1092,10 +1093,10 @@
                             estateProperty.fileIdToDelete,
                             "GET"
                         )
-                        .success(function (response1) {
+                        .success(function(response1) {
                             if (response1.IsSuccess == true) {
                                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
+                                    .success(function(response2) {
                                         if (response2.IsSuccess == true) {
                                             estateProperty.FileItem = response2.Item;
                                             estateProperty.showSuccessIcon();
@@ -1118,7 +1119,7 @@
                                             $("#save-icon" + index).addClass("fa-remove");
                                         }
                                     })
-                                    .error(function (data) {
+                                    .error(function(data) {
                                         estateProperty.showErrorIcon();
                                         $("#save-icon" + index).removeClass("fa-save");
                                         $("#save-button" + index).removeClass("flashing-button");
@@ -1127,7 +1128,7 @@
                                 //-----------------------------------
                             }
                         })
-                        .error(function (data) {
+                        .error(function(data) {
                             console.log(data);
                         });
                     //--------------------------------
@@ -1149,7 +1150,7 @@
                 estateProperty.FileItem.LinkCategoryId = null; //Save the new file in the root
                 // ------- estateProperty.saveNewFile()  ----------------------
                 var result = 0;
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", estateProperty.FileItem, 'POST').success(function(response) {
                     if (response.IsSuccess) {
                         estateProperty.FileItem = response.Item;
                         estateProperty.showSuccessIcon();
@@ -1173,7 +1174,7 @@
                     //     $("#save-icon" + index).addClass("fa-remove");
                     // });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1184,10 +1185,10 @@
     }
     //End of Upload Modal-----------------------------------------
     //Export Report 
-    estateProperty.exportFile = function () {
+    estateProperty.exportFile = function() {
         estateProperty.addRequested = true;
         estateProperty.gridOptions.advancedSearchData.engine.ExportFile = estateProperty.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath + 'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1195,12 +1196,12 @@
                 $window.open(response.LinkFile, '_blank');
                 //estateProperty.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    estateProperty.toggleExportForm = function () {
+    estateProperty.toggleExportForm = function() {
         estateProperty.SortType = [{
                 key: 'نزولی',
                 value: 0
@@ -1252,29 +1253,29 @@
         });
     }
     //Row Count Export Input Change
-    estateProperty.rowCountChanged = function () {
+    estateProperty.rowCountChanged = function() {
         if (!angular.isDefined(estateProperty.ExportFileClass.RowCount) || estateProperty.ExportFileClass.RowCount > 5000)
             estateProperty.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    estateProperty.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath + "EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    estateProperty.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             estateProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             estateProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    estateProperty.thousandSeparator = function (field, digit) {
+    estateProperty.thousandSeparator = function(field, digit) {
         var value = digit.replace(new RegExp(",", "g"), '');
         var x = (parseInt(value)).toLocaleString();
         estateProperty.selectedItem[field] = x;
     }
 
-    estateProperty.onRecordStatusChange = function (record) {
+    estateProperty.onRecordStatusChange = function(record) {
         //estateProperty.busyIndicator.isActive = true;
         //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
         //ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {

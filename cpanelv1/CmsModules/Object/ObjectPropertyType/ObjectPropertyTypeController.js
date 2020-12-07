@@ -17,6 +17,7 @@
 
     objectPropertyType.init = function () {
         objectPropertyType.busyIndicator.isActive = true;
+        objectPropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"objectpropertytype/getall", objectPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             objectPropertyType.busyIndicator.isActive = false;

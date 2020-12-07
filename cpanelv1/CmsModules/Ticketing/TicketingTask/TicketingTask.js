@@ -112,6 +112,7 @@
                 }]
             };
         }
+        ticketingTask.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"TicketingTask/getall", ticketingTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingTask.busyIndicator.isActive = false;
@@ -346,6 +347,7 @@
             }
             ticketingTask.answersGridOptions.advancedSearchData.engine.Filters = [];
             ticketingTask.answersGridOptions.advancedSearchData.engine.Filters.push(Filter_value);
+            ticketingTask.answersGridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getall', ticketingTask.answersGridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 ticketingTask.busyIndicator.isActive = false;

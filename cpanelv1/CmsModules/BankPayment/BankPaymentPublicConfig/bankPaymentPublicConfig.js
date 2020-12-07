@@ -13,6 +13,8 @@
     publicConfig.init = function () {
         publicConfig.busyIndicator.isActive = true;
         publicConfig.gridOptions.advancedSearchData.engine.RowPerPage = 20;
+        publicConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentpublicconfig/getall", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.ListItems = response.ListItems;

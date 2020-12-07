@@ -18,6 +18,7 @@
     taskScheduleProcessValue.init = function () {
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkSourceId", searchType: 0, IntValue1: parseInt(taskScheduleProcessValue.sourceId) });
+        taskScheduleProcessValue.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/getall", taskScheduleProcessValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.busyIndicator.isActive = false;

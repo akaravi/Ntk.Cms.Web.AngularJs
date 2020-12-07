@@ -35,6 +35,7 @@
     }
     memberPropertyTypeSite.init = function () {
         memberPropertyTypeSite.busyIndicator.isActive = true;
+        memberPropertyTypeSite.gridOptionsProperty.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyTypeSite/getall", memberPropertyTypeSite.gridOptionsProperty.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyTypeSite.busyIndicator.isActive = false;
@@ -50,6 +51,7 @@
             memberPropertyTypeSite.gridOptionsProperty.fillData();
             rashaErManage.checkAction(data, errCode);
         });
+        memberPropertyTypeSite.gridOptionsSite.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/getall", memberPropertyTypeSite.gridOptionsSite.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyTypeSite.busyIndicator.isActive = false;

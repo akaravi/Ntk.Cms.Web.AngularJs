@@ -30,7 +30,7 @@
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"universalmenuplatform/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;

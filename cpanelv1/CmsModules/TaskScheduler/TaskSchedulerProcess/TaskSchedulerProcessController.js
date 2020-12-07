@@ -32,6 +32,7 @@
         if (taskSchedulerProcess.selectedSourceId != undefined || taskSchedulerProcess.selectedSourceId != null) {
             taskSchedulerProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, IntValue1: taskSchedulerProcess.selectedSourceId });
         }
+        taskSchedulerProcess.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/getall", taskSchedulerProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcess.busyIndicator.isActive = false;

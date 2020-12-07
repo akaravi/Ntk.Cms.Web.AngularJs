@@ -107,6 +107,7 @@
     };
     memberInfo.init = function () {
         memberInfo.busyIndicator.isActive = true;
+        memberInfo.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;

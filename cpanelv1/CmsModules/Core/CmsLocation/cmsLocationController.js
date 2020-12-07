@@ -14,6 +14,7 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
     cmsLocation.init = function () {
         cmsLocation.busyIndicator.isActive = true;
+        cmsLocation.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/getall", cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsLocation.ListItems = response.ListItems;
             cmsLocation.gridOptions.fillData(cmsLocation.ListItems, response.Access);

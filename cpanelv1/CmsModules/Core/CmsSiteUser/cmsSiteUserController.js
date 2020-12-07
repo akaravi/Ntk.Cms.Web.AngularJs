@@ -1,7 +1,7 @@
-﻿app.controller("cmsSiteUserGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
+﻿app.controller("cmsSiteUserGridCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
     var cmsSiteUser = this;
     cmsSiteUser.ManageUserAccessControllerTypes = [];
-    cmsSiteUser.LinkSiteId=0;
+    cmsSiteUser.LinkSiteId = 0;
     cmsSiteUser.busyIndicator = {
         isActive: true,
         message: "در حال بار گذاری ..."
@@ -12,10 +12,11 @@
         defaultDate: date
     }
     if (itemRecordStatus != undefined) cmsSiteUser.itemRecordStatus = itemRecordStatus;
-    cmsSiteUser.init = function () {
+    cmsSiteUser.init = function() {
         cmsSiteUser.busyIndicator.isActive = true;
         cmsSiteUser.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteUser/getall", cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        cmsSiteUser.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteUser/getall", cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.ListItems = response.ListItems;
             cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
@@ -42,11 +43,12 @@
             //}).error(function (data, errCode, c, d) {
             //    rashaErManage.checkAction(data, errCode);
             //});
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsSiteUser.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/getall", cmsSiteUser.gridOptionsSite.advancedSearchData.engine, 'POST').success(function (response) {
+        cmsSiteUser.gridOptionsSite.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/getall", cmsSiteUser.gridOptionsSite.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.busyIndicator.isActive = false;
             cmsSiteUser.ListItemsSite = response.ListItems;
@@ -56,40 +58,40 @@
             cmsSiteUser.gridOptionsSite.rowPerPage = response.RowPerPage;
             cmsSiteUser.allowedSearch = response.AllowedSearchField;
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsSiteUser.busyIndicator.isActive = false;
             cmsSiteUser.gridOptionsSite.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUserGroup/getall", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.cmsUserGroups = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         cmsSiteUser.inputSiteChanged(null);
         cmsSiteUser.inputUserChanged(null);
     }
     cmsSiteUser.addRequested = false;
-    cmsSiteUser.openAddModal = function () {
+    cmsSiteUser.openAddModal = function() {
         if (buttonIsPressed) { return };
         cmsSiteUser.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
-            cmsSiteUser.selectedItem.LinkSiteId=cmsSiteUser.LinkSiteId;
+            cmsSiteUser.selectedItem.LinkSiteId = cmsSiteUser.LinkSiteId;
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsSiteUser/add.html',
                 scope: $scope
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     };
-    cmsSiteUser.addNewRow = function (frm) {
+    cmsSiteUser.addNewRow = function(frm) {
         if (frm.$invalid)
             return;
         if (cmsSiteUser.selectedItem.LinkSiteId == null || cmsSiteUser.selectedItem.LinkUserId == null)
@@ -105,12 +107,12 @@
         }
         cmsSiteUser.addRequested = true;
         cmsSiteUser.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', cmsSiteUser.selectedItem, 'POST').success(function(response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function(response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', response1.Item.LinkUserId, 'GET').success(function(response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.ListItems.unshift(response1.Item);
                         cmsSiteUser.gridOptions.myfilterText(cmsSiteUser.ListItems, "LinkUserGroupId", cmsSiteUser.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -118,21 +120,20 @@
                         //cmsSiteUser.replaceItem(cmsSiteUser.selectedItem.Id, response1.Item);
                         cmsSiteUser.addRequested = false;
                         cmsSiteUser.busyIndicator.isActive = false;
-                        //cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
                         cmsSiteUser.closeModal();
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         cmsSiteUser.addRequested = false;
                         cmsSiteUser.busyIndicator.isActive = false;
                         rashaErManage.checkAction(data, errCode);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
                 //var listItems = []; listItems.push(response.Item);
                 //cmsSiteUser.gridOptions.myfilterText(listItems, "LinkSiteId", cmsSiteUser.cmsSitesListItems, "Title", "LinkSiteTitle");
                 //cmsSiteUser.gridOptions.myfilterText(listItems, "LinkUserId", cmsSiteUser.cmsUsersListItems, "Username", "LinkUserTitle");
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSiteUser.addRequested = false;
             cmsSiteUser.busyIndicator.isActive = false;
@@ -140,7 +141,7 @@
         });
     }
 
-    cmsSiteUser.openEditModal = function () {
+    cmsSiteUser.openEditModal = function() {
         if (buttonIsPressed) { return };
         cmsSiteUser.modalTitle = 'ویرایش';
         if (!cmsSiteUser.gridOptions.selectedRow.item) {
@@ -148,7 +149,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
@@ -157,12 +158,12 @@
                 templateUrl: 'cpanelv1/CmsModules/Core/cmsSiteUser/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSiteUser.editRow = function (frm) {
+    cmsSiteUser.editRow = function(frm) {
         if (frm.$invalid)
             return;
         //برای جلوگیر ی از وارد کردن اطلاعات تکراری
@@ -177,19 +178,19 @@
             }
         }
         cmsSiteUser.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.selectedItem, "PUT").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', cmsSiteUser.selectedItem, "PUT").success(function(response1) {
             cmsSiteUser.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function(response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', response1.Item.LinkUserId, 'GET').success(function(response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.replaceItem(cmsSiteUser.selectedItem.Id, response1.Item);
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
                 //var listItems = []; listItems.push(response.Item);
@@ -201,19 +202,19 @@
                 cmsSiteUser.closeModal();
             }
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             cmsSiteUser.addRequested = false;
             cmsSiteUser.busyIndicator.isActive = false;
         });
     }
 
-    cmsSiteUser.closeModal = function () {
+    cmsSiteUser.closeModal = function() {
         $modalStack.dismissAll();
     };
 
-    cmsSiteUser.replaceItem = function (oldId, newItem) {
-        angular.forEach(cmsSiteUser.ListItems, function (item, key) {
+    cmsSiteUser.replaceItem = function(oldId, newItem) {
+        angular.forEach(cmsSiteUser.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = cmsSiteUser.ListItems.indexOf(item);
                 cmsSiteUser.ListItems.splice(index, 1);
@@ -223,31 +224,31 @@
             cmsSiteUser.ListItems.unshift(newItem);
     }
 
-    cmsSiteUser.deleteRow = function () {
+    cmsSiteUser.deleteRow = function() {
         if (buttonIsPressed) { return };
         if (!cmsSiteUser.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     cmsSiteUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/', cmsSiteUser.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteUser/', cmsSiteUser.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteUser.replaceItem(cmsSiteUser.selectedItemForDelete.Id);
                             cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems);
                         }
 
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -256,7 +257,7 @@
 
     }
 
-    cmsSiteUser.searchData = function () {
+    cmsSiteUser.searchData = function() {
         cmsSiteUser.gridOptions.serachData();
     }
     cmsSiteUser.LinkUserIdSelector = {
@@ -296,7 +297,7 @@
             ]
         }
     }
-cmsSiteUser.gridOptionsSite = {
+    cmsSiteUser.gridOptionsSite = {
         columns: [
             { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer' },
             { name: 'ExpireDate', displayName: 'تاریخ انقضا', sortable: true, isDate: true, type: 'date', visible: 'true' },
@@ -356,39 +357,38 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
 
-    cmsSiteUser.gridOptions.reGetAll = function () {
+    cmsSiteUser.gridOptions.reGetAll = function() {
         cmsSiteUser.init();
     }
 
-    cmsSiteUser.gridOptions.onRowSelected = function () { }
+    cmsSiteUser.gridOptions.onRowSelected = function() {}
 
-    cmsSiteUser.gridOptionsSite.onRowSelected = function () {
-        var node=cmsSiteUser.gridOptionsSite.selectedRow.item;
-        cmsSiteUser.LinkSiteId=cmsSiteUser.gridOptionsSite.selectedRow.item.Id;
+    cmsSiteUser.gridOptionsSite.onRowSelected = function() {
+        var node = cmsSiteUser.gridOptionsSite.selectedRow.item;
+        cmsSiteUser.LinkSiteId = cmsSiteUser.gridOptionsSite.selectedRow.item.Id;
         cmsSiteUser.selectContent(node);
     }
 
- //Show Content with Category Id
-    cmsSiteUser.selectContent = function (node) {
+    //Show Content with Category Id
+    cmsSiteUser.selectContent = function(node) {
         cmsSiteUser.gridOptions.advancedSearchData.engine.Filters = null;
         cmsSiteUser.gridOptions.advancedSearchData.engine.Filters = [];
-        var nodeTitle='';        
-        nodeId='';
-        if(node !=null && node != undefined)
-        {       
-            nodeId=node.Id;
-            nodeTitle=node.Title;
+        var nodeTitle = '';
+        nodeId = '';
+        if (node != null && node != undefined) {
+            nodeId = node.Id;
+            nodeTitle = node.Title;
         }
         var filterModel = {
-                Filters: [{
-                    PropertyName: "LinkSiteId",
-                    IntValue1: nodeId,
-                    SearchType: 0,
-                }]
-               
-            };
-       
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteUser/getall", filterModel, 'POST').success(function (response) {
+            Filters: [{
+                PropertyName: "LinkSiteId",
+                IntValue1: nodeId,
+                SearchType: 0,
+            }]
+
+        };
+        filterModel.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteUser/getall", filterModel, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.ListItems = response.ListItems;
             cmsSiteUser.gridOptions.fillData(cmsSiteUser.ListItems, response.Access);
@@ -396,18 +396,18 @@ cmsSiteUser.gridOptionsSite = {
             cmsSiteUser.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSiteUser.gridOptions.rowPerPage = response.RowPerPage;
             cmsSiteUser.gridOptions.maxSize = 5;
-            }).error(function (data, errCode, c, d) {
-                cmsSiteUser.gridOptions.fillData();
-                rashaErManage.checkAction(data, errCode);
-            });
-        
+        }).error(function(data, errCode, c, d) {
+            cmsSiteUser.gridOptions.fillData();
+            rashaErManage.checkAction(data, errCode);
+        });
+
     };
     // Filter Texts
-    cmsSiteUser.gridOptions.myfilterText = function (gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
+    cmsSiteUser.gridOptions.myfilterText = function(gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
         var ilength = gridListItems.length;
         var jlength = childListItems.length;
         for (var i = 0; i < ilength; i++) {
-            gridListItems[i][childItemColumnName] = "";  // Make a new field for title of the foreighn key
+            gridListItems[i][childItemColumnName] = ""; // Make a new field for title of the foreighn key
             for (var j = 0; j < jlength; j++) {
                 if (gridListItems[i][foreignKeyName] == childListItems[j].Id) {
                     gridListItems[i][childItemColumnName] = childListItems[j][childDesiredPropertyName];
@@ -416,7 +416,7 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
     //ngautocomplete
-    cmsSiteUser.siteSelected = function (selected) {
+    cmsSiteUser.siteSelected = function(selected) {
         if (selected) {
             cmsSiteUser.selectedItem.LinkSiteId = selected.originalObject.Id;
         } else {
@@ -424,7 +424,7 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
     //ngautocomplete
-    cmsSiteUser.userSelected = function (selected) {
+    cmsSiteUser.userSelected = function(selected) {
         if (selected) {
             cmsSiteUser.selectedItem.LinkUserId = selected.originalObject.Id;
         } else {
@@ -432,33 +432,33 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
     //ngautocomplete
-    cmsSiteUser.inputSiteChanged = function (input) {
+    cmsSiteUser.inputSiteChanged = function(input) {
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue: input, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "SubDomain", SearchType: 5, StringValue: input, ClauseType: 1 });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/search", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/search", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.cmsSitesListItems = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //ngautocomplete
-    cmsSiteUser.inputUserChanged = function (input) {
+    cmsSiteUser.inputUserChanged = function(input) {
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/search", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.cmsUsersListItems = response.ListItems;
-        }).error(function (data, errCode, c, d) {
-           rashaErManage.checkAction(data, errCode);
+        }).error(function(data, errCode, c, d) {
+            rashaErManage.checkAction(data, errCode);
         });
     }
 
-    cmsSiteUser.filterEnumSiteCategory = function (item) {
+    cmsSiteUser.filterEnumSiteCategory = function(item) {
         for (var j = 0; j < cmsSiteUser.CategoryListItems.length; j++) {
             if (item.LinkSiteCategoryId == cmsSiteUser.CategoryListItems[j].Id) {
                 item.virtual_CmsSiteCategory = {};
@@ -468,15 +468,14 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
 
-    cmsSiteUser.filterEnumOwnerSiteSetStatus = function (ListItemsOrItem) {
+    cmsSiteUser.filterEnumOwnerSiteSetStatus = function(ListItemsOrItem) {
         if (!ListItemsOrItem.length) { // It's an Item
             for (var j = 0; j < cmsSiteUser.OwnerSiteSetStatusListItems.length; j++) {
                 if (ListItemsOrItem.OwnerSiteSetStatus == cmsSiteUser.OwnerSiteSetStatusListItems[j].Id) {
                     ListItemsOrItem.OwnerSiteSetStatusTitle = cmsSiteUser.OwnerSiteSetStatusListItems[j].Title;
                 }
             }
-        }
-        else { // It's a Listitems
+        } else { // It's a Listitems
             for (var i = 0; i < ListItemsOrItem.length; i++) {
                 for (var j = 0; j < cmsSiteUser.OwnerSiteSetStatusListItems.length; j++) {
                     if (ListItemsOrItem[i].OwnerSiteSetStatus == cmsSiteUser.OwnerSiteSetStatusListItems[j].Id) {
@@ -487,10 +486,10 @@ cmsSiteUser.gridOptionsSite = {
         }
     }
     //Export Report 
-    cmsSiteUser.exportFile = function () {
+    cmsSiteUser.exportFile = function() {
         cmsSiteUser.addRequested = true;
         cmsSiteUser.gridOptions.advancedSearchData.engine.ExportFile = cmsSiteUser.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/exportfile', cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/exportfile', cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             cmsSiteUser.addRequested = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.reportDownloadLink = response.LinkFile;
@@ -498,12 +497,12 @@ cmsSiteUser.gridOptionsSite = {
                 $window.open(response.LinkFile, '_blank');
                 //cmsSiteUser.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    cmsSiteUser.toggleExportForm = function () {
+    cmsSiteUser.toggleExportForm = function() {
         cmsSiteUser.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -526,17 +525,17 @@ cmsSiteUser.gridOptionsSite = {
         });
     }
     //Row Count Export Input Change
-    cmsSiteUser.rowCountChanged = function () {
+    cmsSiteUser.rowCountChanged = function() {
         if (!angular.isDefined(cmsSiteUser.ExportFileClass.RowCount) || cmsSiteUser.ExportFileClass.RowCount > 5000)
             cmsSiteUser.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    cmsSiteUser.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/count", cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    cmsSiteUser.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/count", cmsSiteUser.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             cmsSiteUser.addRequested = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             cmsSiteUser.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });

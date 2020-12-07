@@ -31,7 +31,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ImageGalleryComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             imgGalleryComment.busyIndicator.isActive = false;

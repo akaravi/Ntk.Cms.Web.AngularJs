@@ -712,6 +712,7 @@ imgGallery.LinkCategoryIdSelector = {
         }
         imgGallery.addRequested = true;
         imgGallery.busyIndicator.isActive = true;
+        
         ajax.call(cmsServerConfig.configApiServerPath+"ImageGalleryContent/getall", imgGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             imgGallery.addRequested = false;
             imgGallery.busyIndicator.isActive = false;

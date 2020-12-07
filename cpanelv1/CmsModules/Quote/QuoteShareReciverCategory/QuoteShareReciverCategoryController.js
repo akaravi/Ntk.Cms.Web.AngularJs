@@ -122,7 +122,7 @@
         });
 
         quoteShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"quoteShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteShareReciverCategory/getall", {AccessLoad : true}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteShareReciverCategory.ListItems = response.ListItems;
             quoteShareReciverCategory.gridOptions.fillData(quoteShareReciverCategory.ListItems, response.Access); // Sending Access as an argument
@@ -354,6 +354,7 @@
             }
             quoteShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        quoteShareReciverCategory.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"quoteShareReciverCategory/getall", quoteShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteShareReciverCategory.contentBusyIndicator.isActive = false;

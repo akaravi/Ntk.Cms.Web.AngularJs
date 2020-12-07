@@ -30,6 +30,7 @@
         privateSiteConfig.busyIndicator.isActive = true;
         var filterModel = { PropertyName: "LinkPublicConfigId", SearchType: 0, IntValue1: privateSiteConfig.selectedPublicConfig.Id };
         privateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
+        privateSiteConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/getall", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             privateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

@@ -18,6 +18,7 @@
     //FilterModel.GetExport = { ExportType: 1, RecieveMethod:0,RowData:1000}
     logInputCtrl.init = function () {
         logInputCtrl.busyIndicator.isActive = true;
+        logInputCtrl.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/getall", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.ListItems = response.ListItems;

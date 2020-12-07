@@ -6,6 +6,7 @@
     }
     chartContentTag.init = function () {
         chartContentTag.busyIndicator.isActive = true;
+        chartContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ChartContentTag/getall", chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.busyIndicator.isActive = false;

@@ -24,6 +24,7 @@
     domainAlias.init = function () {
         domainAlias.addRequested = true;
         domainAlias.busyIndicator.isActive = true;
+        domainAlias.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteDomainAlias/getall", domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.ListItems = response.ListItems;

@@ -11,7 +11,7 @@
     estateAccountAgency.Access = {};
     estateAccountAgency.ListItems = [];
     estateAccountAgency.selectedItem
-    estateAccountAgency.gridOptions={};
+    estateAccountAgency.gridOptions = {};
     estateAccountAgency.gridOptions.advancedSearchData = {};
     estateAccountAgency.gridOptions.advancedSearchData.engine = {};
     estateAccountAgency.gridOptions.advancedSearchData.engine.CurrentPageNumber = 1;
@@ -20,7 +20,7 @@
     estateAccountAgency.gridOptions.advancedSearchData.engine.TotalRowData = 2000;
     estateAccountAgency.gridOptions.advancedSearchData.engine.RowPerPage = 20;
     estateAccountAgency.gridOptions.advancedSearchData.engine.Filters = [];
-    
+
     if (itemRecordStatus != undefined) estateAccountAgency.itemRecordStatus = itemRecordStatus;
 
 
@@ -28,15 +28,14 @@
     estateAccountAgency.init = function() {
         estateAccountAgency.busyIndicator.isActive = true;
 
-        estateAccountAgency.gridOptions.advancedSearchData.engine.AccessLoad=true;
-
+        estateAccountAgency.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "EstateAccountAgency/getall", estateAccountAgency.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             estateAccountAgency.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             estateAccountAgency.ListItems = response.ListItems;
             estateAccountAgency.Access = response.Access;
             estateAccountAgency.gridOptions.fillData(estateAccountAgency.ListItems, estateAccountAgency.Access);
-            estateAccountAgency.gridOptions.advancedSearchData.engine.AccessLoad=true;
+            estateAccountAgency.gridOptions.advancedSearchData.engine.AccessLoad = true;
             estateAccountAgency.gridOptions.currentPageNumber = response.CurrentPageNumber;
             estateAccountAgency.gridOptions.totalRowCount = response.TotalRowCount;
             estateAccountAgency.gridOptions.rowPerPage = response.RowPerPage;
@@ -145,7 +144,7 @@
             estateAccountAgency.busyIndicator.isActive = false;
         });
     }
-//tools
+    //tools
     estateAccountAgency.closeModal = function() {
         $modalStack.dismissAll();
     };
@@ -160,7 +159,7 @@
         if (newItem)
             estateAccountAgency.ListItems.unshift(newItem);
     }
-//tools
+    //tools
     estateAccountAgency.deleteRow = function() {
         if (buttonIsPressed) { return };
 

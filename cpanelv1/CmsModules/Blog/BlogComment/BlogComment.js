@@ -36,7 +36,7 @@
         //} catch (error) {
         //    console.log(error)
         //}
-
+        blogComment.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"blogComment/getall", blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;

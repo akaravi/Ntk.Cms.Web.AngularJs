@@ -17,6 +17,7 @@
 
     memberPropertyType.init = function () {
         memberPropertyType.busyIndicator.isActive = true;
+        memberPropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"memberpropertytype/getall", memberPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyType.busyIndicator.isActive = false;

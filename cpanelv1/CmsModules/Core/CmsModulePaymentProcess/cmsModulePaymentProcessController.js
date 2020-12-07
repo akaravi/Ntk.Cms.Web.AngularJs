@@ -12,6 +12,7 @@
     cmsMdlPayPrc.init = function () {
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
+        cmsMdlPayPrc.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcess/getall", cmsMdlPayPrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.ListItems = response.ListItems;

@@ -8,7 +8,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     if (itemRecordStatus != undefined) Servicecategory.itemRecordStatus = itemRecordStatus;
     Servicecategory.init = function () {
         Servicecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"Servicecategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Servicecategory/getall", { RowPerPage:1000,AccessLoad : true}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             Servicecategory.ListItems = response.ListItems;

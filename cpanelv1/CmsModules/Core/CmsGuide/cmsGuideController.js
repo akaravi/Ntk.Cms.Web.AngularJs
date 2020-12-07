@@ -129,7 +129,7 @@
     cmsGuide.init = function () {
         cmsGuide.addRequested = true;
         cmsGuide.busyIndicator.isActive = true;
-        
+        cmsGuide.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsGuide.treeConfig.Items = response.ListItems;
             rashaErManage.checkAction(response);
@@ -177,6 +177,7 @@
             SearchType: 0
         }
         cmsGuide.gridOptions.advancedSearchData.engine.Filters.push(s);
+        cmsGuide.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsGuide.busyIndicator.isActive = false;

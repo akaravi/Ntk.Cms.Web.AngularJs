@@ -5,7 +5,7 @@
     if (itemRecordStatus != undefined) cmsModuleOptimizer.itemRecordStatus = itemRecordStatus;
     cmsModuleOptimizer.init = function () {
         
-
+        cmsModuleOptimizer.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"coreModuleOptimizer/getall", cmsModuleOptimizer.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.ListItems = response.ListItems;

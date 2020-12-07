@@ -67,6 +67,7 @@
 
     //init Function
     shopCombine.init = function () {
+        shopCombine.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/getall", shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.ListItems = response.ListItems;

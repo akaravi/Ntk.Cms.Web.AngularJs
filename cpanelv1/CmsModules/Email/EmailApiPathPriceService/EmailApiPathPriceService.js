@@ -1,4 +1,4 @@
-﻿app.controller("emailapipathpriceserviceCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
+﻿app.controller("emailapipathpriceserviceCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
     var emailapipathpriceservice = this;
     emailapipathpriceservice.ManageUserAccessControllerTypes = [];
 
@@ -13,24 +13,26 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
     if (itemRecordStatus != undefined) emailapipathpriceservice.itemRecordStatus = itemRecordStatus;
-    emailapipathpriceservice.init = function () {
+    emailapipathpriceservice.init = function() {
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id == 0 || emailapipathpriceservice.selectedPrivateSiteConfig.Id == null) {
             $state.go("index.emailprivatesiteconfig");
             return;
         }
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id == null || emailapipathpriceservice.selectedPrivateSiteConfig.Id == 0) emailapipathpriceservice.selectedPriceService.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprivatesiteconfig/', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedPrivateSiteConfig = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         emailapipathpriceservice.busyIndicator.isActive = true;
         var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: emailapipathpriceservice.selectedPrivateSiteConfig.Id };
-        if (emailapipathpriceservice.selectedPrivateSiteConfig.Id >0)
+        if (emailapipathpriceservice.selectedPrivateSiteConfig.Id > 0)
             emailapipathpriceservice.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathpriceservice/getall", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        emailapipathpriceservice.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath + "emailapipathpriceservice/getall", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             emailapipathpriceservice.ListItems = response.ListItems;
             emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.Access);
@@ -42,17 +44,17 @@
             model.SortType = 0;
             model.SortColumn = "Id";
             emailapipathpriceservice.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             emailapipathpriceservice.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
     emailapipathpriceservice.addRequested = false;
-    emailapipathpriceservice.openAddModal = function () {
+    emailapipathpriceservice.openAddModal = function() {
         if (buttonIsPressed) { return };
         emailapipathpriceservice.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -61,34 +63,33 @@
                 templateUrl: 'cpanelv1/CmsModules/Email/emailapipathpriceservice/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    emailapipathpriceservice.addNewRow = function (frm) {
-        if (frm.$invalid)
-        {
+    emailapipathpriceservice.addNewRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-       
+
         emailapipathpriceservice.addRequested = true;
         emailapipathpriceservice.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/', emailapipathpriceservice.selectedItem, 'POST').success(function(response1) {
             rashaErManage.checkAction(response1);
-           if (response1.IsSuccess) {
+            if (response1.IsSuccess) {
                 emailapipathpriceservice.ListItems.unshift(response1.Item);
                 emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems);
                 emailapipathpriceservice.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             emailapipathpriceservice.addRequested = false;
             emailapipathpriceservice.busyIndicator.isActive = false;
         });
     }
 
-    emailapipathpriceservice.openEditModal = function () {
+    emailapipathpriceservice.openEditModal = function() {
         if (buttonIsPressed) { return };
         emailapipathpriceservice.modalTitle = 'ویرایش';
         if (!emailapipathpriceservice.gridOptions.selectedRow.item) {
@@ -96,7 +97,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -104,19 +105,18 @@
                 templateUrl: 'cpanelv1/CmsModules/Email/emailapipathpriceservice/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    emailapipathpriceservice.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+    emailapipathpriceservice.editRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-       
+
         emailapipathpriceservice.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/', emailapipathpriceservice.selectedItem, "PUT").success(function(response) {
             emailapipathpriceservice.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -125,18 +125,18 @@
                 emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.Access);
                 emailapipathpriceservice.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             emailapipathpriceservice.addRequested = false;
             emailapipathpriceservice.busyIndicator.isActive = false;
         });
     }
 
-    emailapipathpriceservice.closeModal = function () {
+    emailapipathpriceservice.closeModal = function() {
         $modalStack.dismissAll();
     };
-    emailapipathpriceservice.replaceItem = function (oldId, newItem) {
-        angular.forEach(emailapipathpriceservice.ListItems, function (item, key) {
+    emailapipathpriceservice.replaceItem = function(oldId, newItem) {
+        angular.forEach(emailapipathpriceservice.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = emailapipathpriceservice.ListItems.indexOf(item);
                 emailapipathpriceservice.ListItems.splice(index, 1);
@@ -145,36 +145,36 @@
         if (newItem)
             emailapipathpriceservice.ListItems.unshift(newItem);
     }
-    emailapipathpriceservice.deleteRow = function () {
+    emailapipathpriceservice.deleteRow = function() {
         if (buttonIsPressed) { return };
         if (!emailapipathpriceservice.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     emailapipathpriceservice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/', emailapipathpriceservice.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/', emailapipathpriceservice.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailapipathpriceservice.replaceItem(emailapipathpriceservice.selectedItemForDelete.Id);
                             emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
         });
     }
-    emailapipathpriceservice.searchData = function () {
+    emailapipathpriceservice.searchData = function() {
         emailapipathpriceservice.gridOptions.serachData();
     }
     emailapipathpriceservice.gridOptions = {
@@ -233,11 +233,11 @@
         }
     }
 
-    emailapipathpriceservice.gridOptions.reGetAll = function () {
+    emailapipathpriceservice.gridOptions.reGetAll = function() {
         emailapipathpriceservice.init();
     }
 
-    emailapipathpriceservice.gridOptions.onRowSelected = function () {
+    emailapipathpriceservice.gridOptions.onRowSelected = function() {
         var item = emailapipathpriceservice.gridOptions.selectedRow.item;
         //Get Options
         $("#gridLogs").fadeOut('fast');
@@ -245,7 +245,8 @@
         filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", IntValue1: item.Id, SearchType: 0 });
         emailapipathpriceservice.addRequested = true;
         //emailapipathpriceservice.optionsBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
+        filterModel.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "emailprocesstaskLog/getall", filterModel, "POST").success(function(response) {
             emailapipathpriceservice.addRequested = false;
             //emailapipathpriceservice.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -257,12 +258,12 @@
             emailapipathpriceservice.gridLogs.RowPerPage = response.RowPerPage;
             if (emailapipathpriceservice.processFlowLogList.length > 0)
                 $("#gridLogs").fadeIn('fast');
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }
     emailapipathpriceservice.columnCheckbox = false;
-    emailapipathpriceservice.openGridConfigModal = function () {
+    emailapipathpriceservice.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         if (emailapipathpriceservice.gridOptions.columnCheckbox) {
             for (var i = 0; i < emailapipathpriceservice.gridOptions.columns.length; i++) {
@@ -271,8 +272,7 @@
                 //var temp = element[0].checked;
                 emailapipathpriceservice.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = emailapipathpriceservice.gridOptions.columns;
             for (var i = 0; i < emailapipathpriceservice.gridOptions.columns.length; i++) {
                 emailapipathpriceservice.gridOptions.columns[i].visible = true;
@@ -286,10 +286,10 @@
         emailapipathpriceservice.gridOptions.columnCheckbox = !emailapipathpriceservice.gridOptions.columnCheckbox;
     }
     //Export Report 
-    emailapipathpriceservice.exportFile = function () {
+    emailapipathpriceservice.exportFile = function() {
         emailapipathpriceservice.addRequested = true;
         emailapipathpriceservice.gridOptions.advancedSearchData.engine.ExportFile = emailapipathpriceservice.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/exportfile', emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailprivatesiteconfig/exportfile', emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.reportDownloadLink = response.LinkFile;
@@ -297,12 +297,12 @@
                 $window.open(response.LinkFile, '_blank');
                 //emailapipathpriceservice.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    emailapipathpriceservice.toggleExportForm = function () {
+    emailapipathpriceservice.toggleExportForm = function() {
         emailapipathpriceservice.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -325,28 +325,28 @@
         });
     }
     //Row Count Export Input Change
-    emailapipathpriceservice.rowCountChanged = function () {
+    emailapipathpriceservice.rowCountChanged = function() {
         if (!angular.isDefined(emailapipathpriceservice.ExportFileClass.RowCount) || emailapipathpriceservice.ExportFileClass.RowCount > 5000)
             emailapipathpriceservice.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    emailapipathpriceservice.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathpriceservice/count", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    emailapipathpriceservice.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "emailapipathpriceservice/count", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             emailapipathpriceservice.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    emailapipathpriceservice.changeState = function (state) {
+    emailapipathpriceservice.changeState = function(state) {
         $state.go("index." + state);
     }
 
-    emailapipathpriceservice.retryTrans = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/processflowCheck', selectedId, 'GET').success(function (response) {
+    emailapipathpriceservice.retryTrans = function(selectedId) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'emailapipathpriceservice/processflowCheck', selectedId, 'GET').success(function(response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.reportDownloadLink = response.LinkFile;
@@ -354,7 +354,7 @@
                 $window.open(response.LinkFile, '_blank');
                 //emailapipathpriceservice.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }

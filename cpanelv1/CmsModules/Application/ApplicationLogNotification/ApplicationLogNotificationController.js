@@ -12,6 +12,7 @@
 
     logNotification.init = function () {
         logNotification.busyIndicator.isActive = true;
+        logNotification.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ApplicationlogNotification/getall", logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logNotification.busyIndicator.isActive = false;

@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        reservationTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"reservationtag/getall", reservationTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationTag.ListItems = response.ListItems;
@@ -399,6 +400,7 @@
             }
             reservationTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        reservationTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"reservationtag/getall", reservationTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationTag.contentBusyIndicator.isActive = false;

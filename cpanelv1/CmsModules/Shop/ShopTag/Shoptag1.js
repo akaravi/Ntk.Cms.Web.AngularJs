@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        shopTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shoptag/getall", shopTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.ListItems = response.ListItems;
@@ -398,6 +399,7 @@
             }
             shopTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        shopTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shoptag/getall", shopTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopTag.contentBusyIndicator.isActive = false;

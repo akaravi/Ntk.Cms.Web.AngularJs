@@ -77,8 +77,10 @@
 
         });
 
+        var engine = {};
+        engine.AccessLoad = true;
         campaignItem.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall",engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.ListItems = response.ListItems;
             campaignItem.gridOptions.fillData(campaignItem.ListItems, response.Access); // Sending Access as an argument
@@ -321,6 +323,8 @@
             }
             campaignItem.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        campaignItem.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        
         ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall", campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.contentBusyIndicator.isActive = false;

@@ -193,6 +193,7 @@
                 }]
             };
         }
+        shopInvoiceSale.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/getall", shopInvoiceSale.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.ListItems = response.ListItems;
@@ -276,7 +277,7 @@ shopInvoiceSale.printDiv = function(divName) {
             SearchType: 0
         }
         shopInvoiceSale.gridOptions.advancedSearchData.engine.Filters.push(s);
-
+        shopInvoiceSale.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/getAll", shopInvoiceSale.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.busyIndicator.isActive = false;

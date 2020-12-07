@@ -17,7 +17,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"siteAccDocumentDetailType/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetailType.busyIndicator.isActive = false;

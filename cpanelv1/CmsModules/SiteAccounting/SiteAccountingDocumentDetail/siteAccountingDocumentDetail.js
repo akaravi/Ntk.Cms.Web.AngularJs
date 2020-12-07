@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) siteAccDocumentDetail.itemRecordStatus = itemRecordStatus;
     siteAccDocumentDetail.init = function () {
         siteAccDocumentDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"siteAccDocumentDetail/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"siteAccDocumentDetail/getall", { RowPerPage:1000,AccessLoad : true}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.ListItems = response.ListItems;

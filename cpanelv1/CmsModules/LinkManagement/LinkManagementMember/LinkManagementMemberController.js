@@ -32,7 +32,7 @@
         } catch (error) {
             console.log(error)
         }
-
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"linkManagementMember/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;

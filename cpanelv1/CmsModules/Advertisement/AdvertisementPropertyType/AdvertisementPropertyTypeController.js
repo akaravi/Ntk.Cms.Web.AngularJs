@@ -31,6 +31,7 @@
             console.log(data);
         });
         advertisementPropertyType.busyIndicator.isActive = true;
+        advertisementPropertyType.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementpropertytype/getall", advertisementPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyType.busyIndicator.isActive = false;
@@ -295,7 +296,7 @@
                 SearchType: 0
             }
             advertisementPropertyType.gridOptions.advancedSearchData.engine.Filters.push(s);
-        }
+        }advertisementPropertyType.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyType/getall", advertisementPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyType.busyIndicator.isActive = false;

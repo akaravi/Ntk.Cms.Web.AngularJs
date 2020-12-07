@@ -163,6 +163,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        newsTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"newstag/getall", newsTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsTag.ListItems = response.ListItems;
@@ -398,6 +399,7 @@
             }
             newsTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        newsTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"newstag/getall", newsTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsTag.contentBusyIndicator.isActive = false;

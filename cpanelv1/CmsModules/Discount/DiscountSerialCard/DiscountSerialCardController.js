@@ -41,6 +41,7 @@
 
     discountSerialCard.init = function () {
         discountSerialCard.busyIndicator.isActive = true;
+        discountSerialCard.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"DiscountSerialCard/getall", discountSerialCard.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCard.busyIndicator.isActive = false;

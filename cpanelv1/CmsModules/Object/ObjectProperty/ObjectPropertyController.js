@@ -1,11 +1,11 @@
-﻿app.controller("objectPropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $stateParams, $filter) {
+﻿app.controller("objectPropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window, $stateParams, $filter) {
     var objectProperty = this;
     objectProperty.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     //For Grid Options
 
     if (itemRecordStatus != undefined) objectProperty.itemRecordStatus = itemRecordStatus;
 
-objectProperty.selectedPublicConfig = {
+    objectProperty.selectedPublicConfig = {
         object: $stateParams.objectuserId
     };
 
@@ -24,18 +24,18 @@ objectProperty.selectedPublicConfig = {
         fileId: null,
         filename: null
     }
-objectProperty.selectedItem = {};
-objectProperty.showlistHistory=false
-objectProperty.PropertyTypeId;
-objectProperty.propertyTypeListItems = [];
-objectProperty.selectedItemPropertyType = {};
-objectProperty.selectedItemhistor={};
-objectProperty.selectedItemLinkobjectUserId=false;
+    objectProperty.selectedItem = {};
+    objectProperty.showlistHistory = false
+    objectProperty.PropertyTypeId;
+    objectProperty.propertyTypeListItems = [];
+    objectProperty.selectedItemPropertyType = {};
+    objectProperty.selectedItemhistor = {};
+    objectProperty.selectedItemLinkobjectUserId = false;
     // Many To Many
     // objectGroupGroup  جدول واسط
     // LinkobjectGroupId   فیلد جدول دیگر در جدول واسط
     // LinkobjectGroupId  فیلد ما در جدول واسط
-    objectProperty.menueGroups = [];//لیست جدول دیگر
+    objectProperty.menueGroups = []; //لیست جدول دیگر
     var otherTabaleFieldKey = 'Id';
     var many2ManythisOtherTabaleFieldKey = 'objectGroup_Id';
     var thisTableFieldICollection = 'objectUserGroup';
@@ -45,18 +45,18 @@ objectProperty.selectedItemLinkobjectUserId=false;
 
 
 
-   
-    ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", {}, 'POST').success(function (response) {
+
+    ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyType/getall", {}, 'POST').success(function(response) {
         objectProperty.menueGroups = response.ListItems;
-    }).error(function (data, errCode, c, d) {
+    }).error(function(data, errCode, c, d) {
         console.log(data);
     });
-    objectProperty.hasInMany2Many = function (OtherTable) {
+    objectProperty.hasInMany2Many = function(OtherTable) {
         if (objectProperty.selectedItem[thisTableFieldICollection] == undefined) return false;
         return objectFindByKey(objectProperty.selectedItem[thisTableFieldICollection], many2ManythisOtherTabaleFieldKey, OtherTable[otherTabaleFieldKey]);
 
     };
-    objectProperty.toggleMany2Many = function (role, OtherTable) {
+    objectProperty.toggleMany2Many = function(role, OtherTable) {
         var obj = {};
         obj[many2ManythisOtherTabaleFieldKey] = OtherTable[otherTabaleFieldKey];
         if (objectProperty.hasInMany2Many(OtherTable)) {
@@ -89,90 +89,88 @@ objectProperty.selectedItemLinkobjectUserId=false;
         return -1;
     }
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
- //#help/ سلکتور نوع عضو 
+    //#help/ سلکتور نوع عضو 
     objectProperty.LinkPropertyTypeIdSelector = {
-      displayMember: "Title",
-      id: "Id",
-      fId: "LinkPropertyTypeId",
-      url: "objectPropertyType",
-      sortColumn: "Id",
-      sortType: 0,
-      filterText: "Title",
-      showAddDialog: false,
-      rowPerPage: 200,
-      scope: objectProperty,
-      columnOptions: {
-        columns: [
-          {
-            name: "Id",
-            displayName: "کد سیستمی",
-            sortable: true,
-            type: "integer"
-          },
-          {
-            name: "Title",
-            displayName: "عنوان",
-            sortable: true,
-            type: "string"
-          },
-          {
-            name: "Description",
-            displayName: "توضیحات",
-            sortable: true,
-            type: "string"
-          }
-        ]
-      }
+        displayMember: "Title",
+        id: "Id",
+        fId: "LinkPropertyTypeId",
+        url: "objectPropertyType",
+        sortColumn: "Id",
+        sortType: 0,
+        filterText: "Title",
+        showAddDialog: false,
+        rowPerPage: 200,
+        scope: objectProperty,
+        columnOptions: {
+            columns: [{
+                    name: "Id",
+                    displayName: "کد سیستمی",
+                    sortable: true,
+                    type: "integer"
+                },
+                {
+                    name: "Title",
+                    displayName: "عنوان",
+                    sortable: true,
+                    type: "string"
+                },
+                {
+                    name: "Description",
+                    displayName: "توضیحات",
+                    sortable: true,
+                    type: "string"
+                }
+            ]
+        }
     };
 
- //#help/ سلکتور نوع عضو 
+    //#help/ سلکتور نوع عضو 
     objectProperty.LinkobjectUserIdSelector = {
-      displayMember: "Title",
-      id: "Id",
-      fId: "LinkobjectUserId",
-      url: "objectUser",
-      sortColumn: "Id",
-      sortType: 0,
-      filterText: "Title",
-      showAddDialog: false,
-      rowPerPage: 200,
-      scope: objectProperty,
-      columnOptions: {
-        columns: [
-          {
-            name: "Id",
-            displayName: "کد سیستمی",
-            sortable: true,
-            type: "integer"
-          },
-          {
-            name: "Title",
-            displayName: "عنوان",
-            sortable: true,
-            type: "string"
-          },
-          {
-            name: "Description",
-            displayName: "توضیحات",
-            sortable: true,
-            type: "string"
-          }
-        ]
-      }
+        displayMember: "Title",
+        id: "Id",
+        fId: "LinkobjectUserId",
+        url: "objectUser",
+        sortColumn: "Id",
+        sortType: 0,
+        filterText: "Title",
+        showAddDialog: false,
+        rowPerPage: 200,
+        scope: objectProperty,
+        columnOptions: {
+            columns: [{
+                    name: "Id",
+                    displayName: "کد سیستمی",
+                    sortable: true,
+                    type: "integer"
+                },
+                {
+                    name: "Title",
+                    displayName: "عنوان",
+                    sortable: true,
+                    type: "string"
+                },
+                {
+                    name: "Description",
+                    displayName: "توضیحات",
+                    sortable: true,
+                    type: "string"
+                }
+            ]
+        }
     };
 
 
- objectProperty.GeolocationConfig={
-     latitude: 'Geolocationlatitude',
-     longitude: 'Geolocationlongitude',
-        onlocationChanged:objectProperty.locationChanged,
-        useCurrentLocation:true,
-        center:{lat: 32.658066, lng: 51.6693815},
-        zoom:4,
-        scope:objectProperty,
-        useCurrentLocationZoom:12,
+    objectProperty.GeolocationConfig = {
+        latitude: 'Geolocationlatitude',
+        longitude: 'Geolocationlongitude',
+        onlocationChanged: objectProperty.locationChanged,
+        useCurrentLocation: true,
+        center: { lat: 32.658066, lng: 51.6693815 },
+        zoom: 4,
+        scope: objectProperty,
+        useCurrentLocationZoom: 12,
     }
- objectProperty.LinkLocationIdSelector = {
+    objectProperty.LinkLocationIdSelector = {
         displayMember: 'Title',
         id: 'Id',
         fId: 'LinkLocationId',
@@ -247,67 +245,65 @@ objectProperty.selectedItemLinkobjectUserId=false;
         }
     }
 
-///#help اضافه کردن property 
+    ///#help اضافه کردن property 
 
-        //#help فرم اتصال عضو به سایت
-        objectProperty.openAddPropertyinSiteModal= function () {
-                objectProperty.addRequested=false;
-                objectProperty.addRequestedAddUserInSite=true;
-                objectProperty.selectedItemPropertyInSiteLinkobjectUserId="";
-                objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId="";
-                objectProperty.selectedItemPropertyInSiteJoinId="";
-                $modal.open({
-                    templateUrl: 'cpanelv1/CmsModules/object/objectProperty/addPropertyinSite.html',
-                    scope: $scope
-                });
-        }
-        //#help بررسی عضو و JoinId
-        objectProperty.CheckPropertyToSite= function (frm) { 
+    //#help فرم اتصال عضو به سایت
+    objectProperty.openAddPropertyinSiteModal = function() {
+        objectProperty.addRequested = false;
+        objectProperty.addRequestedAddUserInSite = true;
+        objectProperty.selectedItemPropertyInSiteLinkobjectUserId = "";
+        objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId = "";
+        objectProperty.selectedItemPropertyInSiteJoinId = "";
+        $modal.open({
+            templateUrl: 'cpanelv1/CmsModules/object/objectProperty/addPropertyinSite.html',
+            scope: $scope
+        });
+    }
+    //#help بررسی عضو و JoinId
+    objectProperty.CheckPropertyToSite = function(frm) {
         if (frm.$invalid)
             return;
-        objectProperty.addRequested=true;
-        ajax.call(cmsServerConfig.configApiServerPath+"objectProperty/GetOneByJoinId", {LinkobjectPropertyId:objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId,LinkobjectUserId: objectProperty.selectedItemPropertyInSiteLinkobjectUserId,JoinId: objectProperty.selectedItemPropertyInSiteJoinId}, "POST").success(function (response) {
-            if(response.IsSuccess)
-            {
-                objectProperty.selectedItemobjectInSite=response.Item;
-                objectProperty.addRequestedAddUserInSite=false;
-                objectProperty.addRequested=true;
+        objectProperty.addRequested = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "objectProperty/GetOneByJoinId", { LinkobjectPropertyId: objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId, LinkobjectUserId: objectProperty.selectedItemPropertyInSiteLinkobjectUserId, JoinId: objectProperty.selectedItemPropertyInSiteJoinId }, "POST").success(function(response) {
+            if (response.IsSuccess) {
+                objectProperty.selectedItemobjectInSite = response.Item;
+                objectProperty.addRequestedAddUserInSite = false;
+                objectProperty.addRequested = true;
             }
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        }
+    }
 
-        //#help اتصال عضو به سایت
-        objectProperty.addNewPropertyToSite= function () { 
-        objectProperty.addRequestedAddUserInSite=true;
-        ajax.call(cmsServerConfig.configApiServerPath+"objectPropertySite/AddeByJoinId",  {LinkobjectPropertyId:objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId,LinkobjectUserId: objectProperty.selectedItemPropertyInSiteLinkobjectUserId,JoinId: objectProperty.selectedItemPropertyInSiteJoinId}, "POST").success(function (response) {
-            if(response.IsSuccess)
-            {
-                objectProperty.selectedItemobjectInSiteJoinId="";
-                objectProperty.selectedItemPropertyInSiteLinkobjectUserId="";
-                objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId="";
+    //#help اتصال عضو به سایت
+    objectProperty.addNewPropertyToSite = function() {
+        objectProperty.addRequestedAddUserInSite = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "objectPropertySite/AddeByJoinId", { LinkobjectPropertyId: objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId, LinkobjectUserId: objectProperty.selectedItemPropertyInSiteLinkobjectUserId, JoinId: objectProperty.selectedItemPropertyInSiteJoinId }, "POST").success(function(response) {
+            if (response.IsSuccess) {
+                objectProperty.selectedItemobjectInSiteJoinId = "";
+                objectProperty.selectedItemPropertyInSiteLinkobjectUserId = "";
+                objectProperty.selectedItemPropertyInSiteLinkobjectPropertyId = "";
                 objectProperty.ListItems.unshift(response.Item);
                 objectProperty.gridOptions.fillData(objectProperty.ListItems);
                 objectProperty.closeModal();
-                objectProperty.addRequested=false;
+                objectProperty.addRequested = false;
             }
             rashaErManage.checkAction(response);
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
-            objectProperty.addRequested=false;
-            objectProperty.addRequestedAddUserInSite=true;
+            objectProperty.addRequested = false;
+            objectProperty.addRequestedAddUserInSite = true;
         });
-        }
+    }
 
 
-///#help
+    ///#help
 
-// Open Add Modal History
-    objectProperty.openAddModalHistory = function () {
- if (buttonIsPressed) return;
-        objectProperty.onPropertyTypeChange(objectProperty.PropertyTypeId,true);
+    // Open Add Modal History
+    objectProperty.openAddModalHistory = function() {
+        if (buttonIsPressed) return;
+        objectProperty.onPropertyTypeChange(objectProperty.PropertyTypeId, true);
         objectProperty.addRequested = false;
         objectProperty.modalTitle = 'اضافه';
         //Clear file pickers
@@ -318,39 +314,38 @@ objectProperty.selectedItemLinkobjectUserId=false;
         objectProperty.filePickerFiles.filename = "";
         objectProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/ViewModel', "", 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
             objectProperty.selectedItemhistory = response.Item;
             objectProperty.selectedItemhistory.LinkPropertyTypeId = objectProperty.listHistorysSelectedLinkPropertyTypeId;
-            objectProperty.onPropertyTypeChange(objectProperty.selectedItemhistory.LinkPropertyTypeId , true);
+            objectProperty.onPropertyTypeChange(objectProperty.selectedItemhistory.LinkPropertyTypeId, true);
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/object/objectProperty/addhistory.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             //objectProperty.busyIndicator.isActive = false;
-        });        
+        });
 
     }
-//  Add History
- objectProperty.addNewContenthistory = function (frm) {
-        if (frm.$invalid)
-        {
+    //  Add History
+    objectProperty.addNewContenthistory = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-       /* if (objectProperty.selectedItemhistory.LinkPropertyId ==null) {
-            rashaErManage.showMessage("لطفا Property را مشخص کنید");
-            return;
-        }*/
+        /* if (objectProperty.selectedItemhistory.LinkPropertyId ==null) {
+             rashaErManage.showMessage("لطفا Property را مشخص کنید");
+             return;
+         }*/
         //objectProperty.busyIndicator.isActive = true;
         //objectProperty.addRequested = true;
-        objectProperty.selectedItemhistory.LinkPropertyId=objectProperty.PropertyID;
+        objectProperty.selectedItemhistory.LinkPropertyId = objectProperty.PropertyID;
         //objectProperty.listHistorysSelectedLinkPropertyTypeId
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.selectedItemhistory, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/', objectProperty.selectedItemhistory, 'POST').success(function(response) {
             //objectProperty.addRequested = false;
             //objectProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -358,12 +353,12 @@ objectProperty.selectedItemLinkobjectUserId=false;
                 objectProperty.listHistorys.unshift(response.Item);
                 objectProperty.gridOptionsHistory.fillData(objectProperty.listHistorys);
                 objectProperty.closeModal();
-//#helper  اضافه کردن مقادیر
-        var valueItem = {};
-        objectProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+"objectpropertydetailvalue/ViewModel", "", 'GET').success(function (response1) {
+                //#helper  اضافه کردن مقادیر
+                var valueItem = {};
+                objectProperty.valueItems = [];
+                ajax.call(cmsServerConfig.configApiServerPath + "objectpropertydetailvalue/ViewModel", "", 'GET').success(function(response1) {
                     rashaErManage.checkAction(response1);
-                    objectProperty.LinkHistoryId=response.Item.Id;
+                    objectProperty.LinkHistoryId = response.Item.Id;
                     for (var i = 0; i < objectProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
                         valueItem.LinkPropertyDetailId = objectProperty.propertyDetailsListItems[i].Id;
@@ -373,21 +368,20 @@ objectProperty.selectedItemLinkobjectUserId=false;
                             if (objectProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice) {
                                 var checkboxName = "nameValue" + objectProperty.propertyDetailsListItems[i].Id;
                                 objectProperty.selectionValueNames = [];
-                                jQuery("input[name='" + checkboxName + "']").each(function () {
+                                jQuery("input[name='" + checkboxName + "']").each(function() {
                                     if (this.checked) {
                                         objectProperty.selectionValueNames.push(this.value);
                                     }
                                 });
                                 valueItem.Value = objectProperty.selectionValueNames;
-                                if(valueItem.Value){
-                                    valueItem.Value= JSON.stringify(valueItem.Value)
-                                }else{
-                                    valueItem.Value=""
+                                if (valueItem.Value) {
+                                    valueItem.Value = JSON.stringify(valueItem.Value)
+                                } else {
+                                    valueItem.Value = ""
                                 }
-                            }
-                            else {
+                            } else {
 
-                                if (objectProperty.propertyDetailsListItems[i].DefaultValue.forceUse && objectProperty.propertyDetailsListItems[i].DefaultValue.nameValue.length > 0) {  //ELement is a RadioButton/DropDown
+                                if (objectProperty.propertyDetailsListItems[i].DefaultValue.forceUse && objectProperty.propertyDetailsListItems[i].DefaultValue.nameValue.length > 0) { //ELement is a RadioButton/DropDown
                                     //Do not delete the following comments: Get the value if the element is a RadioButton
                                     /*var radioButton = "nameValue" + objectProperty.propertyDetailsListItems[i].Id;
                                     objectProperty.selectionValueNames = [];
@@ -403,7 +397,7 @@ objectProperty.selectedItemLinkobjectUserId=false;
                             valueItem.Value = objectProperty.propertyDetailsListItems[i].value;
                         objectProperty.valueItems.push(valueItem);
                     }
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/AddBatch', objectProperty.valueItems, 'POST').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'objectPropertyDetailValue/AddBatch', objectProperty.valueItems, 'POST').success(function(response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
                             objectProperty.listHistorys.unshift(response.Item);
@@ -414,64 +408,63 @@ objectProperty.selectedItemLinkobjectUserId=false;
                             //ملک و مقادیر ثبت شده است از کاربر می خواهیم که نوع فروش را مشخص کند
                             //objectProperty.openAddContractModal(response.Item.Id, response.Item.Title);
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         console.log(data);
                         rashaErManage.checkAction(data, errCode);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
-//#helper  اضافه کردن مقادیر
+                //#helper  اضافه کردن مقادیر
 
 
 
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             objectProperty.busyIndicator.isActive = false;
             objectProperty.addRequested = false;
         });
 
     }
-// Open Edit Modal History
-    objectProperty.openEditModelHistory = function () {
-        
+    // Open Edit Modal History
+    objectProperty.openEditModelHistory = function() {
+
         //if (buttonIsPressed) { return };
         objectProperty.addRequested = false;
         objectProperty.modalTitle = 'ویرایش';
-        objectProperty.onPropertyTypeChange(objectProperty.listHistorysSelectedLinkPropertyTypeId , true);
+        objectProperty.onPropertyTypeChange(objectProperty.listHistorysSelectedLinkPropertyTypeId, true);
         if (!objectProperty.treeConfig.currentNode) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_category_to_edit'));
             return;
         }
         objectProperty.categoryBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/', objectProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             objectProperty.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             objectProperty.selectedItemhistory = response.Item;
             objectProperty.selectedItemhistoryId = response.Item.Id;
             //#help
-                objectProperty.loadDetailValues(objectProperty.listHistorysSelectedLinkPropertyTypeId, objectProperty.PropertyID, true);
+            objectProperty.loadDetailValues(objectProperty.listHistorysSelectedLinkPropertyTypeId, objectProperty.PropertyID, true);
             //#help
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/object/objectProperty/edithistory.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-//  Edit History
- objectProperty.editNewContenthistory = function (frm) {
-        if (frm.$invalid)
-        {
+    //  Edit History
+    objectProperty.editNewContenthistory = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
         //objectProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.selectedItemhistory, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/', objectProperty.selectedItemhistory, "PUT").success(function(response) {
             //objectProperty.addRequested = true;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
@@ -482,25 +475,25 @@ objectProperty.selectedItemLinkobjectUserId=false;
                 objectProperty.closeModal();
             }
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             //objectProperty.addRequested = false;
         });
     }
-// Delete History
- objectProperty.deleteContentHistory = function () {
+    // Delete History
+    objectProperty.deleteContentHistory = function() {
         if (!objectProperty.gridOptionsHistory.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
 
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 //objectProperty.busyIndicator.isActive = true;
                 console.log(objectProperty.gridOptionsHistory.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/', objectProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function(response) {
                     objectProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectHistory/', objectProperty.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'objectHistory/', objectProperty.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         //objectProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -508,10 +501,10 @@ objectProperty.selectedItemLinkobjectUserId=false;
                             objectProperty.gridOptionsHistory.fillData(objectProperty.selectedItemhistory);
                         }
 
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -522,20 +515,20 @@ objectProperty.selectedItemLinkobjectUserId=false;
 
 
 
-objectProperty.listHistorysSelectedLinkPropertyTypeId=0;
-objectProperty.openPreviewHistory = function (PropertyId,LinkPropertyTypeId) {
-var engine2 = {};
+    objectProperty.listHistorysSelectedLinkPropertyTypeId = 0;
+    objectProperty.openPreviewHistory = function(PropertyId, LinkPropertyTypeId) {
+        var engine2 = {};
         engine2.Filters = [];
-         var d = {
-                    PropertyName: "LinkPropertyId",
-                    IntValue1: PropertyId,
-                    ClauseType:1,
-                    SearchType: 0
-                }
-                engine2.Filters.push(d);
-objectProperty.PropertyID=PropertyId;
- ajax.call(cmsServerConfig.configApiServerPath+"objectHistory/getall",engine2, 'POST').success(function (response1) {
-            objectProperty.showlistHistory=true;
+        var d = {
+            PropertyName: "LinkPropertyId",
+            IntValue1: PropertyId,
+            ClauseType: 1,
+            SearchType: 0
+        }
+        engine2.Filters.push(d);
+        objectProperty.PropertyID = PropertyId;
+        ajax.call(cmsServerConfig.configApiServerPath + "objectHistory/getall", engine2, 'POST').success(function(response1) {
+            objectProperty.showlistHistory = true;
             objectProperty.listHistorys = response1.ListItems;
             objectProperty.listHistorysSelectedLinkPropertyTypeId = LinkPropertyTypeId;
             rashaErManage.checkAction(response1);
@@ -543,10 +536,10 @@ objectProperty.PropertyID=PropertyId;
             objectProperty.gridOptionsHistory.currentPageNumber = response1.CurrentPageNumber;
             objectProperty.gridOptionsHistory.totalRowCount = response1.TotalRowCount;
             objectProperty.gridOptionsHistory.RowPerPage = response1.RowPerPage;
-    }).error(function (data, errCode, c, d) {
-        console.log(data);
-    });
-}
+        }).error(function(data, errCode, c, d) {
+            console.log(data);
+        });
+    }
 
 
 
@@ -568,28 +561,28 @@ objectProperty.PropertyID=PropertyId;
     };
 
     //open addMenu modal
-    objectProperty.addMenu = function () {
+    objectProperty.addMenu = function() {
         $modal.open({
             templateUrl: "cpanelv1/CmsModules/object/objectPropertyType/modalMenu.html",
             scope: $scope
         });
     }
     //#help//download file
-    objectProperty.downloadFile = function (Id, FileName) {
+    objectProperty.downloadFile = function(Id, FileName) {
         var DownloadModel = {
             id: null,
             name: null
         };
 
-            DownloadModel.id = Id;
-            DownloadModel.name = FileName;
+        DownloadModel.id = Id;
+        DownloadModel.name = FileName;
 
         window.open('/files/' + DownloadModel.id + '/' + DownloadModel.name, '_blank', '');
     }
     //#help//
 
     //open addMenu modal
-    objectProperty.showlistfile = function (sItem) {
+    objectProperty.showlistfile = function(sItem) {
         var s = {
             PropertyName: "LinkModuleobjectId",
             IntValue1: sItem.Id,
@@ -598,9 +591,9 @@ objectProperty.PropertyID=PropertyId;
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(s);
-     
-       
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, "POST").success(function (response) {
+
+        engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getall", engine, "POST").success(function(response) {
             objectProperty.listComments = response.ListItems;
             rashaErManage.checkAction(response);
             objectProperty.gridOptionsfile.fillData(objectProperty.listComments, response.Access);
@@ -614,7 +607,7 @@ objectProperty.PropertyID=PropertyId;
             scrollTop: $("#showlistfile").offset().top
         }, 850);
     }
-   
+
     objectProperty.treeConfig.currentNode = {};
 
     objectProperty.treeBusyIndicator = false;
@@ -622,135 +615,129 @@ objectProperty.PropertyID=PropertyId;
     objectProperty.addRequested = false;
 
     //init Function
-    objectProperty.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"objectGroup/getall", {}, 'POST').success(function (response) {
-                objectProperty.selectedItemPropertyType = response.ListItems;    
+    objectProperty.init = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "objectGroup/getall", {}, 'POST').success(function(response) {
+            objectProperty.selectedItemPropertyType = response.ListItems;
 
 
-                      ///////////////////////////////////////////////////////////////
-    if (objectProperty.selectedPublicConfig.object!= null || objectProperty.selectedPublicConfig.object != undefined)
-    {
-            
-            objectUserId=objectProperty.selectedPublicConfig.object.Id;
-            objectProperty.selectedItemLinkobjectUserId=true;
-            var engine = {};
-            engine.Filters = [];
+            ///////////////////////////////////////////////////////////////
+            if (objectProperty.selectedPublicConfig.object != null || objectProperty.selectedPublicConfig.object != undefined) {
 
-            //#help# گرفتن دسته بندی ها
-             angular.forEach(objectProperty.selectedPublicConfig.object.ObjectUserGroup, function (item, key) {
+                objectUserId = objectProperty.selectedPublicConfig.object.Id;
+                objectProperty.selectedItemLinkobjectUserId = true;
+                var engine = {};
+                engine.Filters = [];
 
-                   
-            //#help# گرفتن اطلاعات شامل از دسته بندی ها
-            angular.forEach(objectProperty.selectedItemPropertyType, function (itemG, key) {
-            if(itemG.Id==item.objectGroup_Id &&  itemG.LinkPropertyTypeId!=undefined && itemG.LinkPropertyTypeId!=null)
-             { 
-            var s = {
+                //#help# گرفتن دسته بندی ها
+                angular.forEach(objectProperty.selectedPublicConfig.object.ObjectUserGroup, function(item, key) {
+
+
+                    //#help# گرفتن اطلاعات شامل از دسته بندی ها
+                    angular.forEach(objectProperty.selectedItemPropertyType, function(itemG, key) {
+                        if (itemG.Id == item.objectGroup_Id && itemG.LinkPropertyTypeId != undefined && itemG.LinkPropertyTypeId != null) {
+                            var s = {
                                 PropertyName: "Id",
                                 IntValue1: itemG.LinkPropertyTypeId,
-                                ClauseType:1,
+                                ClauseType: 1,
                                 SearchType: 0
                             }
-                
-                            engine.Filters.push(s);
-            }
-            });
-            //#help# گرفتن اطلاعات شامل از دسته بندی ها
 
-            });
-            //#help# گرفتن دسته بندی ها
-            if(engine.Filters.length>0)
-            {
-                    ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", engine, 'POST').success(function (response) {
+                            engine.Filters.push(s);
+                        }
+                    });
+                    //#help# گرفتن اطلاعات شامل از دسته بندی ها
+
+                });
+                //#help# گرفتن دسته بندی ها
+                if (engine.Filters.length > 0) {
+                    engine.AccessLoad = true;
+                    ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyType/getall", engine, 'POST').success(function(response) {
                         objectProperty.treeConfig.Items = response.ListItems;
                         objectProperty.gridOptions.AccessGroup = response.Access;
                         objectProperty.propertyTypeListItems = response.ListItems;
                         objectProperty.categoryBusyIndicator.isActive = false;
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         console.log(data);
                     });
-             }
-             objectProperty.selectedItem.LinkobjectUserId=objectProperty.selectedPublicConfig.object.Id;
-            var engine = {};
-            engine.Filters = [];
+                }
+                objectProperty.selectedItem.LinkobjectUserId = objectProperty.selectedPublicConfig.object.Id;
+                var engine = {};
+                engine.Filters = [];
 
-            var s = {
-                        PropertyName: "LinkobjectUserId",
-                        IntValue1: objectProperty.selectedPublicConfig.object.Id,
-                        ClauseType:1,
-                        SearchType: 0
-                    }
-                
-        engine.Filters.push(s);
+                var s = {
+                    PropertyName: "LinkobjectUserId",
+                    IntValue1: objectProperty.selectedPublicConfig.object.Id,
+                    ClauseType: 1,
+                    SearchType: 0
+                }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"objectProperty/getall", engine, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            angular.forEach(response.ListItems.virtual_PropertyDetailValue, function (itemV, key) {
-                if(itemV.PropertyDetail.IsHistoryable!=false)
-                    { 
-                            objectProperty.ListItems=response.ListItems;
-                    }
-            });
-            objectProperty.ListItems = response.ListItems;
-            objectProperty.gridOptions.fillData(objectProperty.ListItems, response.Access); // Sending Access as an argument
-            objectProperty.allowedSearch = response.AllowedSearchField;
-            objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
-            objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
-            objectProperty.gridOptions.rowPerPage = response.RowPerPage;
-            objectProperty.gridOptions.maxSize = 5;
-        }).error(function (data, errCode, c, d) {
-            objectProperty.gridOptions.fillData();
-            rashaErManage.checkAction(data, errCode);
+                engine.Filters.push(s);
+                engine.AccessLoad = true;
+                ajax.call(cmsServerConfig.configApiServerPath + "objectProperty/getall", engine, 'POST').success(function(response) {
+                    rashaErManage.checkAction(response);
+                    angular.forEach(response.ListItems.virtual_PropertyDetailValue, function(itemV, key) {
+                        if (itemV.PropertyDetail.IsHistoryable != false) {
+                            objectProperty.ListItems = response.ListItems;
+                        }
+                    });
+                    objectProperty.ListItems = response.ListItems;
+                    objectProperty.gridOptions.fillData(objectProperty.ListItems, response.Access); // Sending Access as an argument
+                    objectProperty.allowedSearch = response.AllowedSearchField;
+                    objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
+                    objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
+                    objectProperty.gridOptions.rowPerPage = response.RowPerPage;
+                    objectProperty.gridOptions.maxSize = 5;
+                }).error(function(data, errCode, c, d) {
+                    objectProperty.gridOptions.fillData();
+                    rashaErManage.checkAction(data, errCode);
+                });
+
+            } else {
+                ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyType/getall", {AccessLoad : true}, 'POST').success(function(response) {
+                    objectProperty.treeConfig.Items = response.ListItems;
+                    objectProperty.gridOptions.AccessGroup = response.Access;
+                    objectProperty.propertyTypeListItems = response.ListItems;
+                    objectProperty.categoryBusyIndicator.isActive = false;
+                }).error(function(data, errCode, c, d) {
+                    console.log(data);
+                });
+                objectProperty.categoryBusyIndicator.isActive = true;
+
+                ajax.call(cmsServerConfig.configApiServerPath + "objectProperty/getall", {AccessLoad : true}, 'POST').success(function(response) {
+                    rashaErManage.checkAction(response);
+                    angular.forEach(response.ListItems.virtual_PropertyDetailValue, function(itemV, key) {
+                        if (itemV.PropertyDetail.IsHistoryable != false) {
+                            objectProperty.ListItems = response.ListItems;
+                        }
+                    });
+                    objectProperty.ListItems = response.ListItems;
+                    objectProperty.gridOptions.fillData(objectProperty.ListItems, response.Access); // Sending Access as an argument
+                    objectProperty.allowedSearch = response.AllowedSearchField;
+                    objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
+                    objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
+                    objectProperty.gridOptions.rowPerPage = response.RowPerPage;
+                    objectProperty.gridOptions.maxSize = 5;
+                }).error(function(data, errCode, c, d) {
+                    objectProperty.gridOptions.fillData();
+                    rashaErManage.checkAction(data, errCode);
+                });
+
+            }
+            ////////////////////////////////////////////////////////////////
+
+
+        }).error(function(data, errCode, c, d) {
+            console.log(data);
         });
 
-        }
-        else
-        {
-            ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", {}, 'POST').success(function (response) {
-                objectProperty.treeConfig.Items = response.ListItems;
-                objectProperty.gridOptions.AccessGroup = response.Access;
-                objectProperty.propertyTypeListItems = response.ListItems;
-                objectProperty.categoryBusyIndicator.isActive = false;
-            }).error(function (data, errCode, c, d) {
-                console.log(data);
-            });
-        objectProperty.categoryBusyIndicator.isActive = true;
-
-        ajax.call(cmsServerConfig.configApiServerPath+"objectProperty/getall", {}, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            angular.forEach(response.ListItems.virtual_PropertyDetailValue, function (itemV, key) {
-                if(itemV.PropertyDetail.IsHistoryable!=false)
-                    { 
-                            objectProperty.ListItems=response.ListItems;
-                    }
-            });
-            objectProperty.ListItems = response.ListItems;
-            objectProperty.gridOptions.fillData(objectProperty.ListItems, response.Access); // Sending Access as an argument
-            objectProperty.allowedSearch = response.AllowedSearchField;
-            objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
-            objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
-            objectProperty.gridOptions.rowPerPage = response.RowPerPage;
-            objectProperty.gridOptions.maxSize = 5;
-        }).error(function (data, errCode, c, d) {
-            objectProperty.gridOptions.fillData();
-            rashaErManage.checkAction(data, errCode);
-        });
-
-        }
-////////////////////////////////////////////////////////////////
-
-
-    }).error(function (data, errCode, c, d) {
-        console.log(data);
-    });
 
 
 
 
-
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreLocation/GetAllProvinces", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             objectProperty.provinceCmsLocatinoListItems = response.ListItems;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             objectProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
@@ -760,68 +747,65 @@ objectProperty.PropertyID=PropertyId;
     };
 
 
-        objectProperty.getAllPropertyType = function (sItem)
-        {
-            objectUserId=sItem.Id;
-            var engine = {};
-            engine.Filters = [];
+    objectProperty.getAllPropertyType = function(sItem) {
+        objectUserId = sItem.Id;
+        var engine = {};
+        engine.Filters = [];
 
-            //#help# گرفتن دسته بندی ها
-             angular.forEach(sItem.objectUserGroup, function (item, key) {
-      
+        //#help# گرفتن دسته بندی ها
+        angular.forEach(sItem.objectUserGroup, function(item, key) {
+
             //#help# گرفتن اطلاعات شامل از دسته بندی ها
-            angular.forEach(objectGroup.treeConfig.Items, function (itemG, key) {
-            if(itemG.Id==item.objectGroup_Id &&  itemG.LinkPropertyTypeId!=undefined && itemG.LinkPropertyTypeId!=null)
-             { 
-            var s = {
-                                PropertyName: "Id",
-                                IntValue1: itemG.LinkPropertyTypeId,
-                                ClauseType:1,
-                                SearchType: 0
-                            }
-                
-                            engine.Filters.push(s);
-            }
+            angular.forEach(objectGroup.treeConfig.Items, function(itemG, key) {
+                if (itemG.Id == item.objectGroup_Id && itemG.LinkPropertyTypeId != undefined && itemG.LinkPropertyTypeId != null) {
+                    var s = {
+                        PropertyName: "Id",
+                        IntValue1: itemG.LinkPropertyTypeId,
+                        ClauseType: 1,
+                        SearchType: 0
+                    }
+
+                    engine.Filters.push(s);
+                }
             });
             //#help# گرفتن اطلاعات شامل از دسته بندی ها
 
+        });
+        //#help# گرفتن دسته بندی ها
+        if (engine.Filters.length > 0) {
+            ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyType/getall", engine, 'POST').success(function(response) {
+                objectProperty.treeConfig.Items = response.ListItems;
+                objectProperty.gridOptions.AccessGroup = response.Access;
+                objectProperty.propertyTypeListItems = response.ListItems;
+                objectProperty.categoryBusyIndicator.isActive = false;
+            }).error(function(data, errCode, c, d) {
+                console.log(data);
             });
-            //#help# گرفتن دسته بندی ها
-            if(engine.Filters.length>0)
-            {
-                    ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", engine, 'POST').success(function (response) {
-                        objectProperty.treeConfig.Items = response.ListItems;
-                        objectProperty.gridOptions.AccessGroup = response.Access;
-                        objectProperty.propertyTypeListItems = response.ListItems;
-                        objectProperty.categoryBusyIndicator.isActive = false;
-                    }).error(function (data, errCode, c, d) {
-                        console.log(data);
-                    });
 
 
-                      /*  ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", engine, "POST").success(function (response) {
-                            objectGroup.listComments = response.ListItems;
-                            angular.forEach( response.ListItems, function (item, key) {
-                                item.objectUserId=objectUserId;
-                            });
-                            rashaErManage.checkAction(response);
-                            objectGroup.gridOptionsProperty.fillData(objectGroup.listComments, response.Access);
-                            objectGroup.gridOptionsProperty.currentPageNumber = response.CurrentPageNumber;
-                            objectGroup.gridOptionsProperty.totalRowCount = response.TotalRowCount;
-                            objectGroup.gridOptionsProperty.RowPerPage = response.RowPerPage;
-                            objectGroup.showGridComment = true;
-                            objectGroup.Title = objectGroup.gridOptions.selectedRow.item.Title;
-                        });
-                        $('html, body').animate({
-                            scrollTop: $("#showlistProperty").offset().top
-                        }, 850);*/
-             }
+            /*  ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", engine, "POST").success(function (response) {
+                  objectGroup.listComments = response.ListItems;
+                  angular.forEach( response.ListItems, function (item, key) {
+                      item.objectUserId=objectUserId;
+                  });
+                  rashaErManage.checkAction(response);
+                  objectGroup.gridOptionsProperty.fillData(objectGroup.listComments, response.Access);
+                  objectGroup.gridOptionsProperty.currentPageNumber = response.CurrentPageNumber;
+                  objectGroup.gridOptionsProperty.totalRowCount = response.TotalRowCount;
+                  objectGroup.gridOptionsProperty.RowPerPage = response.RowPerPage;
+                  objectGroup.showGridComment = true;
+                  objectGroup.Title = objectGroup.gridOptions.selectedRow.item.Title;
+              });
+              $('html, body').animate({
+                  scrollTop: $("#showlistProperty").offset().top
+              }, 850);*/
         }
+    }
 
 
 
 
-    objectProperty.gridOptions.onRowSelected = function () {
+    objectProperty.gridOptions.onRowSelected = function() {
         var item = objectProperty.gridOptions.selectedRow.item;
     }
 
@@ -843,29 +827,29 @@ objectProperty.PropertyID=PropertyId;
         });
     }*/
     // Open Edit Category Modal
-   /* objectProperty.openEditCategoryModel = function () {
-        if (buttonIsPressed) { return };
-        objectProperty.addRequested = false;
-        objectProperty.modalTitle = 'ویرایش';
-        if (!objectProperty.treeConfig.currentNode) {
-            rashaErManage.showMessage($filter('translatentk')('please_select_a_category_to_edit'));
-            return;
-        }
-        objectProperty.categoryBusyIndicator.isActive = true;
-        buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/', objectProperty.treeConfig.currentNode.Id, 'GET').success(function (response) {
-            buttonIsPressed = false;
-            objectProperty.categoryBusyIndicator.isActive = false;
-            rashaErManage.checkAction(response);
-            objectProperty.selectedItem = response.Item;
-            $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/object/objectPropertyType/edit.html',
-                scope: $scope
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }*/
+    /* objectProperty.openEditCategoryModel = function () {
+         if (buttonIsPressed) { return };
+         objectProperty.addRequested = false;
+         objectProperty.modalTitle = 'ویرایش';
+         if (!objectProperty.treeConfig.currentNode) {
+             rashaErManage.showMessage($filter('translatentk')('please_select_a_category_to_edit'));
+             return;
+         }
+         objectProperty.categoryBusyIndicator.isActive = true;
+         buttonIsPressed = true;
+         ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyType/', objectProperty.treeConfig.currentNode.Id, 'GET').success(function (response) {
+             buttonIsPressed = false;
+             objectProperty.categoryBusyIndicator.isActive = false;
+             rashaErManage.checkAction(response);
+             objectProperty.selectedItem = response.Item;
+             $modal.open({
+                 templateUrl: 'cpanelv1/CmsModules/object/objectPropertyType/edit.html',
+                 scope: $scope
+             });
+         }).error(function (data, errCode, c, d) {
+             rashaErManage.checkAction(data, errCode);
+         });
+     }*/
 
     // Add New Category
     /*objectProperty.addNewCategory = function (frm) {
@@ -965,64 +949,61 @@ objectProperty.PropertyID=PropertyId;
     }
 */
     //Tree: On Node Select Options
-    objectProperty.treeConfig.onNodeSelect = function () {
+    objectProperty.treeConfig.onNodeSelect = function() {
         var node = objectProperty.treeConfig.currentNode;
         //objectProperty.selectedItem.LinkCategoryId = node.Id;
-        if(node != null)
-        {
+        if (node != null) {
             objectProperty.PropertyTypeId = node.Id;
         }
         objectProperty.selectContent(node);
 
     };
     //Show Content with Category Id
-    objectProperty.selectContent = function (node) {
+    objectProperty.selectContent = function(node) {
         objectProperty.gridOptions.advancedSearchData.engine.Filters = null;
         objectProperty.gridOptions.advancedSearchData.engine.Filters = [];
-        if(node !=null && node != undefined)
-        {
+        if (node != null && node != undefined) {
             objectProperty.categoryBusyIndicator.message = "در حال بارگذاری اعضای " + node.Title;
             objectProperty.categoryBusyIndicator.isActive = true;
             objectProperty.attachedFiles = [];
             var s = {
                 PropertyName: "LinkPropertyTypeId",
                 IntValue1: node.Id,
-                ClauseType:2,
+                ClauseType: 2,
                 SearchType: 0
             }
             objectProperty.gridOptions.advancedSearchData.engine.Filters.push(s);
-            if (objectProperty.selectedPublicConfig.object!= null || objectProperty.selectedPublicConfig.object != undefined)
-            {
+            if (objectProperty.selectedPublicConfig.object != null || objectProperty.selectedPublicConfig.object != undefined) {
                 var d = {
-                            PropertyName: "LinkobjectUserId",
-                            IntValue1: objectProperty.selectedPublicConfig.object.Id,
-                            ClauseType:2,
-                            SearchType: 0
-                        }
-                
-            objectProperty.gridOptions.advancedSearchData.engine.Filters.push(d);
+                    PropertyName: "LinkobjectUserId",
+                    IntValue1: objectProperty.selectedPublicConfig.object.Id,
+                    ClauseType: 2,
+                    SearchType: 0
+                }
+
+                objectProperty.gridOptions.advancedSearchData.engine.Filters.push(d);
             }
         }
-            ajax.call(cmsServerConfig.configApiServerPath+"objectProperty/getAll", objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
-                objectProperty.categoryBusyIndicator.isActive = false;
-                objectProperty.ListItems = response.ListItems;
-                objectProperty.gridOptions.fillData(objectProperty.ListItems); // Sending Access as an argument
-                objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
-                objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
-                objectProperty.gridOptions.rowPerPage = response.RowPerPage;
-                objectProperty.gridOptions.maxSize = 5;
-            }).error(function (data, errCode, c, d) {
-                objectProperty.gridOptions.fillData();
-                rashaErManage.checkAction(data, errCode);
-            });
+        ajax.call(cmsServerConfig.configApiServerPath + "objectProperty/getAll", objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+            objectProperty.categoryBusyIndicator.isActive = false;
+            objectProperty.ListItems = response.ListItems;
+            objectProperty.gridOptions.fillData(objectProperty.ListItems); // Sending Access as an argument
+            objectProperty.gridOptions.currentPageNumber = response.CurrentPageNumber;
+            objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
+            objectProperty.gridOptions.rowPerPage = response.RowPerPage;
+            objectProperty.gridOptions.maxSize = 5;
+        }).error(function(data, errCode, c, d) {
+            objectProperty.gridOptions.fillData();
+            rashaErManage.checkAction(data, errCode);
+        });
 
-    
+
     };
 
-      // Open Add Modal
-    objectProperty.openAddModal = function () {
+    // Open Add Modal
+    objectProperty.openAddModal = function() {
         if (buttonIsPressed) return;
-        objectProperty.onPropertyTypeChange(objectProperty.PropertyTypeId,false);
+        objectProperty.onPropertyTypeChange(objectProperty.PropertyTypeId, false);
         objectProperty.addRequested = false;
         objectProperty.modalTitle = 'اضافه';
         //Clear file pickers
@@ -1033,32 +1014,30 @@ objectProperty.PropertyID=PropertyId;
         objectProperty.filePickerFiles.filename = "";
         objectProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/ViewModel', "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/ViewModel', "", 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
             objectProperty.selectedItem = response.Item;
-            if (objectProperty.selectedPublicConfig.object!= null || objectProperty.selectedPublicConfig.object != undefined)
-            {
+            if (objectProperty.selectedPublicConfig.object != null || objectProperty.selectedPublicConfig.object != undefined) {
                 objectProperty.selectedItem.LinkobjectUserId = objectProperty.selectedPublicConfig.object.Id;
-                objectProperty.selectedItemLinkobjectUserId=true;
+                objectProperty.selectedItemLinkobjectUserId = true;
             }
             objectProperty.selectedItem.LinkPropertyTypeId = objectProperty.PropertyTypeId;
-            objectProperty.onPropertyTypeChange(objectProperty.selectedItem.LinkPropertyTypeId , false);
+            objectProperty.onPropertyTypeChange(objectProperty.selectedItem.LinkPropertyTypeId, false);
             $modal.open({
                 templateUrl: 'cpanelv1/CmsModules/object/objectProperty/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             //objectProperty.busyIndicator.isActive = false;
         });
     }
 
     // Add New Content
-    objectProperty.addNewRow = function (frm) {
-        if (frm.$invalid)
-        {
+    objectProperty.addNewRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
@@ -1070,11 +1049,11 @@ objectProperty.PropertyID=PropertyId;
         objectProperty.addRequested = true;
         var valueItem = {};
         objectProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/', objectProperty.selectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 objectProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"objectpropertydetailvalue/ViewModel", "", 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath + "objectpropertydetailvalue/ViewModel", "", 'GET').success(function(response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < objectProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -1084,16 +1063,15 @@ objectProperty.PropertyID=PropertyId;
                             if (objectProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice) {
                                 var checkboxName = "nameValue" + objectProperty.propertyDetailsListItems[i].Id;
                                 objectProperty.selectionValueNames = [];
-                                jQuery("input[name='" + checkboxName + "']").each(function () {
+                                jQuery("input[name='" + checkboxName + "']").each(function() {
                                     if (this.checked) {
                                         objectProperty.selectionValueNames.push(this.value);
                                     }
                                 });
                                 valueItem.Value = objectProperty.selectionValueNames.toString();
-                            }
-                            else {
+                            } else {
 
-                                if (objectProperty.propertyDetailsListItems[i].DefaultValue.forceUse && objectProperty.propertyDetailsListItems[i].DefaultValue.nameValue.length > 0) {  //ELement is a RadioButton/DropDown
+                                if (objectProperty.propertyDetailsListItems[i].DefaultValue.forceUse && objectProperty.propertyDetailsListItems[i].DefaultValue.nameValue.length > 0) { //ELement is a RadioButton/DropDown
                                     //Do not delete the following comments: Get the value if the element is a RadioButton
                                     /*var radioButton = "nameValue" + objectProperty.propertyDetailsListItems[i].Id;
                                     objectProperty.selectionValueNames = [];
@@ -1109,7 +1087,7 @@ objectProperty.PropertyID=PropertyId;
                             valueItem.Value = objectProperty.propertyDetailsListItems[i].value;
                         objectProperty.valueItems.push(valueItem);
                     }
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/AddBatch', objectProperty.valueItems, 'POST').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'objectPropertyDetailValue/AddBatch', objectProperty.valueItems, 'POST').success(function(response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
                             objectProperty.ListItems.unshift(response.Item);
@@ -1120,24 +1098,24 @@ objectProperty.PropertyID=PropertyId;
                             //ملک و مقادیر ثبت شده است از کاربر می خواهیم که نوع فروش را مشخص کند
                             //objectProperty.openAddContractModal(response.Item.Id, response.Item.Title);
                         }
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         console.log(data);
                         rashaErManage.checkAction(data, errCode);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             objectProperty.addRequested = false;
         });
     }
 
     // Open Edit Content Modal 
-    objectProperty.openEditModal = function () {
+    objectProperty.openEditModal = function() {
         if (buttonIsPressed) return;
-        objectProperty.onPropertyTypeChange(objectProperty.gridOptions.selectedRow.item.LinkPropertyTypeId , false);
+        objectProperty.onPropertyTypeChange(objectProperty.gridOptions.selectedRow.item.LinkPropertyTypeId, false);
         //Clear file pickers
 
         objectProperty.addRequested = false;
@@ -1153,7 +1131,7 @@ objectProperty.PropertyID=PropertyId;
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', parseInt(objectProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/', parseInt(objectProperty.gridOptions.selectedRow.item.Id), 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             objectProperty.selectedItem = response.Item;
@@ -1166,12 +1144,12 @@ objectProperty.PropertyID=PropertyId;
             objectProperty.filePickerMainImage.filename = null;
             objectProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', parseInt(response.Item.LinkMainImageId), 'GET').success(function(response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         objectProperty.filePickerMainImage.filename = response2.Item.FileName;
                         objectProperty.filePickerMainImage.fileId = response2.Item.Id;
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
@@ -1182,22 +1160,21 @@ objectProperty.PropertyID=PropertyId;
                 templateUrl: 'cpanelv1/CmsModules/object/objectProperty/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
     // Edit a Content
-    objectProperty.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+    objectProperty.editRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
         // Edit Property: Title, Description, LinkPropertyTypeId
         //objectProperty.busyIndicator.isActive = true;
         objectProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(objectProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/', objectProperty.selectedItem, "PUT").success(function(response) {
             objectProperty.addRequested = true;
             rashaErManage.checkAction(response);
             //objectProperty.busyIndicator.isActive = false;
@@ -1208,7 +1185,7 @@ objectProperty.PropertyID=PropertyId;
                 objectProperty.gridOptions.myfilterText(objectProperty.ListItems, "LinkPropertyTypeId", objectProperty.propertyTypeListItems, "Title", "LinkPropertyTypeTitle");
                 objectProperty.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             objectProperty.addRequested = false;
             //objectProperty.busyIndicator.isActive = false;
@@ -1224,24 +1201,23 @@ objectProperty.PropertyID=PropertyId;
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/DeleteFilterModel', engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'objectPropertyDetailValue/DeleteFilterModel', engine, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 //objectProperty.busyIndicator.isActive = false;
 
             });
-            ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/AddBatch', objectProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'objectPropertyDetailValue/AddBatch', objectProperty.selectedItem.LinkPropertyId, 'POST').success(function(response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 //objectProperty.busyIndicator.isActive = false;
 
             });
-        }
-        else {
+        } else {
             // -------------------------************* Set Values to Edit ************------------------------------
             for (var i = 0; i < objectProperty.propertyDetailsListItems.length; i++) {
                 objectProperty.propertyDetailsListItems[i].valueFound = false;
@@ -1255,13 +1231,12 @@ objectProperty.PropertyID=PropertyId;
                                 var radioValue = objectProperty[radioName].toString();
                                 objectProperty.propertyDetailsListItems[i].value = radioValue; */
                                 objectProperty.propertyDetailValuesListItems[j].Value = $('#dropDown' + objectProperty.propertyDetailsListItems[i].Id).find(":selected").val(); //Get the value if the element is a DropDown
-                            }
-                            else
+                            } else
                                 // Detail is not a CheckBox, nor a RadioButton
                                 objectProperty.propertyDetailValuesListItems[j].Value = String(objectProperty.propertyDetailsListItems[i].value);
                         } else { // Detail is CheckBox
                             var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id;
-                            objectProperty.propertyDetailValuesListItems[j].Value =JSON.stringify( objectProperty[checkboxName]);
+                            objectProperty.propertyDetailValuesListItems[j].Value = JSON.stringify(objectProperty[checkboxName]);
                         }
                     }
                 }
@@ -1271,20 +1246,19 @@ objectProperty.PropertyID=PropertyId;
                     if (objectProperty.propertyDetailsListItems[i].DefaultValue.multipleChoice == false) { // Detail is not CheckBox
                         if (objectProperty.propertyDetailsListItems[i].DefaultValue.forceUse) { // Detail is RadioButton/DropDown
                             objectProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: $('#dropDown' + objectProperty.propertyDetailsListItems[i].Id).find(":selected").val() }); //Get the value if the element is a DropDown
-                        }
-                        else
+                        } else
                             // Detail is not a CheckBox, nor a RadioButton
                             objectProperty.propertyDetailValuesListItems.push({ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: String(objectProperty.propertyDetailsListItems[i].value) });
                     } else { // Detail is CheckBox
-                        
-                        
-                        var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id;
-                        var newValue={ Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: objectProperty[checkboxName] }
 
-                        if(newValue.Value){
-                            newValue.Value= JSON.stringify(newValue.Value)
-                        }else{
-                            newValue.Value=""
+
+                        var checkboxName = "selection" + objectProperty.propertyDetailsListItems[i].Id;
+                        var newValue = { Id: 0, LinkPropertyId: objectProperty.selectedItem.Id, LinkPropertyDetailId: objectProperty.propertyDetailsListItems[i].Id, Value: objectProperty[checkboxName] }
+
+                        if (newValue.Value) {
+                            newValue.Value = JSON.stringify(newValue.Value)
+                        } else {
+                            newValue.Value = ""
                         }
                         objectProperty.propertyDetailValuesListItems.push(newValue);
                     }
@@ -1292,14 +1266,14 @@ objectProperty.PropertyID=PropertyId;
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             objectProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'objectPropertyDetailValue/EditBatch', objectProperty.propertyDetailValuesListItems, "PUT").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'objectPropertyDetailValue/EditBatch', objectProperty.propertyDetailValuesListItems, "PUT").success(function(response) {
                 rashaErManage.checkAction(response);
                 //objectProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
                     objectProperty.addRequested = false;
                     objectProperty.closeModal();
                 }
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
                 objectProperty.addRequested = false;
                 //objectProperty.busyIndicator.isActive = false;
@@ -1308,36 +1282,36 @@ objectProperty.PropertyID=PropertyId;
     }
 
 
- objectProperty.onPropertyTypeChange = function (propertyTypeId , historyable) {
+    objectProperty.onPropertyTypeChange = function(propertyTypeId, historyable) {
         objectProperty.propertyDetailsListItems = []; //Clear out the array from previous values
         objectProperty.propertyDetailGroupListItems = []; //Clear out the array from previous values
         if (!angular.isDefined(propertyTypeId)) return;
-    var engine = {};
+        var engine = {};
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
             IntValue1: parseInt(propertyTypeId),
             SearchType: 0,
-            ClauseType:2
+            ClauseType: 2
         }
- engine.Filters.push(filterValue1);
+        engine.Filters.push(filterValue1);
         var filterValue = {
             PropertyName: "IsHistoryable",
             BooleanValue: historyable,
             SearchType: 0,
-            ClauseType:2
+            ClauseType: 2
         }
-        
-        engine.Filters.push(filterValue);
-       
 
-        ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetail/GetAll", engine, 'POST').success(function (response) {
-            
+        engine.Filters.push(filterValue);
+
+
+        ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyDetail/GetAll", engine, 'POST').success(function(response) {
+
             objectProperty.propertyDetailsListItems = response.ListItems;
-            $.each(objectProperty.propertyDetailsListItems, function (index, item) {
+            $.each(objectProperty.propertyDetailsListItems, function(index, item) {
                 item.value = null;
                 // Add groups to its list
-                var result = $.grep(objectProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
+                var result = $.grep(objectProperty.propertyDetailGroupListItems, function(e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
                 if (result.length <= 0)
                     objectProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
 
@@ -1345,7 +1319,7 @@ objectProperty.PropertyID=PropertyId;
                 item.DefaultValue = JSON.parse(item.JsonDefaultValue);
             });
 
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
@@ -1353,33 +1327,33 @@ objectProperty.PropertyID=PropertyId;
 
 
 
-   objectProperty.deleteContent = function () {
+    objectProperty.deleteContent = function() {
         if (buttonIsPressed) return;
 
         if (!objectProperty.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 //objectProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/', objectProperty.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectproperty/', objectProperty.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'objectproperty/', objectProperty.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         //objectProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             objectProperty.replaceItem(objectProperty.selectedItemForDelete.Id);
                             objectProperty.gridOptions.fillData(objectProperty.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         //objectProperty.busyIndicator.isActive = false;
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     //objectProperty.busyIndicator.isActive = false;
                 });
@@ -1389,8 +1363,8 @@ objectProperty.PropertyID=PropertyId;
 
 
 
-  //-----------------*** Load Values in Edit Modal ***----------------------
-    objectProperty.loadDetailValues = function (propertyTypeId, propertyId,historyable) {
+    //-----------------*** Load Values in Edit Modal ***----------------------
+    objectProperty.loadDetailValues = function(propertyTypeId, propertyId, historyable) {
         /*var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
             IntValue1: parseInt(propertyTypeId),
@@ -1400,24 +1374,24 @@ objectProperty.PropertyID=PropertyId;
         };
         engine1.Filters = [];
         engine1.Filters.push(filterValue1);*/
-var engine = {};
+        var engine = {};
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
             IntValue1: parseInt(propertyTypeId),
             SearchType: 0,
-            ClauseType:2
+            ClauseType: 2
         }
- engine.Filters.push(filterValue1);
+        engine.Filters.push(filterValue1);
         var filterValue = {
             PropertyName: "IsHistoryable",
             BooleanValue: historyable,
             SearchType: 0,
-            ClauseType:2
+            ClauseType: 2
         }
-        
+
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetail/GetAll", engine, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyDetail/GetAll", engine, 'POST').success(function(response1) {
             objectProperty.propertyDetailsListItems = response1.ListItems;
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
@@ -1425,23 +1399,22 @@ var engine = {};
                 IntValue1: parseInt(propertyId),
                 SearchType: 0
             }
-            if (objectProperty.selectedItemhistoryId!=null && objectProperty.selectedItemhistoryId >0)
-            {
-            var filterValue2 = {
-                            PropertyName: "LinkHistoryId",
-                            IntValue1: parseInt(objectProperty.selectedItemhistoryId),
-                            SearchType: 0
-                        }
+            if (objectProperty.selectedItemhistoryId != null && objectProperty.selectedItemhistoryId > 0) {
+                var filterValue2 = {
+                    PropertyName: "LinkHistoryId",
+                    IntValue1: parseInt(objectProperty.selectedItemhistoryId),
+                    SearchType: 0
+                }
 
             }
 
             var engine2 = { Filters: [] };
             engine2.Filters.push(filterValue2);
-            ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
-                $.each(objectProperty.propertyDetailsListItems, function (index, item) {
+            ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyDetailValue/GetAll", engine2, 'POST').success(function(response) {
+                $.each(objectProperty.propertyDetailsListItems, function(index, item) {
                     item.value = null;
                     // Add groups to its list
-                    var result = $.grep(objectProperty.propertyDetailGroupListItems, function (e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
+                    var result = $.grep(objectProperty.propertyDetailGroupListItems, function(e) { return e.Id == item.virtual_PropertyDetailGroup.Id; });
                     if (result.length <= 0)
                         objectProperty.propertyDetailGroupListItems.push(item.virtual_PropertyDetailGroup);
 
@@ -1462,28 +1435,27 @@ var engine = {};
 
                             if (objectProperty.propertyDetailValuesListItems[j].Value != null) {
                                 if (jsonDefaultValue != undefined && jsonDefaultValue != null && jsonDefaultValue.nameValue != undefined && jsonDefaultValue.nameValue != null && 0 < jsonDefaultValue.nameValue.length) {
-                                    if (jsonDefaultValue.multipleChoice) {   // Detail is CheckBox
+                                    if (jsonDefaultValue.multipleChoice) { // Detail is CheckBox
                                         var multipleValues = objectProperty.propertyDetailValuesListItems[j].Value.split(',');
                                         setSelection(objectProperty.propertyDetailsListItems[i].Id, multipleValues);
 
-                                    }
-                                    else if (jsonDefaultValue.forceUse && jsonDefaultValue.nameValue.length > 0) {   // Detail is RadioButton/DropDown
+                                    } else if (jsonDefaultValue.forceUse && jsonDefaultValue.nameValue.length > 0) { // Detail is RadioButton/DropDown
                                         /*Do not delete this line: Load the value if the elements is RadioButton
                                         var radioValues = objectProperty.propertyDetailValuesListItems[j].Value.split(',');
                                         setSelection(objectProperty.propertyDetailsListItems[i].Id, radioValues); */
                                         objectProperty.propertyDetailsListItems[i].value = objectProperty.propertyDetailValuesListItems[j].Value;
-                                    } else {     // Detail is InputDataList
+                                    } else { // Detail is InputDataList
                                         objectProperty.propertyDetailsListItems[i].value = objectProperty.propertyDetailValuesListItems[j].Value;
                                     }
                                 } else {
                                     switch (objectProperty.propertyDetailsListItems[i].InputDataType) {
-                                        case 0:                              // Detail is String
+                                        case 0: // Detail is String
                                             objectProperty.propertyDetailsListItems[i].value = objectProperty.propertyDetailValuesListItems[j].Value;
                                             break;
-                                        case 1:                              // Detail is Number
+                                        case 1: // Detail is Number
                                             objectProperty.propertyDetailsListItems[i].value = parseInt(objectProperty.propertyDetailValuesListItems[j].Value);
                                             break;
-                                        case 2:                              // Detail is Boolean
+                                        case 2: // Detail is Boolean
                                             objectProperty.propertyDetailsListItems[i].value = (objectProperty.propertyDetailValuesListItems[j].Value === "true");
                                             break;
                                     }
@@ -1493,19 +1465,19 @@ var engine = {};
                     }
                 }
                 //--------------------------------
-            }).error(function (data, errCode, c, d) {
+            }).error(function(data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
             //***************************************************************
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
 
 
-function stringfyLinkFileIds(arrayOfFiles) {
+    function stringfyLinkFileIds(arrayOfFiles) {
         var ret = "";
-        $.each(arrayOfFiles, function (index, item) {
+        $.each(arrayOfFiles, function(index, item) {
             if (ret == "")
                 ret = item.fileId;
             else
@@ -1515,8 +1487,8 @@ function stringfyLinkFileIds(arrayOfFiles) {
     }
 
     //Replace Item OnDelete/OnEdit Grid Options
-    objectProperty.replaceItem = function (oldId, newItem) {
-        angular.forEach(objectProperty.ListItems, function (item, key) {
+    objectProperty.replaceItem = function(oldId, newItem) {
+        angular.forEach(objectProperty.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = objectProperty.ListItems.indexOf(item);
                 objectProperty.ListItems.splice(index, 1);
@@ -1526,8 +1498,8 @@ function stringfyLinkFileIds(arrayOfFiles) {
             objectProperty.ListItems.unshift(newItem);
     }
 
-    objectProperty.searchData = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"objectPropertyType/getall", objectProperty.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+    objectProperty.searchData = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "objectPropertyType/getall", objectProperty.gridOptions.advancedSearchData.engine, "POST").success(function(response) {
             rashaErManage.checkAction(response);
             objectProperty.categoryBusyIndicator.isActive = false;
             objectProperty.ListItems = response.ListItems;
@@ -1536,7 +1508,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
             objectProperty.gridOptions.totalRowCount = response.TotalRowCount;
             objectProperty.gridOptions.rowPerPage = response.RowPerPage;
             objectProperty.allowedSearch = response.AllowedSearchField;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             objectProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
@@ -1544,16 +1516,16 @@ function stringfyLinkFileIds(arrayOfFiles) {
 
     //Close Model Stack
     objectProperty.addRequested = false;
-    objectProperty.closeModal = function () {
+    objectProperty.closeModal = function() {
         $modalStack.dismissAll();
     };
 
- // Filter Texts for CmsUser
-    objectProperty.gridOptions.myfilterText = function (gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
+    // Filter Texts for CmsUser
+    objectProperty.gridOptions.myfilterText = function(gridListItems, foreignKeyName, childListItems, childDesiredPropertyName, childItemColumnName) {
         var ilength = gridListItems.length;
         var jlength = childListItems.length;
         for (var i = 0; i < ilength; i++) {
-            gridListItems[i][childItemColumnName] = "";  // Make a new field for title of the foreighn key
+            gridListItems[i][childItemColumnName] = ""; // Make a new field for title of the foreighn key
             for (var j = 0; j < jlength; j++) {
                 if (gridListItems[i][foreignKeyName] == childListItems[j].Id) {
                     gridListItems[i][childItemColumnName] = childListItems[j][childDesiredPropertyName];
@@ -1568,16 +1540,16 @@ function stringfyLinkFileIds(arrayOfFiles) {
         objectProperty[checkboxName] = values;
     }
     //For reInit Categories
-    objectProperty.gridOptions.reGetAll = function () {
+    objectProperty.gridOptions.reGetAll = function() {
         if (objectProperty.gridOptions.advancedSearchData.engine.Filters.length > 0) objectProperty.searchData();
         else objectProperty.init();
     };
 
-    objectProperty.isCurrentNodeEmpty = function () {
+    objectProperty.isCurrentNodeEmpty = function() {
         return !angular.equals({}, objectProperty.treeConfig.currentNode);
     }
 
-    objectProperty.loadFileAndFolder = function (item) {
+    objectProperty.loadFileAndFolder = function(item) {
         objectProperty.treeConfig.currentNode = item;
         objectProperty.treeConfig.onNodeSelect(item);
     }
@@ -1585,7 +1557,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
 
     objectProperty.columnCheckbox = false;
 
-    objectProperty.openGridConfigModal = function () {
+    objectProperty.openGridConfigModal = function() {
         $("#gridView-btn").toggleClass("active");
         var prechangeColumns = objectProperty.gridOptions.columns;
         if (objectProperty.gridOptions.columnCheckbox) {
@@ -1595,8 +1567,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
                 var temp = element[0].checked;
                 objectProperty.gridOptions.columns[i].visible = temp;
             }
-        }
-        else {
+        } else {
 
             for (var i = 0; i < objectProperty.gridOptions.columns.length; i++) {
                 var element = $("#" + objectProperty.gridOptions.columns[i].name.replace('.', '') + "Checkbox");
@@ -1609,15 +1580,15 @@ function stringfyLinkFileIds(arrayOfFiles) {
         objectProperty.gridOptions.columnCheckbox = !objectProperty.gridOptions.columnCheckbox;
     }
 
-    objectProperty.toggleCategoryButtons = function () {
+    objectProperty.toggleCategoryButtons = function() {
         $("#categoryButtons").fadeToggle();
     }
 
 
-    objectProperty.showUpload = function () { $("#fastUpload").fadeToggle(); }
+    objectProperty.showUpload = function() { $("#fastUpload").fadeToggle(); }
 
     //---------------Upload Modal-------------------------------
-    objectProperty.openUploadModal = function () {
+    objectProperty.openUploadModal = function() {
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/object/objectPropertyType/upload_modal.html',
             size: 'lg',
@@ -1626,20 +1597,20 @@ function stringfyLinkFileIds(arrayOfFiles) {
 
         objectProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/", "", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", "", 'GET').success(function(response) {
             objectProperty.FileList = response.ListItems;
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
 
     }
 
-    objectProperty.calcuteProgress = function (progress) {
+    objectProperty.calcuteProgress = function(progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     }
 
-    objectProperty.whatcolor = function (progress) {
+    objectProperty.whatcolor = function(progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return 'danger';
@@ -1652,26 +1623,26 @@ function stringfyLinkFileIds(arrayOfFiles) {
         }
     }
 
-    objectProperty.canShow = function (pr) {
+    objectProperty.canShow = function(pr) {
         if (pr == 1) {
             return true;
         }
         return false;
     }
     // File Manager actions
-    objectProperty.replaceFile = function (name) {
+    objectProperty.replaceFile = function(name) {
         objectProperty.itemClicked(null, objectProperty.fileIdToDelete, "file");
         objectProperty.fileTypes = 1;
         objectProperty.fileIdToDelete = objectProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", objectProperty.fileIdToDelete, 'GET').success(function(response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/', response1.Item.Id, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/', response1.Item.Id, 'DELETE').success(function(response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response3) {
                             if (response3.IsSuccess == true) {
                                 objectProperty.FileItem = response3.Item;
                                 objectProperty.FileItem.FileName = name;
@@ -1679,50 +1650,45 @@ function stringfyLinkFileIds(arrayOfFiles) {
                                 objectProperty.FileItem.FileSrc = name;
                                 objectProperty.FileItem.LinkCategoryId = objectProperty.thisCategory;
                                 objectProperty.saveNewFile();
-                            }
-                            else {
+                            } else {
                                 console.log("getting the model was not successfully returned!");
                             }
-                        }).error(function (data) {
+                        }).error(function(data) {
                             console.log(data);
                         });
-                    }
-                    else {
+                    } else {
                         console.log("Request to api/CmsFileContent/delete was not successfully returned!");
                     }
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     console.log(data);
                 });
             }
-        }).error(function (data) {
+        }).error(function(data) {
             console.log(data);
         });
     }
     //save new file
-    objectProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectProperty.FileItem, 'POST').success(function (response) {
+    objectProperty.saveNewFile = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", objectProperty.FileItem, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 objectProperty.FileItem = response.Item;
                 objectProperty.showSuccessIcon();
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
 
             }
-        }).error(function (data) {
+        }).error(function(data) {
             objectProperty.showErrorIcon();
             return -1;
         });
     }
 
-    objectProperty.showSuccessIcon = function () {
-    }
+    objectProperty.showSuccessIcon = function() {}
 
-    objectProperty.showErrorIcon = function () {
-    }
+    objectProperty.showErrorIcon = function() {}
     //file is exist
-    objectProperty.fileIsExist = function (fileName) {
+    objectProperty.fileIsExist = function(fileName) {
         for (var i = 0; i < objectProperty.FileList.length; i++) {
             if (objectProperty.FileList[i].FileName == fileName) {
                 objectProperty.fileIdToDelete = objectProperty.FileList[i].Id;
@@ -1733,7 +1699,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
         return false;
     }
 
-    objectProperty.getFileItem = function (id) {
+    objectProperty.getFileItem = function(id) {
         for (var i = 0; i < objectProperty.FileList.length; i++) {
             if (objectProperty.FileList[i].Id == id) {
                 return objectProperty.FileList[i];
@@ -1742,13 +1708,12 @@ function stringfyLinkFileIds(arrayOfFiles) {
     }
 
     //select file or folder
-    objectProperty.itemClicked = function ($event, index, type) {
+    objectProperty.itemClicked = function($event, index, type) {
         if (type == 'file' || type == 1) {
             objectProperty.fileTypes = 1;
             objectProperty.selectedFileId = objectProperty.getFileItem(index).Id;
             objectProperty.selectedFileName = objectProperty.getFileItem(index).FileName;
-        }
-        else {
+        } else {
             objectProperty.fileTypes = 2;
             objectProperty.selectedCategoryId = objectProperty.getCategoryName(index).Id;
             objectProperty.selectedCategoryTitle = objectProperty.getCategoryName(index).Title;
@@ -1762,7 +1727,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
     };
 
     //upload file
-    objectProperty.uploadFile = function (index, uploadFile) {
+    objectProperty.uploadFile = function(index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             if (objectProperty.fileIsExist(uploadFile.name)) { // File already exists
                 if (confirm('File "' + uploadFile.name + '" already exists! Do you want to replace the new file?')) {
@@ -1770,69 +1735,68 @@ function stringfyLinkFileIds(arrayOfFiles) {
                     objectProperty.itemClicked(null, objectProperty.fileIdToDelete, "file");
                     objectProperty.fileTypes = 1;
                     objectProperty.fileIdToDelete = objectProperty.selectedIndex;
-                     // replace the file
-            ajax
-              .call(
-                cmsServerConfig.configApiServerPath+"FileContent/",
-                objectProperty.fileIdToDelete,
-                "GET"
-              )
-              .success(function(response1) {
-                if (response1.IsSuccess == true) {
-                  console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
-                    .success(function(response2) {
-                      if (response2.IsSuccess == true) {
-                        objectProperty.FileItem = response2.Item;
-                        objectProperty.showSuccessIcon();
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-check");
-                        objectProperty.filePickerMainImage.filename =
-                          objectProperty.FileItem.FileName;
-                        objectProperty.filePickerMainImage.fileId =
-                          response2.Item.Id;
-                        objectProperty.selectedItem.LinkMainImageId =
-                          objectProperty.filePickerMainImage.fileId;
-                      } else {
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass(
-                          "flashing-button"
-                        );
-                        $("#save-icon" + index).addClass("fa-remove");
-                      }
-                    })
-                    .error(function(data) {
-                      objectProperty.showErrorIcon();
-                      $("#save-icon" + index).removeClass("fa-save");
-                      $("#save-button" + index).removeClass("flashing-button");
-                      $("#save-icon" + index).addClass("fa-remove");
-                    });
-                  //-----------------------------------
-                }
-              })
-              .error(function(data) {
-                console.log(data);
-              });
-            //--------------------------------
+                    // replace the file
+                    ajax
+                        .call(
+                            cmsServerConfig.configApiServerPath + "FileContent/",
+                            objectProperty.fileIdToDelete,
+                            "GET"
+                        )
+                        .success(function(response1) {
+                            if (response1.IsSuccess == true) {
+                                console.log(response1.Item);
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                    .success(function(response2) {
+                                        if (response2.IsSuccess == true) {
+                                            objectProperty.FileItem = response2.Item;
+                                            objectProperty.showSuccessIcon();
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-check");
+                                            objectProperty.filePickerMainImage.filename =
+                                                objectProperty.FileItem.FileName;
+                                            objectProperty.filePickerMainImage.fileId =
+                                                response2.Item.Id;
+                                            objectProperty.selectedItem.LinkMainImageId =
+                                                objectProperty.filePickerMainImage.fileId;
+                                        } else {
+                                            $("#save-icon" + index).removeClass("fa-save");
+                                            $("#save-button" + index).removeClass(
+                                                "flashing-button"
+                                            );
+                                            $("#save-icon" + index).addClass("fa-remove");
+                                        }
+                                    })
+                                    .error(function(data) {
+                                        objectProperty.showErrorIcon();
+                                        $("#save-icon" + index).removeClass("fa-save");
+                                        $("#save-button" + index).removeClass("flashing-button");
+                                        $("#save-icon" + index).addClass("fa-remove");
+                                    });
+                                //-----------------------------------
+                            }
+                        })
+                        .error(function(data) {
+                            console.log(data);
+                        });
+                    //--------------------------------
                 } else {
                     return;
                 }
-            }
-            else { // File does not exists
+            } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     objectProperty.FileItem = response.Item;
                     objectProperty.FileItem.FileName = uploadFile.name;
                     objectProperty.FileItem.uploadName = uploadFile.uploadName;
                     objectProperty.FileItem.Extension = uploadFile.name.split('.').pop();
                     objectProperty.FileItem.FileSrc = uploadFile.name;
-                    objectProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
+                    objectProperty.FileItem.LinkCategoryId = null; //Save the new file in the root
                     // ------- objectProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/", objectProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", objectProperty.FileItem, 'POST').success(function(response) {
                         if (response.IsSuccess) {
                             objectProperty.FileItem = response.Item;
                             objectProperty.showSuccessIcon();
@@ -1842,20 +1806,19 @@ function stringfyLinkFileIds(arrayOfFiles) {
                             objectProperty.filePickerMainImage.filename = objectProperty.FileItem.FileName;
                             objectProperty.filePickerMainImage.fileId = response.Item.Id;
                             objectProperty.selectedItem.LinkMainImageId = objectProperty.filePickerMainImage.fileId;
-                        }
-                        else {
+                        } else {
                             $("#save-icon" + index).removeClass("fa-save");
                             $("#save-button" + index).removeClass("flashing-button");
                             $("#save-icon" + index).addClass("fa-remove");
                         }
-                    }).error(function (data) {
+                    }).error(function(data) {
                         objectProperty.showErrorIcon();
                         $("#save-icon" + index).removeClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
                         $("#save-icon" + index).addClass("fa-remove");
                     });
                     //-----------------------------------
-                }).error(function (data) {
+                }).error(function(data) {
                     console.log(data);
                     $("#save-icon" + index).removeClass("fa-save");
                     $("#save-button" + index).removeClass("flashing-button");
@@ -1866,13 +1829,13 @@ function stringfyLinkFileIds(arrayOfFiles) {
     }
     //End of Upload Modal-----------------------------------------
 
-    
 
-   //Export Report 
-    objectProperty.exportFile = function () {
+
+    //Export Report 
+    objectProperty.exportFile = function() {
         objectProperty.addRequested = true;
         objectProperty.gridOptions.advancedSearchData.engine.ExportFile = objectProperty.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'objectProperty/exportfile', objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'objectProperty/exportfile', objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             objectProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1880,12 +1843,12 @@ function stringfyLinkFileIds(arrayOfFiles) {
                 $window.open(response.LinkFile, '_blank');
                 //objectProperty.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    objectProperty.toggleExportForm = function () {
+    objectProperty.toggleExportForm = function() {
         objectProperty.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -1909,17 +1872,17 @@ function stringfyLinkFileIds(arrayOfFiles) {
         });
     }
     //Row Count Export Input Change
-    objectProperty.rowCountChanged = function () {
+    objectProperty.rowCountChanged = function() {
         if (!angular.isDefined(objectProperty.ExportFileClass.RowCount) || objectProperty.ExportFileClass.RowCount > 5000)
             objectProperty.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    objectProperty.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"objectProperty/count", objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    objectProperty.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "objectProperty/count", objectProperty.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             objectProperty.addRequested = false;
             rashaErManage.checkAction(response);
             objectProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             objectProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });

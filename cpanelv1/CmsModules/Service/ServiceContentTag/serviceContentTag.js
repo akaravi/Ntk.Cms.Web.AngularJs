@@ -6,6 +6,7 @@
     }
     ServiceContentTag.init = function () {
         ServiceContentTag.busyIndicator.isActive = true;
+        ServiceContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ServiceContenttag/getall", ServiceContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceContentTag.busyIndicator.isActive = false;

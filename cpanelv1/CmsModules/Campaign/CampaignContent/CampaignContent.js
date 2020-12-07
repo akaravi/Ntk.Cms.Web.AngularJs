@@ -211,7 +211,10 @@
         });
 
         campaignContent.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/getall", {}, 'POST').success(function (response) {
+        var engine = {};
+        engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignContent.ListItems = response.ListItems;
             campaignContent.gridOptions.fillData(campaignContent.ListItems, response.Access); // Sending Access as an argument
@@ -251,7 +254,7 @@
             campaignContent.gridContentOptions.advancedSearchData.engine.Filters = [];
             campaignContent.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
 
-
+            campaignContent.gridContentOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+'newsComment/getall', campaignContent.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 campaignContent.listComments = response.ListItems;
                 //campaignContent.gridOptions.Access = response.Access; // دسترسی ها نمایش
@@ -492,6 +495,7 @@
             }
             campaignContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        campaignContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/getall", campaignContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignContent.contentBusyIndicator.isActive = false;

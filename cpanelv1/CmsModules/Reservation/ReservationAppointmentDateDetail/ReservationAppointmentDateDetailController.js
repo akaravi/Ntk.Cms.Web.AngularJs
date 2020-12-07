@@ -54,7 +54,7 @@
         } catch (error) {
             console.log(error);
         }
-        
+        appDateDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getall", appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;

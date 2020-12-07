@@ -19,7 +19,7 @@
         } catch (error) {
             console.log(error);
         }
-
+        advertisementContractType.gridOptions.advancedSearchData.engine..AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementcontracttype/getall", advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;

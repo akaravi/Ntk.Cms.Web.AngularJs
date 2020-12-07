@@ -19,6 +19,7 @@
 
     appSource.init = function() {
         appSource.busyIndicator.isActive = true;
+        appSource.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "ApplicationSource/getall", appSource.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             appSource.busyIndicator.isActive = false;

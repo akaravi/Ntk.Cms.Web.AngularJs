@@ -1,4 +1,4 @@
-﻿app.controller("bankPaymentTranscController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
+﻿app.controller("bankPaymentTranscController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$state', '$stateParams', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $state, $stateParams, $filter) {
     var transc = this;
     transc.ManageUserAccessControllerTypes = [];
 
@@ -11,27 +11,29 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
     if (itemRecordStatus != undefined) transc.itemRecordStatus = itemRecordStatus;
-    transc.init = function () {
+    transc.init = function() {
         //if (transc.selectedPrivateSiteConfig.Id == 0 || transc.selectedPrivateSiteConfig.Id == null) {
         //    $state.go("index.bankpaymentprivatesiteconfig");
         //    return;
         //}
         if (transc.selectedPrivateSiteConfig.Id == null || transc.selectedPrivateSiteConfig.Id == 0) transc.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', transc.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'bankpaymentprivatesiteconfig/', transc.selectedPrivateSiteConfig.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedPrivateSiteConfig = response.Item;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         transc.busyIndicator.isActive = true;
         var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: transc.selectedPrivateSiteConfig.Id };
-        if (transc.selectedPrivateSiteConfig.Id >0)
+        if (transc.selectedPrivateSiteConfig.Id > 0)
             transc.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         filterModel = { PropertyName: "Id", SearchType: 0, IntValue1: transc.selectedTransactionId.Id };
-        if (transc.selectedTransactionId.Id >0)
+        if (transc.selectedTransactionId.Id > 0)
             transc.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransaction/getall", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        transc.gridOptions.advancedSearchData.engine.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath + "BankPaymentTransaction/getall", transc.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             transc.ListItems = response.ListItems;
             transc.gridOptions.fillData(transc.ListItems, response.Access);
@@ -43,17 +45,17 @@
             model.SortType = 0;
             model.SortColumn = "Id";
             transc.busyIndicator.isActive = false;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             transc.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
     transc.addRequested = false;
-    transc.openAddModal = function () {
+    transc.openAddModal = function() {
         if (buttonIsPressed) { return };
         transc.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransaction/ViewModel', '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'bankpaymenttransaction/ViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -61,13 +63,12 @@
                 templateUrl: 'cpanelv1/CmsModules/BankPayment/BankPaymentTransaction/add.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    transc.addNewRow = function (frm) {
-        if (frm.$invalid)
-        {
+    transc.addNewRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
@@ -84,12 +85,12 @@
         }
         transc.addRequested = true;
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/', transc.selectedItem, 'POST').success(function(response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/', response1.Item.LinkSiteId, 'GET').success(function(response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/', response1.Item.LinkUserId, 'GET').success(function(response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         transc.ListItems.unshift(response1.Item);
                         transc.gridOptions.myfilterText(transc.ListItems, "LinkUserGroupId", transc.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -97,21 +98,21 @@
                         transc.addRequested = false;
                         transc.busyIndicator.isActive = false;
                         transc.closeModal();
-                    }).error(function (data, errCode, c, d) {
+                    }).error(function(data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             transc.addRequested = false;
             transc.busyIndicator.isActive = false;
         });
     }
 
-    transc.openEditModal = function () {
+    transc.openEditModal = function() {
         if (buttonIsPressed) { return };
         transc.modalTitle = 'ویرایش';
         if (!transc.gridOptions.selectedRow.item) {
@@ -119,7 +120,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/', transc.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -127,13 +128,12 @@
                 templateUrl: 'cpanelv1/CmsModules/BankPayment/transc/edit.html',
                 scope: $scope
             });
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    transc.editRow = function (frm) {
-        if (frm.$invalid)
-        {
+    transc.editRow = function(frm) {
+        if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
@@ -149,7 +149,7 @@
             }
         }
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.selectedItem, "PUT").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/', transc.selectedItem, "PUT").success(function(response) {
             transc.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -158,18 +158,18 @@
                 transc.gridOptions.fillData(transc.ListItems, response.Access);
                 transc.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             transc.addRequested = false;
             transc.busyIndicator.isActive = false;
         });
     }
 
-    transc.closeModal = function () {
+    transc.closeModal = function() {
         $modalStack.dismissAll();
     };
-    transc.replaceItem = function (oldId, newItem) {
-        angular.forEach(transc.ListItems, function (item, key) {
+    transc.replaceItem = function(oldId, newItem) {
+        angular.forEach(transc.ListItems, function(item, key) {
             if (item.Id == oldId) {
                 var index = transc.ListItems.indexOf(item);
                 transc.ListItems.splice(index, 1);
@@ -178,36 +178,36 @@
         if (newItem)
             transc.ListItems.unshift(newItem);
     }
-    transc.deleteRow = function () {
+    transc.deleteRow = function() {
         if (buttonIsPressed) { return };
         if (!transc.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/', transc.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     transc.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/', transc.selectedItemForDelete.Id, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/', transc.selectedItemForDelete.Id, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             transc.replaceItem(transc.selectedItemForDelete.Id);
                             transc.gridOptions.fillData(transc.ListItems);
                         }
-                    }).error(function (data2, errCode2, c2, d2) {
+                    }).error(function(data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                     });
-                }).error(function (data, errCode, c, d) {
+                }).error(function(data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                 });
             }
         });
     }
-    transc.searchData = function () {
+    transc.searchData = function() {
         transc.gridOptions.serachData();
     }
     transc.gridOptions = {
@@ -223,9 +223,9 @@
             { name: 'BankStatus', displayName: 'BankStatus', sortable: true, type: 'date' },
             { name: 'OnlineDateLock', displayName: 'زمان قفل', sortable: true, type: 'date', isDateTime: true },
             { name: 'OnlineDateUnlock', displayName: 'زمان بازشدن قفل', sortable: true, type: 'date', isDateTime: true },
-            { name: 'TransactionStatus', displayName: 'Status', sortable: true, type: 'integer'},
+            { name: 'TransactionStatus', displayName: 'Status', sortable: true, type: 'integer' },
             { name: 'ActionKey', displayName: 'Stamp', sortable: true, template: '<button class="btn btn-info" title="{{x.StampJsonValues}}"><i class="fa fa-info" aria-hidden="true"></i></button>' },
-            { name: 'ActionKey', displayName: 'Request Back User',sortable: true, template: '<button class="btn btn-info" title="{{x.RequestBackUserFromBankJsonValues}}"><i class="fa fa-info" aria-hidden="true"></i></button>' },
+            { name: 'ActionKey', displayName: 'Request Back User', sortable: true, template: '<button class="btn btn-info" title="{{x.RequestBackUserFromBankJsonValues}}"><i class="fa fa-info" aria-hidden="true"></i></button>' },
             { name: 'Retry', displayName: 'بررسی مجدّد', sortable: true, type: 'date', isDateTime: true, displayForce: true, template: '<button class="btn btn-success" ng-click="transc.retryTrans(x.Id)"><i class="fa fa-refresh" aria-hidden="true"></i></button>' }
         ],
         data: {},
@@ -270,11 +270,11 @@
         }
     }
 
-    transc.gridOptions.reGetAll = function () {
+    transc.gridOptions.reGetAll = function() {
         transc.init();
     }
 
-    transc.gridOptions.onRowSelected = function () {
+    transc.gridOptions.onRowSelected = function() {
         var item = transc.gridOptions.selectedRow.item;
         //Get Options
         $("#gridLogs").fadeOut('fast');
@@ -282,7 +282,9 @@
         filterModel.Filters.push({ PropertyName: "LinkTransactionId", IntValue1: item.Id, SearchType: 0 });
         transc.addRequested = true;
         //transc.optionsBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransactionLog/getall", filterModel, "POST").success(function (response) {
+        filterModel.AccessLoad = true;
+
+        ajax.call(cmsServerConfig.configApiServerPath + "BankPaymentTransactionLog/getall", filterModel, "POST").success(function(response) {
             transc.addRequested = false;
             //transc.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -294,16 +296,16 @@
             transc.gridLogs.RowPerPage = response.RowPerPage;
             if (transc.TransactionLogList.length > 0)
                 $("#gridLogs").fadeIn('fast');
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             console.log(data);
         });
     }
 
     //Export Report 
-    transc.exportFile = function () {
+    transc.exportFile = function() {
         transc.addRequested = true;
         transc.gridOptions.advancedSearchData.engine.ExportFile = transc.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/exportfile', transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'bankpaymentprivatesiteconfig/exportfile', transc.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.reportDownloadLink = response.LinkFile;
@@ -311,12 +313,12 @@
                 $window.open(response.LinkFile, '_blank');
                 //transc.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    transc.toggleExportForm = function () {
+    transc.toggleExportForm = function() {
         transc.SortType = [
             { key: 'نزولی', value: 0 },
             { key: 'صعودی', value: 1 },
@@ -339,28 +341,28 @@
         });
     }
     //Row Count Export Input Change
-    transc.rowCountChanged = function () {
+    transc.rowCountChanged = function() {
         if (!angular.isDefined(transc.ExportFileClass.RowCount) || transc.ExportFileClass.RowCount > 5000)
             transc.ExportFileClass.RowCount = 5000;
     }
     //Get TotalRowCount
-    transc.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransaction/count", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+    transc.getCount = function() {
+        ajax.call(cmsServerConfig.configApiServerPath + "BankPaymentTransaction/count", transc.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             transc.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
-    transc.changeState = function (state) {
+    transc.changeState = function(state) {
         $state.go("index." + state);
     }
 
-    transc.retryTrans = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/TransactionCheck', selectedId, 'GET').success(function (response) {
+    transc.retryTrans = function(selectedId) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'BankPaymentTransaction/TransactionCheck', selectedId, 'GET').success(function(response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.reportDownloadLink = response.LinkFile;
@@ -368,7 +370,7 @@
                 $window.open(response.LinkFile, '_blank');
                 //transc.closeModal();
             }
-        }).error(function (data, errCode, c, d) {
+        }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }

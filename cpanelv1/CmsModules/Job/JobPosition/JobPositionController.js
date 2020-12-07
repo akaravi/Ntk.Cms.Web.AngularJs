@@ -10,6 +10,7 @@
 
     jobPosition.init = function () {
         jobPosition.busyIndicator.isActive = true;
+        jobPosition.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobposition/getall", jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPosition.busyIndicator.isActive = false;

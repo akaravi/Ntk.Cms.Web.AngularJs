@@ -74,6 +74,7 @@
         } catch (error) {
             console.log(error);
         }
+        engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"DiscountSerialCardFlowGroup/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;

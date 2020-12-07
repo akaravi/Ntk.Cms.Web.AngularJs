@@ -6,6 +6,7 @@
     }
     reservationContentTag.init = function () {
         reservationContentTag.busyIndicator.isActive = true;
+        reservationContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"reservationContenttag/getall", reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.busyIndicator.isActive = false;

@@ -121,6 +121,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         vehiclePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         vehiclePropertyDetail.groupResultAccess = null;
+        vehiclePropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"VehiclePropertyDetailGroup/getall", vehiclePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             vehiclePropertyDetail.vehiclePropertyDetailGroupListItems = response.ListItems;
             vehiclePropertyDetail.treeConfig.Items = response.ListItems;
@@ -302,7 +303,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             SearchType: 0
         }
         vehiclePropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
-
+        vehiclePropertyDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyDetail/getall", vehiclePropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyDetail.busyIndicator.isActive = false;

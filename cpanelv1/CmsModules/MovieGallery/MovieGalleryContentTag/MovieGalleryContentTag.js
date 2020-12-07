@@ -6,6 +6,7 @@
     }
     mvGalleryContentTag.init = function () {
         mvGalleryContentTag.busyIndicator.isActive = true;
+        mvGalleryContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryContentTag/getall", mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.busyIndicator.isActive = false;

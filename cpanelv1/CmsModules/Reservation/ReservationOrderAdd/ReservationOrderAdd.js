@@ -151,6 +151,7 @@
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters = null;
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters = [];
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
+            orderAdd.gridContentOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getall', orderAdd.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 orderAdd.listComments = response.ListItems;
                 //orderAdd.gridOptions.Access = response.Access; // دسترسی ها نمایش

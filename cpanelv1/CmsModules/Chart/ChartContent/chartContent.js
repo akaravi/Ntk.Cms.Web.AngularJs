@@ -280,6 +280,7 @@
         if (chartContent.selectedContentId.Id >0)
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         chartContent.contentBusyIndicator.isActive = true;
+        chartContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"chartContent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.ListItems = response.ListItems;
@@ -327,10 +328,9 @@
             chartContent.gridContentOptions.advancedSearchData.engine.Filters = [];
             chartContent.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value1);
 
-
+            engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getall', engine, 'POST').success(function (response) {
                 chartContent.listComments = response.ListItems;
-                //chartContent.gridOptions.Access = response.Access; // دسترسی ها نمایش
                 chartContent.gridContentOptions.fillData(chartContent.listComments, response.Access);
                 chartContent.gridContentOptions.currentPageNumber = response.CurrentPageNumber;
                 chartContent.gridContentOptions.totalRowCount = response.TotalRowCount;
@@ -364,10 +364,9 @@
             engine2.Filters = [];
             engine2.Filters.push(Filter_value);
 
-
+            engine2.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+'chartcontentevent/getall', engine2, 'POST').success(function (response) {
                 chartContent.listEvents = response.ListItems;
-                //chartContent.gridOptions.Access = response.Access; // دسترسی ها نمایش
                 chartContent.gridContentEventOptions.fillData(chartContent.listEvents, response.Access);
                 chartContent.gridContentEventOptions.currentPageNumber = response.CurrentPageNumber;
                 chartContent.gridContentEventOptions.totalRowCount = response.TotalRowCount;
@@ -614,6 +613,7 @@
             }
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        chartContent.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"chartcontent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.contentBusyIndicator.isActive = false;

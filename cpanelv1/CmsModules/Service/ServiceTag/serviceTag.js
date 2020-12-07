@@ -164,6 +164,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
+        serviceTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"servicetag/getall", serviceTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceTag.ListItems = response.ListItems;
@@ -399,6 +400,7 @@
             }
             serviceTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
+        serviceTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"servicetag/getall", serviceTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             serviceTag.contentBusyIndicator.isActive = false;

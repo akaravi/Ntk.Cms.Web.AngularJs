@@ -10,6 +10,7 @@
 
     advertisementPropertyFavorite.init = function () {
         advertisementPropertyFavorite.busyIndicator.isActive = true;
+        advertisementPropertyFavorite.gridOptions.advancedSearchData.engine.AccessLoad = false;
         ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyFavorite/getall", advertisementPropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;

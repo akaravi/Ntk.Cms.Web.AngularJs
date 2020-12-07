@@ -26,6 +26,7 @@
             rashaErManage.checkAction(responseSource);
             appLayoutValue.sourceListItems = responseSource.ListItems;
             //
+            appLayoutValue.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath + "applicationlayout/getall", appLayoutValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 appLayoutValue.busyIndicator.isActive = false;

@@ -35,6 +35,7 @@
     if (itemRecordStatus != undefined) cmsModulegrd.itemRecordStatus = itemRecordStatus;
     cmsModulegrd.init = function () {
         cmsModulegrd.busyIndicator.isActive = true;
+        cmsModulegrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.ListItems = response.ListItems;

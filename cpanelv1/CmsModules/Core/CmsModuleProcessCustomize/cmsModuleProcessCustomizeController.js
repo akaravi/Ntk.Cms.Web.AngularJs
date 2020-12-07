@@ -57,11 +57,11 @@
             IntValue1: cmsMdlPrcCustm.selectedModuleProcess.Id
         };
         cmsMdlPrcCustm.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
+        cmsMdlPrcCustm.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleProcessCustomize/getall", cmsMdlPrcCustm.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsMdlPrcCustm.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPrcCustm.ListItems = response.ListItems;
-            //cmsModuleSitegrd.gridOptions.Access = response.Access;//دسترسی ها نمایش
             cmsMdlPrcCustm.gridOptions.fillData(cmsMdlPrcCustm.ListItems, response.Access); // Send Access as an arguman
             cmsMdlPrcCustm.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsMdlPrcCustm.gridOptions.totalRowCount = response.TotalRowCount;

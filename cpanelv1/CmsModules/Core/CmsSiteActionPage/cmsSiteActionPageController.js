@@ -2,6 +2,7 @@
     var cmsSiteActionPagegrd = this;
     if (itemRecordStatus != undefined) cmsSiteActionPagegrd.itemRecordStatus = itemRecordStatus;
     cmsSiteActionPagegrd.init = function () {
+        cmsSiteActionPagegrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"coreSiteActionPage/getall", cmsSiteActionPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.ListItems = response.ListItems;

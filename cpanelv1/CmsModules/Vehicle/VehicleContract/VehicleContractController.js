@@ -38,7 +38,7 @@
             vehicleContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-
+        vehicleContract.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"vehiclecontract/getall", vehicleContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContract.busyIndicator.isActive = false;

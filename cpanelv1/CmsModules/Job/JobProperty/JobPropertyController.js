@@ -59,6 +59,7 @@
 
     jobProperty.init = function () {
         jobProperty.busyIndicator.isActive = true;
+        jobProperty.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"jobproperty/getAllwithalias", jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobProperty.ListItems = response.ListItems;

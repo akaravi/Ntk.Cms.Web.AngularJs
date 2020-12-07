@@ -42,7 +42,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-
+        botConfigCtrl.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"apitelegrambotconfig/getall", botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;

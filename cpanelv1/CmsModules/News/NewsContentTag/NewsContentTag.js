@@ -6,6 +6,7 @@
     }
     newsContentTag.init = function () {
         newsContentTag.busyIndicator.isActive = true;
+        newsContentTag.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"NewsContenttag/getall", newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.busyIndicator.isActive = false;
