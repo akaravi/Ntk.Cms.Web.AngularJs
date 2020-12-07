@@ -279,6 +279,81 @@
                             <!--tabEnd-->
                         </div>
                     </tab>
+                    <tab heading="{{'ABOUTUS' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsTitle')">
+                                <label class="col-sm-2 control-label"> {{'AboutUsTitle'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="AboutUsTitle" ng-model="cmsSitegrd.selectedItem.AboutUsTitle"  />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsDescription')">
+                         
+                                <label class="col-sm-2 control-label">{{'AboutUsDescription'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="AboutUsDescription" ng-model="cmsSitegrd.selectedItem.AboutUsDescription" style="resize: vertical;height: 100px;"></textarea>
+
+                                    <p>
+                                        محتوای درباره ما
+                                    </p>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsTel')">
+                           
+                                <label class="col-sm-2 control-label"> {{'AboutUsTel'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="AboutUsTel" ng-model="cmsSitegrd.selectedItem.AboutUsTel"  />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsFax')">
+                                <label class="col-sm-2 control-label"> {{'AboutUsFax'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="AboutUsFax" ng-model="cmsSitegrd.selectedItem.AboutUsFax"  />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsEmail')">
+                                <label class="col-sm-2 control-label"> {{'AboutUsEmail'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="AboutUsEmail" ng-model="cmsSitegrd.selectedItem.AboutUsEmail"  />
+                                </div>
+
+                            </div>
+                           
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsAddress')">
+                               
+                                    <label class="col-sm-2 control-label">{{'AboutUsAddress'|lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="AboutUsAddress" ng-model="cmsSitegrd.selectedItem.AboutUsAddress" style="resize: vertical;height: 100px;"></textarea>
+    
+                                        <p>
+                                            آدرس پستی
+                                        </p>
+                                    </div>
+                                
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsSitegrd.CheckAccessEdit('AboutUsLinkImageId')">
+               
+                                <label class="col-sm-2 control-label"> {{'AboutUsLinkImageId'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class='form-control' name="AboutUsLinkImageId" ng-model="cmsSitegrd.selectedItem.AboutUsLinkImageId"  />
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--tabEnd-->
+
+                    </tab>
                     <tab heading="{{'Attachments_Files'|lowercase|translate}}">
                         <div class="panel-body">
                             <!--tabStart-->

@@ -28,6 +28,13 @@
         fileId: null,
         multiSelect: false
     };
+    appApplication.AboutUsLinkImageId = {
+        isActive: true,
+        backElement: "AboutUsLinkImageId",
+        filename: null,
+        fileId: null,
+        multiSelect: false
+    };
     appApplication.filePickerSmallImage = {
         isActive: true,
         backElement: "SmallImageId",
@@ -225,8 +232,7 @@
                 appApplication.gridOptions.fillData(appApplication.ListItems);
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
                 appApplication.closeModal();
-            }else
-            {
+            } else {
 
 
             }
@@ -360,6 +366,10 @@
         }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
+    }
+    appApplication.fileMangerLoad = function(){
+       
+
     }
     appApplication.openUploadModal = function() {
         appApplication.modalTitle = 'بارگزاری فایل نصب برنامه ';
@@ -631,7 +641,7 @@
         appApplication.gridOptions.searchData();
 
     }
- 
+
     appApplication.gridOptions = {
         columns: [{
                 name: 'Id',
@@ -979,9 +989,9 @@
     }
     appApplication.downloadApk = function(source) {
         //rashaErManage.showMessage("دستور برای سرور ارسال شد");
+        // debugger
+        appApplication.selectedItem = source;
 
-
-        appApplication.FilePathOnBrowserWithDomain = source.DownloadLinksrcByDomain;
         $modal.open({
             templateUrl: 'cpanelv1/CmsModules/Application/ApplicationApp/downloadApk.html',
             scope: $scope
@@ -1023,7 +1033,7 @@
                 angular.forEach(response1.ListItems, function(value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/"+ node.Id,"", 'GET').success(function(response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/" + node.Id, "", 'GET').success(function(response2) {
                     angular.forEach(response2.ListItems, function(value, key) {
                         node.Children.push(value);
                     });
