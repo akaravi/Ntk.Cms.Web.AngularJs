@@ -497,7 +497,7 @@ objectPropertyType.alreadyExist = function (id, array) {
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     objectPropertyType.FileItem = response.Item;
                     objectPropertyType.FileItem.FileName = uploadFile.name;
-                    objectPropertyType.FileItem.uploadName = uploadFile.uploadName;
+                    objectPropertyType.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     objectPropertyType.FileItem.Extension = uploadFile.name.split('.').pop();
                     objectPropertyType.FileItem.FileSrc = uploadFile.name;
                     objectPropertyType.FileItem.LinkCategoryId = null;  //Save the new file in the root

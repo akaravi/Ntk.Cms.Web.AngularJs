@@ -7,7 +7,9 @@ var cmsServerConfig = {
     configPathFileByIdAndName:"https://oco.ir/files/",
     configRouteThumbnails:"https://oco.ir/imageThumbnails/",
     //configRouteUploadFileContent:"http://localhost:2390/api/v1/FileContent/upload/",
-    configRouteUploadFileContent:"https://apicms.ir/api/v1/FileContent/upload/",
+    //configRouteUploadFileContent:"https://apicms.ir/api/v1/FileContent/upload/",
+    configRouteUploadFileContent:"https://apifile.ir/api/v1/upload/",
+    //configRouteUploadFileContent:"http://c9e8b2ddefa8.ngrok.io/api/v1/upload/",
 };
 
 //tools

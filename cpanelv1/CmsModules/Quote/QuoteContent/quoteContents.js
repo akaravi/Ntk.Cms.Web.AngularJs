@@ -1271,7 +1271,7 @@ quoteContent.LinkCategoryIdSelector = {
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     quoteContent.FileItem = response.Item;
                     quoteContent.FileItem.FileName = uploadFile.name;
-                    quoteContent.FileItem.uploadName = uploadFile.uploadName;
+                    quoteContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     quoteContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     quoteContent.FileItem.FileSrc = uploadFile.name;
                     quoteContent.FileItem.LinkCategoryId = null;  //Save the new file in the root

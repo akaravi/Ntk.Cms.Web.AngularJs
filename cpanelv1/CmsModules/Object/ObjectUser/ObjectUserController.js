@@ -1110,7 +1110,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     objectUser.FileItem = response.Item;
                     objectUser.FileItem.FileName = uploadFile.name;
-                    objectUser.FileItem.uploadName = uploadFile.uploadName;
+                    objectUser.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     objectUser.FileItem.Extension = uploadFile.name.split('.').pop();
                     objectUser.FileItem.FileSrc = uploadFile.name;
                     objectUser.FileItem.LinkCategoryId = null;  //Save the new file in the root

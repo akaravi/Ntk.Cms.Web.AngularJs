@@ -484,7 +484,7 @@
                     .success(function (response) {
                         appLayout.FileItem = response.Item;
                         appLayout.FileItem.FileName = uploadFile.name;
-                        appLayout.FileItem.uploadName = uploadFile.uploadName;
+                        appLayout.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                         appLayout.FileItem.Extension = uploadFile.name.split(".").pop();
                         appLayout.FileItem.FileSrc = uploadFile.name;
                         appLayout.FileItem.LinkCategoryId = null; //Save the new file in the root

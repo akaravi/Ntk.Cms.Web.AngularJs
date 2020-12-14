@@ -1228,8 +1228,8 @@
           delete this.data;
           $.event(status, $.message());
           //karavi 970317
-          $.fileObj.uploadName = $.message();
-          $.fileObj.uploadName = $.fileObj.uploadName.replaceAll(/"/, '');
+          $.fileObj.errorExceptionResult =JSON.parse( $.message());
+          // $.fileObj.uploadName = $.fileObj.uploadName.replaceAll(/"/, '');
         $.flowObj.uploadNextChunk();
       } else {
         $.event('retry', $.message());

@@ -1672,7 +1672,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
-                    shopContent.FileItem.uploadName = uploadFile.uploadName;
+                    shopContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     shopContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     shopContent.FileItem.FileSrc = uploadFile.name;
                     shopContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -1775,7 +1775,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
-                    shopContent.FileItem.uploadName = uploadFile.uploadName;
+                    shopContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     shopContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     shopContent.FileItem.FileSrc = uploadFile.name;
                     shopContent.FileItem.LinkCategoryId = null; //Save the new file in the root

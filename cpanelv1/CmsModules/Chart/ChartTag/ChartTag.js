@@ -964,7 +964,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     chartTag.FileItem = response.Item;
                     chartTag.FileItem.FileName = uploadFile.name;
-                    chartTag.FileItem.uploadName = uploadFile.uploadName;
+                    chartTag.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     chartTag.FileItem.Extension = uploadFile.name.split('.').pop();
                     chartTag.FileItem.FileSrc = uploadFile.name;
                     chartTag.FileItem.LinkCategoryId = null;  //Save the new file in the root

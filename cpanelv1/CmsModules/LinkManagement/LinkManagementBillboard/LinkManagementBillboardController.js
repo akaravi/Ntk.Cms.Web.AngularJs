@@ -1188,7 +1188,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     linkManagementBillboard.FileItem = response.Item;
                     linkManagementBillboard.FileItem.FileName = uploadFile.name;
-                    linkManagementBillboard.FileItem.uploadName = uploadFile.uploadName;
+                    linkManagementBillboard.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                     linkManagementBillboard.FileItem.Extension = uploadFile.name.split('.').pop();
                     linkManagementBillboard.FileItem.FileSrc = uploadFile.name;
                     linkManagementBillboard.FileItem.LinkCategoryId = null; //Save the new file in the root

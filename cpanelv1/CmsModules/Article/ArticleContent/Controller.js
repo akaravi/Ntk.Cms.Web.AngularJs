@@ -2284,7 +2284,7 @@
           ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
             articleContent.FileItem = response.Item;
             articleContent.FileItem.FileName = uploadFile.name;
-            articleContent.FileItem.uploadName = uploadFile.uploadName;
+            articleContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
             articleContent.FileItem.Extension = uploadFile.name.split('.').pop();
             articleContent.FileItem.FileSrc = uploadFile.name;
             articleContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2388,7 +2388,7 @@
           ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
             articleContent.FileItem = response.Item;
             articleContent.FileItem.FileName = uploadFile.name;
-            articleContent.FileItem.uploadName = uploadFile.uploadName;
+            articleContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
             articleContent.FileItem.Extension = uploadFile.name.split('.').pop();
             articleContent.FileItem.FileSrc = uploadFile.name;
             articleContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2501,7 +2501,7 @@
             .success(function (response) {
               articleContent.FileItem = response.Item;
               articleContent.FileItem.FileName = uploadFile.name;
-              articleContent.FileItem.uploadName = uploadFile.uploadName;
+              articleContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
               articleContent.FileItem.Extension = uploadFile.name.split(".").pop();
               articleContent.FileItem.FileSrc = uploadFile.name;
               articleContent.FileItem.LinkCategoryId = null; //Save the new file in the root

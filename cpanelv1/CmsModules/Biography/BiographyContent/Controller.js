@@ -2297,7 +2297,7 @@
           ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
             biographyContent.FileItem = response.Item;
             biographyContent.FileItem.FileName = uploadFile.name;
-            biographyContent.FileItem.uploadName = uploadFile.uploadName;
+            biographyContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
             biographyContent.FileItem.Extension = uploadFile.name.split('.').pop();
             biographyContent.FileItem.FileSrc = uploadFile.name;
             biographyContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2401,7 +2401,7 @@
           ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function (response) {
             biographyContent.FileItem = response.Item;
             biographyContent.FileItem.FileName = uploadFile.name;
-            biographyContent.FileItem.uploadName = uploadFile.uploadName;
+            biographyContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
             biographyContent.FileItem.Extension = uploadFile.name.split('.').pop();
             biographyContent.FileItem.FileSrc = uploadFile.name;
             biographyContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2514,7 +2514,7 @@
             .success(function (response) {
               biographyContent.FileItem = response.Item;
               biographyContent.FileItem.FileName = uploadFile.name;
-              biographyContent.FileItem.uploadName = uploadFile.uploadName;
+              biographyContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
               biographyContent.FileItem.Extension = uploadFile.name.split(".").pop();
               biographyContent.FileItem.FileSrc = uploadFile.name;
               biographyContent.FileItem.LinkCategoryId = null; //Save the new file in the root

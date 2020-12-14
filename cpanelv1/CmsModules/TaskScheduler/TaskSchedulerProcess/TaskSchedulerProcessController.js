@@ -1065,7 +1065,7 @@
             .success(function(response) {
               taskSchedulerProcess.FileItem = response.Item;
                 taskSchedulerProcess.FileItem.FileName = uploadFile.name;
-                taskSchedulerProcess.FileItem.uploadName = uploadFile.uploadName;
+                taskSchedulerProcess.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
                 taskSchedulerProcess.FileItem.Extension = uploadFile.name.split(".").pop();
                 taskSchedulerProcess.FileItem.FileSrc = uploadFile.name;
               taskSchedulerProcess.FileItem.LinkCategoryId = null; //Save the new file in the root
