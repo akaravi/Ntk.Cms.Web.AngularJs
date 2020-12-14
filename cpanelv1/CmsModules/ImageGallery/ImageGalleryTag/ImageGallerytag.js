@@ -961,7 +961,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     imgGalleryTag.FileItem = response.Item;
                     imgGalleryTag.FileItem.FileName = uploadFile.name;
-                    imgGalleryTag.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    imgGalleryTag.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     imgGalleryTag.FileItem.Extension = uploadFile.name.split('.').pop();
                     imgGalleryTag.FileItem.FileSrc = uploadFile.name;
                     imgGalleryTag.FileItem.LinkCategoryId = null;  //Save the new file in the root

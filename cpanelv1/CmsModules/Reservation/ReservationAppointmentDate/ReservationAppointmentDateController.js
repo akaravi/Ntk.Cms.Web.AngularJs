@@ -1075,7 +1075,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     appDate.FileItem = response.Item;
                     appDate.FileItem.FileName = uploadFile.name;
-                    appDate.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    appDate.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     appDate.FileItem.Extension = uploadFile.name.split('.').pop();
                     appDate.FileItem.FileSrc = uploadFile.name;
                     appDate.FileItem.LinkCategoryId = null;  //Save the new file in the root

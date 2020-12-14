@@ -492,8 +492,8 @@
                                     
                                     fdm.FileItem = response3.Item;
                                     fdm.FileItem.FileName = uploadFile.name;
-                                    //fdm.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
-                                    fdm.FileItem.uploadName = uploadFile.errorExceptionResult.Item.FileKey
+                                    //fdm.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
+                                    fdm.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey
                                     fdm.FileItem.Description = uploadFile.Description;
                                     fdm.FileItem.Extension = uploadFile.name.split('.').pop();
                                     fdm.FileItem.FileSrc = uploadFile.name;
@@ -572,7 +572,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                     fdm.FileItem = response.Item;
                     fdm.FileItem.FileName = uploadFile.name;
-                    fdm.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    fdm.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     fdm.FileItem.Description = uploadFile.Description;
                     //fdm.FileItem.Extension = uploadFile.name.split('.').pop();
                     //fdm.FileItem.FileSrc = uploadFile.name;

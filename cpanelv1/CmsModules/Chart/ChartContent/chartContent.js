@@ -1647,7 +1647,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     chartContent.FileItem = response.Item;
                     chartContent.FileItem.FileName = uploadFile.name;
-                    chartContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    chartContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     chartContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     chartContent.FileItem.FileSrc = uploadFile.name;
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
@@ -1752,7 +1752,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     chartContent.FileItem = response.Item;
                     chartContent.FileItem.FileName = uploadFile.name;
-                    chartContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    chartContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     chartContent.FileItem.Extension = uploadFile.name.split('.').pop();
                     chartContent.FileItem.FileSrc = uploadFile.name;
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root

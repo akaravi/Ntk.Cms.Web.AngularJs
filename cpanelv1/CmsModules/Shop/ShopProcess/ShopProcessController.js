@@ -1065,7 +1065,7 @@
             .success(function(response) {
               shopProcess.FileItem = response.Item;
                 shopProcess.FileItem.FileName = uploadFile.name;
-                shopProcess.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                shopProcess.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                 shopProcess.FileItem.Extension = uploadFile.name.split(".").pop();
                 shopProcess.FileItem.FileSrc = uploadFile.name;
               shopProcess.FileItem.LinkCategoryId = null; //Save the new file in the root

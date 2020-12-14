@@ -1,27 +1,28 @@
-
 var cmsServerConfig = {
-      configApiServerPath: "https://apicms.ir/api/v1/",
-     // configApiServerPath: "http://localhost:2390/api/v1/",
-    configMvcServerPath: "https://oco.ir",
     configCpanelImages: "/images/",
-    configPathFileByIdAndName:"https://oco.ir/files/",
-    configRouteThumbnails:"https://oco.ir/imageThumbnails/",
-    //configRouteUploadFileContent:"http://localhost:2390/api/v1/FileContent/upload/",
-    //configRouteUploadFileContent:"https://apicms.ir/api/v1/FileContent/upload/",
-    configRouteUploadFileContent:"https://apifile.ir/api/v1/upload/",
-    //configRouteUploadFileContent:"http://c9e8b2ddefa8.ngrok.io/api/v1/upload/",
+    configPathFileByIdAndName: "https://oco.ir/files/",
+    configRouteThumbnails: "https://oco.ir/imageThumbnails/",
+    configMvcServerPath: "https://oco.ir",
+    configApiServerPath: "https://apicms.ir/api/v1/",
+    // configApiServerPath: "http://localhost:2390/api/v1/",
+    // configApiServerPath: "http://e39c7bbcfb1a.ngrok.io/api/v1/",
+
+
+    configRouteUploadFileContent: "https://apifile.ir/api/v1/upload/",
+    //configRouteUploadFileContent:"http://localhost:2392/api/v1/FileContent/upload/",
+    //configRouteUploadFileContent: "http://c9e8b2ddefa8.ngrok.io/api/v1/upload/",
 };
 
 //tools
-var filterByDifference = function (array1, array2, compareField) {
+var filterByDifference = function(array1, array2, compareField) {
     var onlyInA = differenceInFirstArray(array1, array2, compareField);
     var onlyInb = differenceInFirstArray(array2, array1, compareField);
     return onlyInA.concat(onlyInb);
 }
 
-var differenceInFirstArray = function (array1, array2, compareField) {
-    return array1.filter(function (current) {
-        return array2.filter(function (current_b) {
+var differenceInFirstArray = function(array1, array2, compareField) {
+    return array1.filter(function(current) {
+        return array2.filter(function(current_b) {
             if (compareField && compareField.length > 0) {
                 return current_b[compareField] === current[compareField];
             } else {
@@ -30,7 +31,7 @@ var differenceInFirstArray = function (array1, array2, compareField) {
         }).length == 0;
     });
 }
-var findWithAttr = function (array, attr, value) {
+var findWithAttr = function(array, attr, value) {
     for (var i = 0; i < array.length; i += 1) {
         if (array[i][attr] === value) {
             return i;
@@ -38,7 +39,7 @@ var findWithAttr = function (array, attr, value) {
     }
     return -1;
 }
-var compareObjects = function (o1, o2) {
+var compareObjects = function(o1, o2) {
     for (var p in o1) {
         if (o1.hasOwnProperty(p)) {
             if (o1[p] !== o2[p]) {
@@ -61,7 +62,7 @@ var app =
     .config(
         [
             '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
-            function ($controllerProvider, $compileProvider, $filterProvider, $provide) {
+            function($controllerProvider, $compileProvider, $filterProvider, $provide) {
                 app.controller = $controllerProvider.register;
                 app.directive = $compileProvider.directive;
                 app.filter = $filterProvider.register;
@@ -70,7 +71,7 @@ var app =
                 app.constant = $provide.constant;
                 app.value = $provide.value;
             }
-        ]).config(function ($breadcrumbProvider, $tooltipProvider) {
+        ]).config(function($breadcrumbProvider, $tooltipProvider) {
         $breadcrumbProvider.setOptions({
             template: '<ol class="breadcrumb" style="margin-top:20px;"><li><a href="#/index/main">خانه</a></li><li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract"><a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a><span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span></li></ol>'
         });
@@ -80,7 +81,7 @@ var app =
             'focus': 'blur',
             'never': 'mouseleave' // <- This ensures the tooltip will go away on mouseleave
         });
-    }).config(['$translateProvider', function ($translateProvider) {
+    }).config(['$translateProvider', function($translateProvider) {
         $translateProvider
             .useStaticFilesLoader({
                 prefix: 'cpanelv1/translations/',
@@ -90,8 +91,8 @@ var app =
         //.useLocalStorage();
     }]).run([
         'ajax', '$builder',
-        function (ajax, $builder) {
-            $(window).bind("beforeunload", function () {});
+        function(ajax, $builder) {
+            $(window).bind("beforeunload", function() {});
 
         }
     ]);

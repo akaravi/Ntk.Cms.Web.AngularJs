@@ -1146,7 +1146,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     vehicleProperty.FileItem = response.Item;
                     vehicleProperty.FileItem.FileName = uploadFile.name;
-                    vehicleProperty.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    vehicleProperty.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     vehicleProperty.FileItem.Extension = uploadFile.name.split('.').pop();
                     vehicleProperty.FileItem.FileSrc = uploadFile.name;
                     vehicleProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root

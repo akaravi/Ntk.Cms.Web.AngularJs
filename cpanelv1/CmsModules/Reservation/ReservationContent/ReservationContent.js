@@ -1932,7 +1932,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                         reservationContent.FileItem = response.Item;
                         reservationContent.FileItem.FileName = uploadFile.name;
-                        reservationContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                        reservationContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                         reservationContent.FileItem.Extension = uploadFile.name.split('.').pop();
                         reservationContent.FileItem.FileSrc = uploadFile.name;
                         reservationContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
@@ -2046,7 +2046,7 @@
                         .success(function (response) {
                             reservationContent.FileItem = response.Item;
                             reservationContent.FileItem.FileName = uploadFile.name;
-                            reservationContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                            reservationContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                             reservationContent.FileItem.Extension = uploadFile.name.split(".").pop();
                             reservationContent.FileItem.FileSrc = uploadFile.name;
                             reservationContent.FileItem.LinkCategoryId = null; //Save the new file in the root

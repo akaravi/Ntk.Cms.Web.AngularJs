@@ -745,7 +745,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     campaignDetailLog.FileItem = response.Item;
                     campaignDetailLog.FileItem.FileName = uploadFile.name;
-                    campaignDetailLog.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    campaignDetailLog.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     campaignDetailLog.FileItem.Extension = uploadFile.name.split('.').pop();
                     campaignDetailLog.FileItem.FileSrc = uploadFile.name;
                     campaignDetailLog.FileItem.LinkCategoryId = null;  //Save the new file in the root

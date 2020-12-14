@@ -1141,7 +1141,7 @@
                 //     estateProperty.FileItem = response.Item;
                 estateProperty.FileItem = {};
                 estateProperty.FileItem.FileName = uploadFile.name;
-                estateProperty.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                estateProperty.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                 estateProperty.FileItem.ModuleName = "Estate";
                 estateProperty.FileItem.ModuleEntityName = "";
                 estateProperty.FileItem.ModuleEntityId = estateProperty.selectedItem.Id;

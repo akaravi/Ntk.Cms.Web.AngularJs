@@ -536,7 +536,7 @@
                     .success(function (response) {
                         themeConfig.FileItem = response.Item;
                         themeConfig.FileItem.FileName = uploadFile.name;
-                        themeConfig.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                        themeConfig.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                         themeConfig.FileItem.Extension = uploadFile.name.split(".").pop();
                         themeConfig.FileItem.FileSrc = uploadFile.name;
                         themeConfig.FileItem.LinkCategoryId = null; //Save the new file in the root

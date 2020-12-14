@@ -1815,7 +1815,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     memberProperty.FileItem = response.Item;
                     memberProperty.FileItem.FileName = uploadFile.name;
-                    memberProperty.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    memberProperty.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     memberProperty.FileItem.Extension = uploadFile.name.split('.').pop();
                     memberProperty.FileItem.FileSrc = uploadFile.name;
                     memberProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root

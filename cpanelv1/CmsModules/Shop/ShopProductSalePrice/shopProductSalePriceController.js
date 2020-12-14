@@ -1040,7 +1040,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"FileContent/ViewModel", "", 'GET').success(function (response) {
                     shopSalePrice.FileItem = response.Item;
                     shopSalePrice.FileItem.FileName = uploadFile.name;
-                    shopSalePrice.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                    shopSalePrice.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                     shopSalePrice.FileItem.Extension = uploadFile.name.split('.').pop();
                     shopSalePrice.FileItem.FileSrc = uploadFile.name;
                     shopSalePrice.FileItem.LinkCategoryId = null;  //Save the new file in the root

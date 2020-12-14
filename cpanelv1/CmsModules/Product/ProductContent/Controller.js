@@ -2282,7 +2282,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                         productContent.FileItem = response.Item;
                         productContent.FileItem.FileName = uploadFile.name;
-                        productContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                        productContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                         productContent.FileItem.Extension = uploadFile.name.split('.').pop();
                         productContent.FileItem.FileSrc = uploadFile.name;
                         productContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2386,7 +2386,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath + "FileContent/ViewModel", "", 'GET').success(function(response) {
                         productContent.FileItem = response.Item;
                         productContent.FileItem.FileName = uploadFile.name;
-                        productContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                        productContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                         productContent.FileItem.Extension = uploadFile.name.split('.').pop();
                         productContent.FileItem.FileSrc = uploadFile.name;
                         productContent.FileItem.LinkCategoryId = null; //Save the new file in the root
@@ -2499,7 +2499,7 @@
                         .success(function(response) {
                             productContent.FileItem = response.Item;
                             productContent.FileItem.FileName = uploadFile.name;
-                            productContent.FileItemuploadName = uploadFile.errorExceptionResult.Item.FileKey;
+                            productContent.FileItem.UploadFileGUID = uploadFile.errorExceptionResult.Item.FileKey;
                             productContent.FileItem.Extension = uploadFile.name.split(".").pop();
                             productContent.FileItem.FileSrc = uploadFile.name;
                             productContent.FileItem.LinkCategoryId = null; //Save the new file in the root
