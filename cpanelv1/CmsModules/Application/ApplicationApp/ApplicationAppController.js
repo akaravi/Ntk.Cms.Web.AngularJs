@@ -409,7 +409,7 @@
                 var model = {
                     LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
                     AppVersion: 0,
-                    UploadFileKey: uploadFile.UploadFileGUID
+                    UploadFileGUID: uploadFile.UploadFileGUID
 
                 };
                 ajax
@@ -450,7 +450,7 @@
                 var model = {
                     LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
                     AppVersion: 0,
-                    UploadFileKey: uploadFile.UploadFileGUID
+                    UploadFileGUID: uploadFile.UploadFileGUID
                 };
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "Application/UploadUpdate", model, "POST")
