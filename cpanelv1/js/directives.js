@@ -1574,6 +1574,7 @@ function queryBuilder($compile) {
             }
 
             config.showAdvancedSearchPanel = function() {
+                //debugger
                 $("#filter-btn-icon").toggleClass('fa-toggle-off fa-toggle-on');
                 $('#' + element[0].id + 'Panel').fadeToggle('fast', function() {
                     if (!$('#' + element[0].id + 'Panel').is(":visible")) {
@@ -1617,7 +1618,11 @@ function queryBuilder($compile) {
                 return retOut;
             }
             config.setFields = function() {
-                debugger
+                if(!config.gridOptions.Access || !config.gridOptions.Access.FieldsInfo )
+                {
+                    alert(" Access.FieldsInfo  Is Null");
+                }
+                //debugger
                 //Dynamically generate filters for QueryBuilder, based on columns of the grid
                 var fields = [];
                 if (config.gridOptions.Access.FieldsInfo)
@@ -1691,7 +1696,7 @@ function queryBuilder($compile) {
                     filters: fields,
                     lang_code: 'fa-ir'
                 };
-
+                
                 $(element).queryBuilder(options);
             }
 
