@@ -1617,7 +1617,7 @@ function queryBuilder($compile) {
                 return retOut;
             }
             config.setFields = function() {
-
+                debugger
                 //Dynamically generate filters for QueryBuilder, based on columns of the grid
                 var fields = [];
                 if (config.gridOptions.Access.FieldsInfo)
@@ -6135,9 +6135,14 @@ function rashaThumbnail($compile, rashaErManage) {
                     imageId = scope[config.name];
             if (!imageId || imageId.length == 0)
                 return;
+            //debugger
+            //var srcThumbnail = cmsServerConfig.configRouteThumbnails + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userToken'));
 
-            var srcThumbnail = cmsServerConfig.configRouteThumbnails + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userToken'));
-
+            var srcThumbnail = imageId + "";
+            if (imageId.indexOf('/thumbnail/') < 0)
+                var srcThumbnail = imageId.replace('/images/', '/images/thumbnail/');
+            if (srcThumbnail.length == 0)
+                return;
             var template = '<img style="width:' + config.width + 'px;height:' + config.height + 'px" src="' + srcThumbnail + '" >';
 
             var el = $compile(template)(scope);
