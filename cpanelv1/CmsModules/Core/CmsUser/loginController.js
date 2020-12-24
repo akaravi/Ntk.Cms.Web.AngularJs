@@ -55,8 +55,6 @@ login.Captcha=function(){
             };
         ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", modelDto, "POST").success(function (response) {
             rashaErManage.checkAction(response);
-            login.loginRequest = false;
-            login.loginBusyIndicator.isActive = false;
             if (response.IsSuccess && response.Item) {
                 localStorage.setItem("userToken", response.Item.Token);
                 $state.go("siteSelector", {});
@@ -67,6 +65,8 @@ login.Captcha=function(){
                 login.passwordData ="";
                 login.captchaText ="";
                 login.Captcha();
+                login.loginRequest = false;
+                login.loginBusyIndicator.isActive = false;    
             }
 
         }).error(function (data, errCode, c, d) {
