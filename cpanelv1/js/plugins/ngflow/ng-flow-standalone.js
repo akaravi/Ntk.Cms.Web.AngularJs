@@ -718,7 +718,7 @@
     this.name = file.fileName || file.name;
 
       //karavi 970317
-    this.uploadName = file.uploadName;
+    this.UploadFileGUID = file.UploadFileGUID;
     /**
      * File size
      * @type {number}
@@ -1229,7 +1229,7 @@
           $.event(status, $.message());
           //karavi 970317
           $.fileObj.errorExceptionResult =JSON.parse( $.message());
-          // $.fileObj.uploadName = $.fileObj.uploadName.replaceAll(/"/, '');
+          // $.fileObj.UploadFileGUID = $.fileObj.UploadFileGUID.replaceAll(/"/, '');
         $.flowObj.uploadNextChunk();
       } else {
         $.event('retry', $.message());

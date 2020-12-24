@@ -75,9 +75,9 @@
         }).error(function(data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-
+        appApplication.gridOptions.advancedSearchData.engine.AccessLoad=true;
         ajax.call(cmsServerConfig.configApiServerPath + "Application/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
-            rashaErManage.checkAction(response);
+            rashaErManage.checkAction(response,response.Access);
             appApplication.busyIndicator.isActive = false;
             appApplication.ListItems = response.ListItems;
 
@@ -409,7 +409,7 @@
                 var model = {
                     LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
                     AppVersion: 0,
-                    UploadFileKey: uploadFile.uploadName
+                    UploadFileGUID: uploadFile.UploadFileGUID
 
                 };
                 ajax
@@ -450,7 +450,7 @@
                 var model = {
                     LinkApplicationId: appApplication.gridOptions.selectedRow.item.Id,
                     AppVersion: 0,
-                    UploadFileKey: uploadFile.uploadName
+                    UploadFileGUID: uploadFile.UploadFileGUID
                 };
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "Application/UploadUpdate", model, "POST")

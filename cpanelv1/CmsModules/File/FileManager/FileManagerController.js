@@ -144,7 +144,7 @@
             fdm.loadingBusyIndicator.isActive = false;
             if (response.IsSuccess) {
                 fdm.msgTextERROR = "successful!";
-                uploadFile.uploadName = response.ErrorMessage;
+                uploadFile.UploadFileGUID = response.ErrorMessage;
                 uploadFile.uploaded = 1;
                 fdm.loadingBusyIndicator.isActive = false;
                 $("#save-icon-start" + index).removeClass("fa-save");

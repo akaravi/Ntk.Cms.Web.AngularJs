@@ -490,7 +490,7 @@
     }
     estateProperty.gridOptions = {
         columns: [{
-                name: 'LinkMainImageId',
+                name: 'LinkMainImageIdSrc',
                 displayName: 'عکس',
                 sortable: true,
                 visible: true,

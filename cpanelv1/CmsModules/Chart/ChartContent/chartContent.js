@@ -142,7 +142,7 @@
     //Chart Grid Options
     chartContent.gridOptions = {
         columns: [
-            { name: 'LinkMainImageId', displayName: 'عکس', sortable: true, visible: true, isThumbnailByFild: true, imageWidth: '80', imageHeight: '80' },
+            { name: 'LinkMainImageIdSrc', displayName: 'عکس', sortable: true, visible: true, isThumbnailByFild: true, imageWidth: '80', imageHeight: '80' },
             { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer', visible: 'true' },
             { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
             { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string', visible: 'true' },

@@ -283,7 +283,7 @@
         columnOptions: {
             columns: [
                 { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer'},
-                { name: 'LinkMainImageId', displayName: 'عکس', sortable: true, visible: true, isThumbnailByFild: true, imageWidth: '80', imageHeight: '80' },
+                { name: 'LinkMainImageIdSrc', displayName: 'عکس', sortable: true, visible: true, isThumbnailByFild: true, imageWidth: '80', imageHeight: '80' },
                 { name: 'Title', displayName: 'عنوان', sortable: true, type: 'string', visible: true },
                 { name: 'LinkModuleProductId', displayName: 'کد سیستمی ', sortable: true, type: 'integer', visible: true },
             ]

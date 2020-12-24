@@ -143,7 +143,7 @@
         ajax.call(cmsServerConfig.configRouteUploadFileContent + "FromUrl", { url: uploadFile.Url }, 'POST').success(function(response) {
             if (response.IsSuccess) {
                 fdm.msgTextERROR = "successful!";
-                uploadFile.uploadName = response.Item.FileKey;
+                uploadFile.UploadFileGUID = response.Item.FileKey;
                 uploadFile.uploaded = 1;
                 $("#save-icon-start" + index).removeClass("fa-save");
                 $("#save-button-start" + index).removeClass("flashing-button");
