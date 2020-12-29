@@ -203,7 +203,7 @@
         columns: [
             { name: 'Id', displayName: 'کد سیستمی', sortable: true },
             { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
-            { name: 'LinkTicketId', displayName: 'شناسه سایت', sortable: true, isDate: true },
+            { name: 'LinkTaskId', displayName: 'شناسه سایت', sortable: true, isDate: true },
             { name: 'HtmlResult', displayName: 'جواب', sortable: true },
            
         ],

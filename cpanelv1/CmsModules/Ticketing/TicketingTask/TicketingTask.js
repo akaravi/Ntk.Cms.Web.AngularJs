@@ -61,7 +61,7 @@
             { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
-            { name: 'LinkTicketId', displayName: 'کد سیستمی تیکت', sortable: true, type: 'string' },
+            { name: 'LinkTaskId', displayName: 'کد سیستمی تیکت', sortable: true, type: 'string' },
             { name: 'ticketing.Title', displayName: 'عنوان تیکت', sortable: true, type: 'integer', displayForce: true },
             { name: 'CreatedDate', displayName: 'تاریخ ثبت', sortable: true, isDate: true, type: 'string', displayForce: true },
             { name: 'HtmlBody', displayName: 'پاسخ', sortable: true, type: 'string' }
@@ -186,7 +186,7 @@
                 ticketingTask.parseFileIds(response.Item.LinkFileIds);
                 ticketingTask.filePickerFiles.filename = null;
                 ticketingTask.filePickerFiles.fileId = null;
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/', response.Item.LinkTaskId, 'GET').success(function (responseTask) {
                     rashaErManage.checkAction(responseTask);
                     if (responseTask.IsSuccess) {
                         ticketingTask.selectedItem.virtual_ticketing=responseTask.Item;
@@ -341,7 +341,7 @@
             //var id = ticketingTask.gridOptions.selectedRow.item.Id;
             ticketingTask.answersbusyIndicator = true;
             var Filter_value = {
-                PropertyName: "LinkTicketId",
+                PropertyName: "LinkTaskId",
                 IntValue1: item.Id,
                 SearchType: 0
             }
@@ -353,7 +353,7 @@
                 ticketingTask.busyIndicator.isActive = false;
                 ticketingTask.answersListItems = response.ListItems;
                 if (response.ListItems.length < 1)
-                    ticketingTask.answersListItems.push({ Id: 0, LinkTicketId: 0, HtmlBody: "هیچ پاسخی وجود ندارد!" });
+                    ticketingTask.answersListItems.push({ Id: 0, LinkTaskId: 0, HtmlBody: "هیچ پاسخی وجود ندارد!" });
                 ticketingTask.answersGridOptions.fillData(ticketingTask.answersListItems, response.Access);
                 ticketingTask.answersGridOptions.currentPageNumber = response.CurrentPageNumber;
                 ticketingTask.answersGridOptions.totalRowCount = response.TotalRowCount;
@@ -405,7 +405,7 @@
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
-            //ticketingTask.selectedItem.LinkTicketId = ticketingTask.gridOptions.selectedRow.item.Id;
+            //ticketingTask.selectedItem.LinkTaskId = ticketingTask.gridOptions.selectedRow.item.Id;
             //ticketingTask.selectedItem.Ticket = { Title: ticketingTask.gridOptions.selectedRow.item.Title, HtmlBody: ticketingTask.gridOptions.selectedRow.item.HtmlBody };
             ticketingTask.selectedItem.LinkFileIds = null;
             $modal.open({
@@ -427,7 +427,7 @@
         ticketingTask.busyIndicator.isActive = true;
         ticketingTask.selectedItem.LinkFileIds = "";
         ticketingTask.stringfyLinkFileIds();
-        ticketingTask.selectedItem.LinkTicketId    =ticketingTask.gridOptions.selectedRow.item.Id;
+        ticketingTask.selectedItem.LinkTaskId    =ticketingTask.gridOptions.selectedRow.item.Id;
         ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/', ticketingTask.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
