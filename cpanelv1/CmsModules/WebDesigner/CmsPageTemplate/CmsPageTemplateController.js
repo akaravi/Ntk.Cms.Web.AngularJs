@@ -23,7 +23,7 @@
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPageTemplate/add.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPageTemplate/add.html',
                 scope: $scope
             });
 
@@ -60,7 +60,7 @@
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPageTemplate/edit.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPageTemplate/edit.html',
                 scope: $scope
             });
         }).error(function(data, errCode, c, d) {

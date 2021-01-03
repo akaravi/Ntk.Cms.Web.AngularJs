@@ -1,5 +1,4 @@
-﻿/// <reference path="../../views/CmsSiteMenu/add.html" />
-app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
+﻿app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var cmsSiteMenu = this;
     cmsSiteMenu.busyIndicator = {
         isActive: true,
@@ -83,7 +82,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
                 cmsSiteMenu.addRequested = false;
                 cmsSiteMenu.busyIndicator.isActive = false;
                 $modal.open({
-                    templateUrl: 'cpanelv1/CmsModules/Core/CmsSiteMenu/add.html',
+                    templateUrl: 'cpanelv1/CmsModules/WebDesigner/CmsSiteMenu/add.html',
                     scope: $scope
                 });
             }).error(function(data, errCode) {
@@ -145,7 +144,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
                 cmsSiteMenu.addRequested = false;
                 cmsSiteMenu.busyIndicator.isActive = false;
                 $modal.open({
-                    templateUrl: 'cpanelv1/CmsModules/Core/CmsSiteMenu/edit.html',
+                    templateUrl: 'cpanelv1/CmsModules/WebDesigner/CmsSiteMenu/edit.html',
                     scope: $scope
                 });
             }).error(function(data, errCode) {

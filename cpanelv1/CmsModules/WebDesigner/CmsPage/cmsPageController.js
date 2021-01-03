@@ -28,6 +28,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         cmsPagegrd.busyIndicator.isActive = true;
+        cmsPagegrd.gridOptions.advancedSearchData.engine.AccessLoad=true;
         ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageDependency/getall", cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response2) {
             rashaErManage.checkAction(response2);
             cmsPagegrd.ListItems = response2.ListItems;
@@ -62,7 +63,7 @@
     cmsPagegrd.openUtilityToolseModal = function () {
 
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/UtilityTools.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/UtilityTools.html',
                 scope: $scope
             });
     }
@@ -95,7 +96,7 @@
             });
 
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/view/add.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/view/add.html',
                 scope: $scope
             });
         }).error(function (data, errCode, c, d) {
@@ -173,7 +174,7 @@
             cmsPagegrd.selectedItem = response.Item;
             cmsPagegrd.selectedItem.LinkModuleId = null;
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/edit.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/edit.html',
                 scope: $scope
             });
             // Load Values Backward
@@ -375,7 +376,7 @@
         cmsPagegrd.ExportFileClass = { FileType: 1, RecieveMethod: 0, RowCount: 100 };
         cmsPagegrd.exportDownloadLink = null;
         $modal.open({
-            templateUrl: 'cpanelv1/CmsModules/Core/CmsPage/report.html',
+            templateUrl: 'cpanelv1/CmsModules/WebDesigner/CmsPage/report.html',
             scope: $scope
         });
     }

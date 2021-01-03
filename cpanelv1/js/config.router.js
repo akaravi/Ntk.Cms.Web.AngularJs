@@ -331,7 +331,7 @@
                 })
                 .state("index.cmspagetemplate", {
                     url: "/cmspagetemplate",
-                    templateUrl: "cpanelv1/CmsModules/Core/CmsPageTemplate/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/WebDesigner/CmsPageTemplate/grid.html",
                     controller: "cmsPageTemplateGridCtrl",
                     controllerAs: "cmsPageTemplategrd",
                     data: {
@@ -347,7 +347,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/CmsModules/Core/CmsPageTemplate/CmsPageTemplateController.js'
+                                        'cpanelv1/CmsModules/WebDesigner/CmsPageTemplate/CmsPageTemplateController.js'
                                     ]
                                 });
                             }
@@ -462,7 +462,7 @@
                 })
                 .state("index.cmspages", {
                     url: "/cmspages",
-                    templateUrl: "cpanelv1/CmsModules/Core/CmsPage/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/WebDesigner/CmsPage/grid.html",
                     controller: "cmsPageGridCtrl",
                     controllerAs: "cmsPagegrd",
                     data: {
@@ -478,7 +478,7 @@
                                 return $ocLazyLoad.load({
                                     serie: true,
                                     files: [
-                                        'cpanelv1/CmsModules/Core/CmsPage/cmsPageController.js'
+                                        'cpanelv1/CmsModules/WebDesigner/CmsPage/cmsPageController.js'
                                     ]
                                 });
                             }
@@ -487,7 +487,7 @@
                 })
                 .state("index.cmspagesdesign", {
                     url: "/cmspagesdesign",
-                    templateUrl: "cpanelv1/CmsModules/Core/CmsPage/boxes.html",
+                    templateUrl: "cpanelv1/CmsModules/WebDesigner/CmsPage/boxes.html",
                     params: {
                         dependencyId: null,
                         dependencyTitle: null,
@@ -511,7 +511,7 @@
                                     "ngTagsInput", "summernote", {
                                         //serie: true,
                                         files: [
-                                            'cpanelv1/CmsModules/Core/CmsPage/cmsPageDesignController.js'
+                                            'cpanelv1/CmsModules/WebDesigner/CmsPage/cmsPageDesignController.js'
                                         ]
                                     }
                                 ]);
@@ -2333,7 +2333,7 @@
                 //-----CmsSiteMenu-----
                 .state('index.cmssitemenu', {
                     url: "/CmsSiteMenu",
-                    templateUrl: "cpanelv1/CmsModules/Core/CmsSiteMenu/grid.html",
+                    templateUrl: "cpanelv1/CmsModules/WebDesigner/CmsSiteMenu/grid.html",
                     controller: "cmsSiteMenuCtrl",
                     controllerAs: "cmsSiteMenu",
                     data: {
@@ -2351,7 +2351,7 @@
                                     {
                                         serie: false,
                                         files: [
-                                            'cpanelv1/CmsModules/Core/CmsSiteMenu/CmsSiteMenuController.js'
+                                            'cpanelv1/CmsModules/WebDesigner/CmsSiteMenu/CmsSiteMenuController.js'
                                             //  
                                             // 
                                         ]

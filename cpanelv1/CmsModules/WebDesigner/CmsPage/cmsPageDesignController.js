@@ -209,7 +209,7 @@
                     cmsPageDesign.selectedItem.LinkPageTemplateGuId = item.Id
             });
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/add.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/add.html',
                 scope: $scope
             });
         }).error(function (data, errCode, c, d) {
@@ -315,7 +315,7 @@
                     cmsPageDesign.kwords.push({ text: item });  //Add current content's tag to tags array with id and title
             });
             $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/edit.html',
+                templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/edit.html',
                 scope: $scope
             });
             // Load Values Backward
@@ -443,7 +443,7 @@
         //#help#لیست  صفحات پیش فرض
         
         $modal.open({
-            templateUrl: 'cpanelv1/CmsModules/Core/cmsPage/default_pages.html',
+            templateUrl: 'cpanelv1/CmsModules/WebDesigner/cmsPage/default_pages.html',
             scope: $scope
         });
         //#help#لیست  صفحات پیش فرض
@@ -517,7 +517,7 @@
   //#fastUpload
     cmsPageDesign.openUploadModal = function () {
         $modal.open({
-            templateUrl: 'cpanelv1/CmsModules/Core/CmsSite/upload.html',
+            templateUrl: 'cpanelv1/CmsModules/WebDesigner/CmsSite/upload.html',
             size: 'lg',
             scope: $scope
         });
