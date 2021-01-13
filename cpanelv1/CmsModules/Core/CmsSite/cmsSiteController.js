@@ -135,6 +135,7 @@
 
         }
         cmsSitegrd.busyIndicator.isActive = true;
+        cmsSitegrd.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/" + action, cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.ListItems = response.ListItems;
