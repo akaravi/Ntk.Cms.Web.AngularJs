@@ -13,17 +13,25 @@ var cmsServerConfig = {
 };
 
 //tools
-var filterByDifference = function(array1, array2, compareField) {
-    var onlyInA = differenceInFirstArray(array1, array2, compareField);
-    var onlyInb = differenceInFirstArray(array2, array1, compareField);
+// var filterByDifference = function(array1, array2, compareField) {
+//     var onlyInA = differenceInFirstArray(array1, array2, compareField);
+//     var onlyInb = differenceInFirstArray(array2, array1, compareField);
+//     return onlyInA.concat(onlyInb);
+// }
+var filterByDifference = function(array1, array2, compareField1,compareField2) {
+    var onlyInA = differenceInFirstArray(array1, array2, compareField1,compareField2);
+    var onlyInb = differenceInFirstArray(array2, array1, compareField1,compareField2);
     return onlyInA.concat(onlyInb);
 }
-
-var differenceInFirstArray = function(array1, array2, compareField) {
+var differenceInFirstArray = function(array1, array2, compareField1,compareField2) {
     return array1.filter(function(current) {
         return array2.filter(function(current_b) {
-            if (compareField && compareField.length > 0) {
-                return current_b[compareField] === current[compareField];
+            if (compareField1 && compareField1.length > 0 && compareField2 && compareField2.length > 0) {
+                return (current_b[compareField1] === current[compareField1] && current_b[compareField2] === current[compareField2]);
+            } else if (compareField1 && compareField1.length > 0) {
+                    return current_b[compareField1] === current[compareField1];
+            } else if (compareField2 && compareField2.length > 0) {
+                return current_b[compareField2] === current[compareField2];
             } else {
                 return compareObjects(current_b, current)
             }
