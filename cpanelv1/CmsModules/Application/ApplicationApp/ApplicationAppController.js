@@ -1,4 +1,4 @@
-﻿app.controller("applicationAppController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$builder', '$state', '$window', '$filter', function($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $builder, $state, $window, $filter) {
+﻿app.controller("applicationAppController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$builder', '$state', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $builder, $state, $window, $filter) {
     var appApplication = this;
     appApplication.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
 
@@ -58,36 +58,36 @@
     appApplication.selectUniversalMenuOnUndetectableKey = true;
     if (itemRecordStatus != undefined) appApplication.itemRecordStatus = itemRecordStatus;
 
-    appApplication.init = function() {
+    appApplication.init = function () {
         appApplication.busyIndicator.isActive = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath + "Application/EnumBuildStatusType", "", 'GET').success(function(responseGetEnum) {
+        ajax.call(cmsServerConfig.configApiServerPath + "Application/EnumBuildStatusType", "", 'GET').success(function (responseGetEnum) {
             appApplication.buildStatusEnum = responseGetEnum.ListItems;
             appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function(responseGetEnum) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
             rashaErManage.checkAction(responseGetEnum);
             if (responseGetEnum.IsSuccess)
                 appApplication.EnumNotificationType = responseGetEnum.ListItems;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        appApplication.gridOptions.advancedSearchData.engine.AccessLoad=true;
-        ajax.call(cmsServerConfig.configApiServerPath + "Application/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
-            rashaErManage.checkAction(response,response.Access);
+        appApplication.gridOptions.advancedSearchData.engine.AccessLoad = true;
+        ajax.call(cmsServerConfig.configApiServerPath + "Application/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            rashaErManage.checkAction(response, response.Access);
             appApplication.busyIndicator.isActive = false;
             appApplication.ListItems = response.ListItems;
 
             appApplication.calculatePercantage(appApplication.ListItems);
 
             //Get all Sources
-        var engine = {};
-        engine.AccessLoad = true;
+            var engine = {};
+            engine.AccessLoad = true;
 
-            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", engine, 'POST').success(function(responseSource) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", engine, 'POST').success(function (responseSource) {
                 rashaErManage.checkAction(responseSource);
                 appApplication.sourceListItems = responseSource.ListItems;
                 for (var i = 0; i < appApplication.ListItems.length; i++) {
@@ -100,13 +100,13 @@
                 appApplication.gridOptions.totalRowCount = response.TotalRowCount;
                 appApplication.gridOptions.rowPerPage = response.RowPerPage;
                 appApplication.allowedSearch = response.AllowedSearchField;
-            }).error(function(data, errCode, c, d) {
+            }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
             //Get all Sources
 
 
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             appApplication.busyIndicator.isActive = false;
             appApplication.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
@@ -114,14 +114,14 @@
 
 
         //@help برای زمانبندی
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumScheduleCronType", "", 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumScheduleCronType", "", 'GET').success(function (response) {
             appApplication.ScheduleCronType = response.ListItems;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/EnumDayOfWeek", "", 'GET').success(function (response) {
             appApplication.weekdays = response.ListItems;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             console.log(data);
         });
         //@help برای زمانبندی
@@ -132,7 +132,7 @@
     //     return false;
 
     // }
-    appApplication.setBuildStatusEnum = function(listItems, enumList) {
+    appApplication.setBuildStatusEnum = function (listItems, enumList) {
         // angular.forEach(listItems, function (item, property) {
         //     angular.forEach(enumList, function (value, key) {
         //         if (item.LastBuildStatus == value.Value)
@@ -152,7 +152,7 @@
 
     appApplication.addRequested = false;
 
-    appApplication.openAddModal = function() {
+    appApplication.openAddModal = function () {
         if (buttonIsPressed) return;
 
         appApplication.modalTitle = 'اضافه';
@@ -163,7 +163,7 @@
         appApplication.FileIdSplashScreen.filename = "";
         appApplication.FileIdSplashScreen.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/ViewModel', "", 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/ViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
@@ -177,31 +177,31 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function(response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
 
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", '', 'GET').success(function(response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", '', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/CmsModules/Application/ApplicationApp/add.html',
                         scope: $scope
                     });
                     appApplication.addRequested = false;
-                }).error(function(data, errCode, c, d) {
+                }).error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function(data, errCode, c, d) {
+            }).error(function (data, errCode, c, d) {
                 console.log(data);
             });
             //-----
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             appApplication.busyIndicator.isActive = false;
         });
     }
 
     // Add New Content
-    appApplication.addNewRow = function(frm) {
+    appApplication.addNewRow = function (frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -226,7 +226,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -240,14 +240,14 @@
 
             }
             appApplication.closeModal();
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             appApplication.busyIndicator.isActive = false;
             appApplication.addRequested = false;
         });
     }
 
-    appApplication.openEditModal = function() {
+    appApplication.openEditModal = function () {
         if (buttonIsPressed) return;
 
         appApplication.modalTitle = 'ویرایش';
@@ -256,7 +256,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.selectedItem = response.Item;
@@ -289,12 +289,12 @@
                         response.Item.LinkFileIdIcon,
                         "GET"
                     )
-                    .success(function(response2) {
+                    .success(function (response2) {
                         buttonIsPressed = false;
                         appApplication.FileIdIcon.filename = response2.Item.FileName;
                         appApplication.FileIdIcon.fileId = response2.Item.Id;
                     })
-                    .error(function(data, errCode, c, d) {
+                    .error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
             }
@@ -305,12 +305,12 @@
                         response.Item.LinkFileIdLogo,
                         "GET"
                     )
-                    .success(function(response2) {
+                    .success(function (response2) {
                         buttonIsPressed = false;
                         appApplication.FileIdLogo.filename = response2.Item.FileName;
                         appApplication.FileIdLogo.fileId = response2.Item.Id;
                     })
-                    .error(function(data, errCode, c, d) {
+                    .error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
             }
@@ -321,12 +321,12 @@
                         response.Item.LinkFileIdSplashScreen,
                         "GET"
                     )
-                    .success(function(response2) {
+                    .success(function (response2) {
                         buttonIsPressed = false;
                         appApplication.FileIdSplashScreen.filename = response2.Item.FileName;
                         appApplication.FileIdSplashScreen.fileId = response2.Item.Id;
                     })
-                    .error(function(data, errCode, c, d) {
+                    .error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
                     });
             }
@@ -342,10 +342,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function(response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
 
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", '', 'GET').success(function(response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/", '', 'GET').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appApplication.selectedItem.LinkModulesFilesIdIcon > 0)
@@ -359,22 +359,22 @@
                         scope: $scope
                     });
                     appApplication.onSourceChange(appApplication.selectedItem.LinkSourceId);
-                }).error(function(data, errCode, c, d) {
+                }).error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function(data, errCode, c, d) {
+            }).error(function (data, errCode, c, d) {
                 console.log(data);
             });
             //---
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    appApplication.fileMangerLoad = function(){
-       
+    appApplication.fileMangerLoad = function () {
+
 
     }
-    appApplication.openUploadModal = function() {
+    appApplication.openUploadModal = function () {
         appApplication.modalTitle = 'بارگزاری فایل نصب برنامه ';
         if (!appApplication.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
@@ -386,7 +386,7 @@
             scope: $scope
         });
     }
-    appApplication.openUploadUPdateModal = function() {
+    appApplication.openUploadUPdateModal = function () {
         appApplication.modalTitle = 'بارگزاری فایل آپدیت برنامه ';
         if (!appApplication.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
@@ -399,7 +399,7 @@
         });
     }
     //upload file
-    appApplication.uploadFile = function(index, uploadFile) {
+    appApplication.uploadFile = function (index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             {
                 $("#save-button" + index).removeClass("fa-save");
@@ -414,7 +414,7 @@
                 };
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "Application/Upload", model, "POST")
-                    .success(function(response) {
+                    .success(function (response) {
 
                         rashaErManage.checkAction(response);
 
@@ -430,7 +430,7 @@
                             $("#save-icon" + index).removeClass("fa-remove");
                         }
                     })
-                    .error(function(data) {
+                    .error(function (data) {
                         rashaErManage.checkAction(data, errCode);
                         $("#save-icon" + index).addClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
@@ -440,7 +440,7 @@
             }
         }
     };
-    appApplication.uploadUpdateFile = function(index, uploadFile) {
+    appApplication.uploadUpdateFile = function (index, uploadFile) {
         if ($("#save-icon" + index).hasClass("fa-save")) {
             {
                 $("#save-button" + index).removeClass("fa-save");
@@ -454,7 +454,7 @@
                 };
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "Application/UploadUpdate", model, "POST")
-                    .success(function(response) {
+                    .success(function (response) {
 
                         rashaErManage.checkAction(response);
 
@@ -470,7 +470,7 @@
                             $("#save-icon" + index).removeClass("fa-remove");
                         }
                     })
-                    .error(function(data) {
+                    .error(function (data) {
                         rashaErManage.checkAction(data, errCode);
                         $("#save-icon" + index).addClass("fa-save");
                         $("#save-button" + index).removeClass("flashing-button");
@@ -480,12 +480,12 @@
             }
         }
     };
-    appApplication.calcuteProgress = function(progress) {
+    appApplication.calcuteProgress = function (progress) {
         wdth = Math.floor(progress * 100);
         return wdth;
     };
 
-    appApplication.whatcolor = function(progress) {
+    appApplication.whatcolor = function (progress) {
         wdth = Math.floor(progress * 100);
         if (wdth >= 0 && wdth < 30) {
             return "danger";
@@ -497,7 +497,7 @@
             return "success";
         }
     };
-    appApplication.canShow = function(pr) {
+    appApplication.canShow = function (pr) {
         if (pr == 1) {
             return true;
         }
@@ -507,11 +507,11 @@
     function selectNode(dataForTheTree, selectedFile) {
         var nodeIds = [];
         $.each(dataForTheTree,
-            function(index, file) {
+            function (index, file) {
                 if (nodeIds.indexOf(file.Id + '') > -1 && file.FileName != undefined && file.FileName.length > 0) {
                     appApplication.selectedNode = file;
 
-                    $.each(retData.list, function(index, category) {
+                    $.each(retData.list, function (index, category) {
                         if (searchChildren(file, category))
                             appApplication.expandedNodes.push(category);
                     });
@@ -536,9 +536,9 @@
                     result = searchChildren(file, currentChild);
                     // Return the result if the node has been found
                     if (result !== false) {
-                        if ($.grep(scope.expandedNodes, function(e) {
-                                return e.Id === currentChild.Id;
-                            }).length <= 0) scope.expandedNodes.push(currentChild);
+                        if ($.grep(scope.expandedNodes, function (e) {
+                            return e.Id === currentChild.Id;
+                        }).length <= 0) scope.expandedNodes.push(currentChild);
                         return result;
                     }
                 }
@@ -547,7 +547,7 @@
         }
     }
     // Edit a Content
-    appApplication.editRow = function(frm) {
+    appApplication.editRow = function (frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
@@ -570,7 +570,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, "PUT").success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
@@ -580,19 +580,19 @@
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
                 appApplication.closeModal();
             }
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
         });
     }
 
-    appApplication.closeModal = function() {
+    appApplication.closeModal = function () {
         $modalStack.dismissAll();
     };
 
-    appApplication.replaceItem = function(oldId, newItem) {
-        angular.forEach(appApplication.ListItems, function(item, key) {
+    appApplication.replaceItem = function (oldId, newItem) {
+        angular.forEach(appApplication.ListItems, function (item, key) {
             if (item.Id == oldId) {
                 var index = appApplication.ListItems.indexOf(item);
                 appApplication.ListItems.splice(index, 1);
@@ -602,23 +602,23 @@
             appApplication.ListItems.unshift(newItem);
     }
 
-    appApplication.deleteRow = function() {
+    appApplication.deleteRow = function () {
         if (buttonIsPressed) return;
 
         if (!appApplication.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
             return;
         }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
+        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 appApplication.busyIndicator.isActive = true;
                 console.log(appApplication.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItemForDelete.Id, 'DELETE').success(function(res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'Application/', appApplication.selectedItemForDelete.Id, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appApplication.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -626,12 +626,12 @@
                             appApplication.gridOptions.fillData(appApplication.ListItems);
                         }
 
-                    }).error(function(data2, errCode2, c2, d2) {
+                    }).error(function (data2, errCode2, c2, d2) {
                         rashaErManage.checkAction(data2);
                         appApplication.busyIndicator.isActive = false;
 
                     });
-                }).error(function(data, errCode, c, d) {
+                }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
                     appApplication.busyIndicator.isActive = false;
 
@@ -640,154 +640,154 @@
         });
     }
 
-    appApplication.searchData = function() {
+    appApplication.searchData = function () {
         appApplication.gridOptions.searchData();
 
     }
 
     appApplication.gridOptions = {
         columns: [{
-                name: 'Id',
-                displayName: 'کد سیستمی',
-                sortable: true,
-                type: 'integer',
-                visible: true
-            },
-            {
-                name: 'LinkSiteId',
-                displayName: 'کد سیستمی سایت',
-                sortable: true,
-                type: 'integer',
-                visible: true
-            },
-            {
-                name: 'CreatedDate',
-                displayName: 'ساخت',
-                sortable: true,
-                isDate: true,
-                type: 'date',
-                visible: 'true'
-            },
-            {
-                name: 'UpdatedDate',
-                displayName: 'ویرایش',
-                sortable: true,
-                isDate: true,
-                type: 'date',
-                visible: 'true'
-            },
-            {
-                name: 'Title',
-                displayName: 'عنوان',
-                sortable: true,
-                type: 'string',
-                visible: true
-            },
-            {
-                name: 'virtual_Source.OSType',
-                displayName: 'OS',
-                sortable: true,
-                type: 'string',
-                visible: true
-            },
-            {
-                name: 'AppVersion',
-                displayName: 'ورژن',
-                sortable: true,
-                type: 'string',
-                visible: true
-            },
-            {
-                name: 'virtual_Source.Title',
-                displayName: 'منبع',
-                sortable: true,
-                type: 'string',
-                visible: true,
-                displayForce: true
-            },
-            {
-                name: 'virtual_ThemeConfig.Title',
-                displayName: 'تم',
-                sortable: true,
-                type: 'string',
-                visible: true,
-                displayForce: true
-            },
-            {
-                name: 'DownloadCount',
-                displayName: 'تعداد دانلود',
-                sortable: true,
-                type: 'integer',
-                visible: true
-            },
-            {
-                name: 'LastBuildOrderDate',
-                displayName: 'تاریخ سفارش ساخت',
-                sortable: true,
-                isDateTime: true,
-                type: 'date',
-                visible: 'true'
-            },
-            {
-                name: 'LastBuildStatus',
-                displayName: 'آخرین وضعیت',
-                sortable: true,
-                type: 'string',
-                visible: true,
-                template: "<p title=\"{{x.LastBuildErrorMessage}}\">{{x.LastBuildStatus}}</p>"
-            },
-            {
-                name: 'LastSuccessfullyBuildDate',
-                displayName: 'آخرین ساخت موفق',
-                sortable: true,
-                isDateTime: true,
-                visible: 'true'
-            },
-            {
-                name: 'ScoreClick',
-                displayName: ' تعداد رای',
-                sortable: true,
-                type: 'string',
-                visible: 'true'
-            },
-            {
-                name: 'Virtual_ScoreSumPercent',
-                displayName: 'امتیاز',
-                sortable: true,
-                type: 'string',
-                visible: 'true',
-                displayForce: true
-            },
-            {
-                name: "ActionButton",
-                displayName: "مقداردهی",
-                sortable: true,
-                displayForce: true,
-                template: "<button class=\"btn btn-primary\" ng-click=\"appApplication.changeState('applicationlayoutvalue', x)\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>"
-            },
-            {
-                name: "ActionBuildApkButton",
-                displayName: "ساخت ",
-                sortable: false,
-                displayForce: true,
-                template: "<button class=\"btn btn-warning\" ng-show=\"x.virtual_Source.IsAbilityGradleBuild\"  ng-click=\"appApplication.buildApp(x , x.LastBuildStatus)\" title=\"ارسال دستور ساخت اپلیکیشن  برنامه های این نوع اپ\" type=\"button\"><i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i></button>"
-            },
-            {
-                name: "ActionDownloadApkButton",
-                displayName: "دانلود ",
-                sortable: false,
-                displayForce: true,
-                template: "<button class=\"btn btn-success\" ng-show=\"{{x.AppKey != null && x.AppKey != ''}}\" ng-click=\"appApplication.downloadApk(x)\" title=\"دانلود فایل مربوط به این اپ\" type=\"button\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i></button>"
-            },
-            {
-                name: 'ActionButton2',
-                displayName: 'عملیات',
-                sortable: true,
-                type: 'string',
-                visible: true,
-                displayForce: true,
-                template: '<button type="button" name="getInfo_btn" ng-click="appApplication.openSendToAllModal($index, x)" class="btn btn-success">{{"BULK_SEND"|lowercase|translate}}&nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i></button>'
-            }
+            name: 'Id',
+            displayName: 'کد سیستمی',
+            sortable: true,
+            type: 'integer',
+            visible: true
+        },
+        {
+            name: 'LinkSiteId',
+            displayName: 'کد سیستمی سایت',
+            sortable: true,
+            type: 'integer',
+            visible: true
+        },
+        {
+            name: 'CreatedDate',
+            displayName: 'ساخت',
+            sortable: true,
+            isDate: true,
+            type: 'date',
+            visible: 'true'
+        },
+        {
+            name: 'UpdatedDate',
+            displayName: 'ویرایش',
+            sortable: true,
+            isDate: true,
+            type: 'date',
+            visible: 'true'
+        },
+        {
+            name: 'Title',
+            displayName: 'عنوان',
+            sortable: true,
+            type: 'string',
+            visible: true
+        },
+        {
+            name: 'virtual_Source.OSType',
+            displayName: 'OS',
+            sortable: true,
+            type: 'string',
+            visible: true
+        },
+        {
+            name: 'AppVersion',
+            displayName: 'ورژن',
+            sortable: true,
+            type: 'string',
+            visible: true
+        },
+        {
+            name: 'virtual_Source.Title',
+            displayName: 'منبع',
+            sortable: true,
+            type: 'string',
+            visible: true,
+            displayForce: true
+        },
+        {
+            name: 'virtual_ThemeConfig.Title',
+            displayName: 'تم',
+            sortable: true,
+            type: 'string',
+            visible: true,
+            displayForce: true
+        },
+        {
+            name: 'DownloadCount',
+            displayName: 'تعداد دانلود',
+            sortable: true,
+            type: 'integer',
+            visible: true
+        },
+        {
+            name: 'LastBuildOrderDate',
+            displayName: 'تاریخ سفارش ساخت',
+            sortable: true,
+            isDateTime: true,
+            type: 'date',
+            visible: 'true'
+        },
+        {
+            name: 'LastBuildStatus',
+            displayName: 'آخرین وضعیت',
+            sortable: true,
+            type: 'string',
+            visible: true,
+            template: "<p title=\"{{x.LastBuildErrorMessage}}\">{{x.LastBuildStatus}}</p>"
+        },
+        {
+            name: 'LastSuccessfullyBuildDate',
+            displayName: 'آخرین ساخت موفق',
+            sortable: true,
+            isDateTime: true,
+            visible: 'true'
+        },
+        {
+            name: 'ScoreClick',
+            displayName: ' تعداد رای',
+            sortable: true,
+            type: 'string',
+            visible: 'true'
+        },
+        {
+            name: 'Virtual_ScoreSumPercent',
+            displayName: 'امتیاز',
+            sortable: true,
+            type: 'string',
+            visible: 'true',
+            displayForce: true
+        },
+        {
+            name: "ActionButton",
+            displayName: "مقداردهی",
+            sortable: true,
+            displayForce: true,
+            template: "<button class=\"btn btn-primary\" ng-click=\"appApplication.changeState('applicationlayoutvalue', x)\" type=\"button\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>"
+        },
+        {
+            name: "ActionBuildApkButton",
+            displayName: "ساخت ",
+            sortable: false,
+            displayForce: true,
+            template: "<button class=\"btn btn-warning\" ng-show=\"x.virtual_Source.IsAbilityGradleBuild\"  ng-click=\"appApplication.buildApp(x , x.LastBuildStatus)\" title=\"ارسال دستور ساخت اپلیکیشن  برنامه های این نوع اپ\" type=\"button\"><i class=\"fa fa-plus-square\" aria-hidden=\"true\"></i></button>"
+        },
+        {
+            name: "ActionDownloadApkButton",
+            displayName: "دانلود ",
+            sortable: false,
+            displayForce: true,
+            template: "<button class=\"btn btn-success\" ng-show=\"{{x.AppKey != null && x.AppKey != ''}}\" ng-click=\"appApplication.downloadApk(x)\" title=\"دانلود فایل مربوط به این اپ\" type=\"button\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i></button>"
+        },
+        {
+            name: 'ActionButton2',
+            displayName: 'عملیات',
+            sortable: true,
+            type: 'string',
+            visible: true,
+            displayForce: true,
+            template: '<button type="button" name="getInfo_btn" ng-click="appApplication.openSendToAllModal($index, x)" class="btn btn-success">{{"BULK_SEND"|lowercase|translate}}&nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i></button>'
+        }
         ],
         data: {},
         multiSelect: false,
@@ -806,20 +806,20 @@
         }
     }
 
-    appApplication.gridOptions.reGetAll = function() {
+    appApplication.gridOptions.reGetAll = function () {
         appApplication.init();
     }
 
-    appApplication.gridOptions.onRowSelected = function() {
+    appApplication.gridOptions.onRowSelected = function () {
 
     }
 
     appApplication.columnCheckbox = false;
-    appApplication.calculatePercantage = function(list) {
+    appApplication.calculatePercantage = function (list) {
         if (angular.isDefined(list) && list.length > 0) {
 
 
-            $.each(list, function(index, item) {
+            $.each(list, function (index, item) {
                 if (item.ScoreClick == null || item.ScoreClick == undefined || item.ScoreClick <= 0)
                     item.ScoreClick == 0;
                 if (item.ScoreClick == 0)
@@ -829,7 +829,7 @@
             });
         }
     }
-    appApplication.openGridConfigModal = function() {
+    appApplication.openGridConfigModal = function () {
         $("#gridView-btn").toggleClass("active");
         if (appApplication.gridOptions.columnCheckbox) {
             for (var i = 0; i < appApplication.gridOptions.columns.length; i++) {
@@ -852,7 +852,7 @@
         appApplication.gridOptions.columnCheckbox = !appApplication.gridOptions.columnCheckbox;
     }
 
-    appApplication.changeState = function(state, app) {
+    appApplication.changeState = function (state, app) {
         $state.go("index." + state, {
             sourceid: app.LinkSourceId,
             appid: app.Id,
@@ -875,10 +875,10 @@
 
     //End of Upload Modal-----------------------------------------
     //Export Report 
-    appApplication.exportFile = function() {
+    appApplication.exportFile = function () {
         appApplication.addRequested = true;
         appApplication.gridOptions.advancedSearchData.engine.ExportFile = appApplication.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.reportDownloadLink = response.LinkFile;
@@ -886,50 +886,50 @@
                 $window.open(response.LinkFile, '_blank');
                 //appApplication.closeModal();
             }
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
     //Open Export Report Modal
-    appApplication.toggleExportForm = function() {
+    appApplication.toggleExportForm = function () {
         appApplication.SortType = [{
-                key: 'نزولی',
-                value: 0
-            },
-            {
-                key: 'صعودی',
-                value: 1
-            },
-            {
-                key: 'تصادفی',
-                value: 3
-            }
+            key: 'نزولی',
+            value: 0
+        },
+        {
+            key: 'صعودی',
+            value: 1
+        },
+        {
+            key: 'تصادفی',
+            value: 3
+        }
         ];
         appApplication.EnumExportFileType = [{
-                key: 'Excel',
-                value: 1
-            },
-            {
-                key: 'PDF',
-                value: 2
-            },
-            {
-                key: 'Text',
-                value: 3
-            }
+            key: 'Excel',
+            value: 1
+        },
+        {
+            key: 'PDF',
+            value: 2
+        },
+        {
+            key: 'Text',
+            value: 3
+        }
         ];
         appApplication.EnumExportReceiveMethod = [{
-                key: 'دانلود',
-                value: 0
-            },
-            {
-                key: 'ایمیل',
-                value: 1
-            },
-            {
-                key: 'فایل منیجر',
-                value: 3
-            }
+            key: 'دانلود',
+            value: 0
+        },
+        {
+            key: 'ایمیل',
+            value: 1
+        },
+        {
+            key: 'فایل منیجر',
+            value: 3
+        }
         ];
         appApplication.ExportFileClass = {
             FileType: 1,
@@ -942,27 +942,27 @@
         });
     }
     //Row Count Export Input Change
-    appApplication.rowCountChanged = function() {
+    appApplication.rowCountChanged = function () {
         if (!angular.isDefined(appApplication.ExportFileClass.RowCount) || appApplication.ExportFileClass.RowCount > 5000)
             appApplication.ExportFileClass.RowCount = 5000;
     }
 
     //Get TotalRowCount
-    appApplication.getCount = function() {
-        ajax.call(cmsServerConfig.configApiServerPath + "Application/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+    appApplication.getCount = function () {
+        ajax.call(cmsServerConfig.configApiServerPath + "Application/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             appApplication.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
     }
 
 
-    appApplication.buildApp = function(App, LastBuildStatus) {
+    appApplication.buildApp = function (App, LastBuildStatus) {
         rashaErManage.showMessage("دستور برای سرور ارسال شد");
-        ajax.call(cmsServerConfig.configApiServerPath + 'Application/build', App.Id, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Application/build', App.Id, 'GET').success(function (response) {
             /* var myVar = setInterval(myTimer,10000);
              function myTimer() {
                  ajax.call(cmsServerConfig.configApiServerPath+'Application/', App.Id, 'GET').success(function (response) {
@@ -986,11 +986,11 @@
          });
          }*/
             rashaErManage.showMessage(response.ErrorMessage);
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
     }
-    appApplication.downloadApk = function(source) {
+    appApplication.downloadApk = function (source) {
         //rashaErManage.showMessage("دستور برای سرور ارسال شد");
         // debugger
         appApplication.selectedItem = source;
@@ -1005,12 +1005,12 @@
     appApplication.treeOptions = {
         nodeChildren: "Children",
         multiSelection: false,
-        isLeaf: function(node) {
+        isLeaf: function (node) {
             if (node.FileName == undefined || node.Filename == "")
                 return false;
             return true;
         },
-        isSelectable: function(node) {
+        isSelectable: function (node) {
             if (appApplication.treeOptions.dirSelectable)
                 if (angular.isDefined(node.FileName))
                     return false;
@@ -1019,7 +1019,7 @@
         dirSelectable: false
     }
 
-    appApplication.onNodeToggle = function(node, expanded) {
+    appApplication.onNodeToggle = function (node, expanded) {
         if (expanded) {
             node.Children = [];
             var filterModel = {
@@ -1032,25 +1032,25 @@
                 SearchType: 0,
                 IntValue1: node.Id
             });
-            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
-                angular.forEach(response1.ListItems, function(value, key) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+                angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/" + node.Id, "", 'GET').success(function(response2) {
-                    angular.forEach(response2.ListItems, function(value, key) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesInCategoryId/" + node.Id, "", 'GET').success(function (response2) {
+                    angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
                     node.messageText = "";
-                }).error(function(data, errCode, c, d) {
+                }).error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-            }).error(function(data, errCode, c, d) {
+            }).error(function (data, errCode, c, d) {
                 console.log(data);
             });
         }
     }
 
-    appApplication.onSelection = function(node, selected) {
+    appApplication.onSelection = function (node, selected) {
         if (!selected) {
             appApplication.selectedItem.LinkModulesFilesIdIcon = null;
             appApplication.selectedItem.previewImageSrc = null;
@@ -1058,9 +1058,9 @@
         }
         appApplication.selectedItem.LinkModulesFilesIdIcon = node.Id;
         appApplication.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/", node.Id, "GET").success(function (response) {
             appApplication.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             console.log(data);
         });
     }
@@ -1076,7 +1076,7 @@
     }
 
 
-    appApplication.onSourceChange = function(sourceId) {
+    appApplication.onSourceChange = function (sourceId) {
         appApplication.themeConfigListItems = [{
             Id: 0,
             Title: "تم را انتخاب کنید"
@@ -1094,11 +1094,14 @@
             appApplication.includeHtmlRuntimeAdmin = 'cpanelv1/CmsModules/Application/ConfigSource/' + appApplication.selectedItem.virtual_Source.ClassName + '.Runtime.Admin.html';
             appApplication.includeHtmlBuilderSite = 'cpanelv1/CmsModules/Application/ConfigSource/' + appApplication.selectedItem.virtual_Source.ClassName + '.Builder.Site.html';
             appApplication.includeHtmlRuntimeSite = 'cpanelv1/CmsModules/Application/ConfigSource/' + appApplication.selectedItem.virtual_Source.ClassName + '.Runtime.Site.html';
-
-            appApplication.ConfigBuilderAdmin = $.parseJSON(appApplication.selectedItem.ConfigBuilderAdminJsonValues);
-            appApplication.ConfigRuntimeAdmin = $.parseJSON(appApplication.selectedItem.ConfigRuntimeAdminJsonValues);
-            appApplication.ConfigBuilderSite = $.parseJSON(appApplication.selectedItem.ConfigBuilderSiteJsonValues);
-            appApplication.ConfigRuntimeSite = $.parseJSON(appApplication.selectedItem.ConfigRuntimeSiteJsonValues);
+            if (appApplication.selectedItem.ConfigBuilderAdminJsonValues)
+                appApplication.ConfigBuilderAdmin = $.parseJSON(appApplication.selectedItem.ConfigBuilderAdminJsonValues);
+            if (appApplication.selectedItem.ConfigRuntimeAdminJsonValues)
+                appApplication.ConfigRuntimeAdmin = $.parseJSON(appApplication.selectedItem.ConfigRuntimeAdminJsonValues);
+            if (appApplication.selectedItem.ConfigBuilderSiteJsonValues)
+                appApplication.ConfigBuilderSite = $.parseJSON(appApplication.selectedItem.ConfigBuilderSiteJsonValues);
+            if (appApplication.selectedItem.ConfigRuntimeSiteJsonValues)
+                appApplication.ConfigRuntimeSite = $.parseJSON(appApplication.selectedItem.ConfigRuntimeSiteJsonValues);
 
             if (appApplication.selectedItem.ConfigBuilderAdminJsonValues == undefined || appApplication.selectedItem.ConfigBuilderAdminJsonValues.length == 0 || !appApplication.ConfigBuilderAdmin)
                 appApplication.ConfigBuilderAdmin = $.parseJSON(appApplication.selectedItem.virtual_Source.DefaultConfigBuilderAdminJsonValues);
@@ -1117,20 +1120,20 @@
                 PropertyName: "LinkSourceId",
                 IntValue1: sourceId
             }]
-        }, 'POST').success(function(response) {
+        }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
             if (response.ListItems.length > 0)
                 appApplication.themeConfigListItems = response.ListItems;
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
         });
     }
     //@help@ ارسال پیام
-    appApplication.openSendToAllModal = function(selectedIndex, selected) {
+    appApplication.openSendToAllModal = function (selectedIndex, selected) {
         appApplication.selectedItem = {
             AppId: selected.Id
         };
@@ -1142,7 +1145,7 @@
         });
     }
     appApplication.sendMode = "all"; //Default
-    appApplication.onReceiverChange = function(value) {
+    appApplication.onReceiverChange = function (value) {
         appApplication.show_membergroup = false;
         appApplication.show_chatid = false;
         if (value == "memberId") {
@@ -1158,11 +1161,11 @@
     var date = moment().format();
     appApplication.CronOnceDate = {
         defaultDate: date,
-        setTime: function(date) {
+        setTime: function (date) {
             this.defaultDate = date;
         }
     }
-    appApplication.onEnumNotificationTypeChange = function(NotificationType) {
+    appApplication.onEnumNotificationTypeChange = function (NotificationType) {
         switch (NotificationType) {
             case 1:
                 // memberInfo.showWeekly = false;
@@ -1182,7 +1185,7 @@
                 break;
         }
     };
-    appApplication.onScheduleTypeChange = function(scheduleType) {
+    appApplication.onScheduleTypeChange = function (scheduleType) {
         switch (scheduleType) {
             case 1:
                 appApplication.showWeekly = false;
@@ -1238,7 +1241,7 @@
 
     appApplication.sendButtonText = "ارسال";
 
-    appApplication.sendMessageToAll = function(selectedIndex, selectedId) {
+    appApplication.sendMessageToAll = function (selectedIndex, selectedId) {
         if (appApplication.selectedItem.Title == '') {
             rashaErManage.showMessage("عنوان پیام را وارد کنید");
             return;
@@ -1260,13 +1263,13 @@
         if (appApplication.selectedItem.memberIds != '' && appApplication.sendMode == "memberId")
             appApplication.selectedItem.LinkMemberIds = appApplication.selectedItem.memberIds.split(',');
 
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLogNotification/SendNotification', appApplication.selectedItem, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLogNotification/SendNotification', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.busyIndicator.isActive = false;
             appApplication.addRequested = false;
             appApplication.sendButtonText = "ارسال";
             rashaErManage.showMessage("گزارش سرور :" + response.Item.info + "   " + response.ErrorMessage);
             //appApplication.closeModal();
-        }).error(function(data, errCode, c, d) {
+        }).error(function (data, errCode, c, d) {
             appApplication.addRequested = false;
             appApplication.sendButtonText = "ارسال";
             rashaErManage.showMessage("گزارش خطا سرور ");
