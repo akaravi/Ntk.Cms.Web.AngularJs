@@ -143,7 +143,7 @@
         productContent.SimilarsSelector = {
             displayMember: "Title",
             id: "Id",
-            fId: "Iddddd",
+            fId: "Id",
             url: "ProductContent",
             sortColumn: "Id",
             sortType: 1,
