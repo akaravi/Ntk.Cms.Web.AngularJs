@@ -17,7 +17,7 @@
 
     taskScheduleProcessValue.init = function () {
         taskScheduleProcessValue.busyIndicator.isActive = true;
-        taskScheduleProcessValue.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkSourceId", searchType: 0, IntValue1: parseInt(taskScheduleProcessValue.sourceId) });
+        taskScheduleProcessValue.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkSourceId", searchType: 0, value: parseInt(taskScheduleProcessValue.sourceId) });
         taskScheduleProcessValue.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/getall", taskScheduleProcessValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -232,14 +232,14 @@
     ;
     // Show Preview form
     taskScheduleProcessValue.openPreviewModal = function (ProcessId) {
-        var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskScheduleProcessValue.ProcessId };
+        var filterDataModel = { PropertyName: "Id", searchType: 0, value: taskScheduleProcessValue.ProcessId };
         var filterModel = { Filters: [] };
         filterModel.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/', ProcessId, 'GET').success(function (response1) {
             var engine = {};
             engine.Filters = [];
-            engine.Filters.push({ PropertyName: "LinkProcessId", searchType: 0, IntValue1: ProcessId });
-            engine.Filters.push({ PropertyName: "LinkApplicationId", searchType: 0, IntValue1: taskScheduleProcessValue.appId });
+            engine.Filters.push({ PropertyName: "LinkProcessId", searchType: 0, value: ProcessId });
+            engine.Filters.push({ PropertyName: "LinkApplicationId", searchType: 0, value: taskScheduleProcessValue.appId });
             ajax.call(cmsServerConfig.configApiServerPath+'shopProcessvalue/', engine, 'POST').success(function (response2) {
 
                 taskScheduleProcessValue.JsonFormDefaultValue = response1.Item.JsonFormDefaultValue;

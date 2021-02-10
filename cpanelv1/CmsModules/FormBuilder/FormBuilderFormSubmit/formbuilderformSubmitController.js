@@ -27,7 +27,7 @@
         var engine = {
             Filters: [{
                 PropertyName: "LinkFormId",
-                IntValue1: value.selectedFormBuilderSubmit.Id
+                value: value.selectedFormBuilderSubmit.Id
             }]
         };
         engine.AccessLoad = true;

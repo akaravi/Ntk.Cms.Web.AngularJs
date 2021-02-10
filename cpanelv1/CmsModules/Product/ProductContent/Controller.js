@@ -519,7 +519,7 @@
                 PropertyName: "ContentTags",
                 PropertyAnyName: "LinkTagId",
                 SearchType: 0,
-                IntValue1: productContent.selectedContentId.Id
+                value: productContent.selectedContentId.Id
             };
             if (productContent.selectedContentId.Id > 0)
                 productContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
@@ -569,7 +569,7 @@
             engine = {};
             var filterValue = {
                 PropertyName: "LinkContentId",
-                IntValue1: parseInt(LinkContentId),
+                value: parseInt(LinkContentId),
                 SearchType: 0
             }
             productContent.busyIndicatorForDropDownProcess = true;
@@ -616,7 +616,7 @@
                     var filterModelParentRootFolders = {
                         Filters: [{
                             PropertyName: "LinkParentId",
-                            IntValue1: null,
+                            value: null,
                             SearchType: 0,
                             IntValueForceNullSearch: true
                         }]
@@ -693,7 +693,7 @@
                     var filterModelParentRootFolders = {
                         Filters: [{
                             PropertyName: "LinkParentId",
-                            IntValue1: null,
+                            value: null,
                             SearchType: 0,
                             IntValueForceNullSearch: true
                         }]
@@ -894,7 +894,7 @@
                 productContent.attachedFiles = [];
                 var s = {
                     PropertyName: "LinkCategoryId",
-                    IntValue1: node.Id,
+                    value: node.Id,
                     SearchType: 0
                 };
                 productContent.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1131,7 +1131,7 @@
                     var engineOtherInfo = {};
                     var filterValue = {
                         PropertyName: "LinkContentId",
-                        IntValue1: productContent.gridOptions.selectedRow.item.Id,
+                        value: productContent.gridOptions.selectedRow.item.Id,
                         SearchType: 0
                     }
                     engineOtherInfo.Filters = null;
@@ -1176,7 +1176,7 @@
                         });
                     var RelationshipModel = {
                         Id: productContent.gridOptions.selectedRow.item.Id,
-                        enumValue: ModuleRelationShipModuleNameMain
+                        value: ModuleRelationShipModuleNameMain
                     };
                     ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleRelationshipContent/GetAllByContentId', RelationshipModel, 'POST')
                         .success(function(responseModuleRelationShip) {
@@ -2684,7 +2684,7 @@
                 filterModel.Filters.push({
                     PropertyName: "LinkParentId",
                     SearchType: 0,
-                    IntValue1: node.Id
+                    value: node.Id
                 });
                 ajax
                     .call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, "POST")

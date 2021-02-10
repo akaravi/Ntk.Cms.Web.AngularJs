@@ -144,7 +144,7 @@
         themeConfig.gridOptions.advancedSearchData.engine.Filters = [];
         var s = {
             PropertyName: "LinkParentId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         themeConfig.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -394,7 +394,7 @@
         engine.Filters.push({
             PropertyName: "LinkSourceId",
             searchType: 0,
-            IntValue1: sourceId
+            value: sourceId
         });
         var ListItemsLayoutThemeValue = [];
         themeConfig.ListItemsLayoutTheme = [];

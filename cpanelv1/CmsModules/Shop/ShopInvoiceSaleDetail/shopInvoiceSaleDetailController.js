@@ -79,7 +79,7 @@
         if (shopInvoiceSaleDetail.stateMode == "edit") {
             shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters = [];
-            var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, IntValue1: $stateParams.invoiceId };
+            var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, value: $stateParams.invoiceId };
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(filterDataModel);
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.AccessLoad = true;
             ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -137,7 +137,7 @@
         shopInvoiceSaleDetail.attachedFiles = [];
         var s = {
             PropertyName: "LinkCategoryId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -423,7 +423,7 @@
     shopInvoiceSaleDetail.contentListItems = [];
     shopInvoiceSaleDetail.inputContentChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Title", SearchType: 5, value: input, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+"shopcontent/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.contentListItems = response.ListItems;

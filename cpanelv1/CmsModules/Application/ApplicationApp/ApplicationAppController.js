@@ -172,7 +172,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -337,7 +337,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -1030,7 +1030,7 @@
             filterModel.Filters.push({
                 PropertyName: "LinkParentId",
                 SearchType: 0,
-                IntValue1: node.Id
+                value: node.Id
             });
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
@@ -1118,7 +1118,7 @@
         ajax.call(cmsServerConfig.configApiServerPath + 'Applicationthemeconfig/getAll', {
             Filters: [{
                 PropertyName: "LinkSourceId",
-                IntValue1: sourceId
+                value: sourceId
             }]
         }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);

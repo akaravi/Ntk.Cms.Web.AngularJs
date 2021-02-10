@@ -307,7 +307,7 @@ memberPropertyTypeSite.gridOptionsSite = {
         var filterModel = {
                 Filters: [{
                     PropertyName: "LinkCmsSiteId",
-                    IntValue1: nodeId,
+                    value: nodeId,
                     SearchType: 0,
                 }]
                

@@ -209,8 +209,8 @@
                 discountSerialCard.ViewFindUserDiv = true;
                 //SEARCH MEMNER
                 var engine = { Filters: [] };
-                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
-                engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
+                engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, value: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
+                engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: discountSerialCard.gridOptions.selectedRow.item.LinkMemberId, ClauseType: 1 });
                 ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCard.selectedMemberUser = response.Item;
@@ -483,8 +483,8 @@
         discountSerialCard.ViewFindUserDiv = false;
         discountSerialCard.ViewNewUserDiv = false;
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: memberNa, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: memberNa, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, value: memberNa, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: memberNa, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+'memberuser/', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCard.selectedMemberUser = response.Item;

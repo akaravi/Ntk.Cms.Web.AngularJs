@@ -256,7 +256,7 @@
     cmsModuleSaleInvoice.showlistDetail = function(IdInvoice) {
         var s = {
             PropertyName: "LinkModuleSaleInvoiceId",
-            IntValue1: IdInvoice,
+            value: IdInvoice,
             SearchType: 0
         }
         var engine = {};

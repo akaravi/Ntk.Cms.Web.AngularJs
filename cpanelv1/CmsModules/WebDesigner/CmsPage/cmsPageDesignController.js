@@ -67,7 +67,7 @@
         }
         //#help# یافتن صفحه های مادر
         
-            var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue: "CoreMainTemplateWithEmbeddedChild" }] };
+            var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, value: "CoreMainTemplateWithEmbeddedChild" }] };
             ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 if(response.IsSuccess && response.ListItems.length>0)

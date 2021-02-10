@@ -289,7 +289,7 @@
         cmsSiteMenu.pageDependencyListItems = [];
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         var engine = { Filters: [] };

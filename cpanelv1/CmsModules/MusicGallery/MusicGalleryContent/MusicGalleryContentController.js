@@ -78,7 +78,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, IntValue1: mscGallery.selectedContentId.Id };
+        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, value: mscGallery.selectedContentId.Id };
         if (mscGallery.selectedContentId.Id >0)
             mscGallery.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContent/getall", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -386,7 +386,7 @@ mscGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -440,7 +440,7 @@ mscGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -620,7 +620,7 @@ mscGallery.LinkCategoryIdSelector = {
         var filterModelParentRootFolders = {
             Filters: [{
                 PropertyName: "LinkParentId",
-                IntValue1: null,
+                value: null,
                 SearchType: 0,
                 IntValueForceNullSearch: true
             }]
@@ -699,7 +699,7 @@ mscGallery.LinkCategoryIdSelector = {
             if (isConfirmed) {
                 var deleteFilterModel = { Filters: [] };
                 angular.forEach(mscGallery.selectedItemsForDelete, function (value, key) {
-                    var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
+                    var filterDataModel = { PropertyName: "Id", SearchType: 0, value: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
                 ajax.call(cmsServerConfig.configApiServerPath+"musicgallerycontent/DeleteFilterModel", deleteFilterModel, 'POST').success(function (res) {
@@ -730,7 +730,7 @@ mscGallery.LinkCategoryIdSelector = {
         mscGallery.attachedFiles = [];
         var s = {
             PropertyName: "LinkCategoryId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         mscGallery.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -893,7 +893,7 @@ mscGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
@@ -1121,7 +1121,7 @@ mscGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

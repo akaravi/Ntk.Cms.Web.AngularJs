@@ -188,7 +188,7 @@
             shopInvoiceSale.gridOptions.advancedSearchData.engine = {
                 Filters: [{
                         PropertyName: "PaymentStatus",
-                        EnumValue: "WithoutPayment",
+                        value: "WithoutPayment",
                         SearchType: 0,
                 }]
             };
@@ -273,7 +273,7 @@ shopInvoiceSale.printDiv = function(divName) {
         shopInvoiceSale.attachedFiles = [];
         var s = {
             PropertyName: "LinkCategoryId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         shopInvoiceSale.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -608,8 +608,8 @@ shopInvoiceSale.printDiv = function(divName) {
     shopInvoiceSale.cmsUsersListItems = [];
     shopInvoiceSale.inputUserChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Name", SearchType: 5, value: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, value: input, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.cmsUsersListItems = response.ListItems;
@@ -654,7 +654,7 @@ shopInvoiceSale.printDiv = function(divName) {
     //#Help کد مربوط به لود گیرید اقلام فاکتور
     shopInvoiceSale.loadivocesaledetail = function () {
         shopInvoiceSale.gridOptionIvoceSaleDetail.advancedSearchData.engine.Filters = [];
-        var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, IntValue1: shopInvoiceSale.selectedItem.Id };
+        var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, value: shopInvoiceSale.selectedItem.Id };
         shopInvoiceSale.gridOptionIvoceSaleDetail.advancedSearchData.engine.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getall", shopInvoiceSale.gridOptionIvoceSaleDetail.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);

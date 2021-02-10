@@ -36,13 +36,13 @@
         } catch (error) {
             console.log(error);
         }
-        filterModel = { PropertyName: "LinkAppointmentDateDetailId", SearchType: 0, IntValue1: order.selectedContentId.LinkAppointmentDateDetailId };
+        filterModel = { PropertyName: "LinkAppointmentDateDetailId", SearchType: 0, value: order.selectedContentId.LinkAppointmentDateDetailId };
         if (order.selectedContentId.LinkAppointmentDateDetailId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        filterModel = { PropertyName: "AppointmentDateDetails", PropertyAnyName: "Id", SearchType: 0, IntValue1: order.selectedContentId.LinkAppointmentDateId };
+        filterModel = { PropertyName: "AppointmentDateDetails", PropertyAnyName: "Id", SearchType: 0, value: order.selectedContentId.LinkAppointmentDateId };
         if (order.selectedContentId.LinkAppointmentDateId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        filterModel = { PropertyName: "LinkServiceId", SearchType: 0, IntValue1: order.selectedContentId.LinkServiceId };
+        filterModel = { PropertyName: "LinkServiceId", SearchType: 0, value: order.selectedContentId.LinkServiceId };
         if (order.selectedContentId.LinkServiceId > 0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         order.gridOptions.advancedSearchData.engine.AccessLoad = true;
@@ -259,7 +259,7 @@
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Name',
-        //defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue: 'Available' }],
+        //defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, value: 'Available' }],
         rowPerPage: 200,
         scope: order,
         columnOptions: {
@@ -279,7 +279,7 @@
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Id',
-        defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, StringValue: 'Available' }],
+        defaultFilter: [{ PropertyName: "SessionStatus", SearchType: 0, value: 'Available' }],
         rowPerPage: 200,
         scope: order,
         columnOptions: {

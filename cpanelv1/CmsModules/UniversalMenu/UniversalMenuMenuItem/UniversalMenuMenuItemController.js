@@ -198,7 +198,7 @@
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters = [];
         var s = {
             PropertyName: "LinkParentId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters.rowPerPage=1000;
@@ -558,7 +558,7 @@
                                 engine.Filters = [];
                                 var filterDataModel = {
                                     PropertyName: "LinkParentId",
-                                    IntValue1: item.LinkParentId,
+                                    value: item.LinkParentId,
                                     SearchType: 0
                                 };
                                 menuItemCtrl.ListItems[index - 1] = response4.Item;
@@ -612,7 +612,7 @@
                                 engine.Filters = [];
                                 var filterDataModel = {
                                     PropertyName: "LinkParentId",
-                                    IntValue1: item.LinkParentId,
+                                    value: item.LinkParentId,
                                     SearchType: 0
                                 };
                                 menuItemCtrl.ListItems[index + 1] = response4.Item;
@@ -679,7 +679,7 @@
         menuItemCtrl.newProcess.LinkModuleId = moduleId;
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         } 
         var engine = {};
@@ -714,7 +714,7 @@
         var filterValue = {
             SortType: 0,
             PropertyName: "LinkModuleProcessId",
-            IntValue1: parseInt(moduleProcessId),
+            value: parseInt(moduleProcessId),
             SearchType: 0
         }
 
@@ -914,7 +914,7 @@
 
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(menuItemCtrl.newProcess.LinkModuleId),
+            value: parseInt(menuItemCtrl.newProcess.LinkModuleId),
             SearchType: 0
         }
         var engine = {};
@@ -939,7 +939,7 @@
                 var filterValue = {
                     SortColumn: menuItemCtrl.cmsModulesProcessesListItems.ti,
                     PropertyName: "LinkModuleProcessId",
-                    IntValue1: parseInt(menuItemCtrl.newProcess.LinkModuleProcessId),
+                    value: parseInt(menuItemCtrl.newProcess.LinkModuleProcessId),
                     SearchType: 0
                 }
 
@@ -1018,7 +1018,7 @@
 
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(menuItemCtrl.newProcess.LinkModuleId),
+            value: parseInt(menuItemCtrl.newProcess.LinkModuleId),
             SearchType: 0
         }
         var engine = {};
@@ -1041,7 +1041,7 @@
             } else {
                 var filterValue = {
                     PropertyName: "LinkModuleProcessId",
-                    IntValue1: parseInt(menuItemCtrl.newProcess.LinkModuleProcessId),
+                    value: parseInt(menuItemCtrl.newProcess.LinkModuleProcessId),
                     SearchType: 0
                 }
 

@@ -180,7 +180,7 @@
         if (node.Id && node.Id > 0)
             var s = {
                 PropertyName: "LinkParentId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
         coreCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -492,7 +492,7 @@
                                 engine.Filters = [];
                                 var filterDataModel = {
                                     PropertyName: "LinkParentId",
-                                    IntValue1: item.LinkParentId,
+                                    value: item.LinkParentId,
                                     SearchType: 0
                                 };
                                 coreCpMainMenugrd.gridOptions.data[index - 1].ShowInMenuOrder = response4.Item.ShowInMenuOrder;
@@ -549,7 +549,7 @@
                                 engine.Filters = [];
                                 var filterDataModel = {
                                     PropertyName: "LinkParentId",
-                                    IntValue1: item.LinkParentId,
+                                    value: item.LinkParentId,
                                     SearchType: 0
                                 };
                                 coreCpMainMenugrd.gridOptions.data[index + 1] = response4.Item;

@@ -391,7 +391,7 @@
     //    //Get Telegram User Info
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
-    //    var engine = { Filters: [{ PropertyName: "ChatId", IntValue1: chatId, SearchType: 0 }] };
+    //    var engine = { Filters: [{ PropertyName: "ChatId", value: chatId, SearchType: 0 }] };
     //    engine.SortColumn = "ChatId";
     //    engine.SortType = 0;
     //    engine.RowPerPage = 1000000;
@@ -537,8 +537,8 @@
     //discountOfferDetail.memberUserListItems = [];
     //discountOfferDetail.inputUserChanged = function (input) {
     //    var engine = { Filters: [] };
-    //    engine.Filters.push({ PropertyName: "FirstName", SearchType: 5, StringValue: input, ClauseType: 1 });
-    //    engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
+    //    engine.Filters.push({ PropertyName: "FirstName", SearchType: 5, value: input, ClauseType: 1 });
+    //    engine.Filters.push({ PropertyName: "LastName", SearchType: 5, value: input, ClauseType: 1 });
     //    ajax.call(cmsServerConfig.configApiServerPath+"memberuser/search", engine, 'POST').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOfferDetail.memberUserListItems = response.ListItems;

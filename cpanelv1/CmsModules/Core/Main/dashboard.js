@@ -203,7 +203,7 @@ if($rootScope.tokenInfo)
             var filterModelTicket = {
                 Filters: [{
                     PropertyName: "TicketStatus",
-                    EnumValue: "Unread",
+                    value: "Unread",
                     SearchType: 0,
                 }]
             };
@@ -216,7 +216,7 @@ if($rootScope.tokenInfo)
             var filterModelShop = {
                 Filters: [{
                     PropertyName: "PaymentStatus",
-                    EnumValue: "WithoutPayment",
+                    value: "WithoutPayment",
                     SearchType: 0,
                 }]
             };
@@ -229,7 +229,7 @@ if($rootScope.tokenInfo)
             var filterModelChart = {
                 Filters: [{
                     PropertyName: "RecordStatus",
-                    EnumValue: "Pending",
+                    value: "Pending",
                     SearchType: 0,
                 }]
             };
@@ -250,7 +250,7 @@ if($rootScope.tokenInfo)
             var filterModelTicket = {
                 Filters: [{
                     PropertyName: "LinkSiteId",
-                    IntValue1: $rootScope.tokenInfo.SiteId,
+                    value: $rootScope.tokenInfo.SiteId,
                     SearchType: 0,
                 }],
                 rowPerPage: 10

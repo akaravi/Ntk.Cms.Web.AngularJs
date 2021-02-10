@@ -399,7 +399,7 @@
     cmsModulegrd.getFromSystem = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.selectedItem.Id) });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsModulegrd.selectedItem.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
@@ -451,7 +451,7 @@
         cmsModulegrd.formName = formName;
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(item.Id) });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(item.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
@@ -493,7 +493,7 @@
         cmsModulegrd.formName = formName;
         cmsModulegrd.busyIndicator.isActive = true;
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(item.Id) });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(item.Id) });
         ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -523,7 +523,7 @@
 
     cmsModulegrd.saveJsonForm = function () {
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.selectedItem.Id) });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsModulegrd.selectedItem.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {
             cmsModulegrd.busyIndicator.isActive = false;
@@ -550,7 +550,7 @@
 
     cmsModulegrd.saveSubmitValues = function () {
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.gridOptions.selectedRow.item.Id) });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsModulegrd.gridOptions.selectedRow.item.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
         cmsModulegrd.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {

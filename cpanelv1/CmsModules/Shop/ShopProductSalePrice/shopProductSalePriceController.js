@@ -315,7 +315,7 @@
             shopSalePrice.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             shopSalePrice.gridOptions.advancedSearchData.engine.Filters.push(s);

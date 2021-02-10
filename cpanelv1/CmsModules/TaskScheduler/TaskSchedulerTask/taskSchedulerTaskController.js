@@ -486,7 +486,7 @@ task.RunTaskNow=function(TaskId)
         //task.contentBusyIndicator = true;
         var filterValue = {
             PropertyName: "LinkTaskId",
-            IntValue1: parseInt(LinkTaskId),
+            value: parseInt(LinkTaskId),
             SearchType: 0
         }
         task.busyIndicatorForDropDownProcess = true;
@@ -540,7 +540,7 @@ task.RunTaskNow=function(TaskId)
         //task.PageDependenciesListItems = [];
         var filterValue = {
             PropertyName: "LinkProcessCategoryId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         task.busyIndicatorForDropDownProcess = true;
@@ -576,7 +576,7 @@ task.RunTaskNow=function(TaskId)
         $builder.removeAllFormObject('default');
         var filterValue = {
             PropertyName: "LinkModuleProcessId",
-            IntValue1: parseInt(moduleProcessId),
+            value: parseInt(moduleProcessId),
             SearchType: 0
         }
         task.busyIndicatorForDropDownProcessCustomize = true;
@@ -772,7 +772,7 @@ function loadselectedProcess(process) {
 
                 var filterValue = {
                     PropertyName: "LinkProcessId",
-                    IntValue1: parseInt(task.newProcess.LinkProcessId),
+                    value: parseInt(task.newProcess.LinkProcessId),
                     SearchType: 0
                 }
 

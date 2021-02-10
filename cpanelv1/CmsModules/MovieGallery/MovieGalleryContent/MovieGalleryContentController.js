@@ -75,7 +75,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, IntValue1: mvGallery.selectedContentId.Id };
+        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, value: mvGallery.selectedContentId.Id };
         if (mvGallery.selectedContentId.Id >0)
             mvGallery.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         mvGallery.addRequested = true;
@@ -414,7 +414,7 @@ mvGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -469,7 +469,7 @@ mvGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -656,7 +656,7 @@ mvGallery.LinkCategoryIdSelector = {
                 mvGallery.busyIndicator = true;
                 var deleteFilterModel = { Filters: [] };
                 angular.forEach(mvGallery.selectedItemsForDelete, function (value, key) {
-                    var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
+                    var filterDataModel = { PropertyName: "Id", SearchType: 0, value: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
                 //ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/getall", mvGallery.selectedRow.item.Id, "POST").success(function (response) {
@@ -705,7 +705,7 @@ mvGallery.LinkCategoryIdSelector = {
             mvGallery.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             mvGallery.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -778,7 +778,7 @@ mvGallery.LinkCategoryIdSelector = {
         var filterModelParentRootFolders = {
             Filters: [{
                 PropertyName: "LinkParentId",
-                IntValue1: null,
+                value: null,
                 SearchType: 0,
                 IntValueForceNullSearch: true
             }]
@@ -1062,7 +1062,7 @@ mvGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
@@ -1175,7 +1175,7 @@ mvGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

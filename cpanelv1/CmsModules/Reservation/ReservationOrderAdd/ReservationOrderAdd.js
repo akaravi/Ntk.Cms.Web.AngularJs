@@ -145,7 +145,7 @@
             //var id = orderAdd.gridOptions.selectedRow.item.Id;
             var Filter_value = {
                 PropertyName: "LinkContentId",
-                IntValue1: orderAdd.gridOptions.selectedRow.item.Id,
+                value: orderAdd.gridOptions.selectedRow.item.Id,
                 SearchType: 0
             }
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters = null;
@@ -399,7 +399,7 @@ orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

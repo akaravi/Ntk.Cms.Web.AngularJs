@@ -107,7 +107,7 @@
             ticketingTask.gridOptions.advancedSearchData.engine = {
                 Filters: [{
                         PropertyName: "TicketStatus",
-                        EnumValue: "Unread",
+                        value: "Unread",
                         SearchType: 0,
                 }]
             };
@@ -342,7 +342,7 @@
             ticketingTask.answersbusyIndicator = true;
             var Filter_value = {
                 PropertyName: "LinkTaskId",
-                IntValue1: item.Id,
+                value: item.Id,
                 SearchType: 0
             }
             ticketingTask.answersGridOptions.advancedSearchData.engine.Filters = [];

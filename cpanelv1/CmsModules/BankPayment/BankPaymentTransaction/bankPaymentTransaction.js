@@ -25,10 +25,10 @@
             rashaErManage.checkAction(data, errCode);
         });
         transc.busyIndicator.isActive = true;
-        var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: transc.selectedPrivateSiteConfig.Id };
+        var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, value: transc.selectedPrivateSiteConfig.Id };
         if (transc.selectedPrivateSiteConfig.Id > 0)
             transc.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        filterModel = { PropertyName: "Id", SearchType: 0, IntValue1: transc.selectedTransactionId.Id };
+        filterModel = { PropertyName: "Id", SearchType: 0, value: transc.selectedTransactionId.Id };
         if (transc.selectedTransactionId.Id > 0)
             transc.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         transc.gridOptions.advancedSearchData.engine.AccessLoad = true;
@@ -279,7 +279,7 @@
         //Get Options
         $("#gridLogs").fadeOut('fast');
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "LinkTransactionId", IntValue1: item.Id, SearchType: 0 });
+        filterModel.Filters.push({ PropertyName: "LinkTransactionId", value: item.Id, SearchType: 0 });
         transc.addRequested = true;
         //transc.optionsBusyIndicator.isActive = true;
         filterModel.AccessLoad = true;

@@ -159,7 +159,7 @@
             shopCart.gridOptions.advancedSearchData.engine = {
                 Filters: [{
                     PropertyName: "PaymentStatus",
-                    EnumValue: "WithoutPayment",
+                    value: "WithoutPayment",
                     SearchType: 0,
                 }]
             };
@@ -244,7 +244,7 @@
         shopCart.attachedFiles = [];
         var s = {
             PropertyName: "LinkCategoryId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         shopCart.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -569,8 +569,8 @@
     shopCart.cmsUsersListItems = [];
     shopCart.inputUserChanged = function (input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Name", SearchType: 5, value: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, value: input, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.cmsUsersListItems = response.ListItems;

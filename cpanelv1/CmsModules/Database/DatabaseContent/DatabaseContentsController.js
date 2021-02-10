@@ -206,7 +206,7 @@
 
             var Filter_value = {
                 PropertyName: "LinkdbContentId",
-                IntValue1: dbContent.gridOptions.selectedRow.item.Id,
+                value: dbContent.gridOptions.selectedRow.item.Id,
                 SearchType: 0
             }
             dbContent.gridContentOptions.advancedSearchData.engine.Filters = null;
@@ -391,7 +391,7 @@
             dbContent.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             dbContent.gridOptions.advancedSearchData.engine.Filters.push(s);

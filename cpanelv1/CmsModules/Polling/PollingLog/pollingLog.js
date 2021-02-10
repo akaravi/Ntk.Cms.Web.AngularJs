@@ -96,7 +96,7 @@
         //Get Options
         //$("#grid-options").fadeOut('fast');
         //var filterModel = { Filters: [] };
-        //filterModel.Filters.push({ PropertyName: "LinkpollingLogId", IntValue1: item.Id, SearchType: 0 });
+        //filterModel.Filters.push({ PropertyName: "LinkpollingLogId", value: item.Id, SearchType: 0 });
         //ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/getall", filterModel, "POST").success(function (response) {
         //    rashaErManage.checkAction(response);
         //    pollingLog.OptionList = response.ListItems;
@@ -259,7 +259,7 @@
         if (node != null) {
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             pollingLog.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -481,7 +481,7 @@
         }
         pollingLog.OptionList = [];
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "LinkpollingLogId", IntValue1: parseInt(selectedId), SearchType: 0 });
+        filterModel.Filters.push({ PropertyName: "LinkpollingLogId", value: parseInt(selectedId), SearchType: 0 });
         ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/getall", filterModel, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             pollingLog.OptionList = response.ListItems;
@@ -518,7 +518,7 @@
         var optionsBeforeSave = [];
         var Filter_value = {
             PropertyName: "LinkpollingLogId",
-            IntValue1: pollingLog.gridOptions.selectedRow.item.Id,
+            value: pollingLog.gridOptions.selectedRow.item.Id,
             SearchType: 0
         }
         // -----------

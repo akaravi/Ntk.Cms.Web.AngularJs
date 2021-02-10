@@ -42,21 +42,21 @@
         var filterModel = {
             PropertyName: "LinkManagementTargetId",
             SearchType: 0,
-            IntValue1: linkManagementTargetBillboardLog.selectedContentId.TargetId
+            value: linkManagementTargetBillboardLog.selectedContentId.TargetId
         };
         if (linkManagementTargetBillboardLog.selectedContentId.TargetId > 0)
             linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         var filterModel = {
             PropertyName: "LinkManagementBillboardId",
             SearchType: 0,
-            IntValue1: linkManagementTargetBillboardLog.selectedContentId.BillboardId
+            value: linkManagementTargetBillboardLog.selectedContentId.BillboardId
         };
         if (linkManagementTargetBillboardLog.selectedContentId.BillboardId > 0)
             linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         var filterModel = {
             PropertyName: "LinkBillboardPatternId",
             SearchType: 0,
-            IntValue1: linkManagementTargetBillboardLog.selectedContentId.BillBoardPatternId
+            value: linkManagementTargetBillboardLog.selectedContentId.BillBoardPatternId
         };
         if (linkManagementTargetBillboardLog.selectedContentId.BillBoardPatternId > 0)
             linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine.Filters.push(filterModel);

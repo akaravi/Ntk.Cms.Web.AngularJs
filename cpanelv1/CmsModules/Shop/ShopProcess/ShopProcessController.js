@@ -30,7 +30,7 @@
             shopProcess.changeState("shopprocesscategory");
         shopProcess.busyIndicator.isActive = true;
         if (shopProcess.selectedSourceId != undefined || shopProcess.selectedSourceId != null) {
-            shopProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, IntValue1: shopProcess.selectedSourceId });
+            shopProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, value: shopProcess.selectedSourceId });
         }
         shopProcess.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -74,7 +74,7 @@
 //           var filterModelParentRootFolders = {
 //               Filters: [{
 //                   PropertyName: "LinkParentId",
-//                   IntValue1: null,
+//                   value: null,
 //                   SearchType: 0,
 //                   IntValueForceNullSearch: true
 //               }]
@@ -177,7 +177,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -422,7 +422,7 @@
     shopProcess.getFromSystemMainAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: shopProcess.gridOptions.selectedRow.item.Id });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: shopProcess.gridOptions.selectedRow.item.Id });
         shopProcess.addRequested = true;
         shopProcess.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOneWithJsonFormat', model, 'POST').success(function (response) {
@@ -589,7 +589,7 @@
     shopProcess.getFromSystemSiteAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: shopProcess.gridOptions.selectedRow.item.Id });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: shopProcess.gridOptions.selectedRow.item.Id });
         shopProcess.addRequested = true;
         shopProcess.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOneWithJsonFormat', model, 'POST').success(function (response) {
@@ -709,8 +709,8 @@
     shopProcess.showFormPreview = function () {
         shopProcess.busyIndicator.isActive = true;
         shopProcess.addRequested = true;
-        var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, IntValue1: shopProcess.selectedAppId };
-        var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, IntValue1: shopProcess.selectedSourceId };
+        var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, value: shopProcess.selectedAppId };
+        var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, value: shopProcess.selectedSourceId };
         ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessvalue/', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             shopProcess.addRequested = false;
@@ -767,7 +767,7 @@
         // Get selected Process to load form using JsonFormFormat in ViewModel
         shopProcess.busyIndicator.isActive = true;
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: shopProcess.gridOptions.selectedRow.item.Id });
+        filterModel.Filters.push({ PropertyName: "Id", SearchType: 0, value: shopProcess.gridOptions.selectedRow.item.Id });
         ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/getonewithjsonformat', filterModel, 'POST').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -817,7 +817,7 @@
     // Show Preview form
     shopProcess.openPreviewModal = function (ProcessId) {
         shopProcess.openPreviewForm = true;
-        var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: shopProcess.ProcessId };
+        var filterDataModel = { PropertyName: "Id", searchType: 0, value: shopProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/', ProcessId, 'GET').success(function (response) {
@@ -851,7 +851,7 @@
 
     shopProcess.openAdminMainForm = function (ProcessId) {
         shopProcess.openPreviewForm = false;
-        var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: ProcessId };
+        var filterDataModel = { PropertyName: "Id", SearchType: 0, value: ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/getonewithjsonformat', engine, 'POST').success(function (response) {
@@ -957,7 +957,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

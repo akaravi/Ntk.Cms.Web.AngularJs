@@ -349,7 +349,7 @@
     jobContract.onPropertyTypeChange = function (propertyTypeId) {
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine = {};

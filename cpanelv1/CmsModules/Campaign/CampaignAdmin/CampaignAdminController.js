@@ -510,8 +510,8 @@
         campaignAdmin.ViewFindUserDiv = false;
         campaignAdmin.ViewNewUserDiv = false;
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue: userId, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: userId, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, value: userId, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: userId, ClauseType: 1 });
         ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignAdmin.selectedUser = response.Item;

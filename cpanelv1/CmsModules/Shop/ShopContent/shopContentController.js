@@ -377,7 +377,7 @@
         }).error(function(data, errCode, c, d) {
             console.log(data);
         });
-        filterModel = { PropertyName: "ContentTags", PropertyAnyName: "LinkTagId", SearchType: 0, IntValue1: shopContent.selectedContentId.Id };
+        filterModel = { PropertyName: "ContentTags", PropertyAnyName: "LinkTagId", SearchType: 0, value: shopContent.selectedContentId.Id };
         if (shopContent.selectedContentId.Id > 0)
             shopContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         engine.AccessLoad = true;
@@ -447,7 +447,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -503,7 +503,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -646,7 +646,7 @@
             shopContent.contentBusyIndicator.isActive = true;
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             shopContent.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1329,7 +1329,7 @@
             filterModel.Filters.push({
                 PropertyName: "LinkParentId",
                 SearchType: 0,
-                IntValue1: node.Id
+                value: node.Id
             });
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
                 angular.forEach(response1.ListItems, function(value, key) {

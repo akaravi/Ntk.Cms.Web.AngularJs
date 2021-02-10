@@ -142,7 +142,7 @@
                     
                     var filterValue = {
                                 PropertyName: "LinkProcessCategoryId",
-                                IntValue1: parseInt(shopProcess.cmsModulesProcessesCustomizeListItems.LinkProcessCategoryId),
+                                value: parseInt(shopProcess.cmsModulesProcessesCustomizeListItems.LinkProcessCategoryId),
                                 SearchType: 0
                             }
                             var engine = {};
@@ -357,7 +357,7 @@
         shopProcess.paymentProcessListItems = [];
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         var engine = {};
@@ -380,7 +380,7 @@
         $builder.removeAllFormObject('default');
         var filterValue = {
             PropertyName: "LinkModulePaymentProcessId",
-            IntValue1: parseInt(paymentProcessId),
+            value: parseInt(paymentProcessId),
             SearchType: 0
         }
         var engine = {};
@@ -459,7 +459,7 @@
         //shopProcess.PageDependenciesListItems = [];
         var filterValue = [{
             PropertyName: "LinkProcessCategoryId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }]
         /*shopProcess.busyIndicatorForDropDownProcess = true;
@@ -495,7 +495,7 @@
         $builder.removeAllFormObject('default');
         var filterValue = [{
             PropertyName: "LinkModuleProcessId",
-            IntValue1: parseInt(moduleProcessId),
+            value: parseInt(moduleProcessId),
             SearchType: 0
         }];
         /*shopProcess.busyIndicatorForDropDownProcessCustomize = true;

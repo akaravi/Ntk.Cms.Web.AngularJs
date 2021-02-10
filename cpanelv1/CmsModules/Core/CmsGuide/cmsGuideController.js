@@ -173,7 +173,7 @@
         cmsGuide.gridOptions.advancedSearchData.engine.Filters = [];
         var s = {
             PropertyName: "LinkParentId",
-            IntValue1: node.Id,
+            value: node.Id,
             SearchType: 0
         }
         cmsGuide.gridOptions.advancedSearchData.engine.Filters.push(s);

@@ -237,20 +237,20 @@
                     engine.Filters.push({
                         PropertyName: "Title",
                         SearchType: 5,
-                        StringValue: input,
+                        value: input,
                         ClauseType: 1
                     });
                     engine.Filters.push({
                         PropertyName: "SubDomain",
                         SearchType: 5,
-                        StringValue: input,
+                        value: input,
                         ClauseType: 1
                     });
                 } else {
                     engine.Filters.push({
                         PropertyName: "Id",
                         SearchType: 10,
-                        IntValue1: parseInt(input),
+                        value: parseInt(input),
                         ClauseType: 1
                     });
                 }
@@ -339,7 +339,7 @@
                             engine.Filters.push({
                                 PropertyName: "Id",
                                 SearchType: 0,
-                                IntValue1: parseInt(retId),
+                                value: parseInt(retId),
                                 ClauseType: 1
                             });
                     }
@@ -347,7 +347,7 @@
                 //$('*[data-guide]').each(function () {
                 //    var retId = $(this).data('guide');
                 //    if (Number.isInteger(retId))
-                //        engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(retId), ClauseType: 1 });
+                //        engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(retId), ClauseType: 1 });
                 //});
 
                 if (engine.Filters.length > 0) {

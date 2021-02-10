@@ -404,8 +404,8 @@
 
     shopCombine.deleteItem = function (index) {
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "LinkProductItemId", SearchType: 0, IntValue1: shopCombine.itemsList[index].Id });
-        filterModel.Filters.push({ PropertyName: "LinkProductCombineId", SearchType: 0, IntValue1: shopCombine.selectedItem.LinkProductCombineId });
+        filterModel.Filters.push({ PropertyName: "LinkProductItemId", SearchType: 0, value: shopCombine.itemsList[index].Id });
+        filterModel.Filters.push({ PropertyName: "LinkProductCombineId", SearchType: 0, value: shopCombine.selectedItem.LinkProductCombineId });
         ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/DeleteFilterModel', filterModel, 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {

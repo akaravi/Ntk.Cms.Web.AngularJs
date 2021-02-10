@@ -204,9 +204,9 @@
             fdm.init();
             return;
         }
-        filterModel.Filters[0] = ({ PropertyName: "Id", SearchType: 0, IntValue1: input });
+        filterModel.Filters[0] = ({ PropertyName: "Id", SearchType: 0, value: input });
         if (isNaN(fdm.searchStr))
-            filterModel.Filters[0] = ({ PropertyName: "Title", SearchType: 5, StringValue: input, IntValue1: null });
+            filterModel.Filters[0] = ({ PropertyName: "Title", SearchType: 5, value: input, value: null });
         fdm.CurrentCategoryList = [];
         ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", filterModel, 'Post').success(function(response) {
             fdm.msgText = "Total " + response.ListItems.length + " folder is loaded:";

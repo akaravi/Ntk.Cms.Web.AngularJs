@@ -833,7 +833,7 @@
     //             model.Filters = [];
     //             model.Filters.push({
     //                 PropertyName: "LinkPropertyId",
-    //                 IntValue1: propertyId,
+    //                 value: propertyId,
     //                 SearchType: 0
     //             });
     //             ajax.call(cmsServerConfig.configApiServerPath + 'EstateContract/getall', model, 'POST').success(function (response) {
@@ -1277,7 +1277,7 @@
 
     estateProperty.onRecordStatusChange = function(record) {
         //estateProperty.busyIndicator.isActive = true;
-        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
+        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, value: record }] };
         //ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    estateProperty.ListItems = response.ListItems;

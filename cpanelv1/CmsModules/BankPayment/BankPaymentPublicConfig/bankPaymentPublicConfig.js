@@ -57,7 +57,7 @@
         }
         publicConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: publicConfig.gridOptions.selectedRow.item.Id }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: publicConfig.gridOptions.selectedRow.item.Id }] };
 
         publicConfig.addRequested = true;
         publicConfig.busyIndicator.isActive = true;
@@ -111,7 +111,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -336,7 +336,7 @@
     //publicConfig.openBaseConfigModal = function (selectedId) {
     //    publicConfig.defaultValue = {};
     //    $builder.removeAllFormObject('default');
-    //    var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
+    //    var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
     //    publicConfig.addRequested = true;
     //    ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPublicConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
     //        publicConfig.addRequested = false;
@@ -432,7 +432,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

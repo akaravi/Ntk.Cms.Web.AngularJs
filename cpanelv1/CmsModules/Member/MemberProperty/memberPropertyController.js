@@ -529,7 +529,7 @@ var engine2 = {};
         engine2.Filters = [];
          var d = {
                     PropertyName: "LinkPropertyId",
-                    IntValue1: PropertyId,
+                    value: PropertyId,
                     ClauseType:1,
                     SearchType: 0
                 }
@@ -593,7 +593,7 @@ memberProperty.PropertyID=PropertyId;
     memberProperty.showlistfile = function (sItem) {
         var s = {
             PropertyName: "LinkModuleMemberId",
-            IntValue1: sItem.Id,
+            value: sItem.Id,
             SearchType: 0
         }
         var engine = {};
@@ -647,7 +647,7 @@ memberProperty.PropertyID=PropertyId;
              { 
             var s = {
                                 PropertyName: "Id",
-                                IntValue1: itemG.LinkPropertyTypeId,
+                                value: itemG.LinkPropertyTypeId,
                                 ClauseType:1,
                                 SearchType: 0
                             }
@@ -677,7 +677,7 @@ memberProperty.PropertyID=PropertyId;
 
             var s = {
                         PropertyName: "LinkMemberUserId",
-                        IntValue1: memberProperty.selectedPublicConfig.member.Id,
+                        value: memberProperty.selectedPublicConfig.member.Id,
                         ClauseType:1,
                         SearchType: 0
                     }
@@ -777,7 +777,7 @@ memberProperty.PropertyID=PropertyId;
              { 
             var s = {
                                 PropertyName: "Id",
-                                IntValue1: itemG.LinkPropertyTypeId,
+                                value: itemG.LinkPropertyTypeId,
                                 ClauseType:1,
                                 SearchType: 0
                             }
@@ -974,7 +974,7 @@ memberProperty.PropertyID=PropertyId;
             memberProperty.attachedFiles = [];
             var s = {
                 PropertyName: "LinkPropertyTypeId",
-                IntValue1: node.Id,
+                value: node.Id,
                 ClauseType:2,
                 SearchType: 0
             }
@@ -983,7 +983,7 @@ memberProperty.PropertyID=PropertyId;
             {
                 var d = {
                             PropertyName: "LinkMemberUserId",
-                            IntValue1: memberProperty.selectedPublicConfig.member.Id,
+                            value: memberProperty.selectedPublicConfig.member.Id,
                             ClauseType:2,
                             SearchType: 0
                         }
@@ -1208,7 +1208,7 @@ memberProperty.PropertyID=PropertyId;
         if (memberProperty.oldLinkPropertyTypeId != memberProperty.selectedItem.LinkPropertyTypeId) {
             var filterValue = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(memberProperty.selectedItem.Id),
+                value: parseInt(memberProperty.selectedItem.Id),
                 SearchType: 0
             }
             var engine = {};
@@ -1304,7 +1304,7 @@ memberProperty.PropertyID=PropertyId;
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0,
             ClauseType:2
         }
@@ -1381,7 +1381,7 @@ memberProperty.PropertyID=PropertyId;
     memberProperty.loadDetailValues = function (propertyTypeId, propertyId,historyable) {
         /*var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine1 = {
@@ -1392,7 +1392,7 @@ var engine = {};
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0,
             ClauseType:2
         }
@@ -1410,14 +1410,14 @@ var engine = {};
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(propertyId),
+                value: parseInt(propertyId),
                 SearchType: 0
             }
             if (memberProperty.selectedItemhistoryId!=null && memberProperty.selectedItemhistoryId >0)
             {
             var filterValue2 = {
                             PropertyName: "LinkHistoryId",
-                            IntValue1: parseInt(memberProperty.selectedItemhistoryId),
+                            value: parseInt(memberProperty.selectedItemhistoryId),
                             SearchType: 0
                         }
 

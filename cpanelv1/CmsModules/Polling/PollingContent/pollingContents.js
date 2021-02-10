@@ -331,7 +331,7 @@
         };
         filterModel.Filters.push({
             PropertyName: "LinkPollingContentId",
-            IntValue1: item.Id,
+            value: item.Id,
             SearchType: 0
         });
         pollingContent.addRequested = true;
@@ -375,7 +375,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -430,7 +430,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -588,7 +588,7 @@
         if (node != null && node != undefined) {
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             pollingContent.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -878,7 +878,7 @@
         };
         filterModel.Filters.push({
             PropertyName: "LinkPollingContentId",
-            IntValue1: parseInt(selectedId),
+            value: parseInt(selectedId),
             SearchType: 0
         });
         ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/getall", filterModel, "POST").success(function (response) {
@@ -916,7 +916,7 @@
         var optionsBeforeSave = [];
         var Filter_value = {
             PropertyName: "LinkPollingContentId",
-            IntValue1: pollingContent.gridOptions.selectedRow.item.Id,
+            value: pollingContent.gridOptions.selectedRow.item.Id,
             SearchType: 0
         }
         // -----------
@@ -1384,7 +1384,7 @@
                 Filters: [{
                     PropertyName: "LinkPollingContentId",
                     SearchType: 0,
-                    IntValue1: pollingContent.gridOptions.selectedRow.item.Id
+                    value: pollingContent.gridOptions.selectedRow.item.Id
                 }],
                 ExportFile: pollingContent.ExportFileClass,
                 CurrentPageNumber: 1
@@ -1494,7 +1494,7 @@
             Filters: [{
                 PropertyName: "LinkPollingContentId",
                 SearchType: 0,
-                IntValue1: pollingContent.gridOptions.selectedRow.item.Id
+                value: pollingContent.gridOptions.selectedRow.item.Id
             }]
         };
         ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/count", filterOptions, 'POST').success(function (response) {
@@ -1535,7 +1535,7 @@
             filterModel.Filters.push({
                 PropertyName: "LinkParentId",
                 SearchType: 0,
-                IntValue1: node.Id
+                value: node.Id
             });
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {

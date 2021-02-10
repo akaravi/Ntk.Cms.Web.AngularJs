@@ -47,7 +47,7 @@ cmsLog.deleteAllRow = function () {
       filterModelparam.Filters.push({
         PropertyName: "Id",
         SearchType: 3,
-        IntValue1: 0,
+        value: 0,
       });
       ajax
         .call(cmsServerConfig.configApiServerPath + "CoreLogError/getall", filterModelparam, "POST")

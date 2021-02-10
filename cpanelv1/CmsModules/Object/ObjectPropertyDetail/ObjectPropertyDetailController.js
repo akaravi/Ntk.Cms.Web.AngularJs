@@ -136,7 +136,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(objectPropertyDetail.propertyTypeId),
+            value: parseInt(objectPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
@@ -314,14 +314,14 @@ objectPropertyDetail.LinkCategoryIdSelector = {
         if (node != undefined && node.Id != undefined) {
             var filterValue1 = {
                 PropertyName: "LinkPropertyDetailGroupId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
         }
         var filterValue2 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: objectPropertyDetail.propertyTypeId,
+            value: objectPropertyDetail.propertyTypeId,
             SearchType: 0
         }
         objectPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
@@ -879,7 +879,7 @@ objectPropertyDetail.LinkCategoryIdSelector = {
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(objectPropertyDetail.propertyTypeId),
+            value: parseInt(objectPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         var engine = {};

@@ -54,7 +54,7 @@
         var filterModel = {
             PropertyName: "LinkManagementMemberId",
             SearchType: 0,
-            IntValue1: linkManagementAccounting.selectedMember.MemberId
+            value: linkManagementAccounting.selectedMember.MemberId
         };
         engine.Filters.push(filterModel);
         engine.AccessLoad = true;

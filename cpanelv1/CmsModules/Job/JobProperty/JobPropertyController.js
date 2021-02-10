@@ -293,7 +293,7 @@
         if (jobProperty.oldLinkPropertyTypeId != jobProperty.selectedItem.LinkPropertyTypeId) {
             var filterValue = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(jobProperty.selectedItem.Id),
+                value: parseInt(jobProperty.selectedItem.Id),
                 SearchType: 0
             }
             var engine = {};
@@ -516,7 +516,7 @@
         if (!angular.isDefined(propertyTypeId)) return;
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine = {
@@ -574,7 +574,7 @@
     jobProperty.loadDetailValues = function (propertyTypeId, propertyId) {
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine1 = {
@@ -586,7 +586,7 @@
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(propertyId),
+                value: parseInt(propertyId),
                 SearchType: 0
             }
             var engine2 = { Filters: [] };
@@ -742,7 +742,7 @@
                 var model = {
                 };
                 model.Filters = [];
-                model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
+                model.Filters.push({ PropertyName: "LinkPropertyId", value: parseInt(propertyId), SearchType: 0 });
                 ajax.call(cmsServerConfig.configApiServerPath+'JobContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobProperty.contractsList = response.ListItems;
@@ -1212,7 +1212,7 @@
 
     jobProperty.onRecordStatusChange = function (record) {
         //jobProperty.busyIndicator.isActive = true;
-        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
+        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, value: record }] };
         //ajax.call(cmsServerConfig.configApiServerPath+"jobproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    jobProperty.ListItems = response.ListItems;

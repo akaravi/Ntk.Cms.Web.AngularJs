@@ -273,8 +273,8 @@
         cmsSiteCategoryCmsModule.formName = formName;
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "LinkModuleId", SearchType: 0, IntValue1: parseInt(module.Id) });
-        model.Filters.push({ PropertyName: "LinkSiteId", SearchType: 0, IntValue1: parseInt(cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id) });
+        model.Filters.push({ PropertyName: "LinkModuleId", SearchType: 0, value: parseInt(module.Id) });
+        model.Filters.push({ PropertyName: "LinkSiteId", SearchType: 0, value: parseInt(cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id) });
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleSite/', model, 'POST').success(function(response) {
             cmsSiteCategoryCmsModule.busyIndicator.isActive = false;

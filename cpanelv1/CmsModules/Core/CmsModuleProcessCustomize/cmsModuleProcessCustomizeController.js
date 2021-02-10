@@ -54,7 +54,7 @@
         var filterModel = {
             PropertyName: "LinkModuleProcessId",
             SearchType: 0,
-            IntValue1: cmsMdlPrcCustm.selectedModuleProcess.Id
+            value: cmsMdlPrcCustm.selectedModuleProcess.Id
         };
         cmsMdlPrcCustm.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         cmsMdlPrcCustm.gridOptions.advancedSearchData.engine.AccessLoad = true;
@@ -274,7 +274,7 @@
         cmsMdlPrcCustm.cmsModulesProcessListItems = []; // Clear previous values
         var filterDataModel = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         var filterModuleId = { Filters: [], RowPerPage: 200 };

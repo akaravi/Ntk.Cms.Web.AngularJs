@@ -18,7 +18,7 @@
             $state.go("index.bankpaymentpublicconfig");
             return;
         }
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: privateSiteConfig.selectedPublicConfig.Id }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: privateSiteConfig.selectedPublicConfig.Id }] };
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
@@ -28,7 +28,7 @@
         });
 
         privateSiteConfig.busyIndicator.isActive = true;
-        var filterModel = { PropertyName: "LinkPublicConfigId", SearchType: 0, IntValue1: privateSiteConfig.selectedPublicConfig.Id };
+        var filterModel = { PropertyName: "LinkPublicConfigId", SearchType: 0, value: privateSiteConfig.selectedPublicConfig.Id };
         privateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         privateSiteConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/getall", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -166,7 +166,7 @@
 
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: privateSiteConfig.gridOptions.selectedRow.item.Id }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: privateSiteConfig.gridOptions.selectedRow.item.Id }] };
 
         buttonIsPressed = true;
         privateSiteConfig.addRequested = true;
@@ -405,7 +405,7 @@
     privateSiteConfig.openBaseConfigModal = function (selectedId) {
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         privateSiteConfig.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentprivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
             privateSiteConfig.addRequested = false;

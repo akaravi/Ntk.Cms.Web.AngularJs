@@ -112,7 +112,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(advertisementPropertyDetail.propertyTypeId),
+            value: parseInt(advertisementPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
@@ -290,14 +290,14 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
         if (node != undefined && node.Id != undefined) {
             var filterValue1 = {
                 PropertyName: "LinkPropertyDetailGroupId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
         }
         var filterValue2 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: advertisementPropertyDetail.propertyTypeId,
+            value: advertisementPropertyDetail.propertyTypeId,
             SearchType: 0
         }
         advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
@@ -852,7 +852,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(advertisementPropertyDetail.propertyTypeId),
+            value: parseInt(advertisementPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         var engine = {};

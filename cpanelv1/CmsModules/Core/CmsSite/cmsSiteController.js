@@ -129,7 +129,7 @@
             //cmsSitegrd.gridOptions.advancedSearchData.engine.Filters = [];
             cmsSitegrd.gridOptions.advancedSearchData.engine.Filters.push({
                 PropertyName: "LinkCreatedBySiteId",
-                IntValue1: $stateParams.selectedId
+                value: $stateParams.selectedId
             });
             action = "getallChildwithalias";
 
@@ -651,7 +651,7 @@
             Filters: [{
                 PropertyName: "LinkCmsSiteId",
                 SearchType: 0,
-                IntValue1: siteId
+                value: siteId
             }]
         };
         ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/getall', filterModel, 'POST').success(function(response) {
@@ -734,7 +734,7 @@
             engine.Filters = [];
             // engine.Filters.push({
             //     PropertyName: "LinkSiteId",
-            //     IntValue1: siteId,
+            //     value: siteId,
             //     SearchType: 0
             // });
             engine.AccessLoad = true;

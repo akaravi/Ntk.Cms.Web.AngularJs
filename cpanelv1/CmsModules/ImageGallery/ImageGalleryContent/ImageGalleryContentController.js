@@ -75,7 +75,7 @@
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, IntValue1: imgGallery.selectedContentId.Id };
+        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, value: imgGallery.selectedContentId.Id };
         if (imgGallery.selectedContentId.Id >0)
             imgGallery.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         imgGallery.addRequested = true;
@@ -414,7 +414,7 @@ imgGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -469,7 +469,7 @@ imgGallery.LinkCategoryIdSelector = {
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -656,7 +656,7 @@ imgGallery.LinkCategoryIdSelector = {
                 imgGallery.busyIndicator = true;
                 var deleteFilterModel = { Filters: [] };
                 angular.forEach(imgGallery.selectedItemsForDelete, function (value, key) {
-                    var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
+                    var filterDataModel = { PropertyName: "Id", SearchType: 0, value: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
                 //ajax.call(cmsServerConfig.configApiServerPath+"imagegallerycontent/getall", imgGallery.selectedRow.item.Id, "POST").success(function (response) {
@@ -705,7 +705,7 @@ imgGallery.LinkCategoryIdSelector = {
             imgGallery.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             imgGallery.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -780,7 +780,7 @@ imgGallery.LinkCategoryIdSelector = {
         var filterModelParentRootFolders = {
             Filters: [{
                 PropertyName: "LinkParentId",
-                IntValue1: null,
+                value: null,
                 SearchType: 0,
                 IntValueForceNullSearch: true
             }]
@@ -1064,7 +1064,7 @@ imgGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
@@ -1179,7 +1179,7 @@ imgGallery.LinkCategoryIdSelector = {
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

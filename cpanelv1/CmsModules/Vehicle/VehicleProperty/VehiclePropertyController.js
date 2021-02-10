@@ -321,7 +321,7 @@
         if (vehicleProperty.oldLinkPropertyTypeId != vehicleProperty.selectedItem.LinkPropertyTypeId) {
             var filterValue = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(vehicleProperty.selectedItem.Id),
+                value: parseInt(vehicleProperty.selectedItem.Id),
                 SearchType: 0
             }
             var engine = {};
@@ -541,7 +541,7 @@
         if (!angular.isDefined(propertyTypeId)) return;
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine = {
@@ -597,7 +597,7 @@
     vehicleProperty.loadDetailValues = function (propertyTypeId, propertyId) {
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine1 = {
@@ -609,7 +609,7 @@
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(propertyId),
+                value: parseInt(propertyId),
                 SearchType: 0
             }
             var engine2 = { Filters: [] };
@@ -765,7 +765,7 @@
                 var model = {
                 };
                 model.Filters = [];
-                model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
+                model.Filters.push({ PropertyName: "LinkPropertyId", value: parseInt(propertyId), SearchType: 0 });
                 ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehicleProperty.contractsList = response.ListItems;
@@ -1252,7 +1252,7 @@
 
     vehicleProperty.onRecordStatusChange = function (record) {
         //vehicleProperty.busyIndicator.isActive = true;
-        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
+        //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, value: record }] };
         //ajax.call(cmsServerConfig.configApiServerPath+"vehicleproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    vehicleProperty.ListItems = response.ListItems;

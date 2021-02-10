@@ -30,7 +30,7 @@
             taskSchedulerProcess.changeState("taskschedulerprocesscategory");
         taskSchedulerProcess.busyIndicator.isActive = true;
         if (taskSchedulerProcess.selectedSourceId != undefined || taskSchedulerProcess.selectedSourceId != null) {
-            taskSchedulerProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, IntValue1: taskSchedulerProcess.selectedSourceId });
+            taskSchedulerProcess.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkProcessCategoryId", SearchType: 0, value: taskSchedulerProcess.selectedSourceId });
         }
         taskSchedulerProcess.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/getall", taskSchedulerProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -74,7 +74,7 @@
 //           var filterModelParentRootFolders = {
 //               Filters: [{
 //                   PropertyName: "LinkParentId",
-//                   IntValue1: null,
+//                   value: null,
 //                   SearchType: 0,
 //                   IntValueForceNullSearch: true
 //               }]
@@ -177,7 +177,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -422,7 +422,7 @@
     taskSchedulerProcess.getFromSystemMainAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
         taskSchedulerProcess.addRequested = true;
         taskSchedulerProcess.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOneWithJsonFormat', model, 'POST').success(function (response) {
@@ -589,7 +589,7 @@
     taskSchedulerProcess.getFromSystemSiteAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
         var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
+        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
         taskSchedulerProcess.addRequested = true;
         taskSchedulerProcess.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOneWithJsonFormat', model, 'POST').success(function (response) {
@@ -709,8 +709,8 @@
     taskSchedulerProcess.showFormPreview = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
         taskSchedulerProcess.addRequested = true;
-        var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, IntValue1: taskSchedulerProcess.selectedAppId };
-        var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, IntValue1: taskSchedulerProcess.selectedSourceId };
+        var filterDataModel = { PropertyName: "LinkApplicationId", searchType: 0, value: taskSchedulerProcess.selectedAppId };
+        var filterDataModel = { PropertyName: "LinkProcessId", searchType: 0, value: taskSchedulerProcess.selectedSourceId };
         ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessvalue/', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             taskSchedulerProcess.addRequested = false;
@@ -767,7 +767,7 @@
         // Get selected Process to load form using JsonFormFormat in ViewModel
         taskSchedulerProcess.busyIndicator.isActive = true;
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
+        filterModel.Filters.push({ PropertyName: "Id", SearchType: 0, value: taskSchedulerProcess.gridOptions.selectedRow.item.Id });
         ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/getonewithjsonformat', filterModel, 'POST').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -817,7 +817,7 @@
     // Show Preview form
     taskSchedulerProcess.openPreviewModal = function (ProcessId) {
         taskSchedulerProcess.openPreviewForm = true;
-        var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskSchedulerProcess.ProcessId };
+        var filterDataModel = { PropertyName: "Id", searchType: 0, value: taskSchedulerProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/', ProcessId, 'GET').success(function (response) {
@@ -851,7 +851,7 @@
 
     taskSchedulerProcess.openAdminMainForm = function (ProcessId) {
         taskSchedulerProcess.openPreviewForm = false;
-        var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: ProcessId };
+        var filterDataModel = { PropertyName: "Id", SearchType: 0, value: ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
         ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/getonewithjsonformat', engine, 'POST').success(function (response) {
@@ -957,7 +957,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

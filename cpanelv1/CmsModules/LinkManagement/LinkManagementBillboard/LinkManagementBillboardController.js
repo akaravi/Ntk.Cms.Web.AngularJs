@@ -266,7 +266,7 @@
         var filterModel = {
             PropertyName: "LinkManagementMemberId",
             SearchType: 0,
-            IntValue1: linkManagementBillboard.selectedContentId.MemberId
+            value: linkManagementBillboard.selectedContentId.MemberId
         };
         if (linkManagementBillboard.selectedContentId.MemberId > 0)
             engine.Filters.push(filterModel);
@@ -274,7 +274,7 @@
         var filterModel = {
             PropertyName: "LinkBillboardPatternId",
             SearchType: 0,
-            IntValue1: linkManagementBillboard.selectedContentId.BillBoardPatternId
+            value: linkManagementBillboard.selectedContentId.BillBoardPatternId
         };
         if (linkManagementBillboard.selectedContentId.BillBoardPatternId > 0)
             engine.Filters.push(filterModel);
@@ -327,7 +327,7 @@
             var s = {
                 PropertyName: "BillboardTargetCategories",
                 PropertyAnyName: "LinkTargetCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             linkManagementBillboard.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1309,7 +1309,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
                 angular.forEach(response1.ListItems, function(value, key) {
                     node.Children.push(value);

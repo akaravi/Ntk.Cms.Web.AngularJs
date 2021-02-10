@@ -346,7 +346,7 @@
             //var id = appDate.gridOptions.selectedRow.item.Id;
             var Filter_value = {
                 PropertyName: "LinkAppointmentDateId",
-                IntValue1: appDate.gridOptions.selectedRow.item.Id,
+                value: appDate.gridOptions.selectedRow.item.Id,
                 SearchType: 0
             }
 

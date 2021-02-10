@@ -521,7 +521,7 @@
         engine2.Filters = [];
         var d = {
             PropertyName: "LinkPropertyId",
-            IntValue1: PropertyId,
+            value: PropertyId,
             ClauseType: 1,
             SearchType: 0
         }
@@ -585,7 +585,7 @@
     objectProperty.showlistfile = function(sItem) {
         var s = {
             PropertyName: "LinkModuleobjectId",
-            IntValue1: sItem.Id,
+            value: sItem.Id,
             SearchType: 0
         }
         var engine = {};
@@ -637,7 +637,7 @@
                         if (itemG.Id == item.objectGroup_Id && itemG.LinkPropertyTypeId != undefined && itemG.LinkPropertyTypeId != null) {
                             var s = {
                                 PropertyName: "Id",
-                                IntValue1: itemG.LinkPropertyTypeId,
+                                value: itemG.LinkPropertyTypeId,
                                 ClauseType: 1,
                                 SearchType: 0
                             }
@@ -666,7 +666,7 @@
 
                 var s = {
                     PropertyName: "LinkobjectUserId",
-                    IntValue1: objectProperty.selectedPublicConfig.object.Id,
+                    value: objectProperty.selectedPublicConfig.object.Id,
                     ClauseType: 1,
                     SearchType: 0
                 }
@@ -760,7 +760,7 @@
                 if (itemG.Id == item.objectGroup_Id && itemG.LinkPropertyTypeId != undefined && itemG.LinkPropertyTypeId != null) {
                     var s = {
                         PropertyName: "Id",
-                        IntValue1: itemG.LinkPropertyTypeId,
+                        value: itemG.LinkPropertyTypeId,
                         ClauseType: 1,
                         SearchType: 0
                     }
@@ -968,7 +968,7 @@
             objectProperty.attachedFiles = [];
             var s = {
                 PropertyName: "LinkPropertyTypeId",
-                IntValue1: node.Id,
+                value: node.Id,
                 ClauseType: 2,
                 SearchType: 0
             }
@@ -976,7 +976,7 @@
             if (objectProperty.selectedPublicConfig.object != null || objectProperty.selectedPublicConfig.object != undefined) {
                 var d = {
                     PropertyName: "LinkobjectUserId",
-                    IntValue1: objectProperty.selectedPublicConfig.object.Id,
+                    value: objectProperty.selectedPublicConfig.object.Id,
                     ClauseType: 2,
                     SearchType: 0
                 }
@@ -1195,7 +1195,7 @@
         if (objectProperty.oldLinkPropertyTypeId != objectProperty.selectedItem.LinkPropertyTypeId) {
             var filterValue = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(objectProperty.selectedItem.Id),
+                value: parseInt(objectProperty.selectedItem.Id),
                 SearchType: 0
             }
             var engine = {};
@@ -1290,7 +1290,7 @@
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0,
             ClauseType: 2
         }
@@ -1367,7 +1367,7 @@
     objectProperty.loadDetailValues = function(propertyTypeId, propertyId, historyable) {
         /*var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         var engine1 = {
@@ -1378,7 +1378,7 @@
         engine.Filters = [];
         var filterValue1 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0,
             ClauseType: 2
         }
@@ -1396,13 +1396,13 @@
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
                 PropertyName: "LinkPropertyId",
-                IntValue1: parseInt(propertyId),
+                value: parseInt(propertyId),
                 SearchType: 0
             }
             if (objectProperty.selectedItemhistoryId != null && objectProperty.selectedItemhistoryId > 0) {
                 var filterValue2 = {
                     PropertyName: "LinkHistoryId",
-                    IntValue1: parseInt(objectProperty.selectedItemhistoryId),
+                    value: parseInt(objectProperty.selectedItemhistoryId),
                     SearchType: 0
                 }
 

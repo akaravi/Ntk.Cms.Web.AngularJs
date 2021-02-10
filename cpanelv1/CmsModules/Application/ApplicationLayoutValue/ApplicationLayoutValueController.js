@@ -20,7 +20,7 @@
         appLayoutValue.gridOptions.advancedSearchData.engine.Filters.push({
             PropertyName: "LinkSourceId",
             searchType: 0,
-            IntValue1: parseInt(appLayoutValue.sourceId)
+            value: parseInt(appLayoutValue.sourceId)
         });
         ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
             rashaErManage.checkAction(responseSource);
@@ -78,12 +78,12 @@
         filterDataModel.Filters.push({
             PropertyName: "LinkApplicationId",//"LinkSourceId"
             searchType: 0,
-            IntValue1: parseInt(appLayoutValue.appId)//parseInt(appLayoutValue.sourceId)
+            value: parseInt(appLayoutValue.appId)//parseInt(appLayoutValue.sourceId)
         });
         filterDataModel.Filters.push({
             PropertyName: "LinkLayoutId",
             searchType: 0,
-            IntValue1: appLayoutValue.gridOptions.selectedRow.item.Id
+            value: appLayoutValue.gridOptions.selectedRow.item.Id
         });
 
         ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/', filterDataModel, 'POST').success(function (responseValue) {

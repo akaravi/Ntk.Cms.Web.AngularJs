@@ -95,7 +95,7 @@
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(jobPropertyDetail.propertyTypeId),
+            value: parseInt(jobPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters = [];
@@ -273,14 +273,14 @@
         if (node != undefined && node.Id != undefined) {
             var filterValue1 = {
                 PropertyName: "LinkPropertyDetailGroupId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue1);
         }
         var filterValue2 = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: jobPropertyDetail.propertyTypeId,
+            value: jobPropertyDetail.propertyTypeId,
             SearchType: 0
         }
         jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
@@ -835,7 +835,7 @@
 
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(jobPropertyDetail.propertyTypeId),
+            value: parseInt(jobPropertyDetail.propertyTypeId),
             SearchType: 0
         }
         var engine = {};

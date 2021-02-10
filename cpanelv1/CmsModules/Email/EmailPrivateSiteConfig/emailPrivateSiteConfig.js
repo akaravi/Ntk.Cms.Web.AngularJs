@@ -79,7 +79,7 @@
         var engine = {
             Filters: [{
                 PropertyName: "Id",
-                IntValue1: emailPrivateSiteConfig.selectedPublicConfig.Id
+                value: emailPrivateSiteConfig.selectedPublicConfig.Id
             }]
         };
         ajax.call(cmsServerConfig.configApiServerPath+'emailpublicconfig/getonewithjsonformatter', engine, 'POST').success(function(response) {
@@ -94,7 +94,7 @@
         var filterModel = {
             PropertyName: "LinkPublicConfigId",
             SearchType: 0,
-            IntValue1: emailPrivateSiteConfig.selectedPublicConfig.Id
+            value: emailPrivateSiteConfig.selectedPublicConfig.Id
         };
         emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.AccessLoad = true;
@@ -299,7 +299,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         var engine = {
             Filters: [{
                 PropertyName: "Id",
-                IntValue1: emailPrivateSiteConfig.gridOptions.selectedRow.item.Id
+                value: emailPrivateSiteConfig.gridOptions.selectedRow.item.Id
             }]
         };
 
@@ -611,7 +611,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         var engine = {
             Filters: [{
                 PropertyName: "Id",
-                IntValue1: selectedId
+                value: selectedId
             }]
         };
         emailPrivateSiteConfig.addRequested = true;

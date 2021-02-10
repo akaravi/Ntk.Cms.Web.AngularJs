@@ -276,7 +276,7 @@
         }).error(function (data, errCode, c, d) {
             chartContent.categoryBusyIndicator.isActive = false;
         });
-        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, IntValue1: chartContent.selectedContentId.Id };
+        filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, value: chartContent.selectedContentId.Id };
         if (chartContent.selectedContentId.Id >0)
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         chartContent.contentBusyIndicator.isActive = true;
@@ -320,7 +320,7 @@
             //var id = chartContent.gridOptions.selectedRow.item.Id;
             var Filter_value1 = {
                 PropertyName: "LinkContentId",
-                IntValue1: chartContent.gridOptions.selectedRow.item.Id,
+                value: chartContent.gridOptions.selectedRow.item.Id,
                 SearchType: 0
             }
             var engine = chartContent.gridContentOptions.advancedSearchData.engine;
@@ -356,7 +356,7 @@
             //var id = chartContent.gridOptions.selectedRow.item.Id;
             var Filter_value = {
                 PropertyName: "LinkchartContentId",
-                IntValue1: chartContent.gridOptions.selectedRow.item.Id,
+                value: chartContent.gridOptions.selectedRow.item.Id,
                 SearchType: 0
             }
             var engine2 = chartContent.gridContentOptions.advancedSearchData.engine;
@@ -397,7 +397,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -448,7 +448,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -608,7 +608,7 @@
             chartContent.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1873,7 +1873,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

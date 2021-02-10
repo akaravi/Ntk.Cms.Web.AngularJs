@@ -254,7 +254,7 @@
             Filters: [{
                 PropertyName: 'LinkticketingDepartemenId',
                 SearchType: 0,
-                IntValue1: ticketingDepartemenId
+                value: ticketingDepartemenId
             }]
         };
         ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/getAlloperator', filterModel, 'POST').success(function (response) {
@@ -316,16 +316,16 @@
         engine.Filters.push({
             PropertyName: "Name",
             SearchType: 5,
-            StringValue: input,
+            value: input,
             ClauseType: 1
         });
         engine.Filters.push({
             PropertyName: "LastName",
             SearchType: 5,
-            StringValue: input,
+            value: input,
             ClauseType: 1
         });
-        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
+        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: input });
         ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingDepartemen.cmsUsersListItems = response.ListItems;
@@ -340,7 +340,7 @@
             ticketingDepartemen.operatorsloadingBusyIndicator = true;
             var Filter_value = {
                 PropertyName: "LinkticketingDepartemenId",
-                IntValue1: item.Id,
+                value: item.Id,
                 SearchType: 0
             }
             ticketingDepartemen.gridContentOptions.advancedSearchData.engine.Filters = null;

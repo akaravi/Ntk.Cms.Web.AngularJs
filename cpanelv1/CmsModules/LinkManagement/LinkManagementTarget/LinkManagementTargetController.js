@@ -273,7 +273,7 @@
         var filterModel = {
             PropertyName: "LinkManagementMemberId",
             SearchType: 0,
-            IntValue1: linkManagementTarget.selectedContentId.MemberId
+            value: linkManagementTarget.selectedContentId.MemberId
         };
         if (linkManagementTarget.selectedContentId.MemberId > 0)
             engine.Filters.push(filterModel);
@@ -281,7 +281,7 @@
         var filterModel = {
             PropertyName: "LinkBillboardPatternId",
             SearchType: 0,
-            IntValue1: linkManagementTarget.selectedContentId.BillBoardPatternId
+            value: linkManagementTarget.selectedContentId.BillBoardPatternId
         };
         if (linkManagementTarget.selectedContentId.BillBoardPatternId > 0)
             engine.Filters.push(filterModel);
@@ -315,7 +315,7 @@
     linkManagementTarget.getparameter = function(Idparam) {
 
         var filterModelparam = { Filters: [] };
-        filterModelparam.Filters.push({ PropertyName: "LinkModuleCategoryId", SearchType: 0, IntValue1: Idparam });
+        filterModelparam.Filters.push({ PropertyName: "LinkModuleCategoryId", SearchType: 0, value: Idparam });
         ajax.call(cmsServerConfig.configApiServerPath + 'linkManagementContentParameter/getall', filterModelparam, 'POST').success(function(response1) {
             linkManagementTarget.ListItemsparam = response1.ListItems;
         }).error(function(data, errCode, c, d) {
@@ -326,7 +326,7 @@
     //linkManagementTarget.getparameter=function(Idparam){
 
     //            var filterModelparam = { Filters: [] };
-    //            filterModelparam.Filters.push({ PropertyName: "LinkModuleCategoryId", SearchType: 0, IntValue1: Idparam });
+    //            filterModelparam.Filters.push({ PropertyName: "LinkModuleCategoryId", SearchType: 0, value: Idparam });
     //            ajax.call(cmsServerConfig.configApiServerPath+'linkManagementContentAndParameterValue/', filterModelparam, 'POST').success(function (response1) {
     //                linkManagementTarget.ListItemsparam = response1.ListItems;
     //            }).error(function (data, errCode, c, d) {
@@ -342,7 +342,7 @@
 
     //        var Filter_value = {
     //            PropertyName: "LinklinkManagementTargetId",
-    //            IntValue1: linkManagementTarget.gridOptions.selectedRow.item.Id,
+    //            value: linkManagementTarget.gridOptions.selectedRow.item.Id,
     //            SearchType: 0
     //        }
     //        linkManagementTarget.gridContentOptions.advancedSearchData.engine.Filters = null;
@@ -386,7 +386,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -441,7 +441,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -597,7 +597,7 @@
             linkManagementTarget.attachedFiles = [];
             var s = {
                 PropertyName: "LinkTargetCategoryId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             linkManagementTarget.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1636,7 +1636,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function(response1) {
                 angular.forEach(response1.ListItems, function(value, key) {
                     node.Children.push(value);

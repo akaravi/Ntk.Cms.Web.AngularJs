@@ -160,7 +160,7 @@ memberUser.selectedItemMemberInSite = {};
 
     var s = {
         PropertyName: "LinkPropertyTypeId",
-        IntValue1: 2,
+        value: 2,
         SearchType: 0
     }
     var engineproperty = {};
@@ -272,7 +272,7 @@ memberUser.onPropertyTypeChange = function (propertyTypeId) {
         if (!angular.isDefined(propertyTypeId)) return;
         var filterValue = {
             PropertyName: "LinkPropertyTypeId",
-            IntValue1: parseInt(propertyTypeId),
+            value: parseInt(propertyTypeId),
             SearchType: 0
         }
         
@@ -587,7 +587,7 @@ memberUser.onPropertyTypeChange = function (propertyTypeId) {
 //memberUser.showlistHistory=false;
         var s = {
             PropertyName: "LinkModuleMemberId",
-            IntValue1: sItem.Id,
+            value: sItem.Id,
             SearchType: 0
         }
         var engine = {};

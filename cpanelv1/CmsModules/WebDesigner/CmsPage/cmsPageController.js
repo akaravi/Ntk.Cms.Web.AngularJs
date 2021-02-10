@@ -281,7 +281,7 @@
         cmsPagegrd.PageDependenciesListItems = [];
         var Filter_value = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         cmsPagegrd.advancedSearchData.engine.Filters = null;

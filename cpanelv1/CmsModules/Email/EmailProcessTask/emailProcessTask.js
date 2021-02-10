@@ -36,7 +36,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         emailProcessTask.busyIndicator.isActive = true;
-        var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: emailProcessTask.selectedPrivateSiteConfig.Id };
+        var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, value: emailProcessTask.selectedPrivateSiteConfig.Id };
         if (emailProcessTask.selectedPrivateSiteConfig.Id > 0)
             emailProcessTask.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         emailProcessTask.gridOptions.advancedSearchData.engine.AccessLoad = true;
@@ -254,7 +254,7 @@
         //Get Options
         $("#gridLogs").fadeOut('fast');
         var filterModel = { Filters: [] };
-        filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", IntValue1: item.Id, SearchType: 0 });
+        filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", value: item.Id, SearchType: 0 });
         emailProcessTask.addRequested = true;
         //emailProcessTask.optionsBusyIndicator.isActive = true;
         filterModel.AccessLoad = true;

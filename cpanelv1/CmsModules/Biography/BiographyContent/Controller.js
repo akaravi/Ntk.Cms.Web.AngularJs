@@ -526,7 +526,7 @@
         PropertyName: "ContentTags",
         PropertyAnyName: "LinkTagId",
         SearchType: 0,
-        IntValue1: biographyContent.selectedContentId.Id
+        value: biographyContent.selectedContentId.Id
       };
       if (biographyContent.selectedContentId.Id > 0)
         biographyContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
@@ -576,7 +576,7 @@
       engine = {};
       var filterValue = {
         PropertyName: "LinkContentId",
-        IntValue1: parseInt(LinkContentId),
+        value: parseInt(LinkContentId),
         SearchType: 0
       }
       biographyContent.busyIndicatorForDropDownProcess = true;
@@ -622,7 +622,7 @@
           var filterModelParentRootFolders = {
             Filters: [{
               PropertyName: "LinkParentId",
-              IntValue1: null,
+              value: null,
               SearchType: 0,
               IntValueForceNullSearch: true
             }]
@@ -700,7 +700,7 @@
           var filterModelParentRootFolders = {
             Filters: [{
               PropertyName: "LinkParentId",
-              IntValue1: null,
+              value: null,
               SearchType: 0,
               IntValueForceNullSearch: true
             }]
@@ -902,7 +902,7 @@
         biographyContent.attachedFiles = [];
         var s = {
           PropertyName: "LinkCategoryId",
-          IntValue1: node.Id,
+          value: node.Id,
           SearchType: 0
         };
         biographyContent.gridOptions.advancedSearchData.engine.Filters.push(s);
@@ -1146,7 +1146,7 @@
           var engineOtherInfo = {};
           var filterValue = {
             PropertyName: "LinkContentId",
-            IntValue1: biographyContent.gridOptions.selectedRow.item.Id,
+            value: biographyContent.gridOptions.selectedRow.item.Id,
             SearchType: 0
           }
           engineOtherInfo.Filters = null;
@@ -1191,7 +1191,7 @@
             });
           var RelationshipModel = {
             Id: biographyContent.gridOptions.selectedRow.item.Id,
-            enumValue: ModuleRelationShipModuleNameMain
+            value: ModuleRelationShipModuleNameMain
           };
           ajax.call(cmsServerConfig.configApiServerPath + 'CoreModuleRelationshipContent/GetAllByContentId', RelationshipModel, 'POST')
             .success(function (responseModuleRelationShip) {
@@ -2699,7 +2699,7 @@
         filterModel.Filters.push({
           PropertyName: "LinkParentId",
           SearchType: 0,
-          IntValue1: node.Id
+          value: node.Id
         });
         ajax
           .call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, "POST")

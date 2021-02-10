@@ -301,7 +301,7 @@
         //processCtrl.PageDependenciesListItems = [];
         var filterValue = {
             PropertyName: "LinkModuleId",
-            IntValue1: parseInt(moduleId),
+            value: parseInt(moduleId),
             SearchType: 0
         }
         processCtrl.busyIndicatorForDropDownProcess = true;
@@ -337,7 +337,7 @@
         $builder.removeAllFormObject('default');
         var filterValue = {
             PropertyName: "LinkModuleProcessId",
-            IntValue1: parseInt(moduleProcessId),
+            value: parseInt(moduleProcessId),
             SearchType: 0
         }
         processCtrl.busyIndicatorForDropDownProcessCustomize = true;
@@ -400,7 +400,7 @@
                         //processCtrl.LoadcmsModuleProcessCustomize(processCtrl.selectedItem.LinkModuleProcessId);
                         var filterValue = {
                             PropertyName: "LinkModuleProcessId",
-                            IntValue1: parseInt(processCtrl.selectedItem.LinkModuleProcessId),
+                            value: parseInt(processCtrl.selectedItem.LinkModuleProcessId),
                             SearchType: 0
                         }
                         processCtrl.busyIndicatorForDropDownProcessCustomize = true;

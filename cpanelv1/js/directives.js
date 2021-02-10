@@ -1720,7 +1720,7 @@ function queryBuilder($compile) {
                         if (result.rules[i].type == "integer") {
                             if (searchType == 4) Filter = {
                                 PropertyName: propertyName,
-                                IntValue1: value[0],
+                                value: value[0],
                                 IntValue2: value[1],
                                 SearchType: searchType,
                                 ClauseType: clauseType

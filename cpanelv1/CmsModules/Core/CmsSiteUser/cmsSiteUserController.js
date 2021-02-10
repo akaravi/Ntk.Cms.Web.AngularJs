@@ -382,7 +382,7 @@
         var filterModel = {
             Filters: [{
                 PropertyName: "LinkSiteId",
-                IntValue1: nodeId,
+                value: nodeId,
                 SearchType: 0,
             }]
 
@@ -434,9 +434,9 @@
     //ngautocomplete
     cmsSiteUser.inputSiteChanged = function(input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "SubDomain", SearchType: 5, StringValue: input, ClauseType: 1 });
-        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
+        engine.Filters.push({ PropertyName: "Title", SearchType: 5, value: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "SubDomain", SearchType: 5, value: input, ClauseType: 1 });
+        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: input });
         ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/search", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.cmsSitesListItems = response.ListItems;
@@ -447,9 +447,9 @@
     //ngautocomplete
     cmsSiteUser.inputUserChanged = function(input) {
         var engine = { Filters: [] };
-        engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue: input, ClauseType: 1 });
-        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue: input, ClauseType: 1 });
-        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
+        engine.Filters.push({ PropertyName: "Name", SearchType: 5, value: input, ClauseType: 1 });
+        engine.Filters.push({ PropertyName: "LastName", SearchType: 5, value: input, ClauseType: 1 });
+        //engine.Filters.push({ PropertyName: "Id", SearchType: 0, value: input });
         ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/search", engine, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             cmsSiteUser.cmsUsersListItems = response.ListItems;

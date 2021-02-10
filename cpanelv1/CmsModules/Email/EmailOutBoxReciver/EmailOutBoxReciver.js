@@ -24,7 +24,7 @@
         var engine = {
             Filters: [{
                 PropertyName: "Id",
-                IntValue1: emailOutBoxReciver.selectedOutBoxContent.Id
+                value: emailOutBoxReciver.selectedOutBoxContent.Id
             }]
         };
         ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/getall', engine, 'POST').success(function(response) {
@@ -39,7 +39,7 @@
         var filterModel = {
             PropertyName: "LinkOutBoxContentId",
             SearchType: 0,
-            IntValue1: emailOutBoxReciver.selectedOutBoxContent.Id
+            value: emailOutBoxReciver.selectedOutBoxContent.Id
         };
         emailOutBoxReciver.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         emailOutBoxReciver.gridOptions.advancedSearchData.engine.RowPerPage = 20;
@@ -127,7 +127,7 @@
         }
         emailOutBoxReciver.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: emailOutBoxReciver.gridOptions.selectedRow.item.Id }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: emailOutBoxReciver.gridOptions.selectedRow.item.Id }] };
 
         emailOutBoxReciver.addRequested = true;
         emailOutBoxReciver.busyIndicator.isActive = true;
@@ -181,7 +181,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -386,7 +386,7 @@
     emailOutBoxReciver.openBaseConfigModal = function (selectedId) {
         emailOutBoxReciver.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
+        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         emailOutBoxReciver.addRequested = true;
         ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciver/getonewithjsonformatter", engine, 'POST').success(function (response) {
             emailOutBoxReciver.addRequested = false;
@@ -484,7 +484,7 @@
             var filterModel = { Filters: [] };
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
-            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
+            filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, value: node.Id });
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);

@@ -115,7 +115,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -165,7 +165,7 @@
             var filterModelParentRootFolders = {
                 Filters: [{
                     PropertyName: "LinkParentId",
-                    IntValue1: null,
+                    value: null,
                     SearchType: 0,
                     IntValueForceNullSearch: true
                 }]
@@ -318,7 +318,7 @@
             campaignItem.attachedFiles = [];
             var s = {
                 PropertyName: "LinkCampaignItemGroupId",
-                IntValue1: node.Id,
+                value: node.Id,
                 SearchType: 0
             }
             campaignItem.gridOptions.advancedSearchData.engine.Filters.push(s);
