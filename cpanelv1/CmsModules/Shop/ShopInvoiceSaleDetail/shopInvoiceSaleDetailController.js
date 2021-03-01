@@ -114,7 +114,7 @@
                 //shopInvoiceSaleDetail.gridOptions.fillData();
                 rashaErManage.checkAction(data, errCode);
             });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopconfiguration/site", {}, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopconfiguration/SiteConfig", {}, "POST").success(function (response) {
             shopInvoiceSaleDetail.Currency = response.Site.Currency;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);

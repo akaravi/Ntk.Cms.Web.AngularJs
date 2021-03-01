@@ -333,7 +333,7 @@
 
     cmsModulegrd.SiteDefaultLoad = function () {
         cmsModulegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteDefault", '', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteConfigDefault", '', 'GET').success(function (response) {
             if (response.IsSuccess) {
                 cmsModulegrd.Item.SiteDefault = response.Item;
             } else {
@@ -355,7 +355,7 @@
         }
         cmsModulegrd.contentBusyConfig.isActive = true;
         cmsModulegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteDefault', cmsModulegrd.Item.SiteDefault, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteConfigDefault', cmsModulegrd.Item.SiteDefault, 'POST').success(function (response) {
             cmsModulegrd.buttonIsPressed = false;
             cmsModulegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");

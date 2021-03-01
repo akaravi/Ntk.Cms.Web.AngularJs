@@ -1153,7 +1153,7 @@
 
     cmsSitegrd.SiteLoad = function() {
         cmsSitegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteConfig/' + cmsSitegrd.ModuleConfigSelectedSiteId, '', 'GET').success(function(response) {
             if (response.IsSuccess) {
                 cmsSitegrd.Item.Site = response.Item;
             } else {
@@ -1175,7 +1175,7 @@
         }
         cmsSitegrd.contentBusyConfig.isActive = true;
         cmsSitegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/Site/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.Site, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath + cmsSitegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteConfig/' + cmsSitegrd.ModuleConfigSelectedSiteId, cmsSitegrd.Item.Site, 'POST').success(function(response) {
             cmsSitegrd.buttonIsPressed = false;
             cmsSitegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
