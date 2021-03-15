@@ -106,7 +106,7 @@
     //#help#بارگزاری لیست
     cmsPageDesign.onloadmydata = function () {
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters=[];
-        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue: cmsPageDesign.dependencyId, SearchType: 0 }); 
+        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", Value: cmsPageDesign.dependencyId, SearchType: 0 }); 
         cmsPageDesign.busyIndicator.isActive = true;
         cmsPageDesign.gridOptions.advancedSearchData.engine.AccessLoad = true;
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
@@ -128,7 +128,7 @@
         });
         var materPageEngine={};
         materPageEngine.Filters=[];
-        materPageEngine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue: cmsPageDesign.mastePageDependencyId, SearchType: 0 }); 
+        materPageEngine.Filters.push({ PropertyName: "LinkPageDependencyGuId", Value: cmsPageDesign.mastePageDependencyId, SearchType: 0 }); 
         cmsPageDesign.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', materPageEngine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -152,9 +152,7 @@
         var themName = pageTemplateTitle(item.LinkPageTemplateGuId);
         if (!themName || themName.length == 0)
             return;
-        //var urlTemplate = 'HtmlBuilder/?id=' + item.Id;// + '&theme=' + themName;
-        //var urlTemplate = configMvcServerPath+'HtmlBuilder/home/index/' + item.Id+'?token='+token;
-        var urlTemplate = '/HtmlBuilder/home/token/' + item.Id+'?token='+encodeURIComponent(token);
+        var urlTemplate = cmsServerConfig.configHtmlBuilderServerPath+'htmlbuilder/?id='+  item.Id+'&token='+encodeURIComponent(token);
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();

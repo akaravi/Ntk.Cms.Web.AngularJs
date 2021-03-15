@@ -47,7 +47,7 @@
     cmsPagegrd.goTohtmlbuilder = function (item) {
         var token=localStorage.getItem("userToken");
         
-        var urlTemplate = 'HtmlBuilder2/token/?id=' + item.Id+ '&token=' + token;
+        var urlTemplate = cmsServerConfig.configHtmlBuilderServerPath  +'htmlbuilder/?id='+ item.Id+ '&token=' + token;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();

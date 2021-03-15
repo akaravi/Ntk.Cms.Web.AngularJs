@@ -4,12 +4,9 @@ var cmsServerConfig = {
     configRouteThumbnails: "https://oco.ir/imageThumbnails/",
     configMvcServerPath: "https://oco.ir",
     configApiServerPath: "https://apicms.ir/api/v1/",
-    //configApiServerPath: "http://localhost:2390/api/v1/",
-    // configApiServerPath: "http://e39c7bbcfb1a.ngrok.io/api/v1/",
+    configHtmlBuilderServerPath: "https://htmlbuilder.ntkcms.com/",
+    // configHtmlBuilderServerPath: "http://localhost:2393/",
     configRouteUploadFileContent: "https://apifile.ir/api/v1/upload/",
-    //configRouteUploadFileContent: "https://apicms.ir/api/v1/upload/",
-    //configRouteUploadFileContent:"http://localhost:2390/api/v1/upload/",
-    //configRouteUploadFileContent: "http://c9e8b2ddefa8.ngrok.io/api/v1/upload/",
 };
 
 //tools
