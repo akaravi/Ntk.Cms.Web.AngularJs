@@ -57,11 +57,11 @@
         }
         emailPublicConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: emailPublicConfig.gridOptions.selectedRow.item.Id }] };
+        // var engine = { Filters: [{ PropertyName: "Id", value: emailPublicConfig.gridOptions.selectedRow.item.Id }] };
 
         emailPublicConfig.addRequested = true;
         emailPublicConfig.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/getonewithjsonformatter',  emailPublicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             emailPublicConfig.selectedItem = response.Item;
 
@@ -335,9 +335,9 @@
     emailPublicConfig.openBaseConfigModal = function (selectedId) {
         emailPublicConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
+        // var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         emailPublicConfig.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"EmailPublicConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"EmailPublicConfig/getonewithjsonformatter", selectedId, 'GET').success(function (response) {
             emailPublicConfig.addRequested = false;
             if (response.IsSuccess) {
                 emailPublicConfig.selectedItem = response.Item;

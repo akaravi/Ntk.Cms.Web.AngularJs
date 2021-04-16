@@ -57,11 +57,10 @@
         }
         publicConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: publicConfig.gridOptions.selectedRow.item.Id }] };
 
         publicConfig.addRequested = true;
         publicConfig.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', publicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.selectedItem = response.Item;
 
@@ -333,67 +332,6 @@
         });
     }
 
-    //publicConfig.openBaseConfigModal = function (selectedId) {
-    //    publicConfig.defaultValue = {};
-    //    $builder.removeAllFormObject('default');
-    //    var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
-    //    publicConfig.addRequested = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPublicConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
-    //        publicConfig.addRequested = false;
-    //        if (response.IsSuccess) {
-    //            publicConfig.selectedItem = response.Item;
-    //            $modal.open({
-    //                templateUrl: 'cpanelv1/CmsModules/BankPayment/BankPaymentPublicConfig/preview.html',
-    //                scope: $scope
-    //            });
-    //            $builder.removeAllFormObject('default');
-    //            //var customizeValue = JSON.parse(response.Item.PublicConfigJsonValues);
-    //            var customizeValue = response.Item.PublicConfigJsonFormatter;
-    //            if (customizeValue != null && customizeValue.length > 0) {
-    //                $.each(customizeValue, function (i, item) {
-    //                    if (item.FieldName != undefined && item.FieldName != null && item.FieldName != "") {
-    //                        var fieldType = "";
-    //                        if (item.FieldType == "System.Boolean") {
-    //                            fieldType = "radio";
-    //                            $builder.addFormObject('default', {
-    //                                "component": fieldType,
-    //                                "label": item.FieldTitle,
-    //                                "description": item.FieldDescription,
-    //                                "id": i,
-    //                                "fieldname": item.FieldName,
-    //                                "options": [
-    //                                      "True",
-    //                                      "False"
-    //                                ]
-    //                            });
-    //                        }
-    //                        else {
-    //                            fieldType = "text";
-    //                            $builder.addFormObject('default', {
-    //                                "component": fieldType,
-    //                                "label": item.FieldTitle,
-    //                                "description": item.FieldDescription,
-    //                                "id": i,
-    //                                "fieldname": item.FieldName,
-    //                            });
-    //                        }
-    //                        //تخصیص مقادیر فرم با تشخیص نام فیلد
-    //                        if (response.Item.PublicConfigJsonValues != null && response.Item.PublicConfigJsonValues != "") {
-    //                            values = $.parseJSON(response.Item.PublicConfigJsonValues);
-    //                            $.each(values, function (iValue, itemValue) {
-    //                                if (item.FieldName == itemValue.fieldname)
-    //                                    publicConfig.defaultValue[i] = itemValue.value;
-    //                            });
-    //                        }
-    //                    }
-    //                });
-    //            }
-    //        }
-    //    }).error(function (data, errCode, c, d) {
-    //        publicConfig.gridOptions.fillData();
-    //        rashaErManage.checkAction(data, errCode);
-    //    });
-    //}
 
     publicConfig.saveSubmitValues = function () {
         publicConfig.busyIndicator.isActive = true;

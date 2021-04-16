@@ -399,11 +399,11 @@
 
     cmsMdlPayPrcCust.getFromSystemMainAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
-        var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
+        // var model = { Filters: [] };
+        // model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId, 'GET').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -565,11 +565,11 @@
 
     cmsMdlPayPrcCust.getFromSystemEndUser = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
-        var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
+        // var model = { Filters: [] };
+        // model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId, 'GET').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -730,11 +730,11 @@
 
     cmsMdlPayPrcCust.getFromSystemSiteAdmin = function () {
         // Get selected Layout to load form using JsonFormFormat in ViewModel
-        var model = { Filters: [] };
-        model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
+        // var model = { Filters: [] };
+        // model.Filters.push({ PropertyName: "Id", SearchType: 0, value: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId, 'GET').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

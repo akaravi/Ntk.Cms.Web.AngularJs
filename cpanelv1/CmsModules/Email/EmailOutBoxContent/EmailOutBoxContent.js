@@ -57,185 +57,9 @@
             rashaErManage.checkAction(data, errCode);
         });
     }
-   /* emailOutBoxContent.addRequested = false;
-    emailOutBoxContent.openAddModal = function () {
-        if (buttonIsPressed) { return };
-        emailOutBoxContent.modalTitle = 'اضافه';
-        buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/ViewModel', '', 'GET').success(function (response) {
-            buttonIsPressed = false;
-            rashaErManage.checkAction(response);
-            emailOutBoxContent.selectedItem = response.Item;
-            $modal.open({
-                templateUrl: 'cpanelv1/CmsModules/Email/emailOutBoxContent/add.html',
-                scope: $scope
-            });
-
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }
-
-    emailOutBoxContent.addNewContent = function (frm) {
-        if (frm.$invalid)
-        {
-            rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
-            return;
-        }
-        emailOutBoxContent.addRequested = true;
-        emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                emailOutBoxContent.ListItems.unshift(response.Item);
-                emailOutBoxContent.gridOptions.fillData(emailOutBoxContent.ListItems);
-                emailOutBoxContent.addRequested = false;
-                emailOutBoxContent.busyIndicator.isActive = false;
-                emailOutBoxContent.closeModal();
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-            emailOutBoxContent.addRequested = false;
-            emailOutBoxContent.busyIndicator.isActive = false;
-
-        });
-    }
-
-    emailOutBoxContent.autoAdd = function () {
-        emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/autoadd', { LinkSourceId: emailOutBoxContent.selectedSourceId }, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            emailOutBoxContent.busyIndicator.isActive = false;
-            emailOutBoxContent.init();
-        }).error(function (data, errCode, c, d) {
-            emailOutBoxContent.busyIndicator.isActive = false;
-            rashaErManage.checkAction(data, errCode);
-        });
-    }*/
-
+  
     emailOutBoxContent.dataForTheTree = [];
 
-  /*  emailOutBoxContent.openEditModal = function () {
-        emailOutBoxContent.modalTitle = 'ویرایش';
-        if (!emailOutBoxContent.gridOptions.selectedRow.item) {
-            rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
-            return;
-        }
-
-        emailOutBoxContent.defaultValue = {};
-        $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: emailOutBoxContent.gridOptions.selectedRow.item.Id }] };
-
-        emailOutBoxContent.addRequested = true;
-        emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/getonewithjsonformatter', engine, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            emailOutBoxContent.selectedItem = response.Item;
-            newsContent.RegisterDate.defaultDate = newsContent.selectedItem.RegisterDate;
-            newsContent.SendDate.defaultDate = newsContent.selectedItem.SendDate;
-/*
-            //Load FormBuilder and its values
-            //var customizeValue = JSON.parse(response.Item.PublicConfigJsonValues);
-            var customizeValue = response.Item.PublicConfigJsonFormatter;
-            if (customizeValue != null && customizeValue.length > 0) {
-                $.each(customizeValue, function (i, item) {
-                    if (item.FieldName != undefined && item.FieldName != null && item.FieldName != "") {
-                        var fieldType = "";
-                        if (item.FieldType == "System.Boolean") {
-                            fieldType = "radio";
-                            $builder.addFormObject('default', {
-                                "component": fieldType,
-                                "label": item.FieldTitle,
-                                "description": item.FieldDescription,
-                                "id": i,
-                                "fieldname": item.FieldName,
-                                "options": [
-                                      "True",
-                                      "False"
-                                ]
-                            });
-                        }
-                        else {
-                            fieldType = "text";
-                            $builder.addFormObject('default', {
-                                "component": fieldType,
-                                "label": item.FieldTitle,
-                                "description": item.FieldDescription,
-                                "id": i,
-                                "fieldname": item.FieldName,
-                            });
-                        }
-                        ///تخصیص مقادیر با تشکخصی نام متغییر
-                        if (response.Item.PublicConfigJsonValues != null && response.Item.PublicConfigJsonValues != "") {
-                            values = $.parseJSON(response.Item.PublicConfigJsonValues);
-                            $.each(values, function (iValue, itemValue) {
-                                if (item.FieldName == itemValue.fieldname)
-                                    emailOutBoxContent.defaultValue[i] = itemValue.value;
-                            });
-                        }
-                    }
-                });
-            }
-*/
- /*           var filterModelParentRootFolders = {
-                Filters: [{
-                    PropertyName: "LinkParentId",
-                    value: null,
-                    SearchType: 0,
-                    IntValueForceNullSearch: true
-                }]
-            };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
-                emailOutBoxContent.dataForTheTree = response1.ListItems;
-                
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/","", 'GET').success(function (response2) {
-                    Array.prototype.push.apply(emailOutBoxContent.dataForTheTree, response2.ListItems);
-                    //Set selected files to treeControl
-                    if (emailOutBoxContent.selectedItem.LinkModuleFileLogoId > 0)
-                        emailOutBoxContent.onSelection({ Id: emailOutBoxContent.selectedItem.LinkModuleFileLogoId }, true);
-                    $modal.open({
-                        templateUrl: 'cpanelv1/CmsModules/Email/emailOutBoxContent/edit.html',
-                        scope: $scope
-                    });
-                    emailOutBoxContent.addRequested = false;
-                    emailOutBoxContent.busyIndicator.isActive = false;
-                }).error(function (data, errCode, c, d) {
-                    console.log(data);
-                });
-            }).error(function (data, errCode, c, d) {
-                console.log(data);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }
-
-    emailOutBoxContent.editRow = function (frm) {
-        if (frm.$invalid)
-        {
-            rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
-            return;
-        }
-        emailOutBoxContent.addRequested = true;
-        emailOutBoxContent.busyIndicator.isActive = true;
-
-        emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
-
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, "PUT").success(function (response) {
-            emailOutBoxContent.addRequested = false;
-            emailOutBoxContent.busyIndicator.isActive = false;
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                emailOutBoxContent.replaceItem(emailOutBoxContent.selectedItem.Id, response.Item);
-                emailOutBoxContent.gridOptions.fillData(emailOutBoxContent.ListItems, response.Access);
-                emailOutBoxContent.closeModal();
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-            emailOutBoxContent.addRequested = false;
-            emailOutBoxContent.busyIndicator.isActive = false;
-        });
-    }*/
 
     emailOutBoxContent.closeModal = function () {
         $modalStack.dismissAll();
@@ -405,9 +229,9 @@
     emailOutBoxContent.openBaseConfigModal = function (selectedId) {
         emailOutBoxContent.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
+        // var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         emailOutBoxContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/getonewithjsonformatter", selectedId, 'GET').success(function (response) {
             emailOutBoxContent.addRequested = false;
             if (response.IsSuccess) {
                 emailOutBoxContent.selectedItem = response.Item;

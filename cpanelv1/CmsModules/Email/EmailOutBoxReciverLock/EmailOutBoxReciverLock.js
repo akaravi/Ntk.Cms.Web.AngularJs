@@ -89,125 +89,6 @@
 
     emailOutBoxReciverLock.dataForTheTree = [];
 
-   /* emailOutBoxReciverLock.openEditModal = function () {
-        emailOutBoxReciverLock.modalTitle = 'ویرایش';
-        if (!emailOutBoxReciverLock.gridOptions.selectedRow.item) {
-            rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
-            return;
-        }
-        emailOutBoxReciverLock.defaultValue = {};
-        $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: emailOutBoxReciverLock.gridOptions.selectedRow.item.Id }] };
-
-        emailOutBoxReciverLock.addRequested = true;
-        emailOutBoxReciverLock.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/getonewithjsonformatter', engine, 'POST').success(function (response) {
-            rashaErManage.checkAction(response);
-            emailOutBoxReciverLock.selectedItem = response.Item;
-
-            //Load FormBuilder and its values
-            //var customizeValue = JSON.parse(response.Item.PublicConfigJsonValues);
-            var customizeValue = response.Item.PublicConfigJsonFormatter;
-            if (customizeValue != null && customizeValue.length > 0) {
-                $.each(customizeValue, function (i, item) {
-                    if (item.FieldName != undefined && item.FieldName != null && item.FieldName != "") {
-                        var fieldType = "";
-                        if (item.FieldType == "System.Boolean") {
-                            fieldType = "radio";
-                            $builder.addFormObject('default', {
-                                "component": fieldType,
-                                "label": item.FieldTitle,
-                                "description": item.FieldDescription,
-                                "id": i,
-                                "fieldname": item.FieldName,
-                                "options": [
-                                      "True",
-                                      "False"
-                                ]
-                            });
-                        }
-                        else {
-                            fieldType = "text";
-                            $builder.addFormObject('default', {
-                                "component": fieldType,
-                                "label": item.FieldTitle,
-                                "description": item.FieldDescription,
-                                "id": i,
-                                "fieldname": item.FieldName,
-                            });
-                        }
-                        ///تخصیص مقادیر با تشکخصی نام متغییر
-                        if (response.Item.PublicConfigJsonValues != null && response.Item.PublicConfigJsonValues != "") {
-                            values = $.parseJSON(response.Item.PublicConfigJsonValues);
-                            $.each(values, function (iValue, itemValue) {
-                                if (item.FieldName == itemValue.fieldname)
-                                    emailOutBoxReciverLock.defaultValue[i] = itemValue.value;
-                            });
-                        }
-                    }
-                });
-            }
-
-            var filterModelParentRootFolders = {
-                Filters: [{
-                    PropertyName: "LinkParentId",
-                    value: null,
-                    SearchType: 0,
-                    IntValueForceNullSearch: true
-                }]
-            };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
-                emailOutBoxReciverLock.dataForTheTree = response1.ListItems;
-                
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesInCategoryId/","", 'GET').success(function (response2) {
-                    Array.prototype.push.apply(emailOutBoxReciverLock.dataForTheTree, response2.ListItems);
-                    //Set selected files to treeControl
-                    if (emailOutBoxReciverLock.selectedItem.LinkModuleFileLogoId > 0)
-                        emailOutBoxReciverLock.onSelection({ Id: emailOutBoxReciverLock.selectedItem.LinkModuleFileLogoId }, true);
-                    $modal.open({
-                        templateUrl: 'cpanelv1/CmsModules/Email/emailOutBoxReciverLock/edit.html',
-                        scope: $scope
-                    });
-                    emailOutBoxReciverLock.addRequested = false;
-                    emailOutBoxReciverLock.busyIndicator.isActive = false;
-                }).error(function (data, errCode, c, d) {
-                    console.log(data);
-                });
-            }).error(function (data, errCode, c, d) {
-                console.log(data);
-            });
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-        });
-    }
-
-    emailOutBoxReciverLock.editRow = function (frm) {
-        if (frm.$invalid)
-        {
-            rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
-            return;
-        }
-        emailOutBoxReciverLock.addRequested = true;
-        emailOutBoxReciverLock.busyIndicator.isActive = true;
-
-        emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
-
-        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItem, "PUT").success(function (response) {
-            emailOutBoxReciverLock.addRequested = false;
-            emailOutBoxReciverLock.busyIndicator.isActive = false;
-            rashaErManage.checkAction(response);
-            if (response.IsSuccess) {
-                emailOutBoxReciverLock.replaceItem(emailOutBoxReciverLock.selectedItem.Id, response.Item);
-                emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.Access);
-                emailOutBoxReciverLock.closeModal();
-            }
-        }).error(function (data, errCode, c, d) {
-            rashaErManage.checkAction(data, errCode);
-            emailOutBoxReciverLock.addRequested = false;
-            emailOutBoxReciverLock.busyIndicator.isActive = false;
-        });
-    }
-*/
     emailOutBoxReciverLock.closeModal = function () {
         $modalStack.dismissAll();
     };
@@ -223,34 +104,6 @@
             emailOutBoxReciverLock.ListItems.unshift(newItem);
     }
 
-   /* emailOutBoxReciverLock.deleteRow = function () {
-        if (buttonIsPressed) { return };
-        if (!emailOutBoxReciverLock.gridOptions.selectedRow.item) {
-            rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Row_To_Remove'));
-            return;
-        }
-        rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
-            if (isConfirmed) {
-                buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
-                    buttonIsPressed = false;
-                    rashaErManage.checkAction(response);
-                    emailOutBoxReciverLock.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItemForDelete, 'POST').success(function (res) {
-                        rashaErManage.checkAction(res);
-                        if (res.IsSuccess) {
-                            emailOutBoxReciverLock.replaceItem(emailOutBoxReciverLock.selectedItemForDelete.Id);
-                            emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems);
-                        }
-                    }).error(function (data2, errCode2, c2, d2) {
-                        rashaErManage.checkAction(data2);
-                    });
-                }).error(function (data, errCode, c, d) {
-                    rashaErManage.checkAction(data, errCode);
-                });
-            }
-        });
-    }*/
 
     emailOutBoxReciverLock.searchData = function () {
         emailOutBoxReciverLock.gridOptions.serachData();
@@ -351,9 +204,9 @@
     emailOutBoxReciverLock.openBaseConfigModal = function (selectedId) {
         emailOutBoxReciverLock.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
+        // var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         emailOutBoxReciverLock.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getonewithjsonformatter", selectedId, 'GET').success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             if (response.IsSuccess) {
                 emailOutBoxReciverLock.selectedItem = response.Item;

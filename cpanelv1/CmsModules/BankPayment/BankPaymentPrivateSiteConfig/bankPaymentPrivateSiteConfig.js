@@ -18,8 +18,8 @@
             $state.go("index.bankpaymentpublicconfig");
             return;
         }
-        var engine = { Filters: [{ PropertyName: "Id", value: privateSiteConfig.selectedPublicConfig.Id }] };
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', privateSiteConfig.selectedPublicConfig.Id , 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.selectedPublicConfig = response.Item;
@@ -166,11 +166,10 @@
 
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: privateSiteConfig.gridOptions.selectedRow.item.Id }] };
 
         buttonIsPressed = true;
         privateSiteConfig.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getonewithjsonformatter', privateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             privateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
@@ -405,9 +404,8 @@
     privateSiteConfig.openBaseConfigModal = function (selectedId) {
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        var engine = { Filters: [{ PropertyName: "Id", value: selectedId }] };
         privateSiteConfig.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentprivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentprivateSiteConfig/getonewithjsonformatter",selectedId, 'GET').success(function (response) {
             privateSiteConfig.addRequested = false;
             if (response.IsSuccess) {
                 privateSiteConfig.selectedItem = response.Item;
