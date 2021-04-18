@@ -262,7 +262,8 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         }
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.busyIndicator.isActive = true;
-        emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
+        //todo: karavi
+        // emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
         var apiSelectedItem =emailPrivateSiteConfig.selectedItem;
         if (apiSelectedItem.ApiPathSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
@@ -371,8 +372,8 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         }
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.busyIndicator.isActive = true;
-
-        emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
+//todo: karavi
+        // emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
         var apiSelectedItem = emailPrivateSiteConfig.selectedItem;
         if (apiSelectedItem.ApiPathSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
@@ -729,7 +730,8 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
     emailPrivateSiteConfig.saveSubmitValues = function() {
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.busyIndicator.isActive = true;
-        emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
+        //todo: karavi
+        // emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'emailPrivateSiteConfig/', emailPrivateSiteConfig.selectedItem, "PUT").success(function(response) {
             emailPrivateSiteConfig.addRequested = true;
             emailPrivateSiteConfig.busyIndicator.isActive = false;

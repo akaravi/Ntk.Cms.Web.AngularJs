@@ -139,7 +139,8 @@
         }
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
-        privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
+        //todo: karavi
+        // privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -235,8 +236,8 @@
         }
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
-
-        privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
+//todo: karavi
+        // privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
 
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/', privateSiteConfig.selectedItem, "PUT").success(function (response) {
             privateSiteConfig.addRequested = true;
@@ -488,7 +489,8 @@
     privateSiteConfig.saveSubmitValues = function () {
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
-        privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
+        //todo: karavi
+        // privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivateSiteConfig/', privateSiteConfig.selectedItem, "PUT").success(function (response) {
             privateSiteConfig.addRequested = true;
             privateSiteConfig.busyIndicator.isActive = false;

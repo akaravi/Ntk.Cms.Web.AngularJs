@@ -330,7 +330,8 @@
     emailOutBoxReciver.saveSubmitValues = function () {
         emailOutBoxReciver.busyIndicator.isActive = true;
         emailOutBoxReciver.addRequested = true;
-        emailOutBoxReciver.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciver.submitValue));
+        //todo: karavi
+        // emailOutBoxReciver.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciver.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/', emailOutBoxReciver.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciver.busyIndicator.isActive = false;

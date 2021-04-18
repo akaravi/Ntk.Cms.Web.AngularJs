@@ -149,8 +149,8 @@
         }
         emailPublicConfig.addRequested = true;
         emailPublicConfig.busyIndicator.isActive = true;
-
-        emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
+//todo: karavi
+        // emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
 
         ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.selectedItem, "PUT").success(function (response) {
             emailPublicConfig.addRequested = false;
@@ -397,7 +397,8 @@
     emailPublicConfig.saveSubmitValues = function () {
         emailPublicConfig.busyIndicator.isActive = true;
         emailPublicConfig.addRequested = true;
-        emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
+        //todo: karavi
+        // emailPublicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailPublicConfig.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/', emailPublicConfig.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailPublicConfig.busyIndicator.isActive = false;

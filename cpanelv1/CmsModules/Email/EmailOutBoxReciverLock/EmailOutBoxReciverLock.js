@@ -266,7 +266,8 @@
     emailOutBoxReciverLock.saveSubmitValues = function () {
         emailOutBoxReciverLock.busyIndicator.isActive = true;
         emailOutBoxReciverLock.addRequested = true;
-        emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
+        //todo: karavi
+        // emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/', emailOutBoxReciverLock.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.busyIndicator.isActive = false;

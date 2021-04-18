@@ -147,8 +147,8 @@
         }
         publicConfig.addRequested = true;
         publicConfig.busyIndicator.isActive = true;
-
-        publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
+//todo: karavi
+        // publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
 
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/', publicConfig.selectedItem, "PUT").success(function (response) {
             publicConfig.addRequested = false;
@@ -336,7 +336,8 @@
     publicConfig.saveSubmitValues = function () {
         publicConfig.busyIndicator.isActive = true;
         publicConfig.addRequested = true;
-        publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
+        //todo: karavi
+        // publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/', publicConfig.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.busyIndicator.isActive = false;

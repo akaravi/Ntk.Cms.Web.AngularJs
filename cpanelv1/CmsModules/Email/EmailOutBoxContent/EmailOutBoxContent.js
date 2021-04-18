@@ -291,7 +291,8 @@
     emailOutBoxContent.saveSubmitValues = function () {
         emailOutBoxContent.busyIndicator.isActive = true;
         emailOutBoxContent.addRequested = true;
-        emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
+        //todo: karavi
+        // emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
         ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/', emailOutBoxContent.selectedItem, "PUT").success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.busyIndicator.isActive = false;
